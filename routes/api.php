@@ -18,7 +18,7 @@ use App\Http\Controllers\Auth\LoginController;
 
 Route::post('/login', [LoginController::class,'login']);
 
-Route::middleware(['auth:api','apiKey','logger'])->group(function(){
+Route::middleware(['auth:api','apiKey'])->group(function(){
 
     Route::get('/user', [UserController::class,'get']);
     Route::post('/user', [UserController::class,'create']);

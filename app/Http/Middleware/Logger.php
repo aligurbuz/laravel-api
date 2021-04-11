@@ -22,7 +22,7 @@ class Logger
 
         $responseContent = json_decode($response->getContent(),1);
 
-        /**LoggerModel::insert([
+        LoggerModel::create([
             Route::current()->getAction('controller'),
             $request->path(),
             $method = $request->method(),
@@ -34,7 +34,7 @@ class Logger
             $responseContent['errorMessage'] ?? '',
             $responseContent['file'] ?? '',
             $responseContent['line'] ?? '',
-        ]);**/
+        ]);
 
         return $response;
     }
