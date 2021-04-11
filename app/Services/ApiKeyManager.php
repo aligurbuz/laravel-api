@@ -40,9 +40,9 @@ class ApiKeyManager
 
     /**
      * @param Request $request
-     * @return string
+     * @return null|string
      */
-    private function getHeaderKey(Request $request): string
+    private function getHeaderKey(Request $request): ?string
     {
         return $request->headers->get(config('app.apikeyString'));
     }
