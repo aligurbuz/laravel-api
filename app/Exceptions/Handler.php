@@ -2,7 +2,11 @@
 
 namespace App\Exceptions;
 
+use App\Services\Response;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response as SymfonyResponse;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -37,5 +41,15 @@ class Handler extends ExceptionHandler
         $this->reportable(function (Throwable $e) {
             //
         });
+    }
+
+    /**
+     * @param Request $request
+     * @param Throwable $e
+     * @return Response|JsonResponse|SymfonyResponse
+     */
+    public function render($request, Throwable $e): JsonResponse
+    {
+        return Response::error($e->getMessage(),$e->getCode(),$e);
     }
 }
