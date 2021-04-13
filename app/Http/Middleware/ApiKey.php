@@ -11,7 +11,7 @@ class ApiKey extends ApiKeyManager
      *
      * @var array|string[]
      */
-    protected $apiKeys = [
+    protected array $apiKeys = [
         'web' => '96a43836036ead1a475de70bab62ba5c'
     ];
 }
