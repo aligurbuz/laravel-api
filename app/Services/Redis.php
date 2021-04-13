@@ -12,7 +12,7 @@ class Redis
      *
      * @var null|ClientInterface
      */
-    protected static $redisInstance = null;
+    protected static ?ClientInterface $redisInstance = null;
 
     /**
      * get predis client instance
