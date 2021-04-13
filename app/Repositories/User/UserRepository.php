@@ -16,5 +16,5 @@ class UserRepository extends EloquentRepository implements UserRepositoryContrac
     /**
      * @var string
      */
-    protected static $model = User::class;
+    protected static string $model = User::class;
 }
