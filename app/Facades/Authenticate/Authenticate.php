@@ -9,7 +9,7 @@ class Authenticate extends FacadeManager
     /**
      * @var string
      */
-    protected $facade = 'user';
+    protected string $facade = 'user';
 
     /**
      * Authenticate constructor.
@@ -26,7 +26,7 @@ class Authenticate extends FacadeManager
      *
      * @return mixed
      */
-    public static function id()
+    public static function id(): mixed
     {
         return (new self)->data->id ?? null;
     }
@@ -36,7 +36,7 @@ class Authenticate extends FacadeManager
      *
      * @return mixed
      */
-    public static function username()
+    public static function username(): mixed
     {
         return (new self)->data->username ?? null;
     }
@@ -46,7 +46,7 @@ class Authenticate extends FacadeManager
      *
      * @return mixed
      */
-    public static function name()
+    public static function name(): mixed
     {
         return (new self)->data->name ?? null;
     }
@@ -56,7 +56,7 @@ class Authenticate extends FacadeManager
      *
      * @return mixed
      */
-    public static function email()
+    public static function email(): mixed
     {
         return (new self)->data->email ?? null;
     }
