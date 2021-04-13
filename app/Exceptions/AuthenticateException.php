@@ -12,7 +12,7 @@ class AuthenticateException extends Exception
     /**
      * @var string
      */
-    protected $langKey = 'authenticateException';
+    protected string $langKey = 'authenticateException';
 
     /**
      * CustomException constructor.

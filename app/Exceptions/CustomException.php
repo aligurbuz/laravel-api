@@ -12,7 +12,7 @@ class CustomException extends Exception
     /**
      * @var string
      */
-    protected $langKey = 'customException';
+    protected string $langKey = 'customException';
 
     /**
      * CustomException constructor.

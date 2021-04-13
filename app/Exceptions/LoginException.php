@@ -12,7 +12,7 @@ class LoginException extends Exception
     /**
      * @var string
      */
-    protected $langKey = 'loginException';
+    protected string $langKey = 'loginException';
 
     /**
      * CustomException constructor.

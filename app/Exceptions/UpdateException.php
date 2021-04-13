@@ -12,7 +12,7 @@ class UpdateException extends Exception
     /**
      * @var string
      */
-    protected $langKey = 'updateException';
+    protected string $langKey = 'updateException';
 
     /**
      * CustomException constructor.

@@ -5,8 +5,6 @@ namespace App\Exceptions;
 use App\Services\Response;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Response as SymfonyResponse;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -16,7 +14,7 @@ class Handler extends ExceptionHandler
      *
      * @var array
      */
-    protected $dontReport = [
+    protected array $dontReport = [
         //
     ];
 
@@ -25,7 +23,7 @@ class Handler extends ExceptionHandler
      *
      * @var array
      */
-    protected $dontFlash = [
+    protected array $dontFlash = [
         'current_password',
         'password',
         'password_confirmation',
@@ -44,9 +42,9 @@ class Handler extends ExceptionHandler
     }
 
     /**
-     * @param Request $request
+     * @param $request
      * @param Throwable $e
-     * @return Response|JsonResponse|SymfonyResponse
+     * @return JsonResponse
      */
     public function render($request, Throwable $e): JsonResponse
     {

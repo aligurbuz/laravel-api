@@ -12,7 +12,7 @@ class ApiKeyException extends Exception
     /**
      * @var string
      */
-    protected $langKey = 'apiKeyException';
+    protected string $langKey = 'apiKeyException';
 
     /**
      * CustomException constructor.

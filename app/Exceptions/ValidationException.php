@@ -12,7 +12,7 @@ class ValidationException extends Exception
     /**
      * @var string
      */
-    protected $langKey = 'validException';
+    protected string $langKey = 'validException';
 
     /**
      * CustomException constructor.
