@@ -9,14 +9,14 @@ use Illuminate\Database\Eloquent\Builder;
 trait ScopeManager
 {
     /**
-     * @var array
+     * @var array[]
      */
-    protected $withSelects = [];
+    protected array $withSelects = [];
 
     /**
      * @var string[]
      */
-    protected $operators = ['<','>','<=','>=','<>'];
+    protected array $operators = ['<','>','<=','>=','<>'];
 
     /**
      * get active data for model
