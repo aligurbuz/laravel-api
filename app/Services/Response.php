@@ -23,7 +23,7 @@ class Response
      * @param mixed $data
      * @return JsonResponse
      */
-    public static function ok($data) : JsonResponse
+    public static function ok(mixed $data) : JsonResponse
     {
         return static::response(
             [
