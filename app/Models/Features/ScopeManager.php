@@ -2,6 +2,7 @@
 
 namespace App\Models\Features;
 
+use App\Services\AppContainer;
 use App\Services\Db;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -26,6 +27,24 @@ trait ScopeManager
     public function scopeActive(Builder $builder): Builder
     {
         return $builder->where('status',1)->where('is_deleted',0);
+    }
+
+    /**
+     * set instruction for response
+     *
+     * @param Builder $builder
+     * @return Builder
+     */
+    public function scopeInstruction(Builder $builder) : Builder
+    {
+        if(isset($this->withQuery) && is_array($this->withQuery)){
+            foreach ($this->withQuery as $with => $items){
+                if(is_array($items) && isset($items['description'])){
+                    AppContainer::set('responseFormatterSupplement',['relations' =>[$with => $items['description']]],true);
+                }
+            }
+        }
+        return $builder;
     }
 
     /**

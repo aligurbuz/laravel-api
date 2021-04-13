@@ -14,7 +14,7 @@ class EloquentRepository
      */
     public function get() : Paginator
     {
-        return static::$model::withQuery()
+        return static::$model::instruction()->withQuery()
             ->selectQuery()->orderByQuery()->filterQuery()->simplePaginate(20);
     }
 
