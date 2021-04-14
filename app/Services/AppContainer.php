@@ -44,6 +44,16 @@ class AppContainer
     }
 
     /**
+     * get all key for app factory
+     *
+     * @return array
+     */
+    public static function all(): array
+    {
+        return static::$data;
+    }
+
+    /**
      * get availability of the key for app factory
      *
      * @param $key
@@ -52,5 +62,18 @@ class AppContainer
     public static function has($key): bool
     {
         return isset(static::$data[$key]);
+    }
+
+    /**
+     * delete the key for app factory
+     *
+     * @param $key
+     * @return void
+     */
+    public static function terminate($key): void
+    {
+        if(isset(static::$data[$key])){
+            unset(static::$data[$key]);
+        }
     }
 }
