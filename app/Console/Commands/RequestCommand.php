@@ -61,7 +61,7 @@ class RequestCommand extends Command
 
         $class->addMethod('update')->addComment('throws exception for request')->addComment('')->addComment('@return void')
             ->addBody('$this->handle([
-    \'id\' => \'required\'
+    \'id\' => \'required|integer\'
 ]);')
             ->setReturnType('void');
 
