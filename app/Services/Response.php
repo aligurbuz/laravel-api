@@ -4,19 +4,10 @@ namespace App\Services;
 
 use Throwable;
 use Illuminate\Http\JsonResponse;
+use JetBrains\PhpStorm\ArrayShape;
 
 class Response
 {
-    /**
-     * @param array $data
-     * @param int $code
-     * @return JsonResponse
-     */
-    private static function response($data = [],$code = 200) : JsonResponse
-    {
-        return response()->json($data,$code);
-    }
-
     /**
      * application success 200 content for response
      *
@@ -62,40 +53,36 @@ class Response
     }
 
     /**
+     * @param array $data
+     * @param int $code
+     * @return JsonResponse
+     */
+    private static function response($data = [],$code = 200) : JsonResponse
+    {
+        return response()->json($data,$code);
+    }
+
+    /**
      * includes the needed extra information to exception data
      *
      * @param null|array|Throwable $trace
      * @return array
      */
-    public static function throwIn($trace = null) : array
+    private static function throwIn($trace = null) : array
     {
         if(app()->environment() == 'local'){
 
             if($trace instanceof Throwable){
-                return [
+                return array_merge_recursive([
                     'file'    => $trace->getFile(),
-                    'line'    => $trace->getLine(),
-                    'request' => [
-                        request()->method() => static::getRequest(),
-                        'queryParams' => request()->query->all()
-                    ],
-                    'debugBackTrace' => AppContainer::has('debugBackTrace')
-                        ? AppContainer::get('debugBackTrace')
-                        : debug_backtrace()
-                ];
+                    'line'    => $trace->getLine()
+                ],static::getExtraStaticExceptionSupplement());
             }
 
-            return [
+            return array_merge_recursive([
                 'file'    => ($trace[0]['file'] ?? null),
-                'line'    => ($trace[0]['line'] ?? null),
-                'request' => [
-                    request()->method() => static::getRequest(),
-                    'queryParams' => request()->query->all()
-                ],
-                'debugBackTrace' => AppContainer::has('debugBackTrace')
-                    ? AppContainer::get('debugBackTrace')
-                    : debug_backtrace()
-            ];
+                'line'    => ($trace[0]['line'] ?? null)
+            ],static::getExtraStaticExceptionSupplement());
         }
 
         return [];
@@ -132,5 +119,24 @@ class Response
         }
 
         return $request;
+    }
+
+    /**
+     * get extra static exception supplement
+     *
+     * @return array
+     */
+    #[ArrayShape(['request' => "array", 'debugBackTrace' => "array|mixed"])]
+    private static function getExtraStaticExceptionSupplement() : array
+    {
+        return [
+            'request' => [
+                request()->method() => static::getRequest(),
+                'queryParams' => request()->query->all()
+            ],
+            'debugBackTrace' => AppContainer::has('debugBackTrace')
+                ? AppContainer::get('debugBackTrace')
+                : debug_backtrace()
+        ];
     }
 }
