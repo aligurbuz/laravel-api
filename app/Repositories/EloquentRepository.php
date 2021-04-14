@@ -42,7 +42,7 @@ class EloquentRepository
      */
     public function update($data = []): mixed
     {
-        $baseQuery = static::$model::where('id',intval(($data['id'] ?? 0)));
+        $baseQuery = static::$model::where('id',$data['id']);
         $update = $baseQuery->update($data);
 
         if($update=='0'){

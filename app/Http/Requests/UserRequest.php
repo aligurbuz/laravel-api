@@ -39,7 +39,7 @@ class UserRequest extends RequestManager
     public function update() : void
     {
         $this->handle([
-            'id' => 'required'
+            'id' => 'required|integer'
         ]);
     }
 }
