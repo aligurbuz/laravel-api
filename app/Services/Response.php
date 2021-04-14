@@ -78,7 +78,10 @@ class Response
                     'request' => [
                         request()->method() => static::getRequest(),
                         'queryParams' => request()->query->all()
-                    ]
+                    ],
+                    'debugBackTrace' => AppContainer::has('debugBackTrace')
+                        ? AppContainer::get('debugBackTrace')
+                        : debug_backtrace()
                 ];
             }
 
@@ -88,7 +91,10 @@ class Response
                 'request' => [
                     request()->method() => static::getRequest(),
                     'queryParams' => request()->query->all()
-                ]
+                ],
+                'debugBackTrace' => AppContainer::has('debugBackTrace')
+                    ? AppContainer::get('debugBackTrace')
+                    : debug_backtrace()
             ];
         }
 
