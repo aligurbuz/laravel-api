@@ -51,7 +51,8 @@ class Response
         $standard = [
             'status'        => false,
             'code'          => $code,
-            'errorMessage'  => static::getExceptionMessageForEnvironment($message)
+            'errorMessage'  => static::getExceptionMessageForEnvironment($message),
+            'endpoint'      => request()->url(),
         ];
 
         return static::response(
@@ -74,14 +75,20 @@ class Response
                 return [
                     'file'    => $trace->getFile(),
                     'line'    => $trace->getLine(),
-                    'request' => static::getRequest()
+                    'request' => [
+                        request()->method() => static::getRequest(),
+                        'queryParams' => request()->query->all()
+                    ]
                 ];
             }
 
             return [
                 'file'    => ($trace[0]['file'] ?? null),
                 'line'    => ($trace[0]['line'] ?? null),
-                'request' => static::getRequest()
+                'request' => [
+                    request()->method() => static::getRequest(),
+                    'queryParams' => request()->query->all()
+                ]
             ];
         }
 
@@ -108,7 +115,7 @@ class Response
      */
     private static function getRequest() : array
     {
-        $request = request()->all();
+        $request = request()->request->all();
 
         if(isset($request['password'])){
             $request['password'] = '***';

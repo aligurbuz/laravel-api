@@ -2,6 +2,8 @@
 
 namespace App\Exceptions;
 
+use App\Services\AppContainer;
+
 /**
  * Class Exception
  * @method static customException($message = null)
@@ -28,6 +30,7 @@ class Exception
             throw new $namespace($arguments[0]);
         }
         else{
+            AppContainer::set('debugBackTrace',debug_backtrace());
             throw new $namespace();
         }
     }
