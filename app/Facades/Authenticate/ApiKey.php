@@ -19,11 +19,31 @@ class ApiKey
     public static function __callStatic(string $name, array $arguments) : bool
     {
         $name = strtolower(substr($name,2));
-        $header = request()->headers->get(config('app.apikeyString'));
 
+        return (static::who() === $name);
+    }
+
+    /**
+     * get client according to apikey
+     *
+     * @param null $header
+     * @return bool|int|string
+     */
+    public static function who($header = null): bool|int|string
+    {
+        $header = $header ?? static::get();
         $containerApiKeys = AppContainer::get('apiKeys');
-        $key = array_search($header,is_array($containerApiKeys) ? $containerApiKeys : []);
 
-        return ($key === $name);
+        return array_search($header,is_array($containerApiKeys) ? $containerApiKeys : []);
+    }
+
+    /**
+     * get header client api key
+     *
+     * @return string|null
+     */
+    public static function get(): ?string
+    {
+        return request()->headers->get(config('app.apikeyString'));
     }
 }

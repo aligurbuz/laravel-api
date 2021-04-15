@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Facades\Authenticate\ApiKey;
 use Throwable;
 use Illuminate\Http\JsonResponse;
 use JetBrains\PhpStorm\ArrayShape;
@@ -20,6 +21,7 @@ class Response
             [
                 'status'        => true,
                 'code'          => 200,
+                'client'        => ApiKey::who(),
                 'instructions'  => AppContainer::get('responseFormatterSupplement'),
                 'resource'      => $data
             ]
@@ -42,6 +44,7 @@ class Response
         $standard = [
             'status'        => false,
             'code'          => $code,
+            'client'        => ApiKey::who(),
             'errorMessage'  => static::getExceptionMessageForEnvironment($message),
             'endpoint'      => request()->url(),
         ];
