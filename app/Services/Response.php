@@ -2,10 +2,10 @@
 
 namespace App\Services;
 
-use App\Facades\Authenticate\ApiKey;
 use Throwable;
 use Illuminate\Http\JsonResponse;
 use JetBrains\PhpStorm\ArrayShape;
+use App\Facades\Authenticate\ApiKey;
 
 class Response
 {
