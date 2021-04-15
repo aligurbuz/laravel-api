@@ -10,12 +10,12 @@ class GlobalScopeManager
     /**
      * @var Builder
      */
-    protected $builder;
+    protected Builder $builder;
 
     /**
      * @var string
      */
-    protected $table;
+    protected string $table;
 
     /**
      * GlobalScopeManager constructor.
