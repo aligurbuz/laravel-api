@@ -3,7 +3,7 @@
 namespace App\Http;
 
 use App\Http\Middleware\ApiKey;
-use App\Http\Middleware\Logger;
+use App\Http\Middleware\AccessLogger;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -65,6 +65,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'apiKey' => ApiKey::class,
-        'logger' => Logger::class
+        'accessLogger' => AccessLogger::class
     ];
 }
