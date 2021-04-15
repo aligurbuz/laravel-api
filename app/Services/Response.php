@@ -22,6 +22,7 @@ class Response
                 'status'        => true,
                 'code'          => 200,
                 'client'        => ApiKey::who(),
+                'requestCode'   => time(),
                 'instructions'  => AppContainer::get('responseFormatterSupplement'),
                 'resource'      => $data
             ]
@@ -45,6 +46,7 @@ class Response
             'status'        => false,
             'code'          => $code,
             'client'        => ApiKey::who(),
+            'requestCode'   => time(),
             'errorMessage'  => static::getExceptionMessageForEnvironment($message),
             'endpoint'      => request()->url(),
         ];
