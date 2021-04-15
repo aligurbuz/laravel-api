@@ -22,9 +22,9 @@ class Response
                 'status'        => true,
                 'code'          => 200,
                 'client'        => ApiKey::who(),
-                'responseCode' => time(),
+                'responseCode'  => time(),
+                'resource'      => $data,
                 'instructions'  => AppContainer::get('responseFormatterSupplement'),
-                'resource'      => $data
             ]
         );
     }
