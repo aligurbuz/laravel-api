@@ -12,6 +12,7 @@ use App\Services\AppContainer;
  * @method static authenticateException($message = null)
  * @method static updateException($message = null)
  * @method static apiKeyException($message = null)
+ * @method static accessLoggerException($message = null)
  * @package App\Exceptions
  */
 class Exception

@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Exceptions\Exception;
 use App\Models\AccessLogger as Logger;
 use Closure;
 use Illuminate\Http\Request;
@@ -38,8 +39,8 @@ class AccessLogger
                 'response'              => $content
             ]);
         }
-        catch (\Exception $exception){
-            dd($exception->getMessage());
+        catch (\Exception){
+            return Exception::accessLoggerException();
         }
 
         return $response;
