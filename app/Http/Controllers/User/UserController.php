@@ -43,7 +43,7 @@ class UserController extends Controller
     {
         $request->create();
 
-        $user = $userRepository->create(request()->all());
+        $user = $userRepository->create();
         $user['token'] = $user->createToken('myApp')->accessToken;
 
         return Response::ok($user);
@@ -60,6 +60,6 @@ class UserController extends Controller
     {
         $request->update();
 
-        return Response::ok($userRepository->update(request()->all()));
+        return Response::ok($userRepository->update());
     }
 }

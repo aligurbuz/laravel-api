@@ -31,7 +31,7 @@ class AccessLogger
                 'http_method'               => $method = $request->method(),
                 'http_client_headers'       => json_encode($request->header()),
                 'http_client_params_data'   => json_encode($request->query->all()),
-                'http_client_body_data'     => json_encode($request->request->all()),
+                'http_client_body_data'     => ($method!=='GET') ? json_encode($request->request->all()) : json_encode([]),
                 'response_status'           => $responseContent['code'] ?? 0,
                 'exception_file'            => $responseContent['file'] ?? '',
                 'exception_line'            => $responseContent['line'] ?? '',

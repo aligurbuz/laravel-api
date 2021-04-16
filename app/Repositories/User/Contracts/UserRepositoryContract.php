@@ -18,19 +18,19 @@ interface UserRepositoryContract
      * @return mixed
      * @see UserRepository::create()
      */
-    public function create($data = []): mixed;
+    public function create(array $data = []): mixed;
 
     /**
      * @param array $data
      * @return mixed
      * @see UserRepository::update()
      */
-    public function update($data = []): mixed;
+    public function update(array $data = []): mixed;
 
     /**
      * @param $id
      * @return array
      * @see UserRepository::find()
      */
-    public function find($id): array;
+    public function find(int $id): array;
 }

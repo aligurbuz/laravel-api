@@ -24,8 +24,10 @@ class EloquentRepository
      * @param array $data
      * @return mixed
      */
-    public function create($data = []): mixed
+    public function create(array $data = []): mixed
     {
+        $data = count($data) ? $data : request()->request->all();
+
         try {
             return static::$model::create($data);
         }
@@ -40,8 +42,10 @@ class EloquentRepository
      * @param array $data
      * @return mixed
      */
-    public function update($data = []): mixed
+    public function update(array $data = []): mixed
     {
+        $data = count($data) ? $data : request()->request->all();
+
         $baseQuery = static::$model::where('id',intval(($data['id'] ?? 0)));
         $update = $baseQuery->update($data);
 
@@ -56,7 +60,7 @@ class EloquentRepository
      * @param $id
      * @return array
      */
-    public function find($id) : array
+    public function find(int $id) : array
     {
         return static::$model::find($id)->toArray();
     }
