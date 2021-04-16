@@ -20,7 +20,8 @@ class AccessLoggerCreate extends Migration
             $table->bigInteger('response_code')->default(0)->index();
             $table->string('http_method',10);
             $table->jsonb('http_client_headers');
-            $table->jsonb('http_client_data');
+            $table->jsonb('http_client_params_data');
+            $table->jsonb('http_client_body_data');
             $table->integer('response_status');
             $table->string('exception_file');
             $table->string('exception_line');

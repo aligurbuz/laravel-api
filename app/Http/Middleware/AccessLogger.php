@@ -25,22 +25,23 @@ class AccessLogger
 
         try {
             Logger::create([
-                'client_key'            => ApiKey::who(),
-                'endpoint_name'         => $request->url(),
-                'response_code'         => $responseContent['responseCode'] ?? 0,
-                'http_method'           => $method = $request->method(),
-                'http_client_headers'   => json_encode($request->header()),
-                'http_client_data'      => ($method == 'GET') ? json_encode($request->query->all()) : json_encode($request->request->all()),
-                'response_status'       => $responseContent['code'] ?? 0,
-                'exception_file'        => $responseContent['file'] ?? '',
-                'exception_line'        => $responseContent['line'] ?? '',
-                'exception_message'     => $responseContent['errorMessage'] ?? '',
-                'exception_trace'       => json_encode([]),
-                'response'              => $content
+                'client_key'                => ApiKey::who(),
+                'endpoint_name'             => $request->url(),
+                'response_code'             => $responseContent['responseCode'] ?? 0,
+                'http_method'               => $method = $request->method(),
+                'http_client_headers'       => json_encode($request->header()),
+                'http_client_params_data'   => json_encode($request->query->all()),
+                'http_client_body_data'     => json_encode($request->request->all()),
+                'response_status'           => $responseContent['code'] ?? 0,
+                'exception_file'            => $responseContent['file'] ?? '',
+                'exception_line'            => $responseContent['line'] ?? '',
+                'exception_message'         => $responseContent['errorMessage'] ?? '',
+                'exception_trace'           => json_encode([]),
+                'response'                  => $content
             ]);
         }
-        catch (\Exception){
-            return Exception::accessLoggerException();
+        catch (\Exception $e){
+            return Exception::accessLoggerException($e->getMessage());
         }
 
         return $response;
