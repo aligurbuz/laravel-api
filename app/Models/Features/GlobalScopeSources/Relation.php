@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Models\Features;
+namespace App\Models\Features\GlobalScopeSources;
 
 use Illuminate\Database\Eloquent\Builder;
-use App\Facades\Authenticate\Authenticate as AuthenticateFacade;
 
-class GlobalScopeManager
+class Relation
 {
     /**
      * @var Builder
@@ -27,7 +26,7 @@ class GlobalScopeManager
         $this->builder = $builder;
         $this->table = $table;
 
-        $this->user();
+        $this->relation();
     }
 
     /**
@@ -35,17 +34,8 @@ class GlobalScopeManager
      *
      * @return void
      */
-    public function user() : void
+    public function relation() : void
     {
-        $userId = AuthenticateFacade::id();
-
-        if(
-            !app()->runningInConsole()
-            && !is_null($userId)
-            && $this->table=='users'
-        )
-        {
-            $this->builder->where('id',$userId);
-        }
+        //
     }
 }

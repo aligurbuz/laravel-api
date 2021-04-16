@@ -2,6 +2,7 @@
 
 namespace App\Models\Features;
 
+use App\Models\Features\GlobalScopeSources\User;
 use Illuminate\Database\Eloquent\Builder;
 
 trait BaseManager
@@ -17,9 +18,9 @@ trait BaseManager
     {
         parent::boot();
 
-        static::addGlobalScope('authenticate',function (Builder $builder){
+        static::addGlobalScope('user',function (Builder $builder){
             if(app()->runningInConsole()===false){
-                (new GlobalScopeManager($builder,(new self())->getTable()));
+                (new User($builder,(new self())->getTable()));
             }
         });
     }
