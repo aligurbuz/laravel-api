@@ -9,22 +9,9 @@ use Illuminate\Contracts\Validation\Validator as ValidatorContract;
 class RequestManager
 {
     /**
-     * RequestManager constructor.
+     * @var int
      */
-    public function __construct()
-    {
-        $this->mutator();
-    }
-
-    /**
-     * get mutator for request
-     *
-     * @return void
-     */
-    public function mutator()
-    {
-        //
-    }
+    protected int $multipleArrayLimit = 20;
 
     /**
      * handle for request validation
@@ -35,6 +22,8 @@ class RequestManager
      */
     public function handle($data = [],$request = null,$filter = true)
     {
+        $method = request()->method();
+
         if($filter){
             $request = $this->filter();
 
@@ -47,20 +36,35 @@ class RequestManager
             }
         }
 
-        $requestMake = count($request) ? $request : request()->all();
+        $requestMake = count($request) ? $request : request()->query->all();
+        $this->makeValidation($requestMake,(($method=='GET') ? $data : []));
 
+        if($method!=='GET'){
+            $requestMake = count($request) ? $request : request()->request->all();
+            $this->makeValidation($requestMake,$data);
+        }
+    }
+
+    /**
+     * make validation
+     *
+     * @param array $maker
+     * @param array $data
+     */
+    private function makeValidation(array $maker = [], array $data = [])
+    {
         tap(
-            Validator::make($requestMake,array_merge(
-            config('request'),
-            $data
+            Validator::make($maker,array_merge(
+                config('request'),
+                $data
             )),
             function(ValidatorContract $validator){
-            $message = $validator->getMessageBag();
+                $message = $validator->getMessageBag();
 
-            if(count($message->getMessages())){
-                Exception::validationException($message->first());
-            }
-        });
+                if(count($message->getMessages())){
+                    Exception::validationException($message->first());
+                }
+            });
     }
 
     /**
