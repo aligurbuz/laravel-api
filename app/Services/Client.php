@@ -13,9 +13,13 @@ class Client
     {
         $request = request();
 
-        return crc32(sha1(serialize(json_encode(array_merge_recursive(
-            [$request->method(), $request->url()],
-            [$request->query->all(), $request->request->all(), $request->ip(), auth()->user()->getAuthIdentifierName(), time()]
-        )))));
+        return crc32(sha1(serialize(json_encode([
+            $request->method(),
+            $request->url(),
+            $request->query->all(),
+            $request->request->all(),
+            $request->ip(),
+            auth()->user()->getAuthIdentifierName(), time()
+        ]))));
     }
 }
