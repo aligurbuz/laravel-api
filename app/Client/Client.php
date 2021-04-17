@@ -13,6 +13,11 @@ class Client extends ClientManager
     /**
      * @var array
      */
+    protected array $paramValidatorValues = ['filter'];
+
+    /**
+     * @var array
+     */
     protected array $autoRule = [
         'email'         => 'email:rfc,dns',
         'status'        => ['regex:/^0$|^1$/i'],
@@ -119,5 +124,15 @@ class Client extends ClientManager
     public function getArrayLimiter(): int
     {
         return 1;
+    }
+
+    /**
+     * get param validator values
+     *
+     * @return array
+     */
+    public function getParamValidatorValues(): array
+    {
+        return $this->paramValidatorValues;
     }
 }

@@ -10,7 +10,6 @@ use Illuminate\Http\JsonResponse;
 use App\Http\Requests\UserRequest;
 use App\Http\Controllers\Controller;
 use App\Repositories\User\Contracts\UserRepositoryContract;
-use Illuminate\Support\Str;
 
 /**
  * Class UserController

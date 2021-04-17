@@ -103,9 +103,12 @@ class ClientManager
 
     /**
      * handle for client
+     *
+     * @return void
      */
-    public function handle()
+    public function handle() : void
     {
+        (new ClientParamProcess($this));
         (new ClientBodyProcess($this));
     }
 }
