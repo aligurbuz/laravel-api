@@ -77,21 +77,7 @@ class Response
      */
     private static function throwIn($trace = null,$code = 200,$message = null) : array
     {
-        $throwInClosure = function () use($trace) {
-            if($trace instanceof Throwable){
-                return array_merge_recursive([
-                    'file'    => $trace->getFile(),
-                    'line'    => $trace->getLine()
-                ],static::getExtraStaticExceptionSupplement());
-            }
-
-            return array_merge_recursive([
-                'file'    => ($trace[0]['file'] ?? null),
-                'line'    => ($trace[0]['line'] ?? null)
-            ],static::getExtraStaticExceptionSupplement());
-        };
-
-        $callThrowInClosure = $throwInClosure();
+        $callThrowInClosure = static::throwInProcess($trace);
 
         if($code==500){
             AppContainer::set('500messageForLog',$message ?? '');
@@ -104,6 +90,27 @@ class Response
         }
 
         return [];
+    }
+
+    /**
+     * get throw in process
+     *
+     * @param null $trace
+     * @return array
+     */
+    private static function throwInProcess($trace = null): array
+    {
+        if($trace instanceof Throwable){
+            return array_merge_recursive([
+                'file'    => $trace->getFile(),
+                'line'    => $trace->getLine()
+            ],static::getExtraStaticExceptionSupplement());
+        }
+
+        return array_merge_recursive([
+            'file'    => ($trace[0]['file'] ?? null),
+            'line'    => ($trace[0]['line'] ?? null)
+        ],static::getExtraStaticExceptionSupplement());
     }
 
     /**
