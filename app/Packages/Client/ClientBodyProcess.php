@@ -12,10 +12,8 @@ use Illuminate\Contracts\Validation\Validator as ValidatorContract;
  * Class ClientBodyProcess
  * @package App\Packages\Client
  */
-class ClientBodyProcess
+class ClientBodyProcess extends ClientVariableProcess
 {
-    use ClientVariableTraitProcess;
-
     /**
      * @var null|object
      */
@@ -59,7 +57,12 @@ class ClientBodyProcess
 
             if(is_array($value)){
 
-                $this->client->setData($value = $this->variableProcess($value));
+                if(count($this->data)> $arrayLimiter = $this->client->getArrayLimiter()){
+                    Exception::clientArrayLimiterException('client data must have a maximum of '.$arrayLimiter.' record.');
+                }
+
+                $generatorProcess = $this->generatorProcess($value);
+                $this->client->setData($value = $this->variableProcess($generatorProcess));
 
                 tap(
                     Validator::make($value,array_merge(

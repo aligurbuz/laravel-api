@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\User;
 
+use App\Client\User\Get\GetUserClient;
 use App\Services\Response;
 use Illuminate\Http\JsonResponse;
 use App\Http\Requests\UserRequest;
 use App\Http\Controllers\Controller;
 use App\Repositories\User\Contracts\UserRepositoryContract;
+use Illuminate\Support\Str;
 
 /**
  * Class UserController
@@ -27,6 +29,7 @@ class UserController extends Controller
      */
     public function get(UserRequest $request, UserRepositoryContract $userRepository) : JsonResponse
     {
+        dd((new GetUserClient()));
         $request->get();
 
         return Response::ok($userRepository->get());
@@ -58,6 +61,7 @@ class UserController extends Controller
      */
     public function update(UserRequest $request, UserRepositoryContract $userRepository) : JsonResponse
     {
+        dd((new GetUserClient()));
         $request->update();
 
         return Response::ok($userRepository->update());

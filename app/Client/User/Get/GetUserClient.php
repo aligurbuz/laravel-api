@@ -10,6 +10,8 @@ use App\Client\Client;
  */
 class GetUserClient extends Client
 {
+    use GeneratorTrait;
+
     /**
      * get capsule for client
      *

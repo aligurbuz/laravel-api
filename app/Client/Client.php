@@ -70,4 +70,34 @@ class Client extends ClientManager
     {
         return $this->{$key}();
     }
+
+    /**
+     * get generators for client
+     *
+     * @return array
+     */
+    public function generators(): array
+    {
+        return $this->{__FUNCTION__};
+    }
+
+    /**
+     * get dontOverWriteGenerators for client
+     *
+     * @return array
+     */
+    public function dontOverWriteGenerators(): array
+    {
+        return $this->{__FUNCTION__};
+    }
+
+    /**
+     * get array limiter
+     *
+     * @return int
+     */
+    public function getArrayLimiter(): int
+    {
+        return 1;
+    }
 }
