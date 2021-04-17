@@ -3,6 +3,7 @@
 namespace App\Client\User\Get;
 
 use App\Client\Client;
+use App\Client\ClientAutoGeneratorTrait;
 
 /**
  * Class GetClient
@@ -10,7 +11,7 @@ use App\Client\Client;
  */
 class GetUserClient extends Client
 {
-    use GeneratorTrait;
+    use GeneratorTrait,ClientAutoGeneratorTrait;
 
     /**
      * get capsule for client

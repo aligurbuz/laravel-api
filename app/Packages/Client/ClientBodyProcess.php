@@ -61,7 +61,7 @@ class ClientBodyProcess extends ClientVariableProcess
                     Exception::clientArrayLimiterException('client data must have a maximum of '.$arrayLimiter.' record.');
                 }
 
-                $generatorProcess = $this->generatorProcess($value);
+                $generatorProcess = array_merge($this->generatorProcess($value),$this->autoGeneratorProcess($value));
                 $this->client->setData($value = $this->variableProcess($generatorProcess));
 
                 tap(

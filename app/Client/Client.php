@@ -92,6 +92,26 @@ class Client extends ClientManager
     }
 
     /**
+     * get generators for client
+     *
+     * @return array
+     */
+    public function autoGenerators(): array
+    {
+        return $this->{__FUNCTION__};
+    }
+
+    /**
+     * get dontOverWriteGenerators for client
+     *
+     * @return array
+     */
+    public function dontOverWriteAutoGenerators(): array
+    {
+        return $this->{__FUNCTION__};
+    }
+
+    /**
      * get array limiter
      *
      * @return int

@@ -63,4 +63,30 @@ class ClientVariableProcess
 
         return $data;
     }
+
+    /**
+     * get generator process for client
+     *
+     * @param array $data
+     * @return array
+     */
+    protected function autoGeneratorProcess(array $data = []) : array
+    {
+        $clientData = $data;
+
+        $dontOverWriteAutoGenerators = $this->client->dontOverWriteAutoGenerators();
+
+        foreach ($generators = $this->client->autoGenerators() as $generator){
+            $generatorPrefix = Str::camel($generator).'AutoGenerator';
+            if(in_array($generator,$generators)){
+                $data[$generator] = $this->client->callMethod($generatorPrefix);
+            }
+
+            if(isset($clientData[$generator]) && !in_array($generator,$dontOverWriteAutoGenerators)){
+                $data[$generator] = $clientData[$generator];
+            }
+        }
+
+        return $data;
+    }
 }
