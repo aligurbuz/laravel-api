@@ -2,11 +2,12 @@
 
 namespace App\Http\Middleware;
 
-use App\Exceptions\Exception;
-use App\Models\AccessLogger as Logger;
 use Closure;
 use Illuminate\Http\Request;
+use App\Exceptions\Exception;
+use App\Services\AppContainer;
 use App\Facades\Authenticate\ApiKey;
+use App\Models\AccessLogger as Logger;
 
 class AccessLogger
 {
@@ -21,7 +22,8 @@ class AccessLogger
     {
         $response = $next($request);
 
-        $responseContent = json_decode($content = $response->getContent(),1);
+        $standardResponse = json_decode($content = $response->getContent(),1);
+        $responseContent = $this->response500Different($standardResponse);
 
         try {
             Logger::create([
@@ -45,5 +47,22 @@ class AccessLogger
         }
 
         return $response;
+    }
+
+    /**
+     * get response 500 different
+     *
+     * @param array $responseContent
+     * @return array
+     */
+    private function response500Different(array $responseContent = []): array
+    {
+        if(isset($responseContent['code']) && $responseContent['code'] == 500){
+            $responseContent['file']         = AppContainer::get('500fileForLog');
+            $responseContent['line']         = AppContainer::get('500lineForLog');
+            $responseContent['errorMessage'] = AppContainer::get('500messageForLog');
+        }
+
+        return $responseContent;
     }
 }

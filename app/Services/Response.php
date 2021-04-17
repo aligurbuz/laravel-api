@@ -47,12 +47,12 @@ class Response
             'code'          => $code,
             'client'        => ApiKey::who(),
             'responseCode'  => time(),
-            'errorMessage'  => static::getExceptionMessageForEnvironment($message),
+            'errorMessage'  => static::getExceptionMessageForEnvironment($message,$code),
             'endpoint'      => request()->url(),
         ];
 
         return static::response(
-            array_merge($standard,static::throwIn($trace)),
+            array_merge($standard,static::throwIn($trace,$code,$message)),
             $code
         );
     }
@@ -70,13 +70,14 @@ class Response
     /**
      * includes the needed extra information to exception data
      *
-     * @param null|array|Throwable $trace
+     * @param null $trace
+     * @param int $code
+     * @param null $message
      * @return array
      */
-    private static function throwIn($trace = null) : array
+    private static function throwIn($trace = null,$code = 200,$message = null) : array
     {
-        if(app()->environment() == 'local'){
-
+        $throwInClosure = function () use($trace) {
             if($trace instanceof Throwable){
                 return array_merge_recursive([
                     'file'    => $trace->getFile(),
@@ -88,6 +89,18 @@ class Response
                 'file'    => ($trace[0]['file'] ?? null),
                 'line'    => ($trace[0]['line'] ?? null)
             ],static::getExtraStaticExceptionSupplement());
+        };
+
+        $callThrowInClosure = $throwInClosure();
+
+        if($code==500){
+            AppContainer::set('500messageForLog',$message ?? '');
+            AppContainer::set('500fileForLog',$callThrowInClosure['file'] ?? '');
+            AppContainer::set('500lineForLog',$callThrowInClosure['line'] ?? '');
+        }
+
+        if(app()->environment() == 'local'){
+            return $callThrowInClosure;
         }
 
         return [];
@@ -97,11 +110,12 @@ class Response
      * get exception message for response data
      *
      * @param null $message
+     * @param int $code
      * @return string
      */
-    private static function getExceptionMessageForEnvironment($message = null) : string
+    private static function getExceptionMessageForEnvironment($message = null,$code = 200) : string
     {
-        return (app()->environment() == 'local')
+        return (app()->environment() == 'local' || $code!==500)
             ? $message
             : trans('exception.500error');
     }

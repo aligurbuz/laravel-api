@@ -28,6 +28,8 @@ class UserController extends Controller
      */
     public function get(UserRequest $request, UserRepositoryContract $userRepository) : JsonResponse
     {
+
+        aaa;
         dd((new GetUserClient()));
         $request->get();
 
