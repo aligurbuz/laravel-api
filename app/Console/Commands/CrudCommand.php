@@ -13,7 +13,7 @@ class CrudCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'create:crud {controller} {dir}';
+    protected $signature = 'create:crud {controller} {dir} {model}';
 
     /**
      * The console command description.
@@ -42,7 +42,8 @@ class CrudCommand extends Command
         Artisan::call('create:controller',['controller' => $this->argument('controller'),'dir' => $this->argument('dir')]);
         Artisan::call('create:request',['name' => $this->argument('controller')]);
         Artisan::call('create:repository',['repository' => $this->argument('controller'),'dir' => $this->argument('dir')]);
-        Artisan::call('create:model',['model' => $this->argument('controller')]);
+        Artisan::call('create:model',['model' => $this->argument('model')]);
+        Artisan::call('update:column',['model' => $this->argument('model')]);
 
         $routeApi = app()->basePath('routes').''.DIRECTORY_SEPARATOR.'api.php';
 

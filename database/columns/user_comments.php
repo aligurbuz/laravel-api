@@ -1,0 +1,1 @@
+<?php return ["id","user_id","comment_code","title","description","comment","created_at","updated_at"];

@@ -5,6 +5,8 @@ namespace App\Providers;
 use App\Repositories\User\UserRepository;
 use App\Repositories\User\Contracts\UserRepositoryContract;
 use Illuminate\Support\ServiceProvider;
+use App\Repositories\User\Contracts\CommentRepositoryContract;
+use App\Repositories\User\CommentRepository;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -16,6 +18,7 @@ class RepositoryServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind(UserRepositoryContract::class,UserRepository::class);
+        $this->app->bind(CommentRepositoryContract::class,CommentRepository::class);
         //newBind
     }
 

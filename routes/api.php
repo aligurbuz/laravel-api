@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\User\CommentController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Auth\LoginController;
 
@@ -19,6 +20,10 @@ use App\Http\Controllers\Auth\LoginController;
 Route::post('/login', [LoginController::class,'login']);
 
 Route::middleware(['auth:api','apiKey','accessLogger'])->group(function(){
+
+    Route::get('/user/comment', [CommentController::class,'get']);
+    Route::post('/user/comment', [CommentController::class,'create']);
+    Route::put('/user/comment', [CommentController::class,'update']);
 
     Route::get('/user', [UserController::class,'get']);
     Route::post('/user', [UserController::class,'create']);
