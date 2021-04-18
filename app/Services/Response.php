@@ -77,16 +77,16 @@ class Response
      */
     private static function throwIn($trace = null,$code = 200,$message = null) : array
     {
-        $callThrowInClosure = static::throwInProcess($trace);
+        $throwInProcess = static::throwInProcess($trace);
 
         if($code==500){
             AppContainer::set('500messageForLog',$message ?? '');
-            AppContainer::set('500fileForLog',$callThrowInClosure['file'] ?? '');
-            AppContainer::set('500lineForLog',$callThrowInClosure['line'] ?? '');
+            AppContainer::set('500fileForLog',$throwInProcess['file'] ?? '');
+            AppContainer::set('500lineForLog',$throwInProcess['line'] ?? '');
         }
 
         if(app()->environment() == 'local'){
-            return $callThrowInClosure;
+            return $throwInProcess;
         }
 
         return [];
