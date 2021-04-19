@@ -80,9 +80,13 @@ class ClientCommand extends Command
             ->addComment('')
             ->addComment('@return array');
 
-        touch($file = $methodPath.''.DIRECTORY_SEPARATOR.''.$traitName.'.php');
-        $content = '<?php '.PHP_EOL.''.PHP_EOL.'namespace '.$namespace.'; '.PHP_EOL.''.PHP_EOL.''.$generator;
-        File::put($file,$content);
+        $file = $methodPath.''.DIRECTORY_SEPARATOR.''.$traitName.'.php';
+
+        if(!file_exists($file)){
+            touch($file = $methodPath.''.DIRECTORY_SEPARATOR.''.$traitName.'.php');
+            $content = '<?php '.PHP_EOL.''.PHP_EOL.'namespace '.$namespace.'; '.PHP_EOL.''.PHP_EOL.''.$generator;
+            File::put($file,$content);
+        }
 
         $generatorClass = new PhpNamespace($namespace);
         $generatorClass->addUse(Client::class);
@@ -106,9 +110,13 @@ class ClientCommand extends Command
             ->addComment('')
             ->addComment('@var array');
 
-        touch($file = $fileClass.'.php');
-        $content = '<?php '.PHP_EOL.''.PHP_EOL.''.$generatorClass;
-        File::put($file,$content);
+        $file = $fileClass.'.php';
+
+        if(!file_exists($file)){
+            touch($file = $fileClass.'.php');
+            $content = '<?php '.PHP_EOL.''.PHP_EOL.''.$generatorClass;
+            File::put($file,$content);
+        }
 
         $this->warn('client has been created');
         return 1;
