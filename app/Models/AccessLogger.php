@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Features\BaseManager;
 
 /**
  * Class AccessLogger
@@ -12,24 +13,5 @@ use Illuminate\Database\Eloquent\Model;
  */
 class AccessLogger extends Model
 {
-    use HasFactory;
-
-    /**
-     * @var array
-     */
-    protected $fillable = [
-        'client_key',
-        'endpoint_name',
-        'response_code',
-        'http_method',
-        'http_client_headers',
-        'http_client_params_data',
-        'http_client_body_data',
-        'response_status',
-        'exception_file',
-        'exception_line',
-        'exception_message',
-        'exception_trace',
-        'response',
-    ];
+    use HasFactory,BaseManager;
 }

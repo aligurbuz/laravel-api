@@ -8,6 +8,7 @@ use App\Exceptions\Exception;
 use App\Services\AppContainer;
 use App\Facades\Authenticate\ApiKey;
 use App\Models\AccessLogger as Logger;
+use Illuminate\Support\Facades\Route;
 
 class AccessLogger
 {
@@ -21,6 +22,8 @@ class AccessLogger
     public function handle(Request $request, Closure $next): mixed
     {
         $response = $next($request);
+
+        if($this->isRouteLogger()) return $response;
 
         $standardResponse = json_decode($content = $response->getContent(),1);
         $responseContent = $this->response500Different($standardResponse);
@@ -64,5 +67,22 @@ class AccessLogger
         }
 
         return $responseContent;
+    }
+
+    /**
+     * is route logger
+     *
+     * @return bool
+     */
+    private function isRouteLogger() : bool
+    {
+        $controller = Route::getCurrentRoute()->getAction('controller');
+        $controllerSplit = explode('@',$controller);
+
+        if(isset($controllerSplit[0]) && $controllerSplit[0] =='App\Http\Controllers\Logger\LoggerController'){
+            return true;
+        }
+
+        return false;
     }
 }

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\CommentController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Logger\LoggerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,10 @@ use App\Http\Controllers\Auth\LoginController;
 Route::post('/login', [LoginController::class,'login']);
 
 Route::middleware(['auth:api','apiKey','accessLogger'])->group(function(){
+
+    Route::get('/logger', [LoggerController::class,'get']);
+    Route::post('/logger', [LoggerController::class,'create']);
+    Route::put('/logger', [LoggerController::class,'update']);
 
     Route::get('/user', [UserController::class,'get']);
     Route::post('/user', [UserController::class,'create']);

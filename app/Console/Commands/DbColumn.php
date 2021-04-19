@@ -51,6 +51,9 @@ class DbColumn extends Command
             $list[] = '"'.$column->COLUMN_NAME.'"';
         }
 
+        if(!file_exists($databaseColumnPath)){
+            touch($databaseColumnPath);
+        }
         File::put($databaseColumnPath,'<?php return ['.implode(',',$list).'];');
         $this->warn('Database column has been created');
         return 0;

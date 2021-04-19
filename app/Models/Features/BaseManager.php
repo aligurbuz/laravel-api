@@ -16,8 +16,12 @@ trait BaseManager
      */
     public function __construct(array $attributes = [])
     {
-        $columns = File::getRequire(base_path('database/columns/'.$this->getTable().'.php'));
-        $this->fillable = $columns;
+        $columnPath = base_path('database/columns/'.$this->getTable().'.php');
+        if(file_exists($columnPath)){
+            $columns = File::getRequire($columnPath);
+            $this->fillable = $columns;
+        }
+
         parent::__construct($attributes);
     }
 
