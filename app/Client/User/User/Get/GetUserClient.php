@@ -33,6 +33,6 @@ class GetUserClient extends Client
      * @var array
      */
     protected array $rule = [
-        'restaurant_code' => 'required|integer'
+        //'id' => 'required|integer'
     ];
 }
