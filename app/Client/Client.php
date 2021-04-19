@@ -31,7 +31,6 @@ class Client extends ClientManager
     public function __construct(array $data = [])
     {
         parent::__construct($data);
-        $this->handle();
     }
 
     /**

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Client\User\Get;
+namespace App\Client\User\User\Get;
 
 use App\Client\Client;
 use App\Client\ClientAutoGeneratorTrait;
@@ -9,7 +9,7 @@ use App\Client\ClientAutoGeneratorTrait;
  * Class GetClient
  * @package App\Client\User
  */
-class GetUserClient extends Client
+class CreateUserClient extends Client
 {
     use GeneratorTrait,ClientAutoGeneratorTrait;
 
@@ -33,6 +33,6 @@ class GetUserClient extends Client
      * @var array
      */
     protected array $rule = [
-        'restaurant_code' => 'required|integer'
+        //'id' => 'required|integer'
     ];
 }

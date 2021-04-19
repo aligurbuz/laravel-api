@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Client\User\Get;
+namespace App\Client\User\User\Get;
 
 trait GeneratorTrait
 {

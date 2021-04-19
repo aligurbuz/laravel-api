@@ -6,8 +6,10 @@ namespace App\Http\Controllers\User;
 
 use App\Services\Response;
 use Illuminate\Http\JsonResponse;
-use App\Http\Requests\UserRequest;
 use App\Http\Controllers\Controller;
+use App\Client\User\User\Get\GetUserClient;
+use App\Client\User\User\Get\UpdateUserClient;
+use App\Client\User\User\Get\CreateUserClient;
 use App\Repositories\User\Contracts\UserRepositoryContract;
 
 /**
@@ -21,13 +23,13 @@ class UserController extends Controller
     /**
      * get users data
      *
-     * @param UserRequest $request
+     * @param GetUserClient $client
      * @param UserRepositoryContract $userRepository
      * @return JsonResponse
      */
-    public function get(UserRequest $request, UserRepositoryContract $userRepository) : JsonResponse
+    public function get(GetUserClient $client, UserRepositoryContract $userRepository) : JsonResponse
     {
-        $request->get();
+        $client->handle();
 
         return Response::ok($userRepository->get());
     }
@@ -35,13 +37,13 @@ class UserController extends Controller
     /**
      * get users data
      *
-     * @param UserRequest $request
+     * @param CreateUserClient $client
      * @param UserRepositoryContract $userRepository
      * @return JsonResponse
      */
-    public function create(UserRequest $request, UserRepositoryContract $userRepository) : JsonResponse
+    public function create(CreateUserClient $client, UserRepositoryContract $userRepository) : JsonResponse
     {
-        $request->create();
+        $client->handle();
 
         $user = $userRepository->create();
         $user['token'] = $user->createToken('myApp')->accessToken;
@@ -52,13 +54,13 @@ class UserController extends Controller
     /**
      * get users data
      *
-     * @param UserRequest $request
+     * @param UpdateUserClient $client
      * @param UserRepositoryContract $userRepository
      * @return JsonResponse
      */
-    public function update(UserRequest $request, UserRepositoryContract $userRepository) : JsonResponse
+    public function update(UpdateUserClient $client, UserRepositoryContract $userRepository) : JsonResponse
     {
-        $request->update();
+        $client->handle();
 
         return Response::ok($userRepository->update());
     }
