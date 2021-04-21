@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Repositories\Logger\Contracts;
 
@@ -8,10 +8,10 @@ use Illuminate\Contracts\Pagination\Paginator;
 interface LoggerRepositoryContract
 {
 	/**
-	 * @return Paginator
+	 * @return array
 	 * @see LoggerRepository::get()
 	 */
-	function get(): Paginator;
+	function get(): array;
 
 
 	/**

@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 declare(strict_types=1);
 
@@ -7,8 +7,6 @@ namespace App\Http\Controllers\Logger;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoggerRequest;
 use App\Repositories\Logger\Contracts\LoggerRepositoryContract;
-use App\Services\Response;
-use Illuminate\Http\JsonResponse;
 
 class LoggerController extends Controller
 {
@@ -17,13 +15,13 @@ class LoggerController extends Controller
 	 *
 	 * @param LoggerRequest $request
 	 * @param LoggerRepositoryContract $loggerRepository
-	 * @return JsonResponse
+	 * @return array
 	 */
-	public function get(LoggerRequest $request, LoggerRepositoryContract $loggerRepository): JsonResponse
+	public function get(LoggerRequest $request, LoggerRepositoryContract $loggerRepository): array
 	{
 		$request->get();
 
-		return Response::ok($loggerRepository->get());
+		return $loggerRepository->get();
 	}
 
 
@@ -32,13 +30,13 @@ class LoggerController extends Controller
 	 *
 	 * @param LoggerRequest $request
 	 * @param LoggerRepositoryContract $loggerRepository
-	 * @return JsonResponse
+	 * @return array
 	 */
-	public function create(LoggerRequest $request, LoggerRepositoryContract $loggerRepository): JsonResponse
+	public function create(LoggerRequest $request, LoggerRepositoryContract $loggerRepository): array
 	{
 		$request->create();
 
-		return Response::ok($loggerRepository->create(request()->all()));
+		return $loggerRepository->create();
 	}
 
 
@@ -47,12 +45,12 @@ class LoggerController extends Controller
 	 *
 	 * @param LoggerRequest $request
 	 * @param LoggerRepositoryContract $loggerRepository
-	 * @return JsonResponse
+	 * @return array
 	 */
-	public function update(LoggerRequest $request, LoggerRepositoryContract $loggerRepository): JsonResponse
+	public function update(LoggerRequest $request, LoggerRepositoryContract $loggerRepository): array
 	{
 		$request->update();
 
-		return Response::ok($loggerRepository->update(request()->all()));
+		return $loggerRepository->update();
 	}
 }
