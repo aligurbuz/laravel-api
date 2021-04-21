@@ -62,7 +62,7 @@ class ControllerCommand extends Command
             $addClass = $namespace->addClass($controllerName);
             $addClass->setExtends('App\Http\Controllers\Controller');
 
-            $clientClass = 'App\Client\\'.$this->argument('dir').'\\'.$this->argument('controller').'Get\GetClient';
+            $clientGetClass = 'App\Client\\'.$this->argument('dir').'\\'.$this->argument('controller').'\Get\GetClient';
 
             $method = $addClass->addMethod('get');
             $method->addComment('get '.$controllerVariable.' data');
@@ -71,10 +71,10 @@ class ControllerCommand extends Command
             $method->addComment('@param '.ucfirst($controllerVariable).'RepositoryContract $'.$controllerVariable.'Repository');
             $method->addComment('@return array');
             $method->setReturnType('array')->setBody('$client->handle(); '.PHP_EOL.''.PHP_EOL.'return $'.$controllerVariable.'Repository->get();');
-            $method->addParameter('client')->setType($clientClass);
+            $method->addParameter('client')->setType($clientGetClass);
             $method->addParameter($controllerVariable.'Repository')->setType('App\Repositories\\'.ucfirst($dirVariable).'\Contracts\\'.ucfirst($controllerVariable).'RepositoryContract');
 
-            $clientClass = 'App\Client\\'.$this->argument('dir').'\\'.$this->argument('controller').'Create\CreateClient';
+            $clientCreateClass = 'App\Client\\'.$this->argument('dir').'\\'.$this->argument('controller').'\Create\CreateClient';
 
             $method = $addClass->addMethod('create');
             $method->addComment('create '.$controllerVariable.' data');
@@ -83,10 +83,10 @@ class ControllerCommand extends Command
             $method->addComment('@param '.ucfirst($controllerVariable).'RepositoryContract $'.$controllerVariable.'Repository');
             $method->addComment('@return array');
             $method->setReturnType('array')->setBody('$client->handle(); '.PHP_EOL.''.PHP_EOL.'return $'.$controllerVariable.'Repository->create();');
-            $method->addParameter('client')->setType($clientClass);
+            $method->addParameter('client')->setType($clientCreateClass);
             $method->addParameter($controllerVariable.'Repository')->setType('App\Repositories\\'.ucfirst($dirVariable).'\Contracts\\'.ucfirst($controllerVariable).'RepositoryContract');
 
-            $clientClass = 'App\Client\\'.$this->argument('dir').'\\'.$this->argument('controller').'Update\UpdateClient';
+            $clientUpdateClass = 'App\Client\\'.$this->argument('dir').'\\'.$this->argument('controller').'\Update\UpdateClient';
 
             $method = $addClass->addMethod('update');
             $method->addComment('update '.$controllerVariable.' data');
@@ -95,11 +95,14 @@ class ControllerCommand extends Command
             $method->addComment('@param '.ucfirst($controllerVariable).'RepositoryContract $'.$controllerVariable.'Repository');
             $method->addComment('@return array');
             $method->setReturnType('array')->setBody('$client->handle(); '.PHP_EOL.''.PHP_EOL.'return $'.$controllerVariable.'Repository->update();');
-            $method->addParameter('client')->setType($clientClass);
+            $method->addParameter('client')->setType($clientUpdateClass);
             $method->addParameter($controllerVariable.'Repository')->setType('App\Repositories\\'.ucfirst($dirVariable).'\Contracts\\'.ucfirst($controllerVariable).'RepositoryContract');
 
 
             $namespace->addUse('App\Http\Controllers\Controller');
+            $namespace->addUse($clientGetClass);
+            $namespace->addUse($clientCreateClass);
+            $namespace->addUse($clientUpdateClass);
             $namespace->addUse('App\Repositories\\'.ucfirst($dirVariable).'\Contracts\\'.ucfirst($controllerVariable).'RepositoryContract');
 
 
