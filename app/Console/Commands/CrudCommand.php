@@ -40,7 +40,7 @@ class CrudCommand extends Command
     public function handle()
     {
         Artisan::call('create:controller',['controller' => $this->argument('controller'),'dir' => $this->argument('dir')]);
-        Artisan::call('create:request',['name' => $this->argument('controller')]);
+        //Artisan::call('create:request',['name' => $this->argument('controller')]);
         Artisan::call('create:repository',['repository' => $this->argument('controller'),'dir' => $this->argument('dir')]);
         Artisan::call('create:model',['model' => $this->argument('model')]);
         //Artisan::call('update:column',['model' => $this->argument('model')]);
