@@ -75,18 +75,17 @@ class RepositoryCommand extends Command
         //add Contracts
         $namespace = new PhpNamespace($namespaceContractDirectory);
         $namespace->addUse($namespaceRepository);
-        $namespace->addUse($paginatorClass = 'Illuminate\Contracts\Pagination\Paginator');
         $class = $namespace->addInterface($contractClassName);
-        $class->addMethod('get')->setReturnType(new Literal($paginatorClass))
-            ->addComment('@return Paginator')->addComment('@see '.$className.'::get()');
+        $class->addMethod('get')->setReturnType('array')
+            ->addComment('@return array')->addComment('@see '.$className.'::get()');
 
-        $class->addMethod('create')->setReturnType('mixed')
+        $class->addMethod('create')->setReturnType('array')
             ->addComment('@param array $data')
-            ->addComment('@return mixed')->addComment('@see '.$className.'::create()')->addParameter('data',[])->setType('array');
+            ->addComment('@return array')->addComment('@see '.$className.'::create()')->addParameter('data',[])->setType('array');
 
-        $class->addMethod('update')->setReturnType('mixed')
+        $class->addMethod('update')->setReturnType('array')
             ->addComment('@param array $data')
-            ->addComment('@return mixed')->addComment('@see '.$className.'::update()')->addParameter('data',[])->setType('array');
+            ->addComment('@return array')->addComment('@see '.$className.'::update()')->addParameter('data',[])->setType('array');
 
         $class->addMethod('find')->setReturnType('array')
             ->addComment('@param $id')

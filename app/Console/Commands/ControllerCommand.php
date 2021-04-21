@@ -67,7 +67,7 @@ class ControllerCommand extends Command
             $method = $addClass->addMethod('get');
             $method->addComment('get '.$controllerVariable.' data');
             $method->addComment('');
-            $method->addComment('@param '.ucfirst($controllerVariable).'Request $request');
+            $method->addComment('@param '.$clientGetClass.' $client');
             $method->addComment('@param '.ucfirst($controllerVariable).'RepositoryContract $'.$controllerVariable.'Repository');
             $method->addComment('@return array');
             $method->setReturnType('array')->setBody('$client->handle(); '.PHP_EOL.''.PHP_EOL.'return $'.$controllerVariable.'Repository->get();');
@@ -79,7 +79,7 @@ class ControllerCommand extends Command
             $method = $addClass->addMethod('create');
             $method->addComment('create '.$controllerVariable.' data');
             $method->addComment(' ');
-            $method->addComment('@param '.ucfirst($controllerVariable).'Request $request');
+            $method->addComment('@param '.$clientCreateClass.' $client');
             $method->addComment('@param '.ucfirst($controllerVariable).'RepositoryContract $'.$controllerVariable.'Repository');
             $method->addComment('@return array');
             $method->setReturnType('array')->setBody('$client->handle(); '.PHP_EOL.''.PHP_EOL.'return $'.$controllerVariable.'Repository->create();');
@@ -91,7 +91,7 @@ class ControllerCommand extends Command
             $method = $addClass->addMethod('update');
             $method->addComment('update '.$controllerVariable.' data');
             $method->addComment('  ');
-            $method->addComment('@param '.ucfirst($controllerVariable).'Request $request');
+            $method->addComment('@param '.$clientUpdateClass.' $client');
             $method->addComment('@param '.ucfirst($controllerVariable).'RepositoryContract $'.$controllerVariable.'Repository');
             $method->addComment('@return array');
             $method->setReturnType('array')->setBody('$client->handle(); '.PHP_EOL.''.PHP_EOL.'return $'.$controllerVariable.'Repository->update();');
