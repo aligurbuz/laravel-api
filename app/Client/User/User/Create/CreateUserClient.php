@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Client\User\User\Get;
+namespace App\Client\User\User\Create;
 
 use App\Client\Client;
 use App\Client\ClientAutoGeneratorTrait;

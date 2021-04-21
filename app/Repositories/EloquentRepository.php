@@ -3,19 +3,18 @@
 namespace App\Repositories;
 
 use App\Exceptions\Exception;
-use Illuminate\Contracts\Pagination\Paginator;
 
 class EloquentRepository
 {
     /**
      * get data for user model
      *
-     * @return Paginator
+     * @return array
      */
-    public function get() : Paginator
+    public function get() : array
     {
         return static::$model::instruction()->withQuery()
-            ->selectQuery()->orderByQuery()->filterQuery()->simplePaginate(20);
+            ->selectQuery()->orderByQuery()->filterQuery()->simplePaginate(20)->toArray();
     }
 
     /**

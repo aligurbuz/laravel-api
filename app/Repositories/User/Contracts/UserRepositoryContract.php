@@ -8,10 +8,10 @@ use Illuminate\Contracts\Pagination\Paginator;
 interface UserRepositoryContract
 {
     /**
-     * @return Paginator
+     * @return array
      * @see UserRepository::get()
      */
-    public function get(): Paginator;
+    public function get(): array;
 
     /**
      * @param array $data

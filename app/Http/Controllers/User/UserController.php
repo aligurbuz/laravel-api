@@ -4,12 +4,10 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\User;
 
-use App\Services\Response;
-use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
 use App\Client\User\User\Get\GetUserClient;
-use App\Client\User\User\Get\UpdateUserClient;
-use App\Client\User\User\Get\CreateUserClient;
+use App\Client\User\User\Update\UpdateUserClient;
+use App\Client\User\User\Create\CreateUserClient;
 use App\Repositories\User\Contracts\UserRepositoryContract;
 
 /**
@@ -25,13 +23,13 @@ class UserController extends Controller
      *
      * @param GetUserClient $client
      * @param UserRepositoryContract $userRepository
-     * @return JsonResponse
+     * @return array
      */
-    public function get(GetUserClient $client, UserRepositoryContract $userRepository) : JsonResponse
+    public function get(GetUserClient $client, UserRepositoryContract $userRepository) : array
     {
         $client->handle();
 
-        return Response::ok($userRepository->get());
+        return $userRepository->get();
     }
 
     /**
@@ -39,16 +37,16 @@ class UserController extends Controller
      *
      * @param CreateUserClient $client
      * @param UserRepositoryContract $userRepository
-     * @return JsonResponse
+     * @return array
      */
-    public function create(CreateUserClient $client, UserRepositoryContract $userRepository) : JsonResponse
+    public function create(CreateUserClient $client, UserRepositoryContract $userRepository) : array
     {
         $client->handle();
 
         $user = $userRepository->create();
         $user['token'] = $user->createToken('myApp')->accessToken;
 
-        return Response::ok($user);
+        return $user;
     }
 
     /**
@@ -56,12 +54,12 @@ class UserController extends Controller
      *
      * @param UpdateUserClient $client
      * @param UserRepositoryContract $userRepository
-     * @return JsonResponse
+     * @return array
      */
-    public function update(UpdateUserClient $client, UserRepositoryContract $userRepository) : JsonResponse
+    public function update(UpdateUserClient $client, UserRepositoryContract $userRepository) : array
     {
         $client->handle();
 
-        return Response::ok($userRepository->update());
+        return $userRepository->update();
     }
 }
