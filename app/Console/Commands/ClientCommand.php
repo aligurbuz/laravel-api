@@ -50,8 +50,7 @@ class ClientCommand extends Command
         $namePath = app_path('Client').''.DIRECTORY_SEPARATOR.''.$clientDir.''.DIRECTORY_SEPARATOR.''.$clientName;
         $methodPath = app_path('Client').''.DIRECTORY_SEPARATOR.''.$clientDir.''.DIRECTORY_SEPARATOR.''.$clientName.''.DIRECTORY_SEPARATOR.''.$method;
         $namespace = 'App\Client\\'.$clientDir.'\\'.$clientName.'\\'.$method;
-        $className =  $method.'Client'.$clientName;
-        $namespaceClass = 'App\Client\\'.$clientDir.'\\'.$clientName.'\\'.$method.'\\'.$className;
+        $className =  $method.'Client';
         $fileClass = app_path('Client').''.DIRECTORY_SEPARATOR.''.$clientDir.''.DIRECTORY_SEPARATOR.''.$clientName.''.DIRECTORY_SEPARATOR.''.$method.''.DIRECTORY_SEPARATOR.''.$className;
 
 

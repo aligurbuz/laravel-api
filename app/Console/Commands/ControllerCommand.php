@@ -62,41 +62,44 @@ class ControllerCommand extends Command
             $addClass = $namespace->addClass($controllerName);
             $addClass->setExtends('App\Http\Controllers\Controller');
 
+            $clientClass = 'App\Client\\'.$this->argument('dir').'\\'.$this->argument('controller').'Get\GetClient';
+
             $method = $addClass->addMethod('get');
             $method->addComment('get '.$controllerVariable.' data');
             $method->addComment('');
             $method->addComment('@param '.ucfirst($controllerVariable).'Request $request');
             $method->addComment('@param '.ucfirst($controllerVariable).'RepositoryContract $'.$controllerVariable.'Repository');
-            $method->addComment('@return JsonResponse');
-            $method->setReturnType('Illuminate\Http\JsonResponse')->setBody('$request->get(); '.PHP_EOL.''.PHP_EOL.'return Response::ok($'.$controllerVariable.'Repository->get());');
-            $method->addParameter('request')->setType('App\Http\Requests\\'.ucfirst($controllerVariable).'Request');
+            $method->addComment('@return array');
+            $method->setReturnType('array')->setBody('$client->handle(); '.PHP_EOL.''.PHP_EOL.'return $'.$controllerVariable.'Repository->get();');
+            $method->addParameter('client')->setType($clientClass);
             $method->addParameter($controllerVariable.'Repository')->setType('App\Repositories\\'.ucfirst($dirVariable).'\Contracts\\'.ucfirst($controllerVariable).'RepositoryContract');
+
+            $clientClass = 'App\Client\\'.$this->argument('dir').'\\'.$this->argument('controller').'Create\CreateClient';
 
             $method = $addClass->addMethod('create');
             $method->addComment('create '.$controllerVariable.' data');
             $method->addComment(' ');
             $method->addComment('@param '.ucfirst($controllerVariable).'Request $request');
             $method->addComment('@param '.ucfirst($controllerVariable).'RepositoryContract $'.$controllerVariable.'Repository');
-            $method->addComment('@return JsonResponse');
-            $method->setReturnType('Illuminate\Http\JsonResponse')->setBody('$request->create(); '.PHP_EOL.''.PHP_EOL.'return Response::ok($'.$controllerVariable.'Repository->create(request()->all()));');
-            $method->addParameter('request')->setType('App\Http\Requests\\'.ucfirst($controllerVariable).'Request');
+            $method->addComment('@return array');
+            $method->setReturnType('array')->setBody('$client->handle(); '.PHP_EOL.''.PHP_EOL.'return $'.$controllerVariable.'Repository->create();');
+            $method->addParameter('client')->setType($clientClass);
             $method->addParameter($controllerVariable.'Repository')->setType('App\Repositories\\'.ucfirst($dirVariable).'\Contracts\\'.ucfirst($controllerVariable).'RepositoryContract');
+
+            $clientClass = 'App\Client\\'.$this->argument('dir').'\\'.$this->argument('controller').'Update\UpdateClient';
 
             $method = $addClass->addMethod('update');
             $method->addComment('update '.$controllerVariable.' data');
             $method->addComment('  ');
             $method->addComment('@param '.ucfirst($controllerVariable).'Request $request');
             $method->addComment('@param '.ucfirst($controllerVariable).'RepositoryContract $'.$controllerVariable.'Repository');
-            $method->addComment('@return JsonResponse');
-            $method->setReturnType('Illuminate\Http\JsonResponse')->setBody('$request->update(); '.PHP_EOL.''.PHP_EOL.'return Response::ok($'.$controllerVariable.'Repository->update(request()->all()));');
-            $method->addParameter('request')->setType('App\Http\Requests\\'.ucfirst($controllerVariable).'Request');
+            $method->addComment('@return array');
+            $method->setReturnType('array')->setBody('$client->handle(); '.PHP_EOL.''.PHP_EOL.'return $'.$controllerVariable.'Repository->update();');
+            $method->addParameter('client')->setType($clientClass);
             $method->addParameter($controllerVariable.'Repository')->setType('App\Repositories\\'.ucfirst($dirVariable).'\Contracts\\'.ucfirst($controllerVariable).'RepositoryContract');
 
 
             $namespace->addUse('App\Http\Controllers\Controller');
-            $namespace->addUse('Illuminate\Http\JsonResponse');
-            $namespace->addUse('App\Services\Response');
-            $namespace->addUse('App\Http\Requests\\'.ucfirst($controllerVariable).'Request');
             $namespace->addUse('App\Repositories\\'.ucfirst($dirVariable).'\Contracts\\'.ucfirst($controllerVariable).'RepositoryContract');
 
 
