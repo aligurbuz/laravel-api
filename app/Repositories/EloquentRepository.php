@@ -3,6 +3,8 @@
 namespace App\Repositories;
 
 use App\Exceptions\Exception;
+use App\Services\Client;
+use Illuminate\Database\Eloquent\Builder;
 
 class EloquentRepository
 {
@@ -39,20 +41,33 @@ class EloquentRepository
      * update data for user model
      *
      * @param array $data
-     * @return mixed
+     * @param bool $id
+     * @return array
      */
-    public function update(array $data = []): mixed
+    public function update(array $data = [],$id = true): array
     {
-        $data = count($data) ? $data : request()->request->all();
+        $clientData = count($data) ? $data : Client::data();
 
-        $baseQuery = static::$model::where('id',intval(($data['id'] ?? 0)));
-        $update = $baseQuery->update($data);
+        $queryList = [];
 
-        if($update=='0'){
-            return Exception::updateException();
+        foreach ($clientData as $data){
+            $baseQuery = static::$model::where(function(Builder $builder) use($data,$id){
+                if(isset($data['id']) || $id === true){
+                    $builder->where('id',intval(($data['id'] ?? 0)));
+                }
+            });
+
+            $update = $baseQuery->update($data);
+
+            if($update=='0'){
+                return Exception::updateException();
+            }
+
+            $queryList[] = $baseQuery->get()->toArray();
         }
 
-        return $baseQuery->get();
+        return $queryList;
+
     }
 
     /**

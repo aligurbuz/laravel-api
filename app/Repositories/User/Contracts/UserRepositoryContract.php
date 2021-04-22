@@ -22,10 +22,11 @@ interface UserRepositoryContract
 
     /**
      * @param array $data
+     * @param bool $id
      * @return mixed
      * @see UserRepository::update()
      */
-    public function update(array $data = []): mixed;
+    public function update(array $data = [],$id = true): array;
 
     /**
      * @param $id

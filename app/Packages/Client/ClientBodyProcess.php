@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Packages\Client;
 
 use App\Exceptions\Exception;
+use App\Services\AppContainer;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Contracts\Validation\Validator as ValidatorContract;
 
@@ -43,7 +44,9 @@ class ClientBodyProcess extends ClientVariableProcess
      */
     private function make() : void
     {
-        $this->valid();
+        if($this->client->requestMethod() === 'PUT'){
+            $this->putValidator();
+        }
     }
 
     /**
@@ -51,7 +54,7 @@ class ClientBodyProcess extends ClientVariableProcess
      *
      * @return void
      */
-    private function valid() : void
+    private function putValidator() : void
     {
         foreach ($this->data as $key => $value){
 

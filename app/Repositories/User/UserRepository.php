@@ -17,4 +17,16 @@ class UserRepository extends EloquentRepository implements UserRepositoryContrac
      * @var string
      */
     protected static string $model = User::class;
+
+    /**
+     * update data for user model
+     *
+     * @param array $data
+     * @param bool $id
+     * @return array
+     */
+    public function update(array $data = [], $id = true): array
+    {
+        return parent::update($data,false);
+    }
 }
