@@ -40,6 +40,10 @@ class Client
             return $clientData['body'] ?? [];
         }
 
+        if(request()->method()==='GET'){
+            return request()->query->all();
+        }
+
         return request()->request->all();
     }
 }
