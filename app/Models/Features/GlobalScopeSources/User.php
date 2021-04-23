@@ -2,6 +2,7 @@
 
 namespace App\Models\Features\GlobalScopeSources;
 
+use App\Services\Db;
 use Illuminate\Database\Eloquent\Builder;
 use App\Facades\Authenticate\Authenticate as AuthenticateFacade;
 
@@ -28,6 +29,7 @@ class User
         $this->table = $table;
 
         $this->user();
+        $this->userId();
     }
 
     /**
@@ -37,15 +39,34 @@ class User
      */
     public function user() : void
     {
-        $userId = AuthenticateFacade::id();
+        $user = AuthenticateFacade::id();
 
         if(
             !app()->runningInConsole()
-            && !is_null($userId)
+            && !is_null($user)
             && $this->table=='users'
         )
         {
-            $this->builder->where('id',$userId);
+            $this->builder->where('id',$user);
+        }
+    }
+
+    /**
+     * get userId relational table
+     *
+     * @return void
+     */
+    public function userId()
+    {
+        $user = AuthenticateFacade::id();
+        $entity = Db::entities($this->table);
+
+        if(
+            !app()->runningInConsole()
+            && in_array('user_id',$entity)
+            && !is_null($user)
+        ){
+            $this->builder->where('user_id',$user);
         }
     }
 }
