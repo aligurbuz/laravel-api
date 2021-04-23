@@ -23,9 +23,9 @@ class EloquentRepository
      * create data for user model
      *
      * @param array $data
-     * @return mixed
+     * @return array
      */
-    public function create(array $data = []): mixed
+    public function create(array $data = []): array
     {
         $data = count($data) ? $data : request()->request->all();
 

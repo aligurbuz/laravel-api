@@ -21,6 +21,10 @@ Route::post('/login', [LoginController::class,'login']);
 
 Route::middleware(['auth:api','apiKey','accessLogger'])->group(function(){
 
+    Route::get('/user/comment', [CommentController::class,'get']);
+    Route::post('/user/comment', [CommentController::class,'create']);
+    Route::put('/user/comment', [CommentController::class,'update']);
+
     Route::get('/logger', [LoggerController::class,'get']);
     Route::post('/logger', [LoggerController::class,'create']);
     Route::put('/logger', [LoggerController::class,'update']);

@@ -2,13 +2,13 @@
 
 namespace App\Providers;
 
-use App\Repositories\User\UserRepository;
-use App\Repositories\User\Contracts\UserRepositoryContract;
 use Illuminate\Support\ServiceProvider;
-use App\Repositories\Logger\Contracts\LoggerRepositoryContract;
-use App\Repositories\Logger\LoggerRepository;
-use App\Repositories\User\Contracts\CommentRepositoryContract;
+use App\Repositories\User\UserRepository;
 use App\Repositories\User\CommentRepository;
+use App\Repositories\Logger\LoggerRepository;
+use App\Repositories\User\Contracts\UserRepositoryContract;
+use App\Repositories\User\Contracts\CommentRepositoryContract;
+use App\Repositories\Logger\Contracts\LoggerRepositoryContract;
 
 class RepositoryServiceProvider extends ServiceProvider
 {

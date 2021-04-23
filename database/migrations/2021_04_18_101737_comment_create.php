@@ -16,14 +16,13 @@ class CommentCreate extends Migration
         Schema::create('user_comments', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id')->nullable()->default(0)->index();
-            $table->bigInteger('comment_code')->index();
             $table->string('title')->nullable();
             $table->string('description')->nullable();
             $table->text('comment')->nullable();
             $table->timestamps();
         });
 
-        \Illuminate\Support\Facades\Artisan::call('create:crud comment user');
+        //\Illuminate\Support\Facades\Artisan::call('create:crud comment user user_comment');
     }
 
     /**
