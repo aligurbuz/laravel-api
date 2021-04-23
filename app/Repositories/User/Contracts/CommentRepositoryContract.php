@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Repositories\User\Contracts;
 
@@ -15,18 +15,18 @@ interface CommentRepositoryContract
 
 	/**
 	 * @param array $data
-	 * @return array
+	 * @return array|object
 	 * @see CommentRepository::create()
 	 */
-	function create(array $data = []): array;
+	function create(array $data = []): array|object;
 
 
 	/**
 	 * @param array $data
-	 * @return array
+	 * @return array|object
 	 * @see CommentRepository::update()
 	 */
-	function update(array $data = []): array;
+	function update(array $data = []): array|object;
 
 
 	/**

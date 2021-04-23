@@ -16,18 +16,18 @@ interface LoggerRepositoryContract
 
 	/**
 	 * @param array $data
-	 * @return mixed
+	 * @return array|object
 	 * @see LoggerRepository::create()
 	 */
-	function create(array $data = []): mixed;
+	function create(array $data = []): array|object;
 
 
 	/**
 	 * @param array $data
-	 * @return mixed
+	 * @return array|object
 	 * @see LoggerRepository::update()
 	 */
-	function update(array $data = []): mixed;
+	function update(array $data = []): array|object;
 
 
 	/**

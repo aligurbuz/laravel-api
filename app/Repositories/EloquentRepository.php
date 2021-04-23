@@ -23,14 +23,20 @@ class EloquentRepository
      * create data for user model
      *
      * @param array $data
-     * @return array
+     * @return array|object
      */
-    public function create(array $data = []): array
+    public function create(array $data = []): array|object
     {
-        $data = count($data) ? $data : request()->request->all();
+        $data = count($data) ? $data : Client::data();
+
+        $list = [];
 
         try {
-            return static::$model::create($data);
+            foreach ($data as $value){
+                $list[] = static::$model::create($value);
+            }
+
+            return $list;
         }
         catch (\Exception $exception){
             return Exception::customException($exception->getPrevious()->getMessage());
@@ -42,9 +48,9 @@ class EloquentRepository
      *
      * @param array $data
      * @param bool $id
-     * @return array
+     * @return array|object
      */
-    public function update(array $data = [],$id = true): array
+    public function update(array $data = [],$id = true): array|object
     {
         $clientData = count($data) ? $data : Client::data();
 

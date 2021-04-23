@@ -55,6 +55,21 @@ class ClientManager
     }
 
     /**
+     * set container data
+     *
+     * @return void
+     */
+    public function setContainerData() : void
+    {
+        if(AppContainer::has('clientData')){
+            AppContainer::terminate('clientData');
+        }
+
+        AppContainer::set('clientData',$this->data);
+    }
+
+
+    /**
      * set data for client
      *
      * @param array $data
@@ -66,7 +81,23 @@ class ClientManager
             ? $data
             :['params' => $this->getParamValues(),'body' => $this->getBodyValues()];
 
-        AppContainer::set('clientData',$this->data);
+        $this->setContainerData();
+    }
+
+    /**
+     * set data for client
+     *
+     * @param $key
+     * @param array $data
+     * @return void
+     */
+    public function setBodyData($key,array $data = []): void
+    {
+        if(isset($this->data['body'][$key])){
+            $this->data['body'][$key] = $data;
+        }
+
+        $this->setContainerData();
     }
 
     /**

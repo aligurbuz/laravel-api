@@ -43,9 +43,7 @@ class ClientBodyProcess extends ClientVariableProcess
      */
     private function make() : void
     {
-        if($this->client->requestMethod() === 'PUT'){
-            $this->putValidator();
-        }
+        $this->validator();
     }
 
     /**
@@ -68,7 +66,7 @@ class ClientBodyProcess extends ClientVariableProcess
      *
      * @return void
      */
-    private function putValidator() : void
+    private function validator() : void
     {
         foreach ($this->data as $key => $value){
 
@@ -81,7 +79,7 @@ class ClientBodyProcess extends ClientVariableProcess
                 $this->capsuleProcess($value);
 
                 $generatorProcess = array_merge($this->generatorProcess($value),$this->autoGeneratorProcess($value));
-                $this->client->setData($value = $this->variableProcess($generatorProcess));
+                $this->client->setBodyData($key,$value = $this->variableProcess($generatorProcess));
 
                 tap(
                     Validator::make($value,array_merge(

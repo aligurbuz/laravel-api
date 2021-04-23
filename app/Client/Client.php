@@ -148,6 +148,16 @@ class Client extends ClientManager
     }
 
     /**
+     * get capsule
+     *
+     * @return string
+     */
+    public function getModel() : string
+    {
+        return $this->model[0] ?? 'no-model';
+    }
+
+    /**
      * get capsule data
      *
      * @return void

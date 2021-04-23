@@ -35,6 +35,10 @@ class Db extends Model
      */
     public static function entities($table = null) : array
     {
+        if(class_exists($table)){
+            $table = static::getTableNameFromModel($table);
+        }
+
         $columnPath = base_path('database/columns/'.$table.'.php');
 
         if(file_exists($columnPath)){
@@ -42,5 +46,20 @@ class Db extends Model
         }
 
         return static::columns($table);
+    }
+
+    /**
+     * get table name from model
+     *
+     * @param $model
+     * @return null
+     */
+    public static function getTableNameFromModel($model)
+    {
+        if(class_exists($model)){
+            return (new $model)->getTable();
+        }
+
+        return null;
     }
 }

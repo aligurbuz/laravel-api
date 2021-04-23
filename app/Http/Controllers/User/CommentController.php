@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 declare(strict_types=1);
 
@@ -32,9 +32,9 @@ class CommentController extends Controller
 	 *
 	 * @param CreateClient $client
 	 * @param CommentRepositoryContract $commentRepository
-	 * @return array
+	 * @return array|object
 	 */
-	public function create(CreateClient $client, CommentRepositoryContract $commentRepository): array
+	public function create(CreateClient $client, CommentRepositoryContract $commentRepository) : array|object
 	{
 		$client->handle();
 
@@ -47,9 +47,9 @@ class CommentController extends Controller
 	 *
 	 * @param UpdateClient $client
 	 * @param CommentRepositoryContract $commentRepository
-	 * @return array
+	 * @return array|object
 	 */
-	public function update(UpdateClient $client, CommentRepositoryContract $commentRepository): array
+	public function update(UpdateClient $client, CommentRepositoryContract $commentRepository): array|object
 	{
 		$client->handle();
 
