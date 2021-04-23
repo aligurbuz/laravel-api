@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Packages\Client;
 
 use App\Exceptions\Exception;
-use App\Services\AppContainer;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Contracts\Validation\Validator as ValidatorContract;
 
@@ -50,6 +49,21 @@ class ClientBodyProcess extends ClientVariableProcess
     }
 
     /**
+     * @param array $data
+     * @return void
+     */
+    private function capsuleProcess(array $data = []) : void
+    {
+        $capsule = $this->client->getCapsule();
+
+        foreach ($data as $key => $value){
+            if(!in_array($key,$capsule)){
+                Exception::clientCapsuleException('',['key' => $key]);
+            }
+        }
+    }
+
+    /**
      * make process valid for client
      *
      * @return void
@@ -63,6 +77,8 @@ class ClientBodyProcess extends ClientVariableProcess
                 if(count($this->data)> $arrayLimiter = $this->client->getArrayLimiter()){
                     Exception::clientArrayLimiterException('client data must have a maximum of '.$arrayLimiter.' record.');
                 }
+
+                $this->capsuleProcess($value);
 
                 $generatorProcess = array_merge($this->generatorProcess($value),$this->autoGeneratorProcess($value));
                 $this->client->setData($value = $this->variableProcess($generatorProcess));

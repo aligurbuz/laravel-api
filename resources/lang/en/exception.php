@@ -5,4 +5,5 @@ return [
     'authenticateException' => 'Your token data is incorrect. Please login again.',
     'loginException'        => 'Your login information is incorrect. Please login again.',
     'apiKeyException'       => 'You do not have valid token data for the api key.',
+    'clientCapsuleException' => ':key value can not be sent',
 ];
