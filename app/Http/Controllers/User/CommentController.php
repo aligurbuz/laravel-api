@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\User;
 
-use App\Client\user\comment\Create\CreateClient;
-use App\Client\user\comment\Get\GetClient;
-use App\Client\user\comment\Update\UpdateClient;
+use App\Client\User\Comment\Create\CreateClient;
+use App\Client\User\Comment\Get\GetClient;
+use App\Client\User\Comment\Update\UpdateClient;
 use App\Http\Controllers\Controller;
 use App\Repositories\User\Contracts\CommentRepositoryContract;
 
