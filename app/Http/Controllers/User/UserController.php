@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\User;
 
-use App\Exceptions\Exception;
 use App\Http\Controllers\Controller;
 use App\Client\User\User\Get\GetUserClient;
 use App\Client\User\User\Update\UpdateUserClient;
