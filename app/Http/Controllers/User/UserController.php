@@ -37,9 +37,9 @@ class UserController extends Controller
      *
      * @param CreateUserClient $client
      * @param UserRepositoryContract $userRepository
-     * @return array
+     * @return array|object
      */
-    public function create(CreateUserClient $client, UserRepositoryContract $userRepository) : array
+    public function create(CreateUserClient $client, UserRepositoryContract $userRepository) : array|object
     {
         $client->handle();
 
@@ -54,9 +54,9 @@ class UserController extends Controller
      *
      * @param UpdateUserClient $client
      * @param UserRepositoryContract $userRepository
-     * @return array
+     * @return array|object
      */
-    public function update(UpdateUserClient $client, UserRepositoryContract $userRepository) : array
+    public function update(UpdateUserClient $client, UserRepositoryContract $userRepository) : array|object
     {
         $client->handle();
 
