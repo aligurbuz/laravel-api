@@ -3,6 +3,7 @@
 namespace App\Client;
 
 use App\Packages\Client\ClientManager;
+use App\Services\Db;
 
 /**
  * Class Client
@@ -31,6 +32,7 @@ class Client extends ClientManager
     public function __construct(array $data = [])
     {
         parent::__construct($data);
+        $this->capsule();
     }
 
     /**
@@ -133,5 +135,21 @@ class Client extends ClientManager
     public function getParamValidatorValues(): array
     {
         return $this->paramValidatorValues;
+    }
+
+    /**
+     * get capsule data
+     *
+     * @return void
+     */
+    public function capsule() : void
+    {
+        if(property_exists($this,'model') && is_array($this->model) && isset($this->model[0])){
+            $model = $this->model[0];
+            if(class_exists($model)){
+                $table = (new $model)->getTable();
+                $this->capsule = Db::entities($table);
+            }
+        }
     }
 }

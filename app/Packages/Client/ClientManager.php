@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Packages\Client;
 
 use App\Services\AppContainer;
+use App\Services\Db;
+use http\Exception\InvalidArgumentException;
 use JetBrains\PhpStorm\Pure;
 
 /**

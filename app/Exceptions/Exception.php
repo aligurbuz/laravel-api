@@ -6,15 +6,15 @@ use App\Services\AppContainer;
 
 /**
  * Class Exception
- * @method static customException($message = null)
- * @method static validationException($message = null)
- * @method static loginException($message = null)
- * @method static authenticateException($message = null)
- * @method static updateException($message = null)
- * @method static apiKeyException($message = null)
- * @method static accessLoggerException($message = null)
- * @method static clientFormatException($message = null)
- * @method static clientArrayLimiterException($message = null)
+ * @method static customException($message = null,$keys = [])
+ * @method static validationException($message = null,$keys = [])
+ * @method static loginException($message = null,$keys = [])
+ * @method static authenticateException($message = null,$keys = [])
+ * @method static updateException($message = null,$keys = [])
+ * @method static apiKeyException($message = null,$keys = [])
+ * @method static accessLoggerException($message = null,$keys = [])
+ * @method static clientFormatException($message = null,$keys = [])
+ * @method static clientArrayLimiterException($message = null,$keys = [])
  * @package App\Exceptions
  */
 class Exception
@@ -30,11 +30,23 @@ class Exception
         $namespace = 'App\Exceptions\\'.ucfirst($name);
 
         if(isset($arguments[0])){
+            static::setKeyForContainer($namespace,($arguments[1] ?? []));
             throw new $namespace($arguments[0]);
         }
         else{
             AppContainer::set('debugBackTrace',debug_backtrace());
             throw new $namespace();
         }
+    }
+
+    /**
+     * set key for container
+     *
+     * @param $exceptionName
+     * @param array $data
+     */
+    private static function setKeyForContainer($exceptionName,array $data = []) : void
+    {
+        AppContainer::set($exceptionName,$data,true);
     }
 }

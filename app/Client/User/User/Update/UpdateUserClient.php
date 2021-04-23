@@ -4,6 +4,7 @@ namespace App\Client\User\User\Update;
 
 use App\Client\Client;
 use App\Client\ClientAutoGeneratorTrait;
+use App\Models\User;
 
 /**
  * Class GetClient
@@ -25,7 +26,7 @@ class UpdateUserClient extends Client
      *
      * @var array|string[]
      */
-    protected array $model = ['user'];
+    protected array $model = [User::class];
 
     /**
      * get rule for client
