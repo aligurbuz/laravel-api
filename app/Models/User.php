@@ -50,19 +50,19 @@ class User extends Authenticatable
     ];
 
     protected $withQuery = [
-        'flights' => [
+        'comments' => [
             'foreignColumn' => 'user_id',
             'localColumn'   => 'id',
-            'table' => 'flights',
-            'description' => 'You can use flights relation belonging to user data.'
+            'table' => 'user_comments',
+            'description' => 'You can use comments relation belonging to user data.'
         ],
     ];
 
     /**
      * @return HasMany
      */
-    public function flights(): HasMany
+    public function comments(): HasMany
     {
-        return $this->hasMany(Flight::class,'user_id','id');
+        return $this->hasMany(User_comment::class,'user_id','id');
     }
 }

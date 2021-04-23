@@ -46,6 +46,7 @@ class CommentController extends Controller
 	 * update comment data
 	 *
 	 * @param UpdateClient $client
+     *
 	 * @param CommentRepositoryContract $commentRepository
 	 * @return array|object
 	 */
