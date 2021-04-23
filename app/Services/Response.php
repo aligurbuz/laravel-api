@@ -10,6 +10,13 @@ use App\Facades\Authenticate\ApiKey;
 class Response
 {
     /**
+     * get http status codes
+     *
+     * @var array
+     */
+    protected static array $httpStatusCodes = ['POST' => 201];
+
+    /**
      * application success 200 content for response
      *
      * @param mixed $data
@@ -20,13 +27,13 @@ class Response
         return static::response(
             [
                 'status'        => true,
-                'code'          => 200,
+                'code'          => $code = static::getHttpSuccessCode(),
                 'client'        => ApiKey::who(),
                 'env'           => config('app.env'),
                 'responseCode'  => Client::fingerPrint(),
                 'resource'      => $data,
                 'instructions'  => AppContainer::get('responseFormatterSupplement'),
-            ]
+            ],$code
         );
     }
 
@@ -166,5 +173,21 @@ class Response
                 ? AppContainer::get('debugBackTrace')
                 : debug_backtrace()
         ];
+    }
+
+    /**
+     * get http success code
+     *
+     * @return mixed
+     */
+    private static function getHttpSuccessCode(): mixed
+    {
+        $method = request()->method();
+
+        if(isset(static::$httpStatusCodes[$method])){
+            return static::$httpStatusCodes[$method];
+        }
+
+        return 200;
     }
 }
