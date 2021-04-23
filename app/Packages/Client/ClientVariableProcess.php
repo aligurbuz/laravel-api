@@ -53,7 +53,10 @@ class ClientVariableProcess
         foreach ($generators = $this->client->generators() as $generator){
             $generatorPrefix = Str::camel($generator).'Generator';
             if(in_array($generator,$generators)){
-                $data[$generator] = $this->client->callMethod($generatorPrefix);
+                $callMethod = $this->client->callMethod($generatorPrefix);
+                if(!is_null($callMethod)){
+                    $data[$generator] = $this->client->callMethod($generatorPrefix);
+                }
             }
 
             if(isset($clientData[$generator]) && !in_array($generator,$dontOverWriteGenerators)){
@@ -79,7 +82,10 @@ class ClientVariableProcess
         foreach ($generators = $this->client->autoGenerators() as $generator){
             $generatorPrefix = Str::camel($generator).'AutoGenerator';
             if(in_array($generator,$generators)){
-                $data[$generator] = $this->client->callMethod($generatorPrefix);
+                $callMethod = $this->client->callMethod($generatorPrefix);
+                if(!is_null($callMethod)){
+                    $data[$generator] = $this->client->callMethod($generatorPrefix);
+                }
             }
 
             if(isset($clientData[$generator]) && !in_array($generator,$dontOverWriteAutoGenerators)){
