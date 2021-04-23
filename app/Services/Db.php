@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\File;
 
 class Db extends Model
 {
@@ -24,5 +25,22 @@ class Db extends Model
         }
 
         return static::$columns[$table];
+    }
+
+    /**
+     * get entity for table
+     *
+     * @param null|string $table
+     * @return array
+     */
+    public static function entities($table = null) : array
+    {
+        $columnPath = base_path('database/columns/'.$table.'.php');
+
+        if(file_exists($columnPath)){
+            return File::getRequire($columnPath);
+        }
+
+        return static::columns($table);
     }
 }

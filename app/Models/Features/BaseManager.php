@@ -3,6 +3,7 @@
 namespace App\Models\Features;
 
 use App\Models\Features\GlobalScopeSources\User;
+use App\Services\Db;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\File;
 
@@ -16,12 +17,7 @@ trait BaseManager
      */
     public function __construct(array $attributes = [])
     {
-        $columnPath = base_path('database/columns/'.$this->getTable().'.php');
-        if(file_exists($columnPath)){
-            $columns = File::getRequire($columnPath);
-            $this->fillable = $columns;
-        }
-
+        $this->fillable = Db::entities($this->getTable());
         parent::__construct($attributes);
     }
 
