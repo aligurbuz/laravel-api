@@ -81,8 +81,8 @@ class ControllerCommand extends Command
             $method->addComment(' ');
             $method->addComment('@param CreateClient $client');
             $method->addComment('@param '.ucfirst($controllerVariable).'RepositoryContract $'.$controllerVariable.'Repository');
-            $method->addComment('@return array');
-            $method->setReturnType('array')->setBody('$client->handle(); '.PHP_EOL.''.PHP_EOL.'return $'.$controllerVariable.'Repository->create();');
+            $method->addComment('@return array|object');
+            $method->setReturnType('array|object')->setBody('$client->handle(); '.PHP_EOL.''.PHP_EOL.'return $'.$controllerVariable.'Repository->create();');
             $method->addParameter('client')->setType($clientCreateClass);
             $method->addParameter($controllerVariable.'Repository')->setType('App\Repositories\\'.ucfirst($dirVariable).'\Contracts\\'.ucfirst($controllerVariable).'RepositoryContract');
 
@@ -93,8 +93,8 @@ class ControllerCommand extends Command
             $method->addComment('  ');
             $method->addComment('@param UpdateClient $client');
             $method->addComment('@param '.ucfirst($controllerVariable).'RepositoryContract $'.$controllerVariable.'Repository');
-            $method->addComment('@return array');
-            $method->setReturnType('array')->setBody('$client->handle(); '.PHP_EOL.''.PHP_EOL.'return $'.$controllerVariable.'Repository->update();');
+            $method->addComment('@return array|object');
+            $method->setReturnType('array|object')->setBody('$client->handle(); '.PHP_EOL.''.PHP_EOL.'return $'.$controllerVariable.'Repository->update();');
             $method->addParameter('client')->setType($clientUpdateClass);
             $method->addParameter($controllerVariable.'Repository')->setType('App\Repositories\\'.ucfirst($dirVariable).'\Contracts\\'.ucfirst($controllerVariable).'RepositoryContract');
 

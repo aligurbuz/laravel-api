@@ -79,13 +79,13 @@ class RepositoryCommand extends Command
         $class->addMethod('get')->setReturnType('array')
             ->addComment('@return array')->addComment('@see '.$className.'::get()');
 
-        $class->addMethod('create')->setReturnType('array')
+        $class->addMethod('create')->setReturnType('array|object')
             ->addComment('@param array $data')
-            ->addComment('@return array')->addComment('@see '.$className.'::create()')->addParameter('data',[])->setType('array');
+            ->addComment('@return array')->addComment('@see '.$className.'::create()')->addParameter('data',[])->setType('array|object');
 
-        $class->addMethod('update')->setReturnType('array')
+        $class->addMethod('update')->setReturnType('array|object')
             ->addComment('@param array $data')
-            ->addComment('@return array')->addComment('@see '.$className.'::update()')->addParameter('data',[])->setType('array');
+            ->addComment('@return array')->addComment('@see '.$className.'::update()')->addParameter('data',[])->setType('array|object');
 
         $class->addMethod('find')->setReturnType('array')
             ->addComment('@param $id')
