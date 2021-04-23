@@ -32,7 +32,7 @@ class LoggerController extends Controller
 	 * @param LoggerRepositoryContract $loggerRepository
 	 * @return array
 	 */
-	public function create(LoggerRequest $request, LoggerRepositoryContract $loggerRepository): array
+	public function create(LoggerRequest $request, LoggerRepositoryContract $loggerRepository): array|object
 	{
 		$request->create();
 
@@ -47,7 +47,7 @@ class LoggerController extends Controller
 	 * @param LoggerRepositoryContract $loggerRepository
 	 * @return array
 	 */
-	public function update(LoggerRequest $request, LoggerRepositoryContract $loggerRepository): array
+	public function update(LoggerRequest $request, LoggerRepositoryContract $loggerRepository): array|object
 	{
 		$request->update();
 
