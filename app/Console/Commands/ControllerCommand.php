@@ -62,7 +62,7 @@ class ControllerCommand extends Command
             $addClass = $namespace->addClass($controllerName);
             $addClass->setExtends('App\Http\Controllers\Controller');
 
-            $clientGetClass = 'App\Client\\'.$this->argument('dir').'\\'.$this->argument('controller').'\Get\GetClient';
+            $clientGetClass = 'App\Client\\'.ucfirst($this->argument('dir')).'\\'.ucfirst($this->argument('controller')).'\Get\GetClient';
 
             $method = $addClass->addMethod('get');
             $method->addComment('get '.$controllerVariable.' data');
@@ -74,7 +74,7 @@ class ControllerCommand extends Command
             $method->addParameter('client')->setType($clientGetClass);
             $method->addParameter($controllerVariable.'Repository')->setType('App\Repositories\\'.ucfirst($dirVariable).'\Contracts\\'.ucfirst($controllerVariable).'RepositoryContract');
 
-            $clientCreateClass = 'App\Client\\'.$this->argument('dir').'\\'.$this->argument('controller').'\Create\CreateClient';
+            $clientCreateClass = 'App\Client\\'.ucfirst($this->argument('dir')).'\\'.ucfirst($this->argument('controller')).'\Create\CreateClient';
 
             $method = $addClass->addMethod('create');
             $method->addComment('create '.$controllerVariable.' data');
@@ -86,7 +86,7 @@ class ControllerCommand extends Command
             $method->addParameter('client')->setType($clientCreateClass);
             $method->addParameter($controllerVariable.'Repository')->setType('App\Repositories\\'.ucfirst($dirVariable).'\Contracts\\'.ucfirst($controllerVariable).'RepositoryContract');
 
-            $clientUpdateClass = 'App\Client\\'.$this->argument('dir').'\\'.$this->argument('controller').'\Update\UpdateClient';
+            $clientUpdateClass = 'App\Client\\'.ucfirst($this->argument('dir')).'\\'.ucfirst($this->argument('controller')).'\Update\UpdateClient';
 
             $method = $addClass->addMethod('update');
             $method->addComment('update '.$controllerVariable.' data');
