@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 
 class DbColumn extends Command
 {
@@ -43,18 +44,33 @@ class DbColumn extends Command
         $model = 'App\Models\\'.ucfirst($this->argument('model'));
         $table = (new $model)->getTable();
         $databaseColumnPath = base_path('database'.DIRECTORY_SEPARATOR.'columns'.DIRECTORY_SEPARATOR.''.$table.'.php');
-        $sqlString = 'SELECT column_name FROM information_schema.columns WHERE table_name = \''.$table.'\'';
+        $sqlString = 'SELECT * FROM information_schema.columns WHERE table_name = \''.$table.'\'';
         $columns = DB::select($sqlString);
+
         $list = [];
 
         foreach ($columns as $column){
-            $list[] = '"'.$column->COLUMN_NAME.'"';
+            $list['columns'][] = '"'.$column->COLUMN_NAME.'"';
+
+            if(Str::endsWith($column->DATA_TYPE,'int')){
+                $list['types'][] = '"integer"';
+            }
+            elseif(Str::endsWith($column->DATA_TYPE,'char') || Str::endsWith($column->DATA_TYPE,'text')){
+                $list['types'][] = '"string"';
+            }
+            else{
+                $list['types'][] = '"'.$column->DATA_TYPE.'"';
+            }
+
         }
 
         if(!file_exists($databaseColumnPath)){
             touch($databaseColumnPath);
         }
-        File::put($databaseColumnPath,'<?php return ['.implode(',',$list).'];');
+        File::put($databaseColumnPath,'<?php return [
+        \'columns\' => ['.implode(',',$list['columns']).'],
+        \'types\' => ['.implode(',',$list['types']).'],
+        ];');
         $this->warn('Database column has been created');
         return 0;
     }
