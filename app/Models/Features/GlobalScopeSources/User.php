@@ -59,7 +59,7 @@ class User
     public function userId()
     {
         $user = AuthenticateFacade::id();
-        $entity = Db::entities($this->table);
+        $entity = Db::columns($this->table);
 
         if(
             !app()->runningInConsole()

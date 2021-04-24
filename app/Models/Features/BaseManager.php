@@ -17,7 +17,7 @@ trait BaseManager
      */
     public function __construct(array $attributes = [])
     {
-        $this->fillable = Db::entities($this->getTable());
+        $this->fillable = Db::columns($this->getTable());
         parent::__construct($attributes);
     }
 

@@ -28,7 +28,7 @@ trait ClientAutoGeneratorTrait
      */
     public function userIdAutoGenerator(): mixed
     {
-        $entities = Db::entities($this->getModel());
+        $entities = Db::columns($this->getModel());
 
         if(in_array('user_id',$entities)){
             return Authenticate::id();

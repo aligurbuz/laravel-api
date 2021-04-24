@@ -20,11 +20,9 @@ class Db extends Model
      */
     public static function columns($table = null): array
     {
-        if(!isset(static::$columns[$table])){
-            static::$columns[$table] = (new self())->getConnection()->getSchemaBuilder()->getColumnListing($table);
-        }
+        $entities = static::entities($table);
 
-        return static::$columns[$table];
+        return $entities['columns'] ?? [];
     }
 
     /**
@@ -42,11 +40,10 @@ class Db extends Model
         $columnPath = base_path('database/columns/'.$table.'.php');
 
         if(file_exists($columnPath)){
-            $columns = File::getRequire($columnPath);
-            return $columns['columns'] ?? [];
+            return File::getRequire($columnPath);
         }
 
-        return static::columns($table);
+        return [];
     }
 
     /**

@@ -17,6 +17,13 @@ class Client extends ClientManager
     protected array $paramValidatorValues = ['filter'];
 
     /**
+     * @var array|string[]
+     */
+    protected array $customRules = [
+        'float' => '^[0-9]+(\\.[0-9]+)?$',
+    ];
+
+    /**
      * @var array
      */
     protected array $autoRule = [
@@ -172,7 +179,7 @@ class Client extends ClientManager
             $model = $this->model[0];
             if(class_exists($model)){
                 $table = (new $model)->getTable();
-                $this->capsule = array_merge(Db::entities($table),$this->capsule);
+                $this->capsule = array_merge(Db::columns($table),$this->capsule);
             }
         }
     }
