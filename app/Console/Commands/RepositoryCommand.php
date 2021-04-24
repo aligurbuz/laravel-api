@@ -15,7 +15,7 @@ class RepositoryCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'create:repository {repository} {dir?}';
+    protected $signature = 'create:repository {repository} {dir} {model}';
 
     /**
      * The console command description.
@@ -42,6 +42,7 @@ class RepositoryCommand extends Command
     public function handle()
     {
         $arguments = $this->arguments();
+        $modelName = $arguments['model'];
         $repositoryName = $this->argument('repository');
         $argumentName = (isset($arguments['dir'])) ? $this->argument('dir') :$this->argument('repository');
         $className = ucfirst($repositoryName).'Repository';
@@ -59,10 +60,10 @@ class RepositoryCommand extends Command
 
         $namespace = new PhpNamespace($namespaceDirectory);
         $namespace->addUse(EloquentRepository::class);
-        $namespace->addUse('App\Models\\'.ucfirst($repositoryName));
+        $namespace->addUse('App\Models\\'.ucfirst($modelName));
         $namespace->addUse($contractClassRepositoryName = $namespaceContractDirectory.'\\'.ucfirst($contractClassName));
         $class = $namespace->addClass($className)->setExtends(EloquentRepository::class)->addImplement($contractClassRepositoryName);
-        $class->addProperty('model',new Literal(ucfirst($repositoryName).'::class'))->setProtected()->setStatic(true)->setType('string');
+        $class->addProperty('model',new Literal(ucfirst($modelName).'::class'))->setProtected()->setStatic(true)->setType('string');
 
         touch($file = $directory.''.DIRECTORY_SEPARATOR.''.$className.'.php');
         $content = '<?php '.PHP_EOL.''.PHP_EOL.''.$namespace;
@@ -81,11 +82,11 @@ class RepositoryCommand extends Command
 
         $class->addMethod('create')->setReturnType('array|object')
             ->addComment('@param array $data')
-            ->addComment('@return array')->addComment('@see '.$className.'::create()')->addParameter('data',[])->setType('array|object');
+            ->addComment('@return array|object')->addComment('@see '.$className.'::create()')->addParameter('data',[])->setType('array');
 
         $class->addMethod('update')->setReturnType('array|object')
             ->addComment('@param array $data')
-            ->addComment('@return array')->addComment('@see '.$className.'::update()')->addParameter('data',[])->setType('array|object');
+            ->addComment('@return array|object')->addComment('@see '.$className.'::update()')->addParameter('data',[])->setType('array');
 
         $class->addMethod('find')->setReturnType('array')
             ->addComment('@param $id')
