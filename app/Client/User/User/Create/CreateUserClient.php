@@ -34,7 +34,10 @@ class CreateUserClient extends Client
      * @var array
      */
     protected array $rule = [
-        //'id' => 'required|integer'
+        'name'      => 'required|max:50',
+        'email'     => 'required',
+        'password'  => 'required',
+        'username'  => 'required|max:20',
     ];
 
     /**
