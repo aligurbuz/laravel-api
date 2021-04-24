@@ -36,6 +36,8 @@ class Controller extends BaseController
     }
 
     /**
+     * get except middleware process
+     *
      * @param $middleware
      * @param callable $callback
      * @return mixed
