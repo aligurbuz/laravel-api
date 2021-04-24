@@ -16,6 +16,7 @@ class Controller extends BaseController
      */
     public function __construct()
     {
+        $this->middleware('auth:api');
         $this->middleware('apiKey');
         $this->middleware('accessLogger');
         $this->middleware('response');

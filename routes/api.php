@@ -19,7 +19,7 @@ use App\Http\Controllers\Logger\LoggerController;
 
 Route::post('/login', [LoginController::class,'login']);
 
-Route::middleware('auth:api')->group(function(){
+Route::middleware([])->group(function(){
 
     Route::get('/user/comment', [CommentController::class,'get']);
     Route::post('/user/comment', [CommentController::class,'create']);
