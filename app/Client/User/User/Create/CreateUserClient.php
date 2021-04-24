@@ -4,6 +4,7 @@ namespace App\Client\User\User\Create;
 
 use App\Client\Client;
 use App\Client\ClientAutoGeneratorTrait;
+use App\Models\User;
 
 /**
  * Class GetClient
@@ -25,7 +26,7 @@ class CreateUserClient extends Client
      *
      * @var array|string[]
      */
-    protected array $model = ['user'];
+    protected array $model = [User::class];
 
     /**
      * get rule for client
@@ -35,4 +36,14 @@ class CreateUserClient extends Client
     protected array $rule = [
         //'id' => 'required|integer'
     ];
+
+    /**
+     * get array limiter
+     *
+     * @return int
+     */
+    public function getArrayLimiter(): int
+    {
+        return 1;
+    }
 }
