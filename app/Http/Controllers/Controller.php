@@ -14,7 +14,12 @@ class Controller extends BaseController
     /**
      * @var array
      */
-    protected array $middlewares = ['auth:api','apiKey','accessLogger','response'];
+    protected array $middlewares = [
+        'auth:api',
+        'apiKey',
+        'accessLogger',
+        'response'
+    ];
 
     /**
      * @var array
