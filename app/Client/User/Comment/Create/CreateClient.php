@@ -3,8 +3,8 @@
 namespace App\Client\User\Comment\Create;
 
 use App\Client\Client;
-use App\Client\ClientAutoGeneratorTrait;
 use App\Models\User_comment;
+use App\Client\ClientAutoGeneratorTrait;
 
 class CreateClient extends Client
 {
