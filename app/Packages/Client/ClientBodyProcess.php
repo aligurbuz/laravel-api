@@ -104,14 +104,23 @@ class ClientBodyProcess extends ClientVariableProcess
 
             $list = [];
             $types = Db::types($table);
+            $customRules = $this->client->getCustomRule();
 
             foreach ($data as $key => $value){
                 if(isset($types[$key])){
-                    $list[$key] = $types[$key];
+                    $type = $types[$key];
+
+                    if(isset($customRules[$type])){
+                        $list[$key] = $customRules[$type];
+                    }
+                    else{
+                        $list[$key] = $types[$key];
+                    }
+
                 }
             }
 
-            $this->makeValidator($list);
+            $this->makeValidator($data,$list,$types);
         }
     }
 
@@ -119,19 +128,29 @@ class ClientBodyProcess extends ClientVariableProcess
      * make validator
      *
      * @param array $data
+     * @param array $validator
+     * @param array $types
      */
-    private function makeValidator(array $data = [])
+    private function makeValidator(array $data = [],array $validator = [],array $types = [])
     {
         tap(
             Validator::make($data,array_merge(
                 $this->client->getAutoRule(),
-                $this->client->getRule()
+                count($validator) ? $validator : $this->client->getRule()
             )),
-            function(ValidatorContract $validator){
+            function(ValidatorContract $validator) use($types){
                 $message = $validator->getMessageBag();
 
                 if(count($message->getMessages())){
-                    Exception::validationException($message->first());
+
+                    if(count($types)){
+                        $key = ($message->keys())[0] ?? null;
+                        if(isset($types[$key])){
+                            $typeMessage = trans('validation.custom.'.$types[$key],['key' => $key]);
+                        }
+                    }
+
+                    Exception::validationException(isset($typeMessage) ? $typeMessage : $message->first());
                 }
             });
     }

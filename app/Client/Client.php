@@ -20,7 +20,7 @@ class Client extends ClientManager
      * @var array|string[]
      */
     protected array $customRules = [
-        'float' => '^[0-9]+(\\.[0-9]+)?$',
+        'double' => ['regex:/^[0-9]+(\\.[0-9]+)?$/i'],
     ];
 
     /**
@@ -50,6 +50,16 @@ class Client extends ClientManager
     public function getRule() : array
     {
         return $this->rule;
+    }
+
+    /**
+     * get custom rule for client
+     *
+     * @return array
+     */
+    public function getCustomRule() : array
+    {
+        return $this->customRules;
     }
 
     /**
