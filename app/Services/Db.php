@@ -26,6 +26,19 @@ class Db extends Model
     }
 
     /**
+     * get table columns for model
+     *
+     * @param null $table
+     * @return array
+     */
+    public static function types($table = null): array
+    {
+        $entities = static::entities($table);
+
+        return array_combine(($entities['columns'] ?? []),($entities['types'] ?? []));
+    }
+
+    /**
      * get entity for table
      *
      * @param null|string $table

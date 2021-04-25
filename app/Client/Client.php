@@ -165,6 +165,22 @@ class Client extends ClientManager
     }
 
     /**
+     * get capsule
+     *
+     * @return null|string
+     */
+    public function getTable() : null|string
+    {
+        $model = $this->getModel();
+
+        if(class_exists($model)){
+            return (new $model)->getTable();
+        }
+
+        return null;
+    }
+
+    /**
      * get capsule data
      *
      * @return void
@@ -176,11 +192,7 @@ class Client extends ClientManager
             && is_array($this->model)
             && isset($this->model[0])
         ){
-            $model = $this->model[0];
-            if(class_exists($model)){
-                $table = (new $model)->getTable();
-                $this->capsule = array_merge(Db::columns($table),$this->capsule);
-            }
+            $this->capsule = array_merge(Db::columns($this->getTable()),$this->capsule);
         }
     }
 }

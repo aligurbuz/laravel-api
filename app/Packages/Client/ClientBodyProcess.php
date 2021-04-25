@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Packages\Client;
 
+use App\Services\Db;
 use App\Exceptions\Exception;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Contracts\Validation\Validator as ValidatorContract;
@@ -77,26 +78,61 @@ class ClientBodyProcess extends ClientVariableProcess
                 }
 
                 $this->capsuleProcess($value);
+                $this->typeValidator($value);
 
                 $generatorProcess = array_merge($this->generatorProcess($value),$this->autoGeneratorProcess($value));
                 $this->client->setBodyData($key,$value = $this->variableProcess($generatorProcess));
 
-                tap(
-                    Validator::make($value,array_merge(
-                        $this->client->getAutoRule(),
-                        $this->client->getRule()
-                    )),
-                    function(ValidatorContract $validator){
-                        $message = $validator->getMessageBag();
-
-                        if(count($message->getMessages())){
-                            Exception::validationException($message->first());
-                        }
-                    });
+                $this->makeValidator($value);
             }
             else{
                 Exception::clientFormatException();
             }
         }
+    }
+
+    /**
+     * get type validator
+     *
+     * @param array $data
+     */
+    private function typeValidator(array $data = [])
+    {
+        $table = $this->client->getTable();
+
+        if(!is_null($table)){
+
+            $list = [];
+            $types = Db::types($table);
+
+            foreach ($data as $key => $value){
+                if(isset($types[$key])){
+                    $list[$key] = $types[$key];
+                }
+            }
+
+            $this->makeValidator($list);
+        }
+    }
+
+    /**
+     * make validator
+     *
+     * @param array $data
+     */
+    private function makeValidator(array $data = [])
+    {
+        tap(
+            Validator::make($data,array_merge(
+                $this->client->getAutoRule(),
+                $this->client->getRule()
+            )),
+            function(ValidatorContract $validator){
+                $message = $validator->getMessageBag();
+
+                if(count($message->getMessages())){
+                    Exception::validationException($message->first());
+                }
+            });
     }
 }
