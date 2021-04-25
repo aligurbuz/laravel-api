@@ -19,6 +19,11 @@ class User
     protected string $table;
 
     /**
+     * @var array
+     */
+    protected array $columns = [];
+
+    /**
      * GlobalScopeManager constructor.
      * @param Builder $builder
      * @param string $table
@@ -27,6 +32,7 @@ class User
     {
         $this->builder = $builder;
         $this->table = $table;
+        $this->columns = Db::columns($this->table);
 
         $this->user();
         $this->userId();
@@ -59,11 +65,10 @@ class User
     public function userId()
     {
         $user = AuthenticateFacade::id();
-        $entity = Db::columns($this->table);
 
         if(
             !app()->runningInConsole()
-            && in_array('user_id',$entity)
+            && in_array('user_id',$this->columns)
             && !is_null($user)
         ){
             $this->builder->where('user_id',$user);
