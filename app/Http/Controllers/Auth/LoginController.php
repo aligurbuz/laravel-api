@@ -5,21 +5,21 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Auth;
 
 use App\Exceptions\Exception;
-use App\Http\Requests\LoginRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Client\Auth\Login\Create\CreateClient;
 
 class LoginController extends Controller
 {
     /**
      * get authenticate user via login
      *
-     * @param LoginRequest $request
+     * @param CreateClient $client
      * @return array
      */
-    public function login(LoginRequest $request) : array
+    public function login(CreateClient $client) : array
     {
-        $request->validation();
+        $client->handle();
         $authGuard = Auth::guard('web');
 
         if (

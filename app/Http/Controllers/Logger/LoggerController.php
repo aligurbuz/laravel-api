@@ -5,51 +5,53 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Logger;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\LoggerRequest;
+use App\Client\Logger\Logger\Get\GetClient;
+use App\Client\Logger\Logger\Create\CreateClient;
+use App\Client\Logger\Logger\Update\UpdateClient;
 use App\Repositories\Logger\Contracts\LoggerRepositoryContract;
 
 class LoggerController extends Controller
 {
-	/**
-	 * get logger data
-	 *
-	 * @param LoggerRequest $request
-	 * @param LoggerRepositoryContract $loggerRepository
-	 * @return array
-	 */
-	public function get(LoggerRequest $request, LoggerRepositoryContract $loggerRepository): array
+    /**
+     * get logger data
+     *
+     * @param GetClient $client
+     * @param LoggerRepositoryContract $loggerRepository
+     * @return array
+     */
+	public function get(GetClient $client, LoggerRepositoryContract $loggerRepository): array
 	{
-		$request->get();
+		$client->handle();
 
 		return $loggerRepository->get();
 	}
 
 
-	/**
-	 * create logger data
-	 *
-	 * @param LoggerRequest $request
-	 * @param LoggerRepositoryContract $loggerRepository
-	 * @return array
-	 */
-	public function create(LoggerRequest $request, LoggerRepositoryContract $loggerRepository): array|object
+    /**
+     * create logger data
+     *
+     * @param CreateClient $client
+     * @param LoggerRepositoryContract $loggerRepository
+     * @return array|object
+     */
+	public function create(CreateClient $client, LoggerRepositoryContract $loggerRepository): array|object
 	{
-		$request->create();
+		$client->handle();
 
 		return $loggerRepository->create();
 	}
 
 
-	/**
-	 * update logger data
-	 *
-	 * @param LoggerRequest $request
-	 * @param LoggerRepositoryContract $loggerRepository
-	 * @return array
-	 */
-	public function update(LoggerRequest $request, LoggerRepositoryContract $loggerRepository): array|object
+    /**
+     * update logger data
+     *
+     * @param UpdateClient $client
+     * @param LoggerRepositoryContract $loggerRepository
+     * @return array|object
+     */
+	public function update(UpdateClient $client, LoggerRepositoryContract $loggerRepository): array|object
 	{
-		$request->update();
+		$client->handle();
 
 		return $loggerRepository->update();
 	}
