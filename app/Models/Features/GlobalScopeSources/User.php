@@ -68,6 +68,7 @@ class User
 
         if(
             !app()->runningInConsole()
+            && request()->method() === 'GET'
             && in_array('user_id',$this->columns)
             && !is_null($user)
         ){
