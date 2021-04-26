@@ -3,7 +3,6 @@
 namespace App\Client;
 
 use App\Facades\Authenticate\Authenticate;
-use App\Services\Db;
 
 trait ClientAutoGeneratorTrait
 {
@@ -28,7 +27,7 @@ trait ClientAutoGeneratorTrait
      */
     public function userIdAutoGenerator(): mixed
     {
-        $entities = Db::columns($this->getModel());
+        $entities = $this->columnsForModel();
 
         if(in_array('user_id',$entities)){
             return Authenticate::id();
