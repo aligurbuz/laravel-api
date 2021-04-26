@@ -146,7 +146,7 @@ class ClientBodyProcess extends ClientVariableProcess
                     if(count($types)){
                         $key = ($message->keys())[0] ?? null;
                         if(isset($types[$key])){
-                            $typeMessage = trans('validation.custom.'.$types[$key],['key' => $key]);
+                            $typeMessage = trans('validation.'.$types[$key],['attribute' => $key]);
                         }
                     }
 

@@ -1,8 +1,9 @@
-<?php 
+<?php
 
 namespace App\Client\User\Comment\Update;
 
 use App\Client\Client;
+use App\Models\User_comment;
 use App\Client\ClientAutoGeneratorTrait;
 
 class UpdateClient extends Client
@@ -22,12 +23,14 @@ class UpdateClient extends Client
 	 *
 	 * @var array|string[]
 	 */
-	protected array $model = [];
+	protected array $model = [User_comment::class];
 
 	/**
 	 * get rule for client
 	 *
 	 * @var array
 	 */
-	protected array $rule = [];
+	protected array $rule = [
+	    'id' => 'required'
+    ];
 }

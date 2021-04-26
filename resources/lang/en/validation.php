@@ -121,6 +121,7 @@ return [
     'uploaded' => 'The :attribute failed to upload.',
     'url' => 'The :attribute format is invalid.',
     'uuid' => 'The :attribute must be a valid UUID.',
+    'double' => 'The :attribute value must be sent in double format.',
 
     /*
     |--------------------------------------------------------------------------
@@ -142,8 +143,7 @@ return [
         ],
         'is_deleted' => [
             'regex' => 'The is_deleted value must only have a value of 0 and 1',
-        ],
-        'double' => 'The :key value must be sent in double format.'
+        ]
     ],
 
     /*
