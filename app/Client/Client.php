@@ -11,6 +11,8 @@ use App\Services\Db;
  */
 class Client extends ClientManager
 {
+    use ClientSetRuleTrait;
+
     /**
      * @var array
      */
@@ -50,7 +52,7 @@ class Client extends ClientManager
      */
     public function addRule()
     {
-        //$this->setRule('key','rule');
+        $this->setRuleProcess();
     }
 
     /**
