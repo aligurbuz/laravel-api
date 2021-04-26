@@ -40,6 +40,17 @@ class Client extends ClientManager
     {
         parent::__construct($data);
         $this->capsule();
+        $this->addRule();
+    }
+
+    /**
+     * add rule for client
+     *
+     * @return void
+     */
+    public function addRule()
+    {
+        //$this->setRule('key','rule');
     }
 
     /**
@@ -50,6 +61,18 @@ class Client extends ClientManager
     public function getRule() : array
     {
         return $this->rule;
+    }
+
+    /**
+     * get rule for client
+     *
+     * @param $key
+     * @param $value
+     * @return void
+     */
+    public function setRule($key,$value) : void
+    {
+        $this->rule[$key] = $value;
     }
 
     /**
@@ -202,7 +225,17 @@ class Client extends ClientManager
             && is_array($this->model)
             && isset($this->model[0])
         ){
-            $this->capsule = array_merge(Db::columns($this->getTable()),$this->capsule);
+            $this->capsule = array_merge($this->columnsForModel(),$this->capsule);
         }
+    }
+
+    /**
+     * get columns for model
+     *
+     * @return array
+     */
+    public function columnsForModel() : array
+    {
+        return Db::columns($this->getTable());
     }
 }

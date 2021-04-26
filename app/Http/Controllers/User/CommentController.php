@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\User;
 
+use App\Services\Client;
 use App\Http\Controllers\Controller;
 use App\Client\User\Comment\Get\GetClient;
 use App\Client\User\Comment\Update\UpdateClient;
@@ -37,6 +38,8 @@ class CommentController extends Controller
 	public function create(CreateClient $client, CommentRepositoryContract $commentRepository) : array|object
 	{
 		$client->handle();
+
+		dd(Client::data());
 
 		return $commentRepository->create();
 	}
