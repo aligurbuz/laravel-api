@@ -1,18 +1,19 @@
 <?php
 
-namespace App\Exceptions;
+namespace App\Exceptions\Custom;
 
 use Exception;
 use Throwable;
+use App\Exceptions\ExceptionTrait;
 
-class ApiKeyException extends Exception
+class UpdateException extends Exception
 {
     use ExceptionTrait;
 
     /**
      * @var string
      */
-    protected string $langKey = 'apiKeyException';
+    protected string $langKey = 'updateException';
 
     /**
      * CustomException constructor.
@@ -21,7 +22,7 @@ class ApiKeyException extends Exception
      * @param int $code
      * @param Throwable|null $previous
      */
-    public function __construct($message = "apikey exception", $code = 401, Throwable $previous = null)
+    public function __construct($message = "Update failed", $code = 400, Throwable $previous = null)
     {
         parent::__construct($this->setMessage($message), $code, $previous);
     }

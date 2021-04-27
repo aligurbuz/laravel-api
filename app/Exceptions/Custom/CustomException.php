@@ -1,18 +1,19 @@
 <?php
 
-namespace App\Exceptions;
+namespace App\Exceptions\Custom;
 
 use Exception;
 use Throwable;
+use App\Exceptions\ExceptionTrait;
 
-class ClientArrayLimiterException extends Exception
+class CustomException extends Exception
 {
     use ExceptionTrait;
 
     /**
      * @var string
      */
-    protected string $langKey = 'clientArrayLimiter';
+    protected string $langKey = 'customException';
 
     /**
      * CustomException constructor.
@@ -21,7 +22,7 @@ class ClientArrayLimiterException extends Exception
      * @param int $code
      * @param Throwable|null $previous
      */
-    public function __construct($message = "client array limiter exception", $code = 400, Throwable $previous = null)
+    public function __construct($message = "Custom exception", $code = 400, Throwable $previous = null)
     {
         parent::__construct($this->setMessage($message), $code, $previous);
     }

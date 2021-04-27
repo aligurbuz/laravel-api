@@ -1,18 +1,19 @@
 <?php
 
-namespace App\Exceptions;
+namespace App\Exceptions\Custom;
 
 use Exception;
 use Throwable;
+use App\Exceptions\ExceptionTrait;
 
-class ValidationException extends Exception
+class LoginException extends Exception
 {
     use ExceptionTrait;
 
     /**
      * @var string
      */
-    protected string $langKey = 'validException';
+    protected string $langKey = 'loginException';
 
     /**
      * CustomException constructor.
@@ -21,7 +22,7 @@ class ValidationException extends Exception
      * @param int $code
      * @param Throwable|null $previous
      */
-    public function __construct($message = "Valid exception", $code = 400, Throwable $previous = null)
+    public function __construct($message = "login exception", $code = 400, Throwable $previous = null)
     {
         parent::__construct($this->setMessage($message), $code, $previous);
     }

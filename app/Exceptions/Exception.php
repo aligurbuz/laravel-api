@@ -28,7 +28,7 @@ class Exception
      */
     public static function __callStatic($name, $arguments)
     {
-        $namespace = 'App\Exceptions\\'.ucfirst($name);
+        $namespace = 'App\Exceptions\\Custom\\'.ucfirst($name);
 
         if(isset($arguments[0])){
             static::setKeyForContainer($namespace,($arguments[1] ?? []));
