@@ -37,7 +37,7 @@ trait ScopeManager
         if(method_exists($object,$objectName)) $object->$objectName($builder);
 
         //We record the instruction value in the response data to inform the user.
-        AppContainer::set('responseFormatterSupplement',['ranges' =>$modelRanges],true);
+        AppContainer::set('responseFormatterSupplement',['ranges' => $modelRanges],true);
 
         foreach ($ranges as $data){
             if(in_array($data,$modelRanges) && method_exists($object,$data)){
