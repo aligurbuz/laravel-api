@@ -27,10 +27,16 @@ trait ScopeManager
      */
     public function scopeRange(Builder $builder,object $object): Builder
     {
+        $objectName     = lcfirst(class_basename($object));
         $range          = (request()->query->all())['range'] ?? '';
         $ranges         = explode(',',$range);
         $modelRanges    = array_merge($object->getRanges(),['active','desc']);
 
+        // if there is a method with the same name as object,
+        // this method will be executed automatically.
+        if(method_exists($object,$objectName)) $object->$objectName($builder);
+
+        //We record the instruction value in the response data to inform the user.
         AppContainer::set('responseFormatterSupplement',['ranges' =>$modelRanges],true);
 
         foreach ($ranges as $data){

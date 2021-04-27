@@ -4,6 +4,8 @@ namespace App\Repositories\User;
 
 use App\Models\User;
 use App\Repositories\EloquentRepository;
+use Illuminate\Database\Eloquent\Builder;
+use App\Facades\Authenticate\Authenticate;
 use App\Repositories\EloquentRepositoryContract;
 use App\Repositories\User\Contracts\UserRepositoryContract;
 
@@ -22,6 +24,17 @@ class UserRepository extends EloquentRepository implements UserRepositoryContrac
      * @var array|string[]
      */
     protected array $ranges = [];
+
+    /**
+     * get auto user range method
+     *
+     * @param Builder $builder
+     * @return Builder
+     */
+    public function userRepository(Builder $builder) : Builder
+    {
+        return $builder->where('id',Authenticate::id());
+    }
 
     /**
      * update data for user model

@@ -34,27 +34,7 @@ class User
         $this->table = $table;
         $this->columns = Db::columns($this->table);
 
-        $this->user();
         $this->userId();
-    }
-
-    /**
-     * authenticate global scope
-     *
-     * @return void
-     */
-    public function user() : void
-    {
-        $user = AuthenticateFacade::id();
-
-        if(
-            !app()->runningInConsole()
-            && !is_null($user)
-            && $this->table=='users'
-        )
-        {
-            $this->builder->where('id',$user);
-        }
     }
 
     /**
