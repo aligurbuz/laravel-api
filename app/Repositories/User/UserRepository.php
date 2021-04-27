@@ -19,6 +19,11 @@ class UserRepository extends EloquentRepository implements UserRepositoryContrac
     protected static string $model = User::class;
 
     /**
+     * @var array|string[]
+     */
+    protected array $ranges = ['active'];
+
+    /**
      * update data for user model
      *
      * @param array $data

@@ -15,7 +15,7 @@ class EloquentRepository
      */
     public function get() : array
     {
-        return static::$model::instruction()->withQuery()
+        return static::$model::range($this)->instruction()->withQuery()
             ->selectQuery()->orderByQuery()->filterQuery()->simplePaginate(20)->toArray();
     }
 
@@ -83,5 +83,26 @@ class EloquentRepository
     public function find(int $id) : array
     {
         return static::$model::find($id)->toArray();
+    }
+
+    /**
+     * get today scope for client
+     *
+     * @param Builder $builder
+     * @return Builder
+     */
+    public function active(Builder $builder): Builder
+    {
+        return $builder->where('status',1);
+    }
+
+    /**
+     * get ranges
+     *
+     * @return array
+     */
+    public function getRanges() : array
+    {
+        return $this->ranges ?? [];
     }
 }

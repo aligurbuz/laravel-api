@@ -19,6 +19,30 @@ trait ScopeManager
     protected array $operators = ['<','>','<=','>=','<>'];
 
     /**
+     * get client scope data for model
+     *
+     * @param Builder $builder
+     * @param object $object
+     * @return Builder
+     */
+    public function scopeRange(Builder $builder,object $object): Builder
+    {
+        $range          = (request()->query->all())['range'] ?? '';
+        $ranges         = explode(',',$range);
+        $modelRanges    = $object->getRanges();
+
+        AppContainer::set('responseFormatterSupplement',['ranges' =>$modelRanges],true);
+
+        foreach ($ranges as $data){
+            if(in_array($data,$modelRanges) && method_exists($object,$data)){
+                $object->$range($builder);
+            }
+        }
+
+        return $builder;
+    }
+
+    /**
      * get active data for model
      *
      * @param Builder $builder
