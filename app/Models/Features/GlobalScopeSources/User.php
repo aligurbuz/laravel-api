@@ -44,12 +44,11 @@ class User
      */
     public function userId()
     {
-        $user = AuthenticateFacade::id();
+        $user = AuthenticateFacade::id() ?? 0;
 
         if(
             !app()->runningInConsole()
             && in_array('user_id',$this->columns)
-            && !is_null($user)
         ){
             $this->builder->where('user_id',$user);
         }
