@@ -97,6 +97,17 @@ class EloquentRepository
     }
 
     /**
+     * get today scope for client
+     *
+     * @param null|Builder $builder
+     * @return Builder
+     */
+    public function desc(Builder $builder = null): Builder
+    {
+        return $this->builder($builder)->orderBy('id','desc');
+    }
+
+    /**
      * get ranges
      *
      * @return array

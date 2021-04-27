@@ -29,7 +29,7 @@ trait ScopeManager
     {
         $range          = (request()->query->all())['range'] ?? '';
         $ranges         = explode(',',$range);
-        $modelRanges    = $object->getRanges();
+        $modelRanges    = array_merge($object->getRanges(),['desc']);
 
         AppContainer::set('responseFormatterSupplement',['ranges' =>$modelRanges],true);
 
