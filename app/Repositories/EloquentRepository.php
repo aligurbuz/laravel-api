@@ -88,12 +88,12 @@ class EloquentRepository
     /**
      * get today scope for client
      *
-     * @param Builder $builder
+     * @param null|Builder $builder
      * @return Builder
      */
-    public function active(Builder $builder): Builder
+    public function active(Builder $builder = null): Builder
     {
-        return $builder->where('status',1);
+        return $this->builder($builder)->where('status',1);
     }
 
     /**
@@ -104,5 +104,16 @@ class EloquentRepository
     public function getRanges() : array
     {
         return $this->ranges ?? [];
+    }
+
+    /**
+     * get builder method for model
+     *
+     * @param Builder|null $builder
+     * @return Builder
+     */
+    public function builder(Builder $builder = null): Builder
+    {
+        return $builder ?? static::$model;
     }
 }
