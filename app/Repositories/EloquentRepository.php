@@ -15,8 +15,7 @@ class EloquentRepository
      */
     public function get() : array
     {
-        return static::$model::range($this)->instruction()->withQuery()
-            ->selectQuery()->orderByQuery()->filterQuery()->simplePaginate(20)->toArray();
+        return $this->graphQl()->simplePaginate(20)->toArray();
     }
 
     /**
@@ -57,7 +56,7 @@ class EloquentRepository
         $queryList = [];
 
         foreach ($clientData as $data){
-            $baseQuery = static::$model::where(function(Builder $builder) use($data,$id){
+            $baseQuery = $this->graphQl()->where(function(Builder $builder) use($data,$id){
                 if(isset($data['id']) || $id === true){
                     $builder->where('id',intval(($data['id'] ?? 0)));
                 }
@@ -126,5 +125,16 @@ class EloquentRepository
     public function builder(Builder $builder = null): Builder
     {
         return $builder ?? static::$model;
+    }
+
+    /**
+     * get graphql builder
+     *
+     * @return mixed
+     */
+    public function graphQl() : mixed
+    {
+        return static::$model::range($this)->instruction()->withQuery()
+            ->selectQuery()->orderByQuery()->filterQuery();
     }
 }
