@@ -30,7 +30,7 @@ class Response
                 'code'          => $code = static::getHttpSuccessCode(),
                 'client'        => ApiKey::who(),
                 'env'           => config('app.env'),
-                'responseCode'  => Client::fingerPrint(),
+                'responseCode'  => static::responseCode(),
                 'resource'      => $data,
                 'instructions'  => AppContainer::get('responseFormatterSupplement'),
             ],$code
@@ -55,7 +55,7 @@ class Response
             'code'          => $code,
             'client'        => ApiKey::who(),
             'env'           => config('app.env'),
-            'responseCode'  => time(),
+            'responseCode'  => static::responseCode(),
             'errorMessage'  => static::getExceptionMessageForEnvironment($message,$code),
             'endpoint'      => request()->url(),
         ];
@@ -189,5 +189,15 @@ class Response
         }
 
         return 200;
+    }
+
+    /**
+     * get response code
+     *
+     * @return int
+     */
+    private static function responseCode() : int
+    {
+        return crc32(Client::fingerPrint().'_'.time());
     }
 }
