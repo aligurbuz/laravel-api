@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use App\Facades\Authenticate\Authenticate;
+
 class Client
 {
     /**
@@ -19,7 +21,7 @@ class Client
             $request->query->all(),
             $request->request->all(),
             $request->ip(),
-            auth()->user()->getAuthIdentifierName(), time()
+            Authenticate::id()
         ]))));
     }
 
