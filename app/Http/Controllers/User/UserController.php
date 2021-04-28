@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\User;
 
+use App\Factory\Factory;
 use App\Http\Controllers\Controller;
 use App\Client\User\User\Get\GetUserClient;
 use App\Client\User\User\Update\UpdateUserClient;
@@ -27,6 +28,7 @@ class UserController extends Controller
      */
     public function get(GetUserClient $client, UserRepositoryContract $userRepository) : array
     {
+        dd(Factory::owner());
         $client->handle();
 
         return $userRepository->get();
