@@ -4,11 +4,10 @@ namespace App\Factory;
 
 use Exception;
 use App\Factory\Owner\Interfaces\OwnerInterface;
-use Illuminate\Contracts\Container\BindingResolutionException;
 
 /**
  * Class Factory
- * @method static OwnerInterface owner()
+ * @method static OwnerInterface owner($arguments = null)
  * @package App\Factory
  */
 class Factory
@@ -19,7 +18,6 @@ class Factory
      * @param string $name
      * @param array $arguments
      * @return mixed
-     * @throws BindingResolutionException
      * @throws Exception
      */
     public static function __callStatic(string $name,array $arguments = []): mixed
@@ -28,7 +26,7 @@ class Factory
         $factory = 'App\Factory\\'.$name.'\\'.$name;
 
         if(class_exists($factory)){
-            return app()->make($factory);
+            return (new $factory(($arguments[0] ?? null)));
         }
 
         return throw new Exception('factory is not valid');
