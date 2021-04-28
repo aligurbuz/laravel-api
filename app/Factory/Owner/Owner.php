@@ -4,7 +4,11 @@ namespace App\Factory\Owner;
 
 use App\Factory\Owner\Interfaces\OwnerInterface;
 
-class Owner extends OwnerSupport implements OwnerInterface
+/**
+ * Class Owner
+ * @package App\Factory\Owner
+ */
+class Owner extends OwnerManager implements OwnerInterface
 {
     //
 }
