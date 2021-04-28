@@ -128,13 +128,23 @@ class EloquentRepository
     }
 
     /**
+     * get instance
+     *
+     * @return Builder
+     */
+    public function instance() : Builder
+    {
+        return static::$model::repository($this);
+    }
+
+    /**
      * get graphql builder
      *
      * @return mixed
      */
     public function graphQl() : mixed
     {
-        return static::$model::range($this)->instruction()->withQuery()
+        return static::$model::range($this)->repository($this)->instruction()->withQuery()
             ->selectQuery()->orderByQuery()->filterQuery();
     }
 }

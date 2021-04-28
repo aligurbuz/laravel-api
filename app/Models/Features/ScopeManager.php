@@ -27,14 +27,9 @@ trait ScopeManager
      */
     public function scopeRange(Builder $builder,object $object): Builder
     {
-        $objectName     = lcfirst(class_basename($object));
         $range          = (request()->query->all())['range'] ?? '';
         $ranges         = explode(',',$range);
         $modelRanges    = array_merge($object->getRanges(),['active','desc']);
-
-        // if there is a method with the same name as object,
-        // this method will be executed automatically.
-        if(method_exists($object,$objectName)) $object->$objectName($builder);
 
         //We record the instruction value in the response data to inform the user.
         AppContainer::set('responseFormatterSupplement',['ranges' => $modelRanges],true);
@@ -44,6 +39,24 @@ trait ScopeManager
                 $object->$range($builder);
             }
         }
+
+        return $builder;
+    }
+
+    /**
+     * get scope repository for model
+     *
+     * @param Builder $builder
+     * @param object $object
+     * @return Builder
+     */
+    public function scopeRepository(Builder $builder,object $object): Builder
+    {
+        $objectName     = lcfirst(class_basename($object));
+
+        // if there is a method with the same name as object,
+        // this method will be executed automatically.
+        if(method_exists($object,$objectName)) return $object->$objectName($builder);
 
         return $builder;
     }
