@@ -18,6 +18,7 @@ class Factory
      * @param string $name
      * @param array $arguments
      * @return mixed
+     *
      * @throws Exception
      */
     public static function __callStatic(string $name,array $arguments = []): mixed
