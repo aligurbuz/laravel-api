@@ -5,6 +5,10 @@ namespace App\Repositories;
 use App\Repositories\User\Contracts\UserRepositoryContract;
 use App\Repositories\User\Contracts\CommentRepositoryContract;
 
+/**
+ * Class Repository
+ * @package App\Repositories
+ */
 class Repository
 {
     /**
