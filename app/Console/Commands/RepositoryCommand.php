@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Repositories\EloquentRepository;
 use Illuminate\Console\Command;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\File;
 use Nette\PhpGenerator\Literal;
 use Nette\PhpGenerator\PhpNamespace;
@@ -61,6 +62,7 @@ class RepositoryCommand extends Command
         $namespace = new PhpNamespace($namespaceDirectory);
         $namespace->addUse(EloquentRepository::class);
         $namespace->addUse('App\Models\\'.ucfirst($modelName));
+        $namespace->addUse(Builder::class);
         $namespace->addUse($contractClassRepositoryName = $namespaceContractDirectory.'\\'.ucfirst($contractClassName));
         $class = $namespace->addClass($className)->setExtends(EloquentRepository::class)->addImplement($contractClassRepositoryName);
         $class->addProperty('model',new Literal(ucfirst($modelName).'::class'))->setProtected()->setStatic(true)->setType('string')
@@ -72,6 +74,14 @@ class RepositoryCommand extends Command
             ->addComment('get client ranges for repository')
             ->addComment('')
             ->addComment('@var array|string[]');
+
+        $method = $class->addMethod(lcfirst($className));
+        $method->addParameter('builder')->setType('Illuminate\Database\Eloquent\Builder');
+        $method->setBody('return $builder;')->setReturnType('Illuminate\Database\Eloquent\Builder');
+        $method->addComment('get auto '.$className.' range method')
+            ->addComment('')
+            ->addComment('@param Builder $builder')
+            ->addComment('@return Builder');
 
         touch($file = $directory.''.DIRECTORY_SEPARATOR.''.$className.'.php');
         $content = '<?php '.PHP_EOL.''.PHP_EOL.''.$namespace;
