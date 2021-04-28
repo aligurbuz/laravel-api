@@ -13,6 +13,13 @@ use App\Factory\Owner\Interfaces\OwnerInterface;
 class Factory
 {
     /**
+     * get the called class for factory
+     *
+     * @var array
+     */
+    protected static array $adapters = [];
+
+    /**
      * get call static for factory
      *
      * @param string $name
@@ -24,7 +31,8 @@ class Factory
     public static function __callStatic(string $name,array $arguments = []): mixed
     {
         $name = ucfirst($name);
-        $factory = 'App\Factory\\'.$name.'\\'.$name;
+        $adapters = (isset(static::$adapters[$name])) ? static::$adapters[$name] : $name;
+        $factory = 'App\Factory\\'.$name.'\\'.$adapters;
 
         if(class_exists($factory)){
             return (new $factory(($arguments[0] ?? null)));
