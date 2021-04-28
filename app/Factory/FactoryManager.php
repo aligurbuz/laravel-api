@@ -2,8 +2,6 @@
 
 namespace App\Factory;
 
-use Illuminate\Support\Str;
-
 abstract class FactoryManager
 {
     /**
@@ -35,7 +33,6 @@ abstract class FactoryManager
      */
     private static function getAdapterName(string $name) : string
     {
-        $adapterName = Str::lower($name);
-        return (isset(static::$adapters[$adapterName])) ? static::$adapters[$adapterName] : $name;
+        return (isset(static::$adapters[$name])) ? static::$adapters[$name] : $name;
     }
 }
