@@ -63,7 +63,11 @@ class RepositoryCommand extends Command
         $namespace->addUse('App\Models\\'.ucfirst($modelName));
         $namespace->addUse($contractClassRepositoryName = $namespaceContractDirectory.'\\'.ucfirst($contractClassName));
         $class = $namespace->addClass($className)->setExtends(EloquentRepository::class)->addImplement($contractClassRepositoryName);
-        $class->addProperty('model',new Literal(ucfirst($modelName).'::class'))->setProtected()->setStatic(true)->setType('string');
+        $class->addProperty('model',new Literal(ucfirst($modelName).'::class'))->setProtected()->setStatic(true)->setType('string')
+        ->addComment('@var string')->addComment('get model name for repository');
+
+        $class->addProperty('ranges',[])->setProtected()->setType('array')
+            ->addComment('@var array|string[]')->addComment('get client ranges for repository');
 
         touch($file = $directory.''.DIRECTORY_SEPARATOR.''.$className.'.php');
         $content = '<?php '.PHP_EOL.''.PHP_EOL.''.$namespace;
