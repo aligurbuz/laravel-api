@@ -13,6 +13,11 @@ class Db extends Model
     protected static array $columns = [];
 
     /**
+     * @var array
+     */
+    protected static array $paths = [];
+
+    /**
      * get table columns for model
      *
      * @param null $table
@@ -53,7 +58,10 @@ class Db extends Model
         $columnPath = base_path('database/columns/'.$table.'.php');
 
         if(file_exists($columnPath)){
-            return File::getRequire($columnPath);
+            if(!isset(static::$paths[$columnPath])){
+                static::$paths[$columnPath] = File::getRequire($columnPath);
+            }
+            return static::$paths[$columnPath];
         }
 
         return [];
