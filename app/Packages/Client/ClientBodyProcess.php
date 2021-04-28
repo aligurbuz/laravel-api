@@ -128,16 +128,13 @@ class ClientBodyProcess extends ClientVariableProcess
      * make validator
      *
      * @param array $data
-     * @param array $validator
+     * @param array $validators
      * @param array $types
      */
-    private function makeValidator(array $data = [],array $validator = [],array $types = [])
+    private function makeValidator(array $data = [],array $validators = [],array $types = [])
     {
         tap(
-            Validator::make($data,array_merge(
-                $this->client->getAutoRule(),
-                count($validator) ? $validator : $this->client->getRule()
-            )),
+            Validator::make($data,$this->clientRuleProcess($validators)),
             function(ValidatorContract $validator) use($types){
                 $message = $validator->getMessageBag();
 
@@ -146,12 +143,41 @@ class ClientBodyProcess extends ClientVariableProcess
                     if(count($types)){
                         $key = ($message->keys())[0] ?? null;
                         if(isset($types[$key])){
-                            $typeMessage = trans('validation.'.$types[$key],['attribute' => $key]);
+                            $typeMessage = trans('validation.'.$key,['attribute' => $key]);
+
+                            if($typeMessage==='validation.'.$key){
+                                $typeMessage = trans('validation.'.$types[$key],['attribute' => $key]);
+                            }
                         }
                     }
 
                     Exception::validationException(isset($typeMessage) ? $typeMessage : $message->first());
                 }
             });
+    }
+
+    /**
+     * get client rule process
+     *
+     * @param array $validator
+     * @return array
+     */
+    private function clientRuleProcess(array $validator = []) : array
+    {
+        $autoRules = $this->client->getAutoRule();
+        $rules = count($validator) ? $validator : $this->client->getRule();
+
+        $list = [];
+
+        foreach ($rules as $key => $rule){
+            if(isset($autoRules[$key])){
+                $list[$key] = $rule.'|'.$autoRules[$key];
+            }
+            else{
+                $list[$key] = $rule;
+            }
+        }
+
+        return $list;
     }
 }
