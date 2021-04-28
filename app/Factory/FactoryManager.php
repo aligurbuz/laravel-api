@@ -16,7 +16,7 @@ abstract class FactoryManager
     public static function __callStatic(string $name,array $arguments = []): mixed
     {
         $name = ucfirst($name);
-        $adapters = (isset(static::$adapters[$name])) ? static::$adapters[$name] : $name;
+        $adapters = (isset(static::$adapters[$name])) ? ucfirst(static::$adapters[$name]) : $name;
         $factory = 'App\Factory\\'.$name.'\\'.$adapters;
 
         if(class_exists($factory)){
