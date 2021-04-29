@@ -2,8 +2,8 @@
 
 namespace App\Client;
 
-use App\Packages\Client\ClientManager;
 use App\Services\Db;
+use App\Packages\Client\ClientManager;
 
 /**
  * Class Client
@@ -239,5 +239,21 @@ class Client extends ClientManager
     public function columnsForModel() : array
     {
         return Db::columns($this->getTable());
+    }
+
+    /**
+     * @param $column
+     * @param callable $callback
+     * @return mixed
+     */
+    public function ensureColumnExists($column,callable $callback): mixed
+    {
+        $entities = $this->columnsForModel();
+
+        if(in_array($column,$entities)){
+            return call_user_func($callback);
+        }
+
+        return null;
     }
 }
