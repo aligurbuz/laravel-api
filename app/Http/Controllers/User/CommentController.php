@@ -38,7 +38,6 @@ class CommentController extends Controller
 	{
 		$client->handle();
 
-
 		return $commentRepository->create();
 	}
 
