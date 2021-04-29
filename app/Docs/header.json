@@ -1,0 +1,17 @@
+[
+    {
+        "key": "Authorization",
+        "value": "Bearer {{bearerToken}}",
+        "type": "text"
+    },
+    {
+        "key": "Apikey",
+        "value": "{{apiKey}}",
+        "type": "text"
+    },
+    {
+        "key": "Content-Type",
+        "value": "{{contentType}}",
+        "type": "text"
+    }
+]

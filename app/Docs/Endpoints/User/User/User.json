@@ -1,0 +1,199 @@
+{
+    "name": "User",
+    "item": [
+        {
+            "name": "User",
+            "request": {
+                "method": "PUT",
+                "header": [
+                    {
+                        "key": "Authorization",
+                        "value": "Bearer {{bearerToken}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "Apikey",
+                        "value": "{{apiKey}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "Content-Type",
+                        "value": "{{contentType}}",
+                        "type": "text"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "[\n    {\n        \"id\": \"1\",\n        \"name\": \"Karlie Kuhlman\"\n    }\n]",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "{{baseUrl}}/user",
+                    "host": [
+                        "{{baseUrl}}"
+                    ],
+                    "path": [
+                        "user"
+                    ],
+                    "query": [
+                        {
+                            "key": "filter[id]",
+                            "value": "1",
+                            "disabled": true
+                        }
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "User",
+            "protocolProfileBehavior": {
+                "disabledSystemHeaders": {
+                    "content-type": true
+                }
+            },
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Authorization",
+                        "value": "Bearer {{bearerToken}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "Apikey",
+                        "value": "{{apiKey}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "Content-Type",
+                        "value": "{{contentType}}",
+                        "type": "text"
+                    }
+                ],
+                "body": {
+                    "mode": "formdata",
+                    "formdata": [
+                        {
+                            "key": "email",
+                            "value": "fff@trendyol.com.tr",
+                            "type": "text"
+                        },
+                        {
+                            "key": "name",
+                            "value": "aligurbuz",
+                            "type": "text"
+                        },
+                        {
+                            "key": "username",
+                            "value": "mendebu",
+                            "type": "text"
+                        },
+                        {
+                            "key": "password",
+                            "value": "280384483082",
+                            "type": "text"
+                        }
+                    ]
+                },
+                "url": {
+                    "raw": "{{baseUrl}}/user",
+                    "host": [
+                        "{{baseUrl}}"
+                    ],
+                    "path": [
+                        "user"
+                    ],
+                    "query": [
+                        {
+                            "key": "filter[id]",
+                            "value": "1",
+                            "disabled": true
+                        }
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "User",
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true,
+                "disabledSystemHeaders": {
+                    "content-type": true
+                }
+            },
+            "request": {
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "Authorization",
+                        "value": "Bearer {{bearerToken}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "Apikey",
+                        "value": "{{apiKey}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "Content-Type",
+                        "value": "{{contentType}}",
+                        "type": "text"
+                    }
+                ],
+                "body": {
+                    "mode": "formdata",
+                    "formdata": []
+                },
+                "url": {
+                    "raw": "{{baseUrl}}/user",
+                    "host": [
+                        "{{baseUrl}}"
+                    ],
+                    "path": [
+                        "user"
+                    ],
+                    "query": [
+                        {
+                            "key": "select",
+                            "value": "username",
+                            "disabled": true
+                        },
+                        {
+                            "key": "filter[status]",
+                            "value": "1asas",
+                            "disabled": true
+                        },
+                        {
+                            "key": "with[comments]",
+                            "value": "*",
+                            "disabled": true
+                        },
+                        {
+                            "key": "with[user]",
+                            "value": "name",
+                            "disabled": true
+                        },
+                        {
+                            "key": "range",
+                            "value": "active",
+                            "disabled": true
+                        },
+                        {
+                            "key": "range",
+                            "value": "desc",
+                            "disabled": true
+                        }
+                    ]
+                }
+            },
+            "response": []
+        }
+    ]
+}
