@@ -15,7 +15,7 @@ class ContentType
      */
     protected array $validContentTypes = [
         'application/json',
-        'application/xml',
+        //'application/xml',
     ];
 
     /**
