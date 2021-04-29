@@ -2,9 +2,9 @@
 
 namespace App\Http\Middleware;
 
-use App\Exceptions\Exception;
 use Closure;
 use Illuminate\Http\Request;
+use App\Exceptions\Exception;
 
 class ContentType
 {
