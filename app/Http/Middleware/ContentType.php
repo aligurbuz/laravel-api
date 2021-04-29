@@ -29,7 +29,7 @@ class ContentType
     {
         $contentType = $request->headers->get('content-type');
 
-        if(!in_array($contentType,$this->validContentTypes) && !app()->runningInConsole()){
+        if(!in_array($contentType,$this->validContentTypes)){
            Exception::contentTypeException('',['key' => implode(',',$this->validContentTypes)]);
         }
 
