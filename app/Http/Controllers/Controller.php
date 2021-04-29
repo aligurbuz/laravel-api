@@ -15,6 +15,7 @@ class Controller extends BaseController
      * @var array
      */
     protected array $middlewares = [
+        'contentType',
         'auth:api',
         'apiKey',
         'accessLogger',

@@ -4,7 +4,6 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Http\JsonResponse;
 use App\Services\Response as ResponseFormatter;
 
 class Response
@@ -16,7 +15,7 @@ class Response
      * @param  Closure  $next
      * @return mixed
      */
-    public function handle(Request $request, Closure $next) : JsonResponse
+    public function handle(Request $request, Closure $next) : mixed
     {
         $response = $next($request);
         $content = json_decode($response->getContent(),1);

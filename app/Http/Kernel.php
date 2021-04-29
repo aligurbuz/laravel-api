@@ -4,6 +4,7 @@ namespace App\Http;
 
 use App\Http\Middleware\ApiKey;
 use App\Http\Middleware\AccessLogger;
+use App\Http\Middleware\ContentType;
 use App\Http\Middleware\Response;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -67,6 +68,7 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'apiKey' => ApiKey::class,
         'accessLogger' => AccessLogger::class,
-        'response' => Response::class
+        'response' => Response::class,
+        'contentType' => ContentType::class
     ];
 }

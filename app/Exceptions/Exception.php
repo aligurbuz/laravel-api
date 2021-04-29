@@ -16,6 +16,7 @@ use App\Services\AppContainer;
  * @method static clientFormatException($message = null,$keys = [])
  * @method static clientArrayLimiterException($message = null,$keys = [])
  * @method static clientCapsuleException($message = null,$keys = [])
+ * @method static contentTypeException($message = null,$keys = [])
  * @package App\Exceptions
  */
 class Exception
