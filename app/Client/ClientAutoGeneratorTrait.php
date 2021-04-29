@@ -47,9 +47,13 @@ trait ClientAutoGeneratorTrait
      */
     public function createdByAutoGenerator(): mixed
     {
-        return $this->ensureColumnExists('created_by',function(){
-            return Authenticate::id();
-        });
+        if(request()->method()=='POST'){
+            return $this->ensureColumnExists('created_by',function(){
+                return Authenticate::id();
+            });
+        }
+
+        return null;
     }
 
     /**
@@ -59,8 +63,12 @@ trait ClientAutoGeneratorTrait
      */
     public function updatedByAutoGenerator(): mixed
     {
-        return $this->ensureColumnExists('updated_by',function(){
-            return Authenticate::id();
-        });
+        if(request()->method()=='PUT'){
+            return $this->ensureColumnExists('updated_by',function(){
+                return Authenticate::id();
+            });
+        }
+
+        return null;
     }
 }
