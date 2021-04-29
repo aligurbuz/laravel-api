@@ -1,14 +1,17 @@
 <?php
 
-if(!function_exists('factory')){
+use JetBrains\PhpStorm\Pure;
+use App\Models\Entities\EntityMap;
+
+if(!function_exists('entity')){
 
     /**
      * get factory instance
      *
-     * @return int
+     * @return EntityMap
      */
-    function factory(): int
+    #[Pure] function entity(): EntityMap
     {
-        return 1;
+        return new EntityMap();
     }
 }
