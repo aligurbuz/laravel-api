@@ -103,6 +103,10 @@ class DbColumn extends Command
 
             $addClass->addComment('@property $this '.$column);
             $method = $addClass->addMethod($column);
+            $method->addComment('get '.$column.' column for database table');
+            $method->addComment('');
+            $method->addComment('@return mixed');
+            $method->setReturnType('mixed');
             $method->setStatic()->setProtected();
             $method->setBody('return self::$query->'.$column.';');
         }

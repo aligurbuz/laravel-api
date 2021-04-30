@@ -35,49 +35,89 @@ class User_comment
 	}
 
 
-	protected static function id()
+	/**
+	 * get id column for database table
+	 *
+	 * @return mixed
+	 */
+	protected static function id(): mixed
 	{
 		return self::$query->id;
 	}
 
 
-	protected static function user_id()
+	/**
+	 * get user_id column for database table
+	 *
+	 * @return mixed
+	 */
+	protected static function user_id(): mixed
 	{
 		return self::$query->user_id;
 	}
 
 
-	protected static function title()
+	/**
+	 * get title column for database table
+	 *
+	 * @return mixed
+	 */
+	protected static function title(): mixed
 	{
 		return self::$query->title;
 	}
 
 
-	protected static function description()
+	/**
+	 * get description column for database table
+	 *
+	 * @return mixed
+	 */
+	protected static function description(): mixed
 	{
 		return self::$query->description;
 	}
 
 
-	protected static function comment()
+	/**
+	 * get comment column for database table
+	 *
+	 * @return mixed
+	 */
+	protected static function comment(): mixed
 	{
 		return self::$query->comment;
 	}
 
 
-	protected static function counter()
+	/**
+	 * get counter column for database table
+	 *
+	 * @return mixed
+	 */
+	protected static function counter(): mixed
 	{
 		return self::$query->counter;
 	}
 
 
-	protected static function created_at()
+	/**
+	 * get created_at column for database table
+	 *
+	 * @return mixed
+	 */
+	protected static function created_at(): mixed
 	{
 		return self::$query->created_at;
 	}
 
 
-	protected static function updated_at()
+	/**
+	 * get updated_at column for database table
+	 *
+	 * @return mixed
+	 */
+	protected static function updated_at(): mixed
 	{
 		return self::$query->updated_at;
 	}

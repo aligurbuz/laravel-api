@@ -39,73 +39,133 @@ class User
 	}
 
 
-	protected static function id()
+	/**
+	 * get id column for database table
+	 *
+	 * @return mixed
+	 */
+	protected static function id(): mixed
 	{
 		return self::$query->id;
 	}
 
 
-	protected static function name()
+	/**
+	 * get name column for database table
+	 *
+	 * @return mixed
+	 */
+	protected static function name(): mixed
 	{
 		return self::$query->name;
 	}
 
 
-	protected static function email()
+	/**
+	 * get email column for database table
+	 *
+	 * @return mixed
+	 */
+	protected static function email(): mixed
 	{
 		return self::$query->email;
 	}
 
 
-	protected static function email_verified_at()
+	/**
+	 * get email_verified_at column for database table
+	 *
+	 * @return mixed
+	 */
+	protected static function email_verified_at(): mixed
 	{
 		return self::$query->email_verified_at;
 	}
 
 
-	protected static function password()
+	/**
+	 * get password column for database table
+	 *
+	 * @return mixed
+	 */
+	protected static function password(): mixed
 	{
 		return self::$query->password;
 	}
 
 
-	protected static function remember_token()
+	/**
+	 * get remember_token column for database table
+	 *
+	 * @return mixed
+	 */
+	protected static function remember_token(): mixed
 	{
 		return self::$query->remember_token;
 	}
 
 
-	protected static function created_at()
+	/**
+	 * get created_at column for database table
+	 *
+	 * @return mixed
+	 */
+	protected static function created_at(): mixed
 	{
 		return self::$query->created_at;
 	}
 
 
-	protected static function updated_at()
+	/**
+	 * get updated_at column for database table
+	 *
+	 * @return mixed
+	 */
+	protected static function updated_at(): mixed
 	{
 		return self::$query->updated_at;
 	}
 
 
-	protected static function username()
+	/**
+	 * get username column for database table
+	 *
+	 * @return mixed
+	 */
+	protected static function username(): mixed
 	{
 		return self::$query->username;
 	}
 
 
-	protected static function USER()
+	/**
+	 * get USER column for database table
+	 *
+	 * @return mixed
+	 */
+	protected static function USER(): mixed
 	{
 		return self::$query->USER;
 	}
 
 
-	protected static function CURRENT_CONNECTIONS()
+	/**
+	 * get CURRENT_CONNECTIONS column for database table
+	 *
+	 * @return mixed
+	 */
+	protected static function CURRENT_CONNECTIONS(): mixed
 	{
 		return self::$query->CURRENT_CONNECTIONS;
 	}
 
 
-	protected static function TOTAL_CONNECTIONS()
+	/**
+	 * get TOTAL_CONNECTIONS column for database table
+	 *
+	 * @return mixed
+	 */
+	protected static function TOTAL_CONNECTIONS(): mixed
 	{
 		return self::$query->TOTAL_CONNECTIONS;
 	}
