@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Auth;
 
+use App\Services\Client;
 use App\Exceptions\Exception;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -20,12 +21,13 @@ class LoginController extends Controller
     public function login(CreateClient $client) : array
     {
         $client->handle();
+        $clientData = (Client::data())[0] ?? [];
         $authGuard = Auth::guard('web');
 
         if (
             $authGuard->attempt(
-                [   'email' => request('email'),
-                    'password' => request('password')
+                [   'email' => $clientData['email'] ?? null,
+                    'password' => $clientData['password'] ?? null,
                 ]
             )) {
 
