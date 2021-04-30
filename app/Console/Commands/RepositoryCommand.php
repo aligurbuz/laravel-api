@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Repositories\EloquentRepository;
+use App\Repositories\Repository;
 use Illuminate\Console\Command;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\File;
@@ -125,6 +126,35 @@ use '.$namespaceRepository.';',$repositoryProviderContent);
         //newBind',$putNewContract);
 
         File::put($repositoryProvider,$putNewContract);
+
+
+        $repositoryClass = new Repository();
+
+        if(!method_exists($repositoryClass,lcfirst($modelName))){
+
+            $repositoryFile = app_path('Repositories').''.DIRECTORY_SEPARATOR.'Repository.php';
+
+            $getRepositoryFile = File::get($repositoryFile);
+
+            $getRepositoryFile = str_replace('use App\Repositories\User\Contracts\UserRepositoryContract;','use App\Repositories\User\Contracts\UserRepositoryContract;
+use '.$contractClassRepositoryName.';',$getRepositoryFile);
+
+            $getRepositoryFile = str_replace('class Repository
+{','class Repository
+{
+    /**
+     * get '.lcfirst($modelName).' repository instance
+     *
+     * @return '.$contractClassName.'
+     */
+    public function '.lcfirst($modelName).'() : '.$contractClassName.'
+    {
+        return app()->get('.$contractClassName.'::class);
+    }
+    ',$getRepositoryFile);
+
+            File::put($repositoryFile,$getRepositoryFile);
+        }
 
 
         $this->alert('RepositoryCommand created');
