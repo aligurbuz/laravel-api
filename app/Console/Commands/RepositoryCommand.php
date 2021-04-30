@@ -116,21 +116,21 @@ class RepositoryCommand extends Command
         $content = '<?php '.PHP_EOL.''.PHP_EOL.''.$namespace;
         File::put($file,$content);
 
-        $repositoryProvider = app_path('Providers').''.DIRECTORY_SEPARATOR.'RepositoryServiceProvider.php';
-        $repositoryProviderContent = File::get($repositoryProvider);
-        $putNewContract = str_replace('use Illuminate\Support\ServiceProvider;','use Illuminate\Support\ServiceProvider;
-use '.$contractClassRepositoryName.';
-use '.$namespaceRepository.';',$repositoryProviderContent);
-
-        $putNewContract = str_replace('//newBind','$this->app->bind('.ucfirst($contractClassName).'::class,'.ucfirst($className).'::class);
-        //newBind',$putNewContract);
-
-        File::put($repositoryProvider,$putNewContract);
-
-
         $repositoryClass = new Repository();
 
         if(!method_exists($repositoryClass,lcfirst($modelName))){
+
+            $repositoryProvider = app_path('Providers').''.DIRECTORY_SEPARATOR.'RepositoryServiceProvider.php';
+            $repositoryProviderContent = File::get($repositoryProvider);
+            $putNewContract = str_replace('use Illuminate\Support\ServiceProvider;','use Illuminate\Support\ServiceProvider;
+use '.$contractClassRepositoryName.';
+use '.$namespaceRepository.';',$repositoryProviderContent);
+
+            $putNewContract = str_replace('//newBind','$this->app->bind('.ucfirst($contractClassName).'::class,'.ucfirst($className).'::class);
+        //newBind',$putNewContract);
+
+            File::put($repositoryProvider,$putNewContract);
+
 
             $repositoryFile = app_path('Repositories').''.DIRECTORY_SEPARATOR.'Repository.php';
 
