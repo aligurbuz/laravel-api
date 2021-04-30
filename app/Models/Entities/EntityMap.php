@@ -4,17 +4,6 @@ namespace App\Models\Entities;
 
 class EntityMap
 {
-    //
-
-    /**
-     * @param object $query
-     * @return User_comment
-     */
-    public function user_comment(object $query) : User_comment
-    {
-        return new User_comment($query);
-    }
-
     /**
      * @param object $query
      * @return User
@@ -23,4 +12,14 @@ class EntityMap
     {
         return new User($query);
     }
+    
+    /**
+     * @param object $query
+     * @return User_comment
+     */
+    public function user_comment(object $query) : User_comment
+    {
+        return new User_comment($query);
+    }
+    
 }

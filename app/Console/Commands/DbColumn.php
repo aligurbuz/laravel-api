@@ -7,8 +7,6 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
-use Nette\PhpGenerator\ClassType;
-use Nette\PhpGenerator\Literal;
 use Nette\PhpGenerator\PhpNamespace;
 
 class DbColumn extends Command
@@ -132,8 +130,9 @@ class DbColumn extends Command
 
             $getMap = File::get($entityMapFile);
 
-            $getMap = str_replace('//','//
-
+            $getMap = str_replace('class EntityMap
+{','class EntityMap
+{
     /**
      * @param object $query
      * @return '.$modelName.'
@@ -141,7 +140,8 @@ class DbColumn extends Command
     public function '.lcfirst($modelName).'(object $query) : '.$modelName.'
     {
         return new '.$modelName.'($query);
-    }',$getMap);
+    }
+    ',$getMap);
 
             File::put($entityMapFile,$getMap);
         }
