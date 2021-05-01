@@ -47,7 +47,6 @@ class ClientCommand extends Command
         $method = ucfirst($this->argument('method'));
 
         $modelName = ucfirst($this->argument('model'));
-        $model = 'App\Models\\'.$modelName;
 
         $dirPath = app_path('Client').''.DIRECTORY_SEPARATOR.''.$clientDir;
         $namePath = app_path('Client').''.DIRECTORY_SEPARATOR.''.$clientDir.''.DIRECTORY_SEPARATOR.''.$clientName;
@@ -93,7 +92,6 @@ class ClientCommand extends Command
         $generatorClass = new PhpNamespace($namespace);
         $generatorClass->addUse(Client::class);
         $generatorClass->addUse(ClientAutoGeneratorTrait::class);
-        $generatorClass->addUse($model);
         $classGenerator = $generatorClass->addClass($className)->setExtends(Client::class);
         $classGenerator->addTrait($namespace.'\\'.$traitName);
         $classGenerator->addTrait(ClientAutoGeneratorTrait::class);
@@ -103,7 +101,7 @@ class ClientCommand extends Command
             ->addComment('')
             ->addComment('@var array');
 
-        $classGenerator->addProperty('model',[$modelName.'::class'])->setType('array')->setProtected()
+        $classGenerator->addProperty('model',[$modelName])->setType('array')->setProtected()
             ->addComment('get model entity validation')
             ->addComment('')
             ->addComment('@var array|string[]');
