@@ -1,8 +1,8 @@
 {
-    "name": "User",
+    "name": "Comment",
     "item": [
         {
-            "name": "User",
+            "name": "User/Comment",
             "response": [],
             "request": {
                 "method": "GET",
@@ -25,19 +25,20 @@
                 ],
                 "body": [],
                 "url": {
-                    "raw": "{{baseUrl}}/user",
+                    "raw": "{{baseUrl}}/user/comment",
                     "host": [
                         "{{baseUrl}}"
                     ],
                     "path": [
-                        "user"
+                        "user",
+                        "comment"
                     ],
                     "query": []
                 }
             }
         },
         {
-            "name": "User",
+            "name": "User/Comment",
             "request": {
                 "method": "POST",
                 "header": [
@@ -59,7 +60,7 @@
                 ],
                 "body": {
                     "mode": "raw",
-                    "raw": "{\"id\":\"integer\",\"name\":\"string\",\"email\":\"string\",\"email_verified_at\":\"timestamp\",\"password\":\"string\",\"remember_token\":\"string\",\"username\":\"string\",\"USER\":\"string\",\"CURRENT_CONNECTIONS\":\"integer\",\"TOTAL_CONNECTIONS\":\"integer\"}",
+                    "raw": "{\"id\":\"integer\",\"user_id\":\"integer\",\"title\":\"string\",\"description\":\"string\",\"comment\":\"string\",\"counter\":\"double\"}",
                     "options": {
                         "raw": {
                             "language": "json"
@@ -67,19 +68,20 @@
                     }
                 },
                 "url": {
-                    "raw": "{{baseUrl}}/user",
+                    "raw": "{{baseUrl}}/user/comment",
                     "host": [
                         "{{baseUrl}}"
                     ],
                     "path": [
-                        "user"
+                        "user",
+                        "comment"
                     ],
                     "query": []
                 }
             }
         },
         {
-            "name": "User",
+            "name": "User/Comment",
             "request": {
                 "method": "PUT",
                 "header": [
@@ -101,7 +103,7 @@
                 ],
                 "body": {
                     "mode": "raw",
-                    "raw": "{\"id\":\"integer\",\"name\":\"string\",\"email\":\"string\",\"email_verified_at\":\"timestamp\",\"password\":\"string\",\"remember_token\":\"string\",\"username\":\"string\",\"USER\":\"string\",\"CURRENT_CONNECTIONS\":\"integer\",\"TOTAL_CONNECTIONS\":\"integer\"}",
+                    "raw": "{\"id\":\"integer\",\"user_id\":\"integer\",\"title\":\"string\",\"description\":\"string\",\"comment\":\"string\",\"counter\":\"double\"}",
                     "options": {
                         "raw": {
                             "language": "json"
@@ -109,12 +111,13 @@
                     }
                 },
                 "url": {
-                    "raw": "{{baseUrl}}/user",
+                    "raw": "{{baseUrl}}/user/comment",
                     "host": [
                         "{{baseUrl}}"
                     ],
                     "path": [
-                        "user"
+                        "user",
+                        "comment"
                     ],
                     "query": []
                 }
