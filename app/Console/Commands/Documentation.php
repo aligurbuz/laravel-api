@@ -58,7 +58,14 @@ class Documentation extends Command
         }
 
         $fileControllerPath = $docPath.''.DIRECTORY_SEPARATOR.''.$dir.''.DIRECTORY_SEPARATOR.''.$dir.'.json';
-        $getFileControllerPath = json_decode(File::get($fileControllerPath),1);
+
+        if(file_exists($fileControllerPath)){
+            $getFileControllerPath = json_decode(File::get($fileControllerPath),1);
+        }
+        else{
+            $getFileControllerPath = [];
+        }
+
         $availableItems = $getFileControllerPath['item'] ?? [];
 
         $mapJson = File::get($mapJsonFile = app_path('Docs').''.DIRECTORY_SEPARATOR.'map.json');
