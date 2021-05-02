@@ -46,7 +46,7 @@ class Postman extends Command
         $list['info']['name'] = $collection = ucfirst($this->argument('collection'));
         $list['info']['schema'] = 'https://schema.getpostman.com/json/collection/v2.1.0/collection.json';
 
-        foreach ($mapJson as $key => $maps){
+        foreach (($mapJson['files'] ?? []) as $key => $maps){
             $mapContents = json_decode(File::get($maps),1);
             $list['item'][$key] = $mapContents;
         }

@@ -51,6 +51,26 @@ class Documentation extends Command
         unset($columns['created_at']);
         unset($columns['updated_at']);
 
+        $dirControllerPath = $docPath.''.DIRECTORY_SEPARATOR.''.$dir;
+
+        if(!file_exists($dirControllerPath)){
+            File::makeDirectory($dirControllerPath);
+        }
+
+        $fileControllerPath = $docPath.''.DIRECTORY_SEPARATOR.''.$dir.''.DIRECTORY_SEPARATOR.''.$dir.'.json';
+        $getFileControllerPath = json_decode(File::get($fileControllerPath),1);
+        $availableItems = $getFileControllerPath['item'] ?? [];
+
+        $mapJson = File::get($mapJsonFile = app_path('Docs').''.DIRECTORY_SEPARATOR.'map.json');
+        $mapArray = json_decode($mapJson,1);
+
+        $key = $mapArray['keys'][$fileControllerPath] ?? -1;
+        $key = $key +1;
+
+        if(!file_exists($fileControllerPath)){
+            touch($fileControllerPath);
+        }
+
         if($controller==$dir){
             $endpointName = $controller;
             $endpoint = lcfirst($controller);
@@ -61,43 +81,49 @@ class Documentation extends Command
         }
 
         $list = [];
-        $list['name'] = $controller;
-        $list['item'][0]['name'] = $endpointName;
-        $list['item'][0]['response'] = [];
-        $list['item'][0]['request']['method'] = 'GET';
-        $list['item'][0]['request']['header'] = $getHeaders;
-        $list['item'][0]['request']['body'] = [];
 
-        $list['item'][0]['request']['url']['raw'] = '{{baseUrl}}/'.$endpoint;
-        $list['item'][0]['request']['url']['host'] = ["{{baseUrl}}"];
-        $list['item'][0]['request']['url']['path'] = explode('/',$endpoint);
-        $list['item'][0]['request']['url']['query'] = [];
+        if(count($availableItems)){
+            $list['item'] = $availableItems;
+        }
 
-        $list['item'][1]['name'] = $endpointName;
-        $list['item'][0]['response'] = [];
-        $list['item'][1]['request']['method'] = 'POST';
-        $list['item'][1]['request']['header'] = $getHeaders;
-        $list['item'][1]['request']['body']['mode'] = 'raw';
-        $list['item'][1]['request']['body']['raw'] = json_encode($columns);
-        $list['item'][1]['request']['body']['options']['raw']['language'] = 'json';
+        $list['name'] = $dir;
+        $list['item'][$key]['name'] = $controller;
+        $list['item'][$key]['item'][0]['name'] = $endpointName;
+        $list['item'][$key]['item'][0]['response'] = [];
+        $list['item'][$key]['item'][0]['request']['method'] = 'GET';
+        $list['item'][$key]['item'][0]['request']['header'] = $getHeaders;
+        $list['item'][$key]['item'][0]['request']['body'] = [];
 
-        $list['item'][1]['request']['url']['raw'] = '{{baseUrl}}/'.$endpoint;
-        $list['item'][1]['request']['url']['host'] = ["{{baseUrl}}"];
-        $list['item'][1]['request']['url']['path'] = explode('/',$endpoint);
-        $list['item'][1]['request']['url']['query'] = [];
+        $list['item'][$key]['item'][0]['request']['url']['raw'] = '{{baseUrl}}/'.$endpoint;
+        $list['item'][$key]['item'][0]['request']['url']['host'] = ["{{baseUrl}}"];
+        $list['item'][$key]['item'][0]['request']['url']['path'] = explode('/',$endpoint);
+        $list['item'][$key]['item'][0]['request']['url']['query'] = [];
 
-        $list['item'][2]['name'] = $endpointName;
-        $list['item'][0]['response'] = [];
-        $list['item'][2]['request']['method'] = 'PUT';
-        $list['item'][2]['request']['header'] = $getHeaders;
-        $list['item'][2]['request']['body']['mode'] = 'raw';
-        $list['item'][2]['request']['body']['raw'] = json_encode($columns);
-        $list['item'][2]['request']['body']['options']['raw']['language'] = 'json';
+        $list['item'][$key]['item'][1]['name'] = $endpointName;
+        $list['item'][$key]['item'][1]['response'] = [];
+        $list['item'][$key]['item'][1]['request']['method'] = 'POST';
+        $list['item'][$key]['item'][1]['request']['header'] = $getHeaders;
+        $list['item'][$key]['item'][1]['request']['body']['mode'] = 'raw';
+        $list['item'][$key]['item'][1]['request']['body']['raw'] = json_encode($columns);
+        $list['item'][$key]['item'][1]['request']['body']['options']['raw']['language'] = 'json';
 
-        $list['item'][2]['request']['url']['raw'] = '{{baseUrl}}/'.$endpoint;
-        $list['item'][2]['request']['url']['host'] = ["{{baseUrl}}"];
-        $list['item'][2]['request']['url']['path'] = explode('/',$endpoint);
-        $list['item'][2]['request']['url']['query'] = [];
+        $list['item'][$key]['item'][1]['request']['url']['raw'] = '{{baseUrl}}/'.$endpoint;
+        $list['item'][$key]['item'][1]['request']['url']['host'] = ["{{baseUrl}}"];
+        $list['item'][$key]['item'][1]['request']['url']['path'] = explode('/',$endpoint);
+        $list['item'][$key]['item'][1]['request']['url']['query'] = [];
+
+        $list['item'][$key]['item'][2]['name'] = $endpointName;
+        $list['item'][$key]['item'][2]['response'] = [];
+        $list['item'][$key]['item'][2]['request']['method'] = 'PUT';
+        $list['item'][$key]['item'][2]['request']['header'] = $getHeaders;
+        $list['item'][$key]['item'][2]['request']['body']['mode'] = 'raw';
+        $list['item'][$key]['item'][2]['request']['body']['raw'] = json_encode($columns);
+        $list['item'][$key]['item'][2]['request']['body']['options']['raw']['language'] = 'json';
+
+        $list['item'][$key]['item'][2]['request']['url']['raw'] = '{{baseUrl}}/'.$endpoint;
+        $list['item'][$key]['item'][2]['request']['url']['host'] = ["{{baseUrl}}"];
+        $list['item'][$key]['item'][2]['request']['url']['path'] = explode('/',$endpoint);
+        $list['item'][$key]['item'][2]['request']['url']['query'] = [];
 
         $dirPath = $docPath.''.DIRECTORY_SEPARATOR.''.$dir;
 
@@ -105,25 +131,12 @@ class Documentation extends Command
             File::makeDirectory($dirPath);
         }
 
-        $dirControllerPath = $docPath.''.DIRECTORY_SEPARATOR.''.$dir.''.DIRECTORY_SEPARATOR.''.$controller;
-
-        if(!file_exists($dirControllerPath)){
-            File::makeDirectory($dirControllerPath);
-        }
-
-        $fileControllerPath = $docPath.''.DIRECTORY_SEPARATOR.''.$dir.''.DIRECTORY_SEPARATOR.''.$controller.''.DIRECTORY_SEPARATOR.''.$controller.'.json';
-
-        if(!file_exists($fileControllerPath)){
-            touch($fileControllerPath);
-        }
-
         File::put($fileControllerPath,Collection::make($list)->toJson(JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
-        $mapJson = File::get($mapJsonFile = app_path('Docs').''.DIRECTORY_SEPARATOR.'map.json');
-        $mapArray = json_decode($mapJson);
 
-        if(!in_array($fileControllerPath,$mapArray)){
-            $mapArray[] = $fileControllerPath;
+        $mapArray['keys'][$fileControllerPath] = $key;
 
+        if(!in_array($fileControllerPath,($mapArray['files'] ?? []))){
+            $mapArray['files'][] = $fileControllerPath;
             File::put($mapJsonFile,Collection::make($mapArray)->toJson(JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
 
         }
