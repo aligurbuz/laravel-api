@@ -75,6 +75,10 @@ use '.$useController.';',$routeApiContent);
 
         File::put($routeApi,$routeApiContent);
 
+        Artisan::call('doc:create',['controller' => $this->argument('controller'),'dir' => $this->argument('dir'),'model' => $this->argument('model')]);
+        Artisan::call('postman:create',['collection' => config('app.name')]);
+
+
         $this->warn('Crud has been created');
         return 0;
     }
