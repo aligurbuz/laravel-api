@@ -1,8 +1,8 @@
 {
-    "keys": {
-        "/var/www/html/app/api/app/Docs/Endpoints/User/User.json": 0
-    },
     "files": [
         "/var/www/html/app/api/app/Docs/Endpoints/User/User.json"
-    ]
+    ],
+    "keys": {
+        "/var/www/html/app/api/app/Docs/Endpoints/User/User.json": 1
+    }
 }

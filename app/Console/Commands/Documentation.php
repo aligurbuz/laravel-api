@@ -133,12 +133,14 @@ class Documentation extends Command
 
         File::put($fileControllerPath,Collection::make($list)->toJson(JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
 
-        $mapArray['keys'][$fileControllerPath] = $key;
-
         if(!in_array($fileControllerPath,($mapArray['files'] ?? []))){
             $mapArray['files'][] = $fileControllerPath;
+            $mapArray['keys'][$fileControllerPath] = $key;
             File::put($mapJsonFile,Collection::make($mapArray)->toJson(JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
-
+        }
+        else{
+            $mapArray['keys'][$fileControllerPath] = $key;
+            File::put($mapJsonFile,Collection::make($mapArray)->toJson(JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
         }
 
         $this->warn('doc has been successfully created');
