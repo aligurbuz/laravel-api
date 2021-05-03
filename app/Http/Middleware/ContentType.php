@@ -16,7 +16,7 @@ class ContentType
      */
     protected array $validContentTypes = [
         'application/json',
-        //'application/xml',
+        'application/xml',
     ];
 
     /**
@@ -49,8 +49,6 @@ class ContentType
      */
     private function setContainerContentTye($contentType) : void
     {
-        $contentTypeExplode = explode('/',$contentType);
-
-        AppContainer::set('contentType',($contentTypeExplode[1] ?? config('app.defaultApiResponseFormatter')));
+        AppContainer::set('contentType',$contentType);
     }
 }

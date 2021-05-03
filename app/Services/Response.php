@@ -2,8 +2,8 @@
 
 namespace App\Services;
 
+use Spatie\ArrayToXml\ArrayToXml;
 use Throwable;
-use Illuminate\Http\JsonResponse;
 use JetBrains\PhpStorm\ArrayShape;
 use App\Facades\Authenticate\ApiKey;
 
@@ -20,9 +20,9 @@ class Response
      * application success 200 content for response
      *
      * @param mixed $data
-     * @return JsonResponse
+     * @return object
      */
-    public static function ok(mixed $data) : JsonResponse
+    public static function ok(mixed $data) : object
     {
         return static::response(
             [
@@ -43,9 +43,9 @@ class Response
      * @param null|string $message
      * @param int $code
      * @param null|Throwable $exception
-     * @return JsonResponse
+     * @return object
      */
-    public static function error($message = null,$code = 400,$exception = null) : JsonResponse
+    public static function error($message = null,$code = 400,$exception = null) : object
     {
         $code  = ($code == '0' || !is_numeric($code)) ? 500 : $code;
         $trace = ($exception instanceof Throwable) ? $exception : debug_backtrace();
@@ -69,11 +69,12 @@ class Response
     /**
      * @param array $data
      * @param int $code
-     * @return JsonResponse
+     * @return object
      */
-    private static function response($data = [],$code = 200) : JsonResponse
+    private static function response($data = [],$code = 200) : object
     {
-        return response()->json($data,$code);
+        return response(ArrayToXml::convert($data,config('app.name')),$code)
+            ->header('Content-Type',Client::contentType());
     }
 
     /**
