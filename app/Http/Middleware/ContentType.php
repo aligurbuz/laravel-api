@@ -44,6 +44,7 @@ class ContentType
         // when this container value is assigned,
         // we can read the client content-type value from anywhere in the application request.
         $this->setContainerContentTye($contentType);
+
         return $next($request);
     }
 
