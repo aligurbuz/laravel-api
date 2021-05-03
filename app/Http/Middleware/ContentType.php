@@ -15,7 +15,7 @@ class ContentType
      * @var array
      */
     protected array $validContentTypes = [
-        'xml'   => 'application/xml',
+        //'xml'   => 'application/xml',
         'json'  => 'application/json',
     ];
 
@@ -49,7 +49,7 @@ class ContentType
      */
     private function setContainerContentTye($contentType) : void
     {
-        AppContainer::set('validContentTypes',$this->validContentTypes);
         AppContainer::set('contentType',$contentType);
+        AppContainer::set('validContentTypes',$this->validContentTypes);
     }
 }

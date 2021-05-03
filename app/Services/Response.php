@@ -218,14 +218,6 @@ class Response
     {
         AppContainer::set('response',$data);
 
-        if(Client::contentType() === 'xml'){
-            return response(
-                Array2XML::createXML(config('app.name'),$data)->saveXML(),
-                $code
-            )
-                ->header('Content-Type',Client::contentType(true));
-        }
-
         return response()->json($data,$code);
     }
 }
