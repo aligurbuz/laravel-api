@@ -57,6 +57,7 @@ class ContentType
     private function setContainerContentTye($contentType) : void
     {
         $contentTypeExplode = explode('/',$contentType);
+
         AppContainer::set('contentType',($contentTypeExplode[1] ?? static::$fallbackContentType));
     }
 }
