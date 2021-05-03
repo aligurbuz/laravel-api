@@ -36,11 +36,12 @@ class AppContainer
      * get key for app factory
      *
      * @param $key
+     * @param null|mixed $default
      * @return mixed
      */
-    public static function get($key): mixed
+    public static function get($key,$default = null): mixed
     {
-        return static::$data[$key] ?? null;
+        return static::$data[$key] ?? $default;
     }
 
     /**

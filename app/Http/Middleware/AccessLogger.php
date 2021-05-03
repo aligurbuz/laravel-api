@@ -105,10 +105,6 @@ class AccessLogger
      */
     private function containerDebugBackTrace(): mixed
     {
-        if(AppContainer::has('debugBackTrace')){
-            return AppContainer::get('debugBackTrace');
-        }
-
-        return [];
+        return AppContainer::get('debugBackTrace',[]);
     }
 }
