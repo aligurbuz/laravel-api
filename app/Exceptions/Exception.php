@@ -31,12 +31,13 @@ class Exception
     {
         $namespace = 'App\Exceptions\\Custom\\'.ucfirst($name);
 
+        static::setKeyForContainer('debugBackTrace',debug_backtrace());
+
         if(isset($arguments[0])){
             static::setKeyForContainer($namespace,($arguments[1] ?? []));
             throw new $namespace($arguments[0]);
         }
         else{
-            static::setKeyForContainer('debugBackTrace',debug_backtrace());
             throw new $namespace();
         }
     }
