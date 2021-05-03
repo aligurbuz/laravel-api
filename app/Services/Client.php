@@ -48,4 +48,14 @@ class Client
 
         return request()->request->all();
     }
+
+    /**
+     * get content type for client
+     *
+     * @return string
+     */
+    public static function contentType() : string
+    {
+        return AppContainer::get('contentType');
+    }
 }
