@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Exception;
 use Illuminate\Http\Request;
 use App\Services\Response as ResponseFormatter;
 
@@ -12,8 +13,10 @@ class Response
      * Handle an incoming request.
      *
      * @param Request $request
-     * @param  Closure  $next
+     * @param Closure $next
      * @return mixed
+     *
+     * @throws Exception
      */
     public function handle(Request $request, Closure $next) : mixed
     {
