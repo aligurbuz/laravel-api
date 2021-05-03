@@ -10,13 +10,6 @@ use App\Services\AppContainer;
 class ContentType
 {
     /**
-     * default json value for content-type
-     *
-     * @var string
-     */
-    protected static string $fallbackContentType = 'json';
-
-    /**
      * The formats that must be sent in the client request.
      *
      * @var array
@@ -58,6 +51,6 @@ class ContentType
     {
         $contentTypeExplode = explode('/',$contentType);
 
-        AppContainer::set('contentType',($contentTypeExplode[1] ?? static::$fallbackContentType));
+        AppContainer::set('contentType',($contentTypeExplode[1] ?? config('app.defaultApiResponseFormatter')));
     }
 }

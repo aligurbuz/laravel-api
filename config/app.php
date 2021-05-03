@@ -3,6 +3,7 @@
 return [
 
     'apikeyString' => 'apikey',
+    'defaultApiResponseFormatter' => 'json',
 
     /*
     |--------------------------------------------------------------------------
