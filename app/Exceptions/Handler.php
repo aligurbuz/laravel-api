@@ -2,10 +2,10 @@
 
 namespace App\Exceptions;
 
+use Exception;
+use Throwable;
 use App\Services\Response;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Illuminate\Http\JsonResponse;
-use Throwable;
 
 class Handler extends ExceptionHandler
 {
@@ -24,9 +24,11 @@ class Handler extends ExceptionHandler
     /**
      * @param $request
      * @param Throwable $e
-     * @return JsonResponse
+     * @return object
+     *
+     * @throws Exception
      */
-    public function render($request, Throwable $e): JsonResponse
+    public function render($request, Throwable $e): object
     {
         return Response::error($e->getMessage(),$e->getCode(),$e);
     }
