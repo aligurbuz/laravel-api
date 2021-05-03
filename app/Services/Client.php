@@ -52,10 +52,19 @@ class Client
     /**
      * get content type for client
      *
+     * @param bool $format
      * @return string
      */
-    public static function contentType() : string
+    public static function contentType($format = false) : string
     {
-        return AppContainer::get('contentType');
+        $default            = 'application/'.config('app.defaultApiResponseFormatter');
+        $contentType        = AppContainer::get('contentType');
+        $validContentTypes  = AppContainer::get('validContentTypes');
+
+        if($format){
+            return $validContentTypes[$contentType] ?? $default;
+        }
+
+        return $contentType;
     }
 }

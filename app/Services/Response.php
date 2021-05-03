@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use Spatie\ArrayToXml\ArrayToXml;
+use Exception;
 use Throwable;
 use JetBrains\PhpStorm\ArrayShape;
 use App\Facades\Authenticate\ApiKey;
@@ -21,20 +21,22 @@ class Response
      *
      * @param mixed $data
      * @return object
+     *
+     * @throws Exception
      */
     public static function ok(mixed $data) : object
     {
-        return static::response(
-            [
-                'status'        => true,
-                'code'          => $code = static::getHttpSuccessCode(),
-                'client'        => ApiKey::who(),
-                'env'           => config('app.env'),
-                'responseCode'  => static::responseCode(),
-                'resource'      => $data,
-                'instructions'  => AppContainer::get('responseFormatterSupplement'),
-            ],$code
-        );
+        $standard = [
+            'status'        => true,
+            'code'          => $code = static::getHttpSuccessCode(),
+            'client'        => ApiKey::who(),
+            'env'           => config('app.env'),
+            'responseCode'  => static::responseCode(),
+            'resource'      => $data,
+            'instructions'  => AppContainer::get('responseFormatterSupplement'),
+        ];
+
+        return static::response($standard,$code);
     }
 
     /**
@@ -44,6 +46,8 @@ class Response
      * @param int $code
      * @param null|Throwable $exception
      * @return object
+     *
+     * @throws Exception
      */
     public static function error($message = null,$code = 400,$exception = null) : object
     {
@@ -70,11 +74,13 @@ class Response
      * @param array $data
      * @param int $code
      * @return object
+     *
+     * @throws Exception
      */
     private static function response($data = [],$code = 200) : object
     {
-        return response(ArrayToXml::convert($data,config('app.name')),$code)
-            ->header('Content-Type',Client::contentType());
+        return response(static::formatter($data),$code)
+            ->header('Content-Type',Client::contentType(true));
     }
 
     /**
@@ -200,5 +206,22 @@ class Response
     private static function responseCode() : int
     {
         return crc32(Client::fingerPrint().'_'.time());
+    }
+
+    /**
+     * @param array $data
+     * @return mixed
+     *
+     * @throws Exception
+     */
+    private static function formatter(array $data = []): mixed
+    {
+        AppContainer::set('response',$data);
+
+        if(Client::contentType() === 'xml'){
+            return Array2XML::createXML('laravel',$data)->saveXML();
+        }
+
+        return $data;
     }
 }

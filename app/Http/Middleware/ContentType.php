@@ -15,8 +15,8 @@ class ContentType
      * @var array
      */
     protected array $validContentTypes = [
-        'application/json',
-        'application/xml',
+        'xml'   => 'application/xml',
+        'json'  => 'application/json',
     ];
 
     /**
@@ -36,7 +36,7 @@ class ContentType
 
         // when this container value is assigned,
         // we can read the client content-type value from anywhere in the application request.
-        $this->setContainerContentTye($contentType);
+        $this->setContainerContentTye(array_search($contentType,$this->validContentTypes));
 
         return $next($request);
     }
@@ -49,6 +49,7 @@ class ContentType
      */
     private function setContainerContentTye($contentType) : void
     {
+        AppContainer::set('validContentTypes',$this->validContentTypes);
         AppContainer::set('contentType',$contentType);
     }
 }

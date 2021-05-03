@@ -25,10 +25,10 @@ class AccessLogger
 
         if($this->isRouteLogger()) return $response;
 
-        $standardResponse = json_decode($content = $response->getContent(),1);
+        $standardResponse = AppContainer::get('response');
         $responseContent = $this->response500Different($standardResponse);
 
-        $this->createLogger($request,$responseContent,$content);
+        $this->createLogger($request,$responseContent);
 
         return $response;
     }
@@ -38,10 +38,9 @@ class AccessLogger
      *
      * @param $request
      * @param $responseContent
-     * @param $content
      * @return object
      */
-    private function createLogger($request,$responseContent,$content) : object
+    private function createLogger($request,$responseContent) : object
     {
         try {
             return Logger::create([
@@ -57,7 +56,7 @@ class AccessLogger
                 'exception_line'            => $responseContent['line'] ?? '',
                 'exception_message'         => $responseContent['errorMessage'] ?? '',
                 'exception_trace'           => json_encode(($this->containerDebugBackTrace() ?? [])),
-                'response'                  => $content
+                'response'                  => json_encode($responseContent)
             ]);
         }
         catch (\Exception $e){
