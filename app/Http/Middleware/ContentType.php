@@ -5,9 +5,17 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use App\Exceptions\Exception;
+use App\Services\AppContainer;
 
 class ContentType
 {
+    /**
+     * default json value for content-type
+     *
+     * @var string
+     */
+    protected static string $fallbackContentType = 'json';
+
     /**
      * The formats that must be sent in the client request.
      *
@@ -33,6 +41,21 @@ class ContentType
            Exception::contentTypeException('',['key' => implode(',',$this->validContentTypes)]);
         }
 
+        // when this container value is assigned,
+        // we can read the client content-type value from anywhere in the application request.
+        $this->setContainerContentTye($contentType);
         return $next($request);
+    }
+
+    /**
+     * set container content type
+     *
+     * @param $contentType
+     * @return void
+     */
+    private function setContainerContentTye($contentType) : void
+    {
+        $contentTypeExplode = explode('/',$contentType);
+        AppContainer::set('contentType',($contentTypeExplode[1] ?? static::$fallbackContentType));
     }
 }
