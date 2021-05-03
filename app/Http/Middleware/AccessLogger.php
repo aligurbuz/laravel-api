@@ -55,7 +55,7 @@ class AccessLogger
                 'exception_file'            => $responseContent['file'] ?? '',
                 'exception_line'            => $responseContent['line'] ?? '',
                 'exception_message'         => $responseContent['errorMessage'] ?? '',
-                'exception_trace'           => json_encode(($this->containerDebugBackTrace() ?? [])),
+                'exception_trace'           => json_encode($this->containerDebugBackTrace()),
                 'response'                  => json_encode($responseContent)
             ]);
         }
@@ -109,6 +109,6 @@ class AccessLogger
             return AppContainer::get('debugBackTrace');
         }
 
-        return null;
+        return [];
     }
 }
