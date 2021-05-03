@@ -28,8 +28,21 @@ class AccessLogger
         $standardResponse = json_decode($content = $response->getContent(),1);
         $responseContent = $this->response500Different($standardResponse);
 
+        $this->createLogger($request,$responseContent,$content);
+
+        return $response;
+    }
+
+    /**
+     * @param $request
+     * @param $responseContent
+     * @param $content
+     * @return object
+     */
+    private function createLogger($request,$responseContent,$content) : object
+    {
         try {
-            Logger::create([
+            return Logger::create([
                 'client_key'                => ApiKey::who(),
                 'endpoint_name'             => $request->url(),
                 'response_code'             => $responseContent['responseCode'] ?? 0,
@@ -48,8 +61,6 @@ class AccessLogger
         catch (\Exception $e){
             return Exception::accessLoggerException($e->getMessage());
         }
-
-        return $response;
     }
 
     /**
