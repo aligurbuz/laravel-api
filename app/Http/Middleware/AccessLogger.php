@@ -34,6 +34,8 @@ class AccessLogger
     }
 
     /**
+     * create data to logger table
+     *
      * @param $request
      * @param $responseContent
      * @param $content
