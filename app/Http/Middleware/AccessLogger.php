@@ -25,7 +25,7 @@ class AccessLogger
 
         if($this->isRouteLogger()) return $response;
 
-        $standardResponse = AppContainer::get('response');
+        $standardResponse = AppContainer::get('response',[]);
         $responseContent = $this->response500Different($standardResponse);
 
         $this->createLogger($request,$responseContent);
