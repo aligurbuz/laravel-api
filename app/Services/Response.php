@@ -219,7 +219,7 @@ class Response
         AppContainer::set('response',$data);
 
         if(Client::contentType() === 'xml'){
-            return Array2XML::createXML('laravel',$data)->saveXML();
+            return Array2XML::createXML(config('app.name'),$data)->saveXML();
         }
 
         return $data;
