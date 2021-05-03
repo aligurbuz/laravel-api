@@ -2,10 +2,9 @@
 
 namespace App\Models\Features;
 
-use App\Models\Features\GlobalScopeSources\User;
 use App\Services\Db;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Facades\File;
+use App\Models\Features\GlobalScopeSources\User;
 
 trait BaseManager
 {
