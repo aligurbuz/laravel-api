@@ -4,5 +4,8 @@
     ],
     "keys": {
         "/var/www/html/app/api/app/Docs/Endpoints/User/User.json": 1
+    },
+    "fingerPrints": {
+        "User_User_user": 0
     }
 }

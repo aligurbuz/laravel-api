@@ -45,11 +45,14 @@ class Documentation extends Command
         $docPath = app_path('Docs').''.DIRECTORY_SEPARATOR.'Endpoints';
         $getHeaders = json_decode(File::get(app_path('Docs').''.DIRECTORY_SEPARATOR.'header.json'),1);
 
+        $model = $this->argument('model');
         $modelNamespace = 'App\Models\\'.ucfirst($this->argument('model'));
         $entities = Db::entities($modelNamespace);
         $columns = array_combine(($entities['columns'] ?? []),($entities['types'] ?? []));
         unset($columns['created_at']);
         unset($columns['updated_at']);
+
+        $fingerPrint = $controller.'_'.$dir.'_'.$model;
 
         $dirControllerPath = $docPath.''.DIRECTORY_SEPARATOR.''.$dir;
 
@@ -73,6 +76,10 @@ class Documentation extends Command
 
         $key = $mapArray['keys'][$fileControllerPath] ?? -1;
         $key = $key +1;
+
+        if(isset($mapArray['fingerPrints'][$fingerPrint])){
+            $key = $mapArray['fingerPrints'][$fingerPrint];
+        }
 
         if(!file_exists($fileControllerPath)){
             touch($fileControllerPath);
@@ -143,6 +150,7 @@ class Documentation extends Command
         if(!in_array($fileControllerPath,($mapArray['files'] ?? []))){
             $mapArray['files'][] = $fileControllerPath;
             $mapArray['keys'][$fileControllerPath] = $key;
+            $mapArray['fingerPrints'][$fingerPrint] = $key;
             File::put($mapJsonFile,Collection::make($mapArray)->toJson(JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
         }
         else{
