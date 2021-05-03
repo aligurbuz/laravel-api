@@ -31,6 +31,8 @@ class Exception
     {
         $namespace = 'App\Exceptions\\Custom\\'.ucfirst($name);
 
+        // this container data is used in the script running on the access_logger middleware layer.
+        // This data saved in the trace field in the access_logger table gives the follow-up data in the exception system.
         static::setKeyForContainer('debugBackTrace',debug_backtrace());
 
         if(isset($arguments[0])){
