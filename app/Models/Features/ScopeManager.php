@@ -52,7 +52,7 @@ trait ScopeManager
      */
     public function scopeRepository(Builder $builder,object $object): Builder
     {
-        $objectName     = lcfirst(class_basename($object));
+        $objectName = lcfirst(class_basename($object));
 
         // if there is a method with the same name as object,
         // this method will be executed automatically.
