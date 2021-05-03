@@ -36,7 +36,7 @@ class Exception
             throw new $namespace($arguments[0]);
         }
         else{
-            AppContainer::set('debugBackTrace',debug_backtrace());
+            static::setKeyForContainer('debugBackTrace',debug_backtrace());
             throw new $namespace();
         }
     }
