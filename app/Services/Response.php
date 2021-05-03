@@ -79,8 +79,7 @@ class Response
      */
     private static function response($data = [],$code = 200) : object
     {
-        return response(static::formatter($data),$code)
-            ->header('Content-Type',Client::contentType(true));
+        return static::formatter($data,$code);
     }
 
     /**
@@ -210,18 +209,23 @@ class Response
 
     /**
      * @param array $data
-     * @return mixed
+     * @param int $code
+     * @return object
      *
      * @throws Exception
      */
-    private static function formatter(array $data = []): mixed
+    private static function formatter(array $data = [],$code = 200): object
     {
         AppContainer::set('response',$data);
 
         if(Client::contentType() === 'xml'){
-            return Array2XML::createXML(config('app.name'),$data)->saveXML();
+            return response(
+                Array2XML::createXML(config('app.name'),$data)->saveXML(),
+                $code
+            )
+                ->header('Content-Type',Client::contentType(true));
         }
 
-        return $data;
+        return response()->json($data,$code);
     }
 }

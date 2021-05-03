@@ -65,6 +65,6 @@ class Client
             return $validContentTypes[$contentType] ?? $default;
         }
 
-        return $contentType;
+        return $contentType ?? $default;
     }
 }
