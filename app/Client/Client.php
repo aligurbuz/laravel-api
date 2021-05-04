@@ -4,7 +4,6 @@ namespace App\Client;
 
 use App\Services\Db;
 use App\Packages\Client\ClientManager;
-use App\Services\Client as ClientService;
 
 /**
  * Class Client
@@ -50,7 +49,7 @@ class Client extends ClientManager
         $this->capsule();
         $this->addRule();
         $this->handle();
-        $this->inputs = ClientService::data();
+        $this->inputs = $this->getDataStream();
     }
 
 
@@ -281,11 +280,13 @@ class Client extends ClientManager
      * set input for client
      *
      * @param null|string $key
-     * @return array
+     * @return mixed
      */
-    public function get($key = null) : array
+    public function get($key = null) : mixed
     {
-        return $this->inputs[$key] ?? $this->inputs;
+        $streamData = $this->getDataStream();
+
+        return $streamData[$key] ?? $streamData;
     }
 
     /**

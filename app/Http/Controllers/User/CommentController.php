@@ -9,7 +9,6 @@ use App\Client\User\Comment\Get\GetClient;
 use App\Client\User\Comment\Update\UpdateClient;
 use App\Client\User\Comment\Create\CreateClient;
 use App\Repositories\User\Contracts\CommentRepositoryContract;
-use App\Services\Client;
 
 class CommentController extends Controller
 {

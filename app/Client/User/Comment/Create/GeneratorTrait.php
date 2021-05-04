@@ -1,6 +1,6 @@
-<?php 
+<?php
 
-namespace App\Client\User\Comment\Create; 
+namespace App\Client\User\Comment\Create;
 
 trait GeneratorTrait
 {
@@ -9,12 +9,17 @@ trait GeneratorTrait
 	 *
 	 * @return array
 	 */
-	protected array $generators = [];
+	protected array $generators = ['test'];
 
 	/**
 	 * get dont overwrite generator for client
 	 *
 	 * @return array
 	 */
-	protected array $dontOverWriteGenerators = [];
+	protected array $dontOverWriteGenerators = ['test'];
+
+	public function testGenerator()
+    {
+        return null;
+    }
 }
