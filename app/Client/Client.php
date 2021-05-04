@@ -47,12 +47,27 @@ class Client extends ClientManager
     {
         $this->inputs = [];
         parent::__construct($data);
+        $this->modelRequiredFields();
         $this->capsule();
         $this->addRule();
         $this->handle();
         $this->inputs = $this->getDataStream();
     }
 
+    /**
+     * get model required fields
+     *
+     * @return void
+     */
+    public function modelRequiredFields() : void
+    {
+        $entities = Db::entities($this->getTable());
+        $requiredColumns = $entities['required_columns'] ?? [];
+
+        foreach ($requiredColumns as $requiredColumn){
+            $this->setRule($requiredColumn,'required');
+        }
+    }
 
     /**
      * add rule for client
