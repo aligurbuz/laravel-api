@@ -55,6 +55,10 @@ class DbColumn extends Command
         foreach ($columns as $column){
             $list['columns'][] = '"'.$column->COLUMN_NAME.'"';
 
+            if(is_null($column->COLUMN_DEFAULT) && $column->IS_NULLABLE == 'NO' && $column->COLUMN_NAME!=='id'){
+                $list['required_columns'][] = '"'.$column->COLUMN_NAME.'"';
+            }
+
             if(Str::endsWith($column->DATA_TYPE,'int')){
                 $list['types'][] = '"integer"';
             }
@@ -73,6 +77,7 @@ class DbColumn extends Command
         File::put($databaseColumnPath,'<?php return [
         \'columns\' => ['.implode(',',$list['columns']).'],
         \'types\' => ['.implode(',',$list['types']).'],
+        \'required_columns\' => ['.implode(',',$list['required_columns']).'],
         ];');
 
         $databaseColumns = File::getRequire($databaseColumnPath);
