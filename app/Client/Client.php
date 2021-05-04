@@ -45,6 +45,7 @@ class Client extends ClientManager
      */
     public function __construct(array $data = [])
     {
+        $this->inputs = [];
         parent::__construct($data);
         $this->capsule();
         $this->addRule();
