@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Services\Client;
 use App\Exceptions\Exception;
+use App\Services\Db;
 use Illuminate\Database\Eloquent\Builder;
 
 class EloquentRepository
@@ -88,11 +89,13 @@ class EloquentRepository
      * get today scope for client
      *
      * @param null|Builder $builder
-     * @return Builder
+     * @return object
      */
-    public function active(Builder $builder = null): Builder
+    public function active(Builder $builder = null): object
     {
-        return $this->builder($builder)->where('status',1);
+        return $this->ensureColumnExists('status',$builder,function() use($builder){
+            return $this->builder($builder)->where('status',1);
+        });
     }
 
     /**
@@ -146,5 +149,26 @@ class EloquentRepository
     {
         return static::$model::range($this)->repository($this)->instruction()->withQuery()
             ->selectQuery()->orderByQuery()->filterQuery();
+    }
+
+    /**
+     * get columns for database
+     *
+     * @param $column
+     * @param Builder $builder
+     * @param callable $callback
+     * @return array|object
+     */
+    public function ensureColumnExists($column,Builder $builder,callable $callback) : array|object
+    {
+        $entities = Db::columns(static::$model);
+
+        $columns = $entities['columns'] ?? [];
+
+        if(in_array($column,$columns)){
+            return call_user_func($callback);
+        }
+
+        return $builder;
     }
 }
