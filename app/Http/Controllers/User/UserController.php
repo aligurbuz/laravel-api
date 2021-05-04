@@ -27,7 +27,7 @@ class UserController extends Controller
      */
     public function get(GetUserClient $client, UserRepositoryContract $userRepository) : array
     {
-        $client->handle();
+        $client->get();
 
         return $userRepository->get();
     }
@@ -41,7 +41,7 @@ class UserController extends Controller
      */
     public function create(CreateUserClient $client, UserRepositoryContract $userRepository) : array|object
     {
-        $client->handle();
+        $client->get();
 
         $user = current($userRepository->create());
         $user['token'] = $user->createToken('myApp')->accessToken;
@@ -58,7 +58,7 @@ class UserController extends Controller
      */
     public function update(UpdateUserClient $client, UserRepositoryContract $userRepository) : array|object
     {
-        $client->handle();
+        $client->get();
 
         return $userRepository->update();
     }

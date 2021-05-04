@@ -21,6 +21,11 @@ class ClientManager
     protected array $data = [];
 
     /**
+     * @var null|mixed
+     */
+    protected array $dataStream;
+
+    /**
      * available http methods for client
      *
      * @var array|string[]
@@ -135,6 +140,26 @@ class ClientManager
     public function getParamValues(): array
     {
         return request()->query->all();
+    }
+
+    /**
+     * set data stream for client
+     *
+     * @param array $data
+     */
+    public function setDataStream(array $data = [])
+    {
+        $this->dataStream = $data;
+    }
+
+    /**
+     * set data stream for client
+     *
+     * @return mixed
+     */
+    public function getDataStream(): mixed
+    {
+        return $this->dataStream;
     }
 
     /**

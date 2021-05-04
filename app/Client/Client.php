@@ -4,6 +4,7 @@ namespace App\Client;
 
 use App\Services\Db;
 use App\Packages\Client\ClientManager;
+use App\Services\Client as ClientService;
 
 /**
  * Class Client
@@ -17,6 +18,11 @@ class Client extends ClientManager
      * @var array
      */
     protected array $paramValidatorValues = ['filter'];
+
+    /**
+     * @var array
+     */
+    protected array $inputs = [];
 
     /**
      * @var array|string[]
@@ -43,7 +49,10 @@ class Client extends ClientManager
         parent::__construct($data);
         $this->capsule();
         $this->addRule();
+        $this->handle();
+        $this->inputs = ClientService::data();
     }
+
 
     /**
      * add rule for client
@@ -255,5 +264,40 @@ class Client extends ClientManager
         }
 
         return null;
+    }
+
+    /**
+     * set input for client
+     *
+     * @param $key
+     * @param $value
+     */
+    public function set($key,$value) : void
+    {
+        $this->inputs[$key] = $value;
+    }
+
+    /**
+     * set input for client
+     *
+     * @param null|string $key
+     * @return array
+     */
+    public function get($key = null) : array
+    {
+        return $this->inputs[$key] ?? $this->inputs;
+    }
+
+    /**
+     * check if the key is valid for client
+     *
+     * @param null|string $key
+     * @return bool
+     */
+    public function has($key = null) : bool
+    {
+        $streamData = $this->getDataStream();
+
+        return (isset($streamData[$key]));
     }
 }

@@ -9,6 +9,7 @@ use App\Client\User\Comment\Get\GetClient;
 use App\Client\User\Comment\Update\UpdateClient;
 use App\Client\User\Comment\Create\CreateClient;
 use App\Repositories\User\Contracts\CommentRepositoryContract;
+use App\Services\Client;
 
 class CommentController extends Controller
 {
@@ -21,7 +22,7 @@ class CommentController extends Controller
 	 */
 	public function get(GetClient $client, CommentRepositoryContract $commentRepository): array
 	{
-		$client->handle();
+		$client->get();
 
 		return $commentRepository->get();
 	}
@@ -36,7 +37,7 @@ class CommentController extends Controller
 	 */
 	public function create(CreateClient $client, CommentRepositoryContract $commentRepository) : array|object
 	{
-		$client->handle();
+		$client->get();
 
 		return $commentRepository->create();
 	}
@@ -52,7 +53,7 @@ class CommentController extends Controller
 	 */
 	public function update(UpdateClient $client, CommentRepositoryContract $commentRepository): array|object
 	{
-		$client->handle();
+		$client->get();
 
 		return $commentRepository->update();
 	}

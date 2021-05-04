@@ -77,11 +77,14 @@ class ClientBodyProcess extends ClientVariableProcess
                     Exception::clientArrayLimiterException('client data must have a maximum of '.$arrayLimiter.' record.');
                 }
 
-                $this->capsuleProcess($value);
+                $this->client->setDataStream($value);
+
                 $this->typeValidator($value);
 
                 $generatorProcess = array_merge($this->generatorProcess($value),$this->autoGeneratorProcess($value));
                 $this->client->setBodyData($key,$value = $this->variableProcess($generatorProcess));
+
+                $this->capsuleProcess($value);
 
                 $this->makeValidator($value);
             }
