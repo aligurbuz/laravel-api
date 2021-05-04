@@ -55,23 +55,6 @@ class Client extends ClientManager
     }
 
     /**
-     * get model required fields
-     *
-     * @return void
-     */
-    public function modelRequiredFields() : void
-    {
-        if(request()->method()==='POST'){
-            $entities = Db::entities($this->getTable());
-            $requiredColumns = $entities['required_columns'] ?? [];
-
-            foreach ($requiredColumns as $requiredColumn){
-                $this->setRule($requiredColumn,'required');
-            }
-        }
-    }
-
-    /**
      * add rule for client
      *
      * @return void
@@ -318,5 +301,22 @@ class Client extends ClientManager
         $streamData = $this->getDataStream();
 
         return (isset($streamData[$key]));
+    }
+
+    /**
+     * get model required fields
+     *
+     * @return void
+     */
+    public function modelRequiredFields() : void
+    {
+        if(request()->method()==='POST'){
+            $entities = Db::entities($this->getTable());
+            $requiredColumns = $entities['required_columns'] ?? [];
+
+            foreach ($requiredColumns as $requiredColumn){
+                $this->setRule($requiredColumn,'required');
+            }
+        }
     }
 }
