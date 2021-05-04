@@ -273,7 +273,7 @@ class Client extends ClientManager
      */
     public function set($key,$value) : void
     {
-        $this->inputs[$key] = $value;
+        $this->putDataStream($key,$value);
     }
 
     /**

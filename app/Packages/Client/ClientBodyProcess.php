@@ -82,7 +82,9 @@ class ClientBodyProcess extends ClientVariableProcess
                 $this->typeValidator($value);
 
                 $generatorProcess = array_merge($this->generatorProcess($value),$this->autoGeneratorProcess($value));
-                $this->client->setBodyData($key,$value = $this->variableProcess($generatorProcess));
+                $this->variableProcess($generatorProcess);
+                $value = $this->client->getDataStream();
+                $this->client->setBodyData($key,$value);
 
                 $this->capsuleProcess($value);
 

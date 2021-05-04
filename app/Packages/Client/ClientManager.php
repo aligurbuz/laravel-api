@@ -153,6 +153,18 @@ class ClientManager
     }
 
     /**
+     * put data stream for client
+     *
+     * @param $key
+     * @param $value
+     * @return void
+     */
+    public function putDataStream($key,$value) : void
+    {
+        $this->dataStream[$key] = $value;
+    }
+
+    /**
      * set data stream for client
      *
      * @return mixed
