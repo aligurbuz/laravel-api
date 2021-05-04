@@ -61,11 +61,13 @@ class Client extends ClientManager
      */
     public function modelRequiredFields() : void
     {
-        $entities = Db::entities($this->getTable());
-        $requiredColumns = $entities['required_columns'] ?? [];
+        if(request()->method()==='POST'){
+            $entities = Db::entities($this->getTable());
+            $requiredColumns = $entities['required_columns'] ?? [];
 
-        foreach ($requiredColumns as $requiredColumn){
-            $this->setRule($requiredColumn,'required');
+            foreach ($requiredColumns as $requiredColumn){
+                $this->setRule($requiredColumn,'required');
+            }
         }
     }
 
