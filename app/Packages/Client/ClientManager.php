@@ -159,7 +159,7 @@ class ClientManager
      */
     public function getDataStream(): mixed
     {
-        return $this->dataStream;
+        return $this->dataStream ?? [];
     }
 
     /**
