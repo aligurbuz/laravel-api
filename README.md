@@ -438,4 +438,5 @@ However, this class includes many features. One of them has a model key that is 
 
 
 ```
-For example, when you use the user :: class model, the column values of your table are checked and validations are performed according to this model.
+For example, when you use the user::class model, the column values of your table are checked and validations are performed according to this model.
+
