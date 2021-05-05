@@ -41,3 +41,7 @@ So this is the first place to look.
 
 - For example, the directory User represents the user prefix, so it points to the api/user endpoint.
 The UserController file is called.
+  
+# Response Formatter
+When you look at any controls file in the controller directory, you will see that there is no response method.
+The only thing we do in this Laravel framework is that the application contains only the api source, it does not serve any other method.
