@@ -34,7 +34,8 @@ We will use this as a bearer token in every request.
 
 <a href="https://ibb.co/YQm2qr7"><img src="https://i.ibb.co/V9RVPKW/Screen-Shot-2021-05-05-at-12-43-49.png" alt="Screen-Shot-2021-05-05-at-12-43-49" border="0"></a>
 
-#Controller Directory
+# Controller Directory
+
 Controller directories are always in the App/Http/Controllers directory. Their places will not change.
 So this is the first place to look.
 
