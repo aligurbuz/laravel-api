@@ -132,6 +132,6 @@ An example 200 response format:
 
 ```
 
-Appearing in the postmande;
+Appearing in the postman;
 
 <a href="https://ibb.co/jH8WNm8"><img src="https://i.ibb.co/R7gBFfg/Screen-Shot-2021-05-05-at-13-17-57.png" alt="Screen-Shot-2021-05-05-at-13-17-57" border="0"></a>
