@@ -322,7 +322,7 @@ class Exception
 
 
 ```
-Bu özel sınıfları uygulamanızın herhangi bir yerinden ulaşabilirsiniz.
+You can use these custom classes anywhere in your application.
 
 ```php
 
