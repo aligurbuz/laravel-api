@@ -596,3 +596,6 @@ For example: When you open the App/Client/Client.php file, you will see the foll
 
 
 ```
+
+The autoRule variable are variables that are automatically added to your rule variables for any class.
+If the client sends any of these data, you do not need to define them specifically and these values are validated.
