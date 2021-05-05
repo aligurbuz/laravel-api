@@ -168,7 +168,7 @@ The exception directly references the error method of the response class, and th
 ```php
 
 /**
-     * application error 400 content for response
+     * application error content for response
      *
      * @param null|string $message
      * @param int $code
