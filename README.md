@@ -27,7 +27,7 @@ After defining your keys for passport to your system
 We can send a request to the user endpoint that is pre-defined in the routes/api file.
 
 - Before;
-The postman documentation, which is automatically prepared and I will include in the narration, is available as Laravel.postman_collection.json file in the postman directory.
+  The postman documentation, which is automatically prepared and I will include in the narration, is available as Laravel.postman_collection.json file in the postman directory.
 
 First, let's make a login request like in the image below. In the returning response, we will be given a token.
 We will use this as a bearer token in every request.
@@ -40,8 +40,8 @@ Controller directories are always in the App/Http/Controllers directory. Their p
 So this is the first place to look.
 
 - For example, the directory User represents the user prefix, so it points to the api/user endpoint.
-The UserController file is called.
-  
+  The UserController file is called.
+
 # Response Formatter
 When you look at any controls file in the controller directory, you will see that there is no response method.
 The only thing we do in this Laravel framework is that the application contains only the api source, it does not serve any other method.
@@ -440,3 +440,26 @@ However, this class includes many features. One of them has a model key that is 
 ```
 For example, when you use the user::class model, the column values of your table are checked and validations are performed according to this model.
 
+Let's visualize the event by making an example;
+Let's create a table of restaurants with a migration like the one below.
+
+```php
+
+
+     /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('restaurants',function(Blueprint $table){
+           $table->id();
+           $table->string('restaurant_name');
+           $table->string('restaurant_short_name');
+           $table->timestamps();
+        });
+    }
+
+
+```
