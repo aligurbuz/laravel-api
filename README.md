@@ -333,3 +333,15 @@ or
 throw new CustomException();
 
 ```
+
+## Exception Language files
+Exception language files are a property variable defined within the custom class you create.
+```php
+
+  /* @var string
+   */
+  protected string $langKey = 'customException';
+
+```
+This special key resource is defined in the exception.php file in the resource/lang directory.
+You can define the return message according to the language by defining an exception here as you wish.
