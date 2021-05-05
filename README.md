@@ -484,3 +484,8 @@ you no longer need to do anything.
 Hold tight: Even your postman is ready.
 
 It will be enough to import the json file starting with laravel in the postman directory from the import section in your postman.
+
+
+Now let's run restaurants post in our post request. It is visual as below.
+
+<a href="https://ibb.co/mNYQFC2"><img src="https://i.ibb.co/tLNyPMv/Screen-Shot-2021-05-05-at-17-24-54.png" alt="Screen-Shot-2021-05-05-at-17-24-54" border="0"></a>
