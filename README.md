@@ -70,3 +70,31 @@ We manage this with the middleware response method.
 # Middleware Response Formatter
 The middleware response method is the App/Http/Middleware/Response.php file.
 This file is actively run as middleware in App/Http/Controllers.php file.
+
+```php
+
+ /**
+     * Handle an incoming request.
+     *
+     * @param Request $request
+     * @param Closure $next
+     * @return mixed
+     *
+     * @throws Exception
+     */
+    public function handle(Request $request, Closure $next) : mixed
+    {
+        $response = $next($request);
+        $content = json_decode($response->getContent(),1);
+
+        if(isset($content['status']) && $content['status']===false){
+            return $response;
+        }
+
+        return ResponseFormatter::ok($content);
+    }
+
+```
+As you can see, Response.php middleware class is AfterMiddleware property.
+After the response is received, if not exception (Because exception is returned from the App/Exceptions/Handler.php file.)
+The arrow method of the ResponseFormatter class is directly invoked and the system automatically returns a specified pattern to you.
