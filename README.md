@@ -226,3 +226,33 @@ This should return 500 as the system.
 See the error response for the postman.
 
 <a href="https://ibb.co/DzYWb4z"><img src="https://i.ibb.co/Cm68tBm/Screen-Shot-2021-05-05-at-13-44-28.png" alt="Screen-Shot-2021-05-05-at-13-44-28" border="0"></a>
+
+As you can see, nothing needs to be done for the system.
+After catching special render exceptions and passing them through the error method of the response class, it returns the format to us.
+
+## Well then let's move on to special exceptions.
+Special exceptions are actually application business logic errors. Examples such as not sending the order number when ordering.
+can be given.We can manage these errors by putting them in the App/Exceptions/Custom directory.
+
+Take the CustomException.php class for example.
+
+```php
+
+/**
+     * @var string
+     */
+    protected string $langKey = 'customException';
+
+    /**
+     * CustomException constructor.
+     *
+     * @param string $message
+     * @param int $code
+     * @param Throwable|null $previous
+     */
+    public function __construct($message = "Custom exception", $code = 400, Throwable $previous = null)
+    {
+        parent::__construct($this->setMessage($message), $code, $previous);
+    }
+
+```
