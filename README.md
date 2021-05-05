@@ -375,3 +375,49 @@ That's why I am very sensitive to validations.
 I do not find it very convenient to write validations in a controller.
 So I developed a special class and connected it to the console generator system.
 
+For example: the get method of the user class uses the getUserClient class.
+those classes are located in the app/Client directory.
+
+```php
+
+<?php
+
+namespace App\Client\User\User\Get;
+
+use App\Client\Client;
+use App\Client\ClientAutoGeneratorTrait;
+
+/**
+ * Class GetClient
+ * @package App\Client\User
+ */
+class GetUserClient extends Client
+{
+    use GeneratorTrait,ClientAutoGeneratorTrait;
+
+    /**
+     * get capsule for client
+     *
+     * @var array
+     */
+    protected array $capsule = [];
+
+    /**
+     * get model entity validation
+     *
+     * @var array|string[]
+     */
+    protected array $model = ['user'];
+
+    /**
+     * get rule for client
+     *
+     * @var array
+     */
+    protected array $rule = [
+        //'id' => 'required|integer'
+    ];
+}
+
+
+```
