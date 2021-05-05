@@ -616,3 +616,5 @@ Here, for example, the double format has been added with the regex value.
 
 
 ```
+Your custom messages for your customRules variables are managed in the validation.php file included in the laravelin language files.
+It will be enough to define a double key there.
