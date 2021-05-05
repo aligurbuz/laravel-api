@@ -230,6 +230,11 @@ See the error response for the postman.
 As you can see, nothing needs to be done for the system.
 After catching special render exceptions and passing them through the error method of the response class, it returns the format to us.
 
+However, 500 errors are for development. We should not give these server errors directly in the production environment.
+Therefore, when you set as production the APP_ENV variable in your .env file, the system will automatically return to you with a message like the following.
+
+<a href="https://ibb.co/jLYm9kx"><img src="https://i.ibb.co/VvGR0Yh/Screen-Shot-2021-05-05-at-16-20-04.png" alt="Screen-Shot-2021-05-05-at-16-20-04" border="0"></a>
+
 ## Well then let's move on to special exceptions.
 Special exceptions are actually application business logic errors. Examples such as not sending the order number when ordering.
 can be given.We can manage these errors by putting them in the App/Exceptions/Custom directory.
