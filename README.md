@@ -489,3 +489,44 @@ It will be enough to import the json file starting with laravel in the postman d
 Now let's run restaurants post in our post request. It is visual as below.
 
 <a href="https://ibb.co/mNYQFC2"><img src="https://i.ibb.co/tLNyPMv/Screen-Shot-2021-05-05-at-17-24-54.png" alt="Screen-Shot-2021-05-05-at-17-24-54" border="0"></a>
+
+Let's look at the client validation file.
+
+```php
+<?php 
+
+namespace App\Client\Restaurants\Restaurants\Create;
+
+use App\Client\Client;
+use App\Client\ClientAutoGeneratorTrait;
+use App\Models\Restaurant;
+
+class CreateClient extends Client
+{
+	use GeneratorTrait;
+	use ClientAutoGeneratorTrait;
+
+	/**
+	 * get capsule for client
+	 *
+	 * @var array
+	 */
+	protected array $capsule = [];
+
+	/**
+	 * get model entity validation
+	 *
+	 * @var array|string[]
+	 */
+	protected array $model = [Restaurant::class];
+
+	/**
+	 * get rule for client
+	 *
+	 * @var array
+	 */
+	protected array $rule = [];
+}
+```
+
+As you can see, the rule value is empty.However, since the model name is specified, the class will automatically look for database entity values.
