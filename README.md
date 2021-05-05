@@ -421,3 +421,9 @@ class GetUserClient extends Client
 
 
 ```
+
+The binded class will directly follow the rules here and return an exception if necessary.
+The key rule you are familiar with here is the key.Laravelin works directly the same as it's validation system.
+It will be enough to write here what the running controller class requires.
+
+However, this class includes many features. One of them has a model key that is directly validated with the entity values of your model.
