@@ -135,3 +135,24 @@ An example 200 response format:
 Appearing in the postman;
 
 <a href="https://ibb.co/jH8WNm8"><img src="https://i.ibb.co/R7gBFfg/Screen-Shot-2021-05-05-at-13-17-57.png" alt="Screen-Shot-2021-05-05-at-13-17-57" border="0"></a>
+
+# Exceptions
+Now let's come to the main issue. The most important work experience of an API developer is actually the quality of the exceptions they return while developing the API.
+This is so important that; It allows a frontend developer or backend developer to work comfortably.
+The main point in this is that the data to be processed is properly validated.
+
+```php
+
+ /**
+     * @param $request
+     * @param Throwable $e
+     * @return object
+     *
+     * @throws Exception
+     */
+    public function render($request, Throwable $e): object
+    {
+        return Response::error($e->getMessage(),$e->getCode(),$e);
+    }
+
+```
