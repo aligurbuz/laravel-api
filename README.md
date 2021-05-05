@@ -535,3 +535,22 @@ So let's make a post request on the postman now for restaurant service.
 But let's not send the value of restaurant_name.
 The system will give us an error like the one below.
 <a href="https://ibb.co/f85ztMd"><img src="https://i.ibb.co/3fq9W1m/Screen-Shot-2021-05-05-at-17-33-45.png" alt="Screen-Shot-2021-05-05-at-17-33-45" border="0"></a>
+
+As you can see, you don't need to do anything. The model is automatically recognized and validation is run according to the entity system.
+How would it work normally?
+Then add a presentation to the CreateClient class above ...
+
+```php
+
+/**
+* @return void
+*/
+public function modelRequiredFields(): void
+{
+    //
+}
+
+
+```
+
+
