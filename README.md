@@ -141,6 +141,8 @@ Now let's come to the main issue. The most important work experience of an API d
 This is so important that; It allows a frontend developer or backend developer to work comfortably.
 The main point in this is that the data to be processed is properly validated.
 
+App/Exceptions/Handler.php
+
 ```php
 
  /**
@@ -156,3 +158,7 @@ The main point in this is that the data to be processed is properly validated.
     }
 
 ```
+
+Laravel offers us a custom renderable method for exceptions.
+As you can see in the code above, the render method is the place of all exceptions.
+Any exception passes directly here, so we can specify a specific format for the exception.
