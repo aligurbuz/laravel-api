@@ -599,3 +599,20 @@ For example: When you open the App/Client/Client.php file, you will see the foll
 
 The autoRule variable are variables that are automatically added to your rule variables for any class.
 If the client sends any of these data, you do not need to define them specifically and these values are validated.
+
+The customRules variable allows you to add a validation rule that is not included in Laravel's standard validation rules.
+Here, for example, the double format has been added with the regex value.
+
+```php
+
+    /**
+     * get rule for client
+     *
+     * @var array
+     */
+    protected array $rule = [
+        'key' => 'double'
+    ];
+
+
+```
