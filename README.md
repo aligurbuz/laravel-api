@@ -235,6 +235,9 @@ Therefore, when you set as production the APP_ENV variable in your .env file, th
 
 <a href="https://ibb.co/jLYm9kx"><img src="https://i.ibb.co/VvGR0Yh/Screen-Shot-2021-05-05-at-16-20-04.png" alt="Screen-Shot-2021-05-05-at-16-20-04" border="0"></a>
 
+As you can see, 500 errors are not shown directly to the user in production environment. However, a direct message is recorded as a log in the access_logger class run for middleware.
+and thus the developer will be able to see what the error is in the log.
+
 ## Well then let's move on to special exceptions.
 Special exceptions are actually application business logic errors. Examples such as not sending the order number when ordering.
 can be given.We can manage these errors by putting them in the App/Exceptions/Custom directory.
