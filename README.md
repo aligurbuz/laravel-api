@@ -441,7 +441,7 @@ However, this class includes many features. One of them has a model key that is 
 For example, when you use the user::class model, the column values of your table are checked and validations are performed according to this model.
 
 Let's visualize the event by making an example;
-Let's create a table of restaurants with a migration like the one below.
+Let's create a table named restaurants with a migration like the one below.
 
 ```php
 
