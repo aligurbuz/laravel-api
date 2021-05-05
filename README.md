@@ -97,7 +97,7 @@ This file is actively run as middleware in App/Http/Controllers.php file.
 ```
 As you can see, Response.php middleware class is AfterMiddleware property.
 After the response is returned, if not exception (Because exception is returned from the App/Exceptions/Handler.php file.)
-The arrow method of the ResponseFormatter class is directly invoked and the system automatically returns a specified pattern to you.
+The arrow method of the ResponseFormatter class is directly invoked and the system automatically returns a specified format to you.
 
 # Response Service Class
 The response format is managed with the App/Services/Response.php class. You can change it as you wish according to your project. The important thing is to be able to return a stable format for the client everywhere.
