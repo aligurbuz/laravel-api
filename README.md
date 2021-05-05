@@ -29,5 +29,7 @@ We can send a request to the user endpoint that is pre-defined in the routes/api
 - Before;
 The postman documentation, which is automatically prepared and I will include in the narration, is available as Laravel.postman_collection.json file in the postman directory.
 
+First, let's make a login request like in the image below. In the returning response, we will be given a token.
+We will use this as a bearer token in every request.
 
 <a href="https://ibb.co/YQm2qr7"><img src="https://i.ibb.co/V9RVPKW/Screen-Shot-2021-05-05-at-12-43-49.png" alt="Screen-Shot-2021-05-05-at-12-43-49" border="0"></a>
