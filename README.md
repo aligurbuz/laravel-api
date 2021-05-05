@@ -530,3 +530,8 @@ class CreateClient extends Client
 ```
 
 As you can see, the rule value is empty.However, since the model name is specified, the class will automatically look for database entity values.
+
+So let's make a post request on the postman now for restaurant service.
+But let's not send the value of restaurant_name.
+The system will give us an error like the one below.
+<a href="https://ibb.co/f85ztMd"><img src="https://i.ibb.co/3fq9W1m/Screen-Shot-2021-05-05-at-17-33-45.png" alt="Screen-Shot-2021-05-05-at-17-33-45" border="0"></a>
