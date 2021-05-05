@@ -100,7 +100,7 @@ After the response is received, if not exception (Because exception is returned 
 The arrow method of the ResponseFormatter class is directly invoked and the system automatically returns a specified pattern to you.
 
 # Response Service Class
-The response format is managed with the App / Services / Response.php class. You can change it as you wish according to your project. The important thing is to be able to return a stable format for the client everywhere.
+The response format is managed with the App/Services/Response.php class. You can change it as you wish according to your project. The important thing is to be able to return a stable format for the client everywhere.
 So just write what you want to do in the controller and don't scramble for the format. This api app will automatically return you a pattern.
 
 An example 200 response format:
