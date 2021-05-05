@@ -367,3 +367,11 @@ throw new CustomException('',['key' => 'foo']);
 ```
 
 The language file, which is one of the features of Laravel, fits the variable definition exactly and will change a value from :key to foo and customize your message.
+
+# Validations
+Validations are indispensable control tools for your application. We can say that they are the filter of client data.
+That's why I am very sensitive to validations.
+
+I do not find it very convenient to write validations in a controller.
+So I developed a special class and connected it to the console generator system.
+
