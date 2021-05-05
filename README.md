@@ -28,3 +28,5 @@ We can send a request to the user endpoint that is pre-defined in the routes/api
 
 - Before;
 The postman documentation, which is automatically prepared and I will include in the narration, is available as Laravel.postman_collection.json file in the postman directory.
+
+![alt text](https://i.ibb.co/JQBXZCC/Screen-Shot-2021-05-05-at-12-30-36.png)
