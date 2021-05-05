@@ -33,3 +33,10 @@ First, let's make a login request like in the image below. In the returning resp
 We will use this as a bearer token in every request.
 
 <a href="https://ibb.co/YQm2qr7"><img src="https://i.ibb.co/V9RVPKW/Screen-Shot-2021-05-05-at-12-43-49.png" alt="Screen-Shot-2021-05-05-at-12-43-49" border="0"></a>
+
+#Controller Directory
+Controller directories are always in the App/Http/Controllers directory. Their places will not change.
+So this is the first place to look.
+
+- For example, the directory User represents the user prefix, so it points to the api/user endpoint.
+The UserController file is called.
