@@ -322,3 +322,14 @@ class Exception
 
 
 ```
+Bu özel sınıfları uygulamanızın herhangi bir yerinden ulaşabilirsiniz.
+
+```php
+
+Exception::customException();
+
+or
+
+throw new CustomException();
+
+```
