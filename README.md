@@ -466,3 +466,21 @@ Let's create a table of restaurants with a migration like the one below.
 
 As mentioned in migration restaurant_name and
 The restaurant_short_name field is mandatory because it has not nullable and default values.
+
+After migrating the above migration file. To automatically create the service files. Run the following command.
+
+```php
+
+php artisan create:crud restaurants restaurants restaurant
+
+
+```
+This crud command, which automatically generates service files, has 3 parameters.
+The first value is the name of the controller class, the second value is the directory in which it is located, and the third value is the model name.
+
+Then go to the controller directory and look. You will see a directory called Restaurants.
+you no longer need to do anything.
+
+Hold tight: Even your postman is ready.
+
+It will be enough to import the json file starting with laravel in the postman directory from the import section in your postman.
