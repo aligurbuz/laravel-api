@@ -463,3 +463,6 @@ Let's create a table of restaurants with a migration like the one below.
 
 
 ```
+
+As mentioned in migration restaurant_name and
+The restaurant_short_name field is mandatory because it has not nullable and default values.
