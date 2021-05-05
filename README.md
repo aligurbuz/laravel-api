@@ -569,3 +569,30 @@ Since the model is specified, model entity values are automatically injected int
 
 For example, in this postman image, a test key is added as a post. It is such a column because it is not in the model migration data.
 The client class threw an error due to the model.If you add the test value to the Capsule array, this time it will not give an error.
+
+## Inherited Client Class
+This class is inherited by all client classes, so it is automatic for all client data.
+has the rules.
+
+For example: When you open the App/Client/Client.php file, you will see the following data.
+
+```php
+
+/**
+     * @var array|string[]
+     */
+    protected array $customRules = [
+        'double' => ['regex:/^[0-9]+(\\.[0-9]+)?$/i'],
+    ];
+
+    /**
+     * @var array
+     */
+    protected array $autoRule = [
+        'email'         => 'email:rfc,dns',
+        'status'        => ['regex:/^0$|^1$/i'],
+        'is_deleted'    => ['regex:/^0$|^1$/i'],
+    ];
+
+
+```
