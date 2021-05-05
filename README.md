@@ -63,8 +63,8 @@ The only thing we do in this Laravel framework is that the application contains 
     }
 
 ```
-The method above is a code block called with the http get method for user/ endpoint.
-This method does not contain a conventional method such as response ()->json().
+The method above is a code block called with the http get method for user/endpoint.
+This method does not contain a conventional method such as response()->json().
 We manage this with the middleware response method.
 
 # Middleware Response Formatter
@@ -96,7 +96,7 @@ This file is actively run as middleware in App/Http/Controllers.php file.
 
 ```
 As you can see, Response.php middleware class is AfterMiddleware property.
-After the response is received, if not exception (Because exception is returned from the App/Exceptions/Handler.php file.)
+After the response is returned, if not exception (Because exception is returned from the App/Exceptions/Handler.php file.)
 The arrow method of the ResponseFormatter class is directly invoked and the system automatically returns a specified pattern to you.
 
 # Response Service Class
