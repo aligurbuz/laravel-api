@@ -162,3 +162,40 @@ App/Exceptions/Handler.php
 Laravel offers us a custom renderable method for exceptions.
 As you can see in the code above, the render method is the place of all exceptions.
 Any exception passes directly here, so we can specify a specific format for the exception.
+
+The exception directly references the error method of the response class, and the format is specified and sent to the output.
+
+```php
+
+/**
+     * application error 400 content for response
+     *
+     * @param null|string $message
+     * @param int $code
+     * @param null|Throwable $exception
+     * @return object
+     *
+     * @throws Exception
+     */
+    public static function error($message = null,$code = 400,$exception = null) : object
+    {
+        $code  = ($code == '0' || !is_numeric($code)) ? 500 : $code;
+        $trace = ($exception instanceof Throwable) ? $exception : debug_backtrace();
+
+        $standard = [
+            'status'        => false,
+            'code'          => $code,
+            'client'        => ApiKey::who(),
+            'env'           => config('app.env'),
+            'responseCode'  => static::responseCode(),
+            'errorMessage'  => static::getExceptionMessageForEnvironment($message,$code),
+            'endpoint'      => request()->url(),
+        ];
+
+        return static::response(
+            array_merge($standard,static::throwIn($trace,$code,$message)),
+            $code
+        );
+    }
+
+```
