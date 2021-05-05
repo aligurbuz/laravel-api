@@ -427,3 +427,16 @@ The key rule you are familiar with here is the key.Laravelin works directly the 
 It will be enough to write here what the running controller class requires.
 
 However, this class includes many features. One of them has a model key that is directly validated with the entity values of your model.
+
+```php
+
+
+     *
+     * @var array|string[]
+     */
+    protected array $model = [User::class];
+}
+
+
+```
+For example, when you use the user :: class model, the column values of your table are checked and validations are performed according to this model.
