@@ -553,4 +553,8 @@ public function modelRequiredFields(): void
 
 ```
 
+You will get an exception as below.
 
+<a href="https://ibb.co/bscmQ1p"><img src="https://i.ibb.co/McFSZnq/Screen-Shot-2021-05-05-at-17-48-34.png" alt="Screen-Shot-2021-05-05-at-17-48-34" border="0"></a>
+
+How? Doesn't look nice right?
