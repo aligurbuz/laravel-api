@@ -66,3 +66,7 @@ The only thing we do in this Laravel framework is that the application contains 
 The method above is a code block called with the http get method for user/ endpoint.
 This method does not contain a conventional method such as response ()->json().
 We manage this with the middleware response method.
+
+# Middleware Response Formatter
+The middleware response method is the App/Http/Middleware/Response.php file.
+This file is actively run as middleware in App/Http/Controllers.php file.
