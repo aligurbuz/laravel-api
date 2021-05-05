@@ -621,4 +621,4 @@ It will be enough to define a double key there.
 
 - This document will continue to expand.
 
-Author : Ali Gürbüz (software developer)
+- [Author : Ali Gürbüz (software developer)]
