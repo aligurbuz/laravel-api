@@ -222,3 +222,7 @@ So How Do We Throw an Exception? It's very simple. For example, let's throw 500 
 ```
 In the above code, php will detect an error in the UserController.php file for string aaaaaaa;
 This should return 500 as the system.
+
+See the error response for the postman.
+
+<a href="https://ibb.co/DzYWb4z"><img src="https://i.ibb.co/Cm68tBm/Screen-Shot-2021-05-05-at-13-44-28.png" alt="Screen-Shot-2021-05-05-at-13-44-28" border="0"></a>
