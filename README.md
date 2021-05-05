@@ -102,3 +102,32 @@ The arrow method of the ResponseFormatter class is directly invoked and the syst
 # Response Service Class
 The response format is managed with the App / Services / Response.php class. You can change it as you wish according to your project. The important thing is to be able to return a stable format for the client everywhere.
 So just write what you want to do in the controller and don't scramble for the format. This api app will automatically return you a pattern.
+
+An example 200 response format:
+
+```php
+
+ /**
+     * application success 200 content for response
+     *
+     * @param mixed $data
+     * @return object
+     *
+     * @throws Exception
+     */
+    public static function ok(mixed $data) : object
+    {
+        $standard = [
+            'status'        => true,
+            'code'          => $code = static::getHttpSuccessCode(),
+            'client'        => ApiKey::who(),
+            'env'           => config('app.env'),
+            'responseCode'  => static::responseCode(),
+            'resource'      => $data,
+            'instructions'  => AppContainer::get('responseFormatterSupplement'),
+        ];
+
+        return static::response($standard,$code);
+    }
+
+```
