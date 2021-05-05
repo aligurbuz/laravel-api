@@ -435,7 +435,6 @@ However, this class includes many features. One of them has a model key that is 
      * @var array|string[]
      */
     protected array $model = [User::class];
-}
 
 
 ```
