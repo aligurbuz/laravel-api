@@ -558,3 +558,10 @@ You will get an exception as below.
 <a href="https://ibb.co/bscmQ1p"><img src="https://i.ibb.co/McFSZnq/Screen-Shot-2021-05-05-at-17-48-34.png" alt="Screen-Shot-2021-05-05-at-17-48-34" border="0"></a>
 
 How? Doesn't look nice right?
+
+## So what is a capsule?
+the value in the client data
+It must be in the capsule. The system will throw an exception when any data other than capsule is received.
+Since the model is specified, model entity values are automatically injected into the capsule.
+
+
