@@ -565,3 +565,7 @@ It must be in the capsule. The system will throw an exception when any data othe
 Since the model is specified, model entity values are automatically injected into the capsule.
 
 
+<a href="https://ibb.co/h9DrP5v"><img src="https://i.ibb.co/vqZf758/Screen-Shot-2021-05-05-at-18-19-13.png" alt="Screen-Shot-2021-05-05-at-18-19-13" border="0"></a>
+
+For example, in this postman image, a test key is added as a post. It is such a column because it is not in the model migration data.
+The client class threw an error due to the model.
