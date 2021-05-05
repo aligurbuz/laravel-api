@@ -345,3 +345,17 @@ Exception language files are a property variable defined within the custom class
 ```
 This special key resource is defined in the exception.php file in the resource/lang directory.
 You can define the return message according to the language by defining an exception here as you wish.
+
+When you want to send a private key, you can use it as follows.
+
+```php
+
+Exception::customException('',['key' =>'foo']);
+
+or
+
+throw new CustomException('',['key' => 'foo']);
+
+```
+
+The language file, which is one of the features of Laravel, fits the variable definition exactly and will change a value from :key to foo and customize your message.
