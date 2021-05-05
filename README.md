@@ -407,7 +407,7 @@ class GetUserClient extends Client
      *
      * @var array|string[]
      */
-    protected array $model = ['user'];
+    protected array $model = [];
 
     /**
      * get rule for client
