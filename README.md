@@ -199,3 +199,26 @@ The exception directly references the error method of the response class, and th
     }
 
 ```
+
+So How Do We Throw an Exception? It's very simple. For example, let's throw 500 server internal error in any controller.
+
+```php
+
+/**
+     * get users data
+     *
+     * @param GetUserClient $client
+     * @param UserRepositoryContract $userRepository
+     * @return array
+     */
+    public function get(GetUserClient $client, UserRepositoryContract $userRepository) : array
+    {
+        aaaaaaaaaaaaa;
+        $client->get();
+
+        return $userRepository->get();
+    }
+
+```
+In the above code, php will detect an error in the UserController.php file for string aaaaaaa; We wrote something called.
+This should return 500 as the system.
