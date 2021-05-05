@@ -45,3 +45,24 @@ The UserController file is called.
 # Response Formatter
 When you look at any controls file in the controller directory, you will see that there is no response method.
 The only thing we do in this Laravel framework is that the application contains only the api source, it does not serve any other method.
+
+```php
+
+/**
+     * get users data
+     *
+     * @param GetUserClient $client
+     * @param UserRepositoryContract $userRepository
+     * @return array
+     */
+    public function get(GetUserClient $client, UserRepositoryContract $userRepository) : array
+    {
+        $client->get();
+
+        return $userRepository->get();
+    }
+
+```
+The method above is a code block called with the http get method for user/ endpoint.
+This method does not contain a conventional method such as response ()->json().
+We manage this with the middleware response method.
