@@ -11,7 +11,7 @@ use App\Packages\Client\ClientManager;
  */
 class Client extends ClientManager
 {
-    use ClientSetRuleTrait;
+    use ClientSetRuleTrait,ClientSupport;
 
     /**
      * @var array
