@@ -24,6 +24,9 @@ trait ClientSupport
      */
     public function isDefault(): ?string
     {
+        if($this->isDefault == '1'){
+            $this->repository()->update(['is_default' => '0'],false);
+        }
         return $this->isDefault;
     }
 }
