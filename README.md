@@ -620,6 +620,31 @@ Your custom messages for your customRules variables are managed in the validatio
 It will be enough to define a double key there.
 
 
+## Each client data represents one method.
+You can customize each data sent by the user.
+For this, each client data represents a property and a method in the client class.
+
+```php
+
+    /**
+     * get client title value
+     *
+     * @var string
+     */
+    protected string $title;
+
+    /**
+     * @return string
+     */
+    protected function title(): string
+    {
+        return md5($this->title);
+    }
+
+
+```
+For example, if there is title data in the client data, we can hash this post as md5.
+The title variable represented as property represents the title data itself contained in the client data.
 ----------
 
 - This document will continue to expand.
