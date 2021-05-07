@@ -138,6 +138,7 @@ class Client extends ClientManager
      */
     public function callMethod($key): mixed
     {
+        $key = Str::camel($key);
         return $this->{$key}();
     }
 
