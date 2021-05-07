@@ -18,7 +18,7 @@ trait ClientSupport
     /**
      * When the is_default value is sent as 1,
      * if there is is_default in the table,
-     * it will automatically act as a trigger that makes the previous records 0.
+     * it will automatically run as a trigger that makes the previous records 0.
      *
      * @return string|null
      */
