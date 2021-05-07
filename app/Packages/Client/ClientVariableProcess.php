@@ -27,7 +27,8 @@ class ClientVariableProcess
                 $this->client->setProperty($key,$value);
 
                 if(method_exists($this->client,$key)){
-                    $list[$key] = $this->client->callMethod($key);
+                    $list[$key] = $callMethod = $this->client->callMethod($key);
+                    $this->client->putDataStream($key,$callMethod);
                 }
             }
             else{
