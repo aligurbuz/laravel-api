@@ -8,5 +8,22 @@ namespace App\Client;
  */
 trait ClientSupport
 {
-    //
+    /**
+     * it is is_default in the client data
+     *
+     * @var string|null
+     */
+    protected ?string $isDefault;
+
+    /**
+     * When the is_default value is sent as 1,
+     * if there is is_default in the table,
+     * it will automatically act as a trigger that makes the previous records 0.
+     *
+     * @return string|null
+     */
+    public function isDefault(): ?string
+    {
+        return $this->isDefault;
+    }
 }
