@@ -16,7 +16,7 @@ trait ClientSupport
     protected ?string $isDefault;
 
     /**
-     * When the is_default value is sent as 1,
+     * when the is_default value is sent as 1,
      * if there is is_default in the table,
      * it will automatically run as a trigger that makes the previous records 0.
      *
