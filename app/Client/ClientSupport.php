@@ -22,7 +22,7 @@ trait ClientSupport
      *
      * @return string|null
      */
-    public function isDefault(): ?string
+    protected function isDefault(): ?string
     {
         if($this->isDefault == '1'){
             $this->ensureColumnExists('is_default',function(){
