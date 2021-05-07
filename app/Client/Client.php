@@ -2,8 +2,10 @@
 
 namespace App\Client;
 
+use App\Repositories\Repository;
 use App\Services\Db;
 use App\Packages\Client\ClientManager;
+use Illuminate\Support\Str;
 
 /**
  * Class Client
@@ -62,6 +64,17 @@ class Client extends ClientManager
     public function addRule()
     {
         $this->setRuleProcess();
+    }
+
+    /**
+     * get repository for client class model
+     *
+     * @return mixed
+     */
+    public function repository(): mixed
+    {
+        $camelCaseModelName = Str::camel($this->getModelName());
+        return Repository::$camelCaseModelName();
     }
 
     /**
@@ -206,6 +219,19 @@ class Client extends ClientManager
     public function getModel() : string
     {
         return $this->model[0] ?? 'no-model';
+    }
+
+    /**
+     * get capsule
+     *
+     * @return string
+     */
+    public function getModelName() : string
+    {
+        $model = $this->getModel();
+        $modelSplit = explode('\\',$model);
+
+        return end($modelSplit);
     }
 
     /**
