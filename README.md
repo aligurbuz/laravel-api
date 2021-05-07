@@ -648,3 +648,55 @@ For example, When you write the above code to your client class.if there is titl
 The title variable represented as property represents the title data itself contained in the client data.
 With such a use, you can easily manage all client data on a method-based basis.
 
+## Customize your system with the ClientSupport class.
+ClientSupport class is designed to manage client posts that can work in general on application basis, which are automatically added to each client class.
+
+```php
+
+  <?php
+
+namespace App\Client;
+
+/**
+ * Trait ClientSupport
+ * @package App\Client
+ */
+trait ClientSupport
+{
+    /**
+     * it is is_default in the client data
+     *
+     * @var string|null
+     */
+    protected ?string $isDefault;
+
+    /**
+     * when the is_default value is sent as 1,
+     * if there is is_default in the table,
+     * it will automatically run as a trigger that makes the previous records 0.
+     *
+     * @return string|null
+     */
+    public function isDefault(): ?string
+    {
+        if($this->isDefault == '1'){
+            $this->ensureColumnExists('is_default',function(){
+                $this->repository()->update([['is_default' => '0']],false);
+            });
+        }
+
+        return $this->isDefault;
+    }
+}
+
+
+
+```
+
+For example, if you open the ClientSupport class, there is a method by default.
+The isDefault method is the method that will work if the user sends is_default data.However, as you can see it is controlled by the ensureColumnExists method.
+If there is is_default in the model entity data, all values will be set to 0 via repository update.
+
+For example, let's say you have a table called addresses. Any of these addresses are default. If the user then sends another address is_default = 1.
+Other addresses will be set to zero automatically.
+
