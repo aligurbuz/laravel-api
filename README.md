@@ -700,3 +700,5 @@ If there is is_default in the model entity data, all values will be set to 0 via
 For example, let's say you have a table called addresses. Any of these addresses are default. If the user then sends another address is_default = 1.
 Other addresses will be set to zero automatically.
 
+Unless you remove this method from the ClientSupport class, all your tables that can work with the same logic will be subject to this rule.
+You can customize your system by developing similar methods (provided you use the ensureColumnExists method).
