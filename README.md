@@ -644,6 +644,6 @@ For this, each client data represents a property and a method in the client clas
 
 ```
 
-For example, When you write the above code to your client class.if there is title data in the client data, we can hash this post as md5.
+For example, When you write the above code to your client class.if there is title data in the client data, we can hash this data as md5.
 The title variable represented as property represents the title data itself contained in the client data.
 
