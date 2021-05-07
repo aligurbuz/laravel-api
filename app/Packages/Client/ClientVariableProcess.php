@@ -33,6 +33,7 @@ class ClientVariableProcess
             }
             else{
                 $list[$key] = $value;
+                $this->client->putDataStream($key,$value);
             }
         }
 
