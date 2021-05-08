@@ -2,10 +2,10 @@
 
 namespace App\Client;
 
-use App\Repositories\Repository;
 use App\Services\Db;
-use App\Packages\Client\ClientManager;
 use Illuminate\Support\Str;
+use App\Repositories\Repository;
+use App\Packages\Client\ClientManager;
 
 /**
  * Class Client
