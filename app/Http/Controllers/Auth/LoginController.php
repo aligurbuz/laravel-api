@@ -20,7 +20,7 @@ class LoginController extends Controller
      */
     public function login(CreateClient $client) : array
     {
-        $client->get();
+        $client->handle();
         $clientData = (Client::data())[0] ?? [];
         $authGuard = Auth::guard('web');
 

@@ -21,11 +21,6 @@ class Client extends ClientManager
     protected array $paramValidatorValues = ['filter'];
 
     /**
-     * @var array
-     */
-    protected array $inputs = [];
-
-    /**
      * @var array|string[]
      */
     protected array $customRules = [
@@ -47,13 +42,10 @@ class Client extends ClientManager
      */
     public function __construct(array $data = [])
     {
-        $this->inputs = [];
         parent::__construct($data);
         $this->modelRequiredFields();
         $this->capsule();
         $this->addRule();
-        $this->handle();
-        $this->inputs = $this->getDataStream();
     }
 
     /**

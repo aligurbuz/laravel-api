@@ -21,7 +21,7 @@ class LoggerController extends Controller
      */
 	public function get(GetClient $client, LoggerRepositoryContract $loggerRepository): array
 	{
-		$client->get();
+		$client->handle();
 
 		return $loggerRepository->get();
 	}
@@ -36,7 +36,7 @@ class LoggerController extends Controller
      */
 	public function create(CreateClient $client, LoggerRepositoryContract $loggerRepository): array|object
 	{
-		$client->get();
+		$client->handle();
 
 		return $loggerRepository->create();
 	}
@@ -51,7 +51,7 @@ class LoggerController extends Controller
      */
 	public function update(UpdateClient $client, LoggerRepositoryContract $loggerRepository): array|object
 	{
-		$client->get();
+		$client->handle();
 
 		return $loggerRepository->update();
 	}
