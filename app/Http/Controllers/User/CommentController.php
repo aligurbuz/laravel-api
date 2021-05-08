@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Client\User\Comment\Get\GetClient;
 use App\Client\User\Comment\Update\UpdateClient;
 use App\Client\User\Comment\Create\CreateClient;
+use App\Jobs\TestJob;
 use App\Repositories\User\Contracts\CommentRepositoryContract;
 
 class CommentController extends Controller
@@ -21,6 +22,7 @@ class CommentController extends Controller
 	 */
 	public function get(GetClient $client, CommentRepositoryContract $commentRepository): array
 	{
+	    dispatch(new TestJob())->delay(10);
 		$client->handle();
 		return $commentRepository->get();
 	}
