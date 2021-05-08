@@ -6,6 +6,7 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Support\Facades\DB;
 
 class Controller extends BaseController
 {
@@ -60,5 +61,18 @@ class Controller extends BaseController
         }
 
         return call_user_func($callback);
+    }
+
+    /**
+     * get transaction for eloquent model
+     *
+     * @param callable $callback
+     * @return mixed
+     */
+    public function transaction(callable $callback): mixed
+    {
+        return DB::transaction(function() use($callback){
+            return call_user_func($callback);
+        });
     }
 }

@@ -28,7 +28,6 @@ class UserController extends Controller
     public function get(GetUserClient $client, UserRepositoryContract $userRepository) : array
     {
         $client->handle();
-
         return $userRepository->get();
     }
 
@@ -59,7 +58,6 @@ class UserController extends Controller
     public function update(UpdateUserClient $client, UserRepositoryContract $userRepository) : array|object
     {
         $client->handle();
-
         return $userRepository->update();
     }
 }

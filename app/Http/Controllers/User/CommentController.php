@@ -22,7 +22,6 @@ class CommentController extends Controller
 	public function get(GetClient $client, CommentRepositoryContract $commentRepository): array
 	{
 		$client->handle();
-
 		return $commentRepository->get();
 	}
 
@@ -36,9 +35,10 @@ class CommentController extends Controller
 	 */
 	public function create(CreateClient $client, CommentRepositoryContract $commentRepository) : array|object
 	{
-		$client->handle();
-
-		return $commentRepository->create();
+	    return $this->transaction(function() use($client,$commentRepository){
+            $client->handle();
+            return $commentRepository->create();
+        });
 	}
 
 
@@ -52,8 +52,9 @@ class CommentController extends Controller
 	 */
 	public function update(UpdateClient $client, CommentRepositoryContract $commentRepository): array|object
 	{
-		$client->handle();
-
-		return $commentRepository->update();
+        return $this->transaction(function() use($client,$commentRepository){
+            $client->handle();
+            return $commentRepository->update();
+        });
 	}
 }
