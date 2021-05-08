@@ -127,6 +127,7 @@ class Client extends ClientManager
      */
     public function setProperty($key,$value)
     {
+        $key = Str::camel($key);
         $this->{$key} = $value;
     }
 
@@ -139,7 +140,12 @@ class Client extends ClientManager
     public function callMethod($key): mixed
     {
         $key = Str::camel($key);
-        return $this->{$key}();
+
+        if(method_exists($this,$key)){
+            return $this->{$key}();
+        }
+
+        return false;
     }
 
     /**
