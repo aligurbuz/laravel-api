@@ -12,9 +12,9 @@ class LogoutController extends Controller
     /**
      * It will terminate the current token information.
      *
-     * @return bool
+     * @return bool|object
      */
-    public function logout() : bool
+    public function logout() : bool|object
     {
         $logout = auth()->user()->token()->revoke();
 
