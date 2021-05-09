@@ -2,8 +2,8 @@
 
 namespace App\Models\Features;
 
-use App\Services\AppContainer;
 use App\Services\Db;
+use App\Services\AppContainer;
 use Illuminate\Database\Eloquent\Builder;
 
 trait ScopeManager
