@@ -25,7 +25,7 @@ class RegisterController extends Controller
 
             $user = current($userRepository->create());
             $response = $user->toArray();
-            $response['token'] = $user->createToken('myApp')->accessToken;
+            $response['token'] = $user->createToken(config('app.name'))->accessToken;
 
             return $response;
         });
