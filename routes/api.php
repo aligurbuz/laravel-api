@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\User\CommentController;
 use App\Http\Controllers\Logger\LoggerController;
+use App\Http\Controllers\Register\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,7 @@ use App\Http\Controllers\Logger\LoggerController;
 */
 
 Route::post('/login', [LoginController::class,'login']);
+Route::post('/register', [RegisterController::class,'register']);
 
 Route::middleware([])->group(function(){
 
