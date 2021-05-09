@@ -39,7 +39,7 @@ class EloquentRepository
             return $list;
         }
         catch (\Exception $exception){
-            return Exception::customException($exception->getPrevious()->getMessage());
+            return Exception::modelCreateException($exception->getPrevious()->getMessage());
         }
     }
 
