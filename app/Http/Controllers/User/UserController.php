@@ -43,7 +43,7 @@ class UserController extends Controller
         $client->handle();
 
         $user = current($userRepository->create());
-        $user['token'] = $user->createToken('myApp')->accessToken;
+        $user['token'] = $user->createToken(config('app.name'))->accessToken;
 
         return $user;
     }
