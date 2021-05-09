@@ -1,7 +1,8 @@
 {
     "files": [
         "/var/www/html/app/api/app/Docs/Endpoints/User/User.json",
-        "/var/www/html/app/api/app/Docs/Endpoints/Auth/Auth.json"
+        "/var/www/html/app/api/app/Docs/Endpoints/Auth/Auth.json",
+        "/var/www/html/app/api/app/Docs/Endpoints/Register/Register.json"
     ],
     "keys": {
         "/var/www/html/app/api/app/Docs/Endpoints/User/User.json": 1
