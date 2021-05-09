@@ -2,9 +2,9 @@
 
 namespace App\Repositories;
 
+use App\Services\Db;
 use App\Services\Client;
 use App\Exceptions\Exception;
-use App\Services\Db;
 use Illuminate\Database\Eloquent\Builder;
 
 class EloquentRepository
