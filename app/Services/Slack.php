@@ -2,6 +2,10 @@
 
 namespace App\Services;
 
+/**
+ * Class Slack
+ * @package App\Services
+ */
 class Slack
 {
     /**
@@ -39,7 +43,7 @@ class Slack
      * @param $message
      * @return bool
      */
-    public static function push($message): bool
+    public function push($message): bool
     {
         // for push notification
         // we have to specify the payload value.

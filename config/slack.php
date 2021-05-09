@@ -3,6 +3,6 @@
 return [
     'logger' => [
         'channel' => 'logger',
-        'service' => 'https://hooks.slack.com/services/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',
+        'hook' => 'https://hooks.slack.com/services/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',
     ]
 ];
