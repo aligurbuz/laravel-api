@@ -679,7 +679,7 @@ trait ClientSupport
      */
     protected function isDefault(): ?string
     {
-        if($this->isDefault == '1'){
+        if($this->isDefault == '1' && request()->method() !== 'GET'){
             $this->ensureColumnExists('is_default',function(){
                 $this->repository()->update([['is_default' => '0']],false);
             });
