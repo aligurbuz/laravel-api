@@ -5,7 +5,6 @@ namespace App\Client\User\Comment\Create;
 use App\Client\Client;
 use App\Models\User_comment;
 use App\Client\ClientAutoGeneratorTrait;
-use JetBrains\PhpStorm\Pure;
 
 class CreateClient extends Client
 {
@@ -36,29 +35,4 @@ class CreateClient extends Client
         'comment'       => 'required',
         'description'   => 'required',
     ];
-
-    /**
-     * get array limiter
-     *
-     * @return int
-     */
-    public function getArrayLimiter(): int
-    {
-        return 5;
-    }
-
-    /**
-     * get client title value
-     *
-     * @var string
-     */
-    protected string $title;
-
-    /**
-     * @return string
-     */
-    #[Pure] protected function title(): string
-    {
-        return md5($this->title);
-    }
 }
