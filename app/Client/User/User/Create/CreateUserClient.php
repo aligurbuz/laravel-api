@@ -2,9 +2,10 @@
 
 namespace App\Client\User\User\Create;
 
-use App\Client\Client;
-use App\Client\ClientAutoGeneratorTrait;
 use App\Models\User;
+use App\Client\Client;
+use Illuminate\Support\Facades\Hash;
+use App\Client\ClientAutoGeneratorTrait;
 
 /**
  * Class GetClient
@@ -41,12 +42,19 @@ class CreateUserClient extends Client
     ];
 
     /**
-     * get array limiter
+     * it is password in the client data
      *
-     * @return int
+     * @var string
      */
-    public function getArrayLimiter(): int
+    protected string $password;
+
+    /**
+     * password value sent will be passed through the Hash::make() method.
+     *
+     * @return string
+     */
+    protected function password(): string
     {
-        return 1;
+        return Hash::make($this->password);
     }
 }
