@@ -45,7 +45,7 @@ class SlackPusher implements ShouldQueue
      *
      * @return void
      */
-    public function handle()
+    public function handle() : void
     {
         Slack::channel($this->channel)->push($this->message);
     }
