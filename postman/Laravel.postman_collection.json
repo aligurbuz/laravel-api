@@ -315,6 +315,53 @@
                         }
                     },
                     "response": []
+                },
+                {
+                    "name": "Logout",
+                    "protocolProfileBehavior": {
+                        "disabledSystemHeaders": {
+                            "content-type": true
+                        }
+                    },
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{bearerToken}}",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Apikey",
+                                "value": "{{apiKey}}",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "{{contentType}}",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/logout",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "logout"
+                            ]
+                        }
+                    },
+                    "response": []
                 }
             ]
         }

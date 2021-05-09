@@ -13,6 +13,7 @@ use Laravel\Passport\HasApiTokens;
  * Class User
  * @method $this toArray()
  * @method $this createToken($appName)
+ * @method $this token()
  * @package App\Models
  */
 class User extends Authenticatable

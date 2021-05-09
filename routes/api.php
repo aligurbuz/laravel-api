@@ -1,9 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\User\CommentController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\User\CommentController;
 use App\Http\Controllers\Logger\LoggerController;
 
 /*
@@ -20,6 +21,8 @@ use App\Http\Controllers\Logger\LoggerController;
 Route::post('/login', [LoginController::class,'login']);
 
 Route::middleware([])->group(function(){
+
+    Route::post('/logout', [LogoutController::class,'logout']);
 
     Route::get('/user/comment', [CommentController::class,'get']);
     Route::post('/user/comment', [CommentController::class,'create']);
