@@ -54,6 +54,8 @@ class SqlExceptionManager
     {
         $message = $throwable->getPrevious()->getMessage();
 
+        // we parse the message in the mysql unique exception message and get it.
+        // this method can be changed.we use it to get the unique data between quotes.
         if(preg_match('@\'(.*?)\'@is',$message,$list)){
             return Exception::modelUniqueCreateException('',['key' => ($list[1] ?? $message)]);
         }
