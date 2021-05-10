@@ -62,7 +62,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"id\":\"integer\",\"name\":\"string\",\"email\":\"string\",\"email_verified_at\":\"timestamp\",\"password\":\"string\",\"remember_token\":\"string\",\"username\":\"string\",\"USER\":\"string\",\"CURRENT_CONNECTIONS\":\"integer\",\"TOTAL_CONNECTIONS\":\"integer\"}",
+                            "raw": "{\"name\":\"string\",\"email\":\"string\",\"email_verified_at\":\"timestamp\",\"password\":\"string\",\"remember_token\":\"string\",\"username\":\"string\",\"USER\":\"string\"}",
                             "options": {
                                 "raw": {
                                     "language": "json"
@@ -189,7 +189,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"id\":\"integer\",\"user_id\":\"integer\",\"title\":\"string\",\"description\":\"string\",\"comment\":\"string\",\"counter\":\"double\"}",
+                            "raw": "{\"title\":\"string\",\"description\":\"string\",\"comment\":\"string\",\"counter\":\"double\"}",
                             "options": {
                                 "raw": {
                                     "language": "json"

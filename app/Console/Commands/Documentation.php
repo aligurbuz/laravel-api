@@ -118,7 +118,7 @@ class Documentation extends Command
         $list['item'][$key]['item'][1]['request']['method'] = 'POST';
         $list['item'][$key]['item'][1]['request']['header'] = $getHeaders;
         $list['item'][$key]['item'][1]['request']['body']['mode'] = 'raw';
-        $list['item'][$key]['item'][1]['request']['body']['raw'] = json_encode($columns);
+        $list['item'][$key]['item'][1]['request']['body']['raw'] = json_encode(array_diff($columns,['id' => 'integer']));
         $list['item'][$key]['item'][1]['request']['body']['options']['raw']['language'] = 'json';
 
         $list['item'][$key]['item'][1]['request']['url']['raw'] = '{{baseUrl}}/'.$endpoint;
