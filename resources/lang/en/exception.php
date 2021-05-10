@@ -6,5 +6,6 @@ return [
     'loginException'            => 'Your login information is incorrect. Please login again.',
     'apiKeyException'           => 'You do not have valid token data for the api key.',
     'clientCapsuleException'    => ':key value can not be sent',
+    'modelUniqueCreateException'    => 'data named :key is available in our systems.',
     'contentTypeException'      => 'Could not detect content-type in request.Please specify a valid content-type as header in your request.We just supports (:key)',
 ];

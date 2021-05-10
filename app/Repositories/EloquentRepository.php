@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Exceptions\SqlExceptionManager;
 use App\Services\Db;
 use App\Services\Client;
 use App\Exceptions\Exception;
@@ -39,7 +40,10 @@ class EloquentRepository
             return $list;
         }
         catch (\Exception $exception){
-            return Exception::modelCreateException($exception->getPrevious()->getMessage());
+            return SqlExceptionManager::make($exception,function() use($exception){
+                return Exception::modelCreateException($exception->getPrevious()->getMessage());
+            });
+
         }
     }
 
