@@ -12,7 +12,9 @@ class SqlExceptionManager
      * @var array
      */
     protected static array $codes = [
-        '23000' => 'uniqueErrorMessage'
+        'mysql' => [
+            '23000' => 'uniqueErrorMessage'
+        ]
     ];
 
     /**
@@ -24,9 +26,19 @@ class SqlExceptionManager
      */
     public static function make(Throwable $throwable,callable $callback) : mixed
     {
-        if(isset(static::$codes[$throwable->getCode()])){
-            $method = static::$codes[$throwable->getCode()];
-            return static::$method($throwable);
+        $dbConnection = config('database.default');
+
+        // we determine the exception code method according to your db connection settings.
+        // therefore exception is returned directly if it is not present in constants.
+        if(isset(static::$codes[$dbConnection][$throwable->getCode()])){
+            $method = static::$codes[$dbConnection][$throwable->getCode()];
+            $dbMethod = $method.'For'.ucfirst($dbConnection);
+
+            // if the specified db method is available in the classroom,
+            // it will be run.
+            if(method_exists($self = new self(),$dbMethod)){
+                return $self->{$dbMethod}($throwable);
+            }
         }
 
         return call_user_func($callback);
@@ -38,7 +50,7 @@ class SqlExceptionManager
      * @param Throwable $throwable
      * @return string
      */
-    protected static function uniqueErrorMessage(Throwable $throwable) : string
+    protected function uniqueErrorMessageForMysql(Throwable $throwable) : string
     {
         $message = $throwable->getPrevious()->getMessage();
 
