@@ -7,6 +7,15 @@ use Throwable;
 class SqlExceptionManager
 {
     /**
+     * get codes for sql
+     *
+     * @var array
+     */
+    protected static array $codes = [
+        '23000' => 'uniqueErrorMessage'
+    ];
+
+    /**
      * sql exception process maker
      *
      * @param Throwable $throwable
@@ -15,10 +24,9 @@ class SqlExceptionManager
      */
     public static function make(Throwable $throwable,callable $callback) : mixed
     {
-        if($throwable->getCode()=='23000'){
-            return Exception::modelUniqueCreateException(
-                '',['key' => static::uniqueErrorMessage($throwable)]
-            );
+        if(isset(static::$codes[$throwable->getCode()])){
+            $method = static::$codes[$throwable->getCode()];
+            return static::$method($throwable);
         }
 
         return call_user_func($callback);
@@ -30,14 +38,14 @@ class SqlExceptionManager
      * @param Throwable $throwable
      * @return string
      */
-    private static function uniqueErrorMessage(Throwable $throwable) : string
+    protected static function uniqueErrorMessage(Throwable $throwable) : string
     {
         $message = $throwable->getPrevious()->getMessage();
 
         if(preg_match('@\'(.*?)\'@is',$message,$list)){
-            return $list[1] ?? false;
+            return Exception::modelUniqueCreateException('',['key' => ($list[1] ?? $message)]);
         }
 
-        return false;
+        return $message;
     }
 }
