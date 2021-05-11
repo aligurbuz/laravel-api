@@ -155,6 +155,16 @@ class EloquentRepository
     }
 
     /**
+     * get global instance
+     *
+     * @return object
+     */
+    public function globalScope(): object
+    {
+        return (new GlobalScopeManager($this))->make();
+    }
+
+    /**
      * get graphql builder
      *
      * @return mixed

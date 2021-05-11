@@ -4,7 +4,6 @@ namespace App\Repositories\User;
 
 use App\Models\User;
 use App\Repositories\EloquentRepository;
-use App\Repositories\GlobalScopeManager;
 use App\Facades\Authenticate\Authenticate;
 use App\Repositories\EloquentRepositoryContract;
 use App\Repositories\User\Contracts\UserRepositoryContract;
@@ -32,7 +31,7 @@ class UserRepository extends EloquentRepository implements UserRepositoryContrac
      */
     public function userRepository() : object
     {
-        return (new GlobalScopeManager($this))->make()->where('id',Authenticate::id());
+        return $this->globalScope()->where('id',Authenticate::id());
     }
 
     /**

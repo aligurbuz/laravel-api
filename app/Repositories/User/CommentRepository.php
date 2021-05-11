@@ -4,7 +4,6 @@ namespace App\Repositories\User;
 
 use App\Models\User_comment;
 use App\Repositories\EloquentRepository;
-use App\Repositories\GlobalScopeManager;
 use App\Repositories\User\Contracts\CommentRepositoryContract;
 
 class CommentRepository extends EloquentRepository implements CommentRepositoryContract
@@ -26,6 +25,6 @@ class CommentRepository extends EloquentRepository implements CommentRepositoryC
      */
     public function commentRepository() : object
     {
-        return (new GlobalScopeManager($this))->make();
+        return $this->globalScope();
     }
 }
