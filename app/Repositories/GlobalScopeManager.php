@@ -48,7 +48,9 @@ class GlobalScopeManager
      */
     public function make(): object
     {
-        return $this->userId();
+        $this->userId();
+
+        return $this->builder;
     }
 
     /**
@@ -58,7 +60,7 @@ class GlobalScopeManager
      */
     public function userId(): object
     {
-        return $this->repository->ensureColumnExists('user_id',$this->builder,function(){
+        return $this->builder = $this->repository->ensureColumnExists('user_id',$this->builder,function(){
             return $this->builder->where('user_id',Authenticate::id());
         });
     }
