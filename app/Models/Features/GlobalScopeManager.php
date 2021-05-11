@@ -1,21 +1,26 @@
 <?php
 
-namespace App\Models\Features\RepositoryGlobalScopes;
+namespace App\Models\Features;
 
 use App\Services\Db;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Builder;
 
 /**
- * Class GlobalScope
- * @package App\Models\Features\RepositoryGlobalScopes
+ * Class GlobalScopeManager
+ * @package App\Models\Features
  */
-abstract class AbstractGlobalScope
+class GlobalScopeManager
 {
+    /**
+     * @var array|string[]
+     */
+    protected array $scopes = [];
+
     /**
      * @var string
      */
-    protected string $resource = 'App\Models\Features\RepositoryGlobalScopes\Resources';
+    protected string $resource = 'App\Repositories';
 
     /**
      * @var object
@@ -35,9 +40,11 @@ abstract class AbstractGlobalScope
     /**
      * GlobalScopeManager constructor.
      * @param $repository
+     * @param array $scopes
      */
-    public function __construct($repository)
+    public function __construct($repository,array $scopes = [])
     {
+        $this->scopes = $scopes;
         $this->repository = $repository;
         $model = $this->repository->getModel();
         $builderInstance = (new $model);
@@ -100,3 +107,4 @@ abstract class AbstractGlobalScope
         return $this->builder = $this->repository->{__FUNCTION__}($function,$this->builder,$callback);
     }
 }
+

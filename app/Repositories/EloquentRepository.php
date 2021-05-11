@@ -7,10 +7,15 @@ use App\Services\Client;
 use App\Exceptions\Exception;
 use App\Exceptions\SqlExceptionManager;
 use Illuminate\Database\Eloquent\Builder;
-use App\Models\Features\RepositoryGlobalScopes\GlobalScopeManager;
+use App\Models\Features\GlobalScopeManager;
 
 class EloquentRepository
 {
+    /**
+     * @var array|string[]
+     */
+    protected array $globalScopes = ['userId'];
+
     /**
      * get data for user model
      *
@@ -162,7 +167,7 @@ class EloquentRepository
      */
     public function globalScope(): object
     {
-        return (new GlobalScopeManager($this))->make();
+        return (new GlobalScopeManager($this,$this->globalScopes))->make();
     }
 
     /**

@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Models\Features\RepositoryGlobalScopes\Resources;
+
+namespace App\Repositories;
 
 use Illuminate\Database\Eloquent\Builder;
 use App\Facades\Authenticate\Authenticate;
 
 /**
  * Class UserId
- * @package App\Models\Features\RepositoryGlobalScopes\Resources
+ * @package App\Repositories
  */
 class UserId
 {
@@ -36,3 +37,4 @@ class UserId
         return $this->builder->where($column,Authenticate::id());
     }
 }
+
