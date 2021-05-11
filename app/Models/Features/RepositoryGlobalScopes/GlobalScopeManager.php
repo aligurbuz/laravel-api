@@ -1,6 +1,7 @@
 <?php
 
-namespace App\Repositories;
+
+namespace App\Models\Features\RepositoryGlobalScopes;
 
 use App\Services\Db;
 use Illuminate\Support\Str;
@@ -9,7 +10,7 @@ use App\Facades\Authenticate\Authenticate;
 
 /**
  * Class GlobalScopeManager
- * @package App\Repositories
+ * @package App\Models\Features\RepositoryGlobalScopes
  */
 class GlobalScopeManager
 {
@@ -78,3 +79,4 @@ class GlobalScopeManager
         return $this->builder = $this->repository->{__FUNCTION__}($function,$this->builder,$callback);
     }
 }
+

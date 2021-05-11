@@ -7,6 +7,7 @@ use App\Services\Client;
 use App\Exceptions\Exception;
 use App\Exceptions\SqlExceptionManager;
 use Illuminate\Database\Eloquent\Builder;
+use App\Models\Features\RepositoryGlobalScopes\GlobalScopeManager;
 
 class EloquentRepository
 {
