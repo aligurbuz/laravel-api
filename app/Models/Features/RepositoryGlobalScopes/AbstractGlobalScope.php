@@ -3,6 +3,7 @@
 namespace App\Models\Features\RepositoryGlobalScopes;
 
 use App\Services\Db;
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Builder;
 
 /**
@@ -12,9 +13,9 @@ use Illuminate\Database\Eloquent\Builder;
 abstract class AbstractGlobalScope
 {
     /**
-     * @return mixed
+     * @var string
      */
-    abstract function userId(): mixed;
+    protected string $resource = 'App\Models\Features\RepositoryGlobalScopes\Resources';
 
     /**
      * @var object
@@ -65,10 +66,26 @@ abstract class AbstractGlobalScope
     private function handleScopes() : void
     {
         foreach ($this->scopes as $scope){
-            if(method_exists($this,$scope)){
-                $this->{$scope}();
-            }
+            $this->handler($scope);
         }
+    }
+
+    /**
+     * puts user id to where clause for model
+     *
+     * @param $scope
+     * @return object
+     */
+    private function handler($scope): object
+    {
+        return $this->ensureColumnExists($columnName = Str::snake($scope),function() use($columnName,$scope){
+            $resource = $this->resource.'\\'.$scope;
+            if(class_exists($resource)){
+                return (new $resource($this->builder))->handle($columnName);
+            }
+
+            return $this->builder;
+        });
     }
 
     /**
