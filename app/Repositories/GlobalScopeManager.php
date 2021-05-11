@@ -61,13 +61,20 @@ class GlobalScopeManager
      */
     public function userId(): object
     {
-        return $this->builder = $this->repository->ensureColumnExists(
-            $function = Str::snake(__FUNCTION__),
-            $this->builder,
-            function() use($function)
-            {
-                return $this->builder->where($function,Authenticate::id());
-            }
-            );
+        return $this->ensureColumnExists($function = Str::snake(__FUNCTION__),function() use($function){
+            return $this->builder->where($function,Authenticate::id());
+        });
+    }
+
+    /**
+     * ensure column exist for repository
+     *
+     * @param $function
+     * @param callable $callback
+     * @return object
+     */
+    private function ensureColumnExists($function,callable $callback) : object
+    {
+        return $this->builder = $this->repository->{__FUNCTION__}($function,$this->builder,$callback);
     }
 }
