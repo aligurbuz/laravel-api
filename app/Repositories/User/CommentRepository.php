@@ -4,7 +4,7 @@ namespace App\Repositories\User;
 
 use App\Models\User_comment;
 use App\Repositories\EloquentRepository;
-use Illuminate\Database\Eloquent\Builder;
+use App\Repositories\GlobalScopeManager;
 use App\Repositories\User\Contracts\CommentRepositoryContract;
 
 class CommentRepository extends EloquentRepository implements CommentRepositoryContract
@@ -22,11 +22,10 @@ class CommentRepository extends EloquentRepository implements CommentRepositoryC
     /**
      * get auto user range method
      *
-     * @param Builder $builder
-     * @return Builder
+     * @return object
      */
-    public function userRepository(Builder $builder) : Builder
+    public function commentRepository() : object
     {
-        return $builder;
+        return (new GlobalScopeManager($this))->make();
     }
 }

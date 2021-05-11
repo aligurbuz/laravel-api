@@ -2,7 +2,9 @@
 
 namespace App\Repositories;
 
+use App\Services\Db;
 use Illuminate\Database\Eloquent\Builder;
+use App\Facades\Authenticate\Authenticate;
 
 /**
  * Class GlobalScopeManager
@@ -11,14 +13,53 @@ use Illuminate\Database\Eloquent\Builder;
 class GlobalScopeManager
 {
     /**
+     * @var object
+     */
+    protected object $repository;
+
+    /**
+     * @var Builder
+     */
+    protected mixed $builder;
+
+    /**
+     * @var array
+     */
+    protected array $columns = [];
+
+    /**
+     * GlobalScopeManager constructor.
+     * @param $repository
+     */
+    public function __construct($repository)
+    {
+        $this->repository = $repository;
+        $model = $this->repository->getModel();
+        $builderInstance = (new $model);
+
+        $this->columns = Db::columns($builderInstance->getTable());
+        $this->builder = $builderInstance;
+    }
+
+    /**
      * makes global scopes for builder
      *
-     * @param Builder $builder
-     * @param callable $callback
-     * @return mixed
+     * @return object
      */
-    public function make(Builder $builder,callable $callback): mixed
+    public function make(): object
     {
-        return call_user_func($callback,[$builder]);
+        return $this->userId();
+    }
+
+    /**
+     * puts user id to where clause for model
+     *
+     * @return object
+     */
+    public function userId(): object
+    {
+        return $this->repository->ensureColumnExists('user_id',$this->builder,function(){
+            return $this->builder->where('user_id',Authenticate::id());
+        });
     }
 }

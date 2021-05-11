@@ -90,6 +90,16 @@ class EloquentRepository
     }
 
     /**
+     * get model name
+     *
+     * @return mixed
+     */
+    public function getModel(): mixed
+    {
+        return static::$model;
+    }
+
+    /**
      * get today scope for client
      *
      * @param null|Builder $builder
@@ -127,9 +137,9 @@ class EloquentRepository
      * get builder method for model
      *
      * @param Builder|null $builder
-     * @return Builder
+     * @return object
      */
-    public function builder(Builder $builder = null): Builder
+    public function builder(Builder $builder = null): object
     {
         return $builder ?? static::$model;
     }
@@ -159,15 +169,13 @@ class EloquentRepository
      * get columns for database
      *
      * @param $column
-     * @param Builder $builder
+     * @param $builder
      * @param callable $callback
      * @return array|object
      */
-    public function ensureColumnExists($column,Builder $builder,callable $callback) : array|object
+    public function ensureColumnExists($column,$builder,callable $callback) : array|object
     {
-        $entities = Db::columns(static::$model);
-
-        $columns = $entities['columns'] ?? [];
+        $columns = Db::columns(static::$model);
 
         if(in_array($column,$columns)){
             return call_user_func($callback);

@@ -49,9 +49,9 @@ trait ScopeManager
      *
      * @param Builder $builder
      * @param object $object
-     * @return Builder
+     * @return object
      */
-    public function scopeRepository(Builder $builder,object $object): Builder
+    public function scopeRepository(Builder $builder,object $object): object
     {
         $objectName = lcfirst(class_basename($object));
 
