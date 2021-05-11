@@ -3,9 +3,9 @@
 namespace App\Repositories;
 
 use App\Services\Db;
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Builder;
 use App\Facades\Authenticate\Authenticate;
-use Illuminate\Support\Str;
 
 /**
  * Class GlobalScopeManager
