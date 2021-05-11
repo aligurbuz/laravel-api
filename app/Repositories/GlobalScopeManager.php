@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Features;
+namespace App\Repositories;
 
 use App\Services\Db;
 use Illuminate\Support\Str;
