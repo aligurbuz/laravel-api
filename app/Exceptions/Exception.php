@@ -18,6 +18,7 @@ use App\Services\AppContainer;
  * @method static clientCapsuleException($message = null,$keys = [])
  * @method static contentTypeException($message = null,$keys = [])
  * @method static logoutException($message = null,$keys = [])
+ * @method static filterException($message = null,$keys = [])
  * @method static modelCreateException($message = null,$keys = [])
  * @method static modelUniqueCreateException($message = null,$keys = [])
  * @package App\Exceptions

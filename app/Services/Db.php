@@ -36,6 +36,19 @@ class Db extends Model
      * @param null $table
      * @return array
      */
+    public static function indexes($table = null): array
+    {
+        $entities = static::entities($table);
+
+        return $entities['indexes'] ?? [];
+    }
+
+    /**
+     * get table columns for model
+     *
+     * @param null $table
+     * @return array
+     */
     public static function types($table = null): array
     {
         $entities = static::entities($table);

@@ -2,6 +2,7 @@
 
 namespace App\Models\Features;
 
+use App\Exceptions\Exception;
 use App\Services\Db;
 use App\Services\AppContainer;
 use Illuminate\Database\Eloquent\Builder;
@@ -141,10 +142,15 @@ trait ScopeManager
     public function scopeFilterQuery(Builder $builder): Builder
     {
         $params = request()->query->all();
+        $indexes = Db::indexes($this->getTable());
 
         if(isset($params['filter'])){
-            $builder->where(function($query) use($params){
+            $builder->where(function($query) use($params,$indexes){
                 foreach ($params['filter'] as $key => $value){
+
+                    if(!in_array($key,$indexes)){
+                        return Exception::filterException('',['key' => $key]);
+                    }
 
                     if(!in_array($key,Db::columns($this->getTable()))){
                         break;
