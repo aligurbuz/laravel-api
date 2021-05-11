@@ -48,9 +48,17 @@ class DbColumn extends Command
         $table = (new $model)->getTable();
         $databaseColumnPath = base_path('database'.DIRECTORY_SEPARATOR.'columns'.DIRECTORY_SEPARATOR.''.$table.'.php');
         $sqlString = 'SELECT * FROM information_schema.columns WHERE table_name = \''.$table.'\'';
+        $sqlIndexString = 'SHOW KEYS FROM '.$table;
+        $indexes = DB::select($sqlIndexString);
         $columns = DB::select($sqlString);
 
         $list = [];
+        $list['required_columns'] = [];
+        $list['indexes'] = [];
+
+        foreach ($indexes as $index){
+            $list['indexes'][] = '"'.$index->Column_name.'"';
+        }
 
         foreach ($columns as $column){
             $list['columns'][] = '"'.$column->COLUMN_NAME.'"';
@@ -76,6 +84,7 @@ class DbColumn extends Command
         }
         File::put($databaseColumnPath,'<?php return [
         \'columns\' => ['.implode(',',$list['columns']).'],
+        \'indexes\' => ['.implode(',',$list['indexes']).'],
         \'types\' => ['.implode(',',$list['types']).'],
         \'required_columns\' => ['.implode(',',$list['required_columns']).'],
         ];');
