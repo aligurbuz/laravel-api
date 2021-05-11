@@ -137,9 +137,9 @@ trait ScopeManager
      * get filter query data for model
      *
      * @param Builder $builder
-     * @return Builder
+     * @return object
      */
-    public function scopeFilterQuery(Builder $builder): Builder
+    public function scopeFilterQuery(Builder $builder): object
     {
         $params = request()->query->all();
         $indexes = Db::indexes($this->getTable());
@@ -149,7 +149,7 @@ trait ScopeManager
                 foreach ($params['filter'] as $key => $value){
 
                     if(!in_array($key,$indexes)){
-                        return Exception::filterException('',['key' => $key]);
+                        Exception::filterException('',['key' => $key]);
                     }
 
                     if(!in_array($key,Db::columns($this->getTable()))){
