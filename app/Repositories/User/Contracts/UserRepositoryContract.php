@@ -3,7 +3,6 @@
 namespace App\Repositories\User\Contracts;
 
 use App\Repositories\User\UserRepository;
-use Illuminate\Contracts\Pagination\Paginator;
 
 interface UserRepositoryContract
 {
