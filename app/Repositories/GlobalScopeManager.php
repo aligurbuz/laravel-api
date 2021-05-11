@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Services\Db;
 use Illuminate\Database\Eloquent\Builder;
 use App\Facades\Authenticate\Authenticate;
+use Illuminate\Support\Str;
 
 /**
  * Class GlobalScopeManager
@@ -60,8 +61,13 @@ class GlobalScopeManager
      */
     public function userId(): object
     {
-        return $this->builder = $this->repository->ensureColumnExists('user_id',$this->builder,function(){
-            return $this->builder->where('user_id',Authenticate::id());
-        });
+        return $this->builder = $this->repository->ensureColumnExists(
+            $function = Str::snake(__FUNCTION__),
+            $this->builder,
+            function() use($function)
+            {
+                return $this->builder->where($function,Authenticate::id());
+            }
+            );
     }
 }
