@@ -15,10 +15,10 @@ class ApiController extends BaseController
      * @var array
      */
     protected array $middlewares = [
-        'contentType',
         'apiKey',
+        'contentType',
+        'response',
         'accessLogger',
-        'response'
     ];
 
     /**
