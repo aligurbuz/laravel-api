@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Auth;
 
 use App\Exceptions\Exception;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\ApiController;
 
-class LogoutController extends Controller
+class LogoutController extends ApiController
 {
     /**
      * It will terminate the current token information.

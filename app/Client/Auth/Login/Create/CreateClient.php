@@ -16,14 +16,14 @@ class CreateClient extends Client
 	 *
 	 * @var array
 	 */
-	protected array $capsule = [];
+	protected array $capsule = ['email','password'];
 
 	/**
 	 * get model entity validation
 	 *
 	 * @var array|string[]
 	 */
-	protected array $model = [User::class];
+	protected array $model = [];
 
 	/**
 	 * get rule for client

@@ -4,21 +4,23 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Auth;
 
+use Exception;
 use App\Services\Client;
-use App\Exceptions\Exception;
+use App\Services\Response;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Client\Auth\Login\Create\CreateClient;
+use App\Exceptions\Exception as ExceptionService;
 
 class LoginController extends Controller
 {
     /**
-     * get authenticate user via login
-     *
      * @param CreateClient $client
-     * @return array
+     * @return object
+     *
+     * @throws Exception
      */
-    public function login(CreateClient $client) : array
+    public function login(CreateClient $client) : object
     {
         $client->handle();
         $clientData = (Client::data())[0] ?? [];
@@ -37,9 +39,9 @@ class LoginController extends Controller
             $data['user']  = $user->toArray();
             $data['token'] = $user->createToken('MyApp')->accessToken;
 
-            return $data;
+            return Response::ok($data);
         }
 
-        return Exception::loginException();
+        return ExceptionService::loginException();
     }
 }
