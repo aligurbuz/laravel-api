@@ -22,7 +22,7 @@ use App\Http\Controllers\Register\RegisterController;
 Route::post('/login', [LoginController::class,'login']);
 Route::post('/register', [RegisterController::class,'register']);
 
-Route::middleware([])->group(function(){
+Route::middleware(['auth:api'])->group(function(){
 
     Route::post('/logout', [LogoutController::class,'logout']);
 
