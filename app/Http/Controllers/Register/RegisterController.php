@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Register;
 
+use Exception;
+use App\Services\Response;
 use App\Http\Controllers\Controller;
 use App\Client\User\User\Create\CreateUserClient;
 use App\Repositories\User\Contracts\UserRepositoryContract;
@@ -15,9 +17,11 @@ class RegisterController extends Controller
      *
      * @param CreateUserClient $client
      * @param UserRepositoryContract $userRepository
-     * @return array
+     * @return object
+     *
+     * @throws Exception
      */
-    public function register(CreateUserClient $client,UserRepositoryContract $userRepository) : array
+    public function register(CreateUserClient $client,UserRepositoryContract $userRepository) : object
     {
         return dbTransaction(function() use($client,$userRepository){
 
@@ -27,7 +31,7 @@ class RegisterController extends Controller
             $response = $user->toArray();
             $response['token'] = $user->createToken(config('app.name'))->accessToken;
 
-            return $response;
+            return Response::ok($response);
         });
     }
 }
