@@ -15,7 +15,7 @@ class GlobalScopeManager
     /**
      * @var array|string[]
      */
-    protected array $scopes = [];
+    protected array $scopes = ['userId'];
 
     /**
      * @var string
@@ -40,11 +40,9 @@ class GlobalScopeManager
     /**
      * GlobalScopeManager constructor.
      * @param $repository
-     * @param array $scopes
      */
-    public function __construct($repository,array $scopes = [])
+    public function __construct($repository)
     {
-        $this->scopes = $scopes;
         $this->repository = $repository;
         $model = $this->repository->getModel();
         $builderInstance = (new $model);

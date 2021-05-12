@@ -11,11 +11,6 @@ use Illuminate\Database\Eloquent\Builder;
 class EloquentRepository
 {
     /**
-     * @var array|string[]
-     */
-    protected array $globalScopes = ['userId'];
-
-    /**
      * get data for user model
      *
      * @return array
@@ -166,7 +161,7 @@ class EloquentRepository
      */
     public function globalScope(): object
     {
-        return (new GlobalScopeManager($this,$this->globalScopes))->make();
+        return (new GlobalScopeManager($this))->make();
     }
 
     /**
