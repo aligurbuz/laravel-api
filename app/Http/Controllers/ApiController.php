@@ -17,8 +17,8 @@ class ApiController extends BaseController
     protected array $middlewares = [
         'apiKey',
         'contentType',
-        'response',
         'accessLogger',
+        'response',
     ];
 
     /**
