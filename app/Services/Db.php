@@ -94,4 +94,22 @@ class Db extends Model
 
         return null;
     }
+
+    /**
+     * ensure column exists for db query
+     *
+     * @param $table
+     * @param $column
+     * @return bool
+     */
+    public static function ensureColumnExists($table,$column) : bool
+    {
+        $entities = static::columns($table);
+
+        if(in_array($column,$entities)){
+            return true;
+        }
+
+        return false;
+    }
 }

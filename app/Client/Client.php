@@ -282,9 +282,7 @@ class Client extends ClientManager
      */
     public function ensureColumnExists($column,callable $callback): mixed
     {
-        $entities = $this->columnsForModel();
-
-        if(in_array($column,$entities)){
+        if(Db::ensureColumnExists($this->getTable(),$column)){
             return call_user_func($callback);
         }
 

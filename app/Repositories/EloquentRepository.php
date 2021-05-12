@@ -190,9 +190,7 @@ class EloquentRepository
      */
     public function ensureColumnExists($column,$builder,callable $callback) : array|object
     {
-        $columns = Db::columns(static::$model);
-
-        if(in_array($column,$columns)){
+        if(Db::ensureColumnExists($this->getModel(),$column)){
             return call_user_func($callback);
         }
 
