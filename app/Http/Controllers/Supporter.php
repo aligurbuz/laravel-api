@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
+
 /**
  * Trait Supporter
  * @package App\Http\Controllers
