@@ -26,10 +26,7 @@ class ApiController extends BaseController
     /**
      * @var array
      */
-    protected array $exceptMiddlewares = [
-        'App\Http\Controllers\Auth\LoginController' => ['auth:api'],
-        'App\Http\Controllers\Register\RegisterController' => ['auth:api']
-    ];
+    protected array $exceptMiddlewares = [];
 
     /**
      * Controller constructor.
