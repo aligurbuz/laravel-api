@@ -23,7 +23,7 @@ class RegisterController extends Controller
      */
     public function register(CreateUserClient $client,UserRepositoryContract $userRepository) : object
     {
-        return dbTransaction(function() use($client,$userRepository){
+        return $this->transaction(function() use($client,$userRepository){
 
             $client->handle();
 

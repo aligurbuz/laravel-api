@@ -35,7 +35,7 @@ class CommentController extends ApiController
 	 */
 	public function create(CreateClient $client, CommentRepositoryContract $commentRepository) : array|object
 	{
-	    return dbTransaction(function() use($client,$commentRepository){
+	    return $this->transaction(function() use($client,$commentRepository){
             $client->handle();
             return $commentRepository->create();
         });
@@ -52,7 +52,7 @@ class CommentController extends ApiController
 	 */
 	public function update(UpdateClient $client, CommentRepositoryContract $commentRepository): array|object
 	{
-        return dbTransaction(function() use($client,$commentRepository){
+        return $this->transaction(function() use($client,$commentRepository){
             $client->handle();
             return $commentRepository->update();
         });
