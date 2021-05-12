@@ -77,12 +77,12 @@ class RepositoryCommand extends Command
             ->addComment('@var array|string[]');
 
         $method = $class->addMethod(lcfirst($className));
-        $method->addParameter('builder')->setType('Illuminate\Database\Eloquent\Builder');
-        $method->setBody('return $builder;')->setReturnType('Illuminate\Database\Eloquent\Builder');
-        $method->addComment('get auto '.$className.' range method')
-            ->addComment('')
-            ->addComment('@param Builder $builder')
-            ->addComment('@return Builder');
+        //$method->addParameter('builder')->setType('Illuminate\Database\Eloquent\Builder');
+        $method->setBody('return $this->globalScope();')->setReturnType('object');
+        $method->addComment('get auto '.$className.' scope method')
+            //->addComment('')
+            //->addComment('@param Builder $builder')
+            ->addComment('@return object');
 
         touch($file = $directory.''.DIRECTORY_SEPARATOR.''.$className.'.php');
         $content = '<?php '.PHP_EOL.''.PHP_EOL.''.$namespace;

@@ -60,7 +60,7 @@ class ControllerCommand extends Command
 
             $namespace = new PhpNamespace($controllerEndpointPathNamespace);
             $addClass = $namespace->addClass($controllerName);
-            $addClass->setExtends('App\Http\Controllers\Controller');
+            $addClass->setExtends('App\Http\Controllers\ApiController');
 
             $clientGetClass = 'App\Client\\'.ucfirst($this->argument('dir')).'\\'.ucfirst($this->argument('controller')).'\Get\GetClient';
 
@@ -99,7 +99,7 @@ class ControllerCommand extends Command
             $method->addParameter($controllerVariable.'Repository')->setType('App\Repositories\\'.ucfirst($dirVariable).'\Contracts\\'.ucfirst($controllerVariable).'RepositoryContract');
 
 
-            $namespace->addUse('App\Http\Controllers\Controller');
+            $namespace->addUse('App\Http\Controllers\ApiController');
             $namespace->addUse($clientGetClass);
             $namespace->addUse($clientCreateClass);
             $namespace->addUse($clientUpdateClass);
