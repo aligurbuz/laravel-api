@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Logger;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\ApiController;
 use App\Client\Logger\Logger\Get\GetClient;
 use App\Client\Logger\Logger\Create\CreateClient;
 use App\Client\Logger\Logger\Update\UpdateClient;
 use App\Repositories\Logger\Contracts\LoggerRepositoryContract;
 
-class LoggerController extends Controller
+class LoggerController extends ApiController
 {
     /**
      * get logger data

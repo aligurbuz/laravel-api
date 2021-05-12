@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\User;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\ApiController;
 use App\Client\User\Comment\Get\GetClient;
 use App\Client\User\Comment\Update\UpdateClient;
 use App\Client\User\Comment\Create\CreateClient;
 use App\Repositories\User\Contracts\CommentRepositoryContract;
 
-class CommentController extends Controller
+class CommentController extends ApiController
 {
 	/**
 	 * get comment data

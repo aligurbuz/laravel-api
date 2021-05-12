@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\User;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\ApiController;
 use App\Client\User\User\Get\GetUserClient;
 use App\Client\User\User\Update\UpdateUserClient;
 use App\Client\User\User\Create\CreateUserClient;
@@ -14,7 +14,7 @@ use App\Repositories\User\Contracts\UserRepositoryContract;
  * Class UserController
  * @package App\Http\Controllers\User
  */
-class UserController extends Controller
+class UserController extends ApiController
 {
     use UserSupport;
 
