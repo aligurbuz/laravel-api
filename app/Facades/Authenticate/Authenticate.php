@@ -28,7 +28,7 @@ class Authenticate extends FacadeManager
      */
     public static function id(): mixed
     {
-        return (new self)->data->id ?? null;
+        return (new self)->data->id ?? 0;
     }
 
     /**
