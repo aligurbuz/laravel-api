@@ -15,6 +15,7 @@ trait ClientAutoGeneratorTrait
         'user_id',
         'created_by',
         'updated_by',
+        'deleted_by',
     ];
 
     /**
@@ -26,6 +27,7 @@ trait ClientAutoGeneratorTrait
         'user_id',
         'created_by',
         'updated_by',
+        'deleted_by',
     ];
 
     /**
@@ -65,6 +67,22 @@ trait ClientAutoGeneratorTrait
     {
         if(request()->method()=='PUT'){
             return $this->ensureColumnExists('updated_by',function(){
+                return Authenticate::id();
+            });
+        }
+
+        return null;
+    }
+
+    /**
+     * get deleted_by generator for client
+     *
+     * @return mixed
+     */
+    public function deletedByAutoGenerator(): mixed
+    {
+        if(request()->method()=='PUT'){
+            return $this->ensureColumnExists('deleted_by',function(){
                 return Authenticate::id();
             });
         }
