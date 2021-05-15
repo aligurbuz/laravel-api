@@ -5,7 +5,6 @@ namespace App\Repositories\User;
 use App\Models\User;
 use App\Repositories\EloquentRepository;
 use App\Facades\Authenticate\Authenticate;
-use App\Repositories\EloquentRepositoryContract;
 use App\Repositories\User\Contracts\UserRepositoryContract;
 
 /**
