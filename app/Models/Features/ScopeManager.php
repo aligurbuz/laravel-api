@@ -31,7 +31,7 @@ trait ScopeManager
     public function scopeRange(Builder $builder,object $object,$data = null): Builder
     {
         $range          = $data  ?? ((request()->query->all())['range'] ?? '');
-        $ranges         = explode(',',$range);
+        $ranges         = is_string($range) ? explode(',',$range) : [];
         $modelRanges    = array_merge($object->getRanges(),['active','desc']);
 
         //We record the instruction value in the response data to inform the user.
