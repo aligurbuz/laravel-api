@@ -3,6 +3,7 @@
 namespace App\Models\Features;
 
 use App\Exceptions\Exception;
+use App\Repositories\Repository;
 use App\Services\Db;
 use App\Services\AppContainer;
 use Illuminate\Database\Eloquent\Builder;
@@ -24,11 +25,12 @@ trait ScopeManager
      *
      * @param Builder $builder
      * @param object $object
+     * @param null|string $data
      * @return Builder
      */
-    public function scopeRange(Builder $builder,object $object): Builder
+    public function scopeRange(Builder $builder,object $object,$data = null): Builder
     {
-        $range          = (request()->query->all())['range'] ?? '';
+        $range          = $data  ?? ((request()->query->all())['range'] ?? '');
         $ranges         = explode(',',$range);
         $modelRanges    = array_merge($object->getRanges(),['active','desc']);
 
@@ -119,11 +121,12 @@ trait ScopeManager
      * get active data for model
      *
      * @param Builder $builder
+     * @param array $data
      * @return Builder
      */
-    public function scopeOrderByQuery(Builder $builder): Builder
+    public function scopeOrderByQuery(Builder $builder,array $data = []): Builder
     {
-        $params = request()->query->all();
+        $params = count($data) ? $data : request()->query->all();
 
         if(isset($params['orderBy'])){
             $orderBy = explode(',',$params['orderBy']);
@@ -193,6 +196,7 @@ trait ScopeManager
                 foreach ($params['with'] as $with => $select){
                     if(isset($withQuery[$with],$withQuery[$with]['foreignColumn'],$withQuery[$with]['localColumn'],$withQuery[$with]['table'])){
                         $foreignColumn = $withQuery[$with]['foreignColumn'];
+                        $foreignRepository = $withQuery[$with]['repository'] ?? null;
                         $localColumn = $withQuery[$with]['localColumn'];
 
                         $this->withSelects[] = $localColumn;
@@ -205,11 +209,19 @@ trait ScopeManager
                             );
 
                             if(is_array($selectExplode) && count($selectExplode)){
-                                $builder->with($with.':'.implode(',',$selectExplode));
+                                $builder->with([$with => function($query) use($with,$selectExplode,$params,$foreignRepository){
+                                    $withRange = $params['withRange'][$with] ?? [];
+                                    $repositoryInstance = Repository::$foreignRepository();
+                                    $query->select($selectExplode)->range($repositoryInstance,$withRange);
+                                }]);
                             }
                         }
                         else{
-                            $builder->with($with);
+                            $builder->with([$with => function($query) use($with,$params,$foreignRepository){
+                                $withRange = $params['withRange'][$with] ?? [];
+                                $repositoryInstance = Repository::$foreignRepository();
+                                $query->range($repositoryInstance,$withRange);
+                            }]);
                         }
 
                     }

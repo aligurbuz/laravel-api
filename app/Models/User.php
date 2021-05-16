@@ -55,7 +55,8 @@ class User extends Authenticatable
             'foreignColumn' => 'user_id',
             'localColumn'   => 'id',
             'table' => 'user_comments',
-            'description' => 'You can use comments relation belonging to user data.'
+            'description' => 'You can use comments relation belonging to user data.',
+            'repository' => 'userComment',
         ],
     ];
 
