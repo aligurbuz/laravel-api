@@ -16,7 +16,8 @@ class User_comment extends Model
             'foreignColumn' => 'id',
             'localColumn'   => 'user_id',
             'table' => 'users',
-            'description' => 'You can use user relation belonging to user_comment data.'
+            'description' => 'You can use user relation belonging to user_comment data.',
+            'repository' => 'user',
         ],
     ];
 
