@@ -14,6 +14,7 @@ use App\Services\AppContainer;
  * @method static apiKeyException($message = null,$keys = [])
  * @method static accessLoggerException($message = null,$keys = [])
  * @method static clientFormatException($message = null,$keys = [])
+ * @method static clientEmptyException($message = null,$keys = [])
  * @method static clientArrayLimiterException($message = null,$keys = [])
  * @method static clientCapsuleException($message = null,$keys = [])
  * @method static contentTypeException($message = null,$keys = [])

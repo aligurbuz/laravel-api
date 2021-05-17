@@ -94,6 +94,8 @@ class ClientBodyProcess extends ClientVariableProcess
                 Exception::clientFormatException();
             }
         }
+
+        Exception::clientEmptyException();
     }
 
     /**
