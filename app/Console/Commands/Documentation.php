@@ -155,6 +155,7 @@ class Documentation extends Command
         }
         else{
             $mapArray['keys'][$fileControllerPath] = $key;
+            $mapArray['fingerPrints'][$fingerPrint] = $key;
             File::put($mapJsonFile,Collection::make($mapArray)->toJson(JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
         }
 

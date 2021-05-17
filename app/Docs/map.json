@@ -5,9 +5,10 @@
         "/var/www/html/app/api/app/Docs/Endpoints/Register/Register.json"
     ],
     "keys": {
-        "/var/www/html/app/api/app/Docs/Endpoints/User/User.json": 1
+        "/var/www/html/app/api/app/Docs/Endpoints/User/User.json": 0
     },
     "fingerPrints": {
-        "User_User_user": 0
+        "User_User_user": 0,
+        "Comment_User_user_comment": 1
     }
 }
