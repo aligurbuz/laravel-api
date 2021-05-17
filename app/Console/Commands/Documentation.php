@@ -111,10 +111,10 @@ class Documentation extends Command
         $list['item'][$key]['item'][0]['request']['url']['raw'] = '{{baseUrl}}/'.$endpoint;
         $list['item'][$key]['item'][0]['request']['url']['host'] = ["{{baseUrl}}"];
         $list['item'][$key]['item'][0]['request']['url']['path'] = explode('/',$endpoint);
-        $list['item'][$key]['item'][0]['request']['url']['query'][]['key'] = 'range';
-        $list['item'][$key]['item'][0]['request']['url']['query'][]['value'] = 'desc';
-        $list['item'][$key]['item'][0]['request']['url']['query'][]['description'] = '';
-        $list['item'][$key]['item'][0]['request']['url']['query'][]['disabled'] = true;
+        $list['item'][$key]['item'][0]['request']['url']['query'][0]['key'] = 'range';
+        $list['item'][$key]['item'][0]['request']['url']['query'][0]['value'] = 'desc';
+        $list['item'][$key]['item'][0]['request']['url']['query'][0]['description'] = '';
+        $list['item'][$key]['item'][0]['request']['url']['query'][0]['disabled'] = true;
 
         $list['item'][$key]['item'][1]['name'] = $endpointName;
         $list['item'][$key]['item'][1]['response'] = [];
