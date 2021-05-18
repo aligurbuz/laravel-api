@@ -34,6 +34,11 @@ class ClientBodyProcess extends ClientVariableProcess
         $this->client = $client;
         $data = $this->client->getData();
         $this->data = $data['body'] ?? [];
+
+        if(count($this->data)=='0'){
+            Exception::clientEmptyException();
+        }
+
         $this->make();
     }
 
@@ -89,13 +94,12 @@ class ClientBodyProcess extends ClientVariableProcess
                 $this->capsuleProcess($value);
 
                 $this->makeValidator($value);
+
             }
             else{
                 Exception::clientFormatException();
             }
         }
-
-        Exception::clientEmptyException();
     }
 
     /**
