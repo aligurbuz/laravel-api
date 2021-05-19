@@ -4,7 +4,7 @@ namespace App\Factory;
 
 use Exception;
 
-class FactoryManager
+abstract class FactoryManager
 {
     /**
      * get call static for factory

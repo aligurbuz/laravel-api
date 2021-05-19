@@ -7,7 +7,6 @@ use App\Factory\Logger\Interfaces\LoggerInterface;
 /**
  * Class Factory
  * @method static LoggerInterface logger($arguments = null)
- * @method $this LoggerInterface logger($arguments = null)
  * @package App\Factory
  */
 class Factory extends FactoryManager
