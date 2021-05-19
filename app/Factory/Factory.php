@@ -2,11 +2,11 @@
 
 namespace App\Factory;
 
-use App\Factory\Owner\Interfaces\OwnerInterface;
+use App\Factory\Logger\Interfaces\LoggerInterface;
 
 /**
  * Class Factory
- * @method static OwnerInterface owner($arguments = null)
+ * @method static LoggerInterface logger($arguments = null)
  * @package App\Factory
  */
 class Factory extends FactoryManager
@@ -17,5 +17,7 @@ class Factory extends FactoryManager
      *
      * @var array
      */
-    protected static array $adapters = [];
+    protected static array $adapters = [
+        'Logger' => 'MongoDbLogger'
+    ];
 }

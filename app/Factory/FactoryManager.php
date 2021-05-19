@@ -2,6 +2,8 @@
 
 namespace App\Factory;
 
+use Exception;
+
 abstract class FactoryManager
 {
     /**

@@ -73,14 +73,14 @@ class MongoDb
      *
      * @param $collection
      * @param array $data
-     * @return int|null
+     * @return object
      */
-    public function write($collection,array $data = []): ?int
+    public function write($collection,array $data = []): object
     {
         $bulkWriteInstance = (new BulkWrite());
         $bulkWriteInstance->insert($data);
 
-        return static::$connection->executeBulkWrite($collection.'.collection',$bulkWriteInstance)->getInsertedCount();
+        return static::$connection->executeBulkWrite($collection.'.collection',$bulkWriteInstance);
     }
 
     /**
