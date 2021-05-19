@@ -90,6 +90,18 @@ class EloquentRepository
     }
 
     /**
+     * checks if the data is available
+     *
+     * @param $field
+     * @param $value
+     * @return bool
+     */
+    public function exists($field,$value) : bool
+    {
+        return $this->instance()->where($field,$value)->first() ? true : false;
+    }
+
+    /**
      * get model name
      *
      * @return mixed

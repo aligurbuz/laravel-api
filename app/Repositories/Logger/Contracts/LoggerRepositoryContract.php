@@ -3,7 +3,6 @@
 namespace App\Repositories\Logger\Contracts;
 
 use App\Repositories\Logger\LoggerRepository;
-use Illuminate\Contracts\Pagination\Paginator;
 
 interface LoggerRepositoryContract
 {
@@ -28,6 +27,13 @@ interface LoggerRepositoryContract
 	 * @see LoggerRepository::update()
 	 */
 	function update(array $data = []): array|object;
+
+    /**
+     * @param $field
+     * @param $value
+     * @return bool
+     */
+    public function exists($field,$value) : bool;
 
 
 	/**

@@ -28,6 +28,13 @@ interface UserRepositoryContract
     public function update(array $data = [],$id = true): array;
 
     /**
+     * @param $field
+     * @param $value
+     * @return bool
+     */
+    public function exists($field,$value) : bool;
+
+    /**
      * @param $id
      * @return array
      * @see UserRepository::find()

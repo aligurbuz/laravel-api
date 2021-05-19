@@ -28,6 +28,12 @@ interface CommentRepositoryContract
 	 */
 	function update(array $data = []): array|object;
 
+    /**
+     * @param $field
+     * @param $value
+     * @return bool
+     */
+    public function exists($field,$value) : bool;
 
 	/**
 	 * @param $id
