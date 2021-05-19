@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Services;
 
+use MongoDB\Driver\BulkWrite;
 use MongoDB\Driver\Server;
 use MongoDB\Driver\Command;
 use MongoDB\Driver\Manager;
@@ -65,6 +66,21 @@ class MongoDb
     public function getServers(): array
     {
         return static::$connection->getServers();
+    }
+
+    /**
+     * write collection data in mongoDb
+     *
+     * @param $collection
+     * @param array $data
+     * @return int|null
+     */
+    public function write($collection,array $data = []): ?int
+    {
+        $bulkWriteInstance = (new BulkWrite());
+        $bulkWriteInstance->insert($data);
+
+        return static::$connection->executeBulkWrite($collection.'.collection',$bulkWriteInstance)->getInsertedCount();
     }
 
     /**
