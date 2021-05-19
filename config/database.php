@@ -144,4 +144,13 @@ return [
 
     ],
 
+    'mongoDb' => [
+        'default' => [
+            'mongoDbHost' => env('mongoDbHost',null),
+            'mongoDbPort' => env('mongoDbPort',null),
+            'mongoDbUser' => env('mongoDbPort',null),
+            'mongoDbPassword' => env('mongoDbPort',null),
+        ]
+    ]
+
 ];
