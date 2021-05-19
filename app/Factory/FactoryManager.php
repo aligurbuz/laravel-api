@@ -4,7 +4,7 @@ namespace App\Factory;
 
 use Exception;
 
-abstract class FactoryManager
+class FactoryManager
 {
     /**
      * get call static for factory
@@ -16,6 +16,34 @@ abstract class FactoryManager
      * @throws Exception
      */
     public static function __callStatic(string $name,array $arguments = []): mixed
+    {
+        return (new static)->factoryMaker($name,$arguments);
+    }
+
+    /**
+     * get call static for factory
+     *
+     * @param string $name
+     * @param array $arguments
+     * @return mixed
+     *
+     * @throws Exception
+     */
+    public function __call(string $name,array $arguments = []): mixed
+    {
+        return $this->factoryMaker($name,$arguments);
+    }
+
+    /**
+     * get call static for factory
+     *
+     * @param string $name
+     * @param array $arguments
+     * @return mixed
+     *
+     * @throws Exception
+     */
+    private function factoryMaker(string $name,array $arguments = []): mixed
     {
         $name = ucfirst($name);
         $factory = 'App\Factory\\'.$name.'\\'.static::getAdapterName($name);
