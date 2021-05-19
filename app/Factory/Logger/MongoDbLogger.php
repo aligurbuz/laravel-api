@@ -24,7 +24,7 @@ class MongoDbLogger extends LoggerManager implements LoggerInterface
 
         if($mongoDbConnection->isSuccess()){
             try {
-                return MongoDb::connection()->write('logger',$data);
+                return $mongoDbConnection->write('logger',$data);
             }
             catch (\Exception $e){
                 return Exception::accessLoggerException($e->getMessage());
