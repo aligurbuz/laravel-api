@@ -20,11 +20,17 @@ class MongoDbLogger extends LoggerManager implements LoggerInterface
      */
     public function make(array $data = []) : object
     {
-        try {
-            return MongoDb::connection()->write('logger',$data);
+        $mongoDbConnection = MongoDb::connection();
+
+        if($mongoDbConnection->isSuccess()){
+            try {
+                return MongoDb::connection()->write('logger',$data);
+            }
+            catch (\Exception $e){
+                return Exception::accessLoggerException($e->getMessage());
+            }
         }
-        catch (\Exception $e){
-            return Exception::accessLoggerException($e->getMessage());
-        }
+
+        return $mongoDbConnection;
     }
 }
