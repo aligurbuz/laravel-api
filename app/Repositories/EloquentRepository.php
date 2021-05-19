@@ -81,12 +81,15 @@ class EloquentRepository
     }
 
     /**
-     * @param $id
+     * @param int $id
+     * @param array $select
      * @return array
      */
-    public function find(int $id) : array
+    public function find(int $id,array $select = ['*']) : array
     {
-        return $this->instance()->find($id)->toArray();
+        $find = $this->instance()->find($id,$select);
+
+        return $find ? $find->toArray() : [];
     }
 
     /**

@@ -35,9 +35,10 @@ interface UserRepositoryContract
     public function exists($field,$value) : bool;
 
     /**
-     * @param $id
+     * @param int $id
+     * @param array $select
      * @return array
-     * @see UserRepository::find()
+     * @see CommentRepository::find()
      */
-    public function find(int $id): array;
+    function find(int $id,array $select = ['*']): array;
 }

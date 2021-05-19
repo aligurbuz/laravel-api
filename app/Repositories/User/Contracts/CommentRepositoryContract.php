@@ -35,10 +35,11 @@ interface CommentRepositoryContract
      */
     public function exists($field,$value) : bool;
 
-	/**
-	 * @param $id
-	 * @return array
-	 * @see CommentRepository::find()
-	 */
-	function find(int $id): array;
+    /**
+     * @param int $id
+     * @param array $select
+     * @return array
+     * @see CommentRepository::find()
+     */
+	function find(int $id,array $select = ['*']): array;
 }
