@@ -55,7 +55,7 @@ class AccessLogger
             'exception_message'         => $responseContent['errorMessage'] ?? '',
             'exception_trace'           => json_encode($this->containerDebugBackTrace()),
             'response'                  => json_encode($responseContent)
-        ],$responseContent);
+        ]);
     }
 
     /**
