@@ -86,7 +86,7 @@ class EloquentRepository
      */
     public function find(int $id) : array
     {
-        return static::$model::find($id)->toArray();
+        return $this->instance()->find($id)->toArray();
     }
 
     /**
