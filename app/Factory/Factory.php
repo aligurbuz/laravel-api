@@ -20,4 +20,12 @@ class Factory extends FactoryManager
     protected static array $adapters = [
         'Logger' => 'MongoDbLogger'
     ];
+
+    /**
+     * Factory constructor.
+     */
+    public function __construct()
+    {
+        //
+    }
 }
