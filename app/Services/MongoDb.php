@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Services;
 
-use MongoDB\Driver\Command;
-use MongoDB\Driver\Exception\Exception;
 use MongoDB\Driver\Server;
+use MongoDB\Driver\Command;
 use MongoDB\Driver\Manager;
+use MongoDB\Driver\Exception\Exception;
 
 /**
  * Class MongoDb
