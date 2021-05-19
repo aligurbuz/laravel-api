@@ -6,8 +6,7 @@ interface LoggerInterface
 {
     /**
      * @param array $data
-     * @param array $responseContent
      * @return object
      */
-    public function make(array $data = [],array $responseContent = []) : object;
+    public function make(array $data = []) : object;
 }
