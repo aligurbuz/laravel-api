@@ -15,6 +15,20 @@ use App\Factory\Logger\Interfaces\LoggerInterface;
 class DatabaseLogger extends LoggerManager implements LoggerInterface
 {
     /**
+     * @var array
+     */
+    protected array $binds = [];
+
+    /**
+     * DatabaseLogger constructor.
+     * @param array $binds
+     */
+    public function __construct(array $binds = [])
+    {
+        $this->binds = $binds;
+    }
+
+    /**
      * insert log data into database table
      *
      * @param array $data
