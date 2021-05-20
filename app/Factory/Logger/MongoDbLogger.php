@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Factory\Logger;
 
+use App\Factory\Factory;
 use App\Services\MongoDb;
 use App\Exceptions\Exception;
 use App\Factory\Logger\Interfaces\LoggerInterface;
@@ -33,6 +34,6 @@ class MongoDbLogger extends LoggerManager implements LoggerInterface
             }
         }
 
-        return $mongoDbConnection;
+        return Factory::logger(['adapter' => 'DatabaseLogger'])->create($data);
     }
 }
