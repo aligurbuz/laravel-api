@@ -41,7 +41,7 @@ class AccessLogger
      */
     private function createLogger($request,$responseContent) : array|object
     {
-        return Factory::logger()->make([
+        return Factory::logger()->create([
             'client_key'                => ApiKey::who(),
             'endpoint_name'             => $request->url(),
             'response_code'             => $responseContent['responseCode'] ?? 0,

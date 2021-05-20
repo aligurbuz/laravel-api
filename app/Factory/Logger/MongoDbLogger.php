@@ -20,7 +20,7 @@ class MongoDbLogger extends LoggerManager implements LoggerInterface
      * @param array $data
      * @return array|object
      */
-    public function make(array $data = []) : array|object
+    public function create(array $data = []) : array|object
     {
         $mongoDbConnection = MongoDb::connection();
 
