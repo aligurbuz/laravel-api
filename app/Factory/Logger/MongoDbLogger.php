@@ -40,17 +40,15 @@ class MongoDbLogger extends LoggerManager implements LoggerInterface
         //We are making a mongoDb connection.
         $mongoDbConnection = MongoDb::connection();
 
-        // here we check if mongodb connection works.
-        if($mongoDbConnection->isSuccess()){
-            try {
-                return $mongoDbConnection->write('logger',$data);
-            }
-            catch (\Exception $e){
-                return Exception::accessLoggerException($e->getMessage());
-            }
+        if(!$mongoDbConnection->isSuccess()){
+            return Factory::logger(['adapter' => 'DatabaseLogger'])->create($data);
         }
 
-        //The adapter is changed and we do database registration instead of mongo.
-        return Factory::logger(['adapter' => 'DatabaseLogger'])->create($data);
+        try {
+            return $mongoDbConnection->write('logger',$data);
+        }
+        catch (\Exception $e){
+            return Exception::accessLoggerException($e->getMessage());
+        }
     }
 }
