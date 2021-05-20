@@ -9,6 +9,11 @@ use Exception;
 abstract class FactoryManager
 {
     /**
+     * @var array
+     */
+    protected static array $binds = [];
+
+    /**
      * get call static for factory
      *
      * @param string $name
@@ -20,10 +25,23 @@ abstract class FactoryManager
     public static function __callStatic(string $name,array $arguments = []): mixed
     {
         $name = ucfirst($name);
+        $arguments = static::$binds[$name] ?? ($arguments[0] ?? []);
 
         return static::setAdapterName($name,$arguments,function() use($name,$arguments){
             return (new static)->factoryMaker($name,$arguments);
         });
+    }
+
+    /**
+     * Binds to the constructor method of factory classes.
+     *
+     * @param string $name
+     * @param null $bind
+     * @return void
+     */
+    public static function bind(string $name,$bind = null) : void
+    {
+        static::$binds[$name] = $bind;
     }
 
     /**
@@ -40,7 +58,7 @@ abstract class FactoryManager
         $factory = 'App\Factory\\'.$name.'\\'.static::getAdapterName($name);
 
         if(class_exists($factory)){
-            return (new $factory(($arguments[0] ?? null)));
+            return new $factory($arguments);
         }
 
         return throw new Exception('factory is not valid');
@@ -67,8 +85,8 @@ abstract class FactoryManager
      */
     private static function setAdapterName(string $name,array $arguments = [],callable $callback = null) : mixed
     {
-        if(isset(static::$adapters[$name],$arguments[0]['adapter'])){
-            static::$adapters[$name] = $arguments[0]['adapter'];
+        if(isset(static::$adapters[$name],$arguments['adapter'])){
+            static::$adapters[$name] = $arguments['adapter'];
         }
 
         return call_user_func($callback);
