@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Factory\Logger;
 
 use App\Exceptions\Exception;
-use App\Models\AccessLogger as Logger;
+use App\Repositories\Repository;
 use App\Factory\Logger\Interfaces\LoggerInterface;
 
 /**
@@ -16,12 +18,12 @@ class DatabaseLogger extends LoggerManager implements LoggerInterface
      * insert log data into database table
      *
      * @param array $data
-     * @return object
+     * @return array|object
      */
-    public function make(array $data = []) : object
+    public function make(array $data = []) : array|object
     {
         try {
-            return Logger::create($data);
+            return Repository::logger()->create([$data]);
         }
         catch (\Exception $e){
             return Exception::accessLoggerException($e->getMessage());

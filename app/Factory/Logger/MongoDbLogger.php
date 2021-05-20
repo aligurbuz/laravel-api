@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Factory\Logger;
 
 use App\Services\MongoDb;
@@ -16,9 +18,9 @@ class MongoDbLogger extends LoggerManager implements LoggerInterface
      * insert log data into database table
      *
      * @param array $data
-     * @return object
+     * @return array|object
      */
-    public function make(array $data = []) : object
+    public function make(array $data = []) : array|object
     {
         $mongoDbConnection = MongoDb::connection();
 
