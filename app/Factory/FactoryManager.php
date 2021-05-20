@@ -49,18 +49,20 @@ class FactoryManager
      */
     private static function parametersHandler(string $name,array $arguments = []) : void
     {
-        static::$name = ucfirst($name);
-        static::$arguments = static::$binds[$name] ?? ($arguments[0] ?? []);
+        $arguments     = $arguments[0] ?? [];
+        static::$name  = ucfirst($name);
+
+        static::$arguments = isset(static::$binds[$name]) ? array_merge($arguments,static::$binds[$name]) : $arguments;
     }
 
     /**
      * Binds to the constructor method of factory classes.
      *
      * @param string $name
-     * @param null $bind
+     * @param array $bind
      * @return void
      */
-    public static function bind(string $name,$bind = null) : void
+    public static function bind(string $name,array $bind = []) : void
     {
         static::$binds[$name] = $bind;
     }
