@@ -5,10 +5,12 @@ declare(strict_types=1);
 namespace App\Factory;
 
 use App\Factory\Logger\Interfaces\LoggerInterface;
+use App\Factory\Storage\Interfaces\StorageInterface;
 
 /**
  * Class Factory
  * @method static LoggerInterface logger($arguments = null)
+ * @method static StorageInterface storage($arguments = null)
  * @package App\Factory
  */
 class Factory extends FactoryManager
@@ -31,5 +33,6 @@ class Factory extends FactoryManager
     public static function bindings() : void
     {
         static::bind('Logger',[]);
+        static::bind('Storage',request()->allFiles());
     }
 }

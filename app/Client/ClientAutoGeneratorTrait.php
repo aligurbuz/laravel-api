@@ -3,6 +3,7 @@
 namespace App\Client;
 
 use App\Facades\Authenticate\Authenticate;
+use App\Factory\Factory;
 
 trait ClientAutoGeneratorTrait
 {
@@ -16,6 +17,7 @@ trait ClientAutoGeneratorTrait
         'created_by',
         'updated_by',
         'deleted_by',
+        'clientFileProcess',
     ];
 
     /**
@@ -28,6 +30,7 @@ trait ClientAutoGeneratorTrait
         'created_by',
         'updated_by',
         'deleted_by',
+        'clientFileProcess',
     ];
 
     /**
@@ -85,6 +88,22 @@ trait ClientAutoGeneratorTrait
             return $this->ensureColumnExists('deleted_by',function(){
                 return Authenticate::id();
             });
+        }
+
+        return null;
+    }
+
+    /**
+     * file process for client
+     *
+     * @return mixed
+     */
+    public function clientFileProcessAutoGenerator(): mixed
+    {
+        $files = Factory::storage()->put();
+
+        foreach ($files as $key => $value){
+            $this->set($key,$value);
         }
 
         return null;

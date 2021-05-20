@@ -2,6 +2,7 @@
 
 namespace App\Client;
 
+use App\Factory\Factory;
 use App\Services\Db;
 use Illuminate\Support\Str;
 use App\Repositories\Repository;
