@@ -107,14 +107,24 @@ class RepositoryCommand extends Command
             ->addComment('@param array $data')
             ->addComment('@return array|object')->addComment('@see '.$className.'::update()')->addParameter('data',[])->setType('array');
 
-        $interfaceMethod = $class->addMethod('find')->setReturnType('array');
-        $interfaceMethod
+        $interfaceMethodFind = $class->addMethod('find')->setReturnType('array');
+        $interfaceMethodFind
             ->addComment('@param $id')
             ->addComment('@param array|string[] $select')
             ->addComment('@return array')->addComment('@see '.$className.'::find()');
 
-            $interfaceMethod->addParameter('id')->setType(new Literal('int'));
-            $interfaceMethod->addParameter('select')->setType(new Literal('array'))->setDefaultValue(['*']);
+        $interfaceMethodFind->addParameter('id')->setType(new Literal('int'));
+        $interfaceMethodFind->addParameter('select')->setType(new Literal('array'))->setDefaultValue(['*']);
+
+
+        $interfaceMethodExists = $class->addMethod('exists')->setReturnType('bool');
+        $interfaceMethodExists
+            ->addComment('@param $field')
+            ->addComment('@param $value')
+            ->addComment('@return bool')->addComment('@see '.$className.'::exists()');
+
+        $interfaceMethodExists->addParameter('field');
+        $interfaceMethodExists->addParameter('value');
 
 
         touch($file = $directoryContract.''.DIRECTORY_SEPARATOR.''.$contractClassName.'.php');
