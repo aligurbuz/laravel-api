@@ -680,8 +680,8 @@ trait ClientSupport
     protected function isDefault(): ?string
     {
         if($this->isDefault == '1' && request()->method() !== 'GET'){
-            $this->ensureColumnExists('is_default',function(){
-                $this->repository()->update([['is_default' => '0']],false);
+            $this->ensureColumnExists($snakeFunction = Str::snake(__FUNCTION__),function() use($snakeFunction){
+                $this->repository()->update([[$snakeFunction => '0']],false);
             });
         }
 
