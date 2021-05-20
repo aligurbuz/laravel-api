@@ -57,28 +57,6 @@ class FactoryManager
     }
 
     /**
-     * Binds to the constructor method of factory classes.
-     *
-     * @param string $name
-     * @param array $bind
-     * @return void
-     */
-    public static function bind(string $name,array $bind = []) : void
-    {
-        static::$binds[$name] = $bind;
-    }
-
-    /**
-     * binds to classes as parameters.
-     *
-     * @return void
-     */
-    public static function bindings() : void
-    {
-        //
-    }
-
-    /**
      * get call static for factory
      *
      * @return mixed
@@ -121,5 +99,27 @@ class FactoryManager
         }
 
         return call_user_func($callback);
+    }
+
+    /**
+     * Binds to the constructor method of factory classes.
+     *
+     * @param string $name
+     * @param array $bind
+     * @return void
+     */
+    public static function bind(string $name,array $bind = []) : void
+    {
+        static::$binds[$name] = $bind;
+    }
+
+    /**
+     * binds to classes as parameters.
+     *
+     * @return void
+     */
+    public static function bindings() : void
+    {
+        //
     }
 }
