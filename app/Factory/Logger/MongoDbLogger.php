@@ -23,8 +23,10 @@ class MongoDbLogger extends LoggerManager implements LoggerInterface
      */
     public function create(array $data = []) : array|object
     {
+        //We are making a mongoDb connection.
         $mongoDbConnection = MongoDb::connection();
 
+        // here we check if mongodb connection works.
         if($mongoDbConnection->isSuccess()){
             try {
                 return $mongoDbConnection->write('logger',$data);
@@ -34,6 +36,7 @@ class MongoDbLogger extends LoggerManager implements LoggerInterface
             }
         }
 
+        //The adapter is changed and we do database registration instead of mongo.
         return Factory::logger(['adapter' => 'DatabaseLogger'])->create($data);
     }
 }
