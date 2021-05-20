@@ -34,6 +34,7 @@ class FactoryManager
      */
     public static function __callStatic(string $name,array $arguments = []): mixed
     {
+        static::bindings();
         static::parametersHandler($name,$arguments);
 
         return static::setAdapterName(function(){
@@ -50,7 +51,7 @@ class FactoryManager
     private static function parametersHandler(string $name,array $arguments = []) : void
     {
         $arguments = $arguments[0] ?? [];
-        static::$name = ucfirst($name);
+        $name = static::$name = ucfirst($name);
 
         static::$arguments = isset(static::$binds[$name]) ? array_merge($arguments,static::$binds[$name]) : $arguments;
     }
@@ -65,6 +66,16 @@ class FactoryManager
     public static function bind(string $name,array $bind = []) : void
     {
         static::$binds[$name] = $bind;
+    }
+
+    /**
+     * binds to classes as parameters.
+     *
+     * @return void
+     */
+    public static function bindings() : void
+    {
+        //
     }
 
     /**

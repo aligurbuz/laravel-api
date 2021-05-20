@@ -24,10 +24,12 @@ class Factory extends FactoryManager
     ];
 
     /**
-     * Factory constructor.
+     * binds to classes as parameters.
+     *
+     * @return void
      */
-    public function __construct()
+    public static function bindings() : void
     {
-        //
+        static::bind('Logger',[]);
     }
 }
