@@ -107,9 +107,14 @@ class RepositoryCommand extends Command
             ->addComment('@param array $data')
             ->addComment('@return array|object')->addComment('@see '.$className.'::update()')->addParameter('data',[])->setType('array');
 
-        $class->addMethod('find')->setReturnType('array')
+        $interfaceMethod = $class->addMethod('find')->setReturnType('array');
+        $interfaceMethod
             ->addComment('@param $id')
-            ->addComment('@return array')->addComment('@see '.$className.'::find()')->addParameter('id')->setType(new Literal('int'));
+            ->addComment('@param array|string[] $select')
+            ->addComment('@return array')->addComment('@see '.$className.'::find()');
+
+            $interfaceMethod->addParameter('id')->setType(new Literal('int'));
+            $interfaceMethod->addParameter('select')->setType(new Literal('array'))->setDefaultValue(['*']);
 
 
         touch($file = $directoryContract.''.DIRECTORY_SEPARATOR.''.$contractClassName.'.php');
