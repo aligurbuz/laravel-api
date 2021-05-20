@@ -33,6 +33,6 @@ class Factory extends FactoryManager
     public static function bindings() : void
     {
         static::bind('Logger',[]);
-        static::bind('Storage',request()->allFiles());
+        static::bind('Storage',['files' => request()->allFiles()]);
     }
 }

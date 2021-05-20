@@ -100,7 +100,7 @@ trait ClientAutoGeneratorTrait
      */
     public function clientFileProcessAutoGenerator(): mixed
     {
-        $files = Factory::storage()->put();
+        $files = Factory::storage(['client' => $this])->put();
 
         foreach ($files as $key => $value){
             $this->set($key,$value);
