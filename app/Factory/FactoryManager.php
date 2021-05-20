@@ -49,8 +49,8 @@ class FactoryManager
      */
     private static function parametersHandler(string $name,array $arguments = []) : void
     {
-        $arguments     = $arguments[0] ?? [];
-        static::$name  = ucfirst($name);
+        $arguments = $arguments[0] ?? [];
+        static::$name = ucfirst($name);
 
         static::$arguments = isset(static::$binds[$name]) ? array_merge($arguments,static::$binds[$name]) : $arguments;
     }
