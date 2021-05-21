@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Services;
 
-use MongoDB\Driver\BulkWrite;
 use MongoDB\Driver\Server;
 use MongoDB\Driver\Command;
 use MongoDB\Driver\Manager;
+use MongoDB\Driver\BulkWrite;
 use MongoDB\Driver\Exception\Exception;
 
 /**
