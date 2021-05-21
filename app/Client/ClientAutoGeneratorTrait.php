@@ -2,8 +2,8 @@
 
 namespace App\Client;
 
-use App\Facades\Authenticate\Authenticate;
 use App\Factory\Factory;
+use App\Facades\Authenticate\Authenticate;
 
 trait ClientAutoGeneratorTrait
 {
