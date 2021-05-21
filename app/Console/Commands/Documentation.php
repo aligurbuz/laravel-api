@@ -121,7 +121,13 @@ class Documentation extends Command
         $list['item'][$key]['item'][1]['request']['method'] = 'POST';
         $list['item'][$key]['item'][1]['request']['header'] = $getHeaders;
         $list['item'][$key]['item'][1]['request']['body']['mode'] = 'raw';
-        $list['item'][$key]['item'][1]['request']['body']['raw'] = json_encode(array_diff($columns,['id' => 'integer']));
+        $list['item'][$key]['item'][1]['request']['body']['raw'] = json_encode(array_diff_key($columns,[
+            'id' => 'integer',
+            'created_by' => 'integer',
+            'updated_by' => 'integer',
+            'deleted_by' => 'integer',
+            $this->argument('model').'_code' => 'integer'
+        ]));
         $list['item'][$key]['item'][1]['request']['body']['options']['raw']['language'] = 'json';
 
         $list['item'][$key]['item'][1]['request']['url']['raw'] = '{{baseUrl}}/'.$endpoint;
@@ -129,12 +135,19 @@ class Documentation extends Command
         $list['item'][$key]['item'][1]['request']['url']['path'] = explode('/',$endpoint);
         $list['item'][$key]['item'][1]['request']['url']['query'] = [];
 
+
         $list['item'][$key]['item'][2]['name'] = $endpointName;
         $list['item'][$key]['item'][2]['response'] = [];
         $list['item'][$key]['item'][2]['request']['method'] = 'PUT';
         $list['item'][$key]['item'][2]['request']['header'] = $getHeaders;
         $list['item'][$key]['item'][2]['request']['body']['mode'] = 'raw';
-        $list['item'][$key]['item'][2]['request']['body']['raw'] = json_encode($columns);
+        $list['item'][$key]['item'][2]['request']['body']['raw'] = json_encode(array_diff_key($columns,[
+            'id' => 'integer',
+            'created_by' => 'integer',
+            'updated_by' => 'integer',
+            'deleted_by' => 'integer',
+            $this->argument('model').'_code' => 'integer'
+        ]));
         $list['item'][$key]['item'][2]['request']['body']['options']['raw']['language'] = 'json';
 
         $list['item'][$key]['item'][2]['request']['url']['raw'] = '{{baseUrl}}/'.$endpoint;
