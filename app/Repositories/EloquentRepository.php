@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Services\Db;
+use App\Factory\Factory;
 use App\Services\Client;
 use App\Exceptions\Exception;
 use App\Exceptions\SqlExceptionManager;
@@ -17,7 +18,9 @@ class EloquentRepository
      */
     public function get() : array
     {
-        return $this->graphQl()->simplePaginate(20)->toArray();
+        return Factory::repository(['model' => $this->getModel()])->cache(function(){
+            return $this->graphQl()->simplePaginate(20)->toArray();
+        });
     }
 
     /**
