@@ -178,6 +178,30 @@ trait ScopeManager
         return $builder;
     }
 
+    /**
+     * get eager loading data for model
+     *
+     * @param Builder $builder
+     * @return Builder
+     */
+    public function scopeHasQuery(Builder $builder): Builder
+    {
+        $params = request()->query->all();
+
+        if(isset($params['has'])){
+            $withQuery = $this->withQuery;
+            $hasQuery = explode(',',$params['has']);
+
+            foreach ($hasQuery as $has){
+                if(isset($withQuery[$has])){
+                    $builder->whereHas($has);
+                }
+            }
+        }
+
+        return $builder;
+    }
+
 
     /**
      * get eager loading data for model

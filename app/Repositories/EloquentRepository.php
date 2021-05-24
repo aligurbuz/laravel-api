@@ -207,7 +207,7 @@ class EloquentRepository
      */
     public function graphQl() : mixed
     {
-        return static::$model::repository($this)->range($this)->instruction()->withQuery()
+        return static::$model::repository($this)->range($this)->instruction()->hasQuery()->withQuery()
             ->selectQuery()->orderByQuery()->filterQuery();
     }
 
