@@ -12,6 +12,11 @@ use Illuminate\Database\Eloquent\Builder;
 class EloquentRepository
 {
     /**
+     * @var object|null
+     */
+    protected ?object $repository = null;
+
+    /**
      * get data for user model
      *
      * @return array
@@ -80,7 +85,6 @@ class EloquentRepository
         }
 
         return $queryList;
-
     }
 
     /**
@@ -115,6 +119,16 @@ class EloquentRepository
     public function getModel(): mixed
     {
         return static::$model;
+    }
+
+    /**
+     * get repository results for model
+     *
+     * @return array
+     */
+    public function getRepository() : array
+    {
+        return $this->repository->get()->toArray();
     }
 
     /**
@@ -169,7 +183,11 @@ class EloquentRepository
      */
     public function instance() : Builder
     {
-        return static::$model::repository($this);
+        if(is_null($this->repository)){
+            $this->repository = static::$model::repository($this);
+        }
+
+        return $this->repository;
     }
 
     /**
