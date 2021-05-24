@@ -202,6 +202,30 @@ trait ScopeManager
         return $builder;
     }
 
+    /**
+     * get eager loading data for model
+     *
+     * @param Builder $builder
+     * @return Builder
+     */
+    public function scopeDoesntHaveQuery(Builder $builder): Builder
+    {
+        $params = request()->query->all();
+
+        if(isset($params['doesntHave'])){
+            $withQuery = $this->withQuery;
+            $doesntHaveQuery = explode(',',$params['doesntHave']);
+
+            foreach ($doesntHaveQuery as $doesnt){
+                if(isset($withQuery[$doesnt])){
+                    $builder->doesntHave($doesnt);
+                }
+            }
+        }
+
+        return $builder;
+    }
+
 
     /**
      * get eager loading data for model
