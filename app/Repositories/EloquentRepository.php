@@ -148,11 +148,13 @@ class EloquentRepository
      * get today scope for client
      *
      * @param null|Builder $builder
-     * @return Builder
+     * @return EloquentRepository
      */
-    public function desc(Builder $builder = null): Builder
+    public function desc(Builder $builder = null): EloquentRepository
     {
-        return $this->builder($builder)->orderBy('id','desc');
+        $this->builder($builder)->orderBy('id','desc');
+
+        return $this;
     }
 
     /**
@@ -173,7 +175,7 @@ class EloquentRepository
      */
     public function builder(Builder $builder = null): object
     {
-        return $builder ?? static::$model;
+        return $builder ?? $this->instance();
     }
 
     /**
