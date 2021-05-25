@@ -149,24 +149,25 @@ class ClientBodyProcess extends ClientVariableProcess
             Validator::make($data,$this->clientRuleProcess($validators)),
             function(ValidatorContract $validator) use($types){
                 $message = $validator->getMessageBag();
+                static::errorContainer($this->client->getRule(),'requiredFields');
 
                 if(count($message->getMessages())){
 
                     if(count($types)){
                         $key = ($message->keys())[0] ?? null;
-                        static::errorInput($key);
+                        static::errorContainer($key,'errorInput');
                         if(isset($types[$key])){
                             $typeMessage = trans('validation.'.$key,['attribute' => $key]);
 
                             if($typeMessage==='validation.'.$key){
-                                static::errorInput($types[$key]);
+                                static::errorContainer($types[$key],'errorInput');
                                 $typeMessage = trans('validation.'.$types[$key],['attribute' => $key]);
                             }
                         }
                     }
 
                     foreach ($message->getMessages() as $inputKey => $inputValue){
-                        static::errorInput($inputKey);
+                        static::errorContainer($inputKey,'errorInput');
                     }
 
                     Exception::validationException(isset($typeMessage) ? $typeMessage : $message->first());
@@ -202,15 +203,16 @@ class ClientBodyProcess extends ClientVariableProcess
     /**
      * set error input to appContainer
      *
-     * @param string $data
+     * @param mixed $data
+     * @param null|string $key
      * @return void
      */
-    private static function errorInput(string $data) : void
+    private static function errorContainer(mixed $data, ?string $key) : void
     {
-        if(AppContainer::has('errorInput')){
-            AppContainer::terminate('errorInput');
+        if(AppContainer::has($key)){
+            AppContainer::terminate('$key');
         }
 
-        AppContainer::set('errorInput',$data);
+        AppContainer::set($key,$data);
     }
 }

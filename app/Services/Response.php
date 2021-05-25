@@ -63,6 +63,7 @@ class Response
             'errorInput'    => static::errorInput(),
             'errorMessage'  => static::getExceptionMessageForEnvironment($message,$code),
             'endpoint'      => request()->url(),
+            'required'      => [static::requiredFields()],
         ];
 
         return static::response(
@@ -216,6 +217,16 @@ class Response
     private static function errorInput() : ?string
     {
         return AppContainer::get('errorInput');
+    }
+
+    /**
+     * get error input for exception
+     *
+     * @return mixed
+     */
+    private static function requiredFields() : mixed
+    {
+        return AppContainer::get('requiredFields');
     }
 
     /**
