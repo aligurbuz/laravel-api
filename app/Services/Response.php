@@ -60,6 +60,7 @@ class Response
             'client'        => ApiKey::who(),
             'env'           => config('app.env'),
             'responseCode'  => static::responseCode(),
+            'errorInput'    => static::errorInput(),
             'errorMessage'  => static::getExceptionMessageForEnvironment($message,$code),
             'endpoint'      => request()->url(),
         ];
@@ -205,6 +206,16 @@ class Response
     private static function responseCode() : int
     {
         return crc32(Client::fingerPrint().'_'.time());
+    }
+
+    /**
+     * get error input for exception
+     *
+     * @return ?string
+     */
+    private static function errorInput() : ?string
+    {
+        return AppContainer::get('errorInput');
     }
 
     /**

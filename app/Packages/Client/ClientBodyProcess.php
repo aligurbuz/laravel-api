@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Packages\Client;
 
+use App\Services\AppContainer;
 use App\Services\Db;
 use App\Exceptions\Exception;
 use Illuminate\Support\Facades\Validator;
@@ -153,13 +154,19 @@ class ClientBodyProcess extends ClientVariableProcess
 
                     if(count($types)){
                         $key = ($message->keys())[0] ?? null;
+                        static::errorInput($key);
                         if(isset($types[$key])){
                             $typeMessage = trans('validation.'.$key,['attribute' => $key]);
 
                             if($typeMessage==='validation.'.$key){
+                                static::errorInput($types[$key]);
                                 $typeMessage = trans('validation.'.$types[$key],['attribute' => $key]);
                             }
                         }
+                    }
+
+                    foreach ($message->getMessages() as $inputKey => $inputValue){
+                        static::errorInput($inputKey);
                     }
 
                     Exception::validationException(isset($typeMessage) ? $typeMessage : $message->first());
@@ -190,5 +197,20 @@ class ClientBodyProcess extends ClientVariableProcess
         }
 
         return $list;
+    }
+
+    /**
+     * set error input to appContainer
+     *
+     * @param string $data
+     * @return void
+     */
+    private static function errorInput(string $data) : void
+    {
+        if(AppContainer::has('errorInput')){
+            AppContainer::terminate('errorInput');
+        }
+
+        AppContainer::set('errorInput',$data);
     }
 }
