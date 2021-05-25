@@ -25,7 +25,7 @@ class UserCommentObserver
      */
     public function updated(User_comment $user_comment)
     {
-        dd(11);
+        //
     }
 
     /**
