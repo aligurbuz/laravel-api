@@ -149,7 +149,7 @@ class ClientBodyProcess extends ClientVariableProcess
             Validator::make($data,$this->clientRuleProcess($validators)),
             function(ValidatorContract $validator) use($types){
                 $message = $validator->getMessageBag();
-                static::errorContainer($this->client->getRule(),'requiredFields');
+                static::errorContainer($this->client->getRule(),'validatorRules');
 
                 if(count($message->getMessages())){
 

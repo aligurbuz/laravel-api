@@ -63,7 +63,7 @@ class Response
             'errorInput'    => static::errorInput(),
             'errorMessage'  => static::getExceptionMessageForEnvironment($message,$code),
             'endpoint'      => request()->url(),
-            'required'      => [static::requiredFields()],
+            'rules'         => [static::rules()],
         ];
 
         return static::response(
@@ -224,9 +224,9 @@ class Response
      *
      * @return mixed
      */
-    private static function requiredFields() : mixed
+    private static function rules() : mixed
     {
-        return AppContainer::get('requiredFields');
+        return AppContainer::get('validatorRules');
     }
 
     /**
