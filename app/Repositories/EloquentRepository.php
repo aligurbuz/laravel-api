@@ -75,7 +75,14 @@ class EloquentRepository
                 }
             });
 
-            $update = $baseQuery->update($data);
+            try{
+                $update = $baseQuery->update($data);
+            }
+            catch (\Exception $exception){
+                return SqlExceptionManager::make($exception,function() use($exception){
+                    return Exception::modelCreateException($exception->getPrevious()->getMessage());
+                });
+            }
 
             if($update=='0'){
                 return Exception::updateException();
