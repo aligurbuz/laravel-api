@@ -803,3 +803,121 @@ trait GeneratorTrait
 
 
 ```
+
+As output, client data will be returned to us as below.
+```php
+
+[
+    'title'     => 'foo',
+    'comment'   => 'bar zoo',
+    'user_id'   => 1,
+]
+
+
+
+```
+As you can see, 
+we have added a real user_id data that does not affect us even 
+if the client sends the user_id data to the client values.
+Whether the user sends or not, the user_id value will now be automatically generated and processed into client data.
+
+### In some cases, you can take the data sent by the customer and ask the generator to work if it is not sent.
+In this case, the only thing you will do.
+> dontOverWriteGenerators
+
+It will remove the relevant key from the value of property.
+
+See the results below.
+
+```php
+
+<?php
+
+namespace App\Client\User\Comment\Create;
+
+use App\Facades\Authenticate\Authenticate;
+
+trait GeneratorTrait
+{
+    /**
+     * get auto generator for client
+     *
+     * @return array
+     */
+    protected array $generators = ['user_id'];
+
+    /**
+     * get dont overwrite generator for client
+     *
+     * @return array
+     */
+    protected array $dontOverWriteGenerators = [];
+
+    /**
+     * generates user_id for client
+     *
+     * @return mixed
+     */
+    public function userIdGenerator()
+    {
+        return Authenticate::id();
+    }
+}
+
+
+
+```
+Data sent by the client:
+```php
+
+[
+    'title'     => 'foo',
+    'comment'   => 'bar zoo'
+]
+
+
+
+```
+
+Your request data:
+
+```php
+
+[
+    'title'     => 'foo',
+    'comment'   => 'bar zoo',
+    'user_id'   => 1
+]
+
+
+
+```
+
+
+Data sent by the client:
+```php
+
+[
+    'title'     => 'foo',
+    'comment'   => 'bar zoo',
+    'user_id'   => 45,
+]
+
+
+
+```
+
+Your request data:
+
+```php
+
+[
+    'title'     => 'foo',
+    'comment'   => 'bar zoo',
+    'user_id'   => 45
+]
+
+
+
+```
+
