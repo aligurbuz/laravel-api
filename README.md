@@ -741,3 +741,65 @@ trait GeneratorTrait
 
 
 ```
+There are two properties for auto generator.
+Since it is derived from the client class, this feature is not the autoGenerators feature.
+So what is this generator property?
+
+Örneğin yorum eklendiğinde kullanıcı bize su verileri gönderecektir.
+
+```php
+
+[
+    'title'     => 'foo',
+    'comment'   => 'bar zoo',
+    'user_id'   => 45,
+]
+
+
+
+```
+Have you looked carefully?
+There is dangerous data inside. He sent the value of user_id. Obviously a malicious user
+Normally, suppose that the person commenting on the system is authenticate and user_id = 1 represents the number for this user.
+As such, client pretends to be user # 45 and attempts to save a comment.
+
+then let's write a code like this to our generator.
+
+```php
+
+<?php
+
+namespace App\Client\User\Comment\Create;
+
+use App\Facades\Authenticate\Authenticate;
+
+trait GeneratorTrait
+{
+    /**
+     * get auto generator for client
+     *
+     * @return array
+     */
+    protected array $generators = ['user_id'];
+
+    /**
+     * get dont overwrite generator for client
+     *
+     * @return array
+     */
+    protected array $dontOverWriteGenerators = ['user_id'];
+
+    /**
+     * generates user_id for client
+     *
+     * @return mixed
+     */
+    public function userIdGenerator()
+    {
+        return Authenticate::id();
+    }
+}
+
+
+
+```
