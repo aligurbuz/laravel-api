@@ -702,3 +702,42 @@ Other addresses will be set to zero automatically.
 
 Unless you remove this method from the ClientSupport class, all your tables that can work with the same logic will be subject to this rule.
 You can customize your system by developing similar methods (provided you use the ensureColumnExists method).
+
+## Add custom data to client data with auto handlers.
+Another nice feature of the client class is auto handlers that allow you to add additional data to the request coming to your application.
+Thanks to this feature, you can make auto additions specific to the client class or add special data to all requests with automatic auto handlers.
+Let's give an example and consider a clienta-specific autoGenerator class.
+
+> Note: Client main class is the class that is called inside the controller.
+> Therefore, there are special client main classes for each endpoint.
+
+For the user/comment endpoint, suppose the user posts a post adding a comment to the system.
+
+Client main class:
+
+```php
+
+ <?php
+
+namespace App\Client\User\Comment\Create;
+
+trait GeneratorTrait
+{
+	/**
+	 * get auto generator for client
+	 *
+	 * @return array
+	 */
+	protected array $generators = [];
+
+	/**
+	 * get dont overwrite generator for client
+	 *
+	 * @return array
+	 */
+	protected array $dontOverWriteGenerators = [];
+}
+
+
+
+```
