@@ -745,7 +745,7 @@ There are two properties for auto generator.
 Since it is derived from the client class, this feature is not the autoGenerators feature.
 So what is this generator property?
 
-Örneğin yorum eklendiğinde kullanıcı bize su verileri gönderecektir.
+For example; Suppose an auth user adds a comment to the system.
 
 ```php
 
