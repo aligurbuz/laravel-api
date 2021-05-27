@@ -1,0 +1,95 @@
+version: '3'
+services:
+    web:
+        container_name: nginx-app
+        image: nginx:latest
+        restart: always
+        ports:
+        - "80:80"
+        volumes:
+        - ./app:/var/www/html/app
+        - ./server/volumes/nginx.conf:/etc/nginx/conf.d/default.conf
+    redis:
+        container_name: redis-app
+        image: redis
+        restart: always
+        ports:
+        - "6379:6379"
+        networks:
+          default:
+            ipv4_address: 172.10.0.6
+    mysql:
+        container_name: mysql-app
+        image: mysql:8.0
+        ports:
+        - "33061:3306"
+        - "3306:3306"
+        volumes:
+        - ./server/volumes/mysql:/var/lib/mysql
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+        networks:
+          default:
+            ipv4_address: 172.10.0.5
+    postgres:
+        container_name: postgres-app
+        image: postgres:latest
+        environment:
+            POSTGRES_USER: 'postgres'
+            POSTGRES_PASSWORD: 'postgres'
+            PGDATA: /data/postgres
+        volumes:
+            - ./server/volumes/postgres:/data/postgres
+        ports:
+            - "5432:5432"
+        networks:
+            default:
+                ipv4_address: 172.10.0.8
+        restart: unless-stopped
+    php:
+        container_name: php-app
+        build: server/builds/php
+        image: php:fpm
+        restart: always
+        volumes:
+        - ./app:/var/www/html/app
+        - ./server/bashes/laravel.sh:/var/www/html/laravel.sh
+    mongo:
+        container_name: mongo-resta
+        image: mongo
+        ports:
+          - "27017:27017"
+        volumes:
+          - ./server/volumes/mongo:/data/db
+        networks:
+          default:
+            ipv4_address: 172.10.0.7
+    elasticsearch:
+        image: docker.elastic.co/elasticsearch/elasticsearch:7.2.0
+        volumes:
+            - ./server/volumes/elasticsearch/data:/usr/share/elasticsearch/data
+        container_name: es01
+        environment:
+            - node.name=es01
+            - cluster.initial_master_nodes=es01
+            - cluster.name=docker-cluster
+            - bootstrap.memory_lock=true
+            - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+        ulimits:
+            memlock:
+                soft: -1
+                hard: -1
+        ports:
+            - '9200:9200'
+            - '9300:9300'
+        networks:
+            default:
+                ipv4_address: 172.10.0.10
+networks:
+  default:
+      driver: bridge
+      ipam:
+        config:
+            - subnet: 172.10.0.0/24
+
