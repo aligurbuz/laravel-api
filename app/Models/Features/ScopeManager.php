@@ -51,15 +51,18 @@ trait ScopeManager
      *
      * @param Builder $builder
      * @param object $object
+     * @param bool $repository
      * @return object
      */
-    public function scopeRepository(Builder $builder,object $object): object
+    public function scopeRepository(Builder $builder,object $object,$repository = true): object
     {
+        if(app()->runningInConsole()) $repository = false;
+
         $objectName = lcfirst(class_basename($object));
 
         // if there is a method with the same name as object,
         // this method will be executed automatically.
-        if(method_exists($object,$objectName)) return $object->$objectName($builder);
+        if(method_exists($object,$objectName)) return $repository ? $object->$objectName($builder) : $builder;
 
         return $builder;
     }
