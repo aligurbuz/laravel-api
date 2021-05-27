@@ -7,7 +7,7 @@ services:
         ports:
         - "80:80"
         volumes:
-        - ./app:/var/www/html/app
+        - .:/var/www/html/app/api
         - ./server/volumes/nginx.conf:/etc/nginx/conf.d/default.conf
     redis:
         container_name: redis-app
@@ -53,7 +53,7 @@ services:
         image: php:fpm
         restart: always
         volumes:
-        - ./app:/var/www/html/app
+        - .:/var/www/html/app/api
         - ./server/bashes/laravel.sh:/var/www/html/laravel.sh
     mongo:
         container_name: mongo-resta
