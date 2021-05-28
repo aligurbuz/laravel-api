@@ -255,7 +255,7 @@ class EloquentRepository
      * @param Throwable $throwable
      * @return mixed
      */
-    private function sqlException(Throwable $throwable) : mixed
+    public function sqlException(Throwable $throwable) : mixed
     {
         return SqlExceptionManager::make($throwable,$this->getTable(),function() use($throwable){
             return Exception::modelCreateException($throwable->getPrevious()->getMessage());
