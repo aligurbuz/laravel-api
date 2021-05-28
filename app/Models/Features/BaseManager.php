@@ -1,9 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models\Features;
 
 use App\Services\Db;
 
+/**
+ * Trait BaseManager
+ * @package App\Models\Features
+ */
 trait BaseManager
 {
     use ScopeManager;

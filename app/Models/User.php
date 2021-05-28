@@ -21,6 +21,11 @@ class User extends Authenticatable
     use HasFactory, Notifiable,BaseManager,HasApiTokens;
 
     /**
+     * @var array
+     */
+    protected array $searchable = [];
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array[] $fillable

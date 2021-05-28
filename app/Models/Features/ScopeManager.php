@@ -1,15 +1,23 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models\Features;
 
-use App\Exceptions\Exception;
-use App\Repositories\Repository;
 use App\Services\Db;
+use App\Exceptions\Exception;
 use App\Services\AppContainer;
+use App\Repositories\Repository;
 use Illuminate\Database\Eloquent\Builder;
 
+/**
+ * Trait ScopeManager
+ * @package App\Models\Features
+ */
 trait ScopeManager
 {
+    use FullTextSearch;
+
     /**
      * @var array[]
      */
@@ -65,6 +73,25 @@ trait ScopeManager
         if(method_exists($object,$objectName)) return $repository ? $object->$objectName($builder) : $builder;
 
         return $builder;
+    }
+
+    /**
+     * Scope a query that matches a full text search of term.
+     * This version calculates and orders by relevance score.
+     *
+     * @param Builder $query
+     * @param string $term
+     * @return Builder
+     */
+    public function scopeSearch(Builder $query, string $term): Builder
+    {
+        $columns = implode(',',$this->searchable);
+
+        $searchableTerm = $this->fullTextWildcards($term);
+
+        return $query->selectRaw("MATCH ({$columns}) AGAINST (? IN BOOLEAN MODE) AS relevance_score", [$searchableTerm])
+            ->whereRaw("MATCH ({$columns}) AGAINST (? IN BOOLEAN MODE)", $searchableTerm)
+            ->orderByDesc('relevance_score');
     }
 
     /**

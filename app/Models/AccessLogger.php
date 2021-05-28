@@ -14,4 +14,9 @@ use App\Models\Features\BaseManager;
 class AccessLogger extends Model
 {
     use HasFactory,BaseManager;
+
+    /**
+     * @var array
+     */
+    protected array $searchable = [];
 }

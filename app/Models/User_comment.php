@@ -11,6 +11,11 @@ class User_comment extends Model
 {
     use HasFactory,BaseManager;
 
+    /**
+     * @var array
+     */
+    protected array $searchable = [];
+
     protected $withQuery = [
         'user' => [
             'foreignColumn' => 'id',
