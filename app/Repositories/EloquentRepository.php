@@ -1,7 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Repositories;
 
+use Throwable;
 use App\Services\Db;
 use App\Factory\Factory;
 use App\Services\Client;
@@ -9,6 +12,10 @@ use App\Exceptions\Exception;
 use App\Exceptions\SqlExceptionManager;
 use Illuminate\Database\Eloquent\Builder;
 
+/**
+ * Class EloquentRepository
+ * @package App\Repositories
+ */
 class EloquentRepository
 {
     /**
@@ -37,7 +44,6 @@ class EloquentRepository
     public function create(array $data = []): array|object
     {
         $data = count($data) ? $data : Client::data();
-
         $list = [];
 
         try {
@@ -48,9 +54,7 @@ class EloquentRepository
             return $list;
         }
         catch (\Exception $exception){
-            return SqlExceptionManager::make($exception,$this->getTable(),function() use($exception){
-                return Exception::modelCreateException($exception->getPrevious()->getMessage());
-            });
+            return $this->sqlException($exception);
 
         }
     }
@@ -65,7 +69,6 @@ class EloquentRepository
     public function update(array $data = [],$id = true): array|object
     {
         $clientData = count($data) ? $data : Client::data();
-
         $queryList = [];
 
         foreach ($clientData as $data){
@@ -79,9 +82,7 @@ class EloquentRepository
                 $update = $baseQuery->update($data);
             }
             catch (\Exception $exception){
-                return SqlExceptionManager::make($exception,$this->getTable(),function() use($exception){
-                    return Exception::modelCreateException($exception->getPrevious()->getMessage());
-                });
+               return $this->sqlException($exception);
             }
 
             if($update=='0'){
@@ -246,5 +247,18 @@ class EloquentRepository
         }
 
         return $builder;
+    }
+
+    /**
+     * throws sql exception for repository
+     *
+     * @param Throwable $throwable
+     * @return mixed
+     */
+    private function sqlException(Throwable $throwable) : mixed
+    {
+        return SqlExceptionManager::make($throwable,$this->getTable(),function() use($throwable){
+            return Exception::modelCreateException($throwable->getPrevious()->getMessage());
+        });
     }
 }
