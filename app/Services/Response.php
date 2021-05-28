@@ -61,6 +61,7 @@ class Response
             'env'           => config('app.env'),
             'responseCode'  => static::responseCode(),
             'errorInput'    => static::errorInput(),
+            'exception'     => class_basename($trace),
             'errorMessage'  => static::getExceptionMessageForEnvironment($message,$code),
             'endpoint'      => request()->url(),
             'rules'         => [static::rules()],

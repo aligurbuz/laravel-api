@@ -2,10 +2,16 @@
 
 namespace App\Exceptions;
 
+use App\Services\AppContainer;
 use Throwable;
 
 class SqlExceptionManager
 {
+    /**
+     * @var ?string
+     */
+    private static ?string $table;
+
     /**
      * get codes for sql
      *
@@ -21,12 +27,15 @@ class SqlExceptionManager
      * sql exception process maker
      *
      * @param Throwable $throwable
+     * @param ?string $table
      * @param callable $callback
      * @return mixed
      */
-    public static function make(Throwable $throwable,callable $callback) : mixed
+    public static function make(Throwable $throwable, ?string $table, callable $callback) : mixed
     {
         $dbConnection = config('database.default');
+
+        static::$table = $table;
 
         // we determine the exception code method according to your db connection settings.
         // therefore exception is returned directly if it is not present in constants.
@@ -53,6 +62,12 @@ class SqlExceptionManager
     protected function uniqueErrorMessageForMysql(Throwable $throwable) : string
     {
         $message = $throwable->getPrevious()->getMessage();
+
+        // when a unique exception is caught,
+        // the column name must be sent to the errorInput container value.
+        if(preg_match('@\''.static::$table.'\.(.*?)\'@is',$message,$column)){
+            AppContainer::set('errorInput',($column[1] ?? null));
+        }
 
         // we parse the message in the mysql unique exception message and get it.
         // this method can be changed.we use it to get the unique data between quotes.

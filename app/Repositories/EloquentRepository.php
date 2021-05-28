@@ -48,7 +48,7 @@ class EloquentRepository
             return $list;
         }
         catch (\Exception $exception){
-            return SqlExceptionManager::make($exception,function() use($exception){
+            return SqlExceptionManager::make($exception,$this->getTable(),function() use($exception){
                 return Exception::modelCreateException($exception->getPrevious()->getMessage());
             });
 
@@ -79,7 +79,7 @@ class EloquentRepository
                 $update = $baseQuery->update($data);
             }
             catch (\Exception $exception){
-                return SqlExceptionManager::make($exception,function() use($exception){
+                return SqlExceptionManager::make($exception,$this->getTable(),function() use($exception){
                     return Exception::modelCreateException($exception->getPrevious()->getMessage());
                 });
             }
@@ -126,6 +126,16 @@ class EloquentRepository
     public function getModel(): mixed
     {
         return static::$model;
+    }
+
+    /**
+     * get table for model name
+     *
+     * @return mixed
+     */
+    public function getTable(): mixed
+    {
+        return (new static::$model)->getTable();
     }
 
     /**
