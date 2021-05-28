@@ -79,17 +79,22 @@ trait ScopeManager
      * Scope a query that matches a full text search of term.
      * This version calculates and orders by relevance score.
      *
-     * @param Builder $query
-     * @param string $term
+     * @param Builder $builder
+     * @param string|null $term
      * @return Builder
      */
-    public function scopeSearch(Builder $query, string $term): Builder
+    public function scopeSearch(Builder $builder, ?string $term = null): Builder
     {
+        $clientSearch = (request()->query->all())['search'] ?? null;
+        $term = $term ?? $clientSearch;
+
+        if(is_null($term)) return $builder;
+
         $columns = implode(',',$this->searchable);
 
         $searchableTerm = $this->fullTextWildcards($term);
 
-        return $query->selectRaw("MATCH ({$columns}) AGAINST (? IN BOOLEAN MODE) AS relevance_score", [$searchableTerm])
+        return $builder->selectRaw("*,MATCH ({$columns}) AGAINST (? IN BOOLEAN MODE) AS relevance_score", [$searchableTerm])
             ->whereRaw("MATCH ({$columns}) AGAINST (? IN BOOLEAN MODE)", $searchableTerm)
             ->orderByDesc('relevance_score');
     }

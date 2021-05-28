@@ -229,7 +229,7 @@ class EloquentRepository
     public function graphQl() : mixed
     {
         return static::$model::repository($this)->range($this)->instruction()->doesntHaveQuery()->hasQuery()->withQuery()
-            ->selectQuery()->orderByQuery()->filterQuery();
+            ->selectQuery()->orderByQuery()->filterQuery()->search();
     }
 
     /**
