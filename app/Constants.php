@@ -10,5 +10,9 @@ namespace App;
  */
 class Constants
 {
-    public const errorInput = 'errorInput';
+    public const response                           = 'response';
+    public const errorInput                         = 'errorInput';
+    public const debugBackTrace                     = 'debugBackTrace';
+    public const validatorRules                     = 'validatorRules';
+    public const responseFormatterSupplement        = 'responseFormatterSupplement';
 }

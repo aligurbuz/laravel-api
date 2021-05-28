@@ -1,12 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Services;
 
 use Exception;
 use Throwable;
+use App\Constants;
 use JetBrains\PhpStorm\ArrayShape;
 use App\Facades\Authenticate\ApiKey;
 
+/**
+ * Class Response
+ * @package App\Services
+ */
 class Response
 {
     /**
@@ -33,7 +40,7 @@ class Response
             'env'           => config('app.env'),
             'responseCode'  => static::responseCode(),
             'resource'      => $data,
-            'instructions'  => AppContainer::get('responseFormatterSupplement'),
+            'instructions'  => AppContainer::get(Constants::responseFormatterSupplement),
         ];
 
         return static::response($standard,$code);
@@ -178,8 +185,8 @@ class Response
                 request()->method() => static::getRequest(),
                 'queryParams' => request()->query->all()
             ],
-            'debugBackTrace' => AppContainer::has('debugBackTrace')
-                ? AppContainer::get('debugBackTrace')
+            'debugBackTrace' => AppContainer::has(Constants::debugBackTrace)
+                ? AppContainer::get(Constants::debugBackTrace)
                 : debug_backtrace()
         ];
     }
@@ -217,7 +224,7 @@ class Response
      */
     private static function errorInput() : ?string
     {
-        return AppContainer::get('errorInput');
+        return AppContainer::get(Constants::errorInput);
     }
 
     /**
@@ -227,7 +234,7 @@ class Response
      */
     private static function rules() : mixed
     {
-        return AppContainer::get('validatorRules');
+        return AppContainer::get(Constants::validatorRules);
     }
 
     /**
@@ -239,7 +246,7 @@ class Response
      */
     private static function formatter(array $data = [],$code = 200): object
     {
-        AppContainer::set('response',$data);
+        AppContainer::set(Constants::response,$data);
 
         return response()->json($data,$code);
     }
