@@ -1,10 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Exceptions;
 
-use App\Services\AppContainer;
 use Throwable;
+use App\Constants;
+use App\Services\AppContainer;
 
+/**
+ * Class SqlExceptionManager
+ * @package App\Exceptions
+ */
 class SqlExceptionManager
 {
     /**
@@ -66,7 +73,7 @@ class SqlExceptionManager
         // when a unique exception is caught,
         // the column name must be sent to the errorInput container value.
         if(preg_match('@\''.static::$table.'\.(.*?)\'@is',$message,$column)){
-            AppContainer::set('errorInput',($column[1] ?? null));
+            AppContainer::set(Constants::errorInput,($column[1] ?? null));
         }
 
         // we parse the message in the mysql unique exception message and get it.
