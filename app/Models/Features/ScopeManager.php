@@ -94,9 +94,7 @@ trait ScopeManager
 
         $searchableTerm = $this->fullTextWildcards($term);
 
-        return $builder->selectRaw("*,MATCH ({$columns}) AGAINST (? IN BOOLEAN MODE) AS relevance_score", [$searchableTerm])
-            ->whereRaw("MATCH ({$columns}) AGAINST (? IN BOOLEAN MODE)", $searchableTerm)
-            ->orderByDesc('relevance_score');
+        return $builder->whereRaw("MATCH ({$columns}) AGAINST (? IN BOOLEAN MODE)", $searchableTerm);
     }
 
     /**
