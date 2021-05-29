@@ -73,8 +73,9 @@ class EloquentRepository
 
         foreach ($clientData as $data){
             $baseQuery = $this->graphQl()->where(function(Builder $builder) use($data,$id){
-                if(isset($data['id']) || $id === true){
-                    $builder->where('id',intval(($data['id'] ?? 0)));
+                $modelCode = strtolower($this->getModelName()).'_code';
+                if(isset($data[$modelCode]) || $id === true){
+                    $builder->where($modelCode,intval(($data[$modelCode] ?? 0)));
                 }
             });
 
@@ -82,7 +83,7 @@ class EloquentRepository
                 $update = $baseQuery->update($data);
             }
             catch (\Exception $exception){
-               return $this->sqlException($exception);
+                return $this->sqlException($exception);
             }
 
             if($update=='0'){
@@ -120,13 +121,23 @@ class EloquentRepository
     }
 
     /**
-     * get model name
+     * get model namespace for repository
      *
      * @return mixed
      */
     public function getModel(): mixed
     {
         return static::$model;
+    }
+
+    /**
+     * get model name for repository
+     *
+     * @return string
+     */
+    public function getModelName(): string
+    {
+        return class_basename($this->getModel());
     }
 
     /**
