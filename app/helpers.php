@@ -2,6 +2,7 @@
 
 use App\Services\Client;
 use JetBrains\PhpStorm\Pure;
+use App\Exceptions\Exception;
 use App\Models\Entities\EntityMap;
 use Illuminate\Support\Facades\DB;
 
@@ -44,5 +45,23 @@ if(!function_exists('generateHash')){
     function generateHash(): int
     {
         return crc32(Client::fingerPrint().'_'.time().'_'.rand(1,999999));
+    }
+}
+
+if(!function_exists('inValidCodeException')){
+
+    /**
+     * throws exception for invalid code
+     *
+     * @param ?string $key
+     * @param ?int $value
+     * @return object
+     */
+    function inValidCodeException(?string $key = null,?int $value = null): object
+    {
+        return Exception::customException(trans('exception.codeException',[
+            'key' => $key,
+            'value' => $value
+        ]));
     }
 }

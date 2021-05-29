@@ -80,6 +80,18 @@ class ClientCommand extends Command
                 ->addComment('@return int');
         }
 
+        if($method=='Update'){
+            $generator->addMethod('isValid'.ucfirst($modelName).'CodeGenerator')
+                ->setBody('if(!$this->repository()->exists(\''.strtolower($modelName).'_code\',$this->get(\''.strtolower($modelName).'_code\'))){
+    inValidCodeException(\''.strtolower($modelName).'_code\',$this->get(\''.strtolower($modelName).'_code\'));
+}
+
+return null;')
+                ->addComment('check if the '.strtolower($modelName).'_code is valid')
+                ->addComment('')
+                ->addComment('@return null');
+        }
+
         if($method=='Create'){
             $generator->addProperty('generators',[strtolower($modelName).'_code'])->setType('array')->setProtected()
                 ->addComment('get auto generator for client')
@@ -90,6 +102,18 @@ class ClientCommand extends Command
                 ->addComment('get dont overwrite generator for client')
                 ->addComment('')
                 ->addComment('@return array');
+        }
+        elseif($method=='Update'){
+            $generator->addProperty('generators',['isValid'.ucfirst($modelName).'Code'])->setType('array')->setProtected()
+                ->addComment('get auto generator for client')
+                ->addComment('')
+                ->addComment('@return array');
+
+            $generator->addProperty('dontOverWriteGenerators',['isValid'.ucfirst($modelName).'Code'])->setType('array')->setProtected()
+                ->addComment('get dont overwrite generator for client')
+                ->addComment('')
+                ->addComment('@return array');
+
         }
         else{
             $generator->addProperty('generators',[])->setType('array')->setProtected()
