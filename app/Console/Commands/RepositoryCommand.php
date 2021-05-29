@@ -162,7 +162,7 @@ use '.$contractClassRepositoryName.';',$getRepositoryFile);
      *
      * @return '.$contractClassName.'
      */
-    public function '.lcfirst($modelName).'() : '.$contractClassName.'
+    public static function '.lcfirst($modelName).'() : '.$contractClassName.'
     {
         return app()->get('.$contractClassName.'::class);
     }
