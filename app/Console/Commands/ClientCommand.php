@@ -112,10 +112,21 @@ class ClientCommand extends Command
             ->addComment('')
             ->addComment('@var array|string[]');
 
-        $classGenerator->addProperty('rule',[])->setType('array')->setProtected()
-            ->addComment('get rule for client')
-            ->addComment('')
-            ->addComment('@var array');
+        if($method=='Update'){
+            $classGenerator->addProperty('rule',[
+                strtolower($modelName).'_code' => 'required|integer'
+            ])->setType('array')->setProtected()
+                ->addComment('get rule for client')
+                ->addComment('')
+                ->addComment('@var array');
+        }
+        else{
+            $classGenerator->addProperty('rule',[])->setType('array')->setProtected()
+                ->addComment('get rule for client')
+                ->addComment('')
+                ->addComment('@var array');
+        }
+
 
         $file = $fileClass.'.php';
 
