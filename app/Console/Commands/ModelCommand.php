@@ -21,7 +21,7 @@ class ModelCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Create model';
 
     /**
      * Create a new command instance.
@@ -49,7 +49,11 @@ class ModelCommand extends Command
         $modelFileChange = str_replace('use Illuminate\Database\Eloquent\Model;','use Illuminate\Database\Eloquent\Model;
 use App\Models\Features\BaseManager;',$modelFileContent);
 
-        $modelFileChange = str_replace('use HasFactory;','use HasFactory,BaseManager;',$modelFileChange);
+        $modelFileChange = str_replace('use HasFactory;','use HasFactory,BaseManager;
+
+        protected array $searchable = [];
+
+        protected $hidden = [\'id\'];',$modelFileChange);
 
         File::put($modelFile,$modelFileChange);
 
