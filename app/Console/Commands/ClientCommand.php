@@ -82,7 +82,7 @@ class ClientCommand extends Command
 
         if($method=='Update'){
             $generator->addMethod('isValid'.ucfirst($modelName).'CodeGenerator')
-                ->setBody('if(!$this->repository()->exists(\''.strtolower($modelName).'_code\',$this->get(\''.strtolower($modelName).'_code\'))){
+                ->setBody('if($this->has(\''.strtolower($modelName).'_code\') && !$this->repository()->exists(\''.strtolower($modelName).'_code\',$this->get(\''.strtolower($modelName).'_code\'))){
     inValidCodeException(\''.strtolower($modelName).'_code\',$this->get(\''.strtolower($modelName).'_code\'));
 }
 
