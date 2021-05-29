@@ -105,7 +105,7 @@ trait ClientAutoGeneratorTrait
     {
         if(request()->method()=='PUT' && $this->has('is_deleted') && $this->get('is_deleted')=='1'){
             return $this->ensureColumnExists('deleted_at',function(){
-                return Date::now()->toDayDateTimeString();
+                return Date::now()->toDateTimeString();
             });
         }
 

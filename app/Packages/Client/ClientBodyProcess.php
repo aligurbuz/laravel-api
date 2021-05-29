@@ -116,6 +116,7 @@ class ClientBodyProcess extends ClientVariableProcess
 
             $list = [];
             $types = Db::types($table);
+            $autoRules = $this->client->getAutoRule();
             $customRules = $this->client->getCustomRule();
 
             foreach ($data as $key => $value){
@@ -124,6 +125,10 @@ class ClientBodyProcess extends ClientVariableProcess
 
                     if(isset($customRules[$type])){
                         $list[$key] = $customRules[$type];
+                    }
+                    elseif(isset($autoRules[$key])){
+                        $list[$key] = $autoRules[$key];
+                        $types[$key] = $autoRules[$key];
                     }
                     else{
                         $list[$key] = $types[$key];
@@ -160,8 +165,15 @@ class ClientBodyProcess extends ClientVariableProcess
                             $typeMessage = trans('validation.'.$key,['attribute' => $key]);
 
                             if($typeMessage==='validation.'.$key){
-                                static::errorContainer($types[$key],'errorInput');
-                                $typeMessage = trans('validation.'.$types[$key],['attribute' => $key]);
+                                if(is_array($types[$key])){
+                                    $types[$key] = current($types[$key]);
+                                    static::errorContainer($key,'errorInput');
+                                    $typeMessage = trans('validation.custom.'.$key.'.regex',['attribute' => $key]);
+                                }
+                                else{
+                                    static::errorContainer($types[$key],'errorInput');
+                                    $typeMessage = trans('validation.'.$types[$key],['attribute' => $key]);
+                                }
                             }
                         }
                     }
@@ -190,12 +202,18 @@ class ClientBodyProcess extends ClientVariableProcess
 
         foreach ($rules as $key => $rule){
             if(isset($autoRules[$key])){
-                $list[$key] = $rule.'|'.$autoRules[$key];
+                if(is_array($autoRules[$key])){
+                    $list[$key] = $autoRules[$key];
+                }
+                else{
+                    $list[$key] = $rule.'|'.$autoRules[$key];
+                }
             }
             else{
                 $list[$key] = $rule;
             }
         }
+
 
         return $list;
     }
