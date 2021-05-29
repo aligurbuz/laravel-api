@@ -72,12 +72,16 @@ class ClientCommand extends Command
 
         $generator = new PhpNamespace($namespace);
         $generator = $generator->addTrait($traitName = 'GeneratorTrait');
-        $generator->addProperty('generators',[])->setType('array')->setProtected()
+        $generator->addMethod(strtolower($modelName).'CodeGenerator')->setReturnType('int')->setBody('return generateHash();')
+            ->addComment('generates '.strtolower($modelName).'_code for client')
+            ->addComment('')
+            ->addComment('@return int');
+        $generator->addProperty('generators',[strtolower($modelName).'_code'])->setType('array')->setProtected()
             ->addComment('get auto generator for client')
             ->addComment('')
             ->addComment('@return array');
 
-        $generator->addProperty('dontOverWriteGenerators',[])->setType('array')->setProtected()
+        $generator->addProperty('dontOverWriteGenerators',[strtolower($modelName).'_code'])->setType('array')->setProtected()
             ->addComment('get dont overwrite generator for client')
             ->addComment('')
             ->addComment('@return array');
