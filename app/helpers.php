@@ -1,5 +1,6 @@
 <?php
 
+use App\Services\Client;
 use JetBrains\PhpStorm\Pure;
 use App\Models\Entities\EntityMap;
 use Illuminate\Support\Facades\DB;
