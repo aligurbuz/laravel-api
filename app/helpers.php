@@ -32,3 +32,16 @@ if(!function_exists('fullTextSearchTable')){
         DB::statement($queryString);
     }
 }
+
+if(!function_exists('generateHash')){
+
+    /**
+     * generates hash via crc32 method
+     *
+     * @return int
+     */
+    function generateHash(): int
+    {
+        return crc32(Client::fingerPrint().'_'.time().'_'.rand(1,999999));
+    }
+}
