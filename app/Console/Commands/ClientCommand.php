@@ -72,19 +72,37 @@ class ClientCommand extends Command
 
         $generator = new PhpNamespace($namespace);
         $generator = $generator->addTrait($traitName = 'GeneratorTrait');
-        $generator->addMethod(strtolower($modelName).'CodeGenerator')->setReturnType('int')->setBody('return generateHash();')
-            ->addComment('generates '.strtolower($modelName).'_code for client')
-            ->addComment('')
-            ->addComment('@return int');
-        $generator->addProperty('generators',[strtolower($modelName).'_code'])->setType('array')->setProtected()
-            ->addComment('get auto generator for client')
-            ->addComment('')
-            ->addComment('@return array');
 
-        $generator->addProperty('dontOverWriteGenerators',[strtolower($modelName).'_code'])->setType('array')->setProtected()
-            ->addComment('get dont overwrite generator for client')
-            ->addComment('')
-            ->addComment('@return array');
+        if($method=='Create'){
+            $generator->addMethod(strtolower($modelName).'CodeGenerator')->setReturnType('int')->setBody('return generateHash();')
+                ->addComment('generates '.strtolower($modelName).'_code for client')
+                ->addComment('')
+                ->addComment('@return int');
+        }
+
+        if($method=='Create'){
+            $generator->addProperty('generators',[strtolower($modelName).'_code'])->setType('array')->setProtected()
+                ->addComment('get auto generator for client')
+                ->addComment('')
+                ->addComment('@return array');
+
+            $generator->addProperty('dontOverWriteGenerators',[strtolower($modelName).'_code'])->setType('array')->setProtected()
+                ->addComment('get dont overwrite generator for client')
+                ->addComment('')
+                ->addComment('@return array');
+        }
+        else{
+            $generator->addProperty('generators',[])->setType('array')->setProtected()
+                ->addComment('get auto generator for client')
+                ->addComment('')
+                ->addComment('@return array');
+
+            $generator->addProperty('dontOverWriteGenerators',[])->setType('array')->setProtected()
+                ->addComment('get dont overwrite generator for client')
+                ->addComment('')
+                ->addComment('@return array');
+        }
+
 
         $file = $methodPath.''.DIRECTORY_SEPARATOR.''.$traitName.'.php';
 
