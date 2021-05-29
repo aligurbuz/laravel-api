@@ -4,6 +4,7 @@ namespace App\Client;
 
 use App\Factory\Factory;
 use App\Facades\Authenticate\Authenticate;
+use App\Services\Date;
 
 trait ClientAutoGeneratorTrait
 {
@@ -17,6 +18,7 @@ trait ClientAutoGeneratorTrait
         'created_by',
         'updated_by',
         'deleted_by',
+        'deleted_at',
         'clientFileProcess',
     ];
 
@@ -30,6 +32,7 @@ trait ClientAutoGeneratorTrait
         'created_by',
         'updated_by',
         'deleted_by',
+        'deleted_at',
         'clientFileProcess',
     ];
 
@@ -84,9 +87,25 @@ trait ClientAutoGeneratorTrait
      */
     public function deletedByAutoGenerator(): mixed
     {
-        if(request()->method()=='PUT'){
+        if(request()->method()=='PUT' && $this->has('is_deleted') && $this->get('is_deleted')=='1'){
             return $this->ensureColumnExists('deleted_by',function(){
                 return Authenticate::id();
+            });
+        }
+
+        return null;
+    }
+
+    /**
+     * get deleted_by generator for client
+     *
+     * @return mixed
+     */
+    public function deletedAtAutoGenerator(): mixed
+    {
+        if(request()->method()=='PUT' && $this->has('is_deleted') && $this->get('is_deleted')=='1'){
+            return $this->ensureColumnExists('deleted_at',function(){
+                return Date::now()->toDayDateTimeString();
             });
         }
 
