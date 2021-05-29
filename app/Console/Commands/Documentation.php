@@ -126,6 +126,9 @@ class Documentation extends Command
             'created_by' => 'integer',
             'updated_by' => 'integer',
             'deleted_by' => 'integer',
+            'deleted_at' => 'timestamp',
+            'is_deleted' => 'integer',
+            'status' => 'integer',
             $this->argument('model').'_code' => 'integer'
         ]));
         $list['item'][$key]['item'][1]['request']['body']['options']['raw']['language'] = 'json';
