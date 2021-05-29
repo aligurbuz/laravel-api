@@ -211,9 +211,9 @@ class EloquentRepository
      * get instance
      *
      * @param bool $repository
-     * @return Builder
+     * @return object
      */
-    public function instance($repository = true) : Builder
+    public function instance($repository = true) : object
     {
         if(is_null($this->repository)){
             $this->repository = static::$model::repository($this,$repository);
