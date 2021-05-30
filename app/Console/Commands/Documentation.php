@@ -144,12 +144,14 @@ class Documentation extends Command
         $list['item'][$key]['item'][2]['request']['method'] = 'PUT';
         $list['item'][$key]['item'][2]['request']['header'] = $getHeaders;
         $list['item'][$key]['item'][2]['request']['body']['mode'] = 'raw';
+        $columns['is_deleted'] = '0';
+        $columns['status'] = '1';
         $list['item'][$key]['item'][2]['request']['body']['raw'] = json_encode(array_diff_key($columns,[
             'id' => 'integer',
             'created_by' => 'integer',
             'updated_by' => 'integer',
             'deleted_by' => 'integer',
-            $this->argument('model').'_code' => 'integer'
+            'deleted_at' => 'timestamp'
         ]));
         $list['item'][$key]['item'][2]['request']['body']['options']['raw']['language'] = 'json';
 
