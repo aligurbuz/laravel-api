@@ -61,7 +61,7 @@ class MigrationCommand extends Command
 
         $content = File::get($createdFilePath);
         $content = str_replace('$table->id();','$table->id();
-            $table->bigInteger(\''.$modelCode.'\')->default(0)->index();
+            $table->bigInteger(\''.$modelCode.'\')->default(0)->unique()->index();
 
             $table->boolean(\'status\')->default(1);
             $table->boolean(\'is_deleted\')->default(0);
