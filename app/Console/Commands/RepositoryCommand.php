@@ -113,8 +113,8 @@ class RepositoryCommand extends Command
             ->addComment('@param array|string[] $select')
             ->addComment('@return array')->addComment('@see '.$className.'::find()');
 
-        $interfaceMethodFind = $class->addMethod('all')->setReturnType('array');
-        $interfaceMethodFind
+        $interfaceMethodAll = $class->addMethod('all')->setReturnType('array');
+        $interfaceMethodAll
             ->addComment('@return array')->addComment('@see '.$className.'::all()');
 
         $interfaceMethodFind->addParameter('id')->setType(new Literal('int'));
