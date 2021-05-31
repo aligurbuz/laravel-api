@@ -6,7 +6,6 @@ namespace App\Repositories;
 
 use App\Repositories\User\Contracts\UserRepositoryContract;
 use App\Repositories\Countries\Contracts\CountriesRepositoryContract;
-use App\Repositories\User\Contracts\CommentRepositoryContract;
 use App\Repositories\Logger\Contracts\LoggerRepositoryContract;
 
 /**
@@ -24,7 +23,7 @@ class Repository
     {
         return app()->get(CountriesRepositoryContract::class);
     }
-    
+
     /**
      * get user repository instance
      *
@@ -33,16 +32,6 @@ class Repository
     public static function user() : UserRepositoryContract
     {
         return app()->get(UserRepositoryContract::class);
-    }
-
-    /**
-     * get user comment repository instance
-     *
-     * @return CommentRepositoryContract
-     */
-    public static function userComment() : CommentRepositoryContract
-    {
-        return app()->get(CommentRepositoryContract::class);
     }
 
     /**

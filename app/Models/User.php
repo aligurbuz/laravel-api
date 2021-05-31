@@ -57,20 +57,12 @@ class User extends Authenticatable
     ];
 
     protected $withQuery = [
-        'comments' => [
+        /**'comments' => [
             'foreignColumn' => 'user_id',
             'localColumn'   => 'id',
             'table' => 'user_comments',
             'description' => 'You can use comments relation belonging to user data.',
             'repository' => 'userComment',
-        ],
+        ],**/
     ];
-
-    /**
-     * @return HasMany
-     */
-    public function comments(): HasMany
-    {
-        return $this->hasMany(User_comment::class,'user_id','id');
-    }
 }
