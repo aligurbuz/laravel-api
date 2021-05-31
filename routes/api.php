@@ -5,7 +5,6 @@ use App\Http\Controllers\Countries\CountriesController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
-use App\Http\Controllers\User\CommentController;
 use App\Http\Controllers\Logger\LoggerController;
 use App\Http\Controllers\Register\RegisterController;
 
@@ -30,10 +29,6 @@ Route::middleware(['auth:api'])->group(function(){
     Route::put('/countries', [CountriesController::class,'update']);
 
     Route::post('/logout', [LogoutController::class,'logout']);
-
-    Route::get('/user/comment', [CommentController::class,'get']);
-    Route::post('/user/comment', [CommentController::class,'create']);
-    Route::put('/user/comment', [CommentController::class,'update']);
 
     Route::get('/logger', [LoggerController::class,'get']);
     Route::post('/logger', [LoggerController::class,'create']);
