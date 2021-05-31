@@ -55,7 +55,7 @@ trait BaseManager
         $modelAppends = array_merge($this->autoModelAppends,($this->modelAppends ?? []));
         AppContainer::set('responseFormatterSupplement',['appends' => $modelAppends]);
 
-        $clientAppends = ((request()->query->all())['append']) ?? null;
+        $clientAppends = (request()->query->all())['append'] ?? null;
 
         if(!is_null($clientAppends)){
             $appendsList = explode(',',$clientAppends);
