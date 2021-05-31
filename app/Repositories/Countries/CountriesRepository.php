@@ -1,11 +1,10 @@
-<?php 
+<?php
 
 namespace App\Repositories\Countries;
 
 use App\Models\Country;
-use App\Repositories\Countries\Contracts\CountriesRepositoryContract;
 use App\Repositories\EloquentRepository;
-use Illuminate\Database\Eloquent\Builder;
+use App\Repositories\Countries\Contracts\CountriesRepositoryContract;
 
 class CountriesRepository extends EloquentRepository implements CountriesRepositoryContract
 {
