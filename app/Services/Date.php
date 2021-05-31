@@ -34,4 +34,19 @@ class Date
     {
         return Carbon::now((new self())->timezone);
     }
+
+    /**
+     * create format for date
+     *
+     * @param $format
+     * @param $data
+     * @param null $tz
+     * @return Carbon|false
+     */
+    public static function createFormat($data,$format = 'Y-m-d H:i',$tz = null): bool|Carbon
+    {
+        $tz = is_null($tz) ? (new self())->timezone : $tz;
+
+        return Carbon::createFromFormat($format,$data,$tz);
+    }
 }
