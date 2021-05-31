@@ -26,9 +26,9 @@ class Authenticate extends FacadeManager
      *
      * @return mixed
      */
-    public static function id(): mixed
+    public static function code(): mixed
     {
-        return (new self)->data->id ?? 0;
+        return (new self)->data->user_code ?? 0;
     }
 
     /**

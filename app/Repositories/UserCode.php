@@ -1,5 +1,6 @@
 <?php
 
+declare(strict_types=1);
 
 namespace App\Repositories;
 
@@ -10,7 +11,7 @@ use App\Facades\Authenticate\Authenticate;
  * Class UserId
  * @package App\Repositories
  */
-class UserId
+class UserCode
 {
     /**
      * @var Builder
@@ -34,7 +35,7 @@ class UserId
      */
     public function handle($column) : object
     {
-        return $this->builder->where($column,Authenticate::id());
+        return $this->builder->where($column,Authenticate::code());
     }
 }
 

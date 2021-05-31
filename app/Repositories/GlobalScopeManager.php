@@ -15,7 +15,7 @@ class GlobalScopeManager
     /**
      * @var array|string[]
      */
-    protected array $scopes = ['userId'];
+    protected array $scopes = ['userCode'];
 
     /**
      * @var string
@@ -84,7 +84,7 @@ class GlobalScopeManager
     private function handler($scope): object
     {
         return $this->ensureColumnExists($columnName = Str::snake($scope),function() use($columnName,$scope){
-            $resource = $this->resource.'\\'.$scope;
+            $resource = $this->resource.'\\'.ucfirst($scope);
             if(class_exists($resource)){
                 return (new $resource($this->builder))->handle($columnName);
             }

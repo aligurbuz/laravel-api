@@ -44,7 +44,7 @@ trait ClientAutoGeneratorTrait
     public function userIdAutoGenerator(): mixed
     {
         return $this->ensureColumnExists('user_id',function(){
-           return Authenticate::id();
+           return Authenticate::code();
         });
     }
 
@@ -57,7 +57,7 @@ trait ClientAutoGeneratorTrait
     {
         if(request()->method()=='POST'){
             return $this->ensureColumnExists('created_by',function(){
-                return Authenticate::id();
+                return Authenticate::code();
             });
         }
 
@@ -73,7 +73,7 @@ trait ClientAutoGeneratorTrait
     {
         if(request()->method()=='PUT'){
             return $this->ensureColumnExists('updated_by',function(){
-                return Authenticate::id();
+                return Authenticate::code();
             });
         }
 
@@ -89,7 +89,7 @@ trait ClientAutoGeneratorTrait
     {
         if(request()->method()=='PUT' && $this->has('is_deleted') && $this->get('is_deleted')=='1'){
             return $this->ensureColumnExists('deleted_by',function(){
-                return Authenticate::id();
+                return Authenticate::code();
             });
         }
 

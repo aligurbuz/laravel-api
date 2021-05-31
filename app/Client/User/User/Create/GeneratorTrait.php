@@ -9,12 +9,22 @@ trait GeneratorTrait
      *
      * @var array
      */
-    protected array $generators = [];
+    protected array $generators = ['user_code'];
 
     /**
      * get dont overwrite generator for client
      *
      * @var array
      */
-    protected array $dontOverWriteGenerators = [];
+    protected array $dontOverWriteGenerators = ['user_code'];
+
+    /**
+     * generates user_code for client
+     *
+     * @return int
+     */
+    public function userCodeGenerator() : int
+    {
+        return generateHash();
+    }
 }

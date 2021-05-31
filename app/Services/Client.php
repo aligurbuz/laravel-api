@@ -21,7 +21,7 @@ class Client
             $request->query->all(),
             $request->request->all(),
             $request->ip(),
-            Authenticate::id()
+            Authenticate::code()
         ]))));
     }
 

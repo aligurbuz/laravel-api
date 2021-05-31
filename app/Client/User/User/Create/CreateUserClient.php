@@ -38,7 +38,6 @@ class CreateUserClient extends Client
         'name'      => 'required|max:50',
         'email'     => 'required',
         'password'  => 'required',
-        'username'  => 'required|max:20',
     ];
 
     /**
