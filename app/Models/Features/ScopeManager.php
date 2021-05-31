@@ -28,6 +28,11 @@ trait ScopeManager
      */
     protected array $operators = ['<','>','<=','>=','<>'];
 
+    protected array $autoRanges = [
+        'desc'      => 'Sorts your object by last registration value.',
+        'active'    => 'It filters according to the status=1 value for your object.',
+    ];
+
     /**
      * get client scope data for model
      *
@@ -40,13 +45,13 @@ trait ScopeManager
     {
         $range          = $data  ?? ((request()->query->all())['range'] ?? '');
         $ranges         = is_string($range) ? explode(',',$range) : [];
-        $modelRanges    = array_merge($object->getRanges(),['active','desc']);
+        $modelRanges    = array_merge($object->getRanges(),$this->autoRanges);
 
         //We record the instruction value in the response data to inform the user.
         AppContainer::set('responseFormatterSupplement',['ranges' => $modelRanges],true);
 
         foreach ($ranges as $data){
-            if(in_array($data,$modelRanges) && method_exists($object,$data)){
+            if(array_key_exists($data,$modelRanges) && method_exists($object,$data)){
                 $object->$range($builder);
             }
         }
