@@ -16,6 +16,8 @@ class User_comment extends Model
      */
     protected array $searchable = [];
 
+    protected array $modelAppends = [];
+
     protected $withQuery = [
         'user' => [
             'foreignColumn' => 'id',

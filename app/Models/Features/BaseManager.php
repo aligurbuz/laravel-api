@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models\Features;
 
+use App\Services\AppContainer;
 use App\Services\Db;
 
 /**
@@ -12,7 +13,15 @@ use App\Services\Db;
  */
 trait BaseManager
 {
-    use ScopeManager;
+    use ScopeManager,GeneralAppends;
+
+    /**
+     * @var array|string[]
+     */
+    protected array $autoModelAppends = [
+        'created_at_human' => 'Displays the created_at value in diffForHumans format.',
+        'updated_at_human' => 'Displays the updated_at value in diffForHumans format.'
+    ];
 
     /**
      * BaseManager constructor.
@@ -21,6 +30,7 @@ trait BaseManager
     public function __construct(array $attributes = [])
     {
         $this->fillable = Db::columns($this->getTable());
+        $this->assignAppends();
         parent::__construct($attributes);
     }
 
@@ -32,5 +42,31 @@ trait BaseManager
     protected static function boot()
     {
         parent::boot();
+    }
+
+    /**
+     * set appends according to client
+     *
+     * @return void
+     */
+    public function assignAppends()
+    {
+        $list = [];
+        $modelAppends = array_merge($this->autoModelAppends,($this->modelAppends ?? []));
+        AppContainer::set('responseFormatterSupplement',['appends' => $modelAppends]);
+
+        $clientAppends = ((request()->query->all())['appends']) ?? null;
+
+        if(!is_null($clientAppends)){
+            $appendsList = explode(',',$clientAppends);
+
+            foreach ($appendsList as $item){
+                if(isset($modelAppends[$item])){
+                    $list[] = $item;
+                }
+            }
+        }
+
+        $this->setAppends($list);
     }
 }
