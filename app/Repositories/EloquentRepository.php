@@ -239,7 +239,7 @@ class EloquentRepository
      */
     public function all() : array
     {
-        return static::$model::all()->toArray();
+        return $this->graphQl()->get()->toArray();
     }
 
     /**
