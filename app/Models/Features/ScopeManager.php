@@ -28,6 +28,9 @@ trait ScopeManager
      */
     protected array $operators = ['<','>','<=','>=','<>'];
 
+    /**
+     * @var array|string[]
+     */
     protected array $autoRanges = [
         'desc'      => 'Sorts your object by last registration value.',
         'active'    => 'It filters according to the status=1 value for your object.',
