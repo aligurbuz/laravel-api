@@ -1,0 +1,138 @@
+{
+    "name": "Countries",
+    "item": [
+        {
+            "name": "Countries",
+            "item": [
+                {
+                    "name": "Countries",
+                    "response": [],
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{bearerToken}}",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Apikey",
+                                "value": "{{apiKey}}",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "{{contentType}}",
+                                "type": "text"
+                            }
+                        ],
+                        "body": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/countries",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "countries"
+                            ],
+                            "query": [
+                                {
+                                    "key": "range",
+                                    "value": "desc",
+                                    "description": "",
+                                    "disabled": true
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Countries",
+                    "response": [],
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{bearerToken}}",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Apikey",
+                                "value": "{{apiKey}}",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "{{contentType}}",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"iso\":\"string\",\"name\":\"string\",\"default_name\":\"string\",\"iso3\":\"string\",\"num_code\":\"integer\",\"phone_code\":\"integer\"}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/countries",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "countries"
+                            ],
+                            "query": []
+                        }
+                    }
+                },
+                {
+                    "name": "Countries",
+                    "response": [],
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{bearerToken}}",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Apikey",
+                                "value": "{{apiKey}}",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "{{contentType}}",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"iso\":\"string\",\"name\":\"string\",\"default_name\":\"string\",\"iso3\":\"string\",\"num_code\":\"integer\",\"phone_code\":\"integer\",\"is_deleted\":\"0\",\"status\":\"1\"}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/countries",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "countries"
+                            ],
+                            "query": []
+                        }
+                    }
+                }
+            ]
+        }
+    ]
+}

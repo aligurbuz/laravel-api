@@ -12,6 +12,12 @@ interface CommentRepositoryContract
 	 */
 	function get(): array;
 
+    /**
+     * @return array
+     * @see CommentRepository::all()
+     */
+    public function all() : array;
+
 
 	/**
 	 * @param array $data

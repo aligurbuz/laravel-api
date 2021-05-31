@@ -2,13 +2,16 @@
     "files": [
         "/var/www/html/app/api/app/Docs/Endpoints/User/User.json",
         "/var/www/html/app/api/app/Docs/Endpoints/Auth/Auth.json",
-        "/var/www/html/app/api/app/Docs/Endpoints/Register/Register.json"
+        "/var/www/html/app/api/app/Docs/Endpoints/Register/Register.json",
+        "/var/www/html/app/api/app/Docs/Endpoints/Countries/Countries.json"
     ],
     "keys": {
-        "/var/www/html/app/api/app/Docs/Endpoints/User/User.json": 0
+        "/var/www/html/app/api/app/Docs/Endpoints/User/User.json": 0,
+        "/var/www/html/app/api/app/Docs/Endpoints/Countries/Countries.json": 0
     },
     "fingerPrints": {
         "User_User_user": 0,
-        "Comment_User_user_comment": 1
+        "Comment_User_user_comment": 1,
+        "Countries_Countries_country": 0
     }
 }

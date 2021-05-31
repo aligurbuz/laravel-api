@@ -13,6 +13,12 @@ interface UserRepositoryContract
     public function get(): array;
 
     /**
+     * @return array
+     * @see UserRepository::all()
+     */
+    public function all() : array;
+
+    /**
      * @param array $data
      * @return mixed
      * @see UserRepository::create()

@@ -12,6 +12,11 @@ interface LoggerRepositoryContract
 	 */
 	function get(): array;
 
+    /**
+     * @return array
+     * @see LoggerRepository::all()
+     */
+    public function all() : array;
 
 	/**
 	 * @param array $data

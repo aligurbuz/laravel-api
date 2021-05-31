@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Repositories;
 
 use App\Repositories\User\Contracts\UserRepositoryContract;
+use App\Repositories\Countries\Contracts\CountriesRepositoryContract;
 use App\Repositories\User\Contracts\CommentRepositoryContract;
 use App\Repositories\Logger\Contracts\LoggerRepositoryContract;
 
@@ -14,6 +15,16 @@ use App\Repositories\Logger\Contracts\LoggerRepositoryContract;
  */
 class Repository
 {
+    /**
+     * get country repository instance
+     *
+     * @return CountriesRepositoryContract
+     */
+    public static function country() : CountriesRepositoryContract
+    {
+        return app()->get(CountriesRepositoryContract::class);
+    }
+    
     /**
      * get user repository instance
      *

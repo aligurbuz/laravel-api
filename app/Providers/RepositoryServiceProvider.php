@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Repositories\Countries\Contracts\CountriesRepositoryContract;
+use App\Repositories\Countries\CountriesRepository;
 use App\Repositories\User\UserRepository;
 use App\Repositories\User\CommentRepository;
 use App\Repositories\Logger\LoggerRepository;
@@ -22,6 +24,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(UserRepositoryContract::class,UserRepository::class);
         $this->app->bind(CommentRepositoryContract::class,CommentRepository::class);
         $this->app->bind(LoggerRepositoryContract::class,LoggerRepository::class);
+        $this->app->bind(CountriesRepositoryContract::class,CountriesRepository::class);
         //newBind
     }
 

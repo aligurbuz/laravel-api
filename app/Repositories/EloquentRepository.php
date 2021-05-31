@@ -233,6 +233,16 @@ class EloquentRepository
     }
 
     /**
+     * get all entries for model
+     *
+     * @return array
+     */
+    public function all() : array
+    {
+        return static::$model::all()->toArray();
+    }
+
+    /**
      * get graphql builder
      *
      * @return mixed
