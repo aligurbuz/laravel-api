@@ -6,6 +6,7 @@ namespace App\Models\Entities;
 
 /**
  * @property $this id
+ * @property $this country_code
  * @property $this iso
  * @property $this name
  * @property $this default_name
@@ -44,6 +45,17 @@ class Country
 	protected static function id(): mixed
 	{
 		return self::$query->id;
+	}
+
+
+	/**
+	 * get country_code column for database table
+	 *
+	 * @return mixed
+	 */
+	protected static function country_code(): mixed
+	{
+		return self::$query->country_code;
 	}
 
 

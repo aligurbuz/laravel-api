@@ -1,5 +1,4 @@
 {
-    "name": "Countries",
     "item": [
         {
             "name": "Countries",
@@ -113,7 +112,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"iso\":\"string\",\"name\":\"string\",\"default_name\":\"string\",\"iso3\":\"string\",\"num_code\":\"integer\",\"phone_code\":\"integer\",\"is_deleted\":\"0\",\"status\":\"1\"}",
+                            "raw": "{\"country_code\":\"integer\",\"iso\":\"string\",\"name\":\"string\",\"default_name\":\"string\",\"iso3\":\"string\",\"num_code\":\"integer\",\"phone_code\":\"integer\",\"is_deleted\":\"0\",\"status\":\"1\"}",
                             "options": {
                                 "raw": {
                                     "language": "json"
@@ -134,5 +133,6 @@
                 }
             ]
         }
-    ]
+    ],
+    "name": "Countries"
 }
