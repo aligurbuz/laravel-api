@@ -12,5 +12,5 @@ class Country extends Model
 
         protected array $searchable = [];
 
-        protected $hidden = [];
+        protected $hidden = ['id'];
 }
