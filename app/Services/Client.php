@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Services;
 
 use App\Facades\Authenticate\Authenticate;
@@ -9,9 +11,9 @@ class Client
     /**
      * get client finger print for request
      *
-     * @return string
+     * @return int
      */
-    public static function fingerPrint(): string
+    public static function fingerPrint(): int
     {
         $request = request();
 
