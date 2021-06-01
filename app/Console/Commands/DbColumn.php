@@ -54,6 +54,8 @@ class DbColumn extends Command
 
         $list = [];
         $list['required_columns'] = [];
+        $list['max_length_columns'] = [];
+        $list['max_length_values'] = [];
         $list['indexes'] = [];
 
         foreach ($indexes as $index){
