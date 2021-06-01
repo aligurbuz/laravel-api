@@ -60,6 +60,11 @@ class Response
     {
         $code  = ($code == '0' || !is_numeric($code)) ? 500 : $code;
         $trace = ($exception instanceof Throwable) ? $exception : debug_backtrace();
+        $classBaseName = class_basename($trace);
+
+        if($classBaseName=='NotFoundHttpException'){
+            $code = 404;
+        }
 
         $standard = [
             'status'        => false,
@@ -68,7 +73,7 @@ class Response
             'env'           => config('app.env'),
             'responseCode'  => static::responseCode(),
             'errorInput'    => static::errorInput(),
-            'exception'     => class_basename($trace),
+            'exception'     => $classBaseName,
             'errorMessage'  => static::getExceptionMessageForEnvironment($message,$code),
             'endpoint'      => request()->url(),
             'rules'         => [static::rules()],
@@ -148,7 +153,7 @@ class Response
     private static function getExceptionMessageForEnvironment($message = null,$code = 200) : string
     {
         return (app()->environment() == 'local' || $code!==500)
-            ? $message
+            ? (($code === 404) ? 'Not Found Endpoint' : $message)
             : trans('exception.500error');
     }
 
