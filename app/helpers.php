@@ -87,6 +87,6 @@ if(!function_exists('indexOrdering')){
             }
         }
 
-        return array_merge_recursive($list,$data);
+        return array_merge($list,$data);
     }
 }
