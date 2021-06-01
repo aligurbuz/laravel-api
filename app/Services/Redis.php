@@ -1,10 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Services;
 
 use Predis\Client;
 use Predis\ClientInterface;
 
+/**
+ * Class Redis
+ * @package App\Services
+ */
 class Redis
 {
     /**

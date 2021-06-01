@@ -6,6 +6,10 @@ namespace App\Services;
 
 use App\Facades\Authenticate\Authenticate;
 
+/**
+ * Class Client
+ * @package App\Services
+ */
 class Client
 {
     /**

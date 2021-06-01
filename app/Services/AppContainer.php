@@ -1,7 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Services;
 
+/**
+ * Class AppContainer
+ * @package App\Services
+ */
 class AppContainer
 {
     /**

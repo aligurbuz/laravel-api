@@ -5,6 +5,10 @@ namespace App\Services;
 use Illuminate\Support\Facades\File;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class Db
+ * @package App\Services
+ */
 class Db extends Model
 {
     /**
@@ -47,10 +51,9 @@ class Db extends Model
      * get table columns for model
      *
      * @param null $table
-     * @param bool $maxLength
      * @return array
      */
-    public static function types($table = null,$maxLength = false): array
+    public static function types($table = null): array
     {
         $entities = static::entities($table);
 

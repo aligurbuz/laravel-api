@@ -1,11 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Services;
 
 use Closure;
 use App\Exceptions\Exception;
 use Illuminate\Http\Request;
 
+/**
+ * Class ApiKeyManager
+ * @package App\Services
+ */
 class ApiKeyManager
 {
     /**
