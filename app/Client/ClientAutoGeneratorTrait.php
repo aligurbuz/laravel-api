@@ -1,11 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Client;
 
+use App\Services\Date;
 use App\Factory\Factory;
 use App\Facades\Authenticate\Authenticate;
-use App\Services\Date;
 
+/**
+ * Trait ClientAutoGeneratorTrait
+ * @package App\Client
+ */
 trait ClientAutoGeneratorTrait
 {
     /**
