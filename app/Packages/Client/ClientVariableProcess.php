@@ -23,11 +23,12 @@ class ClientVariableProcess
         $list = [];
 
         foreach ($data as $key => $value){
-            if(property_exists($this->client,$key)){
+            $camelCaseForKey = Str::camel($key);
+            if(property_exists($this->client,$camelCaseForKey)){
                 $this->client->setProperty($key,$value);
 
-                if(method_exists($this->client,$key)){
-                    $list[$key] = $callMethod = $this->client->callMethod($key);
+                if(method_exists($this->client,$camelCaseForKey)){
+                    $list[$key] = $callMethod = $this->client->callMethod($camelCaseForKey);
                     $this->client->putDataStream($key,$callMethod);
                 }
             }
