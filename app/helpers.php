@@ -3,6 +3,7 @@
 use App\Services\Client;
 use JetBrains\PhpStorm\Pure;
 use App\Exceptions\Exception;
+use App\Services\Db as DBFacade;
 use App\Models\Entities\EntityMap;
 use Illuminate\Support\Facades\DB;
 
@@ -63,5 +64,29 @@ if(!function_exists('inValidCodeException')){
             'key' => $key,
             'value' => $value
         ]));
+    }
+}
+
+if(!function_exists('indexOrdering')){
+
+    /**
+     * Sorts the given data value by index.
+     *
+     * @param $table
+     * @param array $data
+     * @return array
+     */
+    function indexOrdering($table,array $data = []): array
+    {
+        $list = [];
+        $indexes = DBFacade::indexes($table);
+
+        foreach ($indexes as $index){
+            if(isset($data[$index])){
+                $list[$index] = $data[$index];
+            }
+        }
+
+        return array_merge_recursive($list,$data);
     }
 }

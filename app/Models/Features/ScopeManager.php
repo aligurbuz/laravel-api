@@ -190,7 +190,8 @@ trait ScopeManager
 
         if(isset($params['filter'])){
             $builder->where(function($query) use($params,$indexes){
-                foreach ($params['filter'] as $key => $value){
+                $filtering = indexOrdering($this->getTable(),$params['filter']);
+                foreach ($filtering as $key => $value){
 
                     if(!in_array($key,$indexes)){
                         Exception::filterException('',['key' => $key]);
