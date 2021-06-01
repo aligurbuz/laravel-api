@@ -1,8 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Client;
 
-use App\Factory\Factory;
 use App\Services\Db;
 use Illuminate\Support\Str;
 use App\Repositories\Repository;
