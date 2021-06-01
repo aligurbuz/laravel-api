@@ -355,8 +355,10 @@ class Client extends ClientManager
             }
         }
 
-        foreach ($maxLength as $maxLengthColumn => $maxLengthValue){
-            $this->setRule($maxLengthColumn,'max:'.$maxLengthValue,false);
+        if(request()->method()!=='GET'){
+            foreach ($maxLength as $maxLengthColumn => $maxLengthValue){
+                $this->setRule($maxLengthColumn,'max:'.$maxLengthValue,false);
+            }
         }
     }
 }
