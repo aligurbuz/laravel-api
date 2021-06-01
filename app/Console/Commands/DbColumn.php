@@ -62,6 +62,10 @@ class DbColumn extends Command
 
         foreach ($columns as $column){
             $list['columns'][] = '"'.$column->COLUMN_NAME.'"';
+            if(!is_null($column->CHARACTER_MAXIMUM_LENGTH)){
+                $list['max_length_columns'][] = '"'.$column->COLUMN_NAME.'"';
+                $list['max_length_values'][] = '"'.$column->CHARACTER_MAXIMUM_LENGTH.'"';
+            }
 
             if(is_null($column->COLUMN_DEFAULT) && $column->IS_NULLABLE == 'NO' && $column->COLUMN_NAME!=='id'){
                 $list['required_columns'][] = '"'.$column->COLUMN_NAME.'"';
@@ -82,11 +86,14 @@ class DbColumn extends Command
         if(!file_exists($databaseColumnPath)){
             touch($databaseColumnPath);
         }
+
         File::put($databaseColumnPath,'<?php return [
         \'columns\' => ['.implode(',',$list['columns']).'],
         \'indexes\' => ['.implode(',',$list['indexes']).'],
         \'types\' => ['.implode(',',$list['types']).'],
         \'required_columns\' => ['.implode(',',$list['required_columns']).'],
+        \'max_length_columns\' => ['.implode(',',$list['max_length_columns']).'],
+        \'max_length_values\' => ['.implode(',',$list['max_length_values']).'],
         ];');
 
         $databaseColumns = File::getRequire($databaseColumnPath);
