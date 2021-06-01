@@ -91,7 +91,12 @@ class Client extends ClientManager
      */
     public function setRule($key,$value) : void
     {
-        $this->rule[$key] = $value;
+        if(isset($this->rule[$key])){
+            $this->rule[$key] = $value.'|'.$this->rule[$key];
+        }
+        else{
+            $this->rule[$key] = $value;
+        }
     }
 
     /**
@@ -339,9 +344,12 @@ class Client extends ClientManager
         if(request()->method()==='POST'){
             $entities = Db::entities($this->getTable());
             $requiredColumns = $entities['required_columns'] ?? [];
+            $maxLength = Db::columnMaxLength($this->getTable());
 
             foreach ($requiredColumns as $requiredColumn){
-                $this->setRule($requiredColumn,'required');
+                (isset($maxLength[$requiredColumn]))
+                    ? $this->setRule($requiredColumn,'required|max:'.$maxLength[$requiredColumn])
+                    : $this->setRule($requiredColumn,'required');
             }
         }
     }

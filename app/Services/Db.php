@@ -47,13 +47,27 @@ class Db extends Model
      * get table columns for model
      *
      * @param null $table
+     * @param bool $maxLength
      * @return array
      */
-    public static function types($table = null): array
+    public static function types($table = null,$maxLength = false): array
     {
         $entities = static::entities($table);
 
         return array_combine(($entities['columns'] ?? []),($entities['types'] ?? []));
+    }
+
+    /**
+     * get table columns max length for model
+     *
+     * @param null $table
+     * @return array
+     */
+    public static function columnMaxLength($table = null): array
+    {
+        $entities = static::entities($table);
+
+        return array_combine(($entities['max_length_columns'] ?? []),($entities['max_length_values'] ?? []));
     }
 
     /**

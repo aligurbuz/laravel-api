@@ -119,6 +119,7 @@ class ClientBodyProcess extends ClientVariableProcess
             $autoRules = $this->client->getAutoRule();
             $customRules = $this->client->getCustomRule();
 
+
             foreach ($data as $key => $value){
                 if(isset($types[$key])){
                     $type = $types[$key];
