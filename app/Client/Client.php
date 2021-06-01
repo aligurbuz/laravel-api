@@ -342,20 +342,21 @@ class Client extends ClientManager
      */
     public function modelRequiredFields() : void
     {
+        $maxLength = Db::columnMaxLength($this->getTable());
+
         if(request()->method()==='POST'){
             $entities = Db::entities($this->getTable());
             $requiredColumns = $entities['required_columns'] ?? [];
-            $maxLength = Db::columnMaxLength($this->getTable());
 
             foreach ($requiredColumns as $requiredColumn){
                 (isset($maxLength[$requiredColumn]))
                     ? $this->setRule($requiredColumn,'required|max:'.$maxLength[$requiredColumn])
                     : $this->setRule($requiredColumn,'required');
             }
+        }
 
-            foreach ($maxLength as $maxLengthColumn => $maxLengthValue){
-                $this->setRule($maxLengthColumn,'max:'.$maxLengthValue,false);
-            }
+        foreach ($maxLength as $maxLengthColumn => $maxLengthValue){
+            $this->setRule($maxLengthColumn,'max:'.$maxLengthValue,false);
         }
     }
 }
