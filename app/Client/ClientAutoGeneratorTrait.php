@@ -14,7 +14,7 @@ trait ClientAutoGeneratorTrait
      * @var array
      */
     protected array $autoGenerators = [
-        'user_id',
+        'user_code',
         'created_by',
         'updated_by',
         'deleted_by',
@@ -28,7 +28,7 @@ trait ClientAutoGeneratorTrait
      * @var array
      */
     protected array $dontOverWriteAutoGenerators = [
-        'user_id',
+        'user_code',
         'created_by',
         'updated_by',
         'deleted_by',
@@ -41,9 +41,9 @@ trait ClientAutoGeneratorTrait
      *
      * @return mixed
      */
-    public function userIdAutoGenerator(): mixed
+    public function userCodeAutoGenerator(): mixed
     {
-        return $this->ensureColumnExists('user_id',function(){
+        return $this->ensureColumnExists('user_code',function(){
            return Authenticate::code();
         });
     }
@@ -87,7 +87,11 @@ trait ClientAutoGeneratorTrait
      */
     public function deletedByAutoGenerator(): mixed
     {
-        if(request()->method()=='PUT' && $this->has('is_deleted') && $this->get('is_deleted')=='1'){
+        if(
+            request()->method()=='PUT'
+            && $this->has('is_deleted')
+            && $this->get('is_deleted')=='1')
+        {
             return $this->ensureColumnExists('deleted_by',function(){
                 return Authenticate::code();
             });
@@ -103,7 +107,11 @@ trait ClientAutoGeneratorTrait
      */
     public function deletedAtAutoGenerator(): mixed
     {
-        if(request()->method()=='PUT' && $this->has('is_deleted') && $this->get('is_deleted')=='1'){
+        if(
+            request()->method()=='PUT'
+            && $this->has('is_deleted')
+            && $this->get('is_deleted')=='1')
+        {
             return $this->ensureColumnExists('deleted_at',function(){
                 return Date::now()->toDateTimeString();
             });
