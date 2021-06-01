@@ -87,14 +87,15 @@ class Client extends ClientManager
      *
      * @param $key
      * @param $value
+     * @param bool $isset
      * @return void
      */
-    public function setRule($key,$value) : void
+    public function setRule($key,$value,$isset = true) : void
     {
-        if(isset($this->rule[$key])){
+        if($isset && isset($this->rule[$key])){
             $this->rule[$key] = $value.'|'.$this->rule[$key];
         }
-        else{
+        elseif(!isset($this->rule[$key])){
             $this->rule[$key] = $value;
         }
     }
@@ -350,6 +351,10 @@ class Client extends ClientManager
                 (isset($maxLength[$requiredColumn]))
                     ? $this->setRule($requiredColumn,'required|max:'.$maxLength[$requiredColumn])
                     : $this->setRule($requiredColumn,'required');
+            }
+
+            foreach ($maxLength as $maxLengthColumn => $maxLengthValue){
+                $this->setRule($maxLengthColumn,'max:'.$maxLengthValue,false);
             }
         }
     }
