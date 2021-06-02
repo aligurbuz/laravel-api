@@ -47,8 +47,9 @@ class Slack extends SlackManager implements SlackInterface
             isset($this->binds['resource']['html'])
             && ($html = $this->binds['resource']['html']) instanceof Html
             && method_exists($html,'getError500')
+            && !is_null($getError500 = $html->getError500())
         ){
-            dispatch(new SlackPusher('logger',$html->getError500()));
+            dispatch(new SlackPusher('logger',$getError500));
         }
     }
 }
