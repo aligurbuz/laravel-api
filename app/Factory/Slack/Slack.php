@@ -45,11 +45,11 @@ class Slack extends SlackManager implements SlackInterface
     {
         if(
             isset($this->binds['resource']['html'])
-            && $this->binds['resource']['html'] instanceof Html
-            && method_exists($this->binds['resource']['html'],'getError500')
+            && ($html = $this->binds['resource']['html']) instanceof Html
+            && method_exists($html,'getError500')
         ){
             SlackServiceManager::channel('logger')
-                ->push($this->binds['resource']['html']->getError500());
+                ->push($html->getError500());
         }
     }
 }
