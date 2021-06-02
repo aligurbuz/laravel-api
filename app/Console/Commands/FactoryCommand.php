@@ -83,7 +83,7 @@ class FactoryCommand extends Command
                 ->addComment('')
                 ->addComment('@var array');
 
-            $method = $addClass->addMethod('__constructor');
+            $method = $addClass->addMethod('__construct');
             $method->addComment($factoryFile.' constructor');
             $method->addComment('');
             $method->addComment('@param array $binds');
