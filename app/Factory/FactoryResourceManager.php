@@ -31,11 +31,23 @@ abstract class FactoryResourceManager
             $resource = ucfirst($resource);
             $callableResource = $this->getResourceNamespace().'\\'.$resource.'\\'.$resource;
 
-            $this->factoryInstance->setResource(lcfirst($resource),new class{});
+            $this->setResource($resource,$callableResource);
+        }
+    }
 
-            if(class_exists($callableResource)){
-                $this->factoryInstance->setResource(lcfirst($resource),new $callableResource);
-            }
+    /**
+     * set resource for factory
+     *
+     * @param string $resource
+     * @param string $callableResource
+     * @return void
+     */
+    public function setResource(string $resource,string $callableResource): void
+    {
+        $this->factoryInstance->setResource(lcfirst($resource),new class{});
+
+        if(class_exists($callableResource)){
+            $this->factoryInstance->setResource(lcfirst($resource),new $callableResource);
         }
     }
 
