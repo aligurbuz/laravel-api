@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Factory;
 
-use App\Factory\Logger\Interfaces\LoggerInterface;
 use App\Factory\Slack\Interfaces\SlackInterface;
+use App\Factory\Logger\Interfaces\LoggerInterface;
 use App\Factory\Storage\Interfaces\StorageInterface;
 use App\Factory\Repository\Interfaces\RepositoryInterface;
 
