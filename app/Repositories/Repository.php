@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Repositories;
 
 use App\Repositories\User\Contracts\UserRepositoryContract;
-use App\Repositories\Countries\Contracts\CountriesRepositoryContract;
 use App\Repositories\Logger\Contracts\LoggerRepositoryContract;
+use App\Repositories\Countries\Contracts\CountriesRepositoryContract;
 
 /**
  * Class Repository
