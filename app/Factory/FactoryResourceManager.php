@@ -24,8 +24,12 @@ abstract class FactoryResourceManager
         foreach ($this->getResources() as $resource){
             $resource = ucfirst($resource);
             $callableResource = $this->getResourceNamespace().'\\'.$resource.'\\'.$resource;
-            static::$arguments['resource'][lcfirst($resource)] = new $callableResource(static::$arguments);
+
+            if(class_exists($callableResource)){
+                static::$arguments['resource'][lcfirst($resource)] = new $callableResource(static::$arguments);
+            }
         }
+
         $factory = static::$factory;
         return new $factory(static::$arguments);
     }
