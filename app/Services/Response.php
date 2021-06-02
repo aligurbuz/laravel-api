@@ -59,7 +59,7 @@ class Response
     public static function error($message = null,$code = 400,$exception = null) : object
     {
         $code  = ($code == '0' || !is_numeric($code)) ? 500 : $code;
-        $trace = ($exception instanceof Throwable) ? $exception : debug_backtrace();
+        $trace = (isThrowableInstance($exception)) ? $exception : debug_backtrace();
         $classBaseName = class_basename($trace);
 
         if($classBaseName=='NotFoundHttpException'){
