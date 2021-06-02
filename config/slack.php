@@ -3,6 +3,6 @@
 return [
     'logger' => [
         'channel' => 'logger',
-        'hook' => 'hook',
+        'hook' => 'hook_name',
     ]
 ];

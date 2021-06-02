@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Factory\Slack;
 
+use App\Jobs\SlackPusher;
 use App\Factory\Slack\Resource\Html\Html;
-use App\Services\Slack as SlackServiceManager;
 use App\Factory\Slack\Interfaces\SlackInterface;
 
 /**
@@ -48,8 +48,7 @@ class Slack extends SlackManager implements SlackInterface
             && ($html = $this->binds['resource']['html']) instanceof Html
             && method_exists($html,'getError500')
         ){
-            SlackServiceManager::channel('logger')
-                ->push($html->getError500());
+            dispatch(new SlackPusher('logger',$html->getError500()));
         }
     }
 }
