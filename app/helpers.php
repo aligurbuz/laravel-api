@@ -67,6 +67,18 @@ if(!function_exists('inValidCodeException')){
     }
 }
 
+if(!function_exists('isThrowableInstance')){
+
+    /**
+     * @param $error
+     * @return bool
+     */
+    function isThrowableInstance($error): bool
+    {
+        return ($error instanceof Throwable);
+    }
+}
+
 if(!function_exists('indexOrdering')){
 
     /**

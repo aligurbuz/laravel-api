@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use Exception;
 use Throwable;
+use App\Factory\Factory;
 use App\Services\Response;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
@@ -17,7 +18,9 @@ class Handler extends ExceptionHandler
     public function register()
     {
         $this->reportable(function (Throwable $e) {
-            //
+            if($e->getCode() == '0'){
+                Factory::slack(['error' => $e])->getError500();
+            }
         });
     }
 

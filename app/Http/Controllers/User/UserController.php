@@ -27,6 +27,7 @@ class UserController extends ApiController
      */
     public function get(GetUserClient $client, UserRepositoryContract $userRepository) : array
     {
+        asasaa;
         $client->handle();
         return $userRepository->get();
     }
