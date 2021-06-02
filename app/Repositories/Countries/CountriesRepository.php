@@ -1,11 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Repositories\Countries;
 
 use App\Models\Country;
 use App\Repositories\EloquentRepository;
 use App\Repositories\Countries\Contracts\CountriesRepositoryContract;
 
+/**
+ * Class CountriesRepository
+ * @package App\Repositories\Countries
+ */
 class CountriesRepository extends EloquentRepository implements CountriesRepositoryContract
 {
 	/**
