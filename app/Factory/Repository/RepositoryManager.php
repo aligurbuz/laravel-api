@@ -7,13 +7,6 @@ namespace App\Factory\Repository;
 abstract class RepositoryManager
 {
     /**
-     * @var array|string[]
-     */
-    protected array $resource = [
-        'cacheAble'
-    ];
-
-    /**
      * set resource for factory
      *
      * @param $key

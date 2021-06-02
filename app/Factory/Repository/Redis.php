@@ -19,6 +19,11 @@ class Redis extends RepositoryManager implements RepositoryInterface
 	 */
 	protected array $binds = [];
 
+    /**
+     * @var array|string[]
+     */
+    protected array $resource = [];
+
 	/**
 	 * Redis constructor
 	 *
