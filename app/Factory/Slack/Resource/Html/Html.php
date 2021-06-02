@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Factory\Slack\Resource\Html;
 
-use App\Services\Client;
 use Throwable;
 use App\Services\Date;
+use App\Facades\Authenticate\ApiKey;
 
 /**
  * Class Html
@@ -46,13 +46,14 @@ class Html
     {
         $list[] = '*'.config('app.name').' System 500 Internal Server Errors - '.Date::now()->toDateTimeString().'*';
 
+        $list[] = '> *Client*: '.ApiKey::who();
         $list[] = '> *Error Message*: '.$error->getMessage();
         $list[] = '> *Error File*: '.$error->getFile();
         $list[] = '> *Error Line*: '.$error->getLine();
         $list[] = '> *Client Ip*: '.request()->getClientIp();
         $list[] = '> *Client Get Data*: '.json_encode(request()->query->all()).'';
-        $list[] = '> *Client Post Data*: '.json_encode(Client::data()).'';
-        $list[] = '> *Client Put Data*: '.json_encode(Client::data()).'';
+        $list[] = '> *Client Post Data*: '.json_encode(request()->request->all()).'';
+        $list[] = '> *Client Put Data*: '.json_encode(request()->request->all()).'';
 
         $this->error500 = implode(PHP_EOL,$list);
     }
