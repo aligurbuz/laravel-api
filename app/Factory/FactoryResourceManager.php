@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Factory;
 
 use ReflectionClass;
+use ReflectionException;
 
 /**
  * Trait FactoryResourceManager
@@ -13,52 +14,31 @@ use ReflectionClass;
 abstract class FactoryResourceManager
 {
     /**
-     * @var object
-     */
-    protected object $factoryInstance;
-
-    /**
      * call resource for factory object
      *
-     * @param object $factory
-     * @return void
+     * @return mixed
+     * @throws ReflectionException
      */
-    public function callFactoryResource(object $factory): void
+    public function callFactory(): mixed
     {
-        $this->factoryInstance = $factory;
-
         foreach ($this->getResources() as $resource){
             $resource = ucfirst($resource);
             $callableResource = $this->getResourceNamespace().'\\'.$resource.'\\'.$resource;
-
-            $this->setResource($resource,$callableResource);
+            static::$arguments['resource'][lcfirst($resource)] = new $callableResource(static::$arguments);
         }
-    }
-
-    /**
-     * set resource for factory
-     *
-     * @param string $resource
-     * @param string $callableResource
-     * @return void
-     */
-    public function setResource(string $resource,string $callableResource): void
-    {
-        $this->factoryInstance->setResource(lcfirst($resource),new class{});
-
-        if(class_exists($callableResource)){
-            $this->factoryInstance->setResource(lcfirst($resource),new $callableResource);
-        }
+        $factory = static::$factory;
+        return new $factory(static::$arguments);
     }
 
     /**
      * get resource for factory
      *
      * @return array
+     * @throws ReflectionException
      */
     public function getResources(): array
     {
-        $reflectionClass = new ReflectionClass($this->factoryInstance);
+        $reflectionClass = new ReflectionClass(static::$factory);
 
         if($reflectionClass->hasProperty('resource')){
             return $reflectionClass->getProperty('resource')->getDefaultValue();

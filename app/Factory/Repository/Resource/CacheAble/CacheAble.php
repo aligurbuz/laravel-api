@@ -10,5 +10,5 @@ namespace App\Factory\Repository\Resource\CacheAble;
  */
 class CacheAble
 {
-
+    //
 }

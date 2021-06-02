@@ -24,6 +24,11 @@ class FactoryManager extends FactoryResourceManager
     protected static array $arguments = [];
 
     /**
+     * @var string|null
+     */
+    protected static ?string $factory;
+
+    /**
      * get call static for factory
      *
      * @param string $name
@@ -66,11 +71,10 @@ class FactoryManager extends FactoryResourceManager
     private function factoryMaker(): mixed
     {
         $name = static::$name;
-        $factory = 'App\Factory\\'.$name.'\\'.static::getAdapterName($name);
+        static::$factory = 'App\Factory\\'.$name.'\\'.static::getAdapterName($name);
 
-        if(class_exists($factory)){
-            $this->callFactoryResource($factoryInstance = new $factory(static::$arguments));
-            return $factoryInstance;
+        if(class_exists(static::$factory)){
+            return $this->callFactory();
         }
 
         return throw new Exception('factory is not valid');

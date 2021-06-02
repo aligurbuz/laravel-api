@@ -29,7 +29,7 @@ class Redis extends RepositoryManager implements RepositoryInterface
 	 *
 	 * @param array $binds
 	 */
-	public function __constructor(array $binds = [])
+	public function __construct(array $binds = [])
 	{
 		$this->binds = $binds;
 	}
