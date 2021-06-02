@@ -6,7 +6,7 @@ namespace App\Factory;
 
 use Exception;
 
-class FactoryManager
+class FactoryManager extends FactoryResourceManager
 {
     /**
      * @var array
@@ -59,7 +59,7 @@ class FactoryManager
     /**
      * get call static for factory
      *
-     * @return mixed
+     * @return string
      *
      * @throws Exception
      */
@@ -69,7 +69,8 @@ class FactoryManager
         $factory = 'App\Factory\\'.$name.'\\'.static::getAdapterName($name);
 
         if(class_exists($factory)){
-            return new $factory(static::$arguments);
+            $this->callFactoryResource($factoryInstance = new $factory(static::$arguments));
+            return $factoryInstance;
         }
 
         return throw new Exception('factory is not valid');
