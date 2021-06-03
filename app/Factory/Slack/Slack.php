@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Factory\Slack;
 
 use App\Jobs\SlackPusher;
-use App\Factory\Slack\Resource\Html\Html;
 use App\Factory\Slack\Interfaces\SlackInterface;
 
 /**
@@ -43,13 +42,10 @@ class Slack extends SlackManager implements SlackInterface
      */
 	public function getError500() : void
     {
-        if(
-            isset($this->binds['resource']['html'])
-            && ($html = $this->binds['resource']['html']) instanceof Html
-            && method_exists($html,'getError500')
-            && !is_null($getError500 = $html->getError500())
-        ){
-            dispatch(new SlackPusher('logger',$getError500));
-        }
+        // we will push all 500 internal errors for the system to the slack channel.
+        // The job that works on all slack messages is the SlackPusher class.
+        $this->getError500ForResourceHtml(function($pusher){
+            dispatch(new SlackPusher('logger',$pusher));
+        });
     }
 }
