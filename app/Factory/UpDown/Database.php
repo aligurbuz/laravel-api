@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace App\Factory\Report;
+namespace App\Factory\UpDown;
 
-use App\Factory\Report\Interfaces\ReportInterface;
+use App\Factory\UpDown\Interfaces\UpDownInterface;
 
 /**
- * Class UpDown
- * @package App\Factory\Report
+ * Class Database
+ * @package App\Factory\UpDown
  */
-class UpDown extends ReportManager implements ReportInterface
+class Database extends UpDownManager implements UpDownInterface
 {
 	/**
 	 * binds property variable
@@ -20,7 +20,7 @@ class UpDown extends ReportManager implements ReportInterface
 	protected array $binds = [];
 
 	/**
-	 * UpDown constructor
+	 * Database constructor
 	 *
 	 * @param array $binds
 	 */
