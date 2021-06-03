@@ -43,7 +43,7 @@ class Slack extends SlackManager implements SlackInterface
      */
 	public function getError500() : void
     {
-        $this->getError500ForResourceHtml(function($pusher){
+        $this->html(function($pusher){
             dispatch(new SlackPusher('500Error',$pusher));
         });
     }
