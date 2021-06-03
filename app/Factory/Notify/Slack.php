@@ -44,7 +44,7 @@ class Slack extends NotifyManager implements NotifyInterface
     public function internalServerError() : void
     {
         $this->slack500Formatter(function($pusher){
-            $this->push('logger',$pusher);
+            $this->push('error500',$pusher);
         });
     }
 

@@ -3,6 +3,10 @@
 return [
     'logger' => [
         'channel' => 'logger',
-        'hook' => 'hook_name',
+        'hook' => 'hook-name',
+    ],
+    'error500' => [
+        'channel' => 'error500',
+        'hook' => 'hook-name',
     ]
 ];
