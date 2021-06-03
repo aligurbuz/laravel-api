@@ -6,6 +6,8 @@ namespace App\Factory;
 
 use App\Factory\Notify\Interfaces\NotifyInterface;
 use App\Factory\Logger\Interfaces\LoggerInterface;
+use App\Factory\Report\Interfaces\ReportInterface;
+use App\Factory\UpDown\Interfaces\UpDownInterface;
 use App\Factory\Storage\Interfaces\StorageInterface;
 use App\Factory\Repository\Interfaces\RepositoryInterface;
 
@@ -15,6 +17,8 @@ use App\Factory\Repository\Interfaces\RepositoryInterface;
  * @method static StorageInterface storage($arguments = null)
  * @method static RepositoryInterface repository($arguments = null)
  * @method static NotifyInterface notify($arguments = null)
+ * @method static UpDownInterface upDown($arguments = null)
+ * @method static ReportInterface report($arguments = null)
  * @package App\Factory
  */
 class Factory extends FactoryManager
@@ -29,6 +33,7 @@ class Factory extends FactoryManager
         'Logger'        => 'MongoDbLogger',
         'Repository'    => 'Redis',
         'Notify'        => 'Slack',
+        'UpDown'        => 'Database',
     ];
 
     /**
