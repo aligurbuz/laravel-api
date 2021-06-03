@@ -48,7 +48,7 @@ class Slack extends NotifyManager implements NotifyInterface
     }
 
     /**
-     * pushes messages to the specified slack channel.
+     * The method by which you can push your notifications.
      *
      * @param string $channel
      * @param string $message
