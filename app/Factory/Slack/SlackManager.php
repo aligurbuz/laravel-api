@@ -29,7 +29,7 @@ abstract class SlackManager
      * @param callable $callback
      * @return mixed
      */
-    public function html(callable $callback): mixed
+    public function html500(callable $callback): mixed
     {
         $resource = 'html';
 
