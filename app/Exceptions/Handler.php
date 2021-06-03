@@ -18,8 +18,8 @@ class Handler extends ExceptionHandler
     public function register()
     {
         $this->reportable(function (Throwable $e) {
-            if($e->getCode() == '0' && app()->environment()!=='local'){
-                Factory::slack(['error' => $e])->getError500();
+            if($e->getCode() == '0' && app()->environment()=='local'){
+                Factory::notify(['error' => $e])->internalServerError();
             }
         });
     }

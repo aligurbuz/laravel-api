@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace App\Factory\Slack;
+namespace App\Factory\Notify;
 
 use App\Jobs\SlackPusher;
-use App\Factory\Slack\Interfaces\SlackInterface;
+use App\Factory\Notify\Interfaces\NotifyInterface;
 
 /**
  * Class Slack
- * @package App\Factory\Slack
+ * @package App\Factory\Notify
  */
-class Slack extends SlackManager implements SlackInterface
+class Slack extends NotifyManager implements NotifyInterface
 {
 	/**
 	 * binds property variable
@@ -23,7 +23,7 @@ class Slack extends SlackManager implements SlackInterface
     /**
      * @var array|string[]
      */
-	protected array $resource = ['html'];
+	protected array $resource = ['slack500Formatter'];
 
 	/**
 	 * Slack constructor
@@ -41,10 +41,10 @@ class Slack extends SlackManager implements SlackInterface
      *
      * @return void
      */
-	public function getError500() : void
+    public function internalServerError() : void
     {
-        $this->html500(function($pusher){
-            $this->push('500Error',$pusher);
+        $this->slack500Formatter(function($pusher){
+            $this->push('logger',$pusher);
         });
     }
 

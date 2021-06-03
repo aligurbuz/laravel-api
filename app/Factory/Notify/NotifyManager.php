@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace App\Factory\Slack;
+namespace App\Factory\Notify;
 
-use App\Factory\Slack\Resource\Html\Html;
+use App\Factory\Notify\Resource\Slack500Formatter\Slack500Formatter;
 
 /**
- * Class SlackManager
- * @package App\Factory\Slack
+ * Class NotifyManager
+ * @package App\Factory\Notify
  */
-abstract class SlackManager
+abstract class NotifyManager
 {
     /**
      * checks if the resource is valid for factory
@@ -29,13 +29,13 @@ abstract class SlackManager
      * @param callable $callback
      * @return mixed
      */
-    public function html500(callable $callback): mixed
+    public function slack500Formatter(callable $callback): mixed
     {
-        $resource = 'html';
+        $resource = __FUNCTION__;
 
         $isValid = $this->isValidResource($resource)
-            && $this->binds['resource'][$resource] instanceof Html
-            && method_exists($this->binds['resource'][$resource],'getError500');
+            && $this->binds['resource'][$resource] instanceof Slack500Formatter
+            && method_exists($this->binds['resource'][$resource],$resource);
 
         if($isValid && !is_null($maker = $this->binds['resource'][$resource]->getError500())){
             return call_user_func($callback,$maker);
