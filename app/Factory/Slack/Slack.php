@@ -45,7 +45,19 @@ class Slack extends SlackManager implements SlackInterface
         // we will push all 500 internal errors for the system to the slack channel.
         // The job that works on all slack messages is the SlackPusher class.
         $this->getError500ForResourceHtml(function($pusher){
-            dispatch(new SlackPusher('logger',$pusher));
+            dispatch(new SlackPusher('500Error',$pusher));
         });
+    }
+
+    /**
+     * pushes messages to the specified slack channel.
+     *
+     * @param $channel
+     * @param $message
+     * @return void
+     */
+    public function push($channel,$message) : void
+    {
+        dispatch(new SlackPusher($channel,$message));
     }
 }
