@@ -31,8 +31,7 @@ class Notify extends NotifyManager implements NotifyInterface
 	}
 
     /**
-     * we will push all 500 internal errors for the system to the slack channel.
-     * The job that works on all slack messages is the SlackPusher class.
+     * You can write custom notifications about internal server errors in this method.
      *
      * @return void
      */
