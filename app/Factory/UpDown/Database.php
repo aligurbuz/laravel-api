@@ -19,6 +19,11 @@ class Database extends UpDownManager implements UpDownInterface
 	 */
 	protected array $binds = [];
 
+    /**
+     * @var array|string[]
+     */
+	protected array $resource = ['database'];
+
 	/**
 	 * Database constructor
 	 *
