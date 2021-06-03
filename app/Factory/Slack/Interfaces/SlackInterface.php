@@ -23,5 +23,5 @@ interface SlackInterface
      * @param $message
      * @see Slack::push()
      */
-    public function push($channel,$message) : void;
+    public function push(string $channel,string $message) : void;
 }

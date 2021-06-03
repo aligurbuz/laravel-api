@@ -51,11 +51,11 @@ class Slack extends SlackManager implements SlackInterface
     /**
      * pushes messages to the specified slack channel.
      *
-     * @param $channel
-     * @param $message
+     * @param string $channel
+     * @param string $message
      * @return void
      */
-    public function push($channel,$message) : void
+    public function push(string $channel,string $message) : void
     {
         dispatch(new SlackPusher($channel,$message));
     }
