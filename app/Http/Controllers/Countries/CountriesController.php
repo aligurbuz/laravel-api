@@ -22,10 +22,7 @@ class CountriesController extends ApiController
 	public function get(GetClient $client, CountriesRepositoryContract $countriesRepository): array
 	{
 		$client->handle();
-
-		return $this->observer('countries:create',function() use($countriesRepository){
-            return $countriesRepository->get();
-        });
+        return $countriesRepository->get();
 	}
 
 
