@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Factory\Notify\Resource\Slack500Formatter;
 
-use App\Facades\Authenticate\Authenticate;
 use Throwable;
 use App\Services\Date;
 use App\Facades\Authenticate\ApiKey;
+use App\Facades\Authenticate\Authenticate;
 
 /**
  * Class Slack500Formatter
