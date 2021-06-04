@@ -7,6 +7,7 @@ namespace App\Factory;
 use App\Factory\Notify\Interfaces\NotifyInterface;
 use App\Factory\Logger\Interfaces\LoggerInterface;
 use App\Factory\Storage\Interfaces\StorageInterface;
+use App\Factory\Observer\Interfaces\ObserverInterface;
 use App\Factory\Repository\Interfaces\RepositoryInterface;
 
 /**
@@ -15,6 +16,7 @@ use App\Factory\Repository\Interfaces\RepositoryInterface;
  * @method static StorageInterface storage($arguments = null)
  * @method static RepositoryInterface repository($arguments = null)
  * @method static NotifyInterface notify($arguments = null)
+ * @method static ObserverInterface observer($arguments = null)
  * @package App\Factory
  */
 class Factory extends FactoryManager

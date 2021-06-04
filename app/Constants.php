@@ -14,5 +14,6 @@ class Constants
     public const errorInput                         = 'errorInput';
     public const debugBackTrace                     = 'debugBackTrace';
     public const validatorRules                     = 'validatorRules';
+    public const controllerNamespace                = 'App\Http\Controllers';
     public const responseFormatterSupplement        = 'responseFormatterSupplement';
 }
