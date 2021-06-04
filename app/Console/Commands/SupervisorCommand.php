@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\File;
 
 class SupervisorCommand extends Command
 {
@@ -21,6 +22,21 @@ class SupervisorCommand extends Command
     protected $description = 'get supervisor conf content';
 
     /**
+     * @var array|string[]
+     */
+    protected array $contents = ['laravel-redis-worker' => '[program:laravel-worker]
+process_name=%(program_name)s_%(process_num)02d
+command=php /var/www/html/app/api/artisan queue:work redis --sleep=3 --tries=3 --max-time=3600
+autostart=true
+autorestart=true
+stopasgroup=true
+killasgroup=true
+numprocs=8
+redirect_stderr=true
+stdout_logfile=/var/www/html/app/api/worker.log
+stopwaitsecs=3600'];
+
+    /**
      * Create a new command instance.
      *
      * @return void
@@ -37,17 +53,15 @@ class SupervisorCommand extends Command
      */
     public function handle()
     {
-        $this->warn('[program:laravel-worker]
-process_name=%(program_name)s_%(process_num)02d
-command=php /var/www/html/app/api/artisan queue:work redis --sleep=3 --tries=3 --max-time=3600
-autostart=true
-autorestart=true
-stopasgroup=true
-killasgroup=true
-numprocs=8
-redirect_stderr=true
-stdout_logfile=/var/www/html/app/api/worker.log
-stopwaitsecs=3600');
+        $supervisorPath = '/etc/supervisor/conf.d/';
+
+        foreach ($this->contents as $file => $content){
+            $supervisorFile = $supervisorPath.''.$file.'.conf';
+            File::put($supervisorFile,$content);
+            $this->warn($supervisorFile.' has been added to supervisor');
+        }
+
+        exec('sudo service supervisor start');
         return 0;
     }
 }
