@@ -20,16 +20,6 @@ class Observer extends ObserverManager implements ObserverInterface
 	 */
 	protected array $binds = [];
 
-    /**
-     * @var string|null
-     */
-	protected ?string $name;
-
-    /**
-     * @var string|null
-     */
-	protected ?string $observer;
-
 	/**
 	 * Observer constructor
 	 *
@@ -48,13 +38,9 @@ class Observer extends ObserverManager implements ObserverInterface
      */
 	public function before() : mixed
     {
-        $observerBeforeNamespace = $this->observerBeforeNamespace();
-
-        if(class_exists($observerBeforeNamespace)){
-            return new $observerBeforeNamespace(Client::data());
-        }
-
-        return null;
+        return $this->beforeObserver(function($before){
+           return new $before(Client::data());
+        });
     }
 
     /**
@@ -65,12 +51,8 @@ class Observer extends ObserverManager implements ObserverInterface
      */
     public function after(array $data = []) : mixed
     {
-        $observerAfterNamespace = $this->observerAfterNamespace();
-
-        if(class_exists($observerAfterNamespace)){
-            return new $observerAfterNamespace($data);
-        }
-
-        return null;
+        return $this->afterObserver(function($after) use($data){
+            return new $after($data);
+        });
     }
 }

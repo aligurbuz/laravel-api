@@ -14,6 +14,16 @@ use Illuminate\Support\Str;
 abstract class ObserverManager
 {
     /**
+     * @var string|null
+     */
+    protected ?string $name;
+
+    /**
+     * @var string|null
+     */
+    protected ?string $observer;
+
+    /**
      * get observer namespace
      *
      * @return string
@@ -24,6 +34,40 @@ abstract class ObserverManager
         $namespace = Str::ucfirst($name).'\Observers\\'.Str::ucfirst($name).'\\'.Str::ucfirst($this->observer);
 
         return Constants::controllerNamespace.'\\'.$namespace;
+    }
+
+    /**
+     * run before observer for factory
+     *
+     * @param callable $callback
+     * @return mixed
+     */
+    public function beforeObserver(callable $callback) : mixed
+    {
+        $observerBeforeNamespace = $this->observerBeforeNamespace();
+
+        if(class_exists($observerBeforeNamespace)){
+            return call_user_func($callback,$observerBeforeNamespace);
+        }
+
+        return null;
+    }
+
+    /**
+     * run after observer for factory
+     *
+     * @param callable $callback
+     * @return mixed
+     */
+    public function afterObserver(callable $callback) : mixed
+    {
+        $observerAfterNamespace = $this->observerAfterNamespace();
+
+        if(class_exists($observerAfterNamespace)){
+            return call_user_func($callback,$observerAfterNamespace);
+        }
+
+        return null;
     }
 
     /**
