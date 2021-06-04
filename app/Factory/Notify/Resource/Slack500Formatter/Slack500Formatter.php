@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Factory\Notify\Resource\Slack500Formatter;
 
+use App\Facades\Authenticate\Authenticate;
 use Throwable;
 use App\Services\Date;
 use App\Facades\Authenticate\ApiKey;
@@ -51,6 +52,8 @@ class Slack500Formatter
         $list[] = '> *Error File*: '.$error->getFile();
         $list[] = '> *Error Line*: '.$error->getLine();
         $list[] = '> *Client Ip*: '.request()->getClientIp();
+        $list[] = '> *Auth*: '.Authenticate::code();
+        $list[] = '> *Request Method*: '.request()->method();
         $list[] = '> *Client Get Data*: '.json_encode(request()->query->all()).'';
         $list[] = '> *Client Post Data*: '.json_encode(request()->request->all()).'';
         $list[] = '> *Client Put Data*: '.json_encode(request()->request->all()).'';
