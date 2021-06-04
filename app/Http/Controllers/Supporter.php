@@ -1,8 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
-use App\Factory\Factory;
 use Illuminate\Support\Facades\DB;
 
 /**
@@ -33,14 +34,6 @@ trait Supporter
      */
     public function observer($observer,callable $callback): mixed
     {
-        $observerFactory = Factory::observer(['observer' => $observer]);
-
-        $observerFactory->before();
-
-        $callCallback = $callback();
-
-        $observerFactory->after($callCallback);
-
-        return $callCallback;
+        return observer($observer,$callback);
     }
 }

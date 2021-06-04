@@ -1,5 +1,6 @@
 <?php
 
+use App\Factory\Factory;
 use App\Services\Client;
 use JetBrains\PhpStorm\Pure;
 use App\Exceptions\Exception;
@@ -100,5 +101,28 @@ if(!function_exists('indexOrdering')){
         }
 
         return array_merge($list,$data);
+    }
+}
+
+if(!function_exists('observer')){
+
+    /**
+     * Sorts the given data value by index.
+     *
+     * @param $observer
+     * @param callable $callback
+     * @return mixed
+     */
+    function observer($observer,callable $callback): mixed
+    {
+        $observerFactory = Factory::observer(['observer' => $observer]);
+
+        $observerFactory->before();
+
+        $callCallback = $callback();
+
+        $observerFactory->after($callCallback);
+
+        return $callCallback;
     }
 }
