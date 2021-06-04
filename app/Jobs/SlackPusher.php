@@ -37,7 +37,6 @@ class SlackPusher implements ShouldQueue
     {
         $this->channel = $channel;
         $this->message = $message;
-        $this->delay(10);
     }
 
     /**
