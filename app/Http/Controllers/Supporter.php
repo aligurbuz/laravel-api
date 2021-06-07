@@ -24,16 +24,4 @@ trait Supporter
             return call_user_func($callback);
         });
     }
-
-    /**
-     * observer method for your methods
-     *
-     * @param $observer
-     * @param callable $callback
-     * @return mixed
-     */
-    public function observer($observer,callable $callback): mixed
-    {
-        return observer($observer,$callback);
-    }
 }
