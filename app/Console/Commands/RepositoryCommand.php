@@ -63,7 +63,7 @@ class RepositoryCommand extends Command
         $namespace = new PhpNamespace($namespaceDirectory);
         $namespace->addUse(EloquentRepository::class);
         $namespace->addUse('App\Models\\'.ucfirst($modelName));
-        $namespace->addUse(Builder::class);
+        //$namespace->addUse(Builder::class);
         $namespace->addUse($contractClassRepositoryName = $namespaceContractDirectory.'\\'.ucfirst($contractClassName));
         $class = $namespace->addClass($className)->setExtends(EloquentRepository::class)->addImplement($contractClassRepositoryName);
         $class->addProperty('model',new Literal(ucfirst($modelName).'::class'))->setProtected()->setStatic(true)->setType('string')
@@ -85,7 +85,7 @@ class RepositoryCommand extends Command
             ->addComment('@return object');
 
         touch($file = $directory.''.DIRECTORY_SEPARATOR.''.$className.'.php');
-        $content = '<?php '.PHP_EOL.''.PHP_EOL.''.$namespace;
+        $content = '<?php '.PHP_EOL.''.PHP_EOL.'declare(strict_types=1);'.PHP_EOL.''.PHP_EOL.''.$namespace;
         File::put($file,$content);
 
         if(!file_exists($directoryContract)){
