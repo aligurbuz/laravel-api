@@ -1,0 +1,138 @@
+{
+    "item": [
+        {
+            "name": "Localizations",
+            "item": [
+                {
+                    "name": "Localizations",
+                    "response": [],
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{bearerToken}}",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Apikey",
+                                "value": "{{apiKey}}",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "{{contentType}}",
+                                "type": "text"
+                            }
+                        ],
+                        "body": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/localizations",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "localizations"
+                            ],
+                            "query": [
+                                {
+                                    "key": "range",
+                                    "value": "desc",
+                                    "description": "",
+                                    "disabled": true
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Localizations",
+                    "response": [],
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{bearerToken}}",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Apikey",
+                                "value": "{{apiKey}}",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "{{contentType}}",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"language_code\":\"integer\",\"item_code\":\"integer\",\"key\":\"string\",\"value\":\"string\"}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/localizations",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "localizations"
+                            ],
+                            "query": []
+                        }
+                    }
+                },
+                {
+                    "name": "Localizations",
+                    "response": [],
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{bearerToken}}",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Apikey",
+                                "value": "{{apiKey}}",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "{{contentType}}",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"localization_code\":\"integer\",\"language_code\":\"integer\",\"item_code\":\"integer\",\"key\":\"string\",\"value\":\"string\",\"status\":\"1\",\"is_deleted\":\"0\"}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/localizations",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "localizations"
+                            ],
+                            "query": []
+                        }
+                    }
+                }
+            ]
+        }
+    ],
+    "name": "Localizations"
+}

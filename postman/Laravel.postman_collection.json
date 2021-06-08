@@ -76,7 +76,7 @@
                                 ],
                                 "body": {
                                     "mode": "raw",
-                                    "raw": "{\"name\":\"string\",\"email\":\"string\",\"email_verified_at\":\"timestamp\",\"password\":\"string\",\"remember_token\":\"string\",\"username\":\"string\",\"USER\":\"string\"}",
+                                    "raw": "{\"name\":\"string\",\"email\":\"string\",\"email_verified_at\":\"timestamp\",\"password\":\"string\",\"remember_token\":\"string\",\"username\":\"string\",\"USER\":\"string\",\"CURRENT_CONNECTIONS\":\"integer\",\"TOTAL_CONNECTIONS\":\"integer\"}",
                                     "options": {
                                         "raw": {
                                             "language": "json"
@@ -119,7 +119,7 @@
                                 ],
                                 "body": {
                                     "mode": "raw",
-                                    "raw": "{\"id\":\"integer\",\"name\":\"string\",\"email\":\"string\",\"email_verified_at\":\"timestamp\",\"password\":\"string\",\"remember_token\":\"string\",\"username\":\"string\",\"USER\":\"string\",\"CURRENT_CONNECTIONS\":\"integer\",\"TOTAL_CONNECTIONS\":\"integer\"}",
+                                    "raw": "{\"name\":\"string\",\"email\":\"string\",\"email_verified_at\":\"timestamp\",\"password\":\"string\",\"remember_token\":\"string\",\"username\":\"string\",\"USER\":\"string\",\"CURRENT_CONNECTIONS\":\"integer\",\"TOTAL_CONNECTIONS\":\"integer\",\"is_deleted\":\"0\",\"status\":\"1\"}",
                                     "options": {
                                         "raw": {
                                             "language": "json"
@@ -133,142 +133,6 @@
                                     ],
                                     "path": [
                                         "user"
-                                    ],
-                                    "query": []
-                                }
-                            }
-                        }
-                    ]
-                },
-                {
-                    "name": "Comment",
-                    "item": [
-                        {
-                            "name": "User/Comment",
-                            "response": [],
-                            "request": {
-                                "method": "GET",
-                                "header": [
-                                    {
-                                        "key": "Authorization",
-                                        "value": "Bearer {{bearerToken}}",
-                                        "type": "text"
-                                    },
-                                    {
-                                        "key": "Apikey",
-                                        "value": "{{apiKey}}",
-                                        "type": "text"
-                                    },
-                                    {
-                                        "key": "Content-Type",
-                                        "value": "{{contentType}}",
-                                        "type": "text"
-                                    }
-                                ],
-                                "body": [],
-                                "url": {
-                                    "raw": "{{baseUrl}}/user/comment",
-                                    "host": [
-                                        "{{baseUrl}}"
-                                    ],
-                                    "path": [
-                                        "user",
-                                        "comment"
-                                    ],
-                                    "query": [
-                                        {
-                                            "key": "range",
-                                            "value": "desc",
-                                            "description": "",
-                                            "disabled": true
-                                        }
-                                    ]
-                                }
-                            }
-                        },
-                        {
-                            "name": "User/Comment",
-                            "response": [],
-                            "request": {
-                                "method": "POST",
-                                "header": [
-                                    {
-                                        "key": "Authorization",
-                                        "value": "Bearer {{bearerToken}}",
-                                        "type": "text"
-                                    },
-                                    {
-                                        "key": "Apikey",
-                                        "value": "{{apiKey}}",
-                                        "type": "text"
-                                    },
-                                    {
-                                        "key": "Content-Type",
-                                        "value": "{{contentType}}",
-                                        "type": "text"
-                                    }
-                                ],
-                                "body": {
-                                    "mode": "raw",
-                                    "raw": "{\"title\":\"string\",\"description\":\"string\",\"comment\":\"string\",\"counter\":\"double\"}",
-                                    "options": {
-                                        "raw": {
-                                            "language": "json"
-                                        }
-                                    }
-                                },
-                                "url": {
-                                    "raw": "{{baseUrl}}/user/comment",
-                                    "host": [
-                                        "{{baseUrl}}"
-                                    ],
-                                    "path": [
-                                        "user",
-                                        "comment"
-                                    ],
-                                    "query": []
-                                }
-                            }
-                        },
-                        {
-                            "name": "User/Comment",
-                            "response": [],
-                            "request": {
-                                "method": "PUT",
-                                "header": [
-                                    {
-                                        "key": "Authorization",
-                                        "value": "Bearer {{bearerToken}}",
-                                        "type": "text"
-                                    },
-                                    {
-                                        "key": "Apikey",
-                                        "value": "{{apiKey}}",
-                                        "type": "text"
-                                    },
-                                    {
-                                        "key": "Content-Type",
-                                        "value": "{{contentType}}",
-                                        "type": "text"
-                                    }
-                                ],
-                                "body": {
-                                    "mode": "raw",
-                                    "raw": "{\"id\":\"integer\",\"user_id\":\"integer\",\"title\":\"string\",\"description\":\"string\",\"comment\":\"string\",\"counter\":\"double\"}",
-                                    "options": {
-                                        "raw": {
-                                            "language": "json"
-                                        }
-                                    }
-                                },
-                                "url": {
-                                    "raw": "{{baseUrl}}/user/comment",
-                                    "host": [
-                                        "{{baseUrl}}"
-                                    ],
-                                    "path": [
-                                        "user",
-                                        "comment"
                                     ],
                                     "query": []
                                 }
@@ -563,6 +427,144 @@
                 }
             ],
             "name": "Countries"
+        },
+        {
+            "item": [
+                {
+                    "name": "Localizations",
+                    "item": [
+                        {
+                            "name": "Localizations",
+                            "response": [],
+                            "request": {
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Authorization",
+                                        "value": "Bearer {{bearerToken}}",
+                                        "type": "text"
+                                    },
+                                    {
+                                        "key": "Apikey",
+                                        "value": "{{apiKey}}",
+                                        "type": "text"
+                                    },
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "{{contentType}}",
+                                        "type": "text"
+                                    }
+                                ],
+                                "body": [],
+                                "url": {
+                                    "raw": "{{baseUrl}}/localizations",
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "path": [
+                                        "localizations"
+                                    ],
+                                    "query": [
+                                        {
+                                            "key": "range",
+                                            "value": "desc",
+                                            "description": "",
+                                            "disabled": true
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "name": "Localizations",
+                            "response": [],
+                            "request": {
+                                "method": "POST",
+                                "header": [
+                                    {
+                                        "key": "Authorization",
+                                        "value": "Bearer {{bearerToken}}",
+                                        "type": "text"
+                                    },
+                                    {
+                                        "key": "Apikey",
+                                        "value": "{{apiKey}}",
+                                        "type": "text"
+                                    },
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "{{contentType}}",
+                                        "type": "text"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\"language_code\":\"integer\",\"item_code\":\"integer\",\"key\":\"string\",\"value\":\"string\"}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "{{baseUrl}}/localizations",
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "path": [
+                                        "localizations"
+                                    ],
+                                    "query": []
+                                }
+                            }
+                        },
+                        {
+                            "name": "Localizations",
+                            "response": [],
+                            "request": {
+                                "method": "PUT",
+                                "header": [
+                                    {
+                                        "key": "Authorization",
+                                        "value": "Bearer {{bearerToken}}",
+                                        "type": "text"
+                                    },
+                                    {
+                                        "key": "Apikey",
+                                        "value": "{{apiKey}}",
+                                        "type": "text"
+                                    },
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "{{contentType}}",
+                                        "type": "text"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\"localization_code\":\"integer\",\"language_code\":\"integer\",\"item_code\":\"integer\",\"key\":\"string\",\"value\":\"string\",\"status\":\"1\",\"is_deleted\":\"0\"}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "{{baseUrl}}/localizations",
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "path": [
+                                        "localizations"
+                                    ],
+                                    "query": []
+                                }
+                            }
+                        }
+                    ]
+                }
+            ],
+            "name": "Localizations"
         }
     ]
 }

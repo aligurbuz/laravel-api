@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Repositories\Localizations\Contracts\LocalizationsRepositoryContract;
+use App\Repositories\Localizations\LocalizationsRepository;
 use App\Repositories\Countries\Contracts\CountriesRepositoryContract;
 use App\Repositories\Countries\CountriesRepository;
 use App\Repositories\User\UserRepository;
@@ -24,6 +26,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(UserRepositoryContract::class,UserRepository::class);
         $this->app->bind(LoggerRepositoryContract::class,LoggerRepository::class);
         $this->app->bind(CountriesRepositoryContract::class,CountriesRepository::class);
+        $this->app->bind(LocalizationsRepositoryContract::class,LocalizationsRepository::class);
         //newBind
     }
 

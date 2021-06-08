@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Localizations\LocalizationsController;
 use App\Http\Controllers\Countries\CountriesController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Auth\LoginController;
@@ -23,6 +24,10 @@ Route::post('/login', [LoginController::class,'login']);
 Route::post('/register', [RegisterController::class,'register']);
 
 Route::middleware(['auth:api'])->group(function(){
+
+    Route::get('/localizations', [LocalizationsController::class,'get']);
+    Route::post('/localizations', [LocalizationsController::class,'create']);
+    Route::put('/localizations', [LocalizationsController::class,'update']);
 
     Route::get('/countries', [CountriesController::class,'get']);
     Route::post('/countries', [CountriesController::class,'create']);
