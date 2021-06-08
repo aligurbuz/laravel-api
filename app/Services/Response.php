@@ -132,8 +132,8 @@ class Response
     {
         if($trace instanceof Throwable){
             return array_merge_recursive([
-                'file'    => $trace->getFile(),
-                'line'    => $trace->getLine()
+                'file'    => $trace->getTrace()[0]['file'] ?? $trace->getFile(),
+                'line'    => $trace->getTrace()[0]['line'] ?? $trace->getLine()
             ],static::getExtraStaticExceptionSupplement());
         }
 
