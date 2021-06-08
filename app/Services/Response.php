@@ -131,9 +131,14 @@ class Response
     private static function throwInProcess($trace = null): array
     {
         if($trace instanceof Throwable){
+            if(AppContainer::get('debugBackTrace')){
+                $file = $trace->getTrace()[0]['file'] ?? '';
+                $line = $trace->getTrace()[0]['line'] ?? '';
+            }
+
             return array_merge_recursive([
-                'file'    => $trace->getTrace()[0]['file'] ?? $trace->getFile(),
-                'line'    => $trace->getTrace()[0]['line'] ?? $trace->getLine()
+                'file'    => $file ?? $trace->getFile(),
+                'line'    => $line ?? $trace->getLine()
             ],static::getExtraStaticExceptionSupplement());
         }
 
