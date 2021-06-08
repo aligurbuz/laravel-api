@@ -1,11 +1,12 @@
-<?php 
+<?php
+
+declare(strict_types=1);
 
 namespace App\Repositories\Localizations;
 
 use App\Models\Localization;
 use App\Repositories\EloquentRepository;
 use App\Repositories\Localizations\Contracts\LocalizationsRepositoryContract;
-use Illuminate\Database\Eloquent\Builder;
 
 class LocalizationsRepository extends EloquentRepository implements LocalizationsRepositoryContract
 {
@@ -22,7 +23,6 @@ class LocalizationsRepository extends EloquentRepository implements Localization
 	 * @var array|string[]
 	 */
 	protected array $ranges = [];
-
 
 	/**
 	 * get auto LocalizationsRepository scope method
