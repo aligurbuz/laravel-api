@@ -302,7 +302,7 @@ trait ScopeManager
                                 $builder->with([$with => function($query) use($with,$selectExplode,$params,$foreignRepository){
                                     $withRange = $params['withRange'][$with] ?? [];
                                     $repositoryInstance = Repository::$foreignRepository();
-                                    $query->select($selectExplode)->range($repositoryInstance,$withRange);
+                                    $query->select($selectExplode)->repository($repositoryInstance)->range($repositoryInstance,$withRange);
                                 }]);
                             }
                         }
@@ -310,7 +310,7 @@ trait ScopeManager
                             $builder->with([$with => function($query) use($with,$params,$foreignRepository){
                                 $withRange = $params['withRange'][$with] ?? [];
                                 $repositoryInstance = Repository::$foreignRepository();
-                                $query->range($repositoryInstance,$withRange);
+                                $query->repository($repositoryInstance)->range($repositoryInstance,$withRange);
                             }]);
                         }
 
