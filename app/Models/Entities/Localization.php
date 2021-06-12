@@ -9,8 +9,7 @@ namespace App\Models\Entities;
  * @property $this localization_code
  * @property $this language_code
  * @property $this item_code
- * @property $this key
- * @property $this value
+ * @property $this values
  * @property $this status
  * @property $this is_deleted
  * @property $this created_by
@@ -86,24 +85,13 @@ class Localization
 
 
 	/**
-	 * get key column for database table
+	 * get values column for database table
 	 *
 	 * @return mixed
 	 */
-	protected static function key(): mixed
+	protected static function values(): mixed
 	{
-		return self::$query->key;
-	}
-
-
-	/**
-	 * get value column for database table
-	 *
-	 * @return mixed
-	 */
-	protected static function value(): mixed
-	{
-		return self::$query->value;
+		return self::$query->values;
 	}
 
 

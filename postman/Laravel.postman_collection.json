@@ -499,7 +499,7 @@
                                 ],
                                 "body": {
                                     "mode": "raw",
-                                    "raw": "{\"language_code\":\"integer\",\"item_code\":\"integer\",\"key\":\"string\",\"value\":\"string\"}",
+                                    "raw": "{\"language_code\":\"integer\",\"item_code\":\"integer\",\"values\":\"json\"}",
                                     "options": {
                                         "raw": {
                                             "language": "json"
@@ -542,7 +542,7 @@
                                 ],
                                 "body": {
                                     "mode": "raw",
-                                    "raw": "{\"localization_code\":\"integer\",\"language_code\":\"integer\",\"item_code\":\"integer\",\"key\":\"string\",\"value\":\"string\",\"status\":\"1\",\"is_deleted\":\"0\"}",
+                                    "raw": "{\"localization_code\":\"integer\",\"language_code\":\"integer\",\"item_code\":\"integer\",\"values\":\"json\",\"status\":\"1\",\"is_deleted\":\"0\"}",
                                     "options": {
                                         "raw": {
                                             "language": "json"

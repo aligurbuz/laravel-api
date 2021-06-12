@@ -10,7 +10,9 @@ class Localization extends Model
 {
     use HasFactory,BaseManager;
 
-        protected array $searchable = [];
+    protected array $searchable = [];
 
-        protected $hidden = ['id'];
+    protected $hidden = ['id'];
+
+    protected $casts = ['values' => 'array'];
 }
