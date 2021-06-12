@@ -47,6 +47,8 @@ abstract class CodeManager
     }
 
     /**
+     * checks if the repository is valid
+     *
      * @param callable $callback
      * @return mixed
      */
