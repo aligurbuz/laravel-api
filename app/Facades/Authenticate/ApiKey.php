@@ -7,6 +7,10 @@ use App\Services\AppContainer;
 /**
  * Class ApiKey
  * @method static isWeb()
+ * @method static isAdmin()
+ * @method static isSuperAdmin()
+ * @method static isIos()
+ * @method static isAndroid()
  * @package App\Facades\Authenticate
  */
 class ApiKey
