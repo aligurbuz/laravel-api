@@ -72,7 +72,7 @@ class EloquentRepository
         $queryList = [];
 
         foreach ($clientData as $data){
-            $baseQuery = $this->graphQl()->where(function(Builder $builder) use($data,$id){
+            $baseQuery = $this->instance()->where(function(Builder $builder) use($data,$id){
                 $modelCode = strtolower($this->getModelName()).'_code';
                 if(isset($data[$modelCode]) || $id === true){
                     $builder->where($modelCode,intval(($data[$modelCode] ?? 0)));
