@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 declare(strict_types=1);
 
@@ -24,7 +24,6 @@ class LanguageRepository extends EloquentRepository implements LanguageRepositor
 	 */
 	protected array $ranges = [];
 
-
 	/**
 	 * get auto LanguageRepository scope method
 	 * @return object
@@ -33,4 +32,17 @@ class LanguageRepository extends EloquentRepository implements LanguageRepositor
 	{
 		return $this->globalScope();
 	}
+
+    /**
+     * find by name for language repository
+     *
+     * @param null $name
+     * @return $this
+     */
+	public function findByName($name = null) : LanguageRepositoryContract
+    {
+        $this->repository = $this->instance()->where('name',$name);
+
+        return $this;
+    }
 }

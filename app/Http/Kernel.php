@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\AcceptLanguage;
 use App\Http\Middleware\ApiKey;
 use App\Http\Middleware\AccessLogger;
 use App\Http\Middleware\ContentType;
@@ -69,6 +70,7 @@ class Kernel extends HttpKernel
         'apiKey' => ApiKey::class,
         'accessLogger' => AccessLogger::class,
         'response' => Response::class,
-        'contentType' => ContentType::class
+        //'contentType' => ContentType::class,
+        'AcceptLanguage' => AcceptLanguage::class
     ];
 }

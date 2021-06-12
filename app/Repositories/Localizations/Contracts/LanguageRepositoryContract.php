@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Repositories\Localizations\Contracts;
 
@@ -52,4 +52,17 @@ interface LanguageRepositoryContract
 	 * @see LanguageRepository::exists()
 	 */
 	function exists($field, $value): bool;
+
+    /**
+     * @return array
+     * @see LanguageRepository::getRepository()
+     */
+    public function getRepository() : array;
+
+    /**
+     * @param null $name
+     * @return LanguageRepositoryContract
+     * @see LanguageRepository::findByName()
+     */
+    public function findByName($name = null) : LanguageRepositoryContract;
 }
