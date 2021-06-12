@@ -1,0 +1,16 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Factory\Code\Interfaces;
+
+use App\Factory\Code\Code;
+
+interface CodeInterface
+{
+    /**
+     * @return mixed
+     * @see Code::throwExceptionIfDoesntExist()
+     */
+    public function throwExceptionIfDoesntExist(): mixed;
+}

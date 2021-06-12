@@ -3,8 +3,8 @@
 namespace App\Client\Localizations\Localizations\Create;
 
 use App\Client\Client;
-use App\Client\ClientAutoGeneratorTrait;
 use App\Models\Localization;
+use App\Client\ClientAutoGeneratorTrait;
 
 class CreateClient extends Client
 {
@@ -31,19 +31,4 @@ class CreateClient extends Client
 	 * @var array
 	 */
 	protected array $rule = [];
-
-    /**
-     * @var mixed
-     */
-	protected mixed $languageCode;
-
-    /**
-     * get language_code process for client
-     *
-     * @return mixed
-     */
-	protected function languageCode() : mixed
-    {
-        return $this->languageCode;
-    }
 }
