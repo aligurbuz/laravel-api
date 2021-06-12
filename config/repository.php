@@ -1,13 +1,14 @@
 <?php
 
 return [
+
     /**
      * Global scope represents classes and values
      * that are automatically added to your sql values as a where clause.
      * If there are classes in your repository directory of these string names,
      * these classes will be included in the rule.
      */
-    'globalScopes' => [],
+    'globalScopes' => ['userCode'],
 
     /**
      * When the repository is started,

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Repositories;
 
 use App\Services\Db;
@@ -12,11 +14,6 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class GlobalScopeManager
 {
-    /**
-     * @var array|string[]
-     */
-    protected array $scopes = ['userCode'];
-
     /**
      * @var string
      */
@@ -70,7 +67,7 @@ class GlobalScopeManager
      */
     private function handleScopes() : void
     {
-        foreach ($this->scopes as $scope){
+        foreach (config('repository.globalScopes') as $scope){
             $this->handler($scope);
         }
     }
