@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Localizations\LanguageController;
 use App\Http\Controllers\Localizations\LocalizationsController;
 use App\Http\Controllers\Countries\CountriesController;
 use App\Http\Controllers\User\UserController;
@@ -24,6 +25,10 @@ Route::post('/login', [LoginController::class,'login']);
 Route::post('/register', [RegisterController::class,'register']);
 
 Route::middleware(['auth:api'])->group(function(){
+
+    Route::get('/localizations/language', [LanguageController::class,'get']);
+    Route::post('/localizations/language', [LanguageController::class,'create']);
+    Route::put('/localizations/language', [LanguageController::class,'update']);
 
     Route::get('/localizations', [LocalizationsController::class,'get']);
     Route::post('/localizations', [LocalizationsController::class,'create']);

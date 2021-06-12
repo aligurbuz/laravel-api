@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Repositories;
 
 use App\Repositories\User\Contracts\UserRepositoryContract;
+use App\Repositories\Localizations\Contracts\LanguageRepositoryContract;
 use App\Repositories\Localizations\Contracts\LocalizationsRepositoryContract;
 use App\Repositories\Logger\Contracts\LoggerRepositoryContract;
 use App\Repositories\Countries\Contracts\CountriesRepositoryContract;
@@ -15,6 +16,16 @@ use App\Repositories\Countries\Contracts\CountriesRepositoryContract;
  */
 class Repository
 {
+    /**
+     * get language repository instance
+     *
+     * @return LanguageRepositoryContract
+     */
+    public static function language() : LanguageRepositoryContract
+    {
+        return app()->get(LanguageRepositoryContract::class);
+    }
+    
     /**
      * get localization repository instance
      *

@@ -132,6 +132,142 @@
                     }
                 }
             ]
+        },
+        {
+            "name": "Language",
+            "item": [
+                {
+                    "name": "Localizations/Language",
+                    "response": [],
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{bearerToken}}",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Apikey",
+                                "value": "{{apiKey}}",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "{{contentType}}",
+                                "type": "text"
+                            }
+                        ],
+                        "body": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/localizations/language",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "localizations",
+                                "language"
+                            ],
+                            "query": [
+                                {
+                                    "key": "range",
+                                    "value": "desc",
+                                    "description": "",
+                                    "disabled": true
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Localizations/Language",
+                    "response": [],
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{bearerToken}}",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Apikey",
+                                "value": "{{apiKey}}",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "{{contentType}}",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"string\"}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/localizations/language",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "localizations",
+                                "language"
+                            ],
+                            "query": []
+                        }
+                    }
+                },
+                {
+                    "name": "Localizations/Language",
+                    "response": [],
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{bearerToken}}",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Apikey",
+                                "value": "{{apiKey}}",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "{{contentType}}",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"language_code\":\"integer\",\"name\":\"string\",\"is_deleted\":\"0\",\"status\":\"1\"}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/localizations/language",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "localizations",
+                                "language"
+                            ],
+                            "query": []
+                        }
+                    }
+                }
+            ]
         }
     ],
     "name": "Localizations"

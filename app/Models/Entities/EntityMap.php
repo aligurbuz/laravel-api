@@ -6,6 +6,15 @@ class EntityMap
 {
     /**
      * @param object $query
+     * @return Language
+     */
+    public function language(object $query) : Language
+    {
+        return new Language($query);
+    }
+    
+    /**
+     * @param object $query
      * @return Localization
      */
     public function localization(object $query) : Localization
