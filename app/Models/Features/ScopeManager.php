@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models\Features;
 
+use App\Facades\Authenticate\ApiKey;
 use App\Services\Db;
 use App\Exceptions\Exception;
 use App\Services\AppContainer;
@@ -75,6 +76,12 @@ trait ScopeManager
         if(app()->runningInConsole()) $repository = false;
 
         $objectName = lcfirst(class_basename($object));
+
+        // the clientKey values in the dontRepository key
+        // in the config settings will disable the repository application.
+        if(in_array(ApiKey::who(),config('repository.dontRepository'))){
+            $repository = false;
+        }
 
         // if there is a method with the same name as object,
         // this method will be executed automatically.
