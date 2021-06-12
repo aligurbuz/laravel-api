@@ -45,7 +45,7 @@ class AcceptLanguage
         $acceptLanguage = $request->headers->get('accept-language');
 
         if(is_null($acceptLanguage)){
-            Exception::customException('Accept-Language must be sent in the header request');
+            return Exception::customException('Accept-Language must be sent in the header request');
         }
 
         return $acceptLanguage;
@@ -55,14 +55,14 @@ class AcceptLanguage
      * check repository for middleware
      *
      * @param ?string $contentType
-     * @return array
+     * @return mixed
      */
-    private function checkRepository(?string $contentType) : array
+    private function checkRepository(?string $contentType) : mixed
     {
         $repository = Repository::language()->findByName($contentType)->getRepository();
 
         if(!isset($repository[0]['language_code'])){
-            Exception::customException('Accept-Language is not valid');
+            return Exception::customException('Accept-Language is not valid');
         }
 
         return $repository[0]['language_code'];
