@@ -35,7 +35,7 @@ class AcceptLanguage
     }
 
     /**
-     * check content type for middleware
+     * check accept-language for middleware
      *
      * @param Request $request
      * @return string|null
@@ -52,14 +52,14 @@ class AcceptLanguage
     }
 
     /**
-     * check repository for middleware
+     * check repository-code for middleware
      *
-     * @param ?string $contentType
+     * @param string|null $acceptLanguage
      * @return mixed
      */
-    private function checkRepositoryCode(?string $contentType) : mixed
+    private function checkRepositoryCode(?string $acceptLanguage) : mixed
     {
-        $repository = Repository::language()->findByName($contentType)->getRepository();
+        $repository = Repository::language()->findByName($acceptLanguage)->getRepository();
 
         if(!isset($repository[0]['language_code'])){
             return Exception::customException('Accept-Language is not valid');
