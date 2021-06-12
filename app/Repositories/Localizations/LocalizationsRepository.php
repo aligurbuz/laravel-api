@@ -26,6 +26,7 @@ class LocalizationsRepository extends EloquentRepository implements Localization
 
 	/**
 	 * get auto LocalizationsRepository scope method
+     *
 	 * @return object
 	 */
 	public function localizationsRepository(): object
