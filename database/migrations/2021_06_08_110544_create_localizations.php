@@ -17,11 +17,11 @@ class CreateLocalizations extends Migration
             $table->id();
             $table->bigInteger('localization_code')->default(0)->unique()->index();
             $table->bigInteger('language_code');
-            $table->bigInteger('item_code');
+            $table->bigInteger('localized_code');
             $table->jsonb('values');
 
-            $table->index(['language_code','item_code']);
-            $table->unique(['language_code','item_code']);
+            $table->index(['language_code','localized_code']);
+            $table->unique(['language_code','localized_code']);
 
             $table->boolean('status')->default(1);
             $table->boolean('is_deleted')->default(0);

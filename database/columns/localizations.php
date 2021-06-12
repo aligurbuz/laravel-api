@@ -1,8 +1,8 @@
 <?php return [
-        'columns' => ["id","localization_code","language_code","item_code","values","status","is_deleted","created_by","updated_by","deleted_by","deleted_at","created_at","updated_at"],
-        'indexes' => ["id","language_code","item_code","localization_code","language_code","item_code","status","is_deleted"],
-        'types' => ["integer","integer","integer","integer","json","integer","integer","integer","integer","integer","timestamp","timestamp","timestamp"],
-        'required_columns' => ["language_code","item_code","values"],
+        'columns' => ["created_at","created_by","deleted_at","deleted_by","id","is_deleted","language_code","localization_code","localized_code","status","updated_at","updated_by","values"],
+        'indexes' => ["id","language_code","localized_code","localization_code","language_code","localized_code","status","is_deleted"],
+        'types' => ["timestamp","integer","timestamp","integer","integer","integer","integer","integer","integer","integer","timestamp","integer","json"],
+        'required_columns' => ["language_code","localized_code","values"],
         'max_length_columns' => [],
         'max_length_values' => [],
         ];
