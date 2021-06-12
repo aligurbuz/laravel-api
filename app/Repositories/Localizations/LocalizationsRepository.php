@@ -30,6 +30,6 @@ class LocalizationsRepository extends EloquentRepository implements Localization
 	 */
 	public function localizationsRepository(): object
 	{
-		return $this->globalScope();
+		return $this->globalScope()->where('language_code',appLanguageCode());
 	}
 }

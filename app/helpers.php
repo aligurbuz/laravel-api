@@ -1,9 +1,10 @@
 <?php
 
-use App\Factory\Factory;
+use App\Constants;
 use App\Services\Client;
 use JetBrains\PhpStorm\Pure;
 use App\Exceptions\Exception;
+use App\Services\AppContainer;
 use App\Services\Db as DBFacade;
 use App\Models\Entities\EntityMap;
 use Illuminate\Support\Facades\DB;
@@ -18,6 +19,19 @@ if(!function_exists('entity')){
     #[Pure] function entity(): EntityMap
     {
         return new EntityMap();
+    }
+}
+
+if(!function_exists('appLanguageCode')){
+
+    /**
+     * get application language code for application
+     *
+     * @return int
+     */
+    function appLanguageCode(): int
+    {
+        return AppContainer::get(Constants::acceptLanguage,0);
     }
 }
 
