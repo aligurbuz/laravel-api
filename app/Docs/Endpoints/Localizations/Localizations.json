@@ -23,6 +23,11 @@
                                 "key": "Content-Type",
                                 "value": "{{contentType}}",
                                 "type": "text"
+                            },
+                            {
+                                "key": "Accept-Language",
+                                "value": "{{acceptLanguage}}",
+                                "type": "text"
                             }
                         ],
                         "body": [],
@@ -64,6 +69,11 @@
                             {
                                 "key": "Content-Type",
                                 "value": "{{contentType}}",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Accept-Language",
+                                "value": "{{acceptLanguage}}",
                                 "type": "text"
                             }
                         ],
@@ -107,6 +117,11 @@
                             {
                                 "key": "Content-Type",
                                 "value": "{{contentType}}",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Accept-Language",
+                                "value": "{{acceptLanguage}}",
                                 "type": "text"
                             }
                         ],
@@ -156,6 +171,11 @@
                                 "key": "Content-Type",
                                 "value": "{{contentType}}",
                                 "type": "text"
+                            },
+                            {
+                                "key": "Accept-Language",
+                                "value": "{{acceptLanguage}}",
+                                "type": "text"
                             }
                         ],
                         "body": [],
@@ -198,6 +218,11 @@
                             {
                                 "key": "Content-Type",
                                 "value": "{{contentType}}",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Accept-Language",
+                                "value": "{{acceptLanguage}}",
                                 "type": "text"
                             }
                         ],
@@ -242,6 +267,11 @@
                             {
                                 "key": "Content-Type",
                                 "value": "{{contentType}}",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Accept-Language",
+                                "value": "{{acceptLanguage}}",
                                 "type": "text"
                             }
                         ],
