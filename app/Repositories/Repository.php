@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Repositories;
 
+use App\Exceptions\Exception;
 use App\Repositories\User\Contracts\UserRepositoryContract;
 use App\Repositories\Localizations\Contracts\LanguageRepositoryContract;
 use App\Repositories\Localizations\Contracts\LocalizationsRepositoryContract;
@@ -25,7 +26,7 @@ class Repository
     {
         return app()->get(LanguageRepositoryContract::class);
     }
-    
+
     /**
      * get localization repository instance
      *
@@ -35,7 +36,7 @@ class Repository
     {
         return app()->get(LocalizationsRepositoryContract::class);
     }
-    
+
     /**
      * get country repository instance
      *
@@ -64,5 +65,17 @@ class Repository
     public static function logger() : LoggerRepositoryContract
     {
         return app()->get(LoggerRepositoryContract::class);
+    }
+
+    /**
+     * get call static for repository
+     *
+     * @param string|null $name
+     * @param array $arguments
+     * @return bool;
+     */
+    public static function __callStatic(?string $name,array $arguments = []) : bool
+    {
+        return false;
     }
 }

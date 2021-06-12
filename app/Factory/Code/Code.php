@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Factory\Code;
 
-use App\Repositories\Repository;
 use App\Factory\Code\Interfaces\CodeInterface;
 
 /**
@@ -37,16 +36,17 @@ class Code extends CodeManager implements CodeInterface
      */
 	public function throwExceptionIfDoesntExist() : mixed
     {
-        $code = $this->getCodeIdentifier();
-        $repository = Repository::{$this->getRepositoryName()}();
+        return $this->isValidRepository(function($repository){
+            $code = $this->getCodeIdentifier();
 
-        if(
-            isset($code['codeName'],$code['value'])
-            && !$repository->exists($code['codeName'],$code['value'])
-        ){
-            inValidCodeException($code['codeName'],$code['value']);
-        }
+            if(
+                isset($code['codeName'],$code['value'])
+                && !$repository->exists($code['codeName'],$code['value'])
+            ){
+                return inValidCodeException($code['codeName'],$code['value']);
+            }
 
-        return null;
+            return null;
+        });
     }
 }

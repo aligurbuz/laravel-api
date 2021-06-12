@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Factory\Code;
 
 use Illuminate\Support\Str;
+use App\Repositories\Repository;
 
 /**
  * Class CodeManager
@@ -40,6 +41,21 @@ abstract class CodeManager
 
         if(isset($code['codeName'])){
             return str_replace('_code','',$code['codeName']);
+        }
+
+        return null;
+    }
+
+    /**
+     * @param callable $callback
+     * @return mixed
+     */
+    public function isValidRepository(callable $callback) : mixed
+    {
+        $repository = Repository::{$this->getRepositoryName()}();
+
+        if(false !== $repository){
+            return call_user_func($callback,$repository);
         }
 
         return null;

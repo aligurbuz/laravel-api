@@ -26,6 +26,7 @@ trait ClientAutoGeneratorTrait
         'deleted_by',
         'deleted_at',
         'clientFileProcess',
+        'codeProcess',
     ];
 
     /**
@@ -40,6 +41,7 @@ trait ClientAutoGeneratorTrait
         'deleted_by',
         'deleted_at',
         'clientFileProcess',
+        'codeProcess',
     ];
 
     /**
@@ -137,6 +139,22 @@ trait ClientAutoGeneratorTrait
 
         foreach ($files as $key => $value){
             $this->set($key,$value);
+        }
+
+        return null;
+    }
+
+    /**
+     * code process for client
+     *
+     * @return mixed
+     */
+    public function codeProcessAutoGenerator(): mixed
+    {
+        foreach ((array)$this->get() as $key => $value){
+            if(preg_match('@(.*?)_code@is',$key)){
+                Factory::code([$key => $value])->throwExceptionIfDoesntExist();
+            }
         }
 
         return null;
