@@ -26,10 +26,10 @@ class AcceptLanguage
 
         // it checks the existence of the repository class according
         // to the accept-language value and makes an sql query and returns code value
-        $code = $this->checkRepository($acceptLanguage);
+        $repositoryCode = $this->checkRepositoryCode($acceptLanguage);
 
         //we assign the language_code value as the application container value.
-        AppContainer::set(Constants::acceptLanguage,$code);
+        AppContainer::set(Constants::acceptLanguage,$repositoryCode);
 
         return $next($request);
     }
@@ -57,7 +57,7 @@ class AcceptLanguage
      * @param ?string $contentType
      * @return mixed
      */
-    private function checkRepository(?string $contentType) : mixed
+    private function checkRepositoryCode(?string $contentType) : mixed
     {
         $repository = Repository::language()->findByName($contentType)->getRepository();
 
