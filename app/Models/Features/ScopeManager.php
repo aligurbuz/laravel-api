@@ -85,7 +85,7 @@ trait ScopeManager
 
         // if there is a method with the same name as object,
         // this method will be executed automatically.
-        if(method_exists($object,$objectName)) return $repository ? $object->$objectName($builder) : $builder;
+        if(method_exists($object,$objectName)) return $repository ? $object->$objectName() : $builder;
 
         return $builder;
     }
