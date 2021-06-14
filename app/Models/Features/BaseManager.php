@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace App\Models\Features;
 
+use App\Models\Localization;
 use App\Services\AppContainer;
 use App\Services\Db;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
  * Trait BaseManager
@@ -42,6 +44,57 @@ trait BaseManager
     protected static function boot()
     {
         parent::boot();
+    }
+
+    /**
+     * get localization model
+     *
+     * @return HasOne
+     */
+    public function localization(): HasOne
+    {
+        return $this->hasOne(Localization::class,'localized_code',getTableCode(get_called_class()))
+            ->where('language_code',appLanguageCode());
+    }
+
+    /**
+     * @param $columnName
+     * @param $value
+     * @return mixed
+     */
+    private function getLocalization($columnName,$value) : mixed
+    {
+        $localization = $this->localization()->first();
+
+        if(!is_null($localization)){
+            $values = objectValue($localization->values);
+
+            return $values->$columnName ?? $value;
+        }
+
+        return $value;
+    }
+
+    /**
+     * get localization name for model
+     *
+     * @param $name
+     * @return string
+     */
+    public function getNameAttribute($name) : string
+    {
+        return $this->getLocalization('name',$name);
+    }
+
+    /**
+     * get localization description for model
+     *
+     * @param $description
+     * @return string
+     */
+    public function getDescriptionAttribute($description) : string
+    {
+        return $this->getLocalization('description',$description);
     }
 
     /**
