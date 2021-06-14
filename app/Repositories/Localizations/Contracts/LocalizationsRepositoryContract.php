@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Repositories\Localizations\Contracts;
 
@@ -52,4 +52,17 @@ interface LocalizationsRepositoryContract
 	 * @see LocalizationsRepository::exists()
 	 */
 	function exists($field, $value): bool;
+
+    /**
+     * @param $localizedCode
+     * @return LocalizationsRepositoryContract
+     * @see LocalizationsRepository::localizedCode()
+     */
+    public function localizedCode($localizedCode) : LocalizationsRepositoryContract;
+
+    /**
+     * @return array
+     * @see LocalizationsRepository::getRepository()
+     */
+    public function getRepository() : array;
 }
