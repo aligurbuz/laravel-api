@@ -83,14 +83,24 @@ trait BaseManager
     }
 
     /**
+     * get repository object
+     *
+     * @return object
+     */
+    public function getRepository() : object
+    {
+        $model = $this->getModelName();
+        return Repository::$model();
+    }
+
+    /**
      * get localization model
      *
      * @return HasOne
      */
     public function localization(): HasOne
     {
-        $model = $this->getModelName();
-        return Repository::$model()->withLocalization()->where('language_code',appLanguageCode());
+        return $this->getRepository()->withLocalization();
     }
 
     /**
