@@ -59,7 +59,7 @@ class AcceptLanguage
      */
     private function checkRepositoryCode(?string $acceptLanguage) : mixed
     {
-        $repository = Repository::language()->findByName($acceptLanguage)->getRepository();
+        $repository = Repository::language()->name($acceptLanguage)->getRepository();
 
         if(!isset($repository[0]['language_code'])){
             return Exception::customException('Accept-Language is not valid');

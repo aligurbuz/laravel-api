@@ -62,7 +62,7 @@ interface LanguageRepositoryContract
     /**
      * @param null $name
      * @return LanguageRepositoryContract
-     * @see LanguageRepository::findByName()
+     * @see LanguageRepository::name()
      */
-    public function findByName($name = null) : LanguageRepositoryContract;
+    public function name($name = null) : LanguageRepositoryContract;
 }

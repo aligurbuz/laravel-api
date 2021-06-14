@@ -40,7 +40,7 @@ class LanguageRepository extends EloquentRepository implements LanguageRepositor
      * @param null $name
      * @return $this
      */
-	public function findByName($name = null) : LanguageRepositoryContract
+	public function name($name = null) : LanguageRepositoryContract
     {
         $this->repository = $this->instance()->where('name',$name);
 
