@@ -236,6 +236,17 @@ class EloquentRepository
     }
 
     /**
+     * apply method for repository
+     *
+     * @param object|null $builder
+     * @return object
+     */
+    public function apply(?object $builder = null): object
+    {
+        return $builder ?? $this->globalScope();
+    }
+
+    /**
      * get all entries for model
      *
      * @return array
@@ -307,14 +318,32 @@ class EloquentRepository
     }
 
     /**
+     * set eager loading for repository
+     *
+     * @param $model
+     * @param callable $callback
+     * @return object
+     */
+    public function setEagerLoading($model,callable $callback) : object
+    {
+        $repositoryName = lcfirst(class_basename(
+                $repository = $this->findRepositoryByModel($localization = $model))
+        );
+
+        return $repository->$repositoryName($repository->globalScope(
+            call_user_func($callback)
+        ));
+    }
+
+    /**
      * get with localization relation for repository
      *
-     * @return mixed
+     * @return object
      */
-    public function withLocalization(): mixed
+    public function withLocalization(): object
     {
-        return $this->findRepositoryByModel($localization = Localization::class)->globalScope(
-            $this->instance()->hasOne($localization,'localized_code','product_code')
-        );
+        return $this->setEagerLoading($localization = Localization::class,function() use($localization){
+            return $this->instance()->hasOne($localization,'localized_code','product_code');
+        });
     }
 }
