@@ -2,6 +2,7 @@
 
 use App\Constants;
 use App\Services\Client;
+use Illuminate\Support\Str;
 use JetBrains\PhpStorm\Pure;
 use App\Exceptions\Exception;
 use App\Services\AppContainer;
@@ -91,6 +92,18 @@ if(!function_exists('isThrowableInstance')){
     function isThrowableInstance($error): bool
     {
         return ($error instanceof Throwable);
+    }
+}
+
+if(!function_exists('getTableCode')){
+
+    /**
+     * @param $model
+     * @return string
+     */
+    function getTableCode($model): string
+    {
+        return Str::camel(class_basename($model)).'_code';
     }
 }
 
