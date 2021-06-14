@@ -4,13 +4,14 @@ declare(strict_types=1);
 
 namespace App\Models\Features;
 
+use App\Services\Db;
 use App\Models\Localization;
 use App\Services\AppContainer;
-use App\Services\Db;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
  * Trait BaseManager
+ * @property object localization
  * @package App\Models\Features
  */
 trait BaseManager
@@ -25,6 +26,16 @@ trait BaseManager
         'updated_at_human' => 'Displays the updated_at value in diffForHumans format.'
     ];
 
+    protected array $localizationWithQuery = [
+        'localization' => [
+            'foreignColumn' => 'localized_code',
+            'localColumn'   => 'product_code',
+            'table' => 'localizations',
+            'description' => 'You can use localizations relation belonging to product data.',
+            'repository' => 'localization',
+        ],
+    ];
+
     /**
      * BaseManager constructor.
      * @param array $attributes
@@ -33,6 +44,7 @@ trait BaseManager
     {
         $this->fillable = Db::columns($this->getTable());
         $this->assignAppends();
+        $this->withQueryConstructor();
         parent::__construct($attributes);
     }
 
@@ -47,6 +59,20 @@ trait BaseManager
     }
 
     /**
+     * get eager loading constructor for localization
+     *
+     * @return void
+     */
+    protected function withQueryConstructor()
+    {
+        if(property_exists($this,'withQuery') && is_array($this->withQuery)){
+            $this->withQuery = array_merge_recursive($this->withQuery,$this->localizationWithQuery);
+        }
+
+        $this->withQuery = $this->localizationWithQuery;
+    }
+
+    /**
      * get localization model
      *
      * @return HasOne
@@ -55,24 +81,6 @@ trait BaseManager
     {
         return $this->hasOne(Localization::class,'localized_code',getTableCode(get_called_class()))
             ->where('language_code',appLanguageCode());
-    }
-
-    /**
-     * @param $columnName
-     * @param $value
-     * @return mixed
-     */
-    protected function getLocalization($columnName,$value) : mixed
-    {
-        $localization = $this->localization()->first();
-
-        if(!is_null($localization)){
-            $values = objectValue($localization->values);
-
-            return $values->$columnName ?? $value;
-        }
-
-        return $value;
     }
 
     /**
