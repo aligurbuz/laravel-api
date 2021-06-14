@@ -41,11 +41,23 @@ class GlobalScopeManager
     public function __construct($repository)
     {
         $this->repository = $repository;
+
         $model = $this->repository->getModel();
         $builderInstance = (new $model);
 
         $this->columns = Db::columns($builderInstance->getTable());
         $this->builder = $builderInstance;
+    }
+
+    /**
+     * @param ?object $builder
+     * @return $this
+     */
+    public function setBuilder(?object $builder = null) : GlobalScopeManager
+    {
+        $this->builder = $builder ?? $this->builder;
+
+        return $this;
     }
 
     /**
