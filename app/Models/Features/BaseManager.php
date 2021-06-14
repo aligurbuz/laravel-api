@@ -100,7 +100,7 @@ trait BaseManager
      */
     public function localization(): HasOne
     {
-        return $this->getRepository()->withLocalization();
+        return $this->getRepository()->withLocalization($this);
     }
 
     /**

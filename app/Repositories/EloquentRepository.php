@@ -338,12 +338,13 @@ class EloquentRepository
     /**
      * get with localization relation for repository
      *
+     * @param object $modelInstance
      * @return object
      */
-    public function withLocalization(): object
+    public function withLocalization(object $modelInstance): object
     {
-        return $this->setEagerLoading($localization = Localization::class,function() use($localization){
-            return $this->instance()->hasOne($localization,'localized_code',getTableCode($this->getModel()));
+        return $this->setEagerLoading($localization = Localization::class,function() use($localization,$modelInstance){
+            return $modelInstance->hasOne($localization,'localized_code',getTableCode($this->getModel()));
         });
     }
 }
