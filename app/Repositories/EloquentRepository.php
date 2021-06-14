@@ -8,6 +8,7 @@ use Throwable;
 use App\Services\Db;
 use App\Factory\Factory;
 use App\Services\Client;
+use App\Models\Localization;
 use App\Exceptions\Exception;
 use App\Exceptions\SqlExceptionManager;
 use Illuminate\Database\Eloquent\Builder;
@@ -133,11 +134,12 @@ class EloquentRepository
     /**
      * get model name for repository
      *
+     * @param ?string $model
      * @return string
      */
-    public function getModelName(): string
+    public function getModelName(string $model = null): string
     {
-        return class_basename($this->getModel());
+        return class_basename(($model ?? $this->getModel()));
     }
 
     /**
@@ -225,11 +227,12 @@ class EloquentRepository
     /**
      * get global instance
      *
+     * @param null $builder
      * @return object
      */
-    public function globalScope(): object
+    public function globalScope($builder = null): object
     {
-        return (new GlobalScopeManager($this))->make();
+        return (new GlobalScopeManager($this))->setBuilder($builder)->make();
     }
 
     /**
@@ -289,5 +292,29 @@ class EloquentRepository
         return SqlExceptionManager::make($throwable,$this->getTable(),function() use($throwable){
             return Exception::modelCreateException($throwable->getPrevious()->getMessage());
         });
+    }
+
+    /**
+     * find repository by model
+     *
+     * @param $model
+     * @return object
+     */
+    public function findRepositoryByModel($model) : object
+    {
+        $modelName = getModelName($model);
+        return Repository::$modelName();
+    }
+
+    /**
+     * get with localization relation for repository
+     *
+     * @return mixed
+     */
+    public function withLocalization(): mixed
+    {
+        return $this->findRepositoryByModel($localization = Localization::class)->globalScope(
+            $this->instance()->hasOne($localization,'localized_code','product_code')
+        );
     }
 }
