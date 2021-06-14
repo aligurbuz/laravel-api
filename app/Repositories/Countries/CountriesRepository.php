@@ -29,12 +29,13 @@ class CountriesRepository extends EloquentRepository implements CountriesReposit
 	protected array $ranges = [];
 
 
-	/**
-	 * get auto CountriesRepository scope method
-	 * @return object
-	 */
-	public function countriesRepository(): object
+    /**
+     * get auto CountriesRepository scope method
+     * @param object|null $builder
+     * @return object
+     */
+	public function countriesRepository(?object $builder = null): object
 	{
-		return $this->globalScope();
+		return $this->apply($builder);
 	}
 }

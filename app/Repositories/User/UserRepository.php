@@ -27,11 +27,12 @@ class UserRepository extends EloquentRepository implements UserRepositoryContrac
     /**
      * get auto user range method
      *
+     * @param object|null $builder
      * @return object
      */
-    public function userRepository() : object
+    public function userRepository(?object $builder = null) : object
     {
-        return $this->globalScope();
+        return $this->apply($builder);
     }
 
     /**

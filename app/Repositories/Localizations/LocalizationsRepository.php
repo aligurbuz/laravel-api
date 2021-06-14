@@ -25,14 +25,15 @@ class LocalizationsRepository extends EloquentRepository implements Localization
 	 */
 	protected array $ranges = [];
 
-	/**
-	 * get auto LocalizationsRepository scope method
+    /**
+     * get auto LocalizationsRepository scope method
      *
-	 * @return object
-	 */
-	public function localizationsRepository(): object
+     * @param object|null $builder
+     * @return object
+     */
+	public function localizationsRepository(?object $builder = null): object
 	{
-		return $this->globalScope()->where('language_code',appLanguageCode());
+		return $this->apply($builder)->where('language_code',appLanguageCode());
 	}
 
     /**

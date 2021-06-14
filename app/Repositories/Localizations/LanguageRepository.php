@@ -24,13 +24,14 @@ class LanguageRepository extends EloquentRepository implements LanguageRepositor
 	 */
 	protected array $ranges = [];
 
-	/**
-	 * get auto LanguageRepository scope method
-	 * @return object
-	 */
-	public function languageRepository(): object
+    /**
+     * get auto LanguageRepository scope method
+     * @param object|null $builder
+     * @return object
+     */
+	public function languageRepository(?object $builder = null): object
 	{
-		return $this->globalScope();
+		return $this->apply($builder);
 	}
 
     /**
