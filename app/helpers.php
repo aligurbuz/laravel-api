@@ -94,6 +94,28 @@ if(!function_exists('isThrowableInstance')){
     }
 }
 
+if(!function_exists('objectValue')){
+
+    /**
+     * get object value the given data
+     *
+     * @param $data
+     * @return object
+     */
+    #[Pure] function objectValue($data): object
+    {
+        if(is_array($data)){
+            return (object)$data;
+        }
+
+        if(is_object($data)){
+            return $data;
+        }
+
+        return (object)[$data];
+    }
+}
+
 if(!function_exists('indexOrdering')){
 
     /**

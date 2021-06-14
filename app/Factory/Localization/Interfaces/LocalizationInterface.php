@@ -19,8 +19,8 @@ interface LocalizationInterface
     public function get() : array;
 
     /**
-     * @return mixed
+     * @return object
      * @see Localization::getValues()
      */
-    public function getValues() : mixed;
+    public function getValues() : object;
 }

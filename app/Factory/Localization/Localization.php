@@ -45,7 +45,7 @@ class Localization extends LocalizationManager implements LocalizationInterface
 		$this->binds = $binds;
 
 		$this->code = $this->binds[0] ?? 0;
-		$this->default = $this->binds[1] ?? null;
+		$this->default = ['default' => ($this->binds[1] ?? null)];
 	}
 
     /**
@@ -65,12 +65,12 @@ class Localization extends LocalizationManager implements LocalizationInterface
     /**
      * get localization data value for factory
      *
-     * @return mixed
+     * @return object
      */
-    public function getValues() : mixed
+    public function getValues() : object
     {
         $data = $this->get();
 
-        return $data[0]['values'] ?? $this->default;
+        return objectValue(($data[0]['values'] ?? $this->default));
     }
 }
