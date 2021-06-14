@@ -62,7 +62,7 @@ trait BaseManager
      * @param $value
      * @return mixed
      */
-    private function getLocalization($columnName,$value) : mixed
+    protected function getLocalization($columnName,$value) : mixed
     {
         $localization = $this->localization()->first();
 
@@ -73,28 +73,6 @@ trait BaseManager
         }
 
         return $value;
-    }
-
-    /**
-     * get localization name for model
-     *
-     * @param $name
-     * @return string
-     */
-    public function getNameAttribute($name) : string
-    {
-        return $this->getLocalization('name',$name);
-    }
-
-    /**
-     * get localization description for model
-     *
-     * @param $description
-     * @return string
-     */
-    public function getDescriptionAttribute($description) : string
-    {
-        return $this->getLocalization('description',$description);
     }
 
     /**
