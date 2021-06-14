@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Models\Features;
 
 use App\Services\Db;
-use App\Models\Localization;
 use App\Services\AppContainer;
+use App\Repositories\Repository;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
@@ -73,14 +73,24 @@ trait BaseManager
     }
 
     /**
+     * get model name
+     *
+     * @return string
+     */
+    public function getModelName() : string
+    {
+        return getModelName(get_called_class());
+    }
+
+    /**
      * get localization model
      *
      * @return HasOne
      */
     public function localization(): HasOne
     {
-        return $this->hasOne(Localization::class,'localized_code',getTableCode(get_called_class()))
-            ->where('language_code',appLanguageCode());
+        $model = $this->getModelName();
+        return Repository::$model()->withLocalization()->where('language_code',appLanguageCode());
     }
 
     /**
