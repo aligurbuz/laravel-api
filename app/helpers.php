@@ -103,7 +103,19 @@ if(!function_exists('getTableCode')){
      */
     function getTableCode($model): string
     {
-        return Str::camel(class_basename($model)).'_code';
+        return getModelName($model).'_code';
+    }
+}
+
+if(!function_exists('getModelName')){
+
+    /**
+     * @param $model
+     * @return string
+     */
+    function getModelName($model): string
+    {
+        return Str::camel(class_basename($model));
     }
 }
 
