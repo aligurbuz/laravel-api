@@ -49,14 +49,14 @@ class Response
     /**
      * application error 400 content for response
      *
-     * @param null|string $message
+     * @param string|null $message
      * @param int $code
-     * @param null|Throwable $exception
+     * @param Throwable|null $exception
      * @return object
      *
      * @throws Exception
      */
-    public static function error($message = null,$code = 400,$exception = null) : object
+    public static function error(string $message = null, int $code = 400, Throwable $exception = null) : object
     {
         $code  = ($code == '0' || !is_numeric($code)) ? 500 : $code;
         $trace = (isThrowableInstance($exception)) ? $exception : debug_backtrace();
@@ -92,7 +92,7 @@ class Response
      *
      * @throws Exception
      */
-    private static function response($data = [],$code = 200) : object
+    private static function response(array $data = [], int $code = 200) : object
     {
         return static::formatter($data,$code);
     }
@@ -105,7 +105,7 @@ class Response
      * @param null $message
      * @return array
      */
-    private static function throwIn($trace = null,$code = 200,$message = null) : array
+    private static function throwIn($trace = null, int $code = 200, $message = null) : array
     {
         $throwInProcess = static::throwInProcess($trace);
 
@@ -155,7 +155,7 @@ class Response
      * @param int $code
      * @return string
      */
-    private static function getExceptionMessageForEnvironment($message = null,$code = 200) : string
+    private static function getExceptionMessageForEnvironment($message = null, int $code = 200) : string
     {
         return (app()->environment() == 'local' || $code!==500)
             ? (($code === 404) ? 'Not Found Endpoint' : $message)
@@ -254,7 +254,7 @@ class Response
      *
      * @throws Exception
      */
-    private static function formatter(array $data = [],$code = 200): object
+    private static function formatter(array $data = [], int $code = 200): object
     {
         AppContainer::set(Constants::response,$data);
 
