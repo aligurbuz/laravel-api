@@ -6,6 +6,7 @@ namespace App\Client;
 
 use App\Services\Db;
 use Illuminate\Support\Str;
+use JetBrains\PhpStorm\Pure;
 use App\Repositories\Repository;
 use App\Packages\Client\ClientManager;
 
@@ -90,7 +91,7 @@ class Client extends ClientManager
      * @param bool $isset
      * @return void
      */
-    public function setRule($key,$value,$isset = true) : void
+    public function setRule($key, $value, bool $isset = true) : void
     {
         if($isset && isset($this->rule[$key])){
             $this->rule[$key] = $value.'|'.$this->rule[$key];
@@ -315,7 +316,7 @@ class Client extends ClientManager
      * @param null|string $key
      * @return mixed
      */
-    public function get($key = null) : mixed
+    #[Pure] public function get(?string $key = null) : mixed
     {
         $streamData = $this->getDataStream();
 
@@ -328,7 +329,7 @@ class Client extends ClientManager
      * @param null|string $key
      * @return bool
      */
-    public function has($key = null) : bool
+    #[Pure] public function has(?string $key = null) : bool
     {
         $streamData = $this->getDataStream();
 
