@@ -50,7 +50,7 @@ class AwsS3 extends StorageManager implements StorageInterface
         $list = [];
 
         foreach (($this->binds['files'] ?? []) as $input => $data){
-            $this->client->ensureColumnExists($input,function() use($input,$data) {
+            $this->client->ensureColumnExists($input,function() use($input,$data,$list) {
                 $list[$input] = $data->getClientOriginalName();
             });
         }
