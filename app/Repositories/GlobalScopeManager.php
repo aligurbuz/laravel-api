@@ -88,13 +88,13 @@ class GlobalScopeManager
      * puts user id to where clause for model
      *
      * @param $scope
-     * @return object
+     * @return void
      */
-    private function handler($scope): object
+    private function handler($scope): void
     {
-        return $this->ensureColumnExists($columnName = Str::snake($scope),function() use($columnName,$scope){
-            $resource = $this->resource.'\\'.ucfirst($scope);
-            if(class_exists($resource) && !app()->runningInConsole()){
+        $this->ensureColumnExists($columnName = Str::snake($scope), function () use ($columnName, $scope) {
+            $resource = $this->resource . '\\' . ucfirst($scope);
+            if (class_exists($resource) && !app()->runningInConsole()) {
                 return (new $resource($this->builder))->handle($columnName);
             }
 
