@@ -26,7 +26,7 @@ class Slack
      * @param string $channel
      * @return Slack
      */
-    public static function channel($channel='default'): Slack
+    public static function channel(string $channel='default'): Slack
     {
         //we get configuration settings for slack.
         $config = config('slack.'.$channel);

@@ -38,12 +38,12 @@ class Date
     /**
      * create format for date
      *
-     * @param $format
+     * @param string $format
      * @param $data
      * @param null $tz
      * @return Carbon|false
      */
-    public static function createFormat($data,$format = 'Y-m-d H:i:s',$tz = null): bool|Carbon
+    public static function createFormat($data, string $format = 'Y-m-d H:i:s', $tz = null): bool|Carbon
     {
         $tz = is_null($tz) ? (new self())->timezone : $tz;
 

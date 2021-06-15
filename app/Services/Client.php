@@ -61,7 +61,7 @@ class Client
      * @param bool $format
      * @return string
      */
-    public static function contentType($format = false) : string
+    public static function contentType(bool $format = false) : string
     {
         $default            = 'application/'.config('app.defaultApiResponseFormatter');
         $contentType        = AppContainer::get('contentType');

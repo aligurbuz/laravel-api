@@ -22,7 +22,7 @@ class AppContainer
      * @param $value
      * @param bool $merge
      */
-    public static function set($key,$value,$merge = false)
+    public static function set($key, $value, bool $merge = false)
     {
         if(!$merge && !isset(static::$data[$key])){
             static::$data[$key] = $value;
@@ -42,10 +42,10 @@ class AppContainer
      * get key for app factory
      *
      * @param $key
-     * @param null|mixed $default
+     * @param mixed|null $default
      * @return mixed
      */
-    public static function get($key,$default = null): mixed
+    public static function get($key, mixed $default = null): mixed
     {
         return static::$data[$key] ?? $default;
     }

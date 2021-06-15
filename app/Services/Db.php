@@ -76,10 +76,10 @@ class Db extends Model
     /**
      * get entity for table
      *
-     * @param null|string $table
+     * @param string|null $table
      * @return array
      */
-    public static function entities($table = null) : array
+    public static function entities(string $table = null) : array
     {
         if(class_exists($table)){
             $table = static::getTableNameFromModel($table);
