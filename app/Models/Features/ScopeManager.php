@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Models\Features;
 
-use App\Facades\Authenticate\ApiKey;
 use App\Services\Db;
 use App\Exceptions\Exception;
 use App\Services\AppContainer;
 use App\Repositories\Repository;
+use App\Facades\Authenticate\ApiKey;
 use Illuminate\Database\Eloquent\Builder;
 
 /**
@@ -45,7 +45,7 @@ trait ScopeManager
      * @param null|string $data
      * @return Builder
      */
-    public function scopeRange(Builder $builder,object $object,$data = null): Builder
+    public function scopeRange(Builder $builder,object $object,mixed $data = null): Builder
     {
         $range          = $data  ?? ((request()->query->all())['range'] ?? '');
         $ranges         = is_string($range) ? explode(',',$range) : [];
@@ -71,7 +71,7 @@ trait ScopeManager
      * @param bool $repository
      * @return object
      */
-    public function scopeRepository(Builder $builder,object $object,$repository = true): object
+    public function scopeRepository(Builder $builder,object $object,bool $repository = true): object
     {
         if(app()->runningInConsole()) $repository = false;
 
@@ -109,7 +109,7 @@ trait ScopeManager
 
         $searchableTerm = $this->fullTextWildcards($term);
 
-        return $builder->whereRaw("MATCH ({$columns}) AGAINST (? IN BOOLEAN MODE)", $searchableTerm);
+        return $builder->whereRaw("MATCH (".$columns.") AGAINST (? IN BOOLEAN MODE)", $searchableTerm);
     }
 
     /**
@@ -336,7 +336,7 @@ trait ScopeManager
      * @param null|string $table
      * @return array
      */
-    private function checkSelectColumn($select = [],$table = null): array
+    private function checkSelectColumn(array $select = [], ?string $table = null): array
     {
         foreach ($select as $selectKey =>$item){
             if(!in_array($item,Db::columns($table ?? $this->getTable()))){
