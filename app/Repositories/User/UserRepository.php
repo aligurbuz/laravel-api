@@ -42,7 +42,7 @@ class UserRepository extends EloquentRepository implements UserRepositoryContrac
      * @param bool $id
      * @return array
      */
-    public function update(array $data = [], $id = true): array
+    public function update(array $data = [], bool $id = true): array
     {
         return parent::update($data,false);
     }
