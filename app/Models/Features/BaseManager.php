@@ -68,8 +68,6 @@ trait BaseManager
         if(property_exists($this,'withQuery') && is_array($this->withQuery)){
             $this->withQuery = array_merge_recursive($this->withQuery,$this->localizationWithQuery);
         }
-
-        $this->withQuery = $this->localizationWithQuery;
     }
 
     /**
