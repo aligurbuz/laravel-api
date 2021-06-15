@@ -31,7 +31,7 @@ interface UserRepositoryContract
      * @return mixed
      * @see UserRepository::update()
      */
-    public function update(array $data = [],$id = true): array;
+    public function update(array $data = [],bool $id = true): array;
 
     /**
      * @param $field

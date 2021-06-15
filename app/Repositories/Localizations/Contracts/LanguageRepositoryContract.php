@@ -21,12 +21,13 @@ interface LanguageRepositoryContract
 	function create(array $data = []): array|object;
 
 
-	/**
-	 * @param array $data
-	 * @return array|object
-	 * @see LanguageRepository::update()
-	 */
-	function update(array $data = []): array|object;
+    /**
+     * @param array $data
+     * @param bool $id
+     * @return array|object
+     * @see LanguageRepository::update()
+     */
+	function update(array $data = [],bool $id = true): array|object;
 
 
 	/**

@@ -67,7 +67,7 @@ class EloquentRepository
      * @param bool $id
      * @return array|object
      */
-    public function update(array $data = [],$id = true): array|object
+    public function update(array $data = [],bool $id = true): array|object
     {
         $clientData = count($data) ? $data : Client::data();
         $queryList = [];
@@ -118,7 +118,7 @@ class EloquentRepository
      */
     public function exists($field,$value) : bool
     {
-        return $this->instance()->where($field,$value)->first() ? true : false;
+        return is_null($this->instance()->where($field,$value)->first());
     }
 
     /**
@@ -215,7 +215,7 @@ class EloquentRepository
      * @param bool $repository
      * @return object
      */
-    public function instance($repository = true) : object
+    public function instance(bool $repository = true) : object
     {
         if(is_null($this->repository)){
             $this->repository = static::$model::repository($this,$repository);
@@ -327,7 +327,7 @@ class EloquentRepository
     public function setEagerLoading($model,callable $callback) : object
     {
         $repositoryName = lcfirst(class_basename(
-                $repository = $this->findRepositoryByModel($localization = $model))
+                $repository = $this->findRepositoryByModel($model))
         );
 
         return $repository->$repositoryName($repository->globalScope(

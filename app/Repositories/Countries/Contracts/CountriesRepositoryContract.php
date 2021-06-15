@@ -26,12 +26,13 @@ interface CountriesRepositoryContract
 	function create(array $data = []): array|object;
 
 
-	/**
-	 * @param array $data
-	 * @return array|object
-	 * @see CountriesRepository::update()
-	 */
-	function update(array $data = []): array|object;
+    /**
+     * @param array $data
+     * @param bool $id
+     * @return array|object
+     * @see CountriesRepository::update()
+     */
+	function update(array $data = [],bool $id = true): array|object;
 
 
 	/**
