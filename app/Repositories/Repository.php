@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Repositories;
 
-use App\Exceptions\Exception;
 use App\Repositories\User\Contracts\UserRepositoryContract;
 use App\Repositories\Localizations\Contracts\LanguageRepositoryContract;
 use App\Repositories\Localizations\Contracts\LocalizationsRepositoryContract;
