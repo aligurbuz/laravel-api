@@ -9,10 +9,10 @@ trait ExceptionTrait
     /**
      * set message for exception data
      *
-     * @param null|string $message
+     * @param string|null $message
      * @return string
      */
-    public function setMessage($message = null) : string
+    public function setMessage(?string $message = null) : string
     {
         $languageStatement = 'exception.'.$this->langKey;
         $language = trans($languageStatement,$this->getKeys());
