@@ -103,9 +103,13 @@ class RepositoryCommand extends Command
             ->addComment('@param array $data')
             ->addComment('@return array|object')->addComment('@see '.$className.'::create()')->addParameter('data',[])->setType('array');
 
-        $class->addMethod('update')->setReturnType('array|object')
-            ->addComment('@param array $data')
-            ->addComment('@return array|object')->addComment('@see '.$className.'::update()')->addParameter('data',[])->setType('array');
+        $updateMethod = $class->addMethod('update')->setReturnType('array|object');
+            $updateMethod->addComment('@param array $data')
+                ->addComment('@param bool $id')
+            ->addComment('@return array|object')->addComment('@see '.$className.'::update()');
+
+            $updateMethod->addParameter('data',[])->setType('array');
+            $updateMethod->addParameter('id',true)->setType('bool');
 
         $interfaceMethodFind = $class->addMethod('find')->setReturnType('array');
         $interfaceMethodFind
@@ -116,6 +120,10 @@ class RepositoryCommand extends Command
         $interfaceMethodAll = $class->addMethod('all')->setReturnType('array');
         $interfaceMethodAll
             ->addComment('@return array')->addComment('@see '.$className.'::all()');
+
+        $interfaceMethodGetRepository = $class->addMethod('getRepository')->setReturnType('array');
+        $interfaceMethodGetRepository
+            ->addComment('@return array')->addComment('@see '.$className.'::getRepository()');
 
         $interfaceMethodFind->addParameter('id')->setType(new Literal('int'));
         $interfaceMethodFind->addParameter('select')->setType(new Literal('array'))->setDefaultValue(['*']);
