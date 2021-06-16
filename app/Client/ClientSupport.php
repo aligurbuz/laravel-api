@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Client;
 
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Route;
 
 /**
  * Trait ClientSupport
