@@ -11,4 +11,5 @@ return [
     'modelUniqueCreateException'    => 'data named :key is available in our systems.',
     'contentTypeException'          => 'Could not detect content-type in request.Please specify a valid content-type as header in your request.We just supports (:key)',
     'codeException'                 => 'Invalid :key',
+    'grandAuthenticateException'    => 'You do not have the necessary permissions for this endpoint.',
 ];

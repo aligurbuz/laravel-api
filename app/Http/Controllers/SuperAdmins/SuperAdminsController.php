@@ -4,11 +4,10 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\SuperAdmins;
 
-use App\Client\SuperAdmins\SuperAdmins\Create\CreateClient;
-use App\Client\SuperAdmins\SuperAdmins\Get\GetClient;
-use App\Client\SuperAdmins\SuperAdmins\Update\UpdateClient;
-use App\Facades\Authenticate\ApiKey;
 use App\Http\Controllers\ApiController;
+use App\Client\SuperAdmins\SuperAdmins\Get\GetClient;
+use App\Client\SuperAdmins\SuperAdmins\Create\CreateClient;
+use App\Client\SuperAdmins\SuperAdmins\Update\UpdateClient;
 use App\Repositories\SuperAdmins\Contracts\SuperAdminsRepositoryContract;
 
 class SuperAdminsController extends ApiController

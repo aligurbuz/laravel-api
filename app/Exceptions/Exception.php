@@ -22,6 +22,7 @@ use App\Services\AppContainer;
  * @method static filterException($message = null,$keys = [])
  * @method static modelCreateException($message = null,$keys = [])
  * @method static modelUniqueCreateException($message = null,$keys = [])
+ * @method static grandAuthenticateException($message = null,$keys = [])
  * @package App\Exceptions
  */
 class Exception
