@@ -77,10 +77,11 @@ class RepositoryCommand extends Command
             ->addComment('@var array|string[]');
 
         $method = $class->addMethod(lcfirst($className));
-        //$method->addParameter('builder')->setType('Illuminate\Database\Eloquent\Builder');
-        $method->setBody('return $this->globalScope();')->setReturnType('object');
+        $method->addParameter('builder',null)->setNullable(true)->setType('object');
+        $method->setBody('return $this->apply($builder);')->setReturnType('object');
         $method->addComment('get auto '.$className.' scope method')
-            //->addComment('')
+            ->addComment('')
+            ->addComment('@param object|null $builder')
             //->addComment('@param Builder $builder')
             ->addComment('@return object');
 
