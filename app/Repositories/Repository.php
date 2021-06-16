@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Repositories;
 
 use App\Repositories\User\Contracts\UserRepositoryContract;
+use App\Repositories\SuperAdmins\Contracts\SuperAdminsRepositoryContract;
 use App\Repositories\Localizations\Contracts\LanguageRepositoryContract;
 use App\Repositories\Localizations\Contracts\LocalizationsRepositoryContract;
 use App\Repositories\Logger\Contracts\LoggerRepositoryContract;
@@ -16,6 +17,16 @@ use App\Repositories\Countries\Contracts\CountriesRepositoryContract;
  */
 class Repository
 {
+    /**
+     * get superAdmin repository instance
+     *
+     * @return SuperAdminsRepositoryContract
+     */
+    public static function superAdmin() : SuperAdminsRepositoryContract
+    {
+        return app()->get(SuperAdminsRepositoryContract::class);
+    }
+    
     /**
      * get language repository instance
      *

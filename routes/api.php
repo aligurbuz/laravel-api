@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SuperAdmins\SuperAdminsController;
 use App\Http\Controllers\Localizations\LanguageController;
 use App\Http\Controllers\Localizations\LocalizationsController;
 use App\Http\Controllers\Countries\CountriesController;
@@ -25,6 +26,10 @@ Route::post('/login', [LoginController::class,'login']);
 Route::post('/register', [RegisterController::class,'register']);
 
 Route::middleware(['auth:api'])->group(function(){
+
+    Route::get('/superAdmins', [SuperAdminsController::class,'get']);
+    Route::post('/superAdmins', [SuperAdminsController::class,'create']);
+    Route::put('/superAdmins', [SuperAdminsController::class,'update']);
 
     Route::get('/localizations/language', [LanguageController::class,'get']);
     Route::post('/localizations/language', [LanguageController::class,'create']);

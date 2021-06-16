@@ -6,6 +6,15 @@ class EntityMap
 {
     /**
      * @param object $query
+     * @return SuperAdmin
+     */
+    public function superAdmin(object $query) : SuperAdmin
+    {
+        return new SuperAdmin($query);
+    }
+    
+    /**
+     * @param object $query
      * @return Language
      */
     public function language(object $query) : Language

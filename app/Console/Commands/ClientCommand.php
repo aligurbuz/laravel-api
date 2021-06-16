@@ -6,6 +6,7 @@ use App\Client\Client;
 use App\Client\ClientAutoGeneratorTrait;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 use Nette\PhpGenerator\Literal;
 use Nette\PhpGenerator\PhpNamespace;
 
@@ -93,12 +94,12 @@ return null;')
         }
 
         if($method=='Create'){
-            $generator->addProperty('generators',[strtolower($modelName).'_code'])->setType('array')->setProtected()
+            $generator->addProperty('generators',[Str::snake($modelName).'_code'])->setType('array')->setProtected()
                 ->addComment('get auto generator for client')
                 ->addComment('')
                 ->addComment('@return array');
 
-            $generator->addProperty('dontOverWriteGenerators',[strtolower($modelName).'_code'])->setType('array')->setProtected()
+            $generator->addProperty('dontOverWriteGenerators',[Str::snake($modelName).'_code'])->setType('array')->setProtected()
                 ->addComment('get dont overwrite generator for client')
                 ->addComment('')
                 ->addComment('@return array');

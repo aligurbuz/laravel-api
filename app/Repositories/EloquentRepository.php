@@ -118,7 +118,7 @@ class EloquentRepository
      */
     public function exists($field,$value) : bool
     {
-        return is_null($this->instance()->where($field,$value)->first());
+        return !is_null($this->instance()->where($field,$value)->first());
     }
 
     /**
