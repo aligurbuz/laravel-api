@@ -39,21 +39,4 @@ class CreateUserClient extends Client
         'email'     => 'required',
         'password'  => 'required',
     ];
-
-    /**
-     * it is password in the client data
-     *
-     * @var string
-     */
-    protected string $password;
-
-    /**
-     * password value sent will be passed through the Hash::make() method.
-     *
-     * @return string
-     */
-    protected function password(): string
-    {
-        return Hash::make($this->password);
-    }
 }

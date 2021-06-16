@@ -34,6 +34,6 @@ class UpdateUserClient extends Client
      * @var array
      */
     protected array $rule = [
-        'id' => 'required'
+        'user_code' => 'required'
     ];
 }

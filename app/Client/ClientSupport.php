@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\Client;
 
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
 
 /**
  * Trait ClientSupport
@@ -35,5 +37,26 @@ trait ClientSupport
         }
 
         return $this->isDefault;
+    }
+
+    /**
+     * it is password in the client data
+     *
+     * @var string
+     */
+    protected string $password;
+
+    /**
+     * password value sent will be passed through the Hash::make() method.
+     *
+     * @return string
+     */
+    protected function password(): string
+    {
+        if(class_basename(Route::current()->controller)!=='LoginController'){
+            return Hash::make($this->password);
+        }
+
+        return $this->password;
     }
 }
