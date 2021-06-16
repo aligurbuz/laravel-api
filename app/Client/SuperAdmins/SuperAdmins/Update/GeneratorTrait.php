@@ -1,6 +1,6 @@
-<?php 
+<?php
 
-namespace App\Client\SuperAdmins\SuperAdmins\Update; 
+namespace App\Client\SuperAdmins\SuperAdmins\Update;
 
 trait GeneratorTrait
 {
@@ -26,8 +26,8 @@ trait GeneratorTrait
 	 */
 	public function isValidSuperAdminCodeGenerator()
 	{
-		if($this->has('superadmin_code') && !$this->repository()->exists('superadmin_code',$this->get('superadmin_code'))){
-		    inValidCodeException('superadmin_code',$this->get('superadmin_code'));
+		if($this->has('super_admin_code') && !$this->repository()->exists('super_admin_code',$this->get('super_admin_code'))){
+		    inValidCodeException('super_admin_code',$this->get('super_admin_code'));
 		}
 
 		return null;

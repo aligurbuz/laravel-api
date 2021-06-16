@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Client\SuperAdmins\SuperAdmins\Update;
 
@@ -30,5 +30,5 @@ class UpdateClient extends Client
 	 *
 	 * @var array
 	 */
-	protected array $rule = ['superadmin_code' => 'required|integer'];
+	protected array $rule = ['super_admin_code' => 'required|integer'];
 }

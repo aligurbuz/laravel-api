@@ -54,7 +54,7 @@ trait ClientAutoGeneratorTrait
     {
         return $this->ensureColumnExists('user_code',function(){
             if(ApiKey::isSuperAdmin()){
-                return $this->get('user_code');
+                return $this->has('user_code') ? $this->get('user_code') : null;
             }
 
             return Authenticate::code();

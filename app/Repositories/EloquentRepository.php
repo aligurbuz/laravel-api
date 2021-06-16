@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Repositories;
 
+use Illuminate\Support\Str;
 use Throwable;
 use App\Services\Db;
 use App\Factory\Factory;
@@ -74,7 +75,7 @@ class EloquentRepository
 
         foreach ($clientData as $data){
             $baseQuery = $this->instance()->where(function(Builder $builder) use($data,$id){
-                $modelCode = strtolower($this->getModelName()).'_code';
+                $modelCode = Str::snake($this->getModelName()).'_code';
                 if(isset($data[$modelCode]) || $id === true){
                     $builder->where($modelCode,intval(($data[$modelCode] ?? 0)));
                 }
