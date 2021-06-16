@@ -18,9 +18,7 @@ class Handler extends ExceptionHandler
     public function register()
     {
         $this->reportable(function (Throwable $e) {
-            if($e->getCode() == '0' && app()->environment()!=='local'){
-                Factory::notify(['error' => $e])->internalServerError();
-            }
+            //
         });
     }
 
@@ -33,6 +31,34 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $e): object
     {
+        $this->notifyForInternalServer($e);
         return Response::error($e->getMessage(),$e->getCode(),$e);
     }
+
+    /**
+     * checks if the notify condition is valid
+     *
+     * @param Throwable $e
+     * @return bool
+     */
+    private function isTrueNotifyCondition(Throwable $e) : bool
+    {
+        return $e->getCode() == '0'
+            && app()->environment()!=='local'
+            && class_basename($e)!=='MethodNotAllowedHttpException';
+    }
+
+    /**
+     * notify for 500 internal server
+     *
+     * @param Throwable $e
+     * @return void
+     */
+    private function notifyForInternalServer(Throwable $e) : void
+    {
+        if($this->isTrueNotifyCondition($e)){
+            Factory::notify(['error' => $e])->internalServerError();
+        }
+    }
+
 }

@@ -50,6 +50,8 @@ class Slack500Formatter
         $list[] = '> *Client*: '.ApiKey::who();
         $list[] = '> *Error Message*: '.$error->getMessage();
         $list[] = '> *Error File*: '.$error->getFile();
+        $list[] = '> *Endpoint*: '.request()->url();
+        $list[] = '> *Safe*: '.request()->isMethodSafe();
         $list[] = '> *Error Line*: '.$error->getLine();
         $list[] = '> *Client Ip*: '.request()->getClientIp();
         $list[] = '> *Auth*: '.Authenticate::code();
