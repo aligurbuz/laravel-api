@@ -82,9 +82,9 @@ class ClientCommand extends Command
         }
 
         if($method=='Update'){
-            $generator->addMethod('isValid'.ucfirst($modelName).'CodeGenerator')
-                ->setBody('if($this->has(\''.strtolower($modelName).'_code\') && !$this->repository()->exists(\''.strtolower($modelName).'_code\',$this->get(\''.strtolower($modelName).'_code\'))){
-    inValidCodeException(\''.strtolower($modelName).'_code\',$this->get(\''.strtolower($modelName).'_code\'));
+            $generator->addMethod('isValid'.strtolower($modelName).'CodeGenerator')
+                ->setBody('if($this->has(\''.Str::snake($modelName).'_code\') && !$this->repository()->exists(\''.Str::snake($modelName).'_code\',$this->get(\''.Str::snake($modelName).'_code\'))){
+    inValidCodeException(\''.Str::snake($modelName).'_code\',$this->get(\''.Str::snake($modelName).'_code\'));
 }
 
 return null;')
@@ -105,12 +105,12 @@ return null;')
                 ->addComment('@return array');
         }
         elseif($method=='Update'){
-            $generator->addProperty('generators',['isValid'.ucfirst($modelName).'Code'])->setType('array')->setProtected()
+            $generator->addProperty('generators',['isValid'.Str::snake($modelName).'Code'])->setType('array')->setProtected()
                 ->addComment('get auto generator for client')
                 ->addComment('')
                 ->addComment('@return array');
 
-            $generator->addProperty('dontOverWriteGenerators',['isValid'.ucfirst($modelName).'Code'])->setType('array')->setProtected()
+            $generator->addProperty('dontOverWriteGenerators',['isValid'.Str::snake($modelName).'Code'])->setType('array')->setProtected()
                 ->addComment('get dont overwrite generator for client')
                 ->addComment('')
                 ->addComment('@return array');
@@ -157,7 +157,7 @@ return null;')
 
         if($method=='Update'){
             $classGenerator->addProperty('rule',[
-                strtolower($modelName).'_code' => 'required|integer'
+                Str::snake($modelName).'_code' => 'required|integer'
             ])->setType('array')->setProtected()
                 ->addComment('get rule for client')
                 ->addComment('')
