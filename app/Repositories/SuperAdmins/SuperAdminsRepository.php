@@ -1,10 +1,12 @@
-<?php 
+<?php
 
 declare(strict_types=1);
 
 namespace App\Repositories\SuperAdmins;
 
 use App\Models\SuperAdmin;
+use App\Exceptions\Exception;
+use App\Facades\Authenticate\ApiKey;
 use App\Repositories\EloquentRepository;
 use App\Repositories\SuperAdmins\Contracts\SuperAdminsRepositoryContract;
 
@@ -24,6 +26,15 @@ class SuperAdminsRepository extends EloquentRepository implements SuperAdminsRep
 	 */
 	protected array $ranges = [];
 
+    /**
+     * SuperAdminsRepository constructor.
+     */
+	public function __construct()
+    {
+        if(ApiKey::isSuperAdmin() === false){
+            Exception::grandAuthenticateException();
+        }
+    }
 
 	/**
 	 * get auto SuperAdminsRepository scope method
