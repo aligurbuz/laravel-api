@@ -6,6 +6,7 @@ namespace App\Client;
 
 use App\Services\Date;
 use App\Factory\Factory;
+use App\Facades\Authenticate\ApiKey;
 use App\Facades\Authenticate\Authenticate;
 
 /**
@@ -52,7 +53,11 @@ trait ClientAutoGeneratorTrait
     public function userCodeAutoGenerator(): mixed
     {
         return $this->ensureColumnExists('user_code',function(){
-           return Authenticate::code();
+            if(ApiKey::isSuperAdmin()){
+                return $this->get('user_code');
+            }
+
+            return Authenticate::code();
         });
     }
 

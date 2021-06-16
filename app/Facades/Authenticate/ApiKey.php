@@ -2,6 +2,7 @@
 
 namespace App\Facades\Authenticate;
 
+use Illuminate\Support\Str;
 use App\Services\AppContainer;
 
 /**
@@ -22,7 +23,7 @@ class ApiKey
      */
     public static function __callStatic(string $name, array $arguments) : bool
     {
-        $name = strtolower(substr($name,2));
+        $name = Str::camel(substr($name,2));
 
         return (static::who() === $name);
     }
