@@ -53,11 +53,9 @@ trait ClientAutoGeneratorTrait
     public function userCodeAutoGenerator(): mixed
     {
         return $this->ensureColumnExists('user_code',function(){
-            if(ApiKey::isSuperAdmin()){
-                return $this->has('user_code') ? $this->get('user_code') : null;
-            }
-
-            return Authenticate::code();
+            return $this->getUserCodeForSuperAdmin(function(){
+                return Authenticate::code();
+            });
         });
     }
 
@@ -163,5 +161,20 @@ trait ClientAutoGeneratorTrait
         }
 
         return null;
+    }
+
+    /**
+     * get user code for super admin
+     *
+     * @param callable $callback
+     * @return mixed
+     */
+    private function getUserCodeForSuperAdmin(callable $callback): mixed
+    {
+        if(ApiKey::isSuperAdmin()){
+            return $this->has('user_code') ? $this->get('user_code') : null;
+        }
+
+        return call_user_func($callback);
     }
 }
