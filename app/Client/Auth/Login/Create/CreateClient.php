@@ -4,7 +4,6 @@ namespace App\Client\Auth\Login\Create;
 
 use App\Client\Client;
 use App\Client\ClientAutoGeneratorTrait;
-use App\Models\User;
 
 class CreateClient extends Client
 {
@@ -34,4 +33,21 @@ class CreateClient extends Client
 	    'email'     => 'required',
         'password'  => 'required'
     ];
+
+    /**
+     * it is password in the client data
+     *
+     * @var string
+     */
+    protected string $password;
+
+    /**
+     * password value for client
+     *
+     * @return string
+     */
+    protected function password(): string
+    {
+        return $this->password;
+    }
 }

@@ -53,10 +53,6 @@ trait ClientSupport
      */
     protected function password(): string
     {
-        if(class_basename(Route::current()->controller)!=='LoginController'){
-            return Hash::make($this->password);
-        }
-
-        return $this->password;
+        return Hash::make($this->password);
     }
 }
