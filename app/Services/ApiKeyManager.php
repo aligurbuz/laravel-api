@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace App\Services;
 
-use Closure;
-use App\Exceptions\Exception;
 use Illuminate\Http\Request;
+use App\Exceptions\Exception;
 
 /**
  * Class ApiKeyManager
@@ -17,23 +16,24 @@ class ApiKeyManager
     /**
      * Handle an incoming request.
      *
-     * @param Request $request
-     * @param  Closure  $next
      * @return mixed
      */
-    public function handle(Request $request, Closure $next): mixed
+    public function handle(): mixed
     {
+        $request = request();
+
         $apiKeys = $this->apiKeys();
         $header = $this->getHeaderKey($request);
+
+        if(!in_array($header,$apiKeys)){
+            return Exception::apiKeyException();
+            AppContainer::set('apiKeyException',true);
+        }
 
         AppContainer::set('apiKey',$header);
         AppContainer::set('apiKeys',$apiKeys);
 
-        if(!in_array($header,$apiKeys)){
-            return Exception::apiKeyException();
-        }
-
-        return $next($request);
+        return null;
     }
 
     /**
@@ -41,7 +41,7 @@ class ApiKeyManager
      */
     private function apiKeys(): array
     {
-        return $this->apiKeys;
+        return config('apikey');
     }
 
     /**
