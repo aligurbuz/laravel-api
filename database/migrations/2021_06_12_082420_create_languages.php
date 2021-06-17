@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class CreateLanguages extends Migration
 {
@@ -19,6 +20,25 @@ class CreateLanguages extends Migration
             $table->char('name',5);
             $table->timestamps();
         });
+
+        DB::table('languages')->delete();
+
+        $languages = [
+            [
+                'language_code' => '2693479080',
+                'name'          => 'en',
+                'created_at'    => date('Y-m-d H:i:s'),
+                'updated_at'    => date('Y-m-d H:i:s'),
+            ],
+            [
+                'language_code' => '1427052797',
+                'name'          => 'tr',
+                'created_at'    => date('Y-m-d H:i:s'),
+                'updated_at'    => date('Y-m-d H:i:s'),
+            ]
+        ];
+
+        DB::table('languages')->insert($languages);
     }
 
     /**
