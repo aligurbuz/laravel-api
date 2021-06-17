@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Repositories;
 
-use App\Facades\Authenticate\ApiKey;
 use App\Services\Db;
 use Illuminate\Support\Str;
+use App\Facades\Authenticate\ApiKey;
 use Illuminate\Database\Eloquent\Builder;
 
 /**
