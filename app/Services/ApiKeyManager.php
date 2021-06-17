@@ -27,7 +27,6 @@ class ApiKeyManager
 
         if(!in_array($header,$apiKeys)){
             return Exception::apiKeyException();
-            AppContainer::set('apiKeyException',true);
         }
 
         AppContainer::set('apiKey',$header);
