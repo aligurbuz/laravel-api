@@ -70,7 +70,7 @@ class Kernel extends HttpKernel
         'accessLogger' => AccessLogger::class,
         'response' => Response::class,
         //'contentType' => ContentType::class,
-        'AcceptLanguage' => AcceptLanguage::class,
-        'SuperAdmin' => SuperAdmin::class
+        'acceptLanguage' => AcceptLanguage::class,
+        'superAdmin' => SuperAdmin::class
     ];
 }

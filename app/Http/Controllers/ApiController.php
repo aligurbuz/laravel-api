@@ -16,7 +16,7 @@ class ApiController extends BaseController
      * @var array
      */
     protected array $middlewares = [
-        'AcceptLanguage',
+        'acceptLanguage',
         'accessLogger',
         'response',
     ];
@@ -67,7 +67,7 @@ class ApiController extends BaseController
     private function getMiddlewares() : array
     {
         if(ApiKey::isSuperAdmin()){
-            $this->middlewares[] = 'SuperAdmin';
+            $this->middlewares[] = 'superAdmin';
         }
 
         return $this->middlewares;
