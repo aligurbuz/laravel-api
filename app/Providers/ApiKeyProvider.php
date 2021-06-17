@@ -14,7 +14,7 @@ class ApiKeyProvider extends ServiceProvider
      */
     public function register()
     {
-
+        //
     }
 
     /**
