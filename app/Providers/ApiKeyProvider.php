@@ -24,7 +24,7 @@ class ApiKeyProvider extends ServiceProvider
      */
     public function boot()
     {
-        if($this->app->runningInConsole()===false){
+        if($this->app->runningInConsole()===false && !strpos(request()->getRequestUri(),'clockwork')){
             (new ApiKeyManager())->handle();
         }
     }

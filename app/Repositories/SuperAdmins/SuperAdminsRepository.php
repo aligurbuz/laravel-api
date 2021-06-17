@@ -55,7 +55,7 @@ class SuperAdminsRepository extends EloquentRepository implements SuperAdminsRep
      */
 	public function authenticatedUser() : SuperAdminsRepositoryContract
     {
-        $this->repository = $this->instance()->active()->where('user_code',Authenticate::code());
+        $this->repository = $this->instance()->where('user_code',Authenticate::code());
 
         return $this;
     }
