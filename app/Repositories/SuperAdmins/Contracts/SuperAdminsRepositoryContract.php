@@ -1,8 +1,10 @@
-<?php 
+<?php
 
 namespace App\Repositories\SuperAdmins\Contracts;
 
+use App\Repositories\EloquentRepository;
 use App\Repositories\SuperAdmins\SuperAdminsRepository;
+use Illuminate\Database\Eloquent\Builder;
 
 interface SuperAdminsRepositoryContract
 {
@@ -60,4 +62,17 @@ interface SuperAdminsRepositoryContract
 	 * @see SuperAdminsRepository::exists()
 	 */
 	function exists($field, $value): bool;
+
+    /**
+     * @param Builder|null $builder
+     * @return EloquentRepository
+     * @see SuperAdminsRepository::active()
+     */
+    public function active(Builder $builder = null): EloquentRepository;
+
+    /**
+     * @return SuperAdminsRepositoryContract
+     * @see SuperAdminsRepository::user()
+     */
+    public function user() : SuperAdminsRepositoryContract;
 }

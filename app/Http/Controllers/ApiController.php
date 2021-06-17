@@ -15,6 +15,7 @@ class ApiController extends BaseController
      * @var array
      */
     protected array $middlewares = [
+        'SuperAdmin',
         'AcceptLanguage',
         'accessLogger',
         'response',

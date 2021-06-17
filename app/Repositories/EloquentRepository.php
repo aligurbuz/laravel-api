@@ -160,6 +160,10 @@ class EloquentRepository
      */
     public function getRepository() : array
     {
+        if(is_null($this->repository)){
+            $this->repository = $this->instance();
+        }
+
         return $this->repository->get()->toArray();
     }
 
@@ -167,13 +171,13 @@ class EloquentRepository
      * get today scope for client
      *
      * @param null|Builder $builder
-     * @return object
+     * @return EloquentRepository
      */
-    public function active(Builder $builder = null): object
+    public function active(Builder $builder = null): EloquentRepository
     {
-        return $this->ensureColumnExists('status',$builder,function() use($builder){
-            return $this->builder($builder)->where('status',1);
-        });
+        $this->instance()->where('status',1)->where('is_deleted',0);
+
+        return $this;
     }
 
     /**

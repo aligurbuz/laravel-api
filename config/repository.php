@@ -15,5 +15,5 @@ return [
      * the method constructor with the same name as the repository will work as a method.
      * This setting will not initialize the repository based on .ClientKey values.
      */
-    'dontRepository' => ['superAdmin'],
+    'dontGlobalScopes' => ['superAdmin'],
 ];

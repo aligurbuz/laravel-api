@@ -2,6 +2,8 @@
 
 namespace App\Repositories\Localizations\Contracts;
 
+use App\Repositories\EloquentRepository;
+use Illuminate\Database\Eloquent\Builder;
 use App\Repositories\Localizations\LanguageRepository;
 
 interface LanguageRepositoryContract
@@ -66,4 +68,11 @@ interface LanguageRepositoryContract
      * @see LanguageRepository::name()
      */
     public function name($name = null) : LanguageRepositoryContract;
+
+    /**
+     * @param Builder|null $builder
+     * @return EloquentRepository
+     * @see LanguageRepository::active()
+     */
+    public function active(Builder $builder = null): EloquentRepository;
 }

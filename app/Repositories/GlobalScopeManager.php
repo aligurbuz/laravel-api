@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Repositories;
 
+use App\Facades\Authenticate\ApiKey;
 use App\Services\Db;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Builder;
@@ -80,7 +81,12 @@ class GlobalScopeManager
     private function handleScopes() : void
     {
         foreach (config('repository.globalScopes') as $scope){
-            $this->handler($scope);
+
+            // the clientKey values in the dontRepository key
+            // in the config settings will disable the repository application.
+            if(!in_array(ApiKey::who(),config('repository.dontGlobalScopes'))){
+                $this->handler($scope);
+            }
         }
     }
 

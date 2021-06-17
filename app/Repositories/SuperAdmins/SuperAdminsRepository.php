@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Repositories\SuperAdmins;
 
+use App\Facades\Authenticate\Authenticate;
 use App\Models\SuperAdmin;
 use App\Exceptions\Exception;
 use App\Facades\Authenticate\ApiKey;
@@ -46,4 +47,16 @@ class SuperAdminsRepository extends EloquentRepository implements SuperAdminsRep
 	{
 		return $this->apply($builder);
 	}
+
+    /**
+     * get user for super admin repository
+     *
+     * @return SuperAdminsRepositoryContract
+     */
+	public function user() : SuperAdminsRepositoryContract
+    {
+        $this->repository = $this->instance()->active()->where('user_code',Authenticate::code());
+
+        return $this;
+    }
 }

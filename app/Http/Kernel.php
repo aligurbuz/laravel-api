@@ -5,8 +5,8 @@ namespace App\Http;
 use App\Http\Middleware\AcceptLanguage;
 use App\Http\Middleware\ApiKey;
 use App\Http\Middleware\AccessLogger;
-use App\Http\Middleware\ContentType;
 use App\Http\Middleware\Response;
+use App\Http\Middleware\SuperAdmin;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -70,6 +70,7 @@ class Kernel extends HttpKernel
         'accessLogger' => AccessLogger::class,
         'response' => Response::class,
         //'contentType' => ContentType::class,
-        'AcceptLanguage' => AcceptLanguage::class
+        'AcceptLanguage' => AcceptLanguage::class,
+        'SuperAdmin' => SuperAdmin::class
     ];
 }
