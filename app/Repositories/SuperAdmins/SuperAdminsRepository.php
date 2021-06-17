@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Repositories\SuperAdmins;
 
-use App\Facades\Authenticate\Authenticate;
 use App\Models\SuperAdmin;
 use App\Exceptions\Exception;
 use App\Facades\Authenticate\ApiKey;
 use App\Repositories\EloquentRepository;
+use App\Facades\Authenticate\Authenticate;
 use App\Repositories\SuperAdmins\Contracts\SuperAdminsRepositoryContract;
 
 class SuperAdminsRepository extends EloquentRepository implements SuperAdminsRepositoryContract
