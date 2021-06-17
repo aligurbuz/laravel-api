@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Facades\Authenticate\ApiKey;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -15,7 +16,6 @@ class ApiController extends BaseController
      * @var array
      */
     protected array $middlewares = [
-        'SuperAdmin',
         'AcceptLanguage',
         'accessLogger',
         'response',
@@ -31,7 +31,7 @@ class ApiController extends BaseController
      */
     public function __construct()
     {
-        foreach ($this->middlewares as $middleware){
+        foreach ($this->getMiddlewares() as $middleware){
             $this->exceptMiddlewares($middleware,function() use($middleware){
                 $this->middleware($middleware);
             });
@@ -57,5 +57,19 @@ class ApiController extends BaseController
         }
 
         return call_user_func($callback);
+    }
+
+    /**
+     * get middlewares for request
+     *
+     * @return array
+     */
+    private function getMiddlewares() : array
+    {
+        if(ApiKey::isSuperAdmin()){
+            $this->middlewares[] = 'SuperAdmin';
+        }
+
+        return $this->middlewares;
     }
 }
