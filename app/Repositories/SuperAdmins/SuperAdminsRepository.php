@@ -49,7 +49,7 @@ class SuperAdminsRepository extends EloquentRepository implements SuperAdminsRep
 	}
 
     /**
-     * get user for super admin repository
+     * get authenticated user for super admin repository
      *
      * @return SuperAdminsRepositoryContract
      */
