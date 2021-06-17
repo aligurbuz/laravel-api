@@ -21,7 +21,7 @@ class SuperAdmin
     public function handle(Request $request, Closure $next): mixed
     {
         if(ApiKey::isSuperAdmin()){
-            $superAdmin = Repository::superAdmin()->user()->getRepository();
+            $superAdmin = Repository::superAdmin()->authenticatedUser()->getRepository();
 
             if(!isset($superAdmin[0]['user_code']) || $superAdmin[0]['user_code'] !== Authenticate::code()){
                 return Exception::grandAuthenticateException();

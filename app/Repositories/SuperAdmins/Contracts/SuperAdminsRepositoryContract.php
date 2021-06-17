@@ -72,7 +72,7 @@ interface SuperAdminsRepositoryContract
 
     /**
      * @return SuperAdminsRepositoryContract
-     * @see SuperAdminsRepository::user()
+     * @see SuperAdminsRepository::authenticatedUser()
      */
-    public function user() : SuperAdminsRepositoryContract;
+    public function authenticatedUser() : SuperAdminsRepositoryContract;
 }
