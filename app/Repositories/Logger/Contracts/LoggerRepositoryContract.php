@@ -3,7 +3,6 @@
 namespace App\Repositories\Logger\Contracts;
 
 use App\Repositories\EloquentRepository;
-use Illuminate\Database\Eloquent\Builder;
 use App\Repositories\Logger\LoggerRepository;
 
 interface LoggerRepositoryContract
@@ -53,9 +52,8 @@ interface LoggerRepositoryContract
     function find(int $id,array $select = ['*']): array;
 
     /**
-     * @param Builder|null $builder
      * @return EloquentRepository
      * @see LoggerRepository::active()
      */
-    public function active(Builder $builder = null): EloquentRepository;
+    public function active(): EloquentRepository;
 }

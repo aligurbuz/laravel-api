@@ -4,7 +4,6 @@ namespace App\Repositories\User\Contracts;
 
 use App\Repositories\EloquentRepository;
 use App\Repositories\User\UserRepository;
-use Illuminate\Database\Eloquent\Builder;
 
 interface UserRepositoryContract
 {
@@ -51,9 +50,8 @@ interface UserRepositoryContract
     function find(int $id,array $select = ['*']): array;
 
     /**
-     * @param Builder|null $builder
      * @return EloquentRepository
      * @see UserRepository::active()
      */
-    public function active(Builder $builder = null): EloquentRepository;
+    public function active(): EloquentRepository;
 }

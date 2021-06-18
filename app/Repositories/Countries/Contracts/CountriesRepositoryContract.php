@@ -4,7 +4,6 @@ namespace App\Repositories\Countries\Contracts;
 
 use App\Repositories\Countries\CountriesRepository;
 use App\Repositories\EloquentRepository;
-use Illuminate\Database\Eloquent\Builder;
 
 interface CountriesRepositoryContract
 {
@@ -55,9 +54,8 @@ interface CountriesRepositoryContract
 	function exists($field, $value): bool;
 
     /**
-     * @param Builder|null $builder
      * @return EloquentRepository
      * @see CountriesRepository::active()
      */
-    public function active(Builder $builder = null): EloquentRepository;
+    public function active(): EloquentRepository;
 }

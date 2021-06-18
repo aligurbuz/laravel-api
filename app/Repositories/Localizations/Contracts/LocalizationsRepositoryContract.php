@@ -3,7 +3,6 @@
 namespace App\Repositories\Localizations\Contracts;
 
 use App\Repositories\EloquentRepository;
-use Illuminate\Database\Eloquent\Builder;
 use App\Repositories\Localizations\LocalizationsRepository;
 
 interface LocalizationsRepositoryContract
@@ -70,9 +69,8 @@ interface LocalizationsRepositoryContract
     public function getRepository() : array;
 
     /**
-     * @param Builder|null $builder
      * @return EloquentRepository
      * @see LocalizationsRepository::active()
      */
-    public function active(Builder $builder = null): EloquentRepository;
+    public function active(): EloquentRepository;
 }
