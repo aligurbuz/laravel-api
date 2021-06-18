@@ -34,23 +34,23 @@ abstract class CollectionManager
      * Additions two given values as a double.
      *
      * @param $key
-     * @param $value
+     * @param $increment
      * @return float
      */
-    protected function addition($key, $value) : float
+    protected function addition($key, $increment) : float
     {
-        return (float)$key + (float)$value;
+        return (float)$key + (float)$increment;
     }
 
     /**
      * Subtractions two given values as a double.
      *
      * @param $key
-     * @param $value
+     * @param $decrement
      * @return float
      */
-    protected function subtraction($key, $value) : float
+    protected function subtraction($key, $decrement) : float
     {
-        return (float)$key - (float)$value;
+        return (float)$key - (float)$decrement;
     }
 }
