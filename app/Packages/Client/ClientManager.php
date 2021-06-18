@@ -201,7 +201,7 @@ class ClientManager
         $multipleDimension = false;
 
         foreach ($data as $key => $value) {
-            if (!is_array($value) && !$multipleDimension) {
+            if (!$multipleDimension) {
                 $list[$key] = $value;
             }
             else{
