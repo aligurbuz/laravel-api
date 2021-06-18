@@ -23,7 +23,7 @@ abstract class CollectionManager
                 $list[$firstKey] = $this->{$operator}($firstValue,$last[$firstKey]);
             }
             else{
-                $list[$firstKey] = $firstValue;
+                $list[$firstKey] = $this->{$operator}($firstValue,1);
             }
         }
 
