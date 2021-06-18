@@ -76,6 +76,9 @@ class DbColumn extends Command
             if(Str::endsWith($column->DATA_TYPE,'int')){
                 $list['types'][] = '"integer"';
             }
+            elseif(Str::endsWith($column->DATA_TYPE,'json')){
+                $list['types'][] = '"array"';
+            }
             elseif(Str::endsWith($column->DATA_TYPE,'char') || Str::endsWith($column->DATA_TYPE,'text')){
                 $list['types'][] = '"string"';
             }
