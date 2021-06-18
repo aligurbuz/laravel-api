@@ -73,4 +73,11 @@ interface LocalizationsRepositoryContract
      * @see LocalizationsRepository::active()
      */
     public function active(): object;
+
+    /**
+     * @param int $code
+     * @return object
+     * @see LocalizationsRepository::active()
+     */
+    public function code(int $code = 0) : object;
 }

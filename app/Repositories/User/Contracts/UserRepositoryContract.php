@@ -54,4 +54,11 @@ interface UserRepositoryContract
      * @see UserRepository::active()
      */
     public function active(): object;
+
+    /**
+     * @param int $code
+     * @return object
+     * @see UserRepository::active()
+     */
+    public function code(int $code = 0) : object;
 }

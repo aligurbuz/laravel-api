@@ -73,4 +73,11 @@ interface LanguageRepositoryContract
      * @see LanguageRepository::active()
      */
     public function active(): object;
+
+    /**
+     * @param int $code
+     * @return object
+     * @see LanguageRepository::active()
+     */
+    public function code(int $code = 0) : object;
 }

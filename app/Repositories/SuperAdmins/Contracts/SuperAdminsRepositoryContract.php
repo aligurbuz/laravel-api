@@ -73,4 +73,11 @@ interface SuperAdminsRepositoryContract
      * @see SuperAdminsRepository::authenticatedUser()
      */
     public function authenticatedUser() : SuperAdminsRepositoryContract;
+
+    /**
+     * @param int $code
+     * @return object
+     * @see SuperAdminsRepository::active()
+     */
+    public function code(int $code = 0) : object;
 }

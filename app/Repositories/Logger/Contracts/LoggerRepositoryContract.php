@@ -56,4 +56,11 @@ interface LoggerRepositoryContract
      * @see LoggerRepository::active()
      */
     public function active(): object;
+
+    /**
+     * @param int $code
+     * @return object
+     * @see LoggerRepository::active()
+     */
+    public function code(int $code = 0) : object;
 }

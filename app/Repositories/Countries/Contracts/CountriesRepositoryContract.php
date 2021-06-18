@@ -58,4 +58,11 @@ interface CountriesRepositoryContract
      * @see CountriesRepository::active()
      */
     public function active(): object;
+
+    /**
+     * @param int $code
+     * @return object
+     * @see CountriesRepository::active()
+     */
+    public function code(int $code = 0) : object;
 }
