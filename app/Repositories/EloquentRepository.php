@@ -170,10 +170,9 @@ class EloquentRepository
     /**
      * get today scope for client
      *
-     * @param null|Builder $builder
      * @return EloquentRepository
      */
-    public function active(Builder $builder = null): EloquentRepository
+    public function active(): EloquentRepository
     {
         $this->instance()->where('status',1)->where('is_deleted',0);
 
