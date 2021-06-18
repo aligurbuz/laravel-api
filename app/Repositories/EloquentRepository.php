@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Repositories;
 
-use Illuminate\Support\Str;
 use Throwable;
 use App\Services\Db;
-use App\Factory\Factory;
 use App\Services\Client;
+use App\Factory\Factory;
+use Illuminate\Support\Str;
 use App\Models\Localization;
 use App\Exceptions\Exception;
 use App\Exceptions\SqlExceptionManager;
