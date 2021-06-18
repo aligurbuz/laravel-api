@@ -99,6 +99,19 @@ class EloquentRepository
     }
 
     /**
+     * get code instance for repository
+     *
+     * @param int $code
+     * @return object
+     */
+    public function code(int $code = 0) : object
+    {
+        $this->repository = $this->instance()->where(getTableCode($this->getModelName()),$code);
+
+        return $this;
+    }
+
+    /**
      * @param int $id
      * @param array $select
      * @return array
