@@ -79,7 +79,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"language_code\":\"integer\",\"localized_code\":\"integer\",\"values\":\"json\"}",
+                            "raw": "{\"language_code\":\"integer\",\"localized_code\":\"integer\",\"values\":\"array\"}",
                             "options": {
                                 "raw": {
                                     "language": "json"
@@ -127,7 +127,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"is_deleted\":\"0\",\"language_code\":\"integer\",\"localization_code\":\"integer\",\"localized_code\":\"integer\",\"status\":\"1\",\"values\":\"json\"}",
+                            "raw": "{\"is_deleted\":\"0\",\"language_code\":\"integer\",\"localization_code\":\"integer\",\"localized_code\":\"integer\",\"status\":\"1\",\"values\":\"array\"}",
                             "options": {
                                 "raw": {
                                     "language": "json"
