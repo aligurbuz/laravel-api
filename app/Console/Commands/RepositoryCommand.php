@@ -130,8 +130,11 @@ class RepositoryCommand extends Command
         $interfaceMethodActive
             ->addComment('@return object')->addComment('@see '.$className.'::active()');
 
-        $interfaceMethodCode = $class->addMethod('code')->setReturnType('object');
+        $interfaceMethodCode = $class->addMethod('code');
+        $interfaceMethodCode->addParameter('code',0)->setType('int');
+        $interfaceMethodCode->setReturnType('object');
         $interfaceMethodCode
+            ->addComment('@param int $code')
             ->addComment('@return object')->addComment('@see '.$className.'::code()');
 
         $interfaceMethodFind->addParameter('id')->setType(new Literal('int'));
