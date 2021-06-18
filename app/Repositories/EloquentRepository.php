@@ -170,9 +170,9 @@ class EloquentRepository
     /**
      * get today scope for client
      *
-     * @return EloquentRepository
+     * @return object
      */
-    public function active(): EloquentRepository
+    public function active(): object
     {
         $this->instance()->where('status',1)->where('is_deleted',0);
 
