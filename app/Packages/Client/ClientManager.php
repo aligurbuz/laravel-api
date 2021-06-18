@@ -42,10 +42,11 @@ class ClientManager
     /**
      * ClientManager constructor.
      * @param array $data
+     * @param null $requestMethod
      */
-    public function __construct(array $data = [])
+    public function __construct(array $data = [],$requestMethod = null)
     {
-        $this->requestMethod();
+        $this->requestMethod($requestMethod ?? request()->method());
         $this->setData($data);
     }
 
@@ -83,8 +84,8 @@ class ClientManager
     public function setData(array $data = []): void
     {
         $this->data = count($data)
-            ? $data
-            :['params' => $this->getParamValues(),'body' => $this->getBodyValues()];
+            ? $this->clientBodyFormat($data)
+            :['params' => $this->getParamValues($data),'body' => $this->getBodyValues($data)];
 
         $this->setContainerData();
     }
@@ -121,12 +122,14 @@ class ClientManager
     /**
      * get body value for client data
      *
+     * @param array $data
      * @return array
      */
-    public function getBodyValues(): array
+    public function getBodyValues(array $data = []): array
     {
         if($this->requestMethod!=='GET'){
-            return $this->clientBodyFormat(request()->request->all());
+            $data = count($data) ? $data : request()->request->all();
+            return $this->clientBodyFormat($data);
         }
 
         return [];
@@ -135,11 +138,12 @@ class ClientManager
     /**
      * get body value for client data
      *
+     * @param array $data
      * @return array
      */
-    public function getParamValues(): array
+    public function getParamValues(array $data = []): array
     {
-        return request()->query->all();
+        return count($data) ? $data : request()->query->all();
     }
 
     /**
