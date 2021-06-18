@@ -9,6 +9,7 @@ use App\Factory\Cache\Interfaces\CacheInterface;
 use App\Factory\Notify\Interfaces\NotifyInterface;
 use App\Factory\Logger\Interfaces\LoggerInterface;
 use App\Factory\Storage\Interfaces\StorageInterface;
+use App\Factory\Collection\Interfaces\CollectionInterface;
 use App\Factory\Repository\Interfaces\RepositoryInterface;
 use App\Factory\Localization\Interfaces\LocalizationInterface;
 
@@ -21,6 +22,7 @@ use App\Factory\Localization\Interfaces\LocalizationInterface;
  * @method static CacheInterface cache($arguments = null)
  * @method static CodeInterface code($arguments = null)
  * @method static LocalizationInterface localization($arguments = null)
+ * @method static CollectionInterface collection($arguments = null)
  * @package App\Factory
  */
 class Factory extends FactoryManager
