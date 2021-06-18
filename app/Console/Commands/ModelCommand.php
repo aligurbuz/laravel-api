@@ -51,9 +51,11 @@ use App\Models\Features\BaseManager;',$modelFileContent);
 
         $modelFileChange = str_replace('use HasFactory;','use HasFactory,BaseManager;
 
-        protected array $searchable = [];
+    protected array $searchable = [];
 
-        protected $hidden = [\'id\'];',$modelFileChange);
+    protected array $withQuery = [];
+
+    protected $hidden = [\'id\'];',$modelFileChange);
 
         File::put($modelFile,$modelFileChange);
 
