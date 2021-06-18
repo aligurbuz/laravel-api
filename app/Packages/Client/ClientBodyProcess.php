@@ -34,7 +34,7 @@ class ClientBodyProcess extends ClientVariableProcess
     {
         $this->client = $client;
         $data = $this->client->getData();
-        $this->data = $data['body'] ?? [];
+        $this->data = $data['body'] ?? $data;
 
         if(count($this->data)=='0'){
             Exception::clientEmptyException();
