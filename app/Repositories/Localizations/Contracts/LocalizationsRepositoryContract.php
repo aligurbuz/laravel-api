@@ -69,8 +69,8 @@ interface LocalizationsRepositoryContract
     public function getRepository() : array;
 
     /**
-     * @return EloquentRepository
+     * @return object
      * @see LocalizationsRepository::active()
      */
-    public function active(): EloquentRepository;
+    public function active(): object;
 }

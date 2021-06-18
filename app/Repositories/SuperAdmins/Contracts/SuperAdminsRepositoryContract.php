@@ -63,10 +63,10 @@ interface SuperAdminsRepositoryContract
 	function exists($field, $value): bool;
 
     /**
-     * @return EloquentRepository
+     * @return object
      * @see SuperAdminsRepository::active()
      */
-    public function active(): EloquentRepository;
+    public function active(): object;
 
     /**
      * @return SuperAdminsRepositoryContract

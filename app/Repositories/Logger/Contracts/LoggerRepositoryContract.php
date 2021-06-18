@@ -52,8 +52,8 @@ interface LoggerRepositoryContract
     function find(int $id,array $select = ['*']): array;
 
     /**
-     * @return EloquentRepository
+     * @return object
      * @see LoggerRepository::active()
      */
-    public function active(): EloquentRepository;
+    public function active(): object;
 }

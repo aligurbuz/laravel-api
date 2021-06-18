@@ -54,8 +54,8 @@ interface CountriesRepositoryContract
 	function exists($field, $value): bool;
 
     /**
-     * @return EloquentRepository
+     * @return object
      * @see CountriesRepository::active()
      */
-    public function active(): EloquentRepository;
+    public function active(): object;
 }

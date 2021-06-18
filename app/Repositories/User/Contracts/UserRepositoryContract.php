@@ -50,8 +50,8 @@ interface UserRepositoryContract
     function find(int $id,array $select = ['*']): array;
 
     /**
-     * @return EloquentRepository
+     * @return object
      * @see UserRepository::active()
      */
-    public function active(): EloquentRepository;
+    public function active(): object;
 }

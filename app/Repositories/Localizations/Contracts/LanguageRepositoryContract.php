@@ -69,8 +69,8 @@ interface LanguageRepositoryContract
     public function name($name = null) : LanguageRepositoryContract;
 
     /**
-     * @return EloquentRepository
+     * @return object
      * @see LanguageRepository::active()
      */
-    public function active(): EloquentRepository;
+    public function active(): object;
 }
