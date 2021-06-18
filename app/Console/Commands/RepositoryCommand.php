@@ -126,6 +126,10 @@ class RepositoryCommand extends Command
         $interfaceMethodGetRepository
             ->addComment('@return array')->addComment('@see '.$className.'::getRepository()');
 
+        $interfaceMethodActive = $class->addMethod('active')->setReturnType(EloquentRepository::class);
+        $interfaceMethodActive
+            ->addComment('@return '.EloquentRepository::class)->addComment('@see '.$className.'::active()');
+
         $interfaceMethodFind->addParameter('id')->setType(new Literal('int'));
         $interfaceMethodFind->addParameter('select')->setType(new Literal('array'))->setDefaultValue(['*']);
 
