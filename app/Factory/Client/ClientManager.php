@@ -17,16 +17,30 @@ abstract class ClientManager
     public function make(array $data = []) : array
     {
         if($this->isValidClientIdentifierResource()){
-            $client = $this->binds['resource']['clientIdentifier'];
-            $clientNamespace = $client->clientNamespace();
+            $clientIdentifier = $this->binds['resource']['clientIdentifier'];
+            return $this->clientHandler($clientIdentifier,$data);
+        }
 
-            if(class_exists($clientNamespace)){
-                $clientInstance = new $clientNamespace($data);
-                $clientInstance->requestMethod($client->getRequestMethod());
-                $clientInstance->handle();
+        return [];
+    }
 
-                return $clientInstance->getDataStream();
-            }
+    /**
+     * client handler for resource factory
+     *
+     * @param object $client
+     * @param array $data
+     * @return array
+     */
+    private function clientHandler(object $client,array $data = []) : array
+    {
+        $clientNamespace = $client->clientNamespace();
+
+        if(class_exists($clientNamespace)){
+            $clientInstance = new $clientNamespace($data);
+            $clientInstance->requestMethod($client->getRequestMethod());
+            $clientInstance->handle();
+
+            return $clientInstance->getDataStream();
         }
 
         return [];
