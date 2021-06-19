@@ -29,11 +29,11 @@ if(!function_exists('cR')){
     /**
      * manipulates to client request with data
      *
-     * @param string|null $client
+     * @param string $client
      * @param array $data
      * @return array
      */
-    function cR(?string $client,array $data = []): array
+    function cR(string $client,array $data = []): array
     {
         return Factory::client(['client' => $client])->cR($data);
     }
