@@ -1,6 +1,7 @@
 <?php
 
 use App\Constants;
+use App\Factory\Factory;
 use App\Services\Client;
 use Illuminate\Support\Str;
 use JetBrains\PhpStorm\Pure;
@@ -20,6 +21,21 @@ if(!function_exists('entity')){
     #[Pure] function entity(): EntityMap
     {
         return new EntityMap();
+    }
+}
+
+if(!function_exists('cR')){
+
+    /**
+     * manipulates to client request with data
+     *
+     * @param string|null $client
+     * @param array $data
+     * @return array
+     */
+    function cR(?string $client,array $data = []): array
+    {
+        return Factory::client(['client' => $client])->cR($data);
     }
 }
 

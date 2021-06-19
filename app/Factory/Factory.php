@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Factory;
 
+use App\Factory\Client\Interfaces\ClientInterface;
 use App\Factory\Code\Interfaces\CodeInterface;
 use App\Factory\Cache\Interfaces\CacheInterface;
 use App\Factory\Notify\Interfaces\NotifyInterface;
@@ -23,6 +24,7 @@ use App\Factory\Localization\Interfaces\LocalizationInterface;
  * @method static CodeInterface code($arguments = null)
  * @method static LocalizationInterface localization($arguments = null)
  * @method static CollectionInterface collection($arguments = null)
+ * @method static ClientInterface client($arguments = null)
  * @package App\Factory
  */
 class Factory extends FactoryManager
