@@ -27,17 +27,17 @@ abstract class ClientManager
     /**
      * client handler for resource factory
      *
-     * @param object $client
+     * @param object $clientIdentifier
      * @param array $data
      * @return array
      */
-    private function clientHandler(object $client,array $data = []) : array
+    private function clientHandler(object $clientIdentifier,array $data = []) : array
     {
-        $clientNamespace = $client->clientNamespace();
+        $clientNamespace = $clientIdentifier->clientNamespace();
 
         if(class_exists($clientNamespace)){
             $clientInstance = new $clientNamespace($data);
-            $clientInstance->requestMethod($client->getRequestMethod());
+            $clientInstance->requestMethod($clientIdentifier->getRequestMethod());
             $clientInstance->handle();
 
             return $clientInstance->getDataStream();
