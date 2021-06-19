@@ -51,7 +51,7 @@ abstract class ClientManager
      *
      * @return bool
      */
-    public function isValidClientIdentifierResource() : bool
+    private function isValidClientIdentifierResource() : bool
     {
         return isset($this->binds['resource']['clientIdentifier'])
             && $this->binds['resource']['clientIdentifier'] instanceof ClientIdentifier
