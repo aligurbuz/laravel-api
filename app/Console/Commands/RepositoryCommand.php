@@ -129,6 +129,11 @@ class RepositoryCommand extends Command
             ->addComment('@param bool $afterLoadingRepository')
             ->addComment('@return array')->addComment('@see '.$className.'::getRepository()');
 
+        $interfaceMethodLatest = $class->addMethod('latest');
+        $interfaceMethodLatest->setReturnType('array');
+        $interfaceMethodLatest
+            ->addComment('@return array')->addComment('@see '.$className.'::latest()');
+
         $interfaceMethodActive = $class->addMethod('active')->setReturnType('object');
         $interfaceMethodActive
             ->addComment('@return object')->addComment('@see '.$className.'::active()');
