@@ -179,7 +179,7 @@ class EloquentRepository
         }
 
         if($afterLoadingRepository && method_exists($this,'afterLoadingRepository')){
-            $this->afterLoadingRepository();
+            $this->repository = $this->afterLoadingRepository();
         }
 
         return $this->repository->get()->toArray();
@@ -188,13 +188,11 @@ class EloquentRepository
     /**
      * after loading for repository
      *
-     * @return $this
+     * @return object
      */
-    public function afterLoadingRepository() : EloquentRepository
+    public function afterLoadingRepository() : object
     {
-        $this->repository = $this->instance()->active();
-
-        return $this;
+        return $this->active()->instance();
     }
 
     /**
@@ -204,7 +202,13 @@ class EloquentRepository
      */
     public function active(): object
     {
-        $this->instance()->where('status',1)->where('is_deleted',0);
+        $this->ensureColumnExists('status',$this->instance(),function(){
+           $this->instance()->where('status',1);
+        });
+
+        $this->ensureColumnExists('is_deleted',$this->instance(),function(){
+            $this->instance()->where('is_deleted',0);
+        });
 
         return $this;
     }
@@ -315,9 +319,9 @@ class EloquentRepository
      * @param $column
      * @param $builder
      * @param callable $callback
-     * @return array|object
+     * @return ?object
      */
-    public function ensureColumnExists($column,$builder,callable $callback) : array|object
+    public function ensureColumnExists($column,$builder,callable $callback) : ?object
     {
         if(Db::ensureColumnExists($this->getModel(),$column)){
             return call_user_func($callback);

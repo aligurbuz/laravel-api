@@ -10,7 +10,7 @@ interface SuperAdminsRepositoryContract
 	 * @return array
 	 * @see SuperAdminsRepository::get()
 	 */
-	function get(): array;
+	public function get(): array;
 
 
 	/**
@@ -18,7 +18,7 @@ interface SuperAdminsRepositoryContract
 	 * @return array|object
 	 * @see SuperAdminsRepository::create()
 	 */
-	function create(array $data = []): array|object;
+	public function create(array $data = []): array|object;
 
 
 	/**
@@ -27,7 +27,7 @@ interface SuperAdminsRepositoryContract
 	 * @return array|object
 	 * @see SuperAdminsRepository::update()
 	 */
-	function update(array $data = [], bool $id = true): array|object;
+	public function update(array $data = [], bool $id = true): array|object;
 
 
 	/**
@@ -36,14 +36,14 @@ interface SuperAdminsRepositoryContract
 	 * @return array
 	 * @see SuperAdminsRepository::find()
 	 */
-	function find(int $id, array $select = ['*']): array;
+	public function find(int $id, array $select = ['*']): array;
 
 
 	/**
 	 * @return array
 	 * @see SuperAdminsRepository::all()
 	 */
-	function all(): array;
+	public function all(): array;
 
 
     /**
@@ -51,8 +51,7 @@ interface SuperAdminsRepositoryContract
      * @return array
      * @see SuperAdminsRepository::getRepository()
      */
-	function getRepository($afterLoadingRepository = true): array;
-
+	public function getRepository($afterLoadingRepository = true): array;
 
 	/**
 	 * @param $field
@@ -60,7 +59,7 @@ interface SuperAdminsRepositoryContract
 	 * @return bool
 	 * @see SuperAdminsRepository::exists()
 	 */
-	function exists($field, $value): bool;
+	public function exists($field, $value): bool;
 
     /**
      * @return object

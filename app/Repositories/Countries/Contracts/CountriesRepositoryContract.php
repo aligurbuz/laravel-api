@@ -10,7 +10,7 @@ interface CountriesRepositoryContract
 	 * @return array
 	 * @see CountriesRepository::get()
 	 */
-	function get(): array;
+	public function get(): array;
 
     /**
      * @return array
@@ -23,7 +23,7 @@ interface CountriesRepositoryContract
 	 * @return array|object
 	 * @see CountriesRepository::create()
 	 */
-	function create(array $data = []): array|object;
+	public function create(array $data = []): array|object;
 
 
     /**
@@ -32,7 +32,7 @@ interface CountriesRepositoryContract
      * @return array|object
      * @see CountriesRepository::update()
      */
-	function update(array $data = [],bool $id = true): array|object;
+	public function update(array $data = [],bool $id = true): array|object;
 
 
 	/**
@@ -41,7 +41,7 @@ interface CountriesRepositoryContract
 	 * @return array
 	 * @see CountriesRepository::find()
 	 */
-	function find(int $id, array $select = ['*']): array;
+	public function find(int $id, array $select = ['*']): array;
 
 
 	/**
@@ -50,7 +50,7 @@ interface CountriesRepositoryContract
 	 * @return bool
 	 * @see CountriesRepository::exists()
 	 */
-	function exists($field, $value): bool;
+	public function exists($field, $value): bool;
 
     /**
      * @return object
@@ -70,5 +70,5 @@ interface CountriesRepositoryContract
      * @return array
      * @see CountriesRepository::getRepository()
      */
-    function getRepository($afterLoadingRepository = true): array;
+    public function getRepository($afterLoadingRepository = true): array;
 }

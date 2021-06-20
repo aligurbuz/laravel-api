@@ -107,17 +107,6 @@ trait ScopeManager
     }
 
     /**
-     * get active data for model
-     *
-     * @param Builder $builder
-     * @return Builder
-     */
-    public function scopeActive(Builder $builder): Builder
-    {
-        return $builder->where('status',1)->where('is_deleted',0);
-    }
-
-    /**
      * set instruction for response
      *
      * @param Builder $builder

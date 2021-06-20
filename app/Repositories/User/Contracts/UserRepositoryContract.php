@@ -46,14 +46,14 @@ interface UserRepositoryContract
      * @return array
      * @see UserRepository::find()
      */
-    function find(int $id,array $select = ['*']): array;
+    public function find(int $id,array $select = ['*']): array;
 
     /**
      * @param bool $afterLoadingRepository
      * @return array
      * @see UserRepository::getRepository()
      */
-    function getRepository($afterLoadingRepository = true): array;
+    public function getRepository($afterLoadingRepository = true): array;
 
     /**
      * @return object
