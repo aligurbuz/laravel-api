@@ -22,7 +22,7 @@ class GrandAuthenticateException extends Exception
      * @param int $code
      * @param Throwable|null $previous
      */
-    public function __construct($message = "Grand Authenticate exception", $code = 401, Throwable $previous = null)
+    public function __construct($message = "Grand Authenticate exception", $code = 403, Throwable $previous = null)
     {
         parent::__construct($this->setMessage($message), $code, $previous);
     }
