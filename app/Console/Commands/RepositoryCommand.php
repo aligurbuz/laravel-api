@@ -122,8 +122,11 @@ class RepositoryCommand extends Command
         $interfaceMethodAll
             ->addComment('@return array')->addComment('@see '.$className.'::all()');
 
-        $interfaceMethodGetRepository = $class->addMethod('getRepository')->setReturnType('array');
+        $interfaceMethodGetRepository = $class->addMethod('getRepository');
+        $interfaceMethodGetRepository->addParameter('afterLoadingRepository',true);
+        $interfaceMethodGetRepository->setReturnType('array');
         $interfaceMethodGetRepository
+            ->addComment('@param bool afterLoadingRepository')
             ->addComment('@return array')->addComment('@see '.$className.'::getRepository()');
 
         $interfaceMethodActive = $class->addMethod('active')->setReturnType('object');
