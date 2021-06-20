@@ -124,6 +124,18 @@ class EloquentRepository
     }
 
     /**
+     * take latest data for repository
+     *
+     * @return array
+     */
+    public function latest() : array
+    {
+        $this->repository = $this->instance()->orderBy('id','desc')->take(1);
+
+        return ($this->getRepository())[0] ?? [];
+    }
+
+    /**
      * checks if the data is available
      *
      * @param $field
