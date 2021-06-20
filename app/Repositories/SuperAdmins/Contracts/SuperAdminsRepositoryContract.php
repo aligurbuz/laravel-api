@@ -79,4 +79,10 @@ interface SuperAdminsRepositoryContract
      * @see SuperAdminsRepository::active()
      */
     public function code(int $code = 0) : object;
+
+    /**
+     * @return array
+     * @see SuperAdminsRepository::latest()
+     */
+    public function latest() : array;
 }

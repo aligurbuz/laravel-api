@@ -67,4 +67,10 @@ interface UserRepositoryContract
      * @see UserRepository::active()
      */
     public function code(int $code = 0) : object;
+
+    /**
+     * @return array
+     * @see UserRepository::latest()
+     */
+    public function latest() : array;
 }

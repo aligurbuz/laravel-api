@@ -80,4 +80,10 @@ interface LocalizationsRepositoryContract
      * @see LocalizationsRepository::active()
      */
     public function code(int $code = 0) : object;
+
+    /**
+     * @return array
+     * @see LocalizationsRepository::latest()
+     */
+    public function latest() : array;
 }

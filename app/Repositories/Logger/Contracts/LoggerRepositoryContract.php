@@ -69,4 +69,10 @@ interface LoggerRepositoryContract
      * @see LoggerRepository::getRepository()
      */
     public function getRepository($afterLoadingRepository = true): array;
+
+    /**
+     * @return array
+     * @see LoggerRepository::latest()
+     */
+    public function latest() : array;
 }

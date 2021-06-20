@@ -80,4 +80,10 @@ interface LanguageRepositoryContract
      * @see LanguageRepository::active()
      */
     public function code(int $code = 0) : object;
+
+    /**
+     * @return array
+     * @see LanguageRepository::latest()
+     */
+    public function latest() : array;
 }
