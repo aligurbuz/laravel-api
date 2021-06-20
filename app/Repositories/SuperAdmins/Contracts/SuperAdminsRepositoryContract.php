@@ -2,7 +2,6 @@
 
 namespace App\Repositories\SuperAdmins\Contracts;
 
-use App\Repositories\EloquentRepository;
 use App\Repositories\SuperAdmins\SuperAdminsRepository;
 
 interface SuperAdminsRepositoryContract
@@ -47,11 +46,12 @@ interface SuperAdminsRepositoryContract
 	function all(): array;
 
 
-	/**
-	 * @return array
-	 * @see SuperAdminsRepository::getRepository()
-	 */
-	function getRepository(): array;
+    /**
+     * @param bool $afterLoadingRepository
+     * @return array
+     * @see SuperAdminsRepository::getRepository()
+     */
+	function getRepository($afterLoadingRepository = false): array;
 
 
 	/**

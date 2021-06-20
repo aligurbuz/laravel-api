@@ -2,7 +2,6 @@
 
 namespace App\Repositories\User\Contracts;
 
-use App\Repositories\EloquentRepository;
 use App\Repositories\User\UserRepository;
 
 interface UserRepositoryContract
@@ -45,9 +44,16 @@ interface UserRepositoryContract
      * @param int $id
      * @param array $select
      * @return array
-     * @see CommentRepository::find()
+     * @see UserRepository::find()
      */
     function find(int $id,array $select = ['*']): array;
+
+    /**
+     * @param bool $afterLoadingRepository
+     * @return array
+     * @see UserRepository::getRepository()
+     */
+    function getRepository($afterLoadingRepository = false): array;
 
     /**
      * @return object

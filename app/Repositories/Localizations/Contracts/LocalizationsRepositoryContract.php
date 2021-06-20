@@ -63,10 +63,11 @@ interface LocalizationsRepositoryContract
     public function localizedCode($localizedCode) : LocalizationsRepositoryContract;
 
     /**
+     * @param bool $afterLoadingRepository
      * @return array
      * @see LocalizationsRepository::getRepository()
      */
-    public function getRepository() : array;
+    public function getRepository($afterLoadingRepository = false) : array;
 
     /**
      * @return object

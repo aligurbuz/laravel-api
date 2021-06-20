@@ -2,7 +2,6 @@
 
 namespace App\Repositories\Logger\Contracts;
 
-use App\Repositories\EloquentRepository;
 use App\Repositories\Logger\LoggerRepository;
 
 interface LoggerRepositoryContract
@@ -63,4 +62,11 @@ interface LoggerRepositoryContract
      * @see LoggerRepository::active()
      */
     public function code(int $code = 0) : object;
+
+    /**
+     * @param bool $afterLoadingRepository
+     * @return array
+     * @see LoggerRepository::getRepository()
+     */
+    function getRepository($afterLoadingRepository = false): array;
 }

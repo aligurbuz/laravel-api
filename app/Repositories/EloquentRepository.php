@@ -169,12 +169,17 @@ class EloquentRepository
     /**
      * get repository results for model
      *
+     * @param bool $afterLoadingRepository
      * @return array
      */
-    public function getRepository() : array
+    public function getRepository($afterLoadingRepository = false) : array
     {
         if(is_null($this->repository)){
             $this->repository = $this->instance();
+        }
+
+        if($afterLoadingRepository && method_exists($this,'afterLoadingRepository')){
+            $this->afterLoadingRepository();
         }
 
         return $this->repository->get()->toArray();

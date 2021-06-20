@@ -56,10 +56,11 @@ interface LanguageRepositoryContract
 	function exists($field, $value): bool;
 
     /**
+     * @param bool $afterLoadingRepository
      * @return array
      * @see LanguageRepository::getRepository()
      */
-    public function getRepository() : array;
+    public function getRepository($afterLoadingRepository = false) : array;
 
     /**
      * @param null $name

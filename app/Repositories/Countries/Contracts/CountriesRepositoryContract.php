@@ -3,7 +3,6 @@
 namespace App\Repositories\Countries\Contracts;
 
 use App\Repositories\Countries\CountriesRepository;
-use App\Repositories\EloquentRepository;
 
 interface CountriesRepositoryContract
 {
@@ -65,4 +64,11 @@ interface CountriesRepositoryContract
      * @see CountriesRepository::active()
      */
     public function code(int $code = 0) : object;
+
+    /**
+     * @param bool $afterLoadingRepository
+     * @return array
+     * @see CountriesRepository::getRepository()
+     */
+    function getRepository($afterLoadingRepository = false): array;
 }
