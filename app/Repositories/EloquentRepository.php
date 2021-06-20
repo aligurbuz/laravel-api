@@ -172,7 +172,7 @@ class EloquentRepository
      * @param bool $afterLoadingRepository
      * @return array
      */
-    public function getRepository($afterLoadingRepository = false) : array
+    public function getRepository($afterLoadingRepository = true) : array
     {
         if(is_null($this->repository)){
             $this->repository = $this->instance();
@@ -183,6 +183,18 @@ class EloquentRepository
         }
 
         return $this->repository->get()->toArray();
+    }
+
+    /**
+     * after loading for repository
+     *
+     * @return $this
+     */
+    public function afterLoadingRepository() : EloquentRepository
+    {
+        $this->repository = $this->instance()->active();
+
+        return $this;
     }
 
     /**

@@ -2,7 +2,6 @@
 
 namespace App\Repositories\Localizations\Contracts;
 
-use App\Repositories\EloquentRepository;
 use App\Repositories\Localizations\LanguageRepository;
 
 interface LanguageRepositoryContract
@@ -60,7 +59,7 @@ interface LanguageRepositoryContract
      * @return array
      * @see LanguageRepository::getRepository()
      */
-    public function getRepository($afterLoadingRepository = false) : array;
+    public function getRepository($afterLoadingRepository = true) : array;
 
     /**
      * @param null $name

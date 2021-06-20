@@ -2,7 +2,6 @@
 
 namespace App\Repositories\Localizations\Contracts;
 
-use App\Repositories\EloquentRepository;
 use App\Repositories\Localizations\LocalizationsRepository;
 
 interface LocalizationsRepositoryContract
@@ -67,7 +66,7 @@ interface LocalizationsRepositoryContract
      * @return array
      * @see LocalizationsRepository::getRepository()
      */
-    public function getRepository($afterLoadingRepository = false) : array;
+    public function getRepository($afterLoadingRepository = true) : array;
 
     /**
      * @return object

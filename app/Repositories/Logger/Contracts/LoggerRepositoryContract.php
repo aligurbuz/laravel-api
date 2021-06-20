@@ -68,5 +68,5 @@ interface LoggerRepositoryContract
      * @return array
      * @see LoggerRepository::getRepository()
      */
-    function getRepository($afterLoadingRepository = false): array;
+    function getRepository($afterLoadingRepository = true): array;
 }

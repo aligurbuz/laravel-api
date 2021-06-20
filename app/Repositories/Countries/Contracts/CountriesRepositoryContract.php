@@ -70,5 +70,5 @@ interface CountriesRepositoryContract
      * @return array
      * @see CountriesRepository::getRepository()
      */
-    function getRepository($afterLoadingRepository = false): array;
+    function getRepository($afterLoadingRepository = true): array;
 }

@@ -37,18 +37,6 @@ class LocalizationsRepository extends EloquentRepository implements Localization
 	}
 
     /**
-     * after loading for repository
-     *
-     * @return LocalizationsRepositoryContract
-     */
-	public function afterLoadingRepository() : LocalizationsRepositoryContract
-    {
-        $this->repository = $this->instance()->active();
-
-        return $this;
-    }
-
-    /**
      * finds data by localized_code column
      *
      * @param $localizedCode
