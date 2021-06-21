@@ -56,7 +56,7 @@ trait ScopeManager
 
         foreach ($ranges as $data){
             if(array_key_exists($data,$modelRanges) && method_exists($object,$data)){
-                $object->$range($builder);
+                $object->$data($builder);
             }
         }
 
