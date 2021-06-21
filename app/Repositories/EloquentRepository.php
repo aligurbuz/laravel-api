@@ -1,4 +1,4 @@
-<?php
+<?php /** @noinspection ALL */
 
 declare(strict_types=1);
 
@@ -184,7 +184,7 @@ class EloquentRepository
      * @param bool $afterLoadingRepository
      * @return array
      */
-    public function getRepository($afterLoadingRepository = true) : array
+    public function getRepository(bool $afterLoadingRepository = true) : array
     {
         if(is_null($this->repository)){
             $this->repository = $this->instance();
