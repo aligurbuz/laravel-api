@@ -135,7 +135,9 @@ class RepositoryCommand extends Command
             ->addComment('@return array')->addComment('@see '.$className.'::latest()');
 
         $interfaceMethodActive = $class->addMethod('active')->setReturnType('object');
+        $interfaceMethodActive->addParameter('builder',null)->setType('object')->setNullable(true);
         $interfaceMethodActive
+            ->addComment('@param object|null $builder')
             ->addComment('@return object')->addComment('@see '.$className.'::active()');
 
         $interfaceMethodCode = $class->addMethod('code');
