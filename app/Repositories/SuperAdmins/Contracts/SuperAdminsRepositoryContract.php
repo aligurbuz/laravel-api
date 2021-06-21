@@ -51,7 +51,7 @@ interface SuperAdminsRepositoryContract
      * @return array
      * @see SuperAdminsRepository::getRepository()
      */
-	public function getRepository($afterLoadingRepository = true): array;
+	public function getRepository(bool $afterLoadingRepository = true): array;
 
 	/**
 	 * @param $field

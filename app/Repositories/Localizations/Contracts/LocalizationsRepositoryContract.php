@@ -66,7 +66,7 @@ interface LocalizationsRepositoryContract
      * @return array
      * @see LocalizationsRepository::getRepository()
      */
-    public function getRepository($afterLoadingRepository = true) : array;
+    public function getRepository(bool $afterLoadingRepository = true) : array;
 
     /**
      * @return object

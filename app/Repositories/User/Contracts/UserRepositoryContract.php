@@ -53,7 +53,7 @@ interface UserRepositoryContract
      * @return array
      * @see UserRepository::getRepository()
      */
-    public function getRepository($afterLoadingRepository = true): array;
+    public function getRepository(bool $afterLoadingRepository = true): array;
 
     /**
      * @return object

@@ -59,7 +59,7 @@ interface LanguageRepositoryContract
      * @return array
      * @see LanguageRepository::getRepository()
      */
-    public function getRepository($afterLoadingRepository = true) : array;
+    public function getRepository(bool $afterLoadingRepository = true) : array;
 
     /**
      * @param null $name
