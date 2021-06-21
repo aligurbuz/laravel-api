@@ -210,16 +210,17 @@ class EloquentRepository
     /**
      * get today scope for client
      *
+     * @param object|null $builder
      * @return object
      */
-    public function active(): object
+    public function active(?object $builder = null): object
     {
-        $this->ensureColumnExists('status',$this->instance(),function(){
-           $this->instance()->where('status',1);
+        $this->ensureColumnExists('status',$this->instance(),function() use($builder){
+           $this->builder($builder)->where('status',1);
         });
 
-        $this->ensureColumnExists('is_deleted',$this->instance(),function(){
-            $this->instance()->where('is_deleted',0);
+        $this->ensureColumnExists('is_deleted',$this->instance(),function() use($builder){
+            $this->builder($builder)->where('is_deleted',0);
         });
 
         return $this;

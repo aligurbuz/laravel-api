@@ -51,10 +51,11 @@ interface LoggerRepositoryContract
     function find(int $id,array $select = ['*']): array;
 
     /**
+     * @param object|null $builder
      * @return object
      * @see LoggerRepository::active()
      */
-    public function active(): object;
+    public function active(?object $builder = null): object;
 
     /**
      * @param int $code

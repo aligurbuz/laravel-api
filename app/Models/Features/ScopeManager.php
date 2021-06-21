@@ -1,4 +1,4 @@
-<?php
+<?php /** @noinspection ALL */
 
 declare(strict_types=1);
 
@@ -8,7 +8,6 @@ use App\Services\Db;
 use App\Exceptions\Exception;
 use App\Services\AppContainer;
 use App\Repositories\Repository;
-use App\Facades\Authenticate\ApiKey;
 use Illuminate\Database\Eloquent\Builder;
 
 /**

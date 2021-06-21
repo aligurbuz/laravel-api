@@ -69,10 +69,11 @@ interface LanguageRepositoryContract
     public function name($name = null) : LanguageRepositoryContract;
 
     /**
+     * @param object|null $builder
      * @return object
      * @see LanguageRepository::active()
      */
-    public function active(): object;
+    public function active(?object $builder = null): object;
 
     /**
      * @param int $code

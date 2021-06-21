@@ -62,10 +62,11 @@ interface SuperAdminsRepositoryContract
 	public function exists($field, $value): bool;
 
     /**
+     * @param object|null $builder
      * @return object
      * @see SuperAdminsRepository::active()
      */
-    public function active(): object;
+    public function active(?object $builder = null): object;
 
     /**
      * @return SuperAdminsRepositoryContract
