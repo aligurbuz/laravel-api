@@ -114,7 +114,7 @@ class RepositoryCommand extends Command
 
         $interfaceMethodFind = $class->addMethod('find')->setReturnType('array');
         $interfaceMethodFind
-            ->addComment('@param $id')
+            ->addComment('@param int $id')
             ->addComment('@param array|string[] $select')
             ->addComment('@return array')->addComment('@see '.$className.'::find()');
 
@@ -123,7 +123,7 @@ class RepositoryCommand extends Command
             ->addComment('@return array')->addComment('@see '.$className.'::all()');
 
         $interfaceMethodGetRepository = $class->addMethod('getRepository');
-        $interfaceMethodGetRepository->addParameter('afterLoadingRepository',true);
+        $interfaceMethodGetRepository->addParameter('afterLoadingRepository',true)->setType('bool');
         $interfaceMethodGetRepository->setReturnType('array');
         $interfaceMethodGetRepository
             ->addComment('@param bool $afterLoadingRepository')
