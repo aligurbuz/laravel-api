@@ -1,4 +1,4 @@
-<?php /** @noinspection ALL */
+<?php
 
 declare(strict_types=1);
 
@@ -252,10 +252,10 @@ class EloquentRepository
     /**
      * get builder method for model
      *
-     * @param Builder|null $builder
+     * @param object|null $builder
      * @return object
      */
-    public function builder(Builder $builder = null): object
+    public function builder(object $builder = null): object
     {
         return $builder ?? $this->instance();
     }
