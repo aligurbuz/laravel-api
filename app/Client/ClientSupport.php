@@ -6,7 +6,6 @@ namespace App\Client;
 
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Route;
 
 /**
  * Trait ClientSupport
