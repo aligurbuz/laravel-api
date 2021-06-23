@@ -97,14 +97,14 @@ class RepositoryCommand extends Command
         $namespace = new PhpNamespace($namespaceContractDirectory);
         $namespace->addUse($namespaceRepository);
         $class = $namespace->addInterface($contractClassName);
-        $class->addMethod('get')->setReturnType('array')
+        $class->addMethod('get')->setPublic()->setReturnType('array')
             ->addComment('@return array')->addComment('@see '.$className.'::get()');
 
-        $class->addMethod('create')->setReturnType('array|object')
+        $class->addMethod('create')->setPublic()->setReturnType('array|object')
             ->addComment('@param array $data')
             ->addComment('@return array|object')->addComment('@see '.$className.'::create()')->addParameter('data',[])->setType('array');
 
-        $updateMethod = $class->addMethod('update')->setReturnType('array|object');
+        $updateMethod = $class->addMethod('update')->setPublic()->setReturnType('array|object');
             $updateMethod->addComment('@param array $data')
                 ->addComment('@param bool $id')
             ->addComment('@return array|object')->addComment('@see '.$className.'::update()');
@@ -112,41 +112,41 @@ class RepositoryCommand extends Command
             $updateMethod->addParameter('data',[])->setType('array');
             $updateMethod->addParameter('id',true)->setType('bool');
 
-        $interfaceMethodFind = $class->addMethod('find')->setReturnType('array');
+        $interfaceMethodFind = $class->addMethod('find')->setPublic()->setReturnType('array');
         $interfaceMethodFind
             ->addComment('@param int $id')
             ->addComment('@param array|string[] $select')
             ->addComment('@return array')->addComment('@see '.$className.'::find()');
 
-        $interfaceMethodAll = $class->addMethod('all')->setReturnType('array');
+        $interfaceMethodAll = $class->addMethod('all')->setPublic()->setReturnType('array');
         $interfaceMethodAll
             ->addComment('@return array')->addComment('@see '.$className.'::all()');
 
-        $interfaceMethodGetRepository = $class->addMethod('getRepository');
+        $interfaceMethodGetRepository = $class->addMethod('getRepository')->setPublic();
         $interfaceMethodGetRepository->addParameter('afterLoadingRepository',true)->setType('bool');
         $interfaceMethodGetRepository->setReturnType('array');
         $interfaceMethodGetRepository
             ->addComment('@param bool $afterLoadingRepository')
             ->addComment('@return array')->addComment('@see '.$className.'::getRepository()');
 
-        $interfaceMethodLatest = $class->addMethod('latest');
+        $interfaceMethodLatest = $class->addMethod('latest')->setPublic();
         $interfaceMethodLatest->setReturnType('array');
         $interfaceMethodLatest
             ->addComment('@return array')->addComment('@see '.$className.'::latest()');
 
-        $interfaceMethodSelect = $class->addMethod('select');
-        $interfaceMethodSelect->addParameter('data','array')->setType('array');
+        $interfaceMethodSelect = $class->addMethod('select')->setPublic();
+        $interfaceMethodSelect->addParameter('data',[])->setType('array');
         $interfaceMethodSelect->setReturnType('array');
         $interfaceMethodSelect
             ->addComment('@return array')->addComment('@see '.$className.'::select()');
 
-        $interfaceMethodActive = $class->addMethod('active')->setReturnType('object');
+        $interfaceMethodActive = $class->addMethod('active')->setPublic()->setReturnType('object');
         $interfaceMethodActive->addParameter('builder',null)->setType('object')->setNullable(true);
         $interfaceMethodActive
             ->addComment('@param object|null $builder')
             ->addComment('@return object')->addComment('@see '.$className.'::active()');
 
-        $interfaceMethodCode = $class->addMethod('code');
+        $interfaceMethodCode = $class->addMethod('code')->setPublic();
         $interfaceMethodCode->addParameter('code',0)->setType('int');
         $interfaceMethodCode->setReturnType('object');
         $interfaceMethodCode
@@ -157,7 +157,7 @@ class RepositoryCommand extends Command
         $interfaceMethodFind->addParameter('select')->setType(new Literal('array'))->setDefaultValue(['*']);
 
 
-        $interfaceMethodExists = $class->addMethod('exists')->setReturnType('bool');
+        $interfaceMethodExists = $class->addMethod('exists')->setPublic()->setReturnType('bool');
         $interfaceMethodExists
             ->addComment('@param $field')
             ->addComment('@param $value')
