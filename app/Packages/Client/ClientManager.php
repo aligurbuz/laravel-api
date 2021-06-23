@@ -214,7 +214,7 @@ class ClientManager
         }
 
         if(count($list)){
-            return [$list];
+            return $list;
         }
 
         return $data;
