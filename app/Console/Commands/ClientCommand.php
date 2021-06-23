@@ -81,7 +81,7 @@ class ClientCommand extends Command
                 ->addComment('@return int');
         }
 
-        if($method=='Update'){
+        /**if($method=='Update'){
             $generator->addMethod('isValid'.strtolower($modelName).'CodeGenerator')
                 ->setBody('if($this->has(\''.Str::snake($modelName).'_code\') && !$this->repository()->exists(\''.Str::snake($modelName).'_code\',$this->get(\''.Str::snake($modelName).'_code\'))){
     inValidCodeException(\''.Str::snake($modelName).'_code\',$this->get(\''.Str::snake($modelName).'_code\'));
@@ -91,7 +91,7 @@ return null;')
                 ->addComment('check if the '.strtolower($modelName).'_code is valid')
                 ->addComment('')
                 ->addComment('@return null');
-        }
+        }**/
 
         if($method=='Create'){
             $generator->addProperty('generators',[Str::snake($modelName).'_code'])->setType('array')->setProtected()
@@ -105,7 +105,7 @@ return null;')
                 ->addComment('@return array');
         }
         elseif($method=='Update'){
-            $generator->addProperty('generators',['isValid'.Str::snake($modelName).'Code'])->setType('array')->setProtected()
+            /**$generator->addProperty('generators',['isValid'.Str::snake($modelName).'Code'])->setType('array')->setProtected()
                 ->addComment('get auto generator for client')
                 ->addComment('')
                 ->addComment('@return array');
@@ -113,7 +113,7 @@ return null;')
             $generator->addProperty('dontOverWriteGenerators',['isValid'.Str::snake($modelName).'Code'])->setType('array')->setProtected()
                 ->addComment('get dont overwrite generator for client')
                 ->addComment('')
-                ->addComment('@return array');
+                ->addComment('@return array');**/
 
         }
         else{
