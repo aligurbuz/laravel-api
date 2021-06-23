@@ -65,6 +65,13 @@ interface LoggerRepositoryContract
     public function code(int $code = 0) : object;
 
     /**
+     * @param array $data
+     * @return object
+     * @see LoggerRepository::select()
+     */
+    public function select(array $data = []) : object;
+
+    /**
      * @param bool $afterLoadingRepository
      * @return array
      * @see LoggerRepository::getRepository()

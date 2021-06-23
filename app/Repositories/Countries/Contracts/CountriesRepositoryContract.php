@@ -36,7 +36,7 @@ interface CountriesRepositoryContract
 
 
 	/**
-	 * @param $id
+	 * @param int $id
 	 * @param array|string[] $select
 	 * @return array
 	 * @see CountriesRepository::find()
@@ -65,6 +65,13 @@ interface CountriesRepositoryContract
      * @see CountriesRepository::active()
      */
     public function code(int $code = 0) : object;
+
+    /**
+     * @param array $data
+     * @return object
+     * @see CountriesRepository::select()
+     */
+    public function select(array $data = []) : object;
 
     /**
      * @param bool $afterLoadingRepository

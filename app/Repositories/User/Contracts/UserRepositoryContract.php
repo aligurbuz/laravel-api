@@ -70,6 +70,13 @@ interface UserRepositoryContract
     public function code(int $code = 0) : object;
 
     /**
+     * @param array $data
+     * @return object
+     * @see UserRepository::select()
+     */
+    public function select(array $data = []) : object;
+
+    /**
      * @return array
      * @see UserRepository::latest()
      */

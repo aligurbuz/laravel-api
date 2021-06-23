@@ -99,6 +99,19 @@ class EloquentRepository
     }
 
     /**
+     * get select columns instance for repository
+     *
+     * @param array $data
+     * @return object
+     */
+    public function select(array $data = []) : object
+    {
+        $this->repository = $this->instance()->select($data);
+
+        return $this;
+    }
+
+    /**
      * get code instance for repository
      *
      * @param int $code

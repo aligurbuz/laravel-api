@@ -31,7 +31,7 @@ interface SuperAdminsRepositoryContract
 
 
 	/**
-	 * @param $id
+	 * @param int $id
 	 * @param array|string[] $select
 	 * @return array
 	 * @see SuperAdminsRepository::find()
@@ -80,6 +80,13 @@ interface SuperAdminsRepositoryContract
      * @see SuperAdminsRepository::active()
      */
     public function code(int $code = 0) : object;
+
+    /**
+     * @param array $data
+     * @return object
+     * @see SuperAdminsRepository::select()
+     */
+    public function select(array $data = []) : object;
 
     /**
      * @return array

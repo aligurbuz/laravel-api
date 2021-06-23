@@ -31,7 +31,7 @@ interface LocalizationsRepositoryContract
 
 
 	/**
-	 * @param $id
+	 * @param int $id
 	 * @param array|string[] $select
 	 * @return array
 	 * @see LocalizationsRepository::find()
@@ -81,6 +81,13 @@ interface LocalizationsRepositoryContract
      * @see LocalizationsRepository::active()
      */
     public function code(int $code = 0) : object;
+
+    /**
+     * @param array $data
+     * @return object
+     * @see LocalizationsRepository::select()
+     */
+    public function select(array $data = []) : object;
 
     /**
      * @return array
