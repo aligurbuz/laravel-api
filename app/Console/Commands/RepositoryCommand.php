@@ -136,10 +136,10 @@ class RepositoryCommand extends Command
 
         $interfaceMethodSelect = $class->addMethod('select')->setPublic();
         $interfaceMethodSelect->addParameter('data',[])->setType('array');
-        $interfaceMethodSelect->setReturnType('array');
+        $interfaceMethodSelect->setReturnType('object');
         $interfaceMethodSelect
-            ->addComment('@return array $data')
-            ->addComment('@return array')->addComment('@see '.$className.'::select()');
+            ->addComment('@param array $data')
+            ->addComment('@return object')->addComment('@see '.$className.'::select()');
 
         $interfaceMethodActive = $class->addMethod('active')->setPublic()->setReturnType('object');
         $interfaceMethodActive->addParameter('builder',null)->setType('object')->setNullable(true);

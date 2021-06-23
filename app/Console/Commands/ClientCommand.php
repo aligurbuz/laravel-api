@@ -105,15 +105,15 @@ return null;')
                 ->addComment('@return array');
         }
         elseif($method=='Update'){
-            /**$generator->addProperty('generators',['isValid'.Str::snake($modelName).'Code'])->setType('array')->setProtected()
+            $generator->addProperty('generators',[])->setType('array')->setProtected()
                 ->addComment('get auto generator for client')
                 ->addComment('')
                 ->addComment('@return array');
 
-            $generator->addProperty('dontOverWriteGenerators',['isValid'.Str::snake($modelName).'Code'])->setType('array')->setProtected()
+            $generator->addProperty('dontOverWriteGenerators',[])->setType('array')->setProtected()
                 ->addComment('get dont overwrite generator for client')
                 ->addComment('')
-                ->addComment('@return array');**/
+                ->addComment('@return array');
 
         }
         else{
