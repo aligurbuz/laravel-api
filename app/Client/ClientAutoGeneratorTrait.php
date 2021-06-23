@@ -150,11 +150,17 @@ trait ClientAutoGeneratorTrait
     /**
      * code process for client
      *
+     * @param array $data
      * @return mixed
      */
-    public function codeProcessAutoGenerator(): mixed
+    public function codeProcessAutoGenerator(array $data = []): mixed
     {
-        foreach ((array)$this->get() as $key => $value){
+        $data = count($data) ? $data : (array)$this->get();
+
+        foreach ($data as $key => $value){
+            if(is_array($value)){
+                $this->codeProcessAutoGenerator($value);
+            }
             if(preg_match('@(.*?)_code@is',$key)){
                 Factory::code([$key => $value])->throwExceptionIfDoesntExist();
             }
