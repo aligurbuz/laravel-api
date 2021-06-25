@@ -24,6 +24,7 @@ use App\Services\AppContainer;
  * @method static modelUniqueCreateException($message = null,$keys = [])
  * @method static grandAuthenticateException($message = null,$keys = [])
  * @method static rangeException($message = null,$keys = [])
+ * @method static selectException($message = null,$keys = [])
  * @package App\Exceptions
  */
 class Exception

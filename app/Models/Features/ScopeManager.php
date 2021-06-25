@@ -325,7 +325,8 @@ trait ScopeManager
     {
         foreach ($select as $selectKey =>$item){
             if(!in_array($item,Db::columns($table ?? $this->getTable()))){
-                unset($select[$selectKey]);
+                Exception::selectException('',['key' => $item]);
+                return [];
             }
         }
 
