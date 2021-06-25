@@ -33,9 +33,27 @@ class ClientParamProcess extends ClientVariableProcess
         $this->client = $client;
         $data = $this->client->getData();
         $this->data = $data['params'] ?? [];
+        $this->checkModelKeyWithoutFilter();
         $this->paramValidatorValueProcess();
         $this->capsuleProcess();
         $this->make();
+    }
+
+    /**
+     * check model key without filter
+     *
+     * @return void
+     */
+    private function checkModelKeyWithoutFilter() : void
+    {
+        if($this->client->requestMethod()=='GET'){
+            foreach ($this->data as $key => $value){
+                if(in_array($key,$this->client->columnsForModel(),true)){
+                    Exception::clientCapsuleException('', ['key' => $key]);
+                    return;
+                }
+            }
+        }
     }
 
     /**
