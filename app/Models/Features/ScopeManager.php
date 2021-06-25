@@ -46,7 +46,7 @@ trait ScopeManager
      */
     public function scopeRange(Builder $builder,object $object,mixed $data = null): object
     {
-        $range          = $data  ?? ((request()->query->all())['range'] ?? '');
+        $range          = $data  ?? ((request()->query->all())['range'] ?? null);
         $ranges         = is_string($range) ? explode(',',$range) : [];
         $modelRanges    = array_merge($object->getRanges(),$this->autoRanges);
 
