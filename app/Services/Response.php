@@ -26,24 +26,24 @@ class Response
     /**
      * application success 200 content for response
      *
-     * @param mixed $data
+     * @param bool $data
      * @param int $code
-     * @param bool $content
+     * @param bool $isAvailableData
      * @return object
      *
      * @throws Exception
      */
-    public static function ok(mixed $data, int $code = 200,bool $content = true) : object
+    public static function ok(mixed $data, int $code = 200,bool $isAvailableData = true) : object
     {
         $standard = [
-            'status'        => true,
-            'code'          => $code = static::getHttpSuccessCode($code),
-            'content'       => $content,
-            'client'        => ApiKey::who(),
-            'env'           => config('app.env'),
-            'responseCode'  => static::responseCode(),
-            'resource'      => $data,
-            'instructions'  => AppContainer::get(Constants::responseFormatterSupplement),
+            'status'            => true,
+            'code'              => $code = static::getHttpSuccessCode($code),
+            'isAvailableData'   => $isAvailableData,
+            'client'            => ApiKey::who(),
+            'env'               => config('app.env'),
+            'responseCode'      => static::responseCode(),
+            'resource'          => $data,
+            'instructions'      => AppContainer::get(Constants::responseFormatterSupplement),
         ];
 
         return static::response($standard,$code);
