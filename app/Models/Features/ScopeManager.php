@@ -42,9 +42,9 @@ trait ScopeManager
      * @param Builder $builder
      * @param object $object
      * @param null|string $data
-     * @return Builder
+     * @return object
      */
-    public function scopeRange(Builder $builder,object $object,mixed $data = null): Builder
+    public function scopeRange(Builder $builder,object $object,mixed $data = null): object
     {
         $range          = $data  ?? ((request()->query->all())['range'] ?? '');
         $ranges         = is_string($range) ? explode(',',$range) : [];
@@ -56,6 +56,9 @@ trait ScopeManager
         foreach ($ranges as $data){
             if(array_key_exists($data,$modelRanges) && method_exists($object,$data)){
                 $object->$data($builder);
+            }
+            else{
+                return Exception::rangeException('',['key' => $data]);
             }
         }
 
