@@ -34,6 +34,7 @@ class ClientParamProcess extends ClientVariableProcess
         $data = $this->client->getData();
         $this->data = $data['params'] ?? [];
         $this->paramValidatorValueProcess();
+        $this->capsuleProcess();
         $this->make();
     }
 
@@ -50,6 +51,22 @@ class ClientParamProcess extends ClientVariableProcess
                     $this->data[$paramKey] = $paramValue;
                 }
                 unset($this->data[$paramValidatorValue]);
+            }
+        }
+    }
+
+    /**
+     * capsule process for client param process
+     *
+     * @return void
+     */
+    private function capsuleProcess() : void
+    {
+        $capsule = $this->client->getCapsule();
+
+        foreach ($this->data as $key => $value){
+            if(!in_array($key,$capsule)){
+                Exception::clientCapsuleException('',['key' => $key]);
             }
         }
     }

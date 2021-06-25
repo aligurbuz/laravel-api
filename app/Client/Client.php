@@ -272,6 +272,18 @@ class Client extends ClientManager
             && isset($this->model[0])
         ){
             $this->capsule = array_merge($this->columnsForModel(),$this->capsule);
+
+            if($this->requestMethod=='GET'){
+                $this->capsule = array_merge($this->capsule,[
+                    'range',
+                    'filter',
+                    'select',
+                    'with',
+                    'append',
+                    'orderBy',
+                    'withRange'
+                ]);
+            }
         }
     }
 
