@@ -27,15 +27,16 @@ class Response
      * application success 200 content for response
      *
      * @param mixed $data
+     * @param int $code
      * @return object
      *
      * @throws Exception
      */
-    public static function ok(mixed $data) : object
+    public static function ok(mixed $data, int $code = 200) : object
     {
         $standard = [
             'status'        => true,
-            'code'          => $code = static::getHttpSuccessCode(),
+            'code'          => $code = static::getHttpSuccessCode($code),
             'client'        => ApiKey::who(),
             'env'           => config('app.env'),
             'responseCode'  => static::responseCode(),
@@ -204,9 +205,10 @@ class Response
     /**
      * get http success code
      *
+     * @param int $code
      * @return mixed
      */
-    private static function getHttpSuccessCode(): mixed
+    private static function getHttpSuccessCode(int $code = 200): mixed
     {
         $method = request()->method();
 
@@ -214,7 +216,7 @@ class Response
             return static::$httpStatusCodes[$method];
         }
 
-        return 200;
+        return $code;
     }
 
     /**
