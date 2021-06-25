@@ -158,7 +158,7 @@ trait ClientAutoGeneratorTrait
         $data = count($data) ? $data : (array)$this->get();
 
         foreach ($data as $key => $value){
-            if(is_array($value)){
+            if(is_numeric($key) && is_array($value)){
                 $this->codeProcessAutoGenerator($value);
             }
             if(preg_match('@(.*?)_code@is',$key)){
