@@ -27,6 +27,10 @@ class Response
             return $response;
         }
 
-        return ResponseFormatter::ok($content);
+        return ResponseFormatter::ok(
+            $content,
+            200,
+            ($content['data'] && is_array($content['data']) && count($content['data']))
+        );
     }
 }

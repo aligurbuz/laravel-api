@@ -28,15 +28,17 @@ class Response
      *
      * @param mixed $data
      * @param int $code
+     * @param bool $content
      * @return object
      *
      * @throws Exception
      */
-    public static function ok(mixed $data, int $code = 200) : object
+    public static function ok(mixed $data, int $code = 200,bool $content = true) : object
     {
         $standard = [
             'status'        => true,
             'code'          => $code = static::getHttpSuccessCode($code),
+            'content'       => $content,
             'client'        => ApiKey::who(),
             'env'           => config('app.env'),
             'responseCode'  => static::responseCode(),
