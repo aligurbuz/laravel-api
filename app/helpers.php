@@ -10,6 +10,7 @@ use App\Services\AppContainer;
 use App\Services\Db as DBFacade;
 use App\Models\Entities\EntityMap;
 use Illuminate\Support\Facades\DB;
+use App\Facades\Authenticate\ApiKey;
 
 if(!function_exists('entity')){
 
@@ -36,6 +37,19 @@ if(!function_exists('cR')){
     function cR(string $client,array $data = []): array
     {
         return Factory::client(['client' => $client])->cR($data);
+    }
+}
+
+if(!function_exists('who')){
+
+    /**
+     * tells who is apikey
+     *
+     * @return string
+     */
+    function who(): string
+    {
+        return ApiKey::who();
     }
 }
 
