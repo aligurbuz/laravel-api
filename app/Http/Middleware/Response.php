@@ -30,7 +30,7 @@ class Response
         return ResponseFormatter::ok(
             $content,
             200,
-            ($content['data'] && is_array($content['data']) && count($content['data']))
+            (isset($content['data']) && is_array($content['data']) && count($content['data']))
         );
     }
 }
