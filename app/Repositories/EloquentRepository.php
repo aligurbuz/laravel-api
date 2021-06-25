@@ -7,7 +7,6 @@ namespace App\Repositories;
 use Throwable;
 use App\Services\Db;
 use App\Services\Client;
-use App\Factory\Factory;
 use Illuminate\Support\Str;
 use App\Models\Localization;
 use App\Exceptions\Exception;
@@ -20,6 +19,8 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class EloquentRepository
 {
+    use CacheRepository;
+
     /**
      * @var object|null
      */
@@ -32,7 +33,7 @@ class EloquentRepository
      */
     public function get() : array
     {
-        return Factory::repository(['model' => $this->getModel()])->cache(function(){
+        return $this->cacheHandler(function(){
             return $this->graphQl()->simplePaginate(20)->toArray();
         });
     }

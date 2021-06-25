@@ -12,14 +12,12 @@ use App\Factory\Notify\Interfaces\NotifyInterface;
 use App\Factory\Logger\Interfaces\LoggerInterface;
 use App\Factory\Storage\Interfaces\StorageInterface;
 use App\Factory\Collection\Interfaces\CollectionInterface;
-use App\Factory\Repository\Interfaces\RepositoryInterface;
 use App\Factory\Localization\Interfaces\LocalizationInterface;
 
 /**
  * Class Factory
  * @method static LoggerInterface logger($arguments = null)
  * @method static StorageInterface storage($arguments = null)
- * @method static RepositoryInterface repository($arguments = null)
  * @method static NotifyInterface notify($arguments = null)
  * @method static CacheInterface cache($arguments = null)
  * @method static CodeInterface code($arguments = null)
@@ -39,7 +37,6 @@ class Factory extends FactoryManager
      */
     protected static array $adapters = [
         'Logger'        => 'MongoDbLogger',
-        'Repository'    => 'Redis',
         'Notify'        => 'Slack',
         'Cache'         => 'Redis',
     ];
