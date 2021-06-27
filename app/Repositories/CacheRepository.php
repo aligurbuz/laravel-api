@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace App\Repositories;
 
+use App\Services\Redis;
+use App\Services\Client;
+
 /**
  * Trait CacheRepository
  * @package App\Repositories
@@ -14,25 +17,40 @@ trait CacheRepository
      * make cache model data for repository
      *
      * @param callable $callback
-     * @return mixed
+     * @return array
      */
-    public function cacheHandler(callable $callback) : mixed
+    public function cacheHandler(callable $callback) : array
     {
-        if(method_exists($this,who())){
-            return $this->{who()}($callback);
-        }
-
-        return $this->proxy($callback);
+        return $this->redisProcessForRepositoryCache($callback,function($proxy){
+            return $proxy;
+        });
     }
 
     /**
-     * get admin client key for repository
+     * get redis process for repository cache
      *
+     * @param callable $data
      * @param callable $callback
      * @return array
      */
-    public function admin(callable $callback) : array
+    public function redisProcessForRepositoryCache(callable $data,callable $callback) : array
     {
-        return $this->proxy($callback);
+        $modelName = $this->getModelName();
+        $fingerPrint = Client::fingerPrint(false);
+
+        $redisInstance = Redis::client();
+
+        $callData = call_user_func($data);
+
+        if($redisInstance->hexists($modelName,$fingerPrint)){
+            return json_decode($redisInstance->hget($modelName,$fingerPrint),true);
+        }
+
+        $proxy = $proxyCallback = $this->proxy($callData);
+        $proxyCallback['cache'] = 'redis';
+
+        $redisInstance->hset($modelName,$fingerPrint,json_encode($proxyCallback));
+
+        return call_user_func($callback,$proxy);
     }
 }

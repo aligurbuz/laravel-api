@@ -15,9 +15,10 @@ class Client
     /**
      * get client finger print for request
      *
+     * @param bool $bodyData
      * @return int
      */
-    public static function fingerPrint(): int
+    public static function fingerPrint($bodyData = true): int
     {
         $request = request();
 
@@ -25,7 +26,7 @@ class Client
             $request->method(),
             $request->url(),
             $request->query->all(),
-            $request->request->all(),
+            $bodyData ? $request->request->all() : [],
             $request->ip(),
             Authenticate::code()
         ]))));

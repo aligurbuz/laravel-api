@@ -45,13 +45,13 @@ if(!function_exists('proxyClosure')){
     /**
      * get call closure for application
      *
-     * @param $closure
+     * @param mixed $closure
      * @param callable $callback
      * @return mixed
      */
-    function proxyClosure($closure,callable $callback) : mixed
+    function proxyClosure(mixed $closure,callable $callback) : mixed
     {
-        return call_user_func($callback,call_user_func($closure));
+        return call_user_func($callback,($closure instanceof Closure) ? call_user_func($closure) : $closure);
     }
 }
 
