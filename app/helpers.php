@@ -40,6 +40,21 @@ if(!function_exists('cR')){
     }
 }
 
+if(!function_exists('proxyClosure')){
+
+    /**
+     * get call closure for application
+     *
+     * @param $closure
+     * @param callable $callback
+     * @return mixed
+     */
+    function proxyClosure($closure,callable $callback) : mixed
+    {
+        return call_user_func($callback,call_user_func($closure));
+    }
+}
+
 if(!function_exists('who')){
 
     /**

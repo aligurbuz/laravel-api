@@ -125,6 +125,20 @@ class EloquentRepository
     }
 
     /**
+     * get proxy closure for repository
+     *
+     * @param callable $callback
+     * @param string $method
+     * @return mixed
+     */
+    public function proxy(callable $callback,string $method = 'pagination') : mixed
+    {
+        return proxyClosure($callback,function(EloquentRepository $repository) use($method){
+            return $repository->$method();
+        });
+    }
+
+    /**
      * get select columns instance for repository
      *
      * @param array $data

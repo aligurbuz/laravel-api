@@ -22,7 +22,7 @@ trait CacheRepository
             return $this->{who()}($callback);
         }
 
-        return (call_user_func($callback))->pagination();
+        return $this->proxy($callback);
     }
 
     /**
@@ -33,6 +33,6 @@ trait CacheRepository
      */
     public function admin(callable $callback) : array
     {
-        return (call_user_func($callback))->pagination();
+        return $this->proxy($callback);
     }
 }
