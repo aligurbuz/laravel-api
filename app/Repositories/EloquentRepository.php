@@ -27,6 +27,11 @@ class EloquentRepository
     protected ?object $repository = null;
 
     /**
+     * @var object|null
+     */
+    protected ?object $graphQl = null;
+
+    /**
      * get data for user model
      *
      * @return array
@@ -34,8 +39,28 @@ class EloquentRepository
     public function get() : array
     {
         return $this->cacheHandler(function(){
-            return $this->graphQl()->simplePaginate(20)->toArray();
+            return $this->graphQl();
         });
+    }
+
+    /**
+     * get pagination model repository
+     *
+     * @return array
+     */
+    public function pagination() : array
+    {
+        return $this->graphQl->simplePaginate(20)->toArray();
+    }
+
+    /**
+     * get array data model repository
+     *
+     * @return array
+     */
+    public function toArray() : array
+    {
+        return $this->graphQl->get()->toArray();
     }
 
     /**
@@ -318,17 +343,17 @@ class EloquentRepository
      */
     public function all() : array
     {
-        return $this->graphQl()->get()->toArray();
+        return $this->graphQl()->toArray();
     }
 
     /**
      * get graphql builder
      *
-     * @return mixed
+     * @return $this
      */
-    public function graphQl() : mixed
+    public function graphQl() : EloquentRepository
     {
-        return static::$model::repository($this)
+        $this->graphQl = static::$model::repository($this)
             ->range($this)
             ->instruction()
             ->doesntHaveQuery()
@@ -338,6 +363,8 @@ class EloquentRepository
             ->orderByQuery()
             ->filterQuery()
             ->search();
+
+        return $this;
     }
 
     /**

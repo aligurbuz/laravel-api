@@ -22,17 +22,17 @@ trait CacheRepository
             return $this->{who()}($callback);
         }
 
-        return call_user_func($callback);
+        return (call_user_func($callback))->pagination();
     }
 
     /**
      * get admin client key for repository
      *
      * @param callable $callback
-     * @return mixed
+     * @return array
      */
-    public function admin(callable $callback) : mixed
+    public function admin(callable $callback) : array
     {
-        return call_user_func($callback);
+        return (call_user_func($callback))->pagination();
     }
 }
