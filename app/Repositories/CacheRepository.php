@@ -21,7 +21,7 @@ trait CacheRepository
      */
     public function cacheHandler(callable $callback) : array
     {
-        return $this->redisProcessForRepositoryCache($callback,function($proxy){
+        return $this->cache($callback,function($proxy){
             return $proxy;
         });
     }
@@ -33,7 +33,7 @@ trait CacheRepository
      * @param callable $callback
      * @return array
      */
-    public function redisProcessForRepositoryCache(callable $data,callable $callback) : array
+    protected function cache(callable $data,callable $callback) : array
     {
         $modelName = $this->getModelName();
         $fingerPrint = Client::fingerPrint(false);
