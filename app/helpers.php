@@ -55,6 +55,32 @@ if(!function_exists('proxyClosure')){
     }
 }
 
+if(!function_exists('isLocale')){
+
+    /**
+     * checks if the environment is local
+     *
+     * @return bool
+     */
+    function isLocale() : bool
+    {
+        return app()->environment()=='local';
+    }
+}
+
+if(!function_exists('isProduction')){
+
+    /**
+     * checks if the environment is production
+     *
+     * @return bool
+     */
+    function isProduction() : bool
+    {
+        return app()->environment()=='production';
+    }
+}
+
 if(!function_exists('who')){
 
     /**
