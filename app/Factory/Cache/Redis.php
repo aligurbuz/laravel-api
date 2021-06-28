@@ -111,7 +111,7 @@ class Redis extends CacheManager implements CacheInterface
      */
     public function exists(string $key) : bool
     {
-        return !(($this->getInstance()->exists($key) === '0'));
+        return !(($this->getInstance()->exists($key) === 0));
     }
 
     /**
@@ -123,6 +123,6 @@ class Redis extends CacheManager implements CacheInterface
      */
     public function hexists(string $key,mixed $field) : bool
     {
-        return !(($this->getInstance()->hexists($key, $field) === '0'));
+        return !(($this->getInstance()->hexists($key, $field) === 0));
     }
 }
