@@ -89,7 +89,7 @@ trait CacheRepository
         {
             $callData = call_user_func($data);
             $proxy = $proxyCallback = $this->proxy($callData);
-            $proxyCallback['cache'] = 'redis';
+            $proxyCallback['cache'] = 'true';
 
             $this->cacheInstance->hset($this->modelName, (string)$this->fingerPrint,json_encode($proxyCallback));
 
