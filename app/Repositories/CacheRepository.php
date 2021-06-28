@@ -17,12 +17,12 @@ trait CacheRepository
     /**
      * @var string|null
      */
-    protected ?string $modelName = null;
+    protected ?string $cacheModelName = null;
 
     /**
      * @var mixed|null
      */
-    protected mixed $fingerPrint = null;
+    protected mixed $cacheFingerPrint = null;
 
     /**
      * @var object|null
@@ -55,8 +55,8 @@ trait CacheRepository
      */
     private function setProperties() : void
     {
-        $this->modelName     = $this->getModelName();
-        $this->fingerPrint   = Client::fingerPrint(false);
+        $this->cacheModelName     = $this->getModelName();
+        $this->cacheFingerPrint   = Client::fingerPrint(false);
         $this->cacheInstance = Factory::cache();
     }
 
@@ -70,8 +70,8 @@ trait CacheRepository
     private function cache(callable $data,callable $callback) : array
     {
         return $this->cacheInstance->hget(
-            $this->modelName,
-            (string)$this->fingerPrint,
+            $this->cacheModelName,
+            (string)$this->cacheFingerPrint,
             $this->setCacheRepository($data,$callback)
         );
     }
@@ -91,7 +91,11 @@ trait CacheRepository
             $proxy = $proxyCallback = $this->proxy($callData);
             $proxyCallback['cache'] = 'true';
 
-            $this->cacheInstance->hset($this->modelName, (string)$this->fingerPrint,json_encode($proxyCallback));
+            $this->cacheInstance->hset(
+                $this->cacheModelName,
+                (string)$this->cacheFingerPrint,
+                json_encode($proxyCallback)
+            );
 
             return call_user_func($callback,$proxy);
         };
