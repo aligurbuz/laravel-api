@@ -57,7 +57,7 @@ trait CacheRepository
     {
         $this->cacheModelName     = $this->getModelName();
         $this->cacheFingerPrint   = Client::fingerPrint(false);
-        $this->cacheInstance = Factory::cache();
+        $this->cacheInstance      = Factory::cache();
     }
 
     /**
