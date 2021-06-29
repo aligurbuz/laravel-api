@@ -92,6 +92,16 @@ trait BaseManager
     }
 
     /**
+     * get with queries for model
+     *
+     * @return mixed
+     */
+    public function getWithQueries() : mixed
+    {
+        return $this->withQuery;
+    }
+
+    /**
      * get localization model
      *
      * @return HasOne

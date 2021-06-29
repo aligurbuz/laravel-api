@@ -1,0 +1,19 @@
+{
+    "Area": [
+        "Localization",
+        "Zone"
+    ],
+    "Localization": [
+        "Language",
+        "Localization",
+        "User",
+        "Zone"
+    ],
+    "User": [
+        "Localization"
+    ],
+    "Zone": [
+        "Area",
+        "Localization"
+    ]
+}
