@@ -9,7 +9,7 @@ class FacadeManager
     /**
      * @var mixed
      */
-    protected $data;
+    protected mixed $data;
 
     /**
      * FacadeManager constructor.
