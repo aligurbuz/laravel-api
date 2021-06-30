@@ -28,4 +28,39 @@ class MongoDb extends CacheManager implements CacheInterface
 	{
 		$this->binds = $binds;
 	}
+
+    public function getInstance(): object
+    {
+        // TODO: Implement getInstance() method.
+    }
+
+    public function set(string $key, mixed $value): void
+    {
+        // TODO: Implement set() method.
+    }
+
+    public function get(string $key): mixed
+    {
+        // TODO: Implement get() method.
+    }
+
+    public function hset(string $key, string $field, mixed $value): void
+    {
+        // TODO: Implement hset() method.
+    }
+
+    public function hget(string $key, string $field, ?callable $callback = null): mixed
+    {
+        // TODO: Implement hget() method.
+    }
+
+    public function exists(string $key): bool
+    {
+        // TODO: Implement exists() method.
+    }
+
+    public function hexists(string $key, mixed $field): bool
+    {
+        // TODO: Implement hexists() method.
+    }
 }
