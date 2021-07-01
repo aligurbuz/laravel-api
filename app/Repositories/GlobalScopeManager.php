@@ -85,8 +85,7 @@ class GlobalScopeManager
             // the clientKey values in the dontRepository key
             // in the config settings will disable the repository application.
             if(!in_array(ApiKey::who(),config('repository.dontGlobalScopes'))){
-                (method_exists($this,$camelCaseMethod = Str::camel(who())))
-                    ? $this->{$camelCaseMethod}($scope) : $this->handler($scope);
+                $this->handler($scope);
             }
         }
     }
@@ -102,7 +101,11 @@ class GlobalScopeManager
         $this->ensureColumnExists($columnName = Str::snake($scope), function () use ($columnName, $scope) {
             $resource = $this->resource . '\\' . ucfirst($scope);
             if (class_exists($resource) && !app()->runningInConsole()) {
-                return (new $resource($this->builder))->handle($columnName);
+                $resourceInstance = (new $resource($this->builder));
+
+                return (method_exists($resourceInstance,$camelCaseMethod = Str::camel(who())))
+                    ? $resourceInstance->{$camelCaseMethod}($columnName)
+                    : $resourceInstance->handle($columnName);
             }
 
             return $this->builder;
