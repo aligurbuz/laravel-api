@@ -450,7 +450,7 @@ class EloquentRepository
     public function withLocalization(object $modelInstance): object
     {
         return $this->setEagerLoading($localization = Localization::class,function() use($localization,$modelInstance){
-            return $modelInstance->hasOne($localization,'localized_code',getTableCode($this->getModel()));
+            return $modelInstance->hasOne($localization,'localized_code',Str::snake(getTableCode($this->getModel())));
         });
     }
 }
