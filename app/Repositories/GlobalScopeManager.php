@@ -100,6 +100,7 @@ class GlobalScopeManager
     {
         $this->ensureColumnExists($columnName = Str::snake($scope), function () use ($columnName, $scope) {
             $resource = $this->resource . '\\' . ucfirst($scope);
+
             if (class_exists($resource) && !app()->runningInConsole()) {
                 $resourceInstance = (new $resource($this->builder));
 
