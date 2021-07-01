@@ -85,8 +85,8 @@ class GlobalScopeManager
             // the clientKey values in the dontRepository key
             // in the config settings will disable the repository application.
             if(!in_array(ApiKey::who(),config('repository.dontGlobalScopes'))){
-                (method_exists($this,who()))
-                    ? $this->{who()}($scope) : $this->handler($scope);
+                (method_exists($this,$camelCaseMethod = Str::camel(who())))
+                    ? $this->{$camelCaseMethod}($scope) : $this->handler($scope);
             }
         }
     }
