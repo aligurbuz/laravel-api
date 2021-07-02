@@ -34,9 +34,14 @@ trait LocalizationRepository
      */
     public function withLocalization(object $modelInstance): object
     {
-        return $this->setEagerLoading($localization = Localization::class,function() use($localization,$modelInstance){
-            return $modelInstance->hasOne($localization,'localized_code',Str::snake(getTableCode($this->getModel())));
-        });
+        return $this->setEagerLoading(
+            $localization = Localization::class,
+                function() use($localization,$modelInstance){
+                    return $modelInstance->hasOne(
+                        $localization,'localized_code',Str::snake(getTableCode($this->getModel()))
+                    );
+                }
+            );
     }
 
     /**
