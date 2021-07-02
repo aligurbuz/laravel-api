@@ -8,7 +8,6 @@ use Throwable;
 use App\Services\Db;
 use App\Services\Client;
 use Illuminate\Support\Str;
-use App\Models\Localization;
 use App\Exceptions\Exception;
 use App\Exceptions\SqlExceptionManager;
 use Illuminate\Database\Eloquent\Builder;
@@ -19,7 +18,7 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class EloquentRepository
 {
-    use CacheRepository;
+    use CacheRepository,LocalizationRepository;
 
     /**
      * @var object|null
@@ -38,8 +37,10 @@ class EloquentRepository
      */
     public function get() : array
     {
-        return $this->cacheHandler(function(){
-            return $this->graphQl();
+        return $this->localizationProcess(function(){
+            return $this->cacheHandler(function(){
+                return $this->graphQl();
+            });
         });
     }
 
@@ -439,18 +440,5 @@ class EloquentRepository
         return $repository->$repositoryName($repository->globalScope(
             call_user_func($callback)
         ));
-    }
-
-    /**
-     * get with localization relation for repository
-     *
-     * @param object $modelInstance
-     * @return object
-     */
-    public function withLocalization(object $modelInstance): object
-    {
-        return $this->setEagerLoading($localization = Localization::class,function() use($localization,$modelInstance){
-            return $modelInstance->hasOne($localization,'localized_code',Str::snake(getTableCode($this->getModel())));
-        });
     }
 }
