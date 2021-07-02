@@ -104,7 +104,7 @@ class EloquentRepository
         foreach ($clientData as $data){
             $baseQuery = $this->instance()->where(function(Builder $builder) use($data,$id){
                 $modelCode = Str::snake($this->getModelName()).'_code';
-                if(isset($data[$modelCode]) || $id === true){
+                if(isset($data[$modelCode]) && $id === true){
                     $builder->where($modelCode,intval(($data[$modelCode] ?? 0)));
                 }
             });
