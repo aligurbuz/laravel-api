@@ -111,6 +111,7 @@ class EloquentRepository
 
             try{
                 $update = $baseQuery->update($data);
+                $this->updateLocalization($data);
             }
             catch (\Exception $exception){
                 return $this->sqlException($exception);

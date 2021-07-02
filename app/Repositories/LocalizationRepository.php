@@ -60,7 +60,7 @@ trait LocalizationRepository
                     $values = $item['localization']['values'][0] ?? [];
 
                     foreach ($this->getLocalizations() as $localization){
-                        $item[$localization] = $values[$localization] ?? null;
+                        $item[$localization] = $values[$localization] ?? ($item[$localization] ?? null);
                         unset($item['localization']);
                         $list[$key] = $item;
                     }
@@ -97,6 +97,37 @@ trait LocalizationRepository
             );
 
             Repository::localization()->create([$localizationCreate]);
+        }
+    }
+
+    /**
+     * update localization data
+     *
+     * @param array $data
+     * @return void
+     */
+    public function updateLocalization(array $data = []) : void
+    {
+        $getLocalizations = $this->getLocalizations();
+
+        if($this->getModelName()!=='Localization' && count($getLocalizations)){
+            $localizationData = [];
+
+            foreach ($getLocalizations as $localization){
+                if(isset($data[$localization])){
+                    $localizationData[$localization] = $data[$localization];
+                }
+            }
+
+            $localization = Repository::localization()->select(['localization_code','values'])
+                ->localizedCode(($data['product_code'] ?? 0));
+
+            $repository = $localization->getRepository();
+
+            $values = $repository[0]['values'][0] ?? [];
+            $newData = [['localization_code' => ($repository[0]['localization_code'] ?? 0),'values' => array_merge($values,$localizationData)]];
+
+            $localization->update($newData);
         }
     }
 }
