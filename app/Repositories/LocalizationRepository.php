@@ -68,7 +68,6 @@ trait LocalizationRepository
             }
 
             $result['data'] = $list;
-
             return $result;
         }
 
