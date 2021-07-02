@@ -84,7 +84,6 @@ trait LocalizationRepository
         $getLocalizations = $this->getLocalizations();
 
         if($this->getModelName()!=='Localization' && count($getLocalizations)){
-
             $localizationData = [];
 
             foreach ($getLocalizations as $localization){
