@@ -78,6 +78,7 @@ class EloquentRepository
         try {
             foreach ($data as $value){
                 $list[] = static::$model::create($value);
+                $this->createLocalization($value);
             }
 
             return $list;

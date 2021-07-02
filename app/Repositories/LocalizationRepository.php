@@ -73,4 +73,31 @@ trait LocalizationRepository
 
         return call_user_func($callback);
     }
+
+    /**
+     * create localization data
+     *
+     * @param array $data
+     */
+    public function createLocalization(array $data = [])
+    {
+        $getLocalizations = $this->getLocalizations();
+
+        if($this->getModelName()!=='Localization' && count($getLocalizations)){
+
+            $localizationData = [];
+
+            foreach ($getLocalizations as $localization){
+                $localizationData[$localization] = $data[$localization] ?? '';
+            }
+
+            $localizationCreate = cR('localizations.localizations.create',
+                [
+                    ['localized_code' => $data['product_code'],'values' => [$localizationData]]
+                ]
+            );
+
+            Repository::localization()->create([$localizationCreate]);
+        }
+    }
 }
