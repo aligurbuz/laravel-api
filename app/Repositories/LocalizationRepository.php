@@ -97,7 +97,7 @@ trait LocalizationRepository
 
             $localizationCreate = cR('localizations.localizations.create',
                 [
-                    ['localized_code' => $data['product_code'],'values' => [$localizationData]]
+                    ['localized_code' => ($data['product_code'] ?? 0),'values' => [$localizationData]]
                 ]
             );
 
