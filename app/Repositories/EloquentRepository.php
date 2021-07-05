@@ -236,6 +236,16 @@ class EloquentRepository
     }
 
     /**
+     * get table_codee for model name
+     *
+     * @return string
+     */
+    public function getModelCode(): string
+    {
+        return Str::snake($this->getModelName()).'_code';
+    }
+
+    /**
      * get table for model name
      *
      * @return mixed
