@@ -6,10 +6,10 @@ namespace App\Models\Features;
 
 use App\Constants;
 use App\Services\Db;
+use Illuminate\Support\Str;
 use App\Services\AppContainer;
 use App\Repositories\Repository;
 use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Support\Str;
 
 /**
  * Trait BaseManager
