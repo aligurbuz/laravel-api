@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Models\Features;
 
 use App\Services\Db;
+use Illuminate\Support\Str;
 use App\Services\AppContainer;
 use App\Repositories\Repository;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -135,5 +136,24 @@ trait BaseManager
         }
 
         $this->setAppends($list);
+    }
+
+    /**
+     * get __call method for base manager
+     *
+     * @param $name
+     * @param array $args
+     * @return mixed
+     */
+    public function __call($name,$args = [])
+    {
+        $queries = $this->getWithQueries();
+
+        if(isset($queries[$name])){
+            $withName = 'with'.Str::ucfirst($name);
+            return $this->getRepository()->{$withName}($this);
+        }
+
+        return parent::__call($name,$args);
     }
 }
