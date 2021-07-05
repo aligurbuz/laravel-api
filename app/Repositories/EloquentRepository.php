@@ -462,11 +462,13 @@ class EloquentRepository
             $queries = (method_exists($modelInstance,'getWithQueries')) ? $modelInstance->getWithQueries() : [];
             $list = $queries[Str::lower($model)] ?? [];
 
+            $getLocalizations = $this->findRepositoryByModel($model)->getLocalizations();
+
             return $modelInstance->hasOne(
                 $modelNamespace,
                 ($list['foreignColumn'] ?? null),
                 ($list['localColumn'] ?? null)
-            );
+            )->with((count($getLocalizations) ? 'localization' : []));
         });
     }
 
