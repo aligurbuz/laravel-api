@@ -39,12 +39,12 @@ trait LocalizationRepository
     {
         return $this->setEagerLoading(
             $localization = Localization::class,
-                function() use($localization,$modelInstance){
-                    return $modelInstance->hasOne(
-                        $localization,'localized_code',Str::snake(getTableCode($this->getModel()))
-                    );
-                }
-            );
+            function() use($localization,$modelInstance){
+                return $modelInstance->hasOne(
+                    $localization,'localized_code',Str::snake(getTableCode($this->getModel()))
+                );
+            }
+        );
     }
 
     /**
@@ -87,9 +87,9 @@ trait LocalizationRepository
                 foreach ($withValues as $withValue){
                     if(isset($item[$withValue]['localization'])){
                         $item[$withValue] = ($this->localizationPropagation(
-                            [$item[$withValue]],
-                            $this->findRepositoryByModel($withValue)
-                        )[0]) ?? [];
+                                [$item[$withValue]],
+                                $this->findRepositoryByModel($withValue)
+                            )[0]) ?? [];
                     }
                 }
 
@@ -122,7 +122,7 @@ trait LocalizationRepository
 
             $localizationCreate = cR('localizations.localizations.create',
                 [
-                    ['localized_code' => ($data['product_code'] ?? 0),'values' => [$localizationData]]
+                    ['localized_code' => ($data[$this->getModelCode()] ?? 0),'values' => [$localizationData]]
                 ]
             );
 
