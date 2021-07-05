@@ -4,11 +4,12 @@ declare(strict_types=1);
 
 namespace App\Models\Features;
 
+use App\Constants;
 use App\Services\Db;
-use Illuminate\Support\Str;
 use App\Services\AppContainer;
 use App\Repositories\Repository;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Support\Str;
 
 /**
  * Trait BaseManager
@@ -66,8 +67,42 @@ trait BaseManager
      */
     protected function withQueryConstructor()
     {
+        $this->withModelHandler();
+
         if(property_exists($this,'withQuery') && is_array($this->withQuery)){
             $this->withQuery = array_merge_recursive($this->withQuery,$this->localizationWithQuery);
+        }
+    }
+
+    /**
+     * get with model handler for model
+     *
+     * @return void
+     */
+    protected function withModelHandler()
+    {
+        $columns = Db::columns($this->getTable());
+
+        foreach ($columns as $column){
+            if(Str::endsWith($column,'_code')){
+                $relationModel = str_replace('_code','',$column);
+
+                if($relationModel!==$this->getModelName()){
+                    $relationModelNamespace = Constants::modelNamespace.'\\'.Str::ucfirst($relationModel);
+
+                    if(class_exists($relationModelNamespace)){
+                        $relationTable = (new $relationModelNamespace)->getTable();
+
+                        $this->withQuery[$relationModel] = [
+                            'foreignColumn' => $relationModel.'_code',
+                            'localColumn' => $relationModel.'_code',
+                            'table' => $relationTable,
+                            'description' => 'You can use '.$relationModel.' relation belonging to '.$this->getModelName().' data.',
+                            'repository' => Str::camel($relationModel)
+                        ];
+                    }
+                }
+            }
         }
     }
 
