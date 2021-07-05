@@ -23,7 +23,7 @@ trait LocalizationRepository
     {
         $repository = $repository ?? $this;
 
-        if(property_exists($repository,'localization')){
+        if($repository instanceof EloquentRepository && property_exists($repository,'localization')){
             return $repository->localization;
         }
 
