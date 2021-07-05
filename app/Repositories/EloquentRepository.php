@@ -163,7 +163,7 @@ class EloquentRepository
      */
     public function code(int $code = 0) : object
     {
-        $this->repository = $this->instance()->where(getTableCode($this->getModelName()),$code);
+        $this->repository = $this->instance()->where($this->getModelCode(),$code);
 
         return $this;
     }
@@ -242,7 +242,7 @@ class EloquentRepository
      */
     public function getModelCode(): string
     {
-        return Str::snake($this->getModelName()).'_code';
+        return getTableCode($this->getModelName());
     }
 
     /**
