@@ -236,6 +236,16 @@ class EloquentRepository
     }
 
     /**
+     * get table for model name
+     *
+     * @return mixed
+     */
+    public function getModelWithValues(): mixed
+    {
+        return (new static::$model)->getWithValues();
+    }
+
+    /**
      * get repository results for model
      *
      * @param bool $afterLoadingRepository

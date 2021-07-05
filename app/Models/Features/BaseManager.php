@@ -138,6 +138,22 @@ trait BaseManager
     }
 
     /**
+     * get with queries for model
+     *
+     * @return array
+     */
+    public function getWithValues() : array
+    {
+        $list = [];
+
+        foreach ($this->getWithQueries() as $relation => $withQuery){
+            $list[] = $relation;
+        }
+
+        return $list;
+    }
+
+    /**
      * get localization model
      *
      * @return HasOne
