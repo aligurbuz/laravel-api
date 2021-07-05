@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Repositories;
 
 use Throwable;
+use App\Constants;
 use App\Services\Db;
 use App\Services\Client;
 use Illuminate\Support\Str;
@@ -272,7 +273,7 @@ class EloquentRepository
     public function active(?object $builder = null): object
     {
         $this->ensureColumnExists('status',$this->instance(),function() use($builder){
-           $this->builder($builder)->where('status',1);
+            $this->builder($builder)->where('status',1);
         });
 
         $this->ensureColumnExists('is_deleted',$this->instance(),function() use($builder){
@@ -442,5 +443,46 @@ class EloquentRepository
         return $repository->$repositoryName($repository->globalScope(
             call_user_func($callback)
         ));
+    }
+
+    /**
+     * get eager loading handler for eloquent repository
+     *
+     * @param string $name
+     * @param array $args
+     * @return object
+     */
+    public function eagerLoadingHandler(string $name,array $args = []) : object
+    {
+        $model            = str_replace('with','',$name);
+        $modelInstance    = $args[0] ?? new class {};
+        $modelNamespace   = Constants::modelNamespace.'\\'.$model;
+
+        return $this->setEagerLoading($modelNamespace,function() use($modelNamespace,$modelInstance,$model){
+            $queries = (method_exists($modelInstance,'getWithQueries')) ? $modelInstance->getWithQueries() : [];
+            $list = $queries[Str::lower($model)] ?? [];
+
+            return $modelInstance->hasOne(
+                $modelNamespace,
+                ($list['foreignColumn'] ?? null),
+                ($list['localColumn'] ?? null)
+            );
+        });
+    }
+
+    /**
+     * get __call method for eloquent repository
+     *
+     * @param string $name
+     * @param array $args
+     * @return object|null
+     */
+    public function __call(string $name,array $args = []) : ?object
+    {
+        if(Str::startsWith($name,'with')){
+            return $this->eagerLoadingHandler($name,$args);
+        }
+
+        return null;
     }
 }
