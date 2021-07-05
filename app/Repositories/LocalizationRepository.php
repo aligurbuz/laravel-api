@@ -34,9 +34,14 @@ trait LocalizationRepository
      */
     public function withLocalization(object $modelInstance): object
     {
-        return $this->setEagerLoading($localization = Localization::class,function() use($localization,$modelInstance){
-            return $modelInstance->hasOne($localization,'localized_code',Str::snake(getTableCode($this->getModel())));
-        });
+        return $this->setEagerLoading(
+            $localization = Localization::class,
+                function() use($localization,$modelInstance){
+                    return $modelInstance->hasOne(
+                        $localization,'localized_code',Str::snake(getTableCode($this->getModel()))
+                    );
+                }
+            );
     }
 
     /**
@@ -92,7 +97,7 @@ trait LocalizationRepository
 
             $localizationCreate = cR('localizations.localizations.create',
                 [
-                    ['localized_code' => $data['product_code'],'values' => [$localizationData]]
+                    ['localized_code' => ($data['product_code'] ?? 0),'values' => [$localizationData]]
                 ]
             );
 
@@ -124,7 +129,12 @@ trait LocalizationRepository
             $repository = $localization->getRepository(false);
 
             $values = $repository[0]['values'][0] ?? [];
-            $newData = [['localization_code' => ($repository[0]['localization_code'] ?? 0),'values' => [array_merge($values,$localizationData)]]];
+            $newData = [
+                [
+                    'localization_code' => ($repository[0]['localization_code'] ?? 0),
+                    'values' => [array_merge($values,$localizationData)]
+                ]
+            ];
 
             $localization->update($newData,false);
         }
