@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 
 class MigrationCommand extends Command
 {
@@ -41,7 +42,7 @@ class MigrationCommand extends Command
     {
         $table = $this->argument('table');
         $model = $this->argument('model');
-        $modelCode = $model.'_code';
+        $modelCode = Str::snake($model).'_code';
 
         Artisan::call('make:migration',['name' =>'create_'.$table]);
 
