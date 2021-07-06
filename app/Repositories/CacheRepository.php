@@ -18,6 +18,11 @@ use App\Factory\Cache\Interfaces\CacheInterface;
 trait CacheRepository
 {
     /**
+     * @var int
+     */
+    protected int $cacheExpire = 600;
+
+    /**
      * @var string|null
      */
     protected ?string $cacheModelName = null;
@@ -99,6 +104,8 @@ trait CacheRepository
                 (string)$this->cacheFingerPrint,
                 json_encode($proxyCallback)
             );
+
+            $this->cacheInstance->expire($this->cacheModelName,$this->cacheExpire);
 
             return call_user_func($callback,$proxy);
         };

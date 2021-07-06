@@ -25,6 +25,13 @@ interface CacheInterface
 
     /**
      * @param string $key
+     * @param int $expire
+     * @return int
+     */
+    public function expire(string $key,int $expire = 60) : int;
+
+    /**
+     * @param string $key
      * @return mixed
      */
     public function get(string $key) : mixed;

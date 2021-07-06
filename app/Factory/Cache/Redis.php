@@ -70,6 +70,18 @@ class Redis extends CacheManager implements CacheInterface
     }
 
     /**
+     * delete redis key value for cache factory
+     *
+     * @param string $key
+     * @param int $expire
+     * @return int
+     */
+    public function expire(string $key,int $expire = 60) : int
+    {
+        return $this->getInstance()->expire($key,$expire);
+    }
+
+    /**
      * set redis key field value for cache factory
      *
      * @param string $key
