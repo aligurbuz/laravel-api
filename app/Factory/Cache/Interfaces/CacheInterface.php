@@ -19,6 +19,12 @@ interface CacheInterface
 
     /**
      * @param string $key
+     * @return bool
+     */
+    public function delete(string $key) : bool;
+
+    /**
+     * @param string $key
      * @return mixed
      */
     public function get(string $key) : mixed;
