@@ -14,34 +14,34 @@ use App\Factory\Cache\Interfaces\CacheInterface;
  */
 class Redis extends CacheManager implements CacheInterface
 {
-	/**
-	 * binds property variable
-	 *
-	 * @var array
-	 */
-	protected array $binds = [];
+    /**
+     * binds property variable
+     *
+     * @var array
+     */
+    protected array $binds = [];
 
     /**
      * @var object|null
      */
-	protected ?object $instance = null;
+    protected ?object $instance = null;
 
-	/**
-	 * Redis constructor
-	 *
-	 * @param array $binds
-	 */
-	public function __construct(array $binds = [])
-	{
-		$this->binds = $binds;
-	}
+    /**
+     * Redis constructor
+     *
+     * @param array $binds
+     */
+    public function __construct(array $binds = [])
+    {
+        $this->binds = $binds;
+    }
 
     /**
      * get instance for cache factory
      *
      * @return ClientInterface
      */
-	public function getInstance() : object
+    public function getInstance() : object
     {
         return RedisInstance::client();
     }
@@ -53,9 +53,20 @@ class Redis extends CacheManager implements CacheInterface
      * @param mixed $value
      * @return void
      */
-	public function set(string $key,mixed $value) : void
+    public function set(string $key,mixed $value) : void
     {
         $this->getInstance()->set($key,$value);
+    }
+
+    /**
+     * delete redis key value for cache factory
+     *
+     * @param string $key
+     * @return bool
+     */
+    public function delete(string $key) : bool
+    {
+        return !(($this->getInstance()->del($key) === 0));
     }
 
     /**
