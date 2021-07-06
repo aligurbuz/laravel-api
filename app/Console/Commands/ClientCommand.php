@@ -75,7 +75,7 @@ class ClientCommand extends Command
         $generator = $generator->addTrait($traitName = 'GeneratorTrait');
 
         if($method=='Create'){
-            $generator->addMethod(strtolower($modelName).'CodeGenerator')->setReturnType('int')->setBody('return generateHash();')
+            $generator->addMethod(Str::camel($modelName).'CodeGenerator')->setReturnType('int')->setBody('return generateHash();')
                 ->addComment('generates '.strtolower($modelName).'_code for client')
                 ->addComment('')
                 ->addComment('@return int');
