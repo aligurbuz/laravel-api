@@ -14,5 +14,6 @@ return [
     'grandAuthenticateException'    => 'You do not have the necessary permissions for this endpoint.',
     'rangeException'                => 'Range called :key is not valid',
     'selectException'               => 'Select statement called :key is not valid',
-    'withException'                  => 'Invalid with expression',
+    'withException'                 => 'Invalid with expression',
+    'cacheException'                => 'Cache deleting process has failed',
 ];
