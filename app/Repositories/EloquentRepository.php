@@ -470,13 +470,12 @@ class EloquentRepository
     /**
      * get eager loading handler for eloquent repository
      *
-     * @param string $name
+     * @param string $model
      * @param array $args
      * @return object
      */
-    public function eagerLoadingHandler(string $name,array $args = []) : object
+    public function eagerLoadingHandler(string $model,array $args = []) : object
     {
-        $model            = str_replace('with','',$name);
         $modelInstance    = $args[0] ?? new class {};
         $modelNamespace   = Constants::modelNamespace.'\\'.$model;
 
@@ -504,7 +503,7 @@ class EloquentRepository
     public function __call(string $name,array $args = []) : ?object
     {
         if(Str::startsWith($name,'with')){
-            return $this->eagerLoadingHandler($name,$args);
+            return $this->eagerLoadingHandler(str_replace('with','',$name),$args);
         }
 
         return null;
