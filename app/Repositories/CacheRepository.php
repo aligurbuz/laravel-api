@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Repositories;
 
-use App\Exceptions\Exception;
 use Closure;
 use App\Services\Db;
 use App\Factory\Factory;
 use App\Services\Client;
+use App\Exceptions\Exception;
 use App\Factory\Cache\Interfaces\CacheInterface;
 
 /**
