@@ -1,29 +1,15 @@
 {
-    "Category": [
-        "Localization",
-        "Product"
-    ],
     "Localization": [
         "Language",
         "Localization",
-        "Product",
         "SuperAdmin",
-        "User",
-        "Zone"
-    ],
-    "Product": [
-        "Category",
-        "Zone",
-        "Localization"
+        "User"
     ],
     "SuperAdmin": [
         "User",
         "Localization"
     ],
     "User": [
-        "Localization"
-    ],
-    "Zone": [
         "Localization"
     ]
 }
