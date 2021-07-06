@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Repositories;
 
+use App\Exceptions\Exception;
 use Closure;
 use App\Services\Db;
 use App\Factory\Factory;
@@ -116,13 +117,17 @@ trait CacheRepository
         $relations  = Db::relations();
 
         if($this->cacheInstance->exists($model)){
-            $this->cacheInstance->delete($model);
+            if(!$this->cacheInstance->delete($model)){
+                Exception::cacheException();
+            }
         }
 
         if(isset($relations[$model]) && is_array($relations[$model])){
             foreach ($relations[$model] as $relation){
                 if($this->cacheInstance->exists($relation)){
-                    $this->cacheInstance->delete($relation);
+                    if(!$this->cacheInstance->delete($relation)){
+                        Exception::cacheException();
+                    }
                 }
             }
         }
