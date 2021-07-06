@@ -39,7 +39,7 @@ trait CacheRepository
      */
     public function cacheHandler(callable $callback) : array
     {
-        if(isLocale()){
+        if(!isLocale()){
             $this->setProperties();
 
             return $this->cache($callback,function($proxy){
