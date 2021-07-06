@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace App\Repositories;
 
 use Closure;
+use App\Services\Db;
 use App\Factory\Factory;
 use App\Services\Client;
+use App\Factory\Cache\Interfaces\CacheInterface;
 
 /**
  * Trait CacheRepository
@@ -25,9 +27,9 @@ trait CacheRepository
     protected mixed $cacheFingerPrint = null;
 
     /**
-     * @var object|null
+     * @var CacheInterface|null
      */
-    protected ?object $cacheInstance = null;
+    protected ?CacheInterface $cacheInstance = null;
 
     /**
      * make cache model data for repository
@@ -37,7 +39,7 @@ trait CacheRepository
      */
     public function cacheHandler(callable $callback) : array
     {
-        if(!isLocale()){
+        if(isLocale()){
             $this->setProperties();
 
             return $this->cache($callback,function($proxy){
@@ -99,5 +101,30 @@ trait CacheRepository
 
             return call_user_func($callback,$proxy);
         };
+    }
+
+    /**
+     * delete cache for model
+     *
+     * @return void
+     */
+    public function deleteCache() : void
+    {
+        $this->setProperties();
+
+        $model      = $this->getModelName();
+        $relations  = Db::relations();
+
+        if($this->cacheInstance->exists($model)){
+            $this->cacheInstance->delete($model);
+        }
+
+        if(isset($relations[$model]) && is_array($relations[$model])){
+            foreach ($relations[$model] as $relation){
+                if($this->cacheInstance->exists($relation)){
+                    $this->cacheInstance->delete($relation);
+                }
+            }
+        }
     }
 }
