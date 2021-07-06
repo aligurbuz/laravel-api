@@ -6,6 +6,7 @@ use App\Services\Db;
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 
 class Documentation extends Command
 {
@@ -129,7 +130,7 @@ class Documentation extends Command
             'deleted_at' => 'timestamp',
             'is_deleted' => 'integer',
             'status' => 'integer',
-            $this->argument('model').'_code' => 'integer'
+            Str::snake($this->argument('model')).'_code' => 'integer'
         ]));
         $list['item'][$key]['item'][1]['request']['body']['options']['raw']['language'] = 'json';
 
