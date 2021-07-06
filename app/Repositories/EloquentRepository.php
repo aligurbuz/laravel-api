@@ -481,7 +481,7 @@ class EloquentRepository
 
         return $this->setEagerLoading($modelNamespace,function() use($modelNamespace,$modelInstance,$model){
             $queries = (method_exists($modelInstance,'getWithQueries')) ? $modelInstance->getWithQueries() : [];
-            $list = $queries[Str::lower($model)] ?? [];
+            $list = $queries[Str::camel($model)] ?? [];
 
             $getLocalizations = $this->findRepositoryByModel($model)->getLocalizations();
 

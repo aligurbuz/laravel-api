@@ -85,7 +85,7 @@ trait BaseManager
 
         foreach ($columns as $column){
             if(Str::endsWith($column,'_code')){
-                $relationModel = str_replace('_code','',$column);
+                $relationModel = Str::camel(str_replace('_code','',$column));
 
                 if($relationModel!==$this->getModelName()){
                     $relationModelNamespace = Constants::modelNamespace.'\\'.Str::ucfirst($relationModel);
@@ -94,8 +94,8 @@ trait BaseManager
                         $relationTable = (new $relationModelNamespace)->getTable();
 
                         $this->withQuery[$relationModel] = [
-                            'foreignColumn' => $relationModel.'_code',
-                            'localColumn' => $relationModel.'_code',
+                            'foreignColumn' => Str::snake($relationModel).'_code',
+                            'localColumn' => Str::snake($relationModel).'_code',
                             'table' => $relationTable,
                             'description' => 'You can use '.$relationModel.' relation belonging to '.$this->getModelName().' data.',
                             'repository' => Str::camel($relationModel)
@@ -104,6 +104,7 @@ trait BaseManager
                 }
             }
         }
+
     }
 
     /**

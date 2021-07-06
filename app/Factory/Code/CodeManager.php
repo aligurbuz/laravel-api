@@ -40,7 +40,7 @@ abstract class CodeManager
         $code = $this->getCodeIdentifier();
 
         if(isset($code['codeName'])){
-            return str_replace('_code','',$code['codeName']);
+            return Str::camel(str_replace('_code','',$code['codeName']));
         }
 
         return null;
