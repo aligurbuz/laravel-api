@@ -265,9 +265,9 @@ trait ScopeManager
      * get eager loading data for model
      *
      * @param Builder $builder
-     * @return Builder
+     * @return object
      */
-    public function scopeWithQuery(Builder $builder): Builder
+    public function scopeWithQuery(Builder $builder): object
     {
         $params = request()->query->all();
 
@@ -276,7 +276,14 @@ trait ScopeManager
 
             if(is_array($params['with']) && count($params['with'])){
                 foreach ($params['with'] as $with => $select){
-                    if(isset($withQuery[$with],$withQuery[$with]['foreignColumn'],$withQuery[$with]['localColumn'],$withQuery[$with]['table'])){
+                    if(
+                        isset(
+                            $withQuery[$with],
+                            $withQuery[$with]['foreignColumn'],
+                            $withQuery[$with]['localColumn'],
+                            $withQuery[$with]['table']
+                        )
+                    ){
                         $foreignColumn = $withQuery[$with]['foreignColumn'];
                         $foreignRepository = $withQuery[$with]['repository'] ?? null;
                         $localColumn = $withQuery[$with]['localColumn'];
@@ -306,6 +313,9 @@ trait ScopeManager
                             }]);
                         }
 
+                    }
+                    else{
+                        return Exception::withException();
                     }
                 }
             }

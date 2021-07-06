@@ -25,6 +25,7 @@ use App\Services\AppContainer;
  * @method static grandAuthenticateException($message = null,$keys = [])
  * @method static rangeException($message = null,$keys = [])
  * @method static selectException($message = null,$keys = [])
+ * @method static withException($message = null,$keys = [])
  * @package App\Exceptions
  */
 class Exception
