@@ -80,6 +80,7 @@ class EloquentRepository
             foreach ($data as $value){
                 $list[] = static::$model::create($value);
                 $this->createLocalization($value);
+                $this->deleteCache();
             }
 
             return $list;
@@ -113,6 +114,7 @@ class EloquentRepository
             try{
                 $update = $baseQuery->update($data);
                 $this->updateLocalization($data);
+                $this->deleteCache();
             }
             catch (\Exception $exception){
                 return $this->sqlException($exception);
