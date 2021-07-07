@@ -52,11 +52,15 @@ trait ClientAutoGeneratorTrait
      */
     public function userCodeAutoGenerator(): mixed
     {
-        return $this->ensureColumnExists('user_code',function(){
-            return $this->getUserCodeForSuperAdmin(function(){
-                return Authenticate::code();
+        if($this->getModelName()!=='User'){
+            return $this->ensureColumnExists('user_code',function(){
+                return $this->getUserCodeForSuperAdmin(function(){
+                    return Authenticate::code();
+                });
             });
-        });
+        }
+
+        return null;
     }
 
     /**
