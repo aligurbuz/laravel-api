@@ -11,6 +11,7 @@ use App\Services\Db as DBFacade;
 use App\Models\Entities\EntityMap;
 use Illuminate\Support\Facades\DB;
 use App\Facades\Authenticate\ApiKey;
+use Illuminate\Support\Facades\Route;
 
 if(!function_exists('entity')){
 
@@ -187,6 +188,17 @@ if(!function_exists('getModelName')){
     function getModelName($model): string
     {
         return Str::camel(class_basename($model));
+    }
+}
+
+if(!function_exists('endpoint')){
+
+    /**
+     * @return string
+     */
+    function endpoint(): string
+    {
+        return str_replace('api/','',Route::getCurrentRoute()->uri());
     }
 }
 

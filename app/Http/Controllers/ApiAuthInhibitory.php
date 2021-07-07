@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Route;
-
 /**
  * Trait ApiAuthInhibitory
  * @package App\Http\Controllers
@@ -41,14 +39,14 @@ trait ApiAuthInhibitory
     private function inhibitoryHandler() : bool
     {
         $inhibitory = $this->inhibitory[who()] ?? [];
-        $uri = str_replace('api/','',Route::getCurrentRoute()->uri());
+        $endpoint = endpoint();
 
-        if(isset($inhibitory[$uri]) && is_array($inhibitory[$uri])){
-            return $this->methods($inhibitory[$uri]);
+        if(isset($inhibitory[$endpoint]) && is_array($inhibitory[$endpoint])){
+            return $this->methods($inhibitory[$endpoint]);
         }
 
-        if(isset($inhibitory[$uri.'/*']) && is_array($inhibitory[$uri.'/*'])){
-            return $this->methods($inhibitory[$uri.'/*']);
+        if(isset($inhibitory[$endpoint.'/*']) && is_array($inhibitory[$endpoint.'/*'])){
+            return $this->methods($inhibitory[$endpoint.'/*']);
         }
 
         return true;
