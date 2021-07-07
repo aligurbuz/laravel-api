@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Repositories\Repository;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 
@@ -58,6 +59,9 @@ class PermissionCommand extends Command
             $createList['endpoint'] = $endpoint;
             $createList['description'] = $endpoint;
             $createList['permission_code'] = crc32($endpoint);
+
+            DB::table('permissions')->where('permission_code',$createList['permission_code'])->delete();
+            DB::table('Localizations')->where('localized_code',$createList['permission_code'])->delete();
 
             Repository::permission()->create([$createList]);
         }
