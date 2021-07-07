@@ -43,11 +43,11 @@ trait ApiAuthInhibitory
         $inhibitory = $this->inhibitory[who()] ?? [];
         $uri = str_replace('api/','',Route::getCurrentRoute()->uri());
 
-        if(isset($inhibitory[$uri])){
+        if(isset($inhibitory[$uri]) && is_array($inhibitory[$uri])){
             return $this->methods($inhibitory[$uri]);
         }
 
-        if(isset($inhibitory[$uri.'/*'])){
+        if(isset($inhibitory[$uri.'/*']) && is_array($inhibitory[$uri.'/*'])){
             return $this->methods($inhibitory[$uri.'/*']);
         }
 
