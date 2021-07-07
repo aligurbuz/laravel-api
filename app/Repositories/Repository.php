@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Repositories;
 
 use App\Repositories\User\Contracts\UserRepositoryContract;
+use App\Repositories\Gate\Contracts\PermissionsRepositoryContract;
 use App\Repositories\Gate\Contracts\RolesRepositoryContract;
 use App\Repositories\SuperAdmins\Contracts\SuperAdminsRepositoryContract;
 use App\Repositories\Localizations\Contracts\LanguageRepositoryContract;
@@ -18,6 +19,16 @@ use App\Repositories\Countries\Contracts\CountriesRepositoryContract;
  */
 class Repository
 {
+    /**
+     * get permission repository instance
+     *
+     * @return PermissionsRepositoryContract
+     */
+    public static function permission() : PermissionsRepositoryContract
+    {
+        return app()->get(PermissionsRepositoryContract::class);
+    }
+    
     /**
      * get role repository instance
      *

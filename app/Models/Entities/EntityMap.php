@@ -6,6 +6,15 @@ class EntityMap
 {
     /**
      * @param object $query
+     * @return Permission
+     */
+    public function permission(object $query) : Permission
+    {
+        return new Permission($query);
+    }
+    
+    /**
+     * @param object $query
      * @return Role
      */
     public function role(object $query) : Role

@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Repositories\Gate\Contracts\PermissionsRepositoryContract;
+use App\Repositories\Gate\PermissionsRepository;
 use App\Repositories\Gate\Contracts\RolesRepositoryContract;
 use App\Repositories\Gate\RolesRepository;
 use App\Repositories\SuperAdmins\Contracts\SuperAdminsRepositoryContract;
@@ -36,6 +38,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(LanguageRepositoryContract::class,LanguageRepository::class);
         $this->app->bind(SuperAdminsRepositoryContract::class,SuperAdminsRepository::class);
         $this->app->bind(RolesRepositoryContract::class,RolesRepository::class);
+        $this->app->bind(PermissionsRepositoryContract::class,PermissionsRepository::class);
         //newBind
     }
 
