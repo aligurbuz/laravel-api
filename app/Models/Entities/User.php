@@ -7,6 +7,7 @@ namespace App\Models\Entities;
 /**
  * @property $this id
  * @property $this user_code
+ * @property $this role_code
  * @property $this name
  * @property $this email
  * @property $this email_verified_at
@@ -14,6 +15,7 @@ namespace App\Models\Entities;
  * @property $this remember_token
  * @property $this created_at
  * @property $this updated_at
+ * @property $this username
  * @property $this USER
  * @property $this CURRENT_CONNECTIONS
  * @property $this TOTAL_CONNECTIONS
@@ -58,6 +60,17 @@ class User
 	protected static function user_code(): mixed
 	{
 		return self::$query->user_code;
+	}
+
+
+	/**
+	 * get role_code column for database table
+	 *
+	 * @return mixed
+	 */
+	protected static function role_code(): mixed
+	{
+		return self::$query->role_code;
 	}
 
 
@@ -135,6 +148,17 @@ class User
 	protected static function updated_at(): mixed
 	{
 		return self::$query->updated_at;
+	}
+
+
+	/**
+	 * get username column for database table
+	 *
+	 * @return mixed
+	 */
+	protected static function username(): mixed
+	{
+		return self::$query->username;
 	}
 
 
