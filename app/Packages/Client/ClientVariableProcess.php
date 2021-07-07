@@ -58,7 +58,7 @@ class ClientVariableProcess
             if(in_array($generator,$generators)){
                 $callMethod = $this->client->callMethod($generatorPrefix);
                 if(!is_null($callMethod)){
-                    $data[$generator] = $this->client->callMethod($generatorPrefix);
+                    $data[$generator] = $callMethod;
                 }
             }
 
@@ -87,7 +87,7 @@ class ClientVariableProcess
             if(in_array($generator,$generators)){
                 $callMethod = $this->client->callMethod($generatorPrefix);
                 if(!is_null($callMethod)){
-                    $data[$generator] = $this->client->callMethod($generatorPrefix);
+                    $data[$generator] = $callMethod;
                 }
             }
 
