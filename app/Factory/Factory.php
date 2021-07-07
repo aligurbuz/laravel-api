@@ -10,6 +10,7 @@ use App\Factory\Client\Interfaces\ClientInterface;
 use App\Factory\Hitter\Interfaces\HitterInterface;
 use App\Factory\Notify\Interfaces\NotifyInterface;
 use App\Factory\Logger\Interfaces\LoggerInterface;
+use App\Factory\Role\Interfaces\RoleInterface;
 use App\Factory\Storage\Interfaces\StorageInterface;
 use App\Factory\Collection\Interfaces\CollectionInterface;
 use App\Factory\Localization\Interfaces\LocalizationInterface;
@@ -25,6 +26,7 @@ use App\Factory\Localization\Interfaces\LocalizationInterface;
  * @method static CollectionInterface collection($arguments = null)
  * @method static ClientInterface client($arguments = null)
  * @method static HitterInterface hitter($arguments = null)
+ * @method static RoleInterface role($arguments = null)
  * @package App\Factory
  */
 class Factory extends FactoryManager
