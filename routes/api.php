@@ -25,7 +25,7 @@ use App\Http\Controllers\Register\RegisterController;
 Route::post('/login', [LoginController::class,'login']);
 Route::post('/register', [RegisterController::class,'register']);
 
-Route::middleware(['auth:api'])->group(function(){
+Route::middleware([])->group(function(){
 
     Route::get('/superAdmins', [SuperAdminsController::class,'get']);
     Route::post('/superAdmins', [SuperAdminsController::class,'create']);

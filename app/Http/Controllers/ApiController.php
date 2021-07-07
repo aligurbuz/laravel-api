@@ -7,15 +7,26 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Support\Facades\Route;
 
+/**
+ * Class ApiController
+ * @package App\Http\Controllers
+ */
 class ApiController extends BaseController
 {
-    use AuthorizesRequests, DispatchesJobs, ValidatesRequests,Supporter;
+    use AuthorizesRequests,DispatchesJobs,ValidatesRequests,Supporter,ApiAuthInhibitory;
+
+    /**
+     * @var static authApi
+     */
+    protected const authApi = 'auth:api';
 
     /**
      * @var array
      */
     protected array $middlewares = [
+        'auth:api',
         'acceptLanguage',
         'accessLogger',
         'response',
@@ -48,6 +59,14 @@ class ApiController extends BaseController
     private function exceptMiddlewares($middleware,callable $callback): mixed
     {
         $calledClass = get_called_class();
+
+        // we are conditionally removing
+        // the concept of apiAuth authenticate.
+        if($middleware==self::authApi){
+            if(!$this->apiAuthInhibitory($calledClass)){
+                return false;
+            }
+        }
 
         if(
             isset($this->exceptMiddlewares[$calledClass])
