@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 declare(strict_types=1);
 
@@ -24,6 +24,10 @@ class PermissionsRepository extends EloquentRepository implements PermissionsRep
 	 */
 	protected array $ranges = [];
 
+    /**
+     * @var array|string[]
+     */
+	protected array $localization = ['description'];
 
 	/**
 	 * get auto PermissionsRepository scope method
