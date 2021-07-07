@@ -539,7 +539,7 @@
                                 ],
                                 "body": {
                                     "mode": "raw",
-                                    "raw": "{\"language_code\":\"integer\",\"localized_code\":\"integer\",\"values\":\"json\"}",
+                                    "raw": "{\"language_code\":\"integer\",\"localized_code\":\"integer\",\"values\":\"array\"}",
                                     "options": {
                                         "raw": {
                                             "language": "json"
@@ -587,7 +587,7 @@
                                 ],
                                 "body": {
                                     "mode": "raw",
-                                    "raw": "{\"is_deleted\":\"0\",\"language_code\":\"integer\",\"localization_code\":\"integer\",\"localized_code\":\"integer\",\"status\":\"1\",\"values\":\"json\"}",
+                                    "raw": "{\"is_deleted\":\"0\",\"language_code\":\"integer\",\"localization_code\":\"integer\",\"localized_code\":\"integer\",\"status\":\"1\",\"values\":\"array\"}",
                                     "options": {
                                         "raw": {
                                             "language": "json"
@@ -906,6 +906,162 @@
                                     ],
                                     "path": [
                                         "superAdmins"
+                                    ],
+                                    "query": []
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Gate",
+            "item": [
+                {
+                    "name": "Roles",
+                    "item": [
+                        {
+                            "name": "Gate/Roles",
+                            "response": [],
+                            "request": {
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Authorization",
+                                        "value": "Bearer {{bearerToken}}",
+                                        "type": "text"
+                                    },
+                                    {
+                                        "key": "Apikey",
+                                        "value": "{{apiKey}}",
+                                        "type": "text"
+                                    },
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "{{contentType}}",
+                                        "type": "text"
+                                    },
+                                    {
+                                        "key": "Accept-Language",
+                                        "value": "{{acceptLanguage}}",
+                                        "type": "text"
+                                    }
+                                ],
+                                "body": [],
+                                "url": {
+                                    "raw": "{{baseUrl}}/gate/roles",
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "path": [
+                                        "gate",
+                                        "roles"
+                                    ],
+                                    "query": [
+                                        {
+                                            "key": "range",
+                                            "value": "desc",
+                                            "description": "",
+                                            "disabled": true
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "name": "Gate/Roles",
+                            "response": [],
+                            "request": {
+                                "method": "POST",
+                                "header": [
+                                    {
+                                        "key": "Authorization",
+                                        "value": "Bearer {{bearerToken}}",
+                                        "type": "text"
+                                    },
+                                    {
+                                        "key": "Apikey",
+                                        "value": "{{apiKey}}",
+                                        "type": "text"
+                                    },
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "{{contentType}}",
+                                        "type": "text"
+                                    },
+                                    {
+                                        "key": "Accept-Language",
+                                        "value": "{{acceptLanguage}}",
+                                        "type": "text"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\"role_app_code\":\"integer\",\"role_name\":\"string\",\"is_administrator\":\"integer\",\"roles\":\"array\"}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "{{baseUrl}}/gate/roles",
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "path": [
+                                        "gate",
+                                        "roles"
+                                    ],
+                                    "query": []
+                                }
+                            }
+                        },
+                        {
+                            "name": "Gate/Roles",
+                            "response": [],
+                            "request": {
+                                "method": "PUT",
+                                "header": [
+                                    {
+                                        "key": "Authorization",
+                                        "value": "Bearer {{bearerToken}}",
+                                        "type": "text"
+                                    },
+                                    {
+                                        "key": "Apikey",
+                                        "value": "{{apiKey}}",
+                                        "type": "text"
+                                    },
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "{{contentType}}",
+                                        "type": "text"
+                                    },
+                                    {
+                                        "key": "Accept-Language",
+                                        "value": "{{acceptLanguage}}",
+                                        "type": "text"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\"role_code\":\"integer\",\"role_app_code\":\"integer\",\"role_name\":\"string\",\"is_administrator\":\"integer\",\"roles\":\"array\",\"status\":\"1\",\"is_deleted\":\"0\"}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "{{baseUrl}}/gate/roles",
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "path": [
+                                        "gate",
+                                        "roles"
                                     ],
                                     "query": []
                                 }

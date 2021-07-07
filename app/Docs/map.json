@@ -5,19 +5,22 @@
         "/var/www/html/app/api/app/Docs/Endpoints/Register/Register.json",
         "/var/www/html/app/api/app/Docs/Endpoints/Countries/Countries.json",
         "/var/www/html/app/api/app/Docs/Endpoints/Localizations/Localizations.json",
-        "/var/www/html/app/api/app/Docs/Endpoints/SuperAdmins/SuperAdmins.json"
+        "/var/www/html/app/api/app/Docs/Endpoints/SuperAdmins/SuperAdmins.json",
+        "/var/www/html/app/api/app/Docs/Endpoints/Gate/Gate.json"
     ],
     "keys": {
         "/var/www/html/app/api/app/Docs/Endpoints/User/User.json": 0,
         "/var/www/html/app/api/app/Docs/Endpoints/Countries/Countries.json": 0,
         "/var/www/html/app/api/app/Docs/Endpoints/Localizations/Localizations.json": 0,
-        "/var/www/html/app/api/app/Docs/Endpoints/SuperAdmins/SuperAdmins.json": 0
+        "/var/www/html/app/api/app/Docs/Endpoints/SuperAdmins/SuperAdmins.json": 0,
+        "/var/www/html/app/api/app/Docs/Endpoints/Gate/Gate.json": 0
     },
     "fingerPrints": {
         "User_User_user": 0,
         "Countries_Countries_country": 0,
         "Localizations_Localizations_localization": 0,
         "Language_Localizations_language": 1,
-        "SuperAdmins_SuperAdmins_superAdmin": 0
+        "SuperAdmins_SuperAdmins_superAdmin": 0,
+        "Roles_Gate_role": 0
     }
 }

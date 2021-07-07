@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Gate\RolesController;
 use App\Http\Controllers\SuperAdmins\SuperAdminsController;
 use App\Http\Controllers\Localizations\LanguageController;
 use App\Http\Controllers\Localizations\LocalizationsController;
@@ -26,6 +27,10 @@ Route::post('/login', [LoginController::class,'login']);
 Route::post('/register', [RegisterController::class,'register']);
 
 Route::middleware([])->group(function(){
+
+    Route::get('/gate/roles', [RolesController::class,'get']);
+    Route::post('/gate/roles', [RolesController::class,'create']);
+    Route::put('/gate/roles', [RolesController::class,'update']);
 
     Route::get('/superAdmins', [SuperAdminsController::class,'get']);
     Route::post('/superAdmins', [SuperAdminsController::class,'create']);

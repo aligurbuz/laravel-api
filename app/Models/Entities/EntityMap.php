@@ -6,6 +6,15 @@ class EntityMap
 {
     /**
      * @param object $query
+     * @return Role
+     */
+    public function role(object $query) : Role
+    {
+        return new Role($query);
+    }
+    
+    /**
+     * @param object $query
      * @return SuperAdmin
      */
     public function superAdmin(object $query) : SuperAdmin
