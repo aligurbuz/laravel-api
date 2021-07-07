@@ -104,7 +104,7 @@ if(!function_exists('appLanguageCode')){
      */
     function appLanguageCode(): int
     {
-        return AppContainer::get(Constants::acceptLanguage,0);
+        return AppContainer::get(Constants::acceptLanguage,2693479080);
     }
 }
 
