@@ -2,9 +2,9 @@
 
 return [
     'web' => [
-        'countries/*' => ['GET']
+        'countries' => ['GET']
     ],
     'admin' => [
-        'countries/*' => ['GET']
+        'countries' => ['GET']
     ],
 ];

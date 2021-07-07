@@ -44,7 +44,7 @@ trait ApiAuthInhibitory
         $uri = str_replace('api/','',Route::getCurrentRoute()->uri());
 
         if(isset($inhibitory[$uri])){
-            return $inhibitory[$uri];
+            return $this->methods($inhibitory[$uri]);
         }
 
         if(isset($inhibitory[$uri.'/*'])){
