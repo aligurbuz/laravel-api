@@ -7,7 +7,6 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Support\Facades\Route;
 
 /**
  * Class ApiController
@@ -63,7 +62,7 @@ class ApiController extends BaseController
         // we are conditionally removing
         // the concept of apiAuth authenticate.
         if($middleware==self::authApi){
-            if(!$this->apiAuthInhibitory($calledClass)){
+            if(!$this->apiAuthInhibitory()){
                 return false;
             }
         }
