@@ -16,7 +16,7 @@ class CreateRoles extends Migration
         Schema::create('roles', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('role_code')->default(0)->unique()->index();
-            $table->bigInteger('role_app_code')->default(0)->unique()->index();
+            $table->bigInteger('role_app_code')->default(0)->index();
             $table->char('role_name',30);
             $table->tinyInteger('is_administrator')->default(0);
             $table->jsonb('roles');
