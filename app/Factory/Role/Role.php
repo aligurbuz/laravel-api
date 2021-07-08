@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Factory\Role;
 
 use App\Factory\Factory;
-use App\Factory\Role\Interfaces\RoleInterface;
 use App\Repositories\Repository;
+use App\Factory\Role\Interfaces\RoleInterface;
 
 /**
  * Class Role

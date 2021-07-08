@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace App\Factory;
 
+use App\Factory\Role\Interfaces\RoleInterface;
 use App\Factory\Code\Interfaces\CodeInterface;
 use App\Factory\Cache\Interfaces\CacheInterface;
 use App\Factory\Client\Interfaces\ClientInterface;
 use App\Factory\Hitter\Interfaces\HitterInterface;
 use App\Factory\Notify\Interfaces\NotifyInterface;
 use App\Factory\Logger\Interfaces\LoggerInterface;
-use App\Factory\Permission\Interfaces\PermissionInterface;
-use App\Factory\Role\Interfaces\RoleInterface;
 use App\Factory\Storage\Interfaces\StorageInterface;
+use App\Factory\Permission\Interfaces\PermissionInterface;
 use App\Factory\Collection\Interfaces\CollectionInterface;
 use App\Factory\Localization\Interfaces\LocalizationInterface;
 
