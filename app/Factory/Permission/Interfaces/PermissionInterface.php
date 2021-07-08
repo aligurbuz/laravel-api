@@ -15,4 +15,9 @@ interface PermissionInterface
      * @return array
      */
     public function roleFormatter() : array;
+
+    /**
+     * @return bool
+     */
+    public function checkEndpoint() : bool;
 }

@@ -32,6 +32,16 @@ class Authenticate extends FacadeManager
     }
 
     /**
+     * get role_code value for user data
+     *
+     * @return mixed
+     */
+    public static function role_code(): mixed
+    {
+        return (new self)->data->role_code ?? 0;
+    }
+
+    /**
      * get username value for user data
      *
      * @return mixed

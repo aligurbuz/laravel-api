@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Repositories\Gate\Contracts;
 
@@ -92,4 +92,10 @@ interface PermissionsRepositoryContract
 	 * @see PermissionsRepository::exists()
 	 */
 	public function exists($field, $value): bool;
+
+    /**
+     * @param string|null $endpoint
+     * @return PermissionsRepositoryContract
+     */
+    public function endpoint(?string $endpoint = null) : PermissionsRepositoryContract;
 }
