@@ -383,7 +383,7 @@ class EloquentRepository
      */
     public function all() : array
     {
-        return $this->graphQl()->toArray();
+        return $this->instance()->get()->toArray();
     }
 
     /**

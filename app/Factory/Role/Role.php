@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Factory\Role;
 
+use App\Factory\Factory;
 use App\Factory\Role\Interfaces\RoleInterface;
 use App\Repositories\Repository;
 
@@ -41,7 +42,7 @@ class Role extends RoleManager implements RoleInterface
             'role_app_code' => time(),
             'role_name' => 'Administrator',
             'is_administrator' => 1,
-            'roles' => [['permission' => 1]]
+            'roles' => Factory::permission()->roleFormatter()
         ]]);
 
         return Repository::role()->create([$clientRequest]);

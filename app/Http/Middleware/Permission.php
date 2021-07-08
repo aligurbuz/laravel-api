@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Factory\Factory;
 use Closure;
 use Illuminate\Http\Request;
 
