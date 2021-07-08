@@ -16,6 +16,11 @@ trait ApiAuthInhibitory
     protected array $inhibitory = [];
 
     /**
+     * @var bool
+     */
+    protected bool $apiAuthInhibitoryException = false;
+
+    /**
      * it makes inhibitory for apiAuthenticate
      *
      * @return bool
@@ -38,16 +43,24 @@ trait ApiAuthInhibitory
      */
     private function inhibitoryHandler() : bool
     {
-        $inhibitory = $this->inhibitory[who()] ?? [];
-        $endpoint = endpoint();
+        $endpoint       = endpoint();
+        $inhibitory     = $this->inhibitory[who()] ?? [];
+        $endpointSplit  = explode('/',$endpoint);
+        $rootEndpoint   = $endpointSplit[0] ?? null;
 
         if(isset($inhibitory[$endpoint]) && is_array($inhibitory[$endpoint])){
-            return $this->methods($inhibitory[$endpoint]);
+            if($this->methods($inhibitory[$endpoint])){
+                return false;
+            }
         }
 
-        if(isset($inhibitory[$endpoint.'/*']) && is_array($inhibitory[$endpoint.'/*'])){
-            return $this->methods($inhibitory[$endpoint.'/*']);
+        if(isset($inhibitory[$rootEndpoint.'/*']) && is_array($inhibitory[$rootEndpoint.'/*'])){
+            if($this->methods($inhibitory[$rootEndpoint.'/*'])){
+                return false;
+            }
         }
+
+        if(count($inhibitory)) $this->apiAuthInhibitoryException = true;
 
         return true;
     }
@@ -60,6 +73,6 @@ trait ApiAuthInhibitory
      */
     private function methods (array $methods = []) : bool
     {
-        return !in_array(request()->method(),$methods,true);
+        return in_array(request()->method(),$methods,true);
     }
 }

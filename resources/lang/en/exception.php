@@ -16,4 +16,5 @@ return [
     'selectException'               => 'Select statement called :key is not valid',
     'withException'                 => 'Invalid with expression',
     'cacheException'                => 'Cache deleting process has failed',
+    'permissionException'           => 'You are not authorized for this endpoint. Please contact your system provider.',
 ];

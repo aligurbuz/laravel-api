@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\Exception;
 use App\Facades\Authenticate\ApiKey;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
@@ -64,6 +65,10 @@ class ApiController extends BaseController
         if($middleware==self::authApi){
             if(!$this->apiAuthInhibitory()){
                 return false;
+            }
+
+            if($this->apiAuthInhibitoryException){
+                Exception::permissionException();
             }
         }
 

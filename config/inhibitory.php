@@ -2,9 +2,7 @@
 
 return [
     'web' => [
-        'countries' => ['GET']
-    ],
-    'admin' => [
-        'countries' => ['GET']
-    ],
+        'countries' => ['GET'],
+        'gate/*' => ['GET'],
+    ]
 ];
