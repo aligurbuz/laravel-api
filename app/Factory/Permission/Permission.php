@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Factory\Permission;
 
-use App\Facades\Authenticate\Authenticate;
 use App\Repositories\Repository;
+use App\Facades\Authenticate\Authenticate;
 use App\Factory\Permission\Interfaces\PermissionInterface;
 
 /**
