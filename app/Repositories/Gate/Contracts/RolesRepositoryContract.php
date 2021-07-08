@@ -95,7 +95,7 @@ interface RolesRepositoryContract
 
     /**
      * @return object
-     * @see RolesRepository::getUser()
+     * @see RolesRepository::user()
      */
-    public function getUser() : object;
+    public function user() : object;
 }

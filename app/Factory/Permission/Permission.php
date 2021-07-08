@@ -47,7 +47,7 @@ class Permission extends PermissionManager implements PermissionInterface
      */
     public function checkEndpoint() : bool
     {
-        $role = Repository::role()->getUser()->getRepository();
+        $role = Repository::role()->user()->getRepository();
         $endpointPermission = Repository::permission()->endpoint()->getRepository();
 
         if(isset($role[0]['roles'],$endpointPermission[0]['permission_code'])){
