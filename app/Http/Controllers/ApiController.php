@@ -27,6 +27,7 @@ class ApiController extends BaseController
      */
     protected array $middlewares = [
         'auth:api',
+        'permission',
         'acceptLanguage',
         'accessLogger',
         'response',
