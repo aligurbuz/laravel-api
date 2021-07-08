@@ -10,6 +10,11 @@ use Illuminate\Http\Request;
 class Permission
 {
     /**
+     * @var array|string[]
+     */
+    protected array $apiKeys = ['admin'];
+
+    /**
      * Handle an incoming request.
      *
      * @param Request $request
@@ -18,8 +23,10 @@ class Permission
      */
     public function handle(Request $request, Closure $next): mixed
     {
-        if(!Factory::permission()->checkEndpoint()){
-            return Exception::permissionException();
+        if(in_array(who(),$this->apiKeys,true)){
+            if(!Factory::permission()->checkEndpoint()){
+                return Exception::permissionException();
+            }
         }
 
         return $next($request);
