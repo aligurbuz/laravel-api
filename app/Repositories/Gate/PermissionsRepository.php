@@ -48,7 +48,7 @@ class PermissionsRepository extends EloquentRepository implements PermissionsRep
      */
 	public function endpoint(?string $endpoint = null) : PermissionsRepositoryContract
     {
-        $this->repository = $this->instance()->where(__FUNCTION__,$endpoint);
+        $this->repository = $this->instance()->where(__FUNCTION__,($endpoint ?? endpoint()));
 
         return $this;
     }

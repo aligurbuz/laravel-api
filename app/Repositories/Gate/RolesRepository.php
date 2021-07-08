@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 declare(strict_types=1);
 
@@ -6,6 +6,7 @@ namespace App\Repositories\Gate;
 
 use App\Models\Role;
 use App\Repositories\EloquentRepository;
+use App\Facades\Authenticate\Authenticate;
 use App\Repositories\Gate\Contracts\RolesRepositoryContract;
 
 class RolesRepository extends EloquentRepository implements RolesRepositoryContract
@@ -35,4 +36,14 @@ class RolesRepository extends EloquentRepository implements RolesRepositoryContr
 	{
 		return $this->apply($builder);
 	}
+
+    /**
+     * getUser for role repository
+     *
+     * @return object
+     */
+	public function getUser() : object
+    {
+        return $this->code(Authenticate::role_code());
+    }
 }

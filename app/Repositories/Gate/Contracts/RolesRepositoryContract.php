@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Repositories\Gate\Contracts;
 
@@ -92,4 +92,10 @@ interface RolesRepositoryContract
 	 * @see RolesRepository::exists()
 	 */
 	public function exists($field, $value): bool;
+
+    /**
+     * @return object
+     * @see RolesRepository::getUser()
+     */
+    public function getUser() : object;
 }

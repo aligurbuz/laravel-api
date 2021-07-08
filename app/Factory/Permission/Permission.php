@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Factory\Permission;
 
 use App\Repositories\Repository;
-use App\Facades\Authenticate\Authenticate;
 use App\Factory\Permission\Interfaces\PermissionInterface;
 
 /**
@@ -48,8 +47,8 @@ class Permission extends PermissionManager implements PermissionInterface
      */
     public function checkEndpoint() : bool
     {
-        $role = Repository::role()->select(['roles'])->code(Authenticate::role_code())->getRepository();
-        $endpointPermission = Repository::permission()->endpoint(endpoint())->getRepository();
+        $role = Repository::role()->getUser()->getRepository();
+        $endpointPermission = Repository::permission()->endpoint()->getRepository();
 
         if(isset($role[0]['roles'],$endpointPermission[0]['permission_code'])){
             $permissionCode = $endpointPermission[0]['permission_code'];
