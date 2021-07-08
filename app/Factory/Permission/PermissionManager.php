@@ -16,8 +16,8 @@ abstract class PermissionManager
     public function permissionHandler(array $role,array $permission) : bool
     {
         if(isset($role[0]['roles'],$permission[0]['permission_code'])){
-            $permissionCode = $permission[0]['permission_code'];
             $roles = $role[0]['roles'];
+            $permissionCode = $permission[0]['permission_code'];
 
             if(isset($roles[$permissionCode],$roles[$permissionCode][request()->method()])){
                 $method = $roles[$permissionCode][request()->method()];
