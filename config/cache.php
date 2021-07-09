@@ -4,7 +4,7 @@ use Illuminate\Support\Str;
 
 return [
 
-    'repositoryCache' => env('repositoryCache',false),
+    'repository_cache' => env('REPOSITORY_CACHE',false),
 
     /*
     |--------------------------------------------------------------------------

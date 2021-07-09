@@ -45,7 +45,7 @@ trait CacheRepository
      */
     public function cacheHandler(callable $callback) : array
     {
-        if(true === config('cache.repositoryCache')){
+        if(true === config('cache.repository_cache')){
             $this->setProperties();
 
             return $this->cache($callback,function($proxy){
