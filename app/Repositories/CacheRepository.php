@@ -25,7 +25,7 @@ trait CacheRepository
     /**
      * @var string|null
      */
-    protected ?string $cacheModelName = null;
+    protected ?string $cacheKey = null;
 
     /**
      * @var mixed|null
@@ -36,6 +36,17 @@ trait CacheRepository
      * @var CacheInterface|null
      */
     protected ?CacheInterface $cacheInstance = null;
+
+    /**
+     * it generates the hashed key for cache
+     *
+     * @param string|null $model
+     * @return string
+     */
+    public function generateCacheKey(?string $model = null) : string
+    {
+        return $model ?? $this->getModelName();
+    }
 
     /**
      * make cache model data for repository
@@ -63,9 +74,9 @@ trait CacheRepository
      */
     private function setProperties() : void
     {
-        $this->cacheModelName     = $this->getModelName();
-        $this->cacheFingerPrint   = Client::fingerPrint(false);
+        $this->cacheKey           = $this->generateCacheKey();
         $this->cacheInstance      = Factory::cache();
+        $this->cacheFingerPrint   = Client::fingerPrint(false);
     }
 
     /**
@@ -78,7 +89,7 @@ trait CacheRepository
     private function cache(callable $data,callable $callback) : array
     {
         return $this->cacheInstance->hget(
-            $this->cacheModelName,
+            $this->cacheKey,
             (string)$this->cacheFingerPrint,
             $this->setCacheRepository($data,$callback)
         );
@@ -100,12 +111,12 @@ trait CacheRepository
             $proxyCallback['cache'] = 'true';
 
             $this->cacheInstance->hset(
-                $this->cacheModelName,
+                $this->cacheKey,
                 (string)$this->cacheFingerPrint,
                 json_encode($proxyCallback)
             );
 
-            $this->cacheInstance->expire($this->cacheModelName,$this->cacheExpire);
+            $this->cacheInstance->expire($this->cacheKey,$this->cacheExpire);
 
             return call_user_func($callback,$proxy);
         };
@@ -121,18 +132,21 @@ trait CacheRepository
         $this->setProperties();
 
         $model      = $this->getModelName();
+        $cacheKey   = $this->cacheKey;
         $relations  = Db::relations();
 
-        if($this->cacheInstance->exists($model)){
-            if(!$this->cacheInstance->delete($model)){
+        if($this->cacheInstance->exists($cacheKey)){
+            if(!$this->cacheInstance->delete($cacheKey)){
                 Exception::cacheException();
             }
         }
 
         if(isset($relations[$model]) && is_array($relations[$model])){
             foreach ($relations[$model] as $relation){
-                if($this->cacheInstance->exists($relation)){
-                    if(!$this->cacheInstance->delete($relation)){
+                $relationHash = $this->generateCacheKey($relation);
+
+                if($this->cacheInstance->exists($relationHash)){
+                    if(!$this->cacheInstance->delete($relationHash)){
                         Exception::cacheException();
                     }
                 }
