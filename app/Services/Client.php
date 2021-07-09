@@ -18,7 +18,7 @@ class Client
      * @param bool $bodyData
      * @return int
      */
-    public static function fingerPrint($bodyData = true): int
+    public static function fingerPrint(bool $bodyData = true): int
     {
         $request = request();
 
