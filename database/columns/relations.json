@@ -2,7 +2,16 @@
     "Localization": [
         "Language",
         "Localization",
+        "Permission",
+        "Role",
         "SuperAdmin",
+        "User"
+    ],
+    "Permission": [
+        "Localization"
+    ],
+    "Role": [
+        "Localization",
         "User"
     ],
     "SuperAdmin": [
@@ -10,6 +19,7 @@
         "Localization"
     ],
     "User": [
+        "Role",
         "Localization"
     ]
 }
