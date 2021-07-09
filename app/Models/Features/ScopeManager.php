@@ -267,15 +267,22 @@ trait ScopeManager
      * @param Builder $builder
      * @return object
      */
-    public function scopeWithQuery(Builder $builder): object
+    public function scopeWithQuery(Builder $builder,array $with = []): object
     {
         $params = request()->query->all();
+
+        if(count($with)){
+            $params['with'] = (count($with)) ? $with : ($params['with'] ?? []);
+        }
 
         if(isset($params['with'])){
             $withQuery = $this->withQuery;
 
             if(is_array($params['with']) && count($params['with'])){
                 foreach ($params['with'] as $with => $select){
+
+                    $select = (is_array($select) && isset($select['select'])) ? $select['select'] : $select;
+
                     if(
                         isset(
                             $withQuery[$with],
@@ -309,7 +316,14 @@ trait ScopeManager
                             $builder->with([$with => function($query) use($with,$params,$foreignRepository){
                                 $withRange = $params['withRange'][$with] ?? [];
                                 $repositoryInstance = Repository::$foreignRepository();
-                                $query->repository($repositoryInstance)->range($repositoryInstance,$withRange);
+                                if(isset($params['with'][$with]['with'])){
+                                    $query->withQuery($params['with'][$with]['with'])
+                                        ->repository($repositoryInstance)->range($repositoryInstance,$withRange);
+                                }
+                                else{
+                                    $query->repository($repositoryInstance)->range($repositoryInstance,$withRange);
+                                }
+
                             }]);
                         }
 
