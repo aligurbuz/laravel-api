@@ -38,6 +38,7 @@ class Response
         $standard = [
             'status'            => true,
             'code'              => $code = static::getHttpSuccessCode($code),
+            'cache'             => (isset($data['cache'])),
             'isAvailableData'   => $isAvailableData,
             'client'            => ApiKey::who(),
             'env'               => config('app.env'),
