@@ -16,6 +16,11 @@ class AppContainer
     protected static array $data = [];
 
     /**
+     * @var array
+     */
+    protected static array $values = [];
+
+    /**
      * set key and value for app factory
      *
      * @param $key
@@ -28,14 +33,32 @@ class AppContainer
             static::$data[$key] = $value;
         }
 
-        if($merge && static::has($key) && is_array(static::get($key)) && is_array($value)){
-            $mergeData = array_merge_recursive(static::get($key),$value);
-            static::$data[$key] = $mergeData;
+        if(
+            $merge
+            && static::has($key)
+            && is_array(static::get($key))
+            && is_array($value)
+            && !in_array(static::getValueHash($value),(static::$values[$key] ?? []))
+        ){
+            $mergeData                = array_merge_recursive(static::get($key),$value);
+            static::$data[$key]       = $mergeData;
+            static::$values[$key][]   = static::getValueHash($value);
         }
 
         if($merge && !static::has($key) && is_array($value)){
             static::$data[$key] = $value;
         }
+    }
+
+    /**
+     * get value hash for appContainer instance
+     *
+     * @param array $value
+     * @return int
+     */
+    public static function getValueHash(array $value = []) : int
+    {
+        return crc32(json_encode($value));
     }
 
     /**
