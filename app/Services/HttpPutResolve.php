@@ -14,6 +14,10 @@ class HttpPutResolve
         $data  = [];
         // Fetch content and determine boundary
         $rawData  = file_get_contents('php://input');
+
+        $strPosData = strpos($rawData, "\r\n");
+
+        if(false === $strPosData) return [];
         $boundary = substr($rawData, 0, strpos($rawData, "\r\n"));
         // Fetch and process each part
         $parts = $rawData ? array_slice(explode($boundary, $rawData), 1) : [];
