@@ -199,7 +199,8 @@ class Response
         return [
             'request' => [
                 request()->method() => static::getRequest(),
-                'queryParams' => request()->query->all()
+                'queryParams' => request()->query->all(),
+                'headers' => request()->headers->all()
             ],
             'debugBackTrace' => AppContainer::has(Constants::debugBackTrace)
                 ? AppContainer::get(Constants::debugBackTrace)
