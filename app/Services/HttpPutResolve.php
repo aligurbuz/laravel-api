@@ -8,6 +8,11 @@ use Symfony\Component\HttpFoundation\ParameterBag;
 
 class HttpPutResolve
 {
+    /**
+     * http put resolve data for client
+     *
+     * @return array
+     */
     public function resolve(): array
     {
         $files = [];
@@ -72,7 +77,15 @@ class HttpPutResolve
         return array_merge($fields->all(),$files);
     }
 
-    private function transformData($data, $name, $value)
+    /**
+     * get transform data for client
+     *
+     * @param $data
+     * @param $name
+     * @param $value
+     * @return mixed
+     */
+    private function transformData($data, $name, $value): mixed
     {
         $isArray = strpos($name, '[]');
         if ($isArray && (($isArray + 2) == strlen($name))) {
