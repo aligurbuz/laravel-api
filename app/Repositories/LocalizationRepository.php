@@ -8,7 +8,7 @@ use Illuminate\Support\Str;
 use App\Models\Localization;
 
 /**
- * Trait LocalizationRepository
+ * trait LocalizationRepository
  * @package App\Repositories
  */
 trait LocalizationRepository
@@ -45,63 +45,6 @@ trait LocalizationRepository
                 );
             }
         );
-    }
-
-    /**
-     * get localization process for repository
-     *
-     * @param callable $callback
-     * @return array
-     */
-    public function localizationProcess(callable $callback) : array
-    {
-        if(property_exists($this,'localization')){
-            $with = request()->query->get('with',[]);
-            request()->query->set('with',array_merge($with,['localization' => 'values']));
-
-            $result =  call_user_func($callback);
-
-            $result['data'] = $this->localizationPropagation($result['data']);
-            return $result;
-        }
-
-        return call_user_func($callback);
-    }
-
-    /**
-     * @param array $data
-     * @param object|null $repository
-     * @return array
-     */
-    public function localizationPropagation(array $data = [],?object $repository = null): array
-    {
-        $list           = [];
-        $repository     = $repository ?? $this;
-        $localizations  = $this->getLocalizations($repository);
-        $withValues     = $repository->getModelWithValues();
-
-        if(isset($data) && is_array($data)){
-            foreach ($data as $key => $item){
-                $values = $item['localization']['values'][0] ?? [];
-
-                foreach ($withValues as $withValue){
-                    if(isset($item[$withValue]['localization'])){
-                        $item[$withValue] = ($this->localizationPropagation(
-                                [$item[$withValue]],
-                                $this->findRepositoryByModel($withValue)
-                            )[0]) ?? [];
-                    }
-                }
-
-                foreach ($localizations as $localization){
-                    $item[$localization] = $values[$localization] ?? ($item[$localization] ?? null);
-                    unset($item['localization']);
-                    $list[$key] = $item;
-                }
-            }
-        }
-
-        return $list;
     }
 
     /**

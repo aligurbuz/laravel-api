@@ -19,7 +19,7 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class EloquentRepository
 {
-    use CacheRepository,LocalizationRepository;
+    use CacheRepository,ResourceRepository,LocalizationRepository;
 
     /**
      * @var object|null
@@ -38,7 +38,7 @@ class EloquentRepository
      */
     public function get() : array
     {
-        return $this->localizationProcess(function(){
+        return $this->resource(function(){
             return $this->cacheHandler(function(){
                 return $this->graphQl();
             });

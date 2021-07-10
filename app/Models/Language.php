@@ -10,7 +10,9 @@ class Language extends Model
 {
     use HasFactory,BaseManager;
 
-        protected array $searchable = [];
+    protected array $withQuery = [];
 
-        protected $hidden = ['id'];
+    protected array $searchable = [];
+
+    protected $hidden = ['id'];
 }
