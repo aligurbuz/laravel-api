@@ -44,7 +44,7 @@ class Response
             'env'               => config('app.env'),
             'responseTime'      => Date::now(),
             'responseCode'      => static::responseCode(),
-            'resource'          => $data,
+            'resource'          => [$data],
             'instructions'      => AppContainer::get(Constants::responseFormatterSupplement),
         ];
 
