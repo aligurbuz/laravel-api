@@ -1,4 +1,4 @@
-<?php /** @noinspection ALL */
+<?php
 
 declare(strict_types=1);
 
@@ -118,7 +118,7 @@ trait ScopeManager
     {
         if(isset($this->withQuery) && is_array($this->withQuery)){
             foreach ($this->withQuery as $with => $items){
-                if(is_array($items) && isset($items['description'])){
+                if(is_array($items) && isset($items['description']) && $with!=='localization'){
                     AppContainer::set('responseFormatterSupplement',['relations' =>[$with => $items['description']]],true);
                 }
             }
@@ -265,6 +265,7 @@ trait ScopeManager
      * get eager loading data for model
      *
      * @param Builder $builder
+     * @param array $with
      * @return object
      */
     public function scopeWithQuery(Builder $builder,array $with = []): object
