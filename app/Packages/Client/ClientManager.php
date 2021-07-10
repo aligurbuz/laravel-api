@@ -204,6 +204,8 @@ class ClientManager
         $list = [];
         $multipleDimension = false;
 
+        $data = !isset($data[0]) ? [$data] : $data;
+
         foreach ($data as $key => $value) {
             if (!$multipleDimension) {
                 $list[$key] = $value;
