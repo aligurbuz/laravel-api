@@ -129,7 +129,7 @@ class ClientManager
     public function getBodyValues(array $data = []): array
     {
         if($this->requestMethod!=='GET'){
-            $data = count($data) ? $data : $this->putRequestResolve() ?? request()->request->all();
+            $data = count($data) ? $data : ($this->putRequestResolve() ?? request()->request->all());
             return $this->clientBodyFormat($data);
         }
 
