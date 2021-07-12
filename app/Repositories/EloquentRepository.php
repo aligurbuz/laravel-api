@@ -19,7 +19,7 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class EloquentRepository
 {
-    use CacheRepository,ResourceRepository,LocalizationRepository,CreateRepository;
+    use CacheRepository,ResourceRepository,LocalizationRepository,CreateRepository,UpdateRepository;
 
     /**
      * @var object|null
@@ -94,7 +94,7 @@ class EloquentRepository
     }
 
     /**
-     * create data for user model
+     * create data for repository model
      *
      * @param array $data
      * @return array|object
@@ -127,7 +127,7 @@ class EloquentRepository
     }
 
     /**
-     * update data for user model
+     * update data for repository model
      *
      * @param array $data
      * @param bool $id
@@ -135,34 +135,7 @@ class EloquentRepository
      */
     public function update(array $data = [],bool $id = true): array|object
     {
-        $clientData = count($data) ? $data : Client::data();
-        $queryList = [];
-
-        foreach ($clientData as $data){
-            $baseQuery = $this->instance()->where(function(Builder $builder) use($data,$id){
-                $modelCode = Str::snake($this->getModelName()).'_code';
-                if(isset($data[$modelCode]) && $id === true){
-                    $builder->where($modelCode,intval(($data[$modelCode] ?? 0)));
-                }
-            });
-
-            try{
-                $update = $baseQuery->update($data);
-                $this->updateLocalization($data);
-                $this->deleteCache();
-            }
-            catch (\Exception $exception){
-                return $this->sqlException($exception);
-            }
-
-            if($update=='0'){
-                return Exception::updateException();
-            }
-
-            $queryList[] = ($baseQuery->get()->toArray())[0] ?? [];
-        }
-
-        return $queryList;
+        return $this->updateHandler($data,$id);
     }
 
     /**
