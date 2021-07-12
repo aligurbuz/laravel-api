@@ -154,6 +154,13 @@ class RepositoryCommand extends Command
             ->addComment('@param int $code')
             ->addComment('@return object')->addComment('@see '.$className.'::code()');
 
+        $interfaceMethodCache = $class->addMethod('cache')->setPublic();
+        $interfaceMethodCache->addParameter('callback')->setType('callable');
+        $interfaceMethodCache->setReturnType('mixed');
+        $interfaceMethodCache
+            ->addComment('@param callable $callback')
+            ->addComment('@return mixed');
+
         $interfaceMethodFind->addParameter('id')->setType(new Literal('int'));
         $interfaceMethodFind->addParameter('select')->setType(new Literal('array'))->setDefaultValue(['*']);
 
