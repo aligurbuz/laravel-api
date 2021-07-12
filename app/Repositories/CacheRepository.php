@@ -28,11 +28,6 @@ trait CacheRepository
     protected ?string $cacheKey = null;
 
     /**
-     * @var mixed|null
-     */
-    protected mixed $cacheFingerPrint = null;
-
-    /**
      * @var CacheInterface|null
      */
     protected ?CacheInterface $cacheInstance = null;
@@ -41,6 +36,11 @@ trait CacheRepository
      * @var bool
      */
     protected bool $proxyUsing = true;
+
+    /**
+     * @var mixed
+     */
+    protected mixed $cacheTag = null;
 
     /**
      * it generates the hashed key for cache
@@ -84,6 +84,16 @@ trait CacheRepository
     }
 
     /**
+     * set cache tag for repository model
+     *
+     * @param mixed $tag
+     */
+    public function setCacheTag(mixed $tag) : void
+    {
+        $this->cacheTag = $tag;
+    }
+
+    /**
      * get cache condition for eloquent repository model
      *
      * @param callable $callback
@@ -112,7 +122,7 @@ trait CacheRepository
     {
         $this->cacheKey           = $this->generateCacheKey();
         $this->cacheInstance      = Factory::cache();
-        $this->cacheFingerPrint   = Client::fingerPrint(false);
+        $this->cacheTag           = $this->cacheTag ?? Client::fingerPrint(false);
     }
 
     /**
@@ -126,7 +136,7 @@ trait CacheRepository
     {
         return $this->cacheInstance->hget(
             $this->cacheKey,
-            (string)$this->cacheFingerPrint,
+            (string)$this->cacheTag,
             $this->setCacheRepository($data,$callback)
         );
     }
@@ -148,7 +158,7 @@ trait CacheRepository
 
             $this->cacheInstance->hset(
                 $this->cacheKey,
-                (string)$this->cacheFingerPrint,
+                (string)$this->cacheTag,
                 json_encode($proxyCallback)
             );
 

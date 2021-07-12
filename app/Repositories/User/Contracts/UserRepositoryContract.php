@@ -83,8 +83,9 @@ interface UserRepositoryContract
     public function latest() : array;
 
     /**
+     * @param mixed $tag
      * @param callable $callback
      * @return array
      */
-    public function cache(callable $callback): array;
+    public function cache(mixed $tag,callable $callback): array;
 }

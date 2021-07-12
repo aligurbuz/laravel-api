@@ -100,8 +100,9 @@ interface PermissionsRepositoryContract
     public function endpoint(?string $endpoint = null) : PermissionsRepositoryContract;
 
     /**
+     * @param mixed $tag
      * @param callable $callback
      * @return array
      */
-    public function cache(callable $callback): array;
+    public function cache(mixed $tag,callable $callback): array;
 }
