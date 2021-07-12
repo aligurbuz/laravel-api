@@ -98,4 +98,10 @@ interface RolesRepositoryContract
      * @see RolesRepository::user()
      */
     public function user() : object;
+
+    /**
+     * @param callable $callback
+     * @return mixed
+     */
+    public function cache(callable $callback): mixed;
 }

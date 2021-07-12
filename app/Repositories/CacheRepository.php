@@ -38,6 +38,11 @@ trait CacheRepository
     protected ?CacheInterface $cacheInstance = null;
 
     /**
+     * @var bool
+     */
+    protected bool $proxyUsing = true;
+
+    /**
      * it generates the hashed key for cache
      *
      * @param string|null $model
@@ -54,17 +59,48 @@ trait CacheRepository
      * @param callable $callback
      * @return array
      */
-    public function cacheHandler(callable $callback) : array
+    public function useProxyCache(callable $callback) : array
+    {
+        $this->proxyUsing = true;
+
+        return $this->cacheCondition($callback,function() use($callback){
+            return $this->proxyUsing ? $this->proxy($callback) : call_user_func($callback);
+        });
+    }
+
+    /**
+     * make cache model data for repository
+     *
+     * @param callable $callback
+     * @return array
+     */
+    public function useCache(callable $callback) : array
+    {
+        $this->proxyUsing = false;
+
+        return $this->cacheCondition($callback,function() use($callback){
+            return $this->proxyUsing ? $this->proxy($callback) : call_user_func($callback);
+        });
+    }
+
+    /**
+     * get cache condition for eloquent repository model
+     *
+     * @param callable $callback
+     * @param callable $returnCallback
+     * @return mixed
+     */
+    public function cacheCondition(callable $callback,callable $returnCallback): mixed
     {
         if(true === config('cache.repository_cache')){
             $this->setProperties();
 
-            return $this->cache($callback,function($proxy){
+            return $this->cacheHandler($callback,function($proxy){
                 return $proxy;
             });
         }
 
-        return $this->proxy($callback);
+        return call_user_func($returnCallback);
     }
 
     /**
@@ -86,7 +122,7 @@ trait CacheRepository
      * @param callable $callback
      * @return array
      */
-    private function cache(callable $data,callable $callback) : array
+    private function cacheHandler(callable $data,callable $callback) : array
     {
         return $this->cacheInstance->hget(
             $this->cacheKey,
@@ -107,7 +143,7 @@ trait CacheRepository
         return function() use($data,$callback)
         {
             $callData = call_user_func($data);
-            $proxy = $proxyCallback = $this->proxy($callData);
+            $proxy = $proxyCallback = $this->proxyUsing ? $this->proxy($callData) : $callData;
             $proxyCallback['cache'] = 'true';
 
             $this->cacheInstance->hset(

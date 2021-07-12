@@ -39,7 +39,7 @@ class EloquentRepository
     public function get() : array
     {
         return $this->resource(function(){
-            return $this->cacheHandler(function(){
+            return $this->useProxyCache(function(){
                 return $this->graphQl();
             });
         });
@@ -53,6 +53,15 @@ class EloquentRepository
     public function pagination() : array
     {
         return $this->graphQl->simplePaginate(20)->toArray();
+    }
+
+    /**
+     * @param callable $callback
+     * @return mixed
+     */
+    public function cache(callable $callback): mixed
+    {
+        return call_user_func($callback,$this->instance());
     }
 
     /**

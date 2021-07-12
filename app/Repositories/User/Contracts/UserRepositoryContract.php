@@ -81,4 +81,10 @@ interface UserRepositoryContract
      * @see UserRepository::latest()
      */
     public function latest() : array;
+
+    /**
+     * @param callable $callback
+     * @return mixed
+     */
+    public function cache(callable $callback): mixed;
 }

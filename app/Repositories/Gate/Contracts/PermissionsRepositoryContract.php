@@ -98,4 +98,10 @@ interface PermissionsRepositoryContract
      * @return PermissionsRepositoryContract
      */
     public function endpoint(?string $endpoint = null) : PermissionsRepositoryContract;
+
+    /**
+     * @param callable $callback
+     * @return mixed
+     */
+    public function cache(callable $callback): mixed;
 }

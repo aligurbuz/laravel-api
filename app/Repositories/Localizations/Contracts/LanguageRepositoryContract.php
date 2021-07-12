@@ -94,4 +94,10 @@ interface LanguageRepositoryContract
      * @see LanguageRepository::latest()
      */
     public function latest() : array;
+
+    /**
+     * @param callable $callback
+     * @return mixed
+     */
+    public function cache(callable $callback): mixed;
 }
