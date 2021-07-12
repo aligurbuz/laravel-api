@@ -43,7 +43,12 @@ class EloquentRepository
      */
     public function get() : array
     {
+        // cache will be made according to your model.
+        // this will make your queries very performance.
         return $this->useCache(function(){
+
+            // a resource class will be valid,
+            // where you can manipulate all the returned result set values one by one.
             return $this->resource(function(){
                 return $this->graphQl()->pagination();
             });
