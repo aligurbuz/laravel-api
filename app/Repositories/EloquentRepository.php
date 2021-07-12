@@ -63,7 +63,7 @@ class EloquentRepository
     public function cache(mixed $tag,callable $callback): array
     {
         $this->setCacheTag($tag);
-        $this->repository = call_user_func($callback,$this->instance());
+        $this->repository = call_user_func($callback,$this);
 
         return $this->useCache(function(){
             return $this->getRepository();
