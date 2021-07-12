@@ -32,6 +32,11 @@ class EloquentRepository
     protected ?object $graphQl = null;
 
     /**
+     * @var int
+     */
+    protected int $pagination = 20;
+
+    /**
      * get data for user model
      *
      * @return array
@@ -48,11 +53,12 @@ class EloquentRepository
     /**
      * get pagination model repository
      *
+     * @param int|null $pagination
      * @return array
      */
-    public function pagination() : array
+    public function pagination(?int $pagination = null) : array
     {
-        return $this->graphQl->simplePaginate(20)->toArray();
+        return $this->graphQl->simplePaginate($pagination ?? $this->pagination)->toArray();
     }
 
     /**
