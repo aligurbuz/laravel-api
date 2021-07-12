@@ -19,7 +19,7 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class EloquentRepository
 {
-    use CacheRepository,ResourceRepository,LocalizationRepository;
+    use CacheRepository,ResourceRepository,LocalizationRepository,CreateRepository;
 
     /**
      * @var object|null
@@ -101,22 +101,18 @@ class EloquentRepository
      */
     public function create(array $data = []): array|object
     {
-        $data = count($data) ? $data : Client::data();
-        $list = [];
+        return $this->createHandler($data);
+    }
 
-        try {
-            foreach ($data as $value){
-                $list[] = static::$model::create($value);
-                $this->createLocalization($value);
-                $this->deleteCache();
-            }
-
-            return $list;
-        }
-        catch (\Exception $exception){
-            return $this->sqlException($exception);
-
-        }
+    /**
+     * create just model value for repository
+     *
+     * @param $value
+     * @return object
+     */
+    public function createModel($value) : object
+    {
+        return static::$model::create($value);
     }
 
     /**
