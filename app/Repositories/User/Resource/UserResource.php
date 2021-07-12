@@ -18,6 +18,8 @@ class UserResource
      */
     public function handle(array $data = []) : array
     {
+        $data['test'] = 1;
+
         return $data;
     }
 }

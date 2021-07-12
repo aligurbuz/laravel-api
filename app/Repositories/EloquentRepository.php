@@ -38,9 +38,9 @@ class EloquentRepository
      */
     public function get() : array
     {
-        return $this->resource(function(){
-            return $this->useProxyCache(function(){
-                return $this->graphQl();
+        return $this->useCache(function(){
+            return $this->resource(function(){
+                return $this->graphQl()->pagination();
             });
         });
     }
@@ -56,6 +56,8 @@ class EloquentRepository
     }
 
     /**
+     * get cache for repository model data
+     *
      * @param mixed $tag
      * @param callable $callback
      * @return array
