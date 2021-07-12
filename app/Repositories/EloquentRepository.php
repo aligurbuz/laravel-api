@@ -147,7 +147,7 @@ class EloquentRepository
                 return Exception::updateException();
             }
 
-            $queryList[] = $baseQuery->get()->toArray();
+            $queryList[] = ($baseQuery->get()->toArray())[0] ?? [];
         }
 
         return $queryList;
