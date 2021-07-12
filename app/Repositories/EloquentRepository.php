@@ -57,11 +57,15 @@ class EloquentRepository
 
     /**
      * @param callable $callback
-     * @return mixed
+     * @return array
      */
-    public function cache(callable $callback): mixed
+    public function cache(callable $callback): array
     {
-        return call_user_func($callback,$this->instance());
+        $this->repository = call_user_func($callback,$this->instance());
+
+        return $this->useCache(function(){
+            return $this->getRepository();
+        });
     }
 
     /**

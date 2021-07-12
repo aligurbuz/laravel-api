@@ -97,7 +97,7 @@ interface LocalizationsRepositoryContract
 
     /**
      * @param callable $callback
-     * @return mixed
+     * @return array
      */
-    public function cache(callable $callback): mixed;
+    public function cache(callable $callback): array;
 }
