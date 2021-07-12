@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Repositories;
 
 use Exception;
-use App\Services\Client;
 
 /**
  * Trait CreateRepository
@@ -13,17 +12,6 @@ use App\Services\Client;
  */
 trait CreateRepository
 {
-    /**
-     * get client data for create repository model
-     *
-     * @param array $data
-     * @return array
-     */
-    public function getClientData(array $data = []) : array
-    {
-        return count($data) ? $data : Client::data();
-    }
-
     /**
      * get create event dispatcher for repository
      *
