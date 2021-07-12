@@ -44,14 +44,13 @@ class HttpPutResolve
             }
             // Parse the Content-Disposition to get the field name, etc.
             if (isset($headers['content-disposition'])) {
-                $filename = null;
                 preg_match(
                     '/^form-data; *name="([^"]+)"(; *filename="([^"]+)")?/',
                     $headers['content-disposition'],
                     $matches
                 );
                 $fieldName = $matches[1];
-                $fileName  = (isset($matches[3]) ? $matches[3] : null);
+                $fileName  = ($matches[3] ?? null);
                 // If we have a file, save it. Otherwise, save the data.
                 if ($fileName !== null) {
                     $localFileName = tempnam(sys_get_temp_dir(), 'sfy');
