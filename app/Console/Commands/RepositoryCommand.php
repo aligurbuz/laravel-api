@@ -155,10 +155,12 @@ class RepositoryCommand extends Command
             ->addComment('@return object')->addComment('@see '.$className.'::code()');
 
         $interfaceMethodCache = $class->addMethod('cache')->setPublic();
+        $interfaceMethodCache->addParameter('tag')->setType('mixed');
         $interfaceMethodCache->addParameter('callback')->setType('callable');
         $interfaceMethodCache->setReturnType('array');
         $interfaceMethodCache
             ->addComment('@param callable $callback')
+            ->addComment('@param mixed $tag')
             ->addComment('@return array');
 
         $interfaceMethodFind->addParameter('id')->setType(new Literal('int'));
