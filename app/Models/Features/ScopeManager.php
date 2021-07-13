@@ -271,6 +271,7 @@ trait ScopeManager
     public function scopeWithQuery(Builder $builder,array $with = []): object
     {
         $params = request()->query->all();
+        $test = $with;
 
         if(count($with)){
             $params['with'] = (count($with)) ? $with : ($params['with'] ?? []);
@@ -282,15 +283,16 @@ trait ScopeManager
             if(is_array($params['with']) && count($params['with'])){
                 foreach ($params['with'] as $with => $select){
 
+
                     $select = (is_array($select) && isset($select['select'])) ? $select['select'] : $select;
 
                     if(
-                        isset(
-                            $withQuery[$with],
-                            $withQuery[$with]['foreignColumn'],
-                            $withQuery[$with]['localColumn'],
-                            $withQuery[$with]['table']
-                        )
+                    isset(
+                        $withQuery[$with],
+                        $withQuery[$with]['foreignColumn'],
+                        $withQuery[$with]['localColumn'],
+                        $withQuery[$with]['table']
+                    )
                     ){
                         $foreignColumn = $withQuery[$with]['foreignColumn'];
                         $foreignRepository = $withQuery[$with]['repository'] ?? null;
@@ -309,7 +311,22 @@ trait ScopeManager
                                 $builder->with([$with => function($query) use($with,$selectExplode,$params,$foreignRepository){
                                     $withRange = $params['withRange'][$with] ?? [];
                                     $repositoryInstance = Repository::$foreignRepository();
-                                    $query->select($selectExplode)->repository($repositoryInstance)->range($repositoryInstance,$withRange);
+                                    if(isset($params['with'][$with]['with'])){
+
+                                        if(is_array($params['with'][$with]['with'])){
+                                            foreach ($params['with'][$with]['with'] as $withModel => $withItem){
+                                                $selectExplode[] = getTableCode($withModel);
+                                            }
+                                        }
+
+                                        $query->withQuery($params['with'][$with]['with'])->select($selectExplode)
+                                            ->repository($repositoryInstance)->range($repositoryInstance,$withRange);
+                                    }
+                                    else{
+                                        $query->select($selectExplode)
+                                            ->repository($repositoryInstance)->range($repositoryInstance,$withRange);
+                                    }
+
                                 }]);
                             }
                         }
