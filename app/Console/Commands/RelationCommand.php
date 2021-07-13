@@ -46,6 +46,7 @@ class RelationCommand extends Command
         $modelFiles = File::files($modelDir);
 
         $list = [];
+        $reverseList = [];
 
         $databaseColumns = base_path('database').''.DIRECTORY_SEPARATOR.'columns';
         $relationsMapFile = $databaseColumns.''.DIRECTORY_SEPARATOR.'relations.json';
@@ -59,6 +60,13 @@ class RelationCommand extends Command
                 foreach ($queries as $query){
                     if(isset($query['repository'])){
                         $list[$modelName][] = ucfirst($query['repository']);
+                        if(
+                            !isset($list[ucfirst($query['repository'])])
+                            || !in_array($modelName,$list[ucfirst($query['repository'])])
+                        ){
+                            $list[ucfirst($query['repository'])][] = $modelName;
+                        }
+
 
                         if(isset($list[ucfirst($query['repository'])]) && !in_array($modelName,$list[ucfirst($query['repository'])])){
                             $list[ucfirst($query['repository'])][] = $modelName;
