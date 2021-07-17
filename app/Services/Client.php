@@ -28,7 +28,9 @@ class Client
             $request->query->all(),
             $bodyData ? $request->request->all() : [],
             $request->ip(),
-            Authenticate::code()
+            Authenticate::code(),
+            $request->header('accept-language'),
+            $request->header('apikey')
         ]))));
     }
 
