@@ -33,7 +33,7 @@ trait ResourceRepository
      */
     public function resource(callable $callback) : array
     {
-        if(property_exists($this,'localization')){
+        if(property_exists($this,'localization') && count($this->localization)){
             $with = request()->query->get('with',[]);
             request()->query->set('with',array_merge($with,['localization' => 'values']));
         }
