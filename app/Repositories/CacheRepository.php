@@ -179,7 +179,6 @@ trait CacheRepository
 
         $model      = $this->getModelName();
         $cacheKey   = $this->cacheKey;
-        $relations  = Db::relations();
 
         if($this->cacheInstance->exists($cacheKey)){
             if(!$this->cacheInstance->delete($cacheKey)){
@@ -187,31 +186,32 @@ trait CacheRepository
             }
         }
 
-        if(isset($relations[$model]) && is_array($relations[$model])){
-            $this->deleteRelationCache($relations,$model);
-        }
+        $this->deleteRelationCache($model);
     }
 
     /**
      * delete relation cache for repository model
      *
-     * @param array $relations
      * @param string $model
      * @param bool $recursive
      */
-    private function deleteRelationCache(array $relations,string $model,bool $recursive = true)
+    private function deleteRelationCache(string $model,bool $recursive = true)
     {
-        foreach ($relations[$model] as $relation){
-            $relationHash = $this->generateCacheKey($relation);
+        $relations  = Db::relations();
 
-            if($this->cacheInstance->exists($relationHash)){
-                if(!$this->cacheInstance->delete($relationHash)){
-                    Exception::cacheException();
+        if(isset($relations[$model]) && is_array($relations[$model])){
+            foreach ($relations[$model] as $relation){
+                $relationHash = $this->generateCacheKey($relation);
+
+                if($this->cacheInstance->exists($relationHash)){
+                    if(!$this->cacheInstance->delete($relationHash)){
+                        Exception::cacheException();
+                    }
                 }
-            }
 
-            if($recursive && isset($relations[$relation])){
-                $this->deleteRelationCache($relations,$relation,false);
+                if($recursive && isset($relations[$relation])){
+                    $this->deleteRelationCache($relation,false);
+                }
             }
         }
     }
