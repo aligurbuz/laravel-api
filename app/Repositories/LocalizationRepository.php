@@ -23,7 +23,7 @@ trait LocalizationRepository
     {
         $repository = $repository ?? $this;
 
-        if(property_exists($repository,'localization')){
+        if(property_exists($repository,'localization') && count($repository->localization)){
             return $repository->localization;
         }
 
