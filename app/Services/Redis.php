@@ -21,14 +21,28 @@ class Redis
     protected static ?ClientInterface $redisInstance = null;
 
     /**
+     * @var array
+     */
+    protected static array $adapter = [];
+
+    /**
+     * @var string
+     */
+    protected static string $defaultAdapter = 'redis';
+
+    /**
      * get predis client instance
      *
+     * @param string|null $adapter
      * @return ClientInterface
      */
-    public static function client(): ClientInterface
+    public static function client(?string $adapter = null): ClientInterface
     {
-        if(is_null(static::$redisInstance)){
-            static::$redisInstance = new Client(config('database.redis.default'));
+        $redisAdapter = $adapter ?? 'default';
+
+        if(!isset(static::$adapter[$redisAdapter])){
+            static::$adapter[] = $redisAdapter;
+            static::$redisInstance = new Client(config('database.redis.'.$redisAdapter));
         }
 
         return static::$redisInstance;
