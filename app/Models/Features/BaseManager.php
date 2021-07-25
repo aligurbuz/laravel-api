@@ -81,7 +81,6 @@ trait BaseManager
      */
     public function getModelRelationsForCode() : void
     {
-        $list = [];
         $relations = Db::relations();
 
         $currentModelName = ucfirst($this->getModelName());
@@ -92,14 +91,8 @@ trait BaseManager
                 && $modelRelation!=='Localization'
                 && in_array($currentModelName,$relations[$modelRelation],true)
             ){
-                $list[] = $modelRelation;
-            }
-        }
-
-        if(count($list)){
-            foreach ($list as $withItem){
-                $modelNamespace = Constants::modelNamespace.'\\'.$withItem;
-                $withModelKey = Str::camel($withItem).'s';
+                $modelNamespace = Constants::modelNamespace.'\\'.$modelRelation;
+                $withModelKey = Str::camel($modelRelation).'s';
 
                 if(class_exists($modelNamespace) && !isset($this->withQuery[$withModelKey])){
                     $this->withQuery[$withModelKey] = [
@@ -108,7 +101,7 @@ trait BaseManager
                         'localColumn' => getTableCode($this->getModelName()),
                         'table' => $withModelKey,
                         'description' => 'You can use '.$withModelKey.' relation belonging to '.$this->getModelName().' data.',
-                        'repository' => Str::camel($withItem)
+                        'repository' => Str::camel($modelRelation)
                     ];
                 }
             }
