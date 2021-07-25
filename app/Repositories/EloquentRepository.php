@@ -493,7 +493,7 @@ class EloquentRepository
 
             $getLocalizations = $this->findRepositoryByModel($model)->getLocalizations();
 
-            return $modelInstance->hasOne(
+            return $modelInstance->hasMany(
                 $modelNamespace,
                 ($list['foreignColumn'] ?? null),
                 ($list['localColumn'] ?? null)
