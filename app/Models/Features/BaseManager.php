@@ -75,6 +75,48 @@ trait BaseManager
     }
 
     /**
+     * get model relations
+     *
+     * @return void
+     */
+    public function getModelRelationsForCode() : void
+    {
+        $list = [];
+        $relations = Db::relations();
+
+        $currentModelName = ucfirst($this->getModelName());
+        $modelRelations = $relations[$currentModelName] ?? [];
+        foreach ($modelRelations as $modelRelation){
+            if(
+                isset($relations[$modelRelation])
+                && $modelRelation!=='Localization'
+                && in_array($currentModelName,$relations[$modelRelation],true)
+            ){
+                $list[] = $modelRelation;
+            }
+        }
+
+        if(count($list)){
+            foreach ($list as $withItem){
+                $modelNamespace = Constants::modelNamespace.'\\'.$withItem;
+                $withModelKey = Str::camel($withItem).'s';
+
+                if(class_exists($modelNamespace) && !isset($this->withQuery[$withModelKey])){
+                    $this->withQuery[$withModelKey] = [
+                        'hasMany' => true,
+                        'foreignColumn' => getTableCode($this->getModelName()),
+                        'localColumn' => getTableCode($this->getModelName()),
+                        'table' => $withModelKey,
+                        'description' => 'You can use '.$withModelKey.' relation belonging to '.$this->getModelName().' data.',
+                        'repository' => Str::camel($withItem)
+                    ];
+                }
+            }
+        }
+    }
+
+
+    /**
      * get with model handler for model
      *
      * @return void
@@ -82,6 +124,8 @@ trait BaseManager
     protected function withModelHandler()
     {
         $columns = Db::columns($this->getTable());
+
+        $this->getModelRelationsForCode();
 
         foreach ($columns as $column){
             if(Str::endsWith($column,'_code')){

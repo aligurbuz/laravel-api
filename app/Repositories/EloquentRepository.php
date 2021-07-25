@@ -484,14 +484,22 @@ class EloquentRepository
      */
     public function eagerLoadingHandler(string $model,array $args = []) : object
     {
+        $withKey = Str::camel($model);
+
+        if(Str::endsWith($model,'s')){
+            $model = substr($model,0,-1);
+        }
+
         $modelInstance    = $args[0] ?? new class {};
         $modelNamespace   = Constants::modelNamespace.'\\'.$model;
 
-        return $this->setEagerLoading($modelNamespace,function() use($modelNamespace,$modelInstance,$model){
+
+        return $this->setEagerLoading($modelNamespace,function() use($modelNamespace,$modelInstance,$model,$withKey){
             $queries = (method_exists($modelInstance,'getWithQueries')) ? $modelInstance->getWithQueries() : [];
-            $list = $queries[Str::camel($model)] ?? [];
+            $list = $queries[$withKey] ?? [];
 
             $getLocalizations = $this->findRepositoryByModel($model)->getLocalizations();
+
 
             return $modelInstance->hasMany(
                 $modelNamespace,

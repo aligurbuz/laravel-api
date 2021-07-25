@@ -319,12 +319,15 @@ trait ScopeManager
                                             }
                                         }
 
-                                        $query->withQuery($params['with'][$with]['with'])->select($selectExplode)
-                                            ->repository($repositoryInstance)->range($repositoryInstance,$withRange);
+                                        $query->withQuery($params['with'][$with]['with']);
+                                        $query->select($selectExplode);
+                                        $query->repository($repositoryInstance);
+                                        $query->range($repositoryInstance,$withRange);
                                     }
                                     else{
-                                        $query->select($selectExplode)
-                                            ->repository($repositoryInstance)->range($repositoryInstance,$withRange);
+                                        $query->select($selectExplode);
+                                        $query->repository($repositoryInstance);
+                                        $query->range($repositoryInstance,$withRange);
                                     }
 
                                 }]);
@@ -335,11 +338,13 @@ trait ScopeManager
                                 $withRange = $params['withRange'][$with] ?? [];
                                 $repositoryInstance = Repository::$foreignRepository();
                                 if(isset($params['with'][$with]['with'])){
-                                    $query->withQuery($params['with'][$with]['with'])
-                                        ->repository($repositoryInstance)->range($repositoryInstance,$withRange);
+                                    $query->withQuery($params['with'][$with]['with']);
+                                    $query->repository($repositoryInstance);
+                                    $query->range($repositoryInstance,$withRange);
                                 }
                                 else{
-                                    $query->repository($repositoryInstance)->range($repositoryInstance,$withRange);
+                                    $query->repository($repositoryInstance);
+                                    $query->range($repositoryInstance,$withRange);
                                 }
 
                             }]);
