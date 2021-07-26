@@ -485,14 +485,7 @@ class EloquentRepository
     public function eagerLoadingHandler(string $model,array $args = []) : object
     {
         $withKey = Str::camel($model);
-
-        if(Str::endsWith($model,'s')){
-            $model = substr($model,0,-1);
-        }
-
-        if(Str::endsWith($model,'ie')){
-            $model = str_replace('ie','y',$model);
-        }
+        $model = getModelWithPlural($model);
 
         $modelInstance    = $args[0] ?? new class {};
         $modelNamespace   = Constants::modelNamespace.'\\'.$model;

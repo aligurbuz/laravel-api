@@ -175,11 +175,27 @@ if(!function_exists('getTableCode')){
      */
     function getTableCode($model): string
     {
+        return getModelName(getModelWithPlural($model)).'_code';
+    }
+}
+
+if(!function_exists('getModelWithPlural')){
+
+    /**
+     * @param $model
+     * @return string
+     */
+    function getModelWithPlural($model): string
+    {
         if(Str::endsWith($model,'s')){
             $model = substr($model,0,-1);
         }
 
-        return getModelName($model).'_code';
+        if(Str::endsWith($model,'ie')){
+            $model = str_replace('ie','y',$model);
+        }
+
+        return $model;
     }
 }
 
