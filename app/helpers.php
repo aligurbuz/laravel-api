@@ -175,6 +175,10 @@ if(!function_exists('getTableCode')){
      */
     function getTableCode($model): string
     {
+        if(Str::endsWith($model,'s')){
+            $model = substr($model,0,-1);
+        }
+
         return getModelName($model).'_code';
     }
 }

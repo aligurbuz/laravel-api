@@ -1,0 +1,41 @@
+{
+    "response_code": [
+        "AccessLogger"
+    ],
+    "country_code": [
+        "Country"
+    ],
+    "num_code": [
+        "Country"
+    ],
+    "phone_code": [
+        "Country"
+    ],
+    "language_code": [
+        "Language",
+        "Localization"
+    ],
+    "localization_code": [
+        "Localization"
+    ],
+    "localized_code": [
+        "Localization"
+    ],
+    "permission_code": [
+        "Permission"
+    ],
+    "role_code": [
+        "Role",
+        "User"
+    ],
+    "role_app_code": [
+        "Role"
+    ],
+    "super_admin_code": [
+        "SuperAdmin"
+    ],
+    "user_code": [
+        "SuperAdmin",
+        "User"
+    ]
+}

@@ -117,6 +117,25 @@ class Db extends Model
     }
 
     /**
+     * get relation for table
+     *
+     * @return array
+     */
+    public static function relationCodes() : array
+    {
+        $relations = base_path('database/columns/relationCodes.json');
+
+        if(file_exists($relations)){
+            if(!isset(static::$paths[$relations])){
+                static::$paths[$relations] = File::get($relations);
+            }
+            return json_decode(static::$paths[$relations],1);
+        }
+
+        return [];
+    }
+
+    /**
      * get table name from model
      *
      * @param $model

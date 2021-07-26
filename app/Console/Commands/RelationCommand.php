@@ -3,9 +3,11 @@
 namespace App\Console\Commands;
 
 use App\Constants;
+use App\Services\Db;
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 
 class RelationCommand extends Command
 {
@@ -46,25 +48,41 @@ class RelationCommand extends Command
         $modelFiles = File::files($modelDir);
 
         $list = [];
-        $reverseList = [];
+        $codes = [];
 
         $databaseColumns = base_path('database').''.DIRECTORY_SEPARATOR.'columns';
         $relationsMapFile = $databaseColumns.''.DIRECTORY_SEPARATOR.'relations.json';
+        $relationsCodeFile = $databaseColumns.''.DIRECTORY_SEPARATOR.'relationCodes.json';
 
         foreach ($modelFiles as $modelFile){
             $modelName = str_replace('.php','',$modelFile->getFilename());
             $namespace = $modelNamespace.'\\'.$modelName;
-            $queries =  (new $namespace)->getWithQueries();
+            $namespaceInstance = (new $namespace);
+            $table = $namespaceInstance->getTable();
+            $entityColumns = Db::columns($table);
+
+            foreach ($entityColumns as $entityColumn){
+                if(Str::endsWith($entityColumn,'_code')){
+                    $codes[$entityColumn][] = $modelName;
+                }
+            }
+
+            $queries =  $namespaceInstance->getWithQueries();
 
             if(is_array($queries)){
                 foreach ($queries as $query){
                     if(isset($query['repository'])){
-                        $list[$modelName][] = ucfirst($query['repository']);
+                        if(!in_array(ucfirst($query['repository']),($list[$modelName] ?? []))){
+                            $list[$modelName][] = ucfirst($query['repository']);
+                        }
+
                         if(
                             !isset($list[ucfirst($query['repository'])])
                             || !in_array($modelName,$list[ucfirst($query['repository'])])
                         ){
-                            $list[ucfirst($query['repository'])][] = $modelName;
+                            if(!in_array($modelName,($list[ucfirst($query['repository'])] ?? []))){
+                                $list[ucfirst($query['repository'])][] = $modelName;
+                            }
                         }
 
 
@@ -78,6 +96,7 @@ class RelationCommand extends Command
         }
 
         File::put($relationsMapFile,Collection::make($list)->toJson(JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
+        File::put($relationsCodeFile,Collection::make($codes)->toJson(JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
 
         $this->warn('relation map has been updated');
 

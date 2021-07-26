@@ -1,5 +1,9 @@
 {
+    "Country": [
+        "Localization"
+    ],
     "Localization": [
+        "Country",
         "Language",
         "Localization",
         "Permission",
@@ -7,19 +11,25 @@
         "SuperAdmin",
         "User"
     ],
+    "Language": [
+        "Localization"
+    ],
     "Permission": [
         "Localization"
     ],
     "Role": [
-        "Localization",
-        "User"
-    ],
-    "SuperAdmin": [
         "User",
+        "SuperAdmin",
         "Localization"
     ],
     "User": [
         "Role",
+        "SuperAdmin",
+        "Localization"
+    ],
+    "SuperAdmin": [
+        "Role",
+        "User",
         "Localization"
     ]
 }

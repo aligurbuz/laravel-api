@@ -77,33 +77,41 @@ trait BaseManager
     /**
      * get model relations
      *
+     * @param string|null $model
      * @return void
      */
-    public function getModelRelationsForCode() : void
+    public function getModelRelationsForCode(?string $model = null) : void
     {
-        $relations = Db::relations();
+        $modelName                  = $model ?? $this->getModelName();
+        $relationCodes              = Db::relationCodes();
+        $currentModelName           = ucfirst($modelName);
+        $relationsAccordingToCode   = $relationCodes[getTableCode($modelName)] ?? [];
 
-        $currentModelName = ucfirst($this->getModelName());
-        $modelRelations = $relations[$currentModelName] ?? [];
-        foreach ($modelRelations as $modelRelation){
+        foreach ($relationsAccordingToCode as $modelRelation){
             if(
-                isset($relations[$modelRelation])
+                $modelRelation!==$currentModelName
                 && $modelRelation!=='Localization'
-                && in_array($currentModelName,$relations[$modelRelation],true)
             ){
                 $modelNamespace = Constants::modelNamespace.'\\'.$modelRelation;
-                $withModelKey = Str::camel($modelRelation).'s';
+                if(Str::endsWith($modelRelation,'y')){
+                    $withModelKey = substr(Str::camel($modelRelation),0,-1).'ies';
+                }
+                else{
+                    $withModelKey = Str::camel($modelRelation).'s';
+                }
 
                 if(class_exists($modelNamespace) && !isset($this->withQuery[$withModelKey])){
                     $this->withQuery[$withModelKey] = [
                         'hasMany' => true,
-                        'foreignColumn' => getTableCode($this->getModelName()),
-                        'localColumn' => getTableCode($this->getModelName()),
+                        'foreignColumn' => getTableCode($currentModelName),
+                        'localColumn' => getTableCode($currentModelName),
                         'table' => $withModelKey,
-                        'description' => 'You can use '.$withModelKey.' relation belonging to '.$this->getModelName().' data.',
+                        'description' => 'You can use '.$withModelKey.' relation belonging to '.$currentModelName.' data.',
                         'repository' => Str::camel($modelRelation)
                     ];
                 }
+
+                $this->getModelRelationsForCode($modelRelation);
             }
         }
     }

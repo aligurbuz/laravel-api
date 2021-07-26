@@ -9,6 +9,7 @@ use App\Exceptions\Exception;
 use App\Services\AppContainer;
 use App\Repositories\Repository;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Str;
 
 /**
  * Trait ScopeManager
@@ -271,7 +272,6 @@ trait ScopeManager
     public function scopeWithQuery(Builder $builder,array $with = []): object
     {
         $params = request()->query->all();
-        $test = $with;
 
         if(count($with)){
             $params['with'] = (count($with)) ? $with : ($params['with'] ?? []);
@@ -314,9 +314,10 @@ trait ScopeManager
                                     if(isset($params['with'][$with]['with'])){
 
                                         if(is_array($params['with'][$with]['with'])){
-                                            foreach ($params['with'][$with]['with'] as $withModel => $withItem){
-                                                $selectExplode[] = getTableCode($withModel);
-                                            }
+                                            $selectExplode[] = getTableCode($with);
+                                            /**foreach ($params['with'][$with]['with'] as $withModel => $withItem){
+                                                //$selectExplode[] = getTableCode($withModel);
+                                            }**/
                                         }
 
                                         $query->withQuery($params['with'][$with]['with']);
@@ -370,8 +371,10 @@ trait ScopeManager
      */
     private function checkSelectColumn(array $select = [], ?string $table = null): array
     {
+        $columns = Db::columns($table ?? $this->getTable());
+
         foreach ($select as $selectKey =>$item){
-            if(!in_array($item,Db::columns($table ?? $this->getTable()))){
+            if(!in_array($item,$columns)){
                 Exception::selectException('',['key' => $item]);
                 return [];
             }
