@@ -63,7 +63,7 @@ class EloquentRepository
      */
     public function pagination(?int $pagination = null) : array
     {
-        return $this->graphQl->simplePaginate($pagination ?? $this->pagination)->toArray();
+        return $this->graphQl->paginate($pagination ?? $this->pagination)->toArray();
     }
 
     /**
