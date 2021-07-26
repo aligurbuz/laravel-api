@@ -9,7 +9,6 @@ use App\Exceptions\Exception;
 use App\Services\AppContainer;
 use App\Repositories\Repository;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Str;
 
 /**
  * Trait ScopeManager
@@ -312,24 +311,16 @@ trait ScopeManager
                                     $withRange = $params['withRange'][$with] ?? [];
                                     $repositoryInstance = Repository::$foreignRepository();
                                     if(isset($params['with'][$with]['with'])){
-
                                         if(is_array($params['with'][$with]['with'])){
                                             $selectExplode[] = getTableCode($with);
-                                            /**foreach ($params['with'][$with]['with'] as $withModel => $withItem){
-                                                //$selectExplode[] = getTableCode($withModel);
-                                            }**/
                                         }
 
                                         $query->withQuery($params['with'][$with]['with']);
-                                        $query->select($selectExplode);
-                                        $query->repository($repositoryInstance);
-                                        $query->range($repositoryInstance,$withRange);
                                     }
-                                    else{
-                                        $query->select($selectExplode);
-                                        $query->repository($repositoryInstance);
-                                        $query->range($repositoryInstance,$withRange);
-                                    }
+
+                                    $query->select($selectExplode);
+                                    $query->repository($repositoryInstance);
+                                    $query->range($repositoryInstance,$withRange);
 
                                 }]);
                             }
@@ -340,13 +331,9 @@ trait ScopeManager
                                 $repositoryInstance = Repository::$foreignRepository();
                                 if(isset($params['with'][$with]['with'])){
                                     $query->withQuery($params['with'][$with]['with']);
-                                    $query->repository($repositoryInstance);
-                                    $query->range($repositoryInstance,$withRange);
                                 }
-                                else{
-                                    $query->repository($repositoryInstance);
-                                    $query->range($repositoryInstance,$withRange);
-                                }
+                                $query->repository($repositoryInstance);
+                                $query->range($repositoryInstance,$withRange);
 
                             }]);
                         }
@@ -373,7 +360,7 @@ trait ScopeManager
     {
         $columns = Db::columns($table ?? $this->getTable());
 
-        foreach ($select as $selectKey =>$item){
+        foreach ($select as $item){
             if(!in_array($item,$columns)){
                 Exception::selectException('',['key' => $item]);
                 return [];
