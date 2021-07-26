@@ -332,6 +332,7 @@ trait ScopeManager
                                 if(isset($params['with'][$with]['with'])){
                                     $query->withQuery($params['with'][$with]['with']);
                                 }
+
                                 $query->repository($repositoryInstance);
                                 $query->range($repositoryInstance,$withRange);
 

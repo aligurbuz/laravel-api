@@ -490,9 +490,12 @@ class EloquentRepository
             $model = substr($model,0,-1);
         }
 
+        if(Str::endsWith($model,'ie')){
+            $model = str_replace('ie','y',$model);
+        }
+
         $modelInstance    = $args[0] ?? new class {};
         $modelNamespace   = Constants::modelNamespace.'\\'.$model;
-
 
         return $this->setEagerLoading($modelNamespace,function() use($modelNamespace,$modelInstance,$model,$withKey){
             $queries = (method_exists($modelInstance,'getWithQueries')) ? $modelInstance->getWithQueries() : [];
@@ -519,7 +522,8 @@ class EloquentRepository
     public function __call(string $name,array $args = []) : ?object
     {
         if(Str::startsWith($name,'with')){
-            return $this->eagerLoadingHandler(str_replace('with','',$name),$args);
+            $model = str_replace('with','',$name);
+            return $this->eagerLoadingHandler($model,$args);
         }
 
         return null;
