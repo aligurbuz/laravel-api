@@ -282,7 +282,8 @@ class Client extends ClientManager
                     'append',
                     'orderBy',
                     'withRange',
-                    'has'
+                    'has',
+                    'doesntHave'
                 ]);
             }
         }

@@ -25,6 +25,16 @@ trait ScopeManager
     protected array $withSelects = [];
 
     /**
+     * @var array
+     */
+    protected array $hasValues = [];
+
+    /**
+     * @var array
+     */
+    protected array $doesntHaveValues = [];
+
+    /**
      * @var string[]
      */
     protected array $operators = ['<','>','<=','>=','<>'];
@@ -217,18 +227,22 @@ trait ScopeManager
      * get eager loading data for model
      *
      * @param Builder $builder
+     * @param string|null $has
      * @return Builder
      */
-    public function scopeHasQuery(Builder $builder): Builder
+    public function scopeHasQuery(Builder $builder,?string $has = null): Builder
     {
-        $params = request()->query->all();
+        $params = (!is_null($has))
+            ? ['has' => $has]
+            : request()->query->all();
 
         if(isset($params['has'])){
             $withQuery = $this->withQuery;
             $hasQuery = explode(',',$params['has']);
+            $this->hasValues = $hasQuery;
 
             foreach ($hasQuery as $has){
-                if(isset($withQuery[$has])){
+                if(isset($withQuery[$has],$withQuery[$has]['nested']) && false===$withQuery[$has]['nested']){
                     $builder->whereHas($has);
                 }
             }
@@ -250,9 +264,10 @@ trait ScopeManager
         if(isset($params['doesntHave'])){
             $withQuery = $this->withQuery;
             $doesntHaveQuery = explode(',',$params['doesntHave']);
+            $this->doesntHaveValues = $doesntHaveQuery;
 
             foreach ($doesntHaveQuery as $doesnt){
-                if(isset($withQuery[$doesnt])){
+                if(isset($withQuery[$doesnt],$withQuery[$doesnt]['nested']) && false===$withQuery[$doesnt]['nested']){
                     $builder->doesntHave($doesnt);
                 }
             }
@@ -316,6 +331,16 @@ trait ScopeManager
                                             $selectExplode[] = getTableCode($with);
                                         }
 
+                                        foreach ($params['with'][$with]['with'] as $nestedKey => $nestedWith){
+                                            if(in_array($nestedKey,$this->hasValues,true)){
+                                                $query->hasQuery($nestedKey);
+                                            }
+
+                                            if(in_array($nestedKey,$this->doesntHaveValues,true)){
+                                                $query->doesntHaveQuery($nestedKey);
+                                            }
+                                        }
+
                                         $query->withQuery($params['with'][$with]['with']);
                                     }
 
@@ -331,6 +356,17 @@ trait ScopeManager
                                 $withRange = $params['withRange'][$with] ?? [];
                                 $repositoryInstance = Repository::$foreignRepository();
                                 if(isset($params['with'][$with]['with'])){
+
+                                    foreach ($params['with'][$with]['with'] as $nestedKey => $nestedWith){
+                                        if(in_array($nestedKey,$this->hasValues,true)){
+                                            $query->hasQuery($nestedKey);
+                                        }
+
+                                        if(in_array($nestedKey,$this->doesntHaveValues,true)){
+                                            $query->doesntHaveQuery($nestedKey);
+                                        }
+                                    }
+
                                     $query->withQuery($params['with'][$with]['with']);
                                 }
 

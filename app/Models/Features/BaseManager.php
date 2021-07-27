@@ -80,7 +80,7 @@ trait BaseManager
      * @param string|null $model
      * @return void
      */
-    public function getModelRelationsForCode(?string $model = null) : void
+    public function getModelRelationsForCode(?string $model = null,bool $nested = false) : void
     {
         $modelName                  = $model ?? $this->getModelName();
         $relationCodes              = Db::relationCodes();
@@ -103,6 +103,7 @@ trait BaseManager
                 if(class_exists($modelNamespace) && !isset($this->withQuery[$withModelKey])){
                     $this->withQuery[$withModelKey] = [
                         'hasMany' => true,
+                        'nested' => $nested,
                         'foreignColumn' => getTableCode($currentModelName),
                         'localColumn' => getTableCode($currentModelName),
                         'table' => $withModelKey,
@@ -111,7 +112,7 @@ trait BaseManager
                     ];
                 }
 
-                $this->getModelRelationsForCode($modelRelation);
+                $this->getModelRelationsForCode($modelRelation,true);
             }
         }
     }
@@ -139,6 +140,8 @@ trait BaseManager
                         $relationTable = (new $relationModelNamespace)->getTable();
 
                         $this->withQuery[$relationModel] = [
+                            'hasMany' => false,
+                            'nested' => false,
                             'foreignColumn' => Str::snake($relationModel).'_code',
                             'localColumn' => Str::snake($relationModel).'_code',
                             'table' => $relationTable,
