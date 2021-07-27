@@ -175,7 +175,7 @@ if(!function_exists('getTableCode')){
      */
     function getTableCode($model): string
     {
-        return getModelName(getModelWithPlural($model)).'_code';
+        return Str::snake(getModelName(getModelWithPlural($model))).'_code';
     }
 }
 
