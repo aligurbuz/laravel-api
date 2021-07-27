@@ -6,6 +6,15 @@ class EntityMap
 {
     /**
      * @param object $query
+     * @return TableChange
+     */
+    public function tableChange(object $query) : TableChange
+    {
+        return new TableChange($query);
+    }
+    
+    /**
+     * @param object $query
      * @return Permission
      */
     public function permission(object $query) : Permission

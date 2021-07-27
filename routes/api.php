@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Mix\TableChangesController;
 use App\Http\Controllers\Gate\PermissionsController;
 use App\Http\Controllers\Gate\RolesController;
 use App\Http\Controllers\SuperAdmins\SuperAdminsController;
@@ -28,6 +29,10 @@ Route::post('/login', [LoginController::class,'login']);
 Route::post('/register', [RegisterController::class,'register']);
 
 Route::middleware([])->group(function(){
+
+    Route::get('/mix/tableChanges', [TableChangesController::class,'get']);
+    Route::post('/mix/tableChanges', [TableChangesController::class,'create']);
+    Route::put('/mix/tableChanges', [TableChangesController::class,'update']);
 
     Route::get('/gate/permissions', [PermissionsController::class,'get']);
     Route::post('/gate/permissions', [PermissionsController::class,'create']);

@@ -1,0 +1,156 @@
+{
+    "name": "Mix",
+    "item": [
+        {
+            "name": "TableChanges",
+            "item": [
+                {
+                    "name": "Mix/TableChanges",
+                    "response": [],
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{bearerToken}}",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Apikey",
+                                "value": "{{apiKey}}",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "{{contentType}}",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Accept-Language",
+                                "value": "{{acceptLanguage}}",
+                                "type": "text"
+                            }
+                        ],
+                        "body": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/mix/tableChanges",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "mix",
+                                "tableChanges"
+                            ],
+                            "query": [
+                                {
+                                    "key": "range",
+                                    "value": "desc",
+                                    "description": "",
+                                    "disabled": true
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Mix/TableChanges",
+                    "response": [],
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{bearerToken}}",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Apikey",
+                                "value": "{{apiKey}}",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "{{contentType}}",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Accept-Language",
+                                "value": "{{acceptLanguage}}",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"column_name\":\"string\",\"new_data\":\"string\",\"old_data\":\"string\",\"table_name\":\"string\"}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/mix/tableChanges",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "mix",
+                                "tableChanges"
+                            ],
+                            "query": []
+                        }
+                    }
+                },
+                {
+                    "name": "Mix/TableChanges",
+                    "response": [],
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{bearerToken}}",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Apikey",
+                                "value": "{{apiKey}}",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "{{contentType}}",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Accept-Language",
+                                "value": "{{acceptLanguage}}",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"column_name\":\"string\",\"is_deleted\":\"0\",\"new_data\":\"string\",\"old_data\":\"string\",\"status\":\"1\",\"table_change_code\":\"integer\",\"table_name\":\"string\"}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/mix/tableChanges",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "mix",
+                                "tableChanges"
+                            ],
+                            "query": []
+                        }
+                    }
+                }
+            ]
+        }
+    ]
+}

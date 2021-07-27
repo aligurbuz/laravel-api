@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Repositories;
 
 use App\Repositories\User\Contracts\UserRepositoryContract;
+use App\Repositories\Mix\Contracts\TableChangesRepositoryContract;
 use App\Repositories\Gate\Contracts\PermissionsRepositoryContract;
 use App\Repositories\Gate\Contracts\RolesRepositoryContract;
 use App\Repositories\SuperAdmins\Contracts\SuperAdminsRepositoryContract;
@@ -19,6 +20,16 @@ use App\Repositories\Countries\Contracts\CountriesRepositoryContract;
  */
 class Repository
 {
+    /**
+     * get tableChange repository instance
+     *
+     * @return TableChangesRepositoryContract
+     */
+    public static function tableChange() : TableChangesRepositoryContract
+    {
+        return app()->get(TableChangesRepositoryContract::class);
+    }
+    
     /**
      * get permission repository instance
      *
