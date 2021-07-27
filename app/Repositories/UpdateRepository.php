@@ -34,12 +34,25 @@ trait UpdateRepository
     /**
      * get update event dispatcher for repository
      *
-     * @param array $data
+     * @param array $oldData
+     * @param array $newData
      */
-    public function updateEventDispatcher(array $data = []) : void
+    public function updateEventDispatcher(array $oldData = [],array $newData = []) : void
     {
-        $this->updateLocalization($data);
+        $this->createTableChanges(($oldData[0] ?? []),$newData);
+        $this->updateLocalization($newData);
         $this->deleteCache();
+    }
+
+    /**
+     * create table changes for model
+     *
+     * @param array $oldData
+     * @param array $newData
+     */
+    public function createTableChanges(array $oldData = [],array $newData = []) : void
+    {
+        //
     }
 
     /**
@@ -54,11 +67,12 @@ trait UpdateRepository
         $queryList = [];
 
         foreach ($this->getClientData($data) as $data){
-            $baseQuery = $this->getBaseQueryForUpdate($data,$id);
+            $baseQuery  =  $this->getBaseQueryForUpdate($data,$id);
+            $oldData    =  $baseQuery->get()->toArray();
 
             try{
                 $update = $baseQuery->update($data);
-                $this->updateEventDispatcher($data);
+                $this->updateEventDispatcher($oldData,$data);
             }
             catch (\Exception $exception){
                 return $this->sqlException($exception);
