@@ -9,6 +9,7 @@ use App\Exceptions\Exception;
 use App\Services\AppContainer;
 use App\Repositories\Repository;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Str;
 
 /**
  * Trait ScopeManager
@@ -359,7 +360,9 @@ trait ScopeManager
      */
     private function checkSelectColumn(array $select = [], ?string $table = null): array
     {
-        $columns = Db::columns($table ?? $this->getTable());
+        $tableName = $table ?? $this->getTable();
+
+        $columns = Db::columns(Str::snake($tableName));
 
         foreach ($select as $item){
             if(!in_array($item,$columns)){
