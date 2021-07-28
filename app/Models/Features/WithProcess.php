@@ -41,6 +41,10 @@ trait WithProcess
                 foreach ($params['with'] as $with => $select){
                     $select = (is_array($select) && isset($select['select'])) ? $select['select'] : $select;
 
+                    if(!is_string($select)){
+                        return Exception::withException();
+                    }
+
                     if(
                     isset(
                         $withQuery[$with],
