@@ -314,7 +314,7 @@ class EloquentRepository
     }
 
     /**
-     * get today scope for client
+     * get order by desc scope for client
      *
      * @param null|Builder $builder
      * @return EloquentRepository
@@ -322,6 +322,19 @@ class EloquentRepository
     public function desc(Builder $builder = null): EloquentRepository
     {
         $this->builder($builder)->orderBy('id','desc');
+
+        return $this;
+    }
+
+    /**
+     * get order by asc scope for client
+     *
+     * @param null|Builder $builder
+     * @return EloquentRepository
+     */
+    public function asc(Builder $builder = null): EloquentRepository
+    {
+        $this->builder($builder)->orderBy('id','asc');
 
         return $this;
     }

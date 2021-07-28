@@ -44,6 +44,7 @@ trait ScopeManager
      */
     protected array $autoRanges = [
         'desc'      => 'Sorts your object by last registration value.',
+        'asc'       => 'Sorts your object by first registration value.',
         'active'    => 'It filters according to the status=1 value for your object.',
     ];
 
