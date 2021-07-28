@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models\Features;
 
+use App\Repositories\Repository;
 use App\Services\Db;
 use Illuminate\Support\Str;
 use App\Exceptions\Exception;
@@ -231,9 +232,11 @@ trait ScopeManager
      */
     public function scopeHasQuery(Builder $builder,?string $has = null): Builder
     {
+        $request = request()->query->all();
+
         $params = (!is_null($has))
             ? ['has' => $has]
-            : request()->query->all();
+            : $request;
 
         if(isset($params['has'])){
             $withQuery = $this->withQuery;
@@ -242,7 +245,12 @@ trait ScopeManager
 
             foreach ($hasQuery as $has){
                 if(isset($withQuery[$has],$withQuery[$has]['nested']) && false===$withQuery[$has]['nested']){
-                    $builder->whereHas($has);
+                    $builder->whereHas($has,function(object $builder) use($request,$has){
+                        $range = $request['hasRange'][$has] ?? ($request['range'] ?? '');
+                        $repository = getModelWithPlural($has);
+                        $builder->range(Repository::$repository(),(string)$range);
+                        return $builder;
+                    });
                 }
             }
         }

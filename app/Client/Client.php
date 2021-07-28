@@ -283,7 +283,8 @@ class Client extends ClientManager
                     'orderBy',
                     'withRange',
                     'has',
-                    'doesntHave'
+                    'doesntHave',
+                    'hasRange'
                 ]);
             }
         }
