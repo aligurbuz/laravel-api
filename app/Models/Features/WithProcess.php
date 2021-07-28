@@ -42,7 +42,7 @@ trait WithProcess
                     $select = (is_array($select) && isset($select['select'])) ? $select['select'] : $select;
 
                     if(!is_string($select)){
-                        return Exception::withException();
+                        return Exception::withSelectException();
                     }
 
                     if(

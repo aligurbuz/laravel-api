@@ -26,6 +26,7 @@ use App\Services\AppContainer;
  * @method static rangeException($message = null,$keys = [])
  * @method static selectException($message = null,$keys = [])
  * @method static withException($message = null,$keys = [])
+ * @method static withSelectException($message = null,$keys = [])
  * @method static cacheException($message = null,$keys = [])
  * @method static permissionException($message = null,$keys = [])
  * @package App\Exceptions
