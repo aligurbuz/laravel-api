@@ -5,11 +5,10 @@ declare(strict_types=1);
 namespace App\Models\Features;
 
 use App\Services\Db;
+use Illuminate\Support\Str;
 use App\Exceptions\Exception;
 use App\Services\AppContainer;
-use App\Repositories\Repository;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Str;
 
 /**
  * Trait ScopeManager
@@ -17,7 +16,7 @@ use Illuminate\Support\Str;
  */
 trait ScopeManager
 {
-    use FullTextSearch;
+    use FullTextSearch,WithProcess;
 
     /**
      * @var array[]
@@ -286,105 +285,7 @@ trait ScopeManager
      */
     public function scopeWithQuery(Builder $builder,array $with = []): object
     {
-        $params = request()->query->all();
-
-        if(count($with)){
-            $params['with'] = (count($with)) ? $with : ($params['with'] ?? []);
-        }
-
-        if(isset($params['with'])){
-            $withQuery = $this->withQuery;
-
-            if(is_array($params['with']) && count($params['with'])){
-                foreach ($params['with'] as $with => $select){
-
-
-                    $select = (is_array($select) && isset($select['select'])) ? $select['select'] : $select;
-
-                    if(
-                    isset(
-                        $withQuery[$with],
-                        $withQuery[$with]['foreignColumn'],
-                        $withQuery[$with]['localColumn'],
-                        $withQuery[$with]['table']
-                    )
-                    ){
-                        $foreignColumn = $withQuery[$with]['foreignColumn'];
-                        $foreignRepository = $withQuery[$with]['repository'] ?? null;
-                        $localColumn = $withQuery[$with]['localColumn'];
-
-                        $this->withSelects[] = $localColumn;
-
-                        if(strlen($select)>0 && $select!=='*'){
-                            $selectExplode = explode(',',$select);
-                            $selectExplode = $this->checkSelectColumn(
-                                array_merge([$foreignColumn],$selectExplode)
-                                ,$withQuery[$with]['table']
-                            );
-
-                            if(is_array($selectExplode) && count($selectExplode)){
-                                $builder->with([$with => function($query) use($with,$selectExplode,$params,$foreignRepository){
-                                    $withRange = $params['withRange'][$with] ?? [];
-                                    $repositoryInstance = Repository::$foreignRepository();
-                                    if(isset($params['with'][$with]['with'])){
-                                        if(is_array($params['with'][$with]['with'])){
-                                            $selectExplode[] = getTableCode($with);
-                                        }
-
-                                        foreach ($params['with'][$with]['with'] as $nestedKey => $nestedWith){
-                                            if(in_array($nestedKey,$this->hasValues,true)){
-                                                $query->hasQuery($nestedKey);
-                                            }
-
-                                            if(in_array($nestedKey,$this->doesntHaveValues,true)){
-                                                $query->doesntHaveQuery($nestedKey);
-                                            }
-                                        }
-
-                                        $query->withQuery($params['with'][$with]['with']);
-                                    }
-
-                                    $query->select($selectExplode);
-                                    $query->repository($repositoryInstance);
-                                    $query->range($repositoryInstance,$withRange);
-
-                                }]);
-                            }
-                        }
-                        else{
-                            $builder->with([$with => function($query) use($with,$params,$foreignRepository){
-                                $withRange = $params['withRange'][$with] ?? [];
-                                $repositoryInstance = Repository::$foreignRepository();
-                                if(isset($params['with'][$with]['with'])){
-
-                                    foreach ($params['with'][$with]['with'] as $nestedKey => $nestedWith){
-                                        if(in_array($nestedKey,$this->hasValues,true)){
-                                            $query->hasQuery($nestedKey);
-                                        }
-
-                                        if(in_array($nestedKey,$this->doesntHaveValues,true)){
-                                            $query->doesntHaveQuery($nestedKey);
-                                        }
-                                    }
-
-                                    $query->withQuery($params['with'][$with]['with']);
-                                }
-
-                                $query->repository($repositoryInstance);
-                                $query->range($repositoryInstance,$withRange);
-
-                            }]);
-                        }
-
-                    }
-                    else{
-                        return Exception::withException();
-                    }
-                }
-            }
-        }
-
-        return $builder;
+        return $this->withProcessHandler($builder,$with);
     }
 
     /**
