@@ -95,7 +95,7 @@ trait WithProcess
     private function withQueryBySelect($builder,$with,$selectExplode,$params,$foreignRepository)
     {
         $builder->with([$with => function($query) use($with,$selectExplode,$params,$foreignRepository){
-            $withRange = $params['withRange'][$with] ?? [];
+            $withRange = $params['withRange'][$with] ?? ($params['range'] ?? '');
             $repositoryInstance = Repository::$foreignRepository();
             if(isset($params['with'][$with]['with'])){
                 if(is_array($params['with'][$with]['with'])){
@@ -133,7 +133,7 @@ trait WithProcess
     private function withQueryWithoutSelect($builder,$with,$params,$foreignRepository)
     {
         $builder->with([$with => function($query) use($with,$params,$foreignRepository){
-            $withRange = $params['withRange'][$with] ?? [];
+            $withRange = $params['withRange'][$with] ?? ($params['range'] ?? '');
             $repositoryInstance = Repository::$foreignRepository();
             if(isset($params['with'][$with]['with'])){
 
