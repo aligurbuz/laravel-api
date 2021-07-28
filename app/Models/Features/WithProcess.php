@@ -62,9 +62,7 @@ trait WithProcess
                                 ,$withQuery[$with]['table']
                             );
 
-                            if(is_array($selectExplode) && count($selectExplode)){
-                                $this->withQueryBySelect($builder,$with,$selectExplode,$params,$foreignRepository);
-                            }
+                            $this->withQueryBySelect($builder,$with,$selectExplode,$params,$foreignRepository);
                         }
                         else{
                             $this->withQueryWithoutSelect($builder,$with,$params,$foreignRepository);
