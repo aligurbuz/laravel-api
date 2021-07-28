@@ -17,7 +17,7 @@ use Illuminate\Database\Eloquent\Builder;
  * @method $this checkSelectColumn(array $select = [], ?string $table = null)
  * @package App\Models\Features
  */
-trait withProcess
+trait WithProcess
 {
     /**
      * get eager loading data for model
