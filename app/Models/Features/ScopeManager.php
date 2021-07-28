@@ -276,7 +276,7 @@ trait ScopeManager
 
             foreach ($doesntHaveQuery as $doesnt){
                 if(isset($withQuery[$doesnt],$withQuery[$doesnt]['nested']) && false===$withQuery[$doesnt]['nested']){
-                    $builder->doesntHave($doesnt,function(object $builder) use($params,$doesnt){
+                    $builder->whereDoesntHave($doesnt,function(object $builder) use($params,$doesnt){
                         $range = $params['hasRange'][$doesnt] ?? ($params['range'] ?? '');
                         $repository = getModelWithPlural($doesnt);
                         $builder->range(Repository::$repository(),(string)$range);
