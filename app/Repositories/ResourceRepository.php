@@ -40,8 +40,8 @@ trait ResourceRepository
 
         $call =  call_user_func($callback);
 
-        return $this->addCollectDataToResource(function() use($call){
-            $result = $call->pagination();
+        return $this->addCollectDataToResource(function(array $collect = []) use($call){
+            $result = array_merge($collect,$call->pagination());
             $result['data'] = $this->resourcePropagation($result['data']);
 
             return $result;
@@ -56,7 +56,7 @@ trait ResourceRepository
      */
     public function addCollectDataToResource(callable $callback) : mixed
     {
-        $callback = call_user_func($callback);
+        $list  = [];
         $collectRequest = request()->query->get('collect');
 
         if(!is_null($collectRequest) && is_string($collectRequest)){
@@ -66,12 +66,12 @@ trait ResourceRepository
                     property_exists($this,'collects')
                     && in_array($collect,$this->collects,true)
                 ){
-                    $callback['collects'][$collect] = $this->graphQl->get()->sum($collect);
+                    $list['collects'][$collect] = $this->graphQl->get()->sum($collect);
                 }
             }
         }
 
-        return $callback;
+        return call_user_func($callback,$list);
     }
 
     /**
