@@ -58,26 +58,26 @@ trait ResourceRepository
         $localizations  = $this->getLocalizations($repository);
         $withValues     = $repository->getModelWithValues();
 
-        if(isset($data) && is_array($data)){
-            foreach ($data as $key => $item){
-                $values = $item['localization']['values'][0] ?? [];
+        foreach ($data as $key => $item){
+            $values = $item['localization']['values'][0] ?? [];
 
-                foreach ($withValues as $withValue){
-                    if(isset($item[$withValue]['localization'])){
-                        $item[$withValue] = ($this->resourcePropagation(
-                                [$item[$withValue]],
-                                $this->findRepositoryByModel($withValue)
-                            )[0]) ?? [];
-                    }
+            foreach ($withValues as $withValue){
+                if(isset($item[$withValue]['localization'])){
+                    $item[$withValue] = ($this->resourcePropagation(
+                            [$item[$withValue]],
+                            $this->findRepositoryByModel($withValue)
+                        )[0]) ?? [];
                 }
-
-                foreach ($localizations as $localization){
-                    $item[$localization] = $values[$localization] ?? ($item[$localization] ?? null);
-                    unset($item['localization']);
-                }
-
-                $list[$key] = $this->resourceHandler($item);
             }
+
+            foreach ($localizations as $localization){
+                $item[$localization] = $values[$localization] ?? ($item[$localization] ?? null);
+                unset($item['localization']);
+            }
+
+            $list[$key] = $this->resourceHandler($item,function(object $resource) use($item){
+                return $resource->handle($item);
+            });
         }
 
         return $list;
@@ -87,9 +87,10 @@ trait ResourceRepository
      * get resource handler for repository
      *
      * @param array $data
+     * @param callable $callback
      * @return array
      */
-    public function resourceHandler(array $data = []) : array
+    public function resourceHandler(array $data,callable $callback) : array
     {
         $resource = $this->getResource();
 
@@ -99,7 +100,7 @@ trait ResourceRepository
             }
         }
 
-        return (is_null(static::$resourceInstance)) ? $data : static::$resourceInstance->handle($data);
+        return (is_null(static::$resourceInstance)) ? $data : call_user_func($callback,static::$resourceInstance);
     }
 
 
