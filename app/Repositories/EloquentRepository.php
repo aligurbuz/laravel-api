@@ -50,7 +50,7 @@ class EloquentRepository
             // a resource class will be valid,
             // where you can manipulate all the returned result set values one by one.
             return $this->resource(function(){
-                return $this->graphQl()->pagination();
+                return $this->graphQl();
             });
         });
     }
@@ -516,6 +516,20 @@ class EloquentRepository
                 ($list['localColumn'] ?? null)
             )->with((count($getLocalizations) ? 'localization' : []));
         });
+    }
+
+    /**
+     * get collects for repository
+     *
+     * @return array
+     */
+    public function getCollects() : array
+    {
+        if(property_exists($this,'collects') && is_array($this->collects)){
+            return $this->collects;
+        }
+
+        return [];
     }
 
     /**

@@ -286,6 +286,10 @@ class Client extends ClientManager
                     'doesntHave',
                     'hasRange'
                 ]);
+
+                if(count($this->repository()->getCollects())){
+                    $this->capsule = array_merge($this->capsule,['collect']);
+                }
             }
         }
     }

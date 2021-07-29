@@ -38,10 +38,40 @@ trait ResourceRepository
             request()->query->set('with',array_merge($with,['localization' => 'values']));
         }
 
-        $result =  call_user_func($callback);
+        $call =  call_user_func($callback);
 
-        $result['data'] = $this->resourcePropagation($result['data']);
-        return $result;
+        return $this->addCollectDataToResource(function() use($call){
+            $result = $call->pagination();
+            $result['data'] = $this->resourcePropagation($result['data']);
+
+            return $result;
+        });
+    }
+
+    /**
+     * get resource collection for repository
+     *
+     * @param callable $callback
+     * @return mixed
+     */
+    public function addCollectDataToResource(callable $callback) : mixed
+    {
+        $callback = call_user_func($callback);
+        $collectRequest = request()->query->get('collect');
+
+        if(!is_null($collectRequest) && is_string($collectRequest)){
+            $collectArray = explode(',',$collectRequest);
+            foreach ($collectArray as $collect){
+                if(
+                    property_exists($this,'collects')
+                    && in_array($collect,$this->collects,true)
+                ){
+                    $callback['collects'][$collect] = $this->graphQl->get()->sum($collect);
+                }
+            }
+        }
+
+        return $callback;
     }
 
     /**
