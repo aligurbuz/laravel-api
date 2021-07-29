@@ -446,6 +446,23 @@ class EloquentRepository
     }
 
     /**
+     * throw exception if not exist columns for database
+     *
+     * @param $column
+     * @param callable $callback
+     * @return object
+     */
+    public function throwExceptionIfColumnNotExist($column,callable $callback) : object
+    {
+        dd($column);
+        if(!Db::ensureColumnExists($this->getModel(),$column)){
+            return Exception::customException('collect column name is not valid');
+        }
+
+        return call_user_func($callback);
+    }
+
+    /**
      * throws sql exception for repository
      *
      * @param Throwable $throwable

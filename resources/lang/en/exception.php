@@ -18,4 +18,5 @@ return [
     'withSelectException'           => 'Invalid select word in (withQuery) expression',
     'cacheException'                => 'Cache deleting process has failed',
     'permissionException'           => 'You are not authorized for this endpoint. Please contact your system provider.',
+    'resourceCollection'            => 'Collect column name is not valid',
 ];

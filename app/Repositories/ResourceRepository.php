@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Repositories;
 
+use App\Exceptions\Exception;
+
 /**
  * Trait LocalizationRepository
  * @package App\Repositories
@@ -67,6 +69,9 @@ trait ResourceRepository
                     && in_array($collect,$this->collects,true)
                 ){
                     $list['collects'][$collect] = $this->graphQl->get()->sum($collect);
+                }
+                else{
+                    return Exception::customException(trans('exception.resourceCollection'));
                 }
             }
         }
