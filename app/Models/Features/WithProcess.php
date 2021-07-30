@@ -116,7 +116,6 @@ trait WithProcess
             }
 
             $query->select($selectExplode);
-            $query->repository($repositoryInstance);
             $query->range($repositoryInstance,$withRange);
 
         }]);
@@ -150,7 +149,6 @@ trait WithProcess
                 $query->withQuery($params['with'][$with]['with']);
             }
 
-            $query->repository($repositoryInstance);
             $query->range($repositoryInstance,$withRange);
 
         }]);

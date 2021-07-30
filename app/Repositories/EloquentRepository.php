@@ -383,7 +383,7 @@ class EloquentRepository
      */
     public function globalScope($builder = null): object
     {
-        return (new GlobalScopeManager($this))->setBuilder($builder)->make();
+        return $builder ?? (new GlobalScopeManager($this))->setBuilder($builder)->make();
     }
 
     /**
@@ -454,7 +454,6 @@ class EloquentRepository
      */
     public function throwExceptionIfColumnNotExist($column,callable $callback) : object
     {
-        dd($column);
         if(!Db::ensureColumnExists($this->getModel(),$column)){
             return Exception::customException('collect column name is not valid');
         }
