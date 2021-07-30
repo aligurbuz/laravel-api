@@ -61,7 +61,7 @@ trait ResourceRepository
         $list  = [];
         $collectRequest = request()->query->get('collect');
 
-        if(!is_null($collectRequest) && is_string($collectRequest)){
+        if(is_string($collectRequest)){
             $collectArray = explode(',',$collectRequest);
             foreach ($collectArray as $collect){
                 if(
@@ -97,12 +97,15 @@ trait ResourceRepository
             $values = $item['localization']['values'][0] ?? [];
 
             foreach ($withValues as $withValue){
-                if(isset($item[$withValue]['localization'])){
-                    $item[$withValue] = ($this->resourcePropagation(
-                            [$item[$withValue]],
-                            $this->findRepositoryByModel($withValue)
-                        )[0]) ?? [];
+                foreach (($item[$withValue] ?? []) as $withKey => $withData){
+                    if(isset($withData['localization'])){
+                        $item[$withValue][$withKey] = ($this->resourcePropagation(
+                                [$withData],
+                                $this->findRepositoryByModel($withValue)
+                            )[0]) ?? [];
+                    }
                 }
+
             }
 
             foreach ($localizations as $localization){
