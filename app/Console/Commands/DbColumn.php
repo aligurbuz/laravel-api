@@ -52,7 +52,6 @@ class DbColumn extends Command
         $indexes = DB::select($sqlIndexString);
         $columns = DB::select($sqlString);
 
-        $list = [];
         $list['required_columns'] = [];
         $list['max_length_columns'] = [];
         $list['max_length_values'] = [];
@@ -62,29 +61,36 @@ class DbColumn extends Command
             $list['indexes'][] = '"'.$index->Column_name.'"';
         }
 
+        $addings = ['CURRENT_CONNECTIONS','TOTAL_CONNECTIONS','USER'];
+
         foreach ($columns as $column){
-            $list['columns'][] = '"'.$column->COLUMN_NAME.'"';
-            if(!is_null($column->CHARACTER_MAXIMUM_LENGTH)){
-                $list['max_length_columns'][] = '"'.$column->COLUMN_NAME.'"';
-                $list['max_length_values'][] = '"'.$column->CHARACTER_MAXIMUM_LENGTH.'"';
+
+            if(!in_array($column->COLUMN_NAME,$addings,true)){
+                $addings[] = $column->COLUMN_NAME;
+                $list['columns'][] = '"'.$column->COLUMN_NAME.'"';
+                if(!is_null($column->CHARACTER_MAXIMUM_LENGTH)){
+                    $list['max_length_columns'][] = '"'.$column->COLUMN_NAME.'"';
+                    $list['max_length_values'][] = '"'.$column->CHARACTER_MAXIMUM_LENGTH.'"';
+                }
+
+                if(is_null($column->COLUMN_DEFAULT) && $column->IS_NULLABLE == 'NO' && $column->COLUMN_NAME!=='id'){
+                    $list['required_columns'][] = '"'.$column->COLUMN_NAME.'"';
+                }
+
+                if(Str::endsWith($column->DATA_TYPE,'int')){
+                    $list['types'][] = '"integer"';
+                }
+                elseif(Str::endsWith($column->DATA_TYPE,'json')){
+                    $list['types'][] = '"array"';
+                }
+                elseif(Str::endsWith($column->DATA_TYPE,'char') || Str::endsWith($column->DATA_TYPE,'text')){
+                    $list['types'][] = '"string"';
+                }
+                else{
+                    $list['types'][] = '"'.$column->DATA_TYPE.'"';
+                }
             }
 
-            if(is_null($column->COLUMN_DEFAULT) && $column->IS_NULLABLE == 'NO' && $column->COLUMN_NAME!=='id'){
-                $list['required_columns'][] = '"'.$column->COLUMN_NAME.'"';
-            }
-
-            if(Str::endsWith($column->DATA_TYPE,'int')){
-                $list['types'][] = '"integer"';
-            }
-            elseif(Str::endsWith($column->DATA_TYPE,'json')){
-                $list['types'][] = '"array"';
-            }
-            elseif(Str::endsWith($column->DATA_TYPE,'char') || Str::endsWith($column->DATA_TYPE,'text')){
-                $list['types'][] = '"string"';
-            }
-            else{
-                $list['types'][] = '"'.$column->DATA_TYPE.'"';
-            }
 
         }
 
