@@ -70,7 +70,9 @@ trait ScopeManager
                 $object->$data($builder);
             }
             else{
-                return Exception::rangeException('',['key' => $data]);
+                if(is_string($data) && strlen($data)>0){
+                    return Exception::rangeException('',['key' => $data]);
+                }
             }
         }
 
