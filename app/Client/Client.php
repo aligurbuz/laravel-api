@@ -12,6 +12,8 @@ use App\Packages\Client\ClientManager;
 
 /**
  * Class Client
+ * @property array $rule
+ * @property array $capsule
  * @package App\Client
  */
 class Client extends ClientManager
@@ -65,11 +67,15 @@ class Client extends ClientManager
     /**
      * get repository for client class model
      *
+     * @param bool $justName
      * @return mixed
      */
-    public function repository(): mixed
+    public function repository(bool $justName = false): mixed
     {
         $camelCaseModelName = Str::camel($this->getModelName());
+
+        if($justName) return $camelCaseModelName;
+
         return Repository::$camelCaseModelName();
     }
 
@@ -327,6 +333,20 @@ class Client extends ClientManager
     public function set($key,$value) : void
     {
         $this->putDataStream($key,$value);
+    }
+
+    /**
+     * set input for client
+     *
+     * @param $key
+     * @param $value
+     * @return $this
+     */
+    public function register($key,$value): Client
+    {
+        $this->setRegister($key,$value);
+
+        return $this;
     }
 
     /**

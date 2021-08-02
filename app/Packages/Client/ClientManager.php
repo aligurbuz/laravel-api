@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace App\Packages\Client;
 
-use App\Services\HttpPutResolve;
-use JetBrains\PhpStorm\Pure;
 use App\Services\AppContainer;
+use App\Services\HttpPutResolve;
 
 /**
  * Class ClientManager
@@ -41,6 +40,11 @@ class ClientManager
     protected ?string $requestMethod = null;
 
     /**
+     * @var array
+     */
+    protected array $register = [];
+
+    /**
      * ClientManager constructor.
      * @param array $data
      * @param null $requestMethod
@@ -59,6 +63,28 @@ class ClientManager
     public function getData(): array
     {
         return $this->data;
+    }
+
+    /**
+     * get data for client
+     *
+     * @return array
+     */
+    public function getRegister(): array
+    {
+        return $this->register;
+    }
+
+    /**
+     * get data for client
+     *
+     * @param $key
+     * @param $value
+     * @return void
+     */
+    public function setRegister($key,$value): void
+    {
+        $this->register[$key] = $value;
     }
 
     /**
@@ -209,6 +235,7 @@ class ClientManager
             (new ClientParamProcess($this));
         }
         else{
+            if(count($this->getRegister())) $this->setData();
             (new ClientBodyProcess($this));
         }
     }
@@ -219,15 +246,18 @@ class ClientManager
      * @param array $data
      * @return array
      */
-    #[Pure] private function clientBodyFormat(array $data = []) : array
+    private function clientBodyFormat(array $data = []) : array
     {
         $list = [];
         $multipleDimension = false;
+        $repository = $this->repository(true);
 
         $data = !isset($data[0]) ? [$data] : $data;
 
         foreach ($data as $key => $value) {
             if (!$multipleDimension) {
+                $value = $value[$repository.'Client'] ?? $value;
+                $value = array_merge($value,$this->getRegister());
                 $list[$key] = $value;
             }
             else{
