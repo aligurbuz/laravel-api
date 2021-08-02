@@ -6,6 +6,7 @@ namespace App\Repositories;
 
 use Illuminate\Support\Str;
 use App\Exceptions\Exception;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Builder;
 
 /**
@@ -53,6 +54,29 @@ trait UpdateRepository
     public function createTableChanges(array $oldData = [],array $newData = []) : void
     {
         //
+    }
+
+    /**
+     * get hitter process for repository model
+     *
+     * @param array $data
+     * @return array
+     */
+    public function hitterProcess(array $data = []): array
+    {
+        if(
+            property_exists($this,'hitter')
+            && is_array($this->hitter)
+            && count($this->hitter)
+        ) {
+            foreach ($this->hitter as $hit){
+                if(isset($data[$hit])){
+                    $data[$hit] = DB::raw(''.$hit.'+'.$data[$hit]);
+                }
+            }
+        }
+
+        return $data;
     }
 
     /**
