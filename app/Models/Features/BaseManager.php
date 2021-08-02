@@ -31,7 +31,6 @@ trait BaseManager
     protected array $localizationWithQuery = [
         'localization' => [
             'foreignColumn' => 'localized_code',
-            'localColumn'   => 'product_code',
             'table' => 'localizations',
             'description' => 'You can use localizations relation belonging to product data.',
             'repository' => 'localization',
@@ -46,6 +45,7 @@ trait BaseManager
     {
         $this->fillable = Db::columns($this->getTable());
         $this->assignAppends();
+        $this->localizationWithQuery['localization']['localColumn'] = getTableCode($this->getModelName());
         $this->withQueryConstructor();
         parent::__construct($attributes);
     }
