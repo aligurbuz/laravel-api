@@ -35,7 +35,12 @@ trait CreateRepository
 
         try {
             foreach ($this->getClientData($data) as $value){
-                $list[] = $this->createModel($value);
+                $list[] = $result = $this->createModel($value);
+
+                if(method_exists($this,'eventFireCreate')){
+                    $this->eventFireCreate($result->toArray());
+                }
+
                 $this->createEventDispatcher($value);
             }
 
