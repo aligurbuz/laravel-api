@@ -470,7 +470,9 @@ class EloquentRepository
     public function sqlException(Throwable $throwable) : mixed
     {
         return SqlExceptionManager::make($throwable,$this->getTable(),function() use($throwable){
-            return Exception::modelCreateException($throwable->getPrevious()->getMessage());
+            return Exception::modelCreateException(
+                is_null($throwable->getPrevious()) ? $throwable->getMessage() : $throwable->getPrevious()->getMessage()
+            );
         });
     }
 
