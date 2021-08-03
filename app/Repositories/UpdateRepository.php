@@ -106,7 +106,11 @@ trait UpdateRepository
                 return Exception::updateException();
             }
 
-            $queryList[] = ($baseQuery->get()->toArray())[0] ?? [];
+            $queryList[] = $result = ($baseQuery->get()->toArray())[0] ?? [];
+
+            if(method_exists($this,'eventFireAfterUpdate')){
+                $this->eventFireAfterUpdate($result);
+            }
         }
 
         return $queryList;
