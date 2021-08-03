@@ -489,6 +489,20 @@ class EloquentRepository
     }
 
     /**
+     * get hitter property values for repository
+     *
+     * @return array
+     */
+    public function getHitter() : array
+    {
+        if(property_exists($this,'hitter')){
+            return $this->hitter;
+        }
+
+        return [];
+    }
+
+    /**
      * set eager loading for repository
      *
      * @param $model

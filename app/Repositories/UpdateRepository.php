@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Repositories;
 
+use App\Services\AppContainer;
 use Illuminate\Support\Str;
 use App\Exceptions\Exception;
 use Illuminate\Support\Facades\DB;
@@ -60,9 +61,10 @@ trait UpdateRepository
      * get hitter process for repository model
      *
      * @param array $data
+     * @param int $key
      * @return array
      */
-    public function hitterProcess(array $data = []): array
+    public function hitterProcess(array $data = [],int $key = 0): array
     {
         if(
             property_exists($this,'hitter')
@@ -71,7 +73,10 @@ trait UpdateRepository
         ) {
             foreach ($this->hitter as $hit){
                 if(isset($data[$hit])){
-                    $data[$hit] = DB::raw(''.$hit.'+'.$data[$hit]);
+                    $operator = AppContainer::has('repositoryHitter.'.$key.'.'.$hit)
+                        ? AppContainer::get('repositoryHitter.'.$key.'.'.$hit)
+                        : '+';
+                    $data[$hit] = DB::raw(''.$hit.''.$operator.''.$data[$hit]);
                 }
             }
         }
@@ -90,12 +95,12 @@ trait UpdateRepository
     {
         $queryList = [];
 
-        foreach ($this->getClientData($data) as $data){
+        foreach ($this->getClientData($data) as $dataKey => $data){
             $baseQuery  =  $this->getBaseQueryForUpdate($data,$id);
             $oldData    =  $baseQuery->get()->toArray();
 
             try{
-                $update = $baseQuery->update($this->hitterProcess($data));
+                $update = $baseQuery->update($this->hitterProcess($data,$dataKey));
                 $this->updateEventDispatcher($oldData,$data);
             }
             catch (\Exception $exception){

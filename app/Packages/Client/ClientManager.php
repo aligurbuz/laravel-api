@@ -241,6 +241,31 @@ class ClientManager
     }
 
     /**
+     * get hitter value handler method for client process
+     *
+     * @param array $hitters
+     * @param array $value
+     * @param int $key
+     * @return array
+     */
+    private function hitterValueHandler(array $hitters,array $value,int $key = 0) : array
+    {
+        if(count($hitters)){
+            foreach ($value as $keyForHit => $valueForHit){
+                if(in_array($keyForHit,$hitters,true)){
+                    $valueHitOperator = substr($valueForHit,0,1);
+                    if($valueHitOperator=='-' OR $valueHitOperator=='+'){
+                        $value[$keyForHit] = substr($valueForHit,1);
+                        AppContainer::set('repositoryHitter.'.$key.'.'.$keyForHit,$valueHitOperator);
+                    }
+                }
+            }
+        }
+
+        return $value;
+    }
+
+    /**
      * get client body format
      *
      * @param array $data
@@ -251,6 +276,8 @@ class ClientManager
         $list = [];
         $multipleDimension = false;
         $repository = $this->repository(true);
+        $repositoryInstance = $this->repository();
+        $hitters = $repositoryInstance->getHitter();
 
         $data = !isset($data[0]) ? [$data] : $data;
 
@@ -258,7 +285,7 @@ class ClientManager
             if (!$multipleDimension) {
                 $value = $value[$repository.'Client'] ?? $value;
                 $value = array_merge($value,$this->getRegister());
-                $list[$key] = $value;
+                $list[$key] = $this->hitterValueHandler($hitters,$value,$key);
             }
             else{
                 $multipleDimension = true;
