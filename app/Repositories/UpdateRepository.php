@@ -95,7 +95,7 @@ trait UpdateRepository
             $oldData    =  $baseQuery->get()->toArray();
 
             try{
-                $update = $baseQuery->update($data);
+                $update = $baseQuery->update($this->hitterProcess($data));
                 $this->updateEventDispatcher($oldData,$data);
             }
             catch (\Exception $exception){
