@@ -81,6 +81,11 @@ class RepositoryCommand extends Command
             ->addComment('')
             ->addComment('@var array|string[]');
 
+        $class->addProperty('hitter',[])->setProtected()->setType('array')
+            ->addComment('hitter values for repository')
+            ->addComment('')
+            ->addComment('@var array|string[]');
+
         $method = $class->addMethod(lcfirst($className));
         $method->addParameter('builder',null)->setNullable(true)->setType('object');
         $method->setBody('return $this->apply($builder);')->setReturnType('object');
@@ -89,6 +94,14 @@ class RepositoryCommand extends Command
             ->addComment('@param object|null $builder')
             //->addComment('@param Builder $builder')
             ->addComment('@return object');
+
+        $afterCreate = $class->addMethod('eventFireAfterCreate');
+        $afterCreate->addParameter('result',[])->setType('array');
+        $afterCreate->setBody('//')->setReturnType('void');
+        $afterCreate->addComment('the fired event after create method for repository')
+            ->addComment('')
+            ->addComment('@param array $result')
+            ->addComment('@return void');
 
         touch($file = $directory.''.DIRECTORY_SEPARATOR.''.$className.'.php');
         $content = '<?php '.PHP_EOL.''.PHP_EOL.'declare(strict_types=1);'.PHP_EOL.''.PHP_EOL.''.$namespace;
@@ -110,12 +123,12 @@ class RepositoryCommand extends Command
             ->addComment('@return array|object')->addComment('@see '.$className.'::create()')->addParameter('data',[])->setType('array');
 
         $updateMethod = $class->addMethod('update')->setPublic()->setReturnType('array|object');
-            $updateMethod->addComment('@param array $data')
-                ->addComment('@param bool $id')
+        $updateMethod->addComment('@param array $data')
+            ->addComment('@param bool $id')
             ->addComment('@return array|object')->addComment('@see '.$className.'::update()');
 
-            $updateMethod->addParameter('data',[])->setType('array');
-            $updateMethod->addParameter('id',true)->setType('bool');
+        $updateMethod->addParameter('data',[])->setType('array');
+        $updateMethod->addParameter('id',true)->setType('bool');
 
         $interfaceMethodFind = $class->addMethod('find')->setPublic()->setReturnType('array');
         $interfaceMethodFind
