@@ -103,6 +103,14 @@ class RepositoryCommand extends Command
             ->addComment('@param array $result')
             ->addComment('@return void');
 
+        $afterUpdate = $class->addMethod('eventFireAfterUpdate');
+        $afterUpdate->addParameter('result',[])->setType('array');
+        $afterUpdate->setBody('//')->setReturnType('void');
+        $afterUpdate->addComment('the fired event after update method for repository')
+            ->addComment('')
+            ->addComment('@param array $result')
+            ->addComment('@return void');
+
         touch($file = $directory.''.DIRECTORY_SEPARATOR.''.$className.'.php');
         $content = '<?php '.PHP_EOL.''.PHP_EOL.'declare(strict_types=1);'.PHP_EOL.''.PHP_EOL.''.$namespace;
         File::put($file,$content);
