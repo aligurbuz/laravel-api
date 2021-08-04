@@ -139,6 +139,19 @@ class EloquentRepository
     }
 
     /**
+     * update data for repository model
+     *
+     * @param array $updateData
+     * @param array $createData
+     * @param bool $id
+     * @return array|object
+     */
+    public function updateOrCreate(array $updateData = [],array $createData = [],bool $id = false): array|object
+    {
+        return $this->updateHandler($updateData,$id,$createData);
+    }
+
+    /**
      * get proxy closure for repository
      *
      * @param mixed $callback

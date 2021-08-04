@@ -89,15 +89,24 @@ trait UpdateRepository
      *
      * @param array $data
      * @param bool $id
+     * @param array $create
      * @return array|object
      */
-    public function updateHandler(array $data = [],bool $id = true): array|object
+    public function updateHandler(array $data = [],bool $id = true,array $create = []): array|object
     {
         $queryList = [];
 
         foreach ($this->getClientData($data) as $dataKey => $data){
             $baseQuery  =  $this->getBaseQueryForUpdate($data,$id);
             $oldData    =  $baseQuery->get()->toArray();
+
+            if(
+                !isset($oldData[0])
+                && $id === false
+                && count($create)
+            ){
+                return $this->create([$create]);
+            }
 
             try{
                 $update = $baseQuery->update($this->hitterProcess($data,$dataKey));
