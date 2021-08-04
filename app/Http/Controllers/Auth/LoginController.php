@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Auth;
 
+use App\Facades\Authenticate\ApiKey;
 use Exception;
 use App\Services\Client;
 use App\Services\Response;
@@ -37,7 +38,7 @@ class LoginController extends Controller
 
             $data = [];
             $data['user']  = $user->toArray();
-            $data['token'] = $user->createToken('MyApp')->accessToken;
+            $data['token'] = $user->createToken(ApiKey::who())->accessToken;
 
             return Response::ok($data);
         }
