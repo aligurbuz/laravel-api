@@ -26,6 +26,19 @@ if(!function_exists('entity')){
     }
 }
 
+if(!function_exists('isAuth')){
+
+    /**
+     * checks if the user is logged
+     *
+     * @return bool
+     */
+    function isAuth(): bool
+    {
+        return is_null(request()->user());
+    }
+}
+
 if(!function_exists('cR')){
 
     /**
