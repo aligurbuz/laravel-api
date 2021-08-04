@@ -277,7 +277,7 @@ class ClientManager
         $multipleDimension = false;
         $repository = $this->repository(true);
         $repositoryInstance = $this->repository();
-        $hitters = $repositoryInstance->getHitter();
+        $hitters = $repository=='noModel' ? [] : $repositoryInstance->getHitter();
 
         $data = !isset($data[0]) ? [$data] : $data;
 
