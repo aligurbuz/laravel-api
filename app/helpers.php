@@ -26,10 +26,23 @@ if(!function_exists('entity')){
     }
 }
 
+if(!function_exists('isAuthenticate')){
+
+    /**
+     * checks if the user is logged
+     *
+     * @return bool
+     */
+    function isAuthenticate(): bool
+    {
+        return is_null(request()->user());
+    }
+}
+
 if(!function_exists('cR')){
 
     /**
-     * manipulates to client request with data object
+     * manipulates to client request with data
      *
      * @param string $client
      * @param array $data
