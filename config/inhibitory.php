@@ -2,6 +2,6 @@
 
 return [
     'web' => [
-        'countries' => ['GET'],
+        'countries/*' => ['GET'],
     ]
 ];
