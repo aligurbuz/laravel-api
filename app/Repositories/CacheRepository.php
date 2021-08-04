@@ -43,6 +43,17 @@ trait CacheRepository
     protected mixed $cacheTag = null;
 
     /**
+     * generate specific cache key for repository
+     *
+     * @param string $model
+     * @return string
+     */
+    public function specificCacheKey(string $model) : string
+    {
+        return $model;
+    }
+
+    /**
      * it generates the hashed key for cache
      *
      * @param string|null $model
@@ -50,7 +61,7 @@ trait CacheRepository
      */
     public function generateCacheKey(?string $model = null) : string
     {
-        return $model ?? $this->getModelName();
+        return $this->specificCacheKey(($model ?? $this->getModelName()));
     }
 
     /**
