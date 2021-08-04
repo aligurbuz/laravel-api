@@ -24,7 +24,7 @@ class LoginController extends Controller
     {
         $client->handle();
         $clientData = (Client::data())[0] ?? [];
-        $authGuard = Auth::guard('web');
+        $authGuard = Auth::guard(authGuard());
 
         if (
             $authGuard->attempt(

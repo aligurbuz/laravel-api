@@ -26,6 +26,19 @@ if(!function_exists('entity')){
     }
 }
 
+if(!function_exists('authGuard')){
+
+    /**
+     * checks if the user is logged
+     *
+     * @return string
+     */
+    function authGuard(): string
+    {
+        return 'web';
+    }
+}
+
 if(!function_exists('isAuthenticate')){
 
     /**
