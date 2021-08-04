@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Services;
 
+use App\Facades\Authenticate\ApiKey;
 use App\Facades\Authenticate\Authenticate;
 
 /**
@@ -15,18 +16,17 @@ class Client
     /**
      * get client finger print for request
      *
-     * @param bool $bodyData
      * @return int
      */
-    public static function fingerPrint(bool $bodyData = true): int
+    public static function fingerPrint(): int
     {
         $request = request();
 
         return crc32(sha1(serialize(json_encode([
+            ApiKey::who(),
             $request->method(),
             $request->url(),
             $request->query->all(),
-            $bodyData ? $request->request->all() : [],
             Authenticate::code(),
             $request->header('accept-language'),
             $request->header('apikey')

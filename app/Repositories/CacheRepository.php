@@ -133,7 +133,7 @@ trait CacheRepository
     {
         $this->cacheKey           = $this->generateCacheKey();
         $this->cacheInstance      = Factory::cache();
-        $this->cacheTag           = $this->cacheTag ?? Client::fingerPrint(false);
+        $this->cacheTag           = $this->cacheTag ?? Client::fingerPrint();
     }
 
     /**
