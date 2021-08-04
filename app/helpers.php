@@ -35,7 +35,7 @@ if(!function_exists('isAuthenticate')){
      */
     function isAuthenticate(): bool
     {
-        return is_null(request()->user());
+        return !is_null(request()->user());
     }
 }
 
