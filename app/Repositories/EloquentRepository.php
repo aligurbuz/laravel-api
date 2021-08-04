@@ -143,12 +143,11 @@ class EloquentRepository
      *
      * @param array $updateData
      * @param array $createData
-     * @param bool $id
      * @return array|object
      */
-    public function updateOrCreate(array $updateData = [],array $createData = [],bool $id = false): array|object
+    public function updateOrCreate(array $updateData = [],array $createData = []): array|object
     {
-        return $this->updateHandler($updateData,$id,$createData);
+        return $this->updateHandler($updateData,false,$createData);
     }
 
     /**

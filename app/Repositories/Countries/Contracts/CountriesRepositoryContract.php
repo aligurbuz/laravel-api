@@ -92,4 +92,11 @@ interface CountriesRepositoryContract
      * @return array
      */
     public function cache(mixed $tag,callable $callback): array;
+
+    /**
+     * @param array $updateData
+     * @param array $createData
+     * @return array|object
+     */
+    public function updateOrCreate(array $updateData = [],array $createData = []): array|object;
 }

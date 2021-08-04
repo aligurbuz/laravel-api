@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Repositories\Mix\Contracts;
 
@@ -100,4 +100,11 @@ interface TableChangesRepositoryContract
 	 * @see TableChangesRepository::exists()
 	 */
 	public function exists($field, $value): bool;
+
+    /**
+     * @param array $updateData
+     * @param array $createData
+     * @return array|object
+     */
+    public function updateOrCreate(array $updateData = [],array $createData = []): array|object;
 }
