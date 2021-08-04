@@ -3,6 +3,10 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Repositories\Countries\Contracts\DistrictsRepositoryContract;
+use App\Repositories\Countries\DistrictsRepository;
+use App\Repositories\Countries\Contracts\CitiesRepositoryContract;
+use App\Repositories\Countries\CitiesRepository;
 use App\Repositories\Mix\Contracts\TableChangesRepositoryContract;
 use App\Repositories\Mix\TableChangesRepository;
 use App\Repositories\Gate\Contracts\PermissionsRepositoryContract;
@@ -42,6 +46,8 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(RolesRepositoryContract::class,RolesRepository::class);
         $this->app->bind(PermissionsRepositoryContract::class,PermissionsRepository::class);
         $this->app->bind(TableChangesRepositoryContract::class,TableChangesRepository::class);
+        $this->app->bind(CitiesRepositoryContract::class,CitiesRepository::class);
+        $this->app->bind(DistrictsRepositoryContract::class,DistrictsRepository::class);
         //newBind
     }
 

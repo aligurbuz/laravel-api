@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Countries\DistrictsController;
+use App\Http\Controllers\Countries\CitiesController;
 use App\Http\Controllers\Mix\TableChangesController;
 use App\Http\Controllers\Gate\PermissionsController;
 use App\Http\Controllers\Gate\RolesController;
@@ -29,6 +31,14 @@ Route::post('/login', [LoginController::class,'login']);
 Route::post('/register', [RegisterController::class,'register']);
 
 Route::middleware([])->group(function(){
+
+    Route::get('/countries/districts', [DistrictsController::class,'get']);
+    Route::post('/countries/districts', [DistrictsController::class,'create']);
+    Route::put('/countries/districts', [DistrictsController::class,'update']);
+
+    Route::get('/countries/cities', [CitiesController::class,'get']);
+    Route::post('/countries/cities', [CitiesController::class,'create']);
+    Route::put('/countries/cities', [CitiesController::class,'update']);
 
     Route::get('/mix/tableChanges', [TableChangesController::class,'get']);
     Route::post('/mix/tableChanges', [TableChangesController::class,'create']);

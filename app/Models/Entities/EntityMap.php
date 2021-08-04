@@ -6,6 +6,24 @@ class EntityMap
 {
     /**
      * @param object $query
+     * @return District
+     */
+    public function district(object $query) : District
+    {
+        return new District($query);
+    }
+    
+    /**
+     * @param object $query
+     * @return City
+     */
+    public function city(object $query) : City
+    {
+        return new City($query);
+    }
+    
+    /**
+     * @param object $query
      * @return TableChange
      */
     public function tableChange(object $query) : TableChange

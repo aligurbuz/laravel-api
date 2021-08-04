@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Repositories;
 
 use App\Repositories\User\Contracts\UserRepositoryContract;
+use App\Repositories\Countries\Contracts\DistrictsRepositoryContract;
+use App\Repositories\Countries\Contracts\CitiesRepositoryContract;
 use App\Repositories\Mix\Contracts\TableChangesRepositoryContract;
 use App\Repositories\Gate\Contracts\PermissionsRepositoryContract;
 use App\Repositories\Gate\Contracts\RolesRepositoryContract;
@@ -20,6 +22,26 @@ use App\Repositories\Countries\Contracts\CountriesRepositoryContract;
  */
 class Repository
 {
+    /**
+     * get district repository instance
+     *
+     * @return DistrictsRepositoryContract
+     */
+    public static function district() : DistrictsRepositoryContract
+    {
+        return app()->get(DistrictsRepositoryContract::class);
+    }
+    
+    /**
+     * get city repository instance
+     *
+     * @return CitiesRepositoryContract
+     */
+    public static function city() : CitiesRepositoryContract
+    {
+        return app()->get(CitiesRepositoryContract::class);
+    }
+    
     /**
      * get tableChange repository instance
      *

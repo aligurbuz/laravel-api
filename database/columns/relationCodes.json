@@ -2,7 +2,12 @@
     "response_code": [
         "AccessLogger"
     ],
+    "city_code": [
+        "City",
+        "District"
+    ],
     "country_code": [
+        "City",
         "Country"
     ],
     "num_code": [
@@ -10,6 +15,9 @@
     ],
     "phone_code": [
         "Country"
+    ],
+    "district_code": [
+        "District"
     ],
     "language_code": [
         "Language",
@@ -37,5 +45,8 @@
     "user_code": [
         "SuperAdmin",
         "User"
+    ],
+    "table_change_code": [
+        "TableChange"
     ]
 }

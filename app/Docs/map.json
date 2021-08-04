@@ -11,7 +11,7 @@
     ],
     "keys": {
         "/var/www/html/app/api/app/Docs/Endpoints/User/User.json": 0,
-        "/var/www/html/app/api/app/Docs/Endpoints/Countries/Countries.json": 0,
+        "/var/www/html/app/api/app/Docs/Endpoints/Countries/Countries.json": 2,
         "/var/www/html/app/api/app/Docs/Endpoints/Localizations/Localizations.json": 0,
         "/var/www/html/app/api/app/Docs/Endpoints/SuperAdmins/SuperAdmins.json": 0,
         "/var/www/html/app/api/app/Docs/Endpoints/Gate/Gate.json": 1,
@@ -25,6 +25,8 @@
         "SuperAdmins_SuperAdmins_superAdmin": 0,
         "Roles_Gate_role": 0,
         "Permissions_Gate_permission": 1,
-        "TableChanges_Mix_tableChange": 0
+        "TableChanges_Mix_tableChange": 0,
+        "Cities_Countries_city": 1,
+        "Districts_Countries_district": 2
     }
 }

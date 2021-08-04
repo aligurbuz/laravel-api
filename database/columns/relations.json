@@ -1,15 +1,28 @@
 {
+    "City": [
+        "Country",
+        "Localization",
+        "District"
+    ],
     "Country": [
+        "City",
         "Localization"
     ],
     "Localization": [
+        "City",
         "Country",
+        "District",
         "Language",
         "Localization",
         "Permission",
         "Role",
         "SuperAdmin",
+        "TableChange",
         "User"
+    ],
+    "District": [
+        "City",
+        "Localization"
     ],
     "Language": [
         "Localization"
@@ -30,6 +43,9 @@
     "SuperAdmin": [
         "Role",
         "User",
+        "Localization"
+    ],
+    "TableChange": [
         "Localization"
     ]
 }
