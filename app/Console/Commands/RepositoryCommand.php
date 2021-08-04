@@ -202,6 +202,15 @@ class RepositoryCommand extends Command
         $interfaceMethodExists->addParameter('field');
         $interfaceMethodExists->addParameter('value');
 
+        $interfaceMethodUpdateOrCreate = $class->addMethod('updateOrCreate')->setPublic()->setReturnType('array|object');
+        $interfaceMethodUpdateOrCreate
+            ->addComment('@param array $updateData')
+            ->addComment('@param array $createData')
+            ->addComment('@return array|object')->addComment('@see '.$className.'::updateOrCreate()');
+
+        $interfaceMethodUpdateOrCreate->addParameter('updateData',[])->setType('array');
+        $interfaceMethodUpdateOrCreate->addParameter('createData',[])->setType('array');
+
 
         touch($file = $directoryContract.''.DIRECTORY_SEPARATOR.''.$contractClassName.'.php');
         $content = '<?php '.PHP_EOL.''.PHP_EOL.''.$namespace;
