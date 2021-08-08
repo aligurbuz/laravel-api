@@ -13,6 +13,7 @@
         "guzzlehttp/guzzle": "^7.0.1",
         "itsgoingd/clockwork": "^5.0",
         "laravel/framework": "^8.12",
+        "laravel/octane": "^1.0",
         "laravel/passport": "^10.1",
         "laravel/tinker": "^2.5",
         "nette/php-generator": "^3.5",

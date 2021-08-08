@@ -24,6 +24,11 @@ class Response
     protected static array $httpStatusCodes = ['POST' => 201];
 
     /**
+     * @var array|int[]
+     */
+    protected static array $validCodes = [200,201,400,401,403,0,500];
+
+    /**
      * application success 200 content for response
      *
      * @param bool $data
@@ -64,6 +69,7 @@ class Response
     public static function error(string $message = null, int $code = 400, Throwable $exception = null) : object
     {
         $code           = ($code == '0' || !is_numeric($code)) ? 500 : $code;
+        $code           = (in_array($code,static::$validCodes,true)) ? $code : 500;
         $trace          = (isThrowableInstance($exception)) ? $exception : debug_backtrace();
         $classBaseName  = class_basename($trace);
 
