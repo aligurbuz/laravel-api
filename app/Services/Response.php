@@ -68,8 +68,8 @@ class Response
      */
     public static function error(string $message = null, int $code = 400, Throwable $exception = null) : object
     {
-        $code           = ($code == '0' || !is_numeric($code)) ? 500 : $code;
-        $code           = (in_array($code,static::$validCodes,true)) ? $code : 500;
+        $integerCode    = ($code == '0' || !is_numeric($code)) ? 500 : $code;
+        $code           = (in_array($integerCode,static::$validCodes,true)) ? $integerCode : 500;
         $trace          = (isThrowableInstance($exception)) ? $exception : debug_backtrace();
         $classBaseName  = class_basename($trace);
 
