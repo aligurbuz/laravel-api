@@ -26,7 +26,7 @@ class Response
     /**
      * @var array|int[]
      */
-    protected static array $validCodes = [200,201,400,401,403,0,500];
+    protected static array $validCodes = [200,201,400,401,403,500];
 
     /**
      * application success 200 content for response
