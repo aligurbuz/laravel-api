@@ -108,6 +108,10 @@ trait UpdateRepository
                 return $this->create($create);
             }
 
+            if(!$id && count($create) && isset($data[getTableCode($this->getModel())])){
+                unset($data[getTableCode($this->getModel())]);
+            }
+
             try{
                 $update = $baseQuery->update($this->hitterProcess($data,$dataKey));
                 $this->updateEventDispatcher($oldData,$data);
