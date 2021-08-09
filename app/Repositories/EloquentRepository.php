@@ -147,7 +147,7 @@ class EloquentRepository
      */
     public function updateOrCreate(array $updateData = [],array $createData = []): array|object
     {
-        return $this->updateHandler($updateData,false,$createData);
+        return $this->updateHandler($updateData,false,(count($createData) ? $createData : $updateData));
     }
 
     /**
