@@ -105,7 +105,7 @@ trait UpdateRepository
                 && $id === false
                 && count($create)
             ){
-                return $this->create([$create]);
+                return $this->create($create);
             }
 
             try{

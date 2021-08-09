@@ -253,9 +253,9 @@ class ClientManager
         if(count($hitters)){
             foreach ($value as $keyForHit => $valueForHit){
                 if(in_array($keyForHit,$hitters,true)){
-                    $valueHitOperator = substr($valueForHit,0,1);
+                    $valueHitOperator = substr((string)$valueForHit,0,1);
                     if($valueHitOperator=='-' OR $valueHitOperator=='+'){
-                        $value[$keyForHit] = substr($valueForHit,1);
+                        $value[$keyForHit] = substr((string)$valueForHit,1);
                         AppContainer::set('repositoryHitter.'.$key.'.'.$keyForHit,$valueHitOperator);
                     }
                 }
