@@ -62,6 +62,8 @@ stopwaitsecs=3600'];
         }
 
         exec('sudo service supervisor start');
+        exec('sudo service supervisor force-reload');
+        exec('sudo service supervisor start');
         return 0;
     }
 }
