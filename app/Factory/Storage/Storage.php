@@ -48,7 +48,7 @@ class Storage extends StorageManager implements StorageInterface
         $list = [];
 
         foreach (($this->binds['files'] ?? []) as $input => $data){
-            $this->client->ensureColumnExists($input,function() use($input,$data,$list) {
+            $this->client->ensureColumnExists($input,function() use($input,$data,&$list) {
                 $list[$input] = $data->getClientOriginalName();
             });
         }

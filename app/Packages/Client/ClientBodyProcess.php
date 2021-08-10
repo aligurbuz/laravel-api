@@ -35,12 +35,25 @@ class ClientBodyProcess extends ClientVariableProcess
         $this->client = $client;
         $data = $this->client->getData();
         $this->data = $data['body'] ?? $data;
+        $this->dataFileHandler();
 
         if(count($this->data)=='0'){
             Exception::clientEmptyException();
         }
 
         $this->make();
+    }
+
+    /**
+     * get data file handler for client process
+     *
+     * @return void
+     */
+    public function dataFileHandler() : void
+    {
+        foreach (request()->allFiles() as $key => $value){
+            $this->data[0][$key] = $value;
+        }
     }
 
     /**
@@ -88,6 +101,7 @@ class ClientBodyProcess extends ClientVariableProcess
                 $this->typeValidator($value);
 
                 $generatorProcess = array_merge($this->generatorProcess($value),$this->autoGeneratorProcess($value));
+                $overWriteStream = $this->client->getDataStream();
                 $this->variableProcess($generatorProcess);
                 $value = $this->client->getDataStream();
                 $this->client->setBodyData($key,$value);
@@ -96,6 +110,15 @@ class ClientBodyProcess extends ClientVariableProcess
 
                 $this->makeValidator($value);
 
+                if(count($overWriteStream)){
+                    foreach ($value as $streamKey => $streamValue){
+                        if(isset($overWriteStream[$streamKey])){
+                            $value[$streamKey] = $overWriteStream[$streamKey];
+                        }
+                    }
+
+                    $this->client->setBodyData($key,$value);
+                }
             }
             else{
                 Exception::clientFormatException();
