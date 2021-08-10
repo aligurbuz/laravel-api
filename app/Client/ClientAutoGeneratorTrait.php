@@ -142,10 +142,12 @@ trait ClientAutoGeneratorTrait
      */
     public function clientFileProcessAutoGenerator(): mixed
     {
-        $files = Factory::storage(['client' => $this])->put();
+        if(count(request()->allFiles())){
+            $files = Factory::storage(['client' => $this])->put();
 
-        foreach ($files as $key => $value){
-            $this->set($key,$value);
+            foreach ($files as $key => $value){
+                $this->set($key,$value);
+            }
         }
 
         return null;
@@ -165,6 +167,7 @@ trait ClientAutoGeneratorTrait
             if(is_numeric($key) && is_array($value)){
                 $this->codeProcessAutoGenerator($value);
             }
+
             if(preg_match('@(.*?)_code@is',$key)){
                 Factory::code([$key => $value])->throwExceptionIfDoesntExist();
             }
