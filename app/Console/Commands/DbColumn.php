@@ -78,18 +78,18 @@ class DbColumn extends Command
                 }
 
                 if(Str::endsWith($column->DATA_TYPE,'int')){
-                    if($column->COLUMN_NAME=='image' OR Str::endsWith($column->COLUMN_NAME,'_image')){
-                        $list['types'][] = '"image"';
-                    }
-                    else{
-                        $list['types'][] = '"integer"';
-                    }
+                    $list['types'][] = '"integer"';
                 }
                 elseif(Str::endsWith($column->DATA_TYPE,'json')){
                     $list['types'][] = '"array"';
                 }
                 elseif(Str::endsWith($column->DATA_TYPE,'char') || Str::endsWith($column->DATA_TYPE,'text')){
-                    $list['types'][] = '"string"';
+                    if($column->COLUMN_NAME=='image' OR Str::endsWith($column->COLUMN_NAME,'_image')){
+                        $list['types'][] = '"image"';
+                    }
+                    else{
+                        $list['types'][] = '"string"';
+                    }
                 }
                 else{
                     $list['types'][] = '"'.$column->DATA_TYPE.'"';
