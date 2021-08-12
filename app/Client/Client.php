@@ -290,7 +290,8 @@ class Client extends ClientManager
                     'withRange',
                     'has',
                     'doesntHave',
-                    'hasRange'
+                    'hasRange',
+                    'page'
                 ]);
 
                 if(count($this->repository()->getCollects())){

@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Exceptions\Exception;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,6 +24,20 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $this->checkPaginationValue();
+    }
+
+    /**
+     * If the page value sent by the client is not numeric, an exception is thrown.
+     *
+     * @return void
+     */
+    private function checkPaginationValue() : void
+    {
+        $page = request()->query->get('page',1);
+
+        if(!is_numeric($page)){
+            Exception::customException(trans('exception.page'));
+        }
     }
 }

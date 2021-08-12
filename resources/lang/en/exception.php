@@ -19,4 +19,5 @@ return [
     'cacheException'                => 'Cache deleting process has failed',
     'permissionException'           => 'You are not authorized for this endpoint. Please contact your system provider.',
     'resourceCollection'            => 'Collect column name is not valid',
+    'page'                          => 'Page value is not valid.It must be numeric value',
 ];
