@@ -255,6 +255,9 @@ trait ScopeManager
                         return $builder;
                     });
                 }
+                else{
+                    Exception::customException(trans('exception.hasException',['key' => $has]));
+                }
             }
         }
 

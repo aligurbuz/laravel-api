@@ -15,6 +15,7 @@ return [
     'rangeException'                => 'Range called :key is not valid',
     'selectException'               => 'Select statement called :key is not valid',
     'withException'                 => 'Invalid (withQuery) expression',
+    'hasException'                  => 'has query value is not valid for :key',
     'withSelectException'           => 'Invalid select word in (withQuery) expression',
     'cacheException'                => 'Cache deleting process has failed',
     'permissionException'           => 'You are not authorized for this endpoint. Please contact your system provider.',
