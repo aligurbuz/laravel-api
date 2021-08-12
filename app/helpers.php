@@ -52,6 +52,19 @@ if(!function_exists('isAuthenticate')){
     }
 }
 
+if(!function_exists('page')){
+
+    /**
+     * manipulates to client request with data
+     *
+     * @return int
+     */
+    function page(): int
+    {
+        return AppContainer::get('page');
+    }
+}
+
 if(!function_exists('cR')){
 
     /**
