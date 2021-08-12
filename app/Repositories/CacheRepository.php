@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Repositories;
 
+use App\Services\AppContainer;
 use Closure;
 use App\Services\Db;
 use App\Factory\Factory;
@@ -88,6 +89,10 @@ trait CacheRepository
     public function useCache(callable $callback) : array
     {
         $this->proxyUsing = false;
+
+        if(AppContainer::get('page')>1){
+            return call_user_func($callback);
+        }
 
         return $this->cacheCondition($callback,function() use($callback){
             return $this->proxyUsing ? $this->proxy($callback) : call_user_func($callback);

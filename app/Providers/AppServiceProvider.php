@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Exceptions\Exception;
+use App\Services\AppContainer;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -39,5 +40,7 @@ class AppServiceProvider extends ServiceProvider
         if(!is_numeric($page)){
             Exception::customException(trans('exception.page'));
         }
+
+        AppContainer::set('page',(int)$page);
     }
 }
