@@ -37,7 +37,7 @@ trait ScopeManager
     /**
      * @var string[]
      */
-    protected array $operators = ['<','>','<=','>=','<>'];
+    protected array $operators = ['<','>','<=','>=','<>','=','or'];
 
     /**
      * @var array|string[]
@@ -210,7 +210,15 @@ trait ScopeManager
                     if(is_array($value)){
                         foreach ($value as $operator => $item){
                             if(in_array($operator,$this->operators)){
-                                $withOperator = $query->where($key,$operator,$item);
+                                if($operator==='or'){
+                                    $withOperator = $query->orWhere($key,$item);
+                                }
+                                else{
+                                    $withOperator = $query->where($key,$operator,$item);
+                                }
+                            }
+                            else{
+                                Exception::customException(trans('exception.sqlOperatorException',['key' => $operator]));
                             }
                         }
                     }

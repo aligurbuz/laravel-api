@@ -21,4 +21,5 @@ return [
     'permissionException'           => 'You are not authorized for this endpoint. Please contact your system provider.',
     'resourceCollection'            => 'Collect column name is not valid',
     'page'                          => 'Page value is not valid.It must be numeric value',
+    'sqlOperatorException'          => 'filter operator is not valid for :key',
 ];
