@@ -73,9 +73,13 @@ class EloquentRepository
      */
     private function paginationHandler() : int
     {
-        $limit = (int)request()->query->get('limit',$this->pagination);
+        $limit = request()->query->get('limit',$this->pagination);
 
-        $this->setPagination($limit);
+        if(!is_numeric($limit)){
+            Exception::customException(trans('exception.limitException'));
+        }
+
+        $this->setPagination((int)$limit);
 
         return $this->pagination;
     }
@@ -90,6 +94,9 @@ class EloquentRepository
     {
         if($pagination<=$this->pagination){
             $this->pagination = $pagination;
+        }
+        else{
+            Exception::customException(trans('exception.limitExceedException'));
         }
     }
 

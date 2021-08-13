@@ -22,4 +22,6 @@ return [
     'resourceCollection'            => 'Collect column name is not valid',
     'page'                          => 'Page value is not valid.It must be numeric value',
     'sqlOperatorException'          => 'filter operator is not valid for :key',
+    'limitException'                => 'limit value is not numeric',
+    'limitExceedException'          => 'limit value exceeded.',
 ];
