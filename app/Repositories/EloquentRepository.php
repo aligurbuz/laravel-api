@@ -63,7 +63,34 @@ class EloquentRepository
      */
     public function pagination(?int $pagination = null) : array
     {
-        return $this->graphQl->paginate($pagination ?? $this->pagination)->toArray();
+        return $this->graphQl->paginate($pagination ?? $this->paginationHandler())->toArray();
+    }
+
+    /**
+     * get pagination handler for repository model
+     *
+     * @return int
+     */
+    private function paginationHandler() : int
+    {
+        $limit = (int)request()->query->get('limit',$this->pagination);
+
+        $this->setPagination($limit);
+
+        return $this->pagination;
+    }
+
+    /**
+     * set pagination value for repository model
+     *
+     * @param int $pagination
+     * @return void
+     */
+    public function setPagination(int $pagination) : void
+    {
+        if($pagination<=$this->pagination){
+            $this->pagination = $pagination;
+        }
     }
 
     /**
