@@ -81,7 +81,8 @@ use '.$useController.';',$routeApiContent);
         $serviceMapFile = base_path('database/columns/service.json');
 
         if(file_exists($serviceMapFile)){
-            $serviceMaps = json_decode($serviceMapFile,1);
+            $serviceMaps = File::get($serviceMapFile);
+            $serviceMaps = json_decode($serviceMaps,1);
 
             if(!isset($serviceMaps[$this->argument('model')])){
                 $newValues = [
