@@ -78,6 +78,7 @@ trait BaseManager
      * get model relations
      *
      * @param string|null $model
+     * @param bool $nested
      * @return void
      */
     public function getModelRelationsForCode(?string $model = null,bool $nested = false) : void
@@ -179,11 +180,11 @@ trait BaseManager
     /**
      * get with queries for model
      *
-     * @return mixed
+     * @return array
      */
-    public function getWithQueries() : mixed
+    public function getWithQueries() : array
     {
-        return $this->withQuery;
+        return property_exists($this,'withQuery') ? $this->withQuery : [];
     }
 
     /**

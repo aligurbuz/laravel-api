@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Builder;
 
 /**
  * Trait withProcess
- * @property $this withQuery
+ * @property array withQuery
  * @property $this withSelects
  * @property $this hasValues
  * @property $this doesntHaveValues
