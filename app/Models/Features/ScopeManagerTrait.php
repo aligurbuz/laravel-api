@@ -22,7 +22,7 @@ trait ScopeManagerTrait
     ];
 
     /**
-     * get range handler for model
+     * get range container handler for model
      *
      * @param object $object
      * @param mixed|null $data
@@ -38,5 +38,20 @@ trait ScopeManagerTrait
         AppContainer::set('responseFormatterSupplement',['ranges' => $modelRanges],true);
 
         return ['ranges' => $ranges,'modelRanges' => $modelRanges];
+    }
+
+    /**
+     * get relation container handler for model
+     *
+     * @param array $data
+     * @return void
+     */
+    public function relationContainer(array $data = []) : void
+    {
+        foreach ($data as $with => $items){
+            if(is_array($items) && isset($items['description']) && $with!=='localization'){
+                AppContainer::set('responseFormatterSupplement',['relations' =>[$with => $items['description']]],true);
+            }
+        }
     }
 }

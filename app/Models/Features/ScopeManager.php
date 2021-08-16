@@ -116,13 +116,10 @@ trait ScopeManager
      */
     public function scopeInstruction(Builder $builder) : Builder
     {
-        if(isset($this->withQuery) && is_array($this->withQuery)){
-            foreach ($this->withQuery as $with => $items){
-                if(is_array($items) && isset($items['description']) && $with!=='localization'){
-                    AppContainer::set('responseFormatterSupplement',['relations' =>[$with => $items['description']]],true);
-                }
-            }
+        if(property_exists($this,'withQuery') && is_array($this->withQuery)){
+            $this->relationContainer($this->withQuery);
         }
+
         return $builder;
     }
 

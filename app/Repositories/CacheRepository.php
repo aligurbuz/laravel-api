@@ -139,6 +139,7 @@ trait CacheRepository
     private function setProperties() : void
     {
         $this->rangeContainer($this);
+        $this->relationContainer($this->getModelWithQueries());
 
         $this->cacheKey           = $this->generateCacheKey();
         $this->cacheInstance      = Factory::cache();
