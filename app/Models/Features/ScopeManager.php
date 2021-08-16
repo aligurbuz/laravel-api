@@ -17,7 +17,7 @@ use Illuminate\Database\Eloquent\Builder;
  */
 trait ScopeManager
 {
-    use FullTextSearch,WithProcess;
+    use FullTextSearch,WithProcess,ScopeManagerTrait;
 
     /**
      * @var array[]
@@ -40,15 +40,6 @@ trait ScopeManager
     protected array $operators = ['<','>','<=','>=','<>','=','or'];
 
     /**
-     * @var array|string[]
-     */
-    protected array $autoRanges = [
-        'desc'      => 'Sorts your object by last registration value.',
-        'asc'       => 'Sorts your object by first registration value.',
-        'active'    => 'It filters according to the status=1 value for your object.',
-    ];
-
-    /**
      * get client scope data for model
      *
      * @param Builder $builder
@@ -58,15 +49,10 @@ trait ScopeManager
      */
     public function scopeRange(Builder $builder,object $object,mixed $data = null): object
     {
-        $range          = $data  ?? ((request()->query->all())['range'] ?? null);
-        $ranges         = is_string($range) ? explode(',',$range) : [];
-        $modelRanges    = array_merge($object->getRanges(),$this->autoRanges);
+        $rangeHandler   = $this->rangeContainer($object,$data);
 
-        //We record the instruction value in the response data to inform the user.
-        AppContainer::set('responseFormatterSupplement',['ranges' => $modelRanges],true);
-
-        foreach ($ranges as $data){
-            if(array_key_exists($data,$modelRanges) && method_exists($object,$data)){
+        foreach (($rangeHandler['ranges'] ?? []) as $data){
+            if(array_key_exists($data,($rangeHandler['modelRanges'] ?? [])) && method_exists($object,$data)){
                 $object->$data($builder);
             }
             else{

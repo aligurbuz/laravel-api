@@ -9,6 +9,7 @@ use App\Services\Db;
 use App\Factory\Factory;
 use App\Services\Client;
 use App\Exceptions\Exception;
+use App\Models\Features\ScopeManagerTrait;
 use App\Factory\Cache\Interfaces\CacheInterface;
 
 /**
@@ -17,6 +18,8 @@ use App\Factory\Cache\Interfaces\CacheInterface;
  */
 trait CacheRepository
 {
+    use ScopeManagerTrait;
+
     /**
      * @var int
      */
@@ -135,6 +138,8 @@ trait CacheRepository
      */
     private function setProperties() : void
     {
+        $this->rangeContainer($this);
+
         $this->cacheKey           = $this->generateCacheKey();
         $this->cacheInstance      = Factory::cache();
         $this->cacheTag           = $this->cacheTag ?? Client::fingerPrint();
