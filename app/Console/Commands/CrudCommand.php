@@ -78,6 +78,25 @@ use '.$useController.';',$routeApiContent);
         Artisan::call('doc:create',['controller' => $this->argument('controller'),'dir' => $this->argument('dir'),'model' => $this->argument('model')]);
         Artisan::call('postman:create',['collection' => config('app.name')]);
 
+        $serviceMapFile = base_path('database/columns/service.json');
+
+        if(file_exists($serviceMapFile)){
+            $serviceMaps = json_decode($serviceMapFile,1);
+
+            if(!isset($serviceMaps[$this->argument('model')])){
+                $newValues = [
+                    ucfirst($this->argument('model')) => [
+                        'controller' => ucfirst($controllerVariable),
+                        'dir' => ucfirst($dirVariable)
+                    ]
+                ];
+
+                $newServiceValues = array_merge_recursive($serviceMaps,$newValues);
+
+                File::put($serviceMapFile,json_encode($newServiceValues));
+            }
+        }
+
 
         $this->warn('Crud has been created');
         return 0;
