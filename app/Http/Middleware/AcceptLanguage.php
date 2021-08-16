@@ -45,7 +45,7 @@ class AcceptLanguage
         $acceptLanguage = $request->headers->get('accept-language');
 
         if(is_null($acceptLanguage)){
-            return Exception::customException('Accept-Language must be sent in the header request');
+            return Exception::customException(trans('exception.acceptLanguageNotIn'));
         }
 
         return $acceptLanguage;
@@ -62,7 +62,7 @@ class AcceptLanguage
         $repository = Repository::language()->name($acceptLanguage)->getRepository();
 
         if(!isset($repository[0]['language_code'])){
-            return Exception::customException('Accept-Language is not valid');
+            return Exception::customException(trans('exception.acceptLanguageNotValid'));
         }
 
         return $repository[0]['language_code'];

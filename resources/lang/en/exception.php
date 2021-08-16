@@ -24,4 +24,6 @@ return [
     'sqlOperatorException'          => 'filter operator is not valid for :key',
     'limitException'                => 'limit value is not numeric',
     'limitExceedException'          => 'limit value exceeded.',
+    'acceptLanguageNotIn'           => 'Accept-Language must be sent in the header request',
+    'acceptLanguageNotValid'        => 'Accept-Language is not valid',
 ];
