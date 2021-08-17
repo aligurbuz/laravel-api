@@ -46,8 +46,8 @@ class UpdateMigrationCommand extends Command
 
         if(isset($services[$model])){
             $contents       = $services[$model];
-            $controller     = $contents['controller'] ?? '';
-            $dir            = $contents['dir'] ?? '';
+            $controller     = lcfirst(($contents['controller'] ?? ''));
+            $dir            = lcfirst(($contents['dir'] ?? ''));
 
             Artisan::call('migrate');
             Artisan::call('update:column',['model' => $this->argument('model')]);
