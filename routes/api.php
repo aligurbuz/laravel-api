@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Currencies\CurrenciesController;
 use App\Http\Controllers\Countries\DistrictsController;
 use App\Http\Controllers\Countries\CitiesController;
 use App\Http\Controllers\Mix\TableChangesController;
@@ -31,6 +32,10 @@ Route::post('/login', [LoginController::class,'login']);
 Route::post('/register', [RegisterController::class,'register']);
 
 Route::middleware([])->group(function(){
+
+    Route::get('/currencies', [CurrenciesController::class,'get']);
+    Route::post('/currencies', [CurrenciesController::class,'create']);
+    Route::put('/currencies', [CurrenciesController::class,'update']);
 
     Route::get('/countries/districts', [DistrictsController::class,'get']);
     Route::post('/countries/districts', [DistrictsController::class,'create']);
