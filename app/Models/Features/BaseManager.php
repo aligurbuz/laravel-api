@@ -40,13 +40,18 @@ trait BaseManager
     /**
      * BaseManager constructor.
      * @param array $attributes
+     * @param bool $withQueryConstructor
      */
-    public function __construct(array $attributes = [])
+    public function __construct(array $attributes = [],bool $withQueryConstructor = true)
     {
         $this->fillable = Db::columns($this->getTable());
         $this->assignAppends();
         $this->localizationWithQuery['localization']['localColumn'] = getTableCode($this->getModelName());
-        $this->withQueryConstructor();
+
+        if($withQueryConstructor){
+            $this->withQueryConstructor();
+        }
+
         parent::__construct($attributes);
     }
 
@@ -138,7 +143,7 @@ trait BaseManager
                     $relationModelNamespace = Constants::modelNamespace.'\\'.Str::ucfirst($relationModel);
 
                     if(class_exists($relationModelNamespace)){
-                        $relationTable = (new $relationModelNamespace)->getTable();
+                        $relationTable = (new $relationModelNamespace([],false))->getTable();
 
                         $this->withQuery[$relationModel] = [
                             'hasMany' => false,
