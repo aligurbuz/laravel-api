@@ -39,7 +39,7 @@ class DatabaseCreatorCommand extends Command
      */
     public function handle()
     {
-        if($this->app->runningInConsole() && !File::exists('checkDb')){
+        if(app()->runningInConsole() && !File::exists('checkDb')){
             $databases = DB::select('SHOW DATABASES');
 
             $list = [];
