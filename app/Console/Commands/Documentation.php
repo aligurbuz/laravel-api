@@ -53,6 +53,14 @@ class Documentation extends Command
         unset($columns['created_at']);
         unset($columns['updated_at']);
 
+        $isAvailableImage = false;
+
+        foreach ($columns as $columnValue){
+            if($columnValue=='image'){
+                $isAvailableImage = true;
+            }
+        }
+
         $fingerPrint = $controller.'_'.$dir.'_'.$model;
 
         $dirControllerPath = $docPath.''.DIRECTORY_SEPARATOR.''.$dir;
@@ -121,17 +129,56 @@ class Documentation extends Command
         $list['item'][$key]['item'][1]['response'] = [];
         $list['item'][$key]['item'][1]['request']['method'] = 'POST';
         $list['item'][$key]['item'][1]['request']['header'] = $getHeaders;
-        $list['item'][$key]['item'][1]['request']['body']['mode'] = 'raw';
-        $list['item'][$key]['item'][1]['request']['body']['raw'] = json_encode(array_diff_key($columns,[
-            'id' => 'integer',
-            'created_by' => 'integer',
-            'updated_by' => 'integer',
-            'deleted_by' => 'integer',
-            'deleted_at' => 'timestamp',
-            'is_deleted' => 'integer',
-            'status' => 'integer',
-            Str::snake($this->argument('model')).'_code' => 'integer'
-        ]));
+
+        if($isAvailableImage===false){
+            $list['item'][$key]['item'][1]['request']['body']['mode'] = 'raw';
+            $list['item'][$key]['item'][1]['request']['body']['raw'] = json_encode(array_diff_key($columns,[
+                'id' => 'integer',
+                'created_by' => 'integer',
+                'updated_by' => 'integer',
+                'deleted_by' => 'integer',
+                'deleted_at' => 'timestamp',
+                'is_deleted' => 'integer',
+                'status' => 'integer',
+                Str::snake($this->argument('model')).'_code' => 'integer'
+            ]));
+        }
+        else{
+
+            $formdataValues = array_diff_key($columns,[
+                'id' => 'integer',
+                'created_by' => 'integer',
+                'updated_by' => 'integer',
+                'deleted_by' => 'integer',
+                'deleted_at' => 'timestamp',
+                'is_deleted' => 'integer',
+                'status' => 'integer',
+                Str::snake($this->argument('model')).'_code' => 'integer'
+            ]);
+
+            $formDataList = [];
+            $fcounter = -1;
+
+            foreach ($formdataValues as $fkey => $fvalue){
+                $fcounter = ++$fcounter;
+                $formDataList[$fcounter]['key'] = $fkey;
+                $formDataList[$fcounter]['description'] = '';
+
+                if(isset($columns[$fkey]) && $columns[$fkey]=='image'){
+                    $formDataList[$fcounter]['type'] = 'file';
+                    $formDataList[$fcounter]['src'] = [];
+                }
+                else{
+                    $formDataList[$fcounter]['value'] = $fvalue;
+                    $formDataList[$fcounter]['type'] = 'text';
+                }
+
+            }
+
+            $list['item'][$key]['item'][1]['request']['body']['mode'] = 'formdata';
+            $list['item'][$key]['item'][1]['request']['body']['formdata'] = $formDataList;
+        }
+
         $list['item'][$key]['item'][1]['request']['body']['options']['raw']['language'] = 'json';
 
         $list['item'][$key]['item'][1]['request']['url']['raw'] = '{{baseUrl}}/'.$endpoint;
