@@ -6,6 +6,15 @@ class EntityMap
 {
     /**
      * @param object $query
+     * @return Currency
+     */
+    public function currency(object $query) : Currency
+    {
+        return new Currency($query);
+    }
+    
+    /**
+     * @param object $query
      * @return District
      */
     public function district(object $query) : District

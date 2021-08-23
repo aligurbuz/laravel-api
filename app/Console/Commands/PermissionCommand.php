@@ -25,6 +25,25 @@ class PermissionCommand extends Command
     protected $description = 'Command description';
 
     /**
+     * @var array|string[]
+     */
+    protected array $forbiddenRoutes = [
+        'login',
+        'logout',
+        'user',
+        'register',
+        'localizations',
+        'localizations/language',
+        'gate/roles',
+        'gate/permissions',
+        'countries',
+        'countries/cities',
+        'countries/districts',
+        'currencies',
+        'logger'
+    ];
+
+    /**
      * Create a new command instance.
      *
      * @return void
@@ -48,11 +67,13 @@ class PermissionCommand extends Command
         foreach ($routes as $key => $route){
             if(Str::startsWith($route,'api/')){
                 $endpoint = str_replace('api/','',$route);
-                if(!in_array($endpoint,$list,true)){
+                if(!in_array($endpoint,$list,true) && !in_array($endpoint,$this->forbiddenRoutes,true)){
                     $list[] = $endpoint;
                 }
             }
         }
+
+        DB::table('permissions')->delete();
 
         foreach ($list as $endpoint){
             $createList = [];

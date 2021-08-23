@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Repositories;
 
 use App\Repositories\User\Contracts\UserRepositoryContract;
+use App\Repositories\Currencies\Contracts\CurrenciesRepositoryContract;
 use App\Repositories\Countries\Contracts\DistrictsRepositoryContract;
 use App\Repositories\Countries\Contracts\CitiesRepositoryContract;
 use App\Repositories\Mix\Contracts\TableChangesRepositoryContract;
@@ -22,6 +23,16 @@ use App\Repositories\Countries\Contracts\CountriesRepositoryContract;
  */
 class Repository
 {
+    /**
+     * get currency repository instance
+     *
+     * @return CurrenciesRepositoryContract
+     */
+    public static function currency() : CurrenciesRepositoryContract
+    {
+        return app()->get(CurrenciesRepositoryContract::class);
+    }
+    
     /**
      * get district repository instance
      *

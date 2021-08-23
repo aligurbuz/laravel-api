@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Repositories\Currencies\Contracts\CurrenciesRepositoryContract;
+use App\Repositories\Currencies\CurrenciesRepository;
 use App\Repositories\Countries\Contracts\DistrictsRepositoryContract;
 use App\Repositories\Countries\DistrictsRepository;
 use App\Repositories\Countries\Contracts\CitiesRepositoryContract;
@@ -48,6 +50,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(TableChangesRepositoryContract::class,TableChangesRepository::class);
         $this->app->bind(CitiesRepositoryContract::class,CitiesRepository::class);
         $this->app->bind(DistrictsRepositoryContract::class,DistrictsRepository::class);
+        $this->app->bind(CurrenciesRepositoryContract::class,CurrenciesRepository::class);
         //newBind
     }
 

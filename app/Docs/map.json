@@ -7,7 +7,8 @@
         "/var/www/html/app/api/app/Docs/Endpoints/Localizations/Localizations.json",
         "/var/www/html/app/api/app/Docs/Endpoints/SuperAdmins/SuperAdmins.json",
         "/var/www/html/app/api/app/Docs/Endpoints/Gate/Gate.json",
-        "/var/www/html/app/api/app/Docs/Endpoints/Mix/Mix.json"
+        "/var/www/html/app/api/app/Docs/Endpoints/Mix/Mix.json",
+        "/var/www/html/app/api/app/Docs/Endpoints/Currencies/Currencies.json"
     ],
     "keys": {
         "/var/www/html/app/api/app/Docs/Endpoints/User/User.json": 0,
@@ -15,7 +16,8 @@
         "/var/www/html/app/api/app/Docs/Endpoints/Localizations/Localizations.json": 0,
         "/var/www/html/app/api/app/Docs/Endpoints/SuperAdmins/SuperAdmins.json": 0,
         "/var/www/html/app/api/app/Docs/Endpoints/Gate/Gate.json": 1,
-        "/var/www/html/app/api/app/Docs/Endpoints/Mix/Mix.json": 0
+        "/var/www/html/app/api/app/Docs/Endpoints/Mix/Mix.json": 0,
+        "/var/www/html/app/api/app/Docs/Endpoints/Currencies/Currencies.json": 0
     },
     "fingerPrints": {
         "User_User_user": 0,
@@ -27,6 +29,7 @@
         "Permissions_Gate_permission": 1,
         "TableChanges_Mix_tableChange": 0,
         "Cities_Countries_city": 1,
-        "Districts_Countries_district": 2
+        "Districts_Countries_district": 2,
+        "Currencies_Currencies_currency": 0
     }
 }
