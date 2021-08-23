@@ -28,27 +28,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->checkPaginationValue();
-        $this->createDatabase();
-    }
-    
-    public function createDatabase()
-    {
-        if($this->app->runningInConsole() && !File::exists('checkDb')){
-            $databases = DB::select('SHOW DATABASES');
-            
-            $list = [];
-            
-            foreach ($databases as $database){
-                $list[] = $database->Database;
-            }
-            
-            $appDatabase = config('database.connections.'.config('database.default').'.database');
-            
-            if(!in_array($appDatabase,$list)){
-                DB::select('CREATE DATABASE '.$appDatabase);
-                File::put('checkDb','');
-            }
-        }
     }
 
     /**
