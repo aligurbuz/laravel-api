@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use App\Exceptions\Exception;
 use App\Services\AppContainer;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -26,6 +28,27 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->checkPaginationValue();
+        $this->createDatabase();
+    }
+    
+    public function createDatabase()
+    {
+        if($this->app->runningInConsole() && !File::exists('checkDb')){
+            $databases = DB::select('SHOW DATABASES');
+            
+            $list = [];
+            
+            foreach ($databases as $database){
+                $list[] = $database->Database;
+            }
+            
+            $appDatabase = config('database.connections.'.config('database.default').'.database');
+            
+            if(!in_array($appDatabase,$list)){
+                DB::select('CREATE DATABASE '.$appDatabase);
+                File::put('checkDb','');
+            }
+        }
     }
 
     /**
