@@ -382,6 +382,25 @@ class EloquentRepository
     }
 
     /**
+     * get sequence model for client
+     *
+     * @param object|null $builder
+     * @return object
+     */
+    public function sequence(?object $builder = null): object
+    {
+        $this->ensureColumnExists('sequence',$this->instance(),function() use($builder){
+            $this->builder($builder)->orderBy('sequence','asc');
+        });
+
+        $this->ensureColumnExists('sequence_time',$this->instance(),function() use($builder){
+            $this->builder($builder)->orderBy('sequence_time','desc');
+        });
+
+        return $this;
+    }
+
+    /**
      * get order by desc scope for client
      *
      * @param null|Builder $builder
