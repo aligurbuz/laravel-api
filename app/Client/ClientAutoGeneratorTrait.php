@@ -50,21 +50,6 @@ trait ClientAutoGeneratorTrait
     ];
 
     /**
-<<<<<<< HEAD
-     * get sequence time generator for client
-     *
-     * @return mixed
-     */
-    public function sequenceTimeAutoGenerator(): mixed
-    {
-        return $this->ensureColumnExists('sequence_time',function(){
-            return time();
-        });
-    }
-
-    /**
-=======
->>>>>>> f35831f9... sequence time generator fix
      * get user_id generator for client
      *
      * @return mixed
