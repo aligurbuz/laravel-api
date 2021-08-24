@@ -282,13 +282,25 @@ class EloquentRepository
     }
 
     /**
+     * get instance model
+     *
+     * @return object
+     */
+    public function instanceModel() : object
+    {
+        $model = $this->getModel();
+
+        return new $model;
+    }
+
+    /**
      * get table for model name
      *
      * @return mixed
      */
     public function getTable(): mixed
     {
-        return (new static::$model)->getTable();
+        return $this->instanceModel()->getTable();
     }
 
     /**
@@ -308,7 +320,7 @@ class EloquentRepository
      */
     public function getModelWithValues(): mixed
     {
-        return (new static::$model)->getWithValues();
+        return $this->instanceModel()->getWithValues();
     }
 
     /**
@@ -318,7 +330,7 @@ class EloquentRepository
      */
     public function getModelWithQueries(): mixed
     {
-        return (new static::$model)->getWithQueries();
+        return $this->instanceModel()->getWithQueries();
     }
 
     /**
