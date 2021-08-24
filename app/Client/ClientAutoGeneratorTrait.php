@@ -21,6 +21,7 @@ trait ClientAutoGeneratorTrait
      * @var array
      */
     protected array $autoGenerators = [
+        'sequence_time',
         'user_code',
         'created_by',
         'updated_by',
@@ -36,6 +37,7 @@ trait ClientAutoGeneratorTrait
      * @var array
      */
     protected array $dontOverWriteAutoGenerators = [
+        'sequence_time',
         'user_code',
         'created_by',
         'updated_by',
@@ -44,6 +46,18 @@ trait ClientAutoGeneratorTrait
         'clientFileProcess',
         'codeProcess',
     ];
+
+    /**
+     * get sequence time generator for client
+     *
+     * @return mixed
+     */
+    public function sequenceTimeAutoGenerator(): mixed
+    {
+        return $this->ensureColumnExists('sequence_time',function(){
+            return time();
+        });
+    }
 
     /**
      * get user_id generator for client
