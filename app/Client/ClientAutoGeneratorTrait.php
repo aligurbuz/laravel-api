@@ -15,6 +15,8 @@ use App\Facades\Authenticate\Authenticate;
  */
 trait ClientAutoGeneratorTrait
 {
+    use SequenceTimeGenerator;
+
     /**
      * get auto generator for client
      *
@@ -48,6 +50,7 @@ trait ClientAutoGeneratorTrait
     ];
 
     /**
+<<<<<<< HEAD
      * get sequence time generator for client
      *
      * @return mixed
@@ -60,6 +63,8 @@ trait ClientAutoGeneratorTrait
     }
 
     /**
+=======
+>>>>>>> f35831f9... sequence time generator fix
      * get user_id generator for client
      *
      * @return mixed

@@ -101,6 +101,33 @@ class EloquentRepository
     }
 
     /**
+     * get limit model repository
+     *
+     * @param int $limit
+     * @return object
+     */
+    public function limit(int $limit) : object
+    {
+        $this->repository = $this->repository->limit($limit);
+
+        return $this;
+    }
+
+    /**
+     * get skip take limit model repository
+     *
+     * @param int $skip
+     * @param int $take
+     * @return object
+     */
+    public function skipTake(int $skip,int $take) : object
+    {
+        $this->repository = $this->repository->skip($skip)->take($take);
+
+        return $this;
+    }
+
+    /**
      * get cache for repository model data
      *
      * @param mixed $tag
@@ -389,12 +416,12 @@ class EloquentRepository
      */
     public function sequence(?object $builder = null): object
     {
-        $this->ensureColumnExists('sequence',$this->instance(),function() use($builder){
-            $this->builder($builder)->orderBy('sequence','asc');
+        $this->ensureColumnExists('sequence_time',$this->instance(),function() use($builder){
+            $this->repository = $this->builder($builder)->orderBy('sequence_time','desc');
         });
 
-        $this->ensureColumnExists('sequence_time',$this->instance(),function() use($builder){
-            $this->builder($builder)->orderBy('sequence_time','desc');
+        $this->ensureColumnExists('sequence',$this->instance(),function() use($builder){
+            $this->repository = $this->builder($builder)->orderBy('sequence','asc');
         });
 
         return $this;
