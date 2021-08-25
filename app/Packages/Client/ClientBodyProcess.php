@@ -101,7 +101,7 @@ class ClientBodyProcess extends ClientVariableProcess
                 $this->typeValidator($value);
 
                 $generatorProcess = array_merge($this->generatorProcess($value),$this->autoGeneratorProcess($value));
-                $overWriteStream = $this->client->getDataStream();
+                //$overWriteStream = $this->client->getDataStream();
                 $this->variableProcess($generatorProcess);
                 $value = $this->client->getDataStream();
                 $this->client->setBodyData($key,$value);
@@ -110,7 +110,7 @@ class ClientBodyProcess extends ClientVariableProcess
 
                 $this->makeValidator($value);
 
-                if(count($overWriteStream)){
+                /**if(count($overWriteStream)){
                     foreach ($value as $streamKey => $streamValue){
                         if(isset($overWriteStream[$streamKey])){
                             $value[$streamKey] = $overWriteStream[$streamKey];
@@ -118,7 +118,7 @@ class ClientBodyProcess extends ClientVariableProcess
                     }
 
                     $this->client->setBodyData($key,$value);
-                }
+                }**/
             }
             else{
                 Exception::clientFormatException();
