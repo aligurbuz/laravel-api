@@ -48,6 +48,10 @@ trait BaseManager
         $this->assignAppends();
         $this->localizationWithQuery['localization']['localColumn'] = getTableCode($this->getModelName());
 
+        if(in_array('sequence',$this->fillable,true) && request()->method()=='GET'){
+            $this->setHidden(['sequence','sequence_time']);
+        }
+
         if($withQueryConstructor){
             $this->withQueryConstructor();
         }
