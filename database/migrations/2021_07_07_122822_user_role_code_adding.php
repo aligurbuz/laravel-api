@@ -16,6 +16,10 @@ class UserRoleCodeAdding extends Migration
         Schema::table('users',function(Blueprint $table){
             $table->addColumn('bigInteger','role_code')->default(0)->after('user_code');
         });
+
+        DB::table('users')->where('id',1)->update([
+            'role_code' => crc32('firstRoleCode')
+        ]);
     }
 
     /**
