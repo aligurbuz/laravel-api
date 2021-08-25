@@ -17,12 +17,9 @@ trait SequenceTimeGenerator
      */
     public function sequenceTimeAutoGenerator(): mixed
     {
-        $sequenceTime = null;
+        return $this->ensureColumnExists('sequence',function(){
+            $sequenceTime = null;
 
-        if(
-            $this->has('sequence')
-            && request()->method()=='PUT'
-        ){
             $modelCode           = getTableCode($this->getModel());
             $existSequenceQuery  = $this->repository()->select(['sequence','sequence_time'])->code((int)$this->get($modelCode))->getRepository();
             $existSequence       = $existSequenceQuery[0]['sequence'] ?? null;
@@ -47,10 +44,10 @@ trait SequenceTimeGenerator
                     $sequenceTime = $existData['sequence_time']+1;
                 }
             }
-        }
 
-        return $this->ensureColumnExists('sequence_time',function() use($sequenceTime){
-            return $sequenceTime ?? time();
+            return $this->ensureColumnExists('sequence_time',function() use($sequenceTime){
+                return $sequenceTime ?? time();
+            });
         });
     }
 }
