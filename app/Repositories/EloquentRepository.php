@@ -415,11 +415,11 @@ class EloquentRepository
     public function active(?object $builder = null): object
     {
         $this->ensureColumnExists('status',$this->instance(),function() use($builder){
-            $this->builder($builder)->where('status',1);
+            $this->repository = $this->builder($builder)->where('status',1);
         });
 
         $this->ensureColumnExists('is_deleted',$this->instance(),function() use($builder){
-            $this->builder($builder)->where('is_deleted',0);
+            $this->repository = $this->builder($builder)->where('is_deleted',0);
         });
 
         return $this;
@@ -452,7 +452,7 @@ class EloquentRepository
      */
     public function desc(Builder $builder = null): EloquentRepository
     {
-        $this->builder($builder)->orderBy('id','desc');
+        $this->repository = $this->builder($builder)->orderBy('id','desc');
 
         return $this;
     }
@@ -465,7 +465,7 @@ class EloquentRepository
      */
     public function asc(Builder $builder = null): EloquentRepository
     {
-        $this->builder($builder)->orderBy('id','asc');
+        $this->repository = $this->builder($builder)->orderBy('id','asc');
 
         return $this;
     }
