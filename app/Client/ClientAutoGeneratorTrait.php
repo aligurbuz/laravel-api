@@ -34,7 +34,7 @@ trait ClientAutoGeneratorTrait
     ];
 
     /**
-     * get dont overwrite generator for client
+     * get don't overwrite generator for client
      *
      * @var array
      */
