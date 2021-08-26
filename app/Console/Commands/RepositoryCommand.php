@@ -86,6 +86,11 @@ class RepositoryCommand extends Command
             ->addComment('')
             ->addComment('@var array|string[]');
 
+        $class->addProperty('deniedEagerLoadings',[])->setProtected()->setType('array')
+            ->addComment('denied eager loadings values for repository')
+            ->addComment('')
+            ->addComment('@var array');
+
         $method = $class->addMethod(lcfirst($className));
         $method->addParameter('builder',null)->setNullable(true)->setType('object');
         $method->setBody('return $this->apply($builder);')->setReturnType('object');
