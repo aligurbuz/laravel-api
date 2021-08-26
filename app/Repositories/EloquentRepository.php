@@ -108,7 +108,7 @@ class EloquentRepository
      */
     public function limit(int $limit) : object
     {
-        $this->repository = $this->repository->limit($limit);
+        $this->repository = $this->instance()->limit($limit);
 
         return $this;
     }
@@ -122,7 +122,7 @@ class EloquentRepository
      */
     public function skipTake(int $skip,int $take) : object
     {
-        $this->repository = $this->repository->skip($skip)->take($take);
+        $this->repository = $this->instance()->skip($skip)->take($take);
 
         return $this;
     }
