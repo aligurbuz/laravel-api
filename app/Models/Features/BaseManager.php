@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Models\Features;
 
 use App\Constants;
+use App\Exceptions\Exception;
 use App\Services\Db;
 use Illuminate\Support\Str;
 use App\Services\AppContainer;
@@ -96,6 +97,7 @@ trait BaseManager
         $relationCodes              = Db::relationCodes();
         $currentModelName           = ucfirst($modelName);
         $relationsAccordingToCode   = $relationCodes[getTableCode($modelName)] ?? [];
+        $deniedEagerLoadings        = $this->getRepository()->getDeniedEagerLoadings();
 
         foreach ($relationsAccordingToCode as $modelRelation){
             if(
@@ -108,6 +110,10 @@ trait BaseManager
                 }
                 else{
                     $withModelKey = Str::camel($modelRelation).'s';
+                }
+
+                if(count($deniedEagerLoadings) && in_array($withModelKey,$deniedEagerLoadings,true)){
+                    Exception::customException(trans('exception.deniedEagerLoadings',['key' => $withModelKey]));
                 }
 
                 if(class_exists($modelNamespace) && !isset($this->withQuery[$withModelKey])){

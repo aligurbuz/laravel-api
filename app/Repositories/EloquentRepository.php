@@ -145,6 +145,23 @@ class EloquentRepository
     }
 
     /**
+     * get array deniedEagerLoadings eager loadings model repository
+     *
+     * @return array
+     */
+    public function getDeniedEagerLoadings() : array
+    {
+        if(
+            property_exists($this,'deniedEagerLoadings')
+            && is_array($this->deniedEagerLoadings)
+        ){
+            return $this->deniedEagerLoadings;
+        }
+
+        return [];
+    }
+
+    /**
      * get array data model repository
      *
      * @return array

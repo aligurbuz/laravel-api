@@ -26,4 +26,5 @@ return [
     'limitExceedException'          => 'limit value exceeded.',
     'acceptLanguageNotIn'           => 'Accept-Language must be sent in the header request',
     'acceptLanguageNotValid'        => 'Accept-Language is not valid',
+    'deniedEagerLoadings'           => 'You have been denied access to the relation :key',
 ];
