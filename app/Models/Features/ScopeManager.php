@@ -238,13 +238,15 @@ trait ScopeManager
             $this->hasValues = $hasQuery;
 
             foreach ($hasQuery as $has){
-                if(isset($withQuery[$has],$withQuery[$has]['nested']) && false===$withQuery[$has]['nested']){
-                    $builder->whereHas($has,function(object $builder) use($request,$has){
-                        $range = $request['hasRange'][$has] ?? ($request['range'] ?? '');
-                        $repository = getModelWithPlural($has);
-                        $builder->range(Repository::$repository(),(string)$range);
-                        return $builder;
-                    });
+                if(isset($withQuery[$has],$withQuery[$has]['nested'])){
+                    if(false===$withQuery[$has]['nested']){
+                        $builder->whereHas($has,function(object $builder) use($request,$has){
+                            $range = $request['hasRange'][$has] ?? ($request['range'] ?? '');
+                            $repository = getModelWithPlural($has);
+                            $builder->range(Repository::$repository(),(string)$range);
+                            return $builder;
+                        });
+                    }
                 }
                 else{
                     Exception::customException(trans('exception.hasException',['key' => $has]));
