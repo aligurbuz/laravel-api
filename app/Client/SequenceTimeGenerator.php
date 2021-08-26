@@ -40,7 +40,7 @@ trait SequenceTimeGenerator
                         $sequenceTime = $existData['sequence_time'] +1;
                     }
                 }
-                elseif ($existSequence>=(int)$this->get('sequence')){
+                if ($existSequence>=(int)$this->get('sequence')){
                     if($existSequence==(int)$this->get('sequence')){
                         $subtractSequenceTime = $existData['sequence_time']-1;
                         $sequenceTime = $subtractSequenceTime;
