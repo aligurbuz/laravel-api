@@ -6,7 +6,6 @@ namespace App\Client;
 
 use App\Services\Db;
 use Illuminate\Support\Str;
-use JetBrains\PhpStorm\Pure;
 use App\Repositories\Repository;
 use App\Packages\Client\ClientManager;
 
@@ -357,7 +356,7 @@ class Client extends ClientManager
      * @param null|string $key
      * @return mixed
      */
-    #[Pure] public function get(?string $key = null) : mixed
+    public function get(?string $key = null) : mixed
     {
         $streamData = $this->getDataStream();
 
@@ -370,7 +369,7 @@ class Client extends ClientManager
      * @param null|string $key
      * @return bool
      */
-    #[Pure] public function has(?string $key = null) : bool
+    public function has(?string $key = null) : bool
     {
         $streamData = $this->getDataStream();
 
