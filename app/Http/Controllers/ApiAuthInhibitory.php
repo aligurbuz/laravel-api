@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Str;
+
 /**
  * Trait ApiAuthInhibitory
  * @package App\Http\Controllers
@@ -30,7 +32,7 @@ trait ApiAuthInhibitory
         $this->inhibitory = config('inhibitory');
 
         if(isset($this->inhibitory[who()])){
-            return $this->inhibitoryHandler();
+            return $this->inhibitoryHandler($this->inhibitory[who()]);
         }
 
         return true;
@@ -39,14 +41,27 @@ trait ApiAuthInhibitory
     /**
      * get inhibitory handler for apiAuthenticate
      *
+     * @param array $inhibitory
      * @return bool
      */
-    private function inhibitoryHandler() : bool
+    private function inhibitoryHandler(array $inhibitory = []) : bool
     {
-        $endpoint       = endpoint();
-        $inhibitory     = $this->inhibitory[who()] ?? [];
-        $endpointSplit  = explode('/',$endpoint);
-        $rootEndpoint   = $endpointSplit[0] ?? null;
+        $endpoint                   = endpoint();
+        $endpointSplit              = explode('/',$endpoint);
+        $rootEndpoint               = $endpointSplit[0] ?? null;
+        $authenticateInhibitory     = $this->inhibitory[Str::camel('authenticate_'.who())] ?? [];
+
+        if(isset($authenticateInhibitory[$endpoint]) && is_array($authenticateInhibitory[$endpoint])){
+            if($this->methods($authenticateInhibitory[$endpoint])){
+                return true;
+            }
+        }
+
+        if(isset($authenticateInhibitory[$rootEndpoint.'/*']) && is_array($authenticateInhibitory[$rootEndpoint.'/*'])){
+            if($this->methods($authenticateInhibitory[$rootEndpoint.'/*'])){
+                return true;
+            }
+        }
 
         if(isset($inhibitory[$endpoint]) && is_array($inhibitory[$endpoint])){
             if($this->methods($inhibitory[$endpoint])){
