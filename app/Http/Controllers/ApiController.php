@@ -18,11 +18,6 @@ class ApiController extends BaseController
     use AuthorizesRequests,DispatchesJobs,ValidatesRequests,Supporter,ApiAuthInhibitory;
 
     /**
-     * @var static authApi
-     */
-    protected const authApi = 'auth:check_admin';
-
-    /**
      * @var array
      */
     protected array $middlewares = [
@@ -59,10 +54,11 @@ class ApiController extends BaseController
     private function exceptMiddlewares($middleware,callable $callback): mixed
     {
         $calledClass = get_called_class();
+        $middlewares = $this->getMiddlewares();
 
         // we are conditionally removing
         // the concept of apiAuth authenticate.
-        if($middleware==($this->middlewares[0] ?? null)){
+        if($middleware==($middlewares[0] ?? null)){
             if(!$this->apiAuthInhibitory()){
                 return false;
             }
@@ -93,8 +89,6 @@ class ApiController extends BaseController
             $this->middlewares[] = 'superAdmin';
         }
 
-        $this->middlewares[] = 'auth:'.authGuard('check');
-
-        return $this->middlewares;
+        return array_merge(['auth:'.authGuard('check')],$this->middlewares);
     }
 }
