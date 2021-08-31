@@ -34,7 +34,7 @@ class LoginController extends Controller
                 ]
             )) {
 
-            $user = Auth::user();
+            $user = Auth::guard(authGuard())->user();
 
             $data = [];
             $data['user']  = $user->toArray();

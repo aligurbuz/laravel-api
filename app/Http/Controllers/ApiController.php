@@ -20,13 +20,12 @@ class ApiController extends BaseController
     /**
      * @var static authApi
      */
-    protected const authApi = 'auth:api';
+    protected const authApi = 'auth:check_admin';
 
     /**
      * @var array
      */
     protected array $middlewares = [
-        'auth:api',
         'permission',
         'acceptLanguage',
         'accessLogger',
@@ -63,7 +62,7 @@ class ApiController extends BaseController
 
         // we are conditionally removing
         // the concept of apiAuth authenticate.
-        if($middleware==self::authApi){
+        if($middleware==($this->middlewares[0] ?? null)){
             if(!$this->apiAuthInhibitory()){
                 return false;
             }
@@ -93,6 +92,8 @@ class ApiController extends BaseController
         if(ApiKey::isSuperAdmin()){
             $this->middlewares[] = 'superAdmin';
         }
+
+        $this->middlewares[] = 'auth:'.authGuard('check');
 
         return $this->middlewares;
     }

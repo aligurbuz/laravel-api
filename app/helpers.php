@@ -31,11 +31,12 @@ if(!function_exists('authGuard')){
     /**
      * checks if the user is logged
      *
+     * @param string $prefix
      * @return string
      */
-    function authGuard(): string
+    function authGuard(string $prefix = 'login'): string
     {
-        return 'web';
+        return $prefix.'_'.who();
     }
 }
 

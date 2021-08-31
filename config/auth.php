@@ -41,10 +41,13 @@ return [
             'provider' => 'users',
         ],
 
-        'api' => [
+        'login_admin' => [
+            'driver' => 'session',
+            'provider' => 'users',
+        ],
+        'check_admin' => [
             'driver' => 'passport',
             'provider' => 'users',
-            'hash' => false,
         ],
     ],
 
@@ -67,6 +70,10 @@ return [
 
     'providers' => [
         'users' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\User::class,
+        ],
+        'admin' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
