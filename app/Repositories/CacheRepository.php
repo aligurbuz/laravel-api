@@ -92,7 +92,12 @@ trait CacheRepository
     {
         $this->proxyUsing = false;
 
-        if(page()>1){
+        if((page()>1)
+            || (
+                property_exists($this,'cache')
+                && is_bool($this->cache)
+                && !$this->cache)
+        ){
             return call_user_func($callback);
         }
 
