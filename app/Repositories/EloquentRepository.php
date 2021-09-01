@@ -263,12 +263,12 @@ class EloquentRepository
     /**
      * get where query for model
      *
-     * @param $column
-     * @param $value
+     * @param string $column
+     * @param string|int $value
      * @param string $operator
      * @return object
      */
-    protected function where($column,$value,$operator = '=') : object
+    protected function where(string $column,string|int $value,string $operator = '=') : object
     {
         $this->repository = $this->instance()->where($column,$operator,$value);
 
