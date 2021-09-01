@@ -97,7 +97,8 @@ trait BaseManager
         $relationCodes              = Db::relationCodes();
         $currentModelName           = ucfirst($modelName);
         $relationsAccordingToCode   = $relationCodes[getTableCode($modelName)] ?? [];
-        $deniedEagerLoadings        = $this->getRepository()->getDeniedEagerLoadings();
+        $repository                 = $this->getRepository();
+        $deniedEagerLoadings        = (is_object($repository) && method_exists($repository,'getDeniedEagerLoadings')) ? $repository->getDeniedEagerLoadings() : [];
 
         foreach ($relationsAccordingToCode as $modelRelation){
             if(
@@ -184,9 +185,9 @@ trait BaseManager
     /**
      * get repository object
      *
-     * @return object
+     * @return object|bool
      */
-    public function getRepository() : object
+    public function getRepository() : object|bool
     {
         $model = $this->getModelName();
         return Repository::$model();
