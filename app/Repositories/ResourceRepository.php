@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Repositories;
 
+use Illuminate\Support\Str;
 use App\Exceptions\Exception;
 
 /**
@@ -97,11 +98,12 @@ trait ResourceRepository
             $values = $item['localization']['values'][0] ?? [];
 
             foreach ($withValues as $withValue){
-                foreach (($item[$withValue] ?? []) as $withKey => $withData){
+                $withValueSnake = Str::snake($withValue);
+                foreach (($item[$withValueSnake] ?? []) as $withKey => $withData){
                     if(isset($withData['localization'])){
-                        $item[$withValue][$withKey] = ($this->resourcePropagation(
+                        $item[$withValueSnake][$withKey] = ($this->resourcePropagation(
                                 [$withData],
-                                $this->findRepositoryByModel($withValue)
+                                $this->findRepositoryByModel(getModelWithPlural($withValue))
                             )[0]) ?? [];
                     }
                 }
