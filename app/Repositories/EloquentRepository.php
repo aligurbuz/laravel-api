@@ -27,6 +27,11 @@ class EloquentRepository
     protected ?object $repository = null;
 
     /**
+     * @var array
+     */
+    protected static array $storages = [];
+
+    /**
      * @var object|null
      */
     protected ?object $graphQl = null;
@@ -256,6 +261,21 @@ class EloquentRepository
     }
 
     /**
+     * get where query for model
+     *
+     * @param $column
+     * @param $value
+     * @param string $operator
+     * @return object
+     */
+    protected function where($column,$value,$operator = '=') : object
+    {
+        $this->repository = $this->instance()->where($column,$operator,$value);
+
+        return $this;
+    }
+
+    /**
      * get code instance for repository
      *
      * @param int $code
@@ -263,9 +283,7 @@ class EloquentRepository
      */
     public function code(int $code = 0) : object
     {
-        $this->repository = $this->instance()->where($this->getModelCode(),$code);
-
-        return $this;
+        return $this->where($this->getModelCode(),$code);
     }
 
     /**
