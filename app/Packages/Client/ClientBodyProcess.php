@@ -52,7 +52,9 @@ class ClientBodyProcess extends ClientVariableProcess
     public function dataFileHandler() : void
     {
         foreach (request()->allFiles() as $key => $value){
-            $this->data[0][$key] = $value;
+            if(in_array($key,$this->client->getCapsule(),true)){
+                $this->data[0][$key] = $value;
+            }
         }
     }
 
