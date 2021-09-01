@@ -338,6 +338,20 @@ class EloquentRepository
     }
 
     /**
+     * make eager loading via instance model
+     *
+     * @param array $with
+     * @param bool $repository
+     * @return object
+     */
+    public function with(array $with = [],bool $repository = true) : object
+    {
+        $this->repository = $this->instanceModel()->repository($this,$repository)->with($with);
+
+        return $this;
+    }
+
+    /**
      * get table for model name
      *
      * @return mixed
@@ -663,7 +677,7 @@ class EloquentRepository
         $withKey = Str::camel($model);
         $model = getModelWithPlural($model);
 
-        $modelInstance    = $args[0] ?? new class {};
+        $modelInstance    = $args[0] ?? $this->instanceModel();
         $modelNamespace   = Constants::modelNamespace.'\\'.$model;
 
         return $this->setEagerLoading($modelNamespace,function() use($modelNamespace,$modelInstance,$model,$withKey){
@@ -709,6 +723,8 @@ class EloquentRepository
             return $this->eagerLoadingHandler($model,$args);
         }
 
-        return null;
+        $this->with([$name]);
+
+        return $this;
     }
 }
