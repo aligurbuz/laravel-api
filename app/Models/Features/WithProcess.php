@@ -61,6 +61,13 @@ trait WithProcess
 
                         if(strlen($select)>0 && $select!=='*'){
                             $selectExplode = explode(',',$select);
+                            $foreignRepositoryInstance = Repository::$foreignRepository();
+                            $foreignRepositoryLocalization = $foreignRepositoryInstance->getLocalizations();
+
+                            if(count($foreignRepositoryLocalization)){
+                                $selectExplode[] = $foreignRepositoryInstance->getModelCode();
+                            }
+
                             $selectExplode = $this->checkSelectColumn(
                                 array_merge([$foreignColumn],$selectExplode)
                                 ,$withQuery[$with]['table']
