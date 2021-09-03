@@ -86,6 +86,10 @@ class RepositoryCommand extends Command
             if($column=='name' || Str::endsWith($column,'_name')){
                 $localizationList[] = $column;
             }
+
+            if($column=='description' || Str::endsWith($column,'_description')){
+                $localizationList[] = $column;
+            }
         }
 
         $class->addProperty('localization',$localizationList)->setProtected()->setType('array')
