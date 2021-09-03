@@ -86,7 +86,7 @@ use '.$useController.';',$routeApiContent);
 
             if(!isset($serviceMaps[$this->argument('model')])){
                 $newValues = [
-                    ucfirst($this->argument('model')) => [
+                    $dirVariable.'/'.$controllerVariable => [
                         'controller' => ucfirst($controllerVariable),
                         'dir' => ucfirst($dirVariable)
                     ]
