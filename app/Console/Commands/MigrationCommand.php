@@ -64,6 +64,11 @@ class MigrationCommand extends Command
         $content = str_replace('$table->id();','$table->id();
             $table->bigInteger(\''.$modelCode.'\')->default(0)->unique()->index();
 
+            //$table->char(\'column\');
+
+            //$table->integer(\'sequence_time\')->default(0);
+            //$table->integer(\'sequence\')->default(1);
+
             $table->boolean(\'status\')->default(1);
             $table->boolean(\'is_deleted\')->default(0);
             $table->bigInteger(\'created_by\')->default(0);
