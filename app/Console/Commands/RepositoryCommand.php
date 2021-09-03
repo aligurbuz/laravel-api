@@ -4,9 +4,11 @@ namespace App\Console\Commands;
 
 use App\Repositories\EloquentRepository;
 use App\Repositories\Repository;
+use App\Services\Db;
 use Illuminate\Console\Command;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 use Nette\PhpGenerator\Literal;
 use Nette\PhpGenerator\PhpNamespace;
 
@@ -76,7 +78,17 @@ class RepositoryCommand extends Command
             ->addComment('')
             ->addComment('@var array|string[]');
 
-        $class->addProperty('localization',[])->setProtected()->setType('array')
+        $modelNamespace = 'App\Models\\'.ucfirst($modelName);
+        $modelColumns = Db::columns((new $modelNamespace)->getTable());
+
+        $localizationList = [];
+        foreach ( $modelColumns as $column){
+            if($column=='name' || Str::endsWith($column,'_name')){
+                $localizationList[] = $column;
+            }
+        }
+
+        $class->addProperty('localization',$localizationList)->setProtected()->setType('array')
             ->addComment('localization values for repository')
             ->addComment('')
             ->addComment('@var array|string[]');
