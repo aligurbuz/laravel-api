@@ -206,8 +206,8 @@ trait ScopeManager
                         }
                     }
 
-                    if(!isset($withOperator) && is_string($value)){
-                        $query->whereIn($key,explode(',',$value));
+                    if(!isset($withOperator) && (is_string($value) || is_numeric($value))){
+                        $query->whereIn($key,explode(',',(string)$value));
                     }
 
                 }

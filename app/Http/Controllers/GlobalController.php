@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\File;
+
 class GlobalController extends ApiController
 {
     /**
@@ -13,14 +15,29 @@ class GlobalController extends ApiController
      */
     public function handle() : array
     {
+        $services = File::get(database_path('columns').''.DIRECTORY_SEPARATOR.'service.json');
+        $serviceList = json_decode($services,true);
         $body = request()->request->all();
         request()->setMethod('GET');
-
         $this->resetQueryAll();
 
-        request()->query->set('userClient',$body['userClient']);
+        $results = [];
 
-        return ['user' => [app()->call('App\Http\Controllers\User\UserController@get')]];
+        foreach ($body as $service => $params){
+            $service = ucfirst($service);
+            if(isset($serviceList[$service])){
+                $serviceData = $serviceList[$service];
+                $controller = 'App\Http\Controllers\\'.$serviceData['dir'].'\\'.$serviceData['controller'].'Controller';
+                foreach ($params as $key => $value){
+                    request()->query->set($key,$value);
+                }
+
+                $results[lcfirst($service)] = [app()->call($controller.'@get')];
+                $this->resetQueryAll();
+            }
+        }
+
+        return $results;
     }
 
     /**
