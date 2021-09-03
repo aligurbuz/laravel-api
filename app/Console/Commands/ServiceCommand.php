@@ -48,6 +48,8 @@ class ServiceCommand extends Command
            'model' => $modelName
         ]);
 
+        Artisan::call('update:relation');
+
         $this->warn('Service has been successfully created');
 
         return 0;
