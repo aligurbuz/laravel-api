@@ -17,6 +17,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Logger\LoggerController;
 use App\Http\Controllers\Register\RegisterController;
+use App\Http\Controllers\GlobalController;
 
 /*
 |--------------------------------------------------------------------------
@@ -87,5 +88,7 @@ Route::middleware([])->group(function(){
     Route::get('/user', [UserController::class,'get']);
     Route::post('/user', [UserController::class,'create']);
     Route::put('/user', [UserController::class,'update']);
+
+    Route::post('global',[GlobalController::class,'handle']);
 
 });

@@ -189,7 +189,19 @@ class ClientManager
      */
     public function getParamValues(array $data = []): array
     {
-        return count($data) ? $data : request()->query->all();
+        return count($data) ? $data : $this->paramModelClientDataIdentifier();
+    }
+
+    public function paramModelClientDataIdentifier()
+    {
+        $defaultQueries = request()->query->all();
+        $modelClientName = $this->getModel().'Client';
+
+        if(isset($defaultQueries[$modelClientName])){
+            return $defaultQueries[$modelClientName];
+        }
+
+        return $defaultQueries;
     }
 
     /**

@@ -6,6 +6,7 @@ namespace App\Models\Features;
 
 use App\Exceptions\Exception;
 use App\Repositories\Repository;
+use App\Services\Client;
 use Illuminate\Database\Eloquent\Builder;
 
 /**
@@ -28,7 +29,7 @@ trait WithProcess
      */
     public function withProcessHandler(Builder $builder,array $with = []): object
     {
-        $params = request()->query->all();
+        $params = count(Client::data()) ? Client::data() : request()->query->all();
 
         if(count($with)){
             $params['with'] = (count($with)) ? $with : ($params['with'] ?? []);
