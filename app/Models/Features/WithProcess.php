@@ -29,7 +29,7 @@ trait WithProcess
      */
     public function withProcessHandler(Builder $builder,array $with = []): object
     {
-        $params = count(Client::data()) ? Client::data() : request()->query->all();
+        $params = request()->query->all();
 
         if(count($with)){
             $params['with'] = (count($with)) ? $with : ($params['with'] ?? []);
