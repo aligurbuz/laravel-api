@@ -31,9 +31,7 @@ trait WithProcess
     {
         $params = request()->query->all();
 
-        if(count($with)){
-            $params['with'] = (count($with)) ? $with : ($params['with'] ?? []);
-        }
+        $params['with'] = (count($with)) ? $with : ($params['with'] ?? []);
 
         if(isset($params['with'])){
             $withQuery = $this->withQuery;
