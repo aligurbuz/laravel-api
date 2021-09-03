@@ -32,7 +32,7 @@ class SuperAdminsRepository extends EloquentRepository implements SuperAdminsRep
      */
 	public function __construct()
     {
-        if(ApiKey::isSuperAdmin() === false){
+        if(app()->runningInConsole()===false && ApiKey::isSuperAdmin() === false){
             Exception::grandAuthenticateException();
         }
     }
