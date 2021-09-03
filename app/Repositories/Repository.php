@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Repositories;
 
 use App\Repositories\User\Contracts\UserRepositoryContract;
+use App\Repositories\Timezones\Contracts\TimezonesRepositoryContract;
 use App\Repositories\Currencies\Contracts\CurrenciesRepositoryContract;
 use App\Repositories\Countries\Contracts\DistrictsRepositoryContract;
 use App\Repositories\Countries\Contracts\CitiesRepositoryContract;
@@ -23,6 +24,16 @@ use App\Repositories\Countries\Contracts\CountriesRepositoryContract;
  */
 class Repository
 {
+    /**
+     * get timezone repository instance
+     *
+     * @return TimezonesRepositoryContract
+     */
+    public static function timezone() : TimezonesRepositoryContract
+    {
+        return app()->get(TimezonesRepositoryContract::class);
+    }
+    
     /**
      * get currency repository instance
      *

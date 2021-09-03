@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Timezones\TimezonesController;
 use App\Http\Controllers\Currencies\CurrenciesController;
 use App\Http\Controllers\Countries\DistrictsController;
 use App\Http\Controllers\Countries\CitiesController;
@@ -32,6 +33,10 @@ Route::post('/login', [LoginController::class,'login']);
 Route::post('/register', [RegisterController::class,'register']);
 
 Route::middleware([])->group(function(){
+
+    Route::get('/timezones', [TimezonesController::class,'get']);
+    Route::post('/timezones', [TimezonesController::class,'create']);
+    Route::put('/timezones', [TimezonesController::class,'update']);
 
     Route::get('/currencies', [CurrenciesController::class,'get']);
     Route::post('/currencies', [CurrenciesController::class,'create']);

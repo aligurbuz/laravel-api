@@ -1,16 +1,23 @@
 {
     "City": [
+        "District",
         "Country",
-        "Localization",
-        "District"
+        "Localization"
+    ],
+    "District": [
+        "City",
+        "Country",
+        "Localization"
     ],
     "Country": [
         "City",
+        "District",
         "Localization"
     ],
     "Localization": [
         "City",
         "Country",
+        "Currency",
         "District",
         "Language",
         "Localization",
@@ -18,10 +25,10 @@
         "Role",
         "SuperAdmin",
         "TableChange",
+        "Timezone",
         "User"
     ],
-    "District": [
-        "City",
+    "Currency": [
         "Localization"
     ],
     "Language": [
@@ -46,6 +53,9 @@
         "Localization"
     ],
     "TableChange": [
+        "Localization"
+    ],
+    "Timezone": [
         "Localization"
     ]
 }

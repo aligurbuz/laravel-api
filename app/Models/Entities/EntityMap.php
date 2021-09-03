@@ -6,6 +6,15 @@ class EntityMap
 {
     /**
      * @param object $query
+     * @return Timezone
+     */
+    public function timezone(object $query) : Timezone
+    {
+        return new Timezone($query);
+    }
+    
+    /**
+     * @param object $query
      * @return Currency
      */
     public function currency(object $query) : Currency

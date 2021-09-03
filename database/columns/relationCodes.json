@@ -16,6 +16,9 @@
     "phone_code": [
         "Country"
     ],
+    "currency_code": [
+        "Currency"
+    ],
     "district_code": [
         "District"
     ],
@@ -48,5 +51,8 @@
     ],
     "table_change_code": [
         "TableChange"
+    ],
+    "timezone_code": [
+        "Timezone"
     ]
 }
