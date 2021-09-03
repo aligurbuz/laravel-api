@@ -1985,6 +1985,59 @@
                     ]
                 }
             ]
+        },
+        {
+            "name": "Global",
+            "item": [
+                {
+                    "name": "Global",
+                    "protocolProfileBehavior": {
+                        "disabledSystemHeaders": {
+                            "content-type": true
+                        }
+                    },
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{bearerToken}}",
+                                "type": "text",
+                                "disabled": true
+                            },
+                            {
+                                "key": "Apikey",
+                                "value": "{{apiKey}}",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "{{contentType}}",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "[]",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/global",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "global"
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ]
         }
     ]
 }

@@ -9,7 +9,8 @@
         "/var/www/html/app/api/app/Docs/Endpoints/Gate/Gate.json",
         "/var/www/html/app/api/app/Docs/Endpoints/Mix/Mix.json",
         "/var/www/html/app/api/app/Docs/Endpoints/Currencies/Currencies.json",
-        "/var/www/html/app/api/app/Docs/Endpoints/Timezones/Timezones.json"
+        "/var/www/html/app/api/app/Docs/Endpoints/Timezones/Timezones.json",
+        "/var/www/html/app/api/app/Docs/Endpoints/Global/Global.json"
     ],
     "keys": {
         "/var/www/html/app/api/app/Docs/Endpoints/User/User.json": 0,
@@ -19,7 +20,8 @@
         "/var/www/html/app/api/app/Docs/Endpoints/Gate/Gate.json": 1,
         "/var/www/html/app/api/app/Docs/Endpoints/Mix/Mix.json": 0,
         "/var/www/html/app/api/app/Docs/Endpoints/Currencies/Currencies.json": 0,
-        "/var/www/html/app/api/app/Docs/Endpoints/Timezones/Timezones.json": 0
+        "/var/www/html/app/api/app/Docs/Endpoints/Timezones/Timezones.json": 0,
+        "/var/www/html/app/api/app/Docs/Endpoints/Global/Global.json": 0
     },
     "fingerPrints": {
         "User_User_user": 0,
