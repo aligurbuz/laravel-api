@@ -49,7 +49,7 @@ class ServiceCommand extends Command
         ]);
 
         Artisan::call('update:relation');
-        Artisan::call('permission');
+        Artisan::call('permissions');
 
         $this->warn('Service has been successfully created');
 
