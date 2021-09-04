@@ -15,9 +15,17 @@ class GlobalController extends ApiController
      */
     public function handle() : array
     {
-        $services = File::get(database_path('columns').''.DIRECTORY_SEPARATOR.'service.json');
-        $serviceList = json_decode($services,true);
+        // we are pulling the existing route paths in the service.json file.
+        // and we convert this json file to array.
+        $services       = File::get(database_path('columns').''.DIRECTORY_SEPARATOR.'service.json');
+        $serviceList    = json_decode($services,true);
+
+        //we obtain the client data in the normal way.
         $body = request()->request->all();
+
+        // the global route normally includes the post method.
+        // but we have to use the GET method for all select database operations.
+        // and first we reset the existing get data.
         request()->setMethod('GET');
         $this->resetQueryAll();
 
@@ -25,13 +33,17 @@ class GlobalController extends ApiController
 
         foreach ($body as $service => $params){
             $service = ucfirst($service);
+
             if(isset($serviceList[$service])){
                 $serviceData = $serviceList[$service];
                 $controller = 'App\Http\Controllers\\'.$serviceData['dir'].'\\'.$serviceData['controller'].'Controller';
+
                 foreach ($params as $key => $value){
                     request()->query->set($key,$value);
                 }
 
+                // we are calling the controller get methods with
+                // the call method of the app object that exists in the laravel framework.
                 $results[lcfirst($service)] = [app()->call($controller.'@get')];
                 $this->resetQueryAll();
             }
