@@ -51,7 +51,14 @@ trait ScopeManagerTrait
     {
         foreach ($data as $with => $items){
             if(is_array($items) && isset($items['description']) && $with!=='localization'){
-                AppContainer::set('responseFormatterSupplement',['relations' =>[$with => $items['description']]],true);
+                AppContainer::set('responseFormatterSupplement',['relations' =>[
+                    $with => [
+                        'description' => ($items['description'] ?? ''),
+                        'using' => ''.($items['withQuery']?? '').'[\'select\'] = \'*||columnName1||columnName1,columnName2\'',
+                        'hasMany' => ($items['hasMany'] ?? true),
+                    ]
+                ]
+                ],true);
             }
         }
     }

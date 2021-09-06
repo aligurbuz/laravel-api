@@ -22,6 +22,11 @@ trait BaseManager
     use ScopeManager,GeneralAppends;
 
     /**
+     * @var array
+     */
+    protected array $relationLists = [];
+
+    /**
      * @var array|string[]
      */
     protected array $autoModelAppends = [
@@ -85,6 +90,22 @@ trait BaseManager
     }
 
     /**
+     * get model normalize for base manager class
+     *
+     * @param $model
+     * @return string
+     */
+    public function getModelNormalize($model): string
+    {
+        if(Str::endsWith($model,'y')){
+            return substr(Str::camel($model),0,-1).'ies';
+        }
+        else{
+            return Str::camel($model).'s';
+        }
+    }
+
+    /**
      * get model relations
      *
      * @param string|null $model
@@ -106,18 +127,18 @@ trait BaseManager
                 && $modelRelation!=='Localization'
             ){
                 $modelNamespace = Constants::modelNamespace.'\\'.$modelRelation;
-                if(Str::endsWith($modelRelation,'y')){
-                    $withModelKey = substr(Str::camel($modelRelation),0,-1).'ies';
-                }
-                else{
-                    $withModelKey = Str::camel($modelRelation).'s';
-                }
+                $withModelKey = $this->getModelNormalize($modelRelation);
 
                 if(count($deniedEagerLoadings) && in_array($withModelKey,$deniedEagerLoadings,true)){
                     Exception::customException(trans('exception.deniedEagerLoadings',['key' => $withModelKey]));
                 }
 
                 if(class_exists($modelNamespace) && !isset($this->withQuery[$withModelKey])){
+                    $this->relationLists[] = '[with]['.$withModelKey.']';
+                    $relationListImplode = implode('',$this->relationLists);
+                    $relationListHandling = substr_replace($relationListImplode,'',0,1);
+                    $relationListHandling = substr_replace($relationListHandling,'',4,1);
+
                     $this->withQuery[$withModelKey] = [
                         'hasMany' => true,
                         'nested' => $nested,
@@ -125,13 +146,16 @@ trait BaseManager
                         'localColumn' => getTableCode($currentModelName),
                         'table' => $withModelKey,
                         'description' => 'You can use '.$withModelKey.' relation belonging to '.$currentModelName.' data.',
-                        'repository' => Str::camel($modelRelation)
+                        'repository' => Str::camel($modelRelation),
+                        'withQuery' => $relationListHandling,
                     ];
                 }
 
                 $this->getModelRelationsForCode($modelRelation,true);
             }
         }
+
+        $this->relationLists = [];
     }
 
 
