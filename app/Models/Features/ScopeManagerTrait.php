@@ -54,7 +54,7 @@ trait ScopeManagerTrait
                 AppContainer::set('responseFormatterSupplement',['relations' =>[
                     $with => [
                         'description' => ($items['description'] ?? ''),
-                        'using' => ''.($items['withQuery']?? '').'[\'select\'] = \'*||columnName1||columnName1,columnName2\'',
+                        'using' => ''.($items['withQuery']?? 'with['.$with.']').'[select] = \'*||columnName1||columnName1,columnName2\'',
                         'hasMany' => ($items['hasMany'] ?? true),
                     ]
                 ]
