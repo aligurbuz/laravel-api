@@ -44,7 +44,7 @@ class Code extends CodeManager implements CodeInterface
 
             // we detect the existence of the code value using the repository.
             // if false, an exception will be thrown.
-            if(isset($code['codeName'],$code['value']) && !$repository->exists($code['codeName'],$code['value'])){
+            if(isset($code['codeName'],$code['value']) && !$repository->exists($code['codeName'],$code['value'],false)){
                 return inValidCodeException($code['codeName'],$code['value']);
             }
 

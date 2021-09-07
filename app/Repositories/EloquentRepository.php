@@ -315,11 +315,12 @@ class EloquentRepository
      *
      * @param $field
      * @param $value
+     * @param bool $repository
      * @return bool
      */
-    public function exists($field,$value) : bool
+    public function exists($field,$value,bool $repository = true) : bool
     {
-        return !is_null($this->instance()->where($field,$value)->first());
+        return !is_null($this->instance($repository)->where($field,$value)->first());
     }
 
     /**
