@@ -18,7 +18,7 @@ trait SequenceTimeGenerator
     public function sequenceTimeAutoGenerator(): mixed
     {
         if(!$this->has('sequence')){
-            return null;
+            return time();
         }
 
         return $this->ensureColumnExists('sequence',function(){
