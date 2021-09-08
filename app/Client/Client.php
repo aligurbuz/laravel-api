@@ -127,6 +127,20 @@ class Client extends ClientManager
     }
 
     /**
+     * set auto rule for client
+     *
+     * @param $key
+     * @param $value
+     * @return void
+     */
+    public function setAutoRule($key,$value) : void
+    {
+        if(!isset($this->autoRule[$key])){
+            $this->autoRule[$key] = $value;
+        }
+    }
+
+    /**
      * set property for client
      *
      * @param $key

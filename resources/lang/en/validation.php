@@ -141,6 +141,9 @@ return [
         'status' => [
             'regex' => 'The status value must only have a value of 0 and 1',
         ],
+        'bool' => [
+            'regex' => 'The :attribute value must only have a value of 0 and 1',
+        ],
         'is_deleted' => [
             'regex' => 'The is_deleted value must only have a value of 0 and 1',
         ]

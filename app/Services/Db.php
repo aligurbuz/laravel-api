@@ -74,6 +74,19 @@ class Db extends Model
     }
 
     /**
+     * get table boolean values for model
+     *
+     * @param null $table
+     * @return array
+     */
+    public static function booleanValues($table = null): array
+    {
+        $entities = static::entities($table);
+
+        return $entities['boolean_values'] ?? [];
+    }
+
+    /**
      * get entity for table
      *
      * @param string|null $table

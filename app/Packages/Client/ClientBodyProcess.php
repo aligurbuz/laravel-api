@@ -27,6 +27,11 @@ class ClientBodyProcess extends ClientVariableProcess
     protected array $data = [];
 
     /**
+     * @var array
+     */
+    protected array $booleanValues = [];
+
+    /**
      * ClientBodyProcess constructor.
      * @param object $client
      */
@@ -36,6 +41,7 @@ class ClientBodyProcess extends ClientVariableProcess
         $data = $this->client->getData();
         $this->data = $data['body'] ?? $data;
         $this->dataFileHandler();
+        $this->booleanValues = Db::booleanValues($this->client->getTable());
 
         if(count($this->data)=='0'){
             Exception::clientEmptyException();
@@ -194,7 +200,12 @@ class ClientBodyProcess extends ClientVariableProcess
                                 if(is_array($types[$key])){
                                     $types[$key] = current($types[$key]);
                                     static::errorContainer($key,'errorInput');
-                                    $typeMessage = trans('validation.custom.'.$key.'.regex',['attribute' => $key]);
+                                    if(in_array($key,$this->booleanValues,true)){
+                                        $typeMessage = trans('validation.custom.bool.regex',['attribute' => $key]);
+                                    }
+                                    else{
+                                        $typeMessage = trans('validation.custom.'.$key.'.regex',['attribute' => $key]);
+                                    }
                                 }
                                 else{
                                     static::errorContainer($types[$key],'errorInput');
