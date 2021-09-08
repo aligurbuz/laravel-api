@@ -57,6 +57,8 @@ class DbColumn extends Command
         $list['max_length_values'] = [];
         $list['indexes'] = [];
         $list['boolean_values'] = [];
+        $list['default_keys'] = [];
+        $list['default_values'] = [];
 
         foreach ($indexes as $index){
             $list['indexes'][] = '"'.$index->Column_name.'"';
@@ -68,6 +70,11 @@ class DbColumn extends Command
 
             if($column->COLUMN_TYPE=='tinyint(1)'){
                 $list['boolean_values'][] = '"'.$column->COLUMN_NAME.'"';
+            }
+
+            if(!is_null($column->COLUMN_DEFAULT)){
+                $list['default_keys'][] = '"'.$column->COLUMN_NAME.'"';
+                $list['default_values'][] = '"'.$column->COLUMN_DEFAULT.'"';
             }
 
             if(!in_array($column->COLUMN_NAME,$addings,true)){
@@ -116,6 +123,8 @@ class DbColumn extends Command
         \'max_length_columns\' => ['.implode(',',$list['max_length_columns']).'],
         \'max_length_values\' => ['.implode(',',$list['max_length_values']).'],
         \'boolean_values\' => ['.implode(',',$list['boolean_values']).'],
+        \'default_keys\' => ['.implode(',',$list['default_keys']).'],
+        \'default_values\' => ['.implode(',',$list['default_values']).'],
         ];');
 
         $databaseColumns = File::getRequire($databaseColumnPath);
