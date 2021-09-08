@@ -56,6 +56,7 @@ class DbColumn extends Command
         $list['max_length_columns'] = [];
         $list['max_length_values'] = [];
         $list['indexes'] = [];
+        $list['boolean_values'] = [];
 
         foreach ($indexes as $index){
             $list['indexes'][] = '"'.$index->Column_name.'"';
@@ -64,6 +65,10 @@ class DbColumn extends Command
         $addings = ['CURRENT_CONNECTIONS','TOTAL_CONNECTIONS','USER'];
 
         foreach ($columns as $column){
+
+            if($column->COLUMN_TYPE=='tinyint(1)'){
+                $list['boolean_values'][] = '"'.$column->COLUMN_NAME.'"';
+            }
 
             if(!in_array($column->COLUMN_NAME,$addings,true)){
                 $addings[] = $column->COLUMN_NAME;
@@ -110,6 +115,7 @@ class DbColumn extends Command
         \'required_columns\' => ['.implode(',',$list['required_columns']).'],
         \'max_length_columns\' => ['.implode(',',$list['max_length_columns']).'],
         \'max_length_values\' => ['.implode(',',$list['max_length_values']).'],
+        \'boolean_values\' => ['.implode(',',$list['boolean_values']).'],
         ];');
 
         $databaseColumns = File::getRequire($databaseColumnPath);
