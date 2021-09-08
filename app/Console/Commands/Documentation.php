@@ -143,8 +143,6 @@ class Documentation extends Command
                 'updated_by' => 'integer',
                 'deleted_by' => 'integer',
                 'deleted_at' => 'timestamp',
-                'is_deleted' => 'integer',
-                'status' => 'integer',
                 Str::snake($this->argument('model')).'_code' => 'integer'
             ]));
         }
@@ -156,8 +154,6 @@ class Documentation extends Command
                 'updated_by' => 'integer',
                 'deleted_by' => 'integer',
                 'deleted_at' => 'timestamp',
-                'is_deleted' => 'integer',
-                'status' => 'integer',
                 Str::snake($this->argument('model')).'_code' => 'integer'
             ]);
 
