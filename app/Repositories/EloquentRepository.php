@@ -48,16 +48,18 @@ class EloquentRepository
      */
     public function get() : array
     {
+        $this->setAutoEagerLoadings();
+
         // cache will be made according to your model.
         // this will make your queries very performance.
-        return $this->useCache(function(){
+        return $this->traitHandler($this->useCache(function(){
 
             // a resource class will be valid,
             // where you can manipulate all the returned result set values one by one.
             return $this->resource(function(){
                 return $this->graphQl();
             });
-        });
+        }));
     }
 
     /**
@@ -725,6 +727,51 @@ class EloquentRepository
         }
 
         return [];
+    }
+
+    /**
+     * get traits for repository
+     *
+     * @return array
+     */
+    public function getTraits() : array
+    {
+        if(property_exists($this,'traits') && is_array($this->traits)){
+            return $this->traits;
+        }
+
+        return [];
+    }
+
+    /**
+     * get trait handler for repository
+     *
+     * @param array $data
+     * @return array
+     */
+    public function traitHandler(array $data = []) : array
+    {
+        return (count($this->getTraits())) ? $this->traitResource($data,__FUNCTION__) : $data;
+    }
+
+    /**
+     * set auto eager loadings for repository
+     *
+     * @return void
+     */
+    public function setAutoEagerLoadings() : void
+    {
+        $with = request()->query->get('with',[]);
+
+        if(property_exists($this,'localization') && count($this->localization)){
+            request()->query->set('with',array_merge($with,['localization' => 'values']));
+        }
+
+        foreach ($this->getTraits() as $trait){
+            if(!isset($with[$trait])){
+                request()->query->set('with',array_merge($with,[$trait => '*']));
+            }
+        }
     }
 
     /**

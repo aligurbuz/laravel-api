@@ -25,6 +25,11 @@ class UserRepository extends EloquentRepository implements UserRepositoryContrac
     protected array $ranges = [];
 
     /**
+     * @var array
+     */
+    protected array $traits = [];
+
+    /**
      * get auto user range method
      *
      * @param object|null $builder

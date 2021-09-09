@@ -19,6 +19,11 @@ trait ResourceRepository
     protected static ?object $resourceInstance = null;
 
     /**
+     * @var string
+     */
+    protected string $resourceMethod = 'handle';
+
+    /**
      * get resource for model
      *
      * @return string
@@ -36,11 +41,6 @@ trait ResourceRepository
      */
     public function resource(callable $callback) : array
     {
-        if(property_exists($this,'localization') && count($this->localization)){
-            $with = request()->query->get('with',[]);
-            request()->query->set('with',array_merge($with,['localization' => 'values']));
-        }
-
         $call =  call_user_func($callback);
 
         return $this->addCollectDataToResource(function(array $collect = []) use($call){
@@ -49,6 +49,21 @@ trait ResourceRepository
 
             return $result;
         });
+    }
+
+    /**
+     * get localization process for repository
+     *
+     * @param array $data
+     * @param $methodName
+     * @return array
+     */
+    public function traitResource(array $data,string $methodName) : array
+    {
+        $this->resourceMethod = $methodName;
+        $data['data'] = $this->resourcePropagation(($data['data'] ?? []),null,false);
+
+        return $data;
     }
 
     /**
@@ -85,38 +100,44 @@ trait ResourceRepository
      *
      * @param array $data
      * @param object|null $repository
+     * @param bool $localizationHandler
      * @return array
      */
-    public function resourcePropagation(array $data = [],?object $repository = null): array
+    public function resourcePropagation(array $data = [],?object $repository = null,$localizationHandler = true): array
     {
         $list           = [];
-        $repository     = $repository ?? $this;
-        $localizations  = $this->getLocalizations($repository);
-        $withValues     = $repository->getModelWithValues();
+
+        if($localizationHandler){
+            $repository     = $repository ?? $this;
+            $localizations  = $this->getLocalizations($repository);
+            $withValues     = $repository->getModelWithValues();
+        }
 
         foreach ($data as $key => $item){
-            $values = $item['localization']['values'][0] ?? [];
+            if($localizationHandler){
+                $values = $item['localization']['values'][0] ?? [];
 
-            foreach ($withValues as $withValue){
-                $withValueSnake = Str::snake($withValue);
-                foreach (($item[$withValueSnake] ?? []) as $withKey => $withData){
-                    if(isset($withData['localization'])){
-                        $item[$withValueSnake][$withKey] = ($this->resourcePropagation(
-                                [$withData],
-                                $this->findRepositoryByModel(getModelWithPlural($withValue))
-                            )[0]) ?? [];
+                foreach ($withValues as $withValue){
+                    $withValueSnake = Str::snake($withValue);
+                    foreach (($item[$withValueSnake] ?? []) as $withKey => $withData){
+                        if(isset($withData['localization'])){
+                            $item[$withValueSnake][$withKey] = ($this->resourcePropagation(
+                                    [$withData],
+                                    $this->findRepositoryByModel(getModelWithPlural($withValue))
+                                )[0]) ?? [];
+                        }
                     }
+
                 }
 
-            }
-
-            foreach ($localizations as $localization){
-                $item[$localization] = $values[$localization] ?? ($item[$localization] ?? null);
-                unset($item['localization']);
+                foreach ($localizations as $localization){
+                    $item[$localization] = $values[$localization] ?? ($item[$localization] ?? null);
+                    unset($item['localization']);
+                }
             }
 
             $list[$key] = $this->resourceHandler($item,function(object $resource) use($item){
-                return $resource->handle($item);
+                return (method_exists($resource,$this->resourceMethod)) ?  $resource->{$this->resourceMethod}($item) : $item;
             });
         }
 
