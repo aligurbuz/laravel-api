@@ -14,8 +14,7 @@
                     {
                         "key": "Authorization",
                         "value": "Bearer {{bearerToken}}",
-                        "type": "text",
-                        "disabled": true
+                        "type": "text"
                     },
                     {
                         "key": "Apikey",
@@ -25,6 +24,11 @@
                     {
                         "key": "Content-Type",
                         "value": "{{contentType}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "Accept-Language",
+                        "value": "{{acceptLanguage}}",
                         "type": "text"
                     }
                 ],
