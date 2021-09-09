@@ -13,7 +13,7 @@ class AppNameCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'name {name}pph';
+    protected $signature = 'name {name}';
 
     /**
      * The console command description.
