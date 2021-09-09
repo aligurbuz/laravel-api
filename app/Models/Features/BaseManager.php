@@ -51,6 +51,13 @@ trait BaseManager
     public function __construct(array $attributes = [],bool $withQueryConstructor = true)
     {
         $this->fillable = Db::columns($this->getTable());
+
+        foreach (Db::types($this->getTable()) as $dbTypeColumn => $dbType){
+            if($dbType=='array'){
+                $this->casts[$dbTypeColumn] = 'array';
+            }
+        }
+
         $this->assignAppends();
         $this->localizationWithQuery['localization']['localColumn'] = getTableCode($this->getModelName());
 
