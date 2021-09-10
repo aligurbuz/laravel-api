@@ -744,7 +744,7 @@ class EloquentRepository
     }
 
     /**
-     * get traits for repository
+     * get additional resource for repository
      *
      * @return bool
      */

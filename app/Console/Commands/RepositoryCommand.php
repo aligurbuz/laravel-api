@@ -107,6 +107,16 @@ class RepositoryCommand extends Command
             ->addComment('')
             ->addComment('@var array');
 
+        $class->addProperty('autoEagerLoadings',[])->setProtected()->setType('array')
+            ->addComment('get auto eager loading values for repository')
+            ->addComment('')
+            ->addComment('@var array');
+
+        $class->addProperty('additionalResource',false)->setProtected()->setType('bool')
+            ->addComment('get additional resource for repository')
+            ->addComment('')
+            ->addComment('@var bool');
+
         $method = $class->addMethod(lcfirst($className));
         $method->addParameter('builder',null)->setNullable(true)->setType('object');
         $method->setBody('return $this->apply($builder);')->setReturnType('object');
