@@ -62,7 +62,7 @@ class MigrationCommand extends Command
 
         $content = File::get($createdFilePath);
         $content = str_replace('$table->id();','$table->id();
-            $table->bigInteger(\''.$modelCode.'\')->default(0)->unique()->index();
+            $table->bigInteger(\''.$modelCode.'\')->default(0)->unique();
 
             //$table->char(\'column\');
 
