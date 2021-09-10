@@ -7,6 +7,7 @@ use App\Repositories\Repository;
 use App\Services\Db;
 use Illuminate\Console\Command;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Nette\PhpGenerator\Literal;
@@ -286,6 +287,8 @@ use '.$contractClassRepositoryName.';',$getRepositoryFile);
 
             File::put($repositoryFile,$getRepositoryFile);
         }
+
+        Artisan::call('create:resource',['repository' => $this->argument('repository'),'dir' => $this->argument('dir')]);
 
 
         $this->alert('RepositoryCommand created');
