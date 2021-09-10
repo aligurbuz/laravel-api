@@ -58,7 +58,7 @@ trait ResourceRepository
      * @param $methodName
      * @return array
      */
-    public function traitResource(array $data,string $methodName) : array
+    public function additionalResource(array $data,string $methodName) : array
     {
         $this->resourceMethod = $methodName;
         $data['data'] = $this->resourcePropagation(($data['data'] ?? []),null,false);

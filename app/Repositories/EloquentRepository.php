@@ -52,7 +52,7 @@ class EloquentRepository
 
         // cache will be made according to your model.
         // this will make your queries very performance.
-        return $this->traitHandler($this->useCache(function(){
+        return $this->additionalResourceHandler($this->useCache(function(){
 
             // a resource class will be valid,
             // where you can manipulate all the returned result set values one by one.
@@ -730,17 +730,31 @@ class EloquentRepository
     }
 
     /**
-     * get traits for repository
+     * get auto eager loading values for repository
      *
      * @return array
      */
-    public function getTraits() : array
+    public function getAutoEagerLoadings() : array
     {
-        if(property_exists($this,'traits') && is_array($this->traits)){
-            return $this->traits;
+        if(property_exists($this,'autoEagerLoadings') && is_array($this->autoEagerLoadings)){
+            return $this->autoEagerLoadings;
         }
 
         return [];
+    }
+
+    /**
+     * get traits for repository
+     *
+     * @return bool
+     */
+    public function getAdditionalResource() : bool
+    {
+        if(property_exists($this,'additionalResource') && is_bool($this->additionalResource)){
+            return $this->additionalResource;
+        }
+
+        return false;
     }
 
     /**
@@ -749,9 +763,9 @@ class EloquentRepository
      * @param array $data
      * @return array
      */
-    public function traitHandler(array $data = []) : array
+    public function additionalResourceHandler(array $data = []) : array
     {
-        return (count($this->getTraits())) ? $this->traitResource($data,__FUNCTION__) : $data;
+        return ($this->getAdditionalResource()) ? $this->additionalResource($data,__FUNCTION__) : $data;
     }
 
     /**
@@ -767,9 +781,9 @@ class EloquentRepository
             request()->query->set('with',array_merge($with,['localization' => 'values']));
         }
 
-        foreach ($this->getTraits() as $trait){
-            if(!isset($with[$trait])){
-                request()->query->set('with',array_merge($with,[$trait => '*']));
+        foreach ($this->getAutoEagerLoadings() as $loading){
+            if(!isset($with[$loading])){
+                request()->query->set('with',array_merge($with,[$loading => '*']));
             }
         }
     }
