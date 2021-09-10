@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Register;
 
 use Exception;
-use App\Services\Response;
+use App\Services\Response\Response;
 use App\Http\Controllers\Controller;
 use App\Client\User\User\Create\CreateUserClient;
 use App\Repositories\User\Contracts\UserRepositoryContract;

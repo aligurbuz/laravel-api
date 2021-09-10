@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Exception;
 use Illuminate\Http\Request;
-use App\Services\Response as ResponseFormatter;
+use App\Services\Response\Response as ResponseFormatter;
 
 class Response
 {

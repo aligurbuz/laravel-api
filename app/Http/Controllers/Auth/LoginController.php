@@ -7,7 +7,7 @@ namespace App\Http\Controllers\Auth;
 use App\Facades\Authenticate\ApiKey;
 use Exception;
 use App\Services\Client;
-use App\Services\Response;
+use App\Services\Response\Response;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Client\Auth\Login\Create\CreateClient;
