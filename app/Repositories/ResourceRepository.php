@@ -30,7 +30,24 @@ trait ResourceRepository
      */
     public function getResource() : string
     {
-        return __NAMESPACE__.'\\'.$this->getModelName().'\Resource\\'.$this->getModelName().'Resource';
+        //base class property for repository
+        $className = class_basename(get_called_class());
+        $currentNamespace = $this->getCurrentNamespace();
+
+        //get directory name for repository model
+        $dir = str_replace('\\'.$className,'',$currentNamespace);
+
+        return $dir.'\Resource\\'.str_replace('Repository','',$className).'Resource';
+    }
+
+    /**
+     * get current namespace for repository
+     *
+     * @return string
+     */
+    public function getCurrentNamespace() : string
+    {
+        return get_called_class();
     }
 
     /**
