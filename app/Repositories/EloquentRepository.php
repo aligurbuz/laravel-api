@@ -672,12 +672,14 @@ class EloquentRepository
     /**
      * set eager loading for repository
      *
-     * @param $model
+     * @param string|null $model
      * @param callable $callback
      * @return object
      */
-    public function setEagerLoading($model,callable $callback) : object
+    public function setEagerLoading(?string $model,callable $callback) : object
     {
+        $model = $model ?? $this->getModelName();
+
         $repositoryName = lcfirst(class_basename(
                 $repository = $this->findRepositoryByModel($model))
         );
@@ -804,7 +806,7 @@ class EloquentRepository
             return $this->eagerLoadingHandler($model,$args);
         }
 
-        $this->with([$name]);
+        $this->with([$name => ($args[0] ?? function($query) {})]);
 
         return $this;
     }

@@ -8,7 +8,6 @@ use App\Repositories\Repository;
 use App\Services\Db;
 use Illuminate\Support\Str;
 use App\Exceptions\Exception;
-use App\Services\AppContainer;
 use Illuminate\Database\Eloquent\Builder;
 
 /**
@@ -38,6 +37,17 @@ trait ScopeManager
      * @var string[]
      */
     protected array $operators = ['<','>','<=','>=','<>','=','or'];
+
+    /**
+     * get active scope for model
+     *
+     * @param Builder $builder
+     * @return Builder
+     */
+    public function scopeActive(Builder $builder) : object
+    {
+        return $builder->where('status',1)->where('is_deleted',0);
+    }
 
     /**
      * get client scope data for model
