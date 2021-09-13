@@ -427,7 +427,9 @@ class EloquentRepository
             $this->repository = $this->afterLoadingRepository();
         }
 
-        return $this->repository->get()->toArray();
+        return $this->additionalResourceHandler(
+            $this->baseResource($this->repository->get()->toArray())
+        );
     }
 
     /**

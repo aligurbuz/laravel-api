@@ -51,7 +51,7 @@ trait ResourceRepository
     }
 
     /**
-     * get localization process for repository
+     * get resource for repository
      *
      * @param callable $callback
      * @return array
@@ -69,16 +69,35 @@ trait ResourceRepository
     }
 
     /**
+     * get base resource for repository
+     *
+     * @param array $data
+     * @return array
+     */
+    public function baseResource(array $data = []) : array
+    {
+        return $this->addCollectDataToResource(function(array $collect = []) use($data){
+            $result = array_merge($collect,$data);
+            return $this->resourcePropagation($result);
+        });
+    }
+
+    /**
      * get localization process for repository
      *
      * @param array $data
-     * @param $methodName
+     * @param string $methodName
      * @return array
      */
     public function additionalResource(array $data,string $methodName) : array
     {
         $this->resourceMethod = $methodName;
-        $data['data'] = $this->resourcePropagation(($data['data'] ?? []),null,false);
+        if(isset($data['data'])){
+            $data['data'] = $this->resourcePropagation(($data['data'] ?? []),null,false);
+        }
+        else{
+            $data = $this->resourcePropagation($data,null,false);
+        }
 
         return $data;
     }
@@ -120,7 +139,7 @@ trait ResourceRepository
      * @param bool $localizationHandler
      * @return array
      */
-    public function resourcePropagation(array $data = [],?object $repository = null,$localizationHandler = true): array
+    public function resourcePropagation(array $data = [], ?object $repository = null, bool $localizationHandler = true): array
     {
         $list           = [];
 
