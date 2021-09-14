@@ -13,7 +13,12 @@ trait GroupByProcess
     /**
      * @var array|string[]
      */
-    protected array $clientKeyList = ['field','sum'];
+    protected array $clientKeyList = ['field'];
+
+    /**
+     * @var array|string[]
+     */
+    protected array $clientProcessList = ['sum','avg','max','min'];
 
     /**
      * @var array
@@ -50,13 +55,16 @@ trait GroupByProcess
     private function groupByRequestProcess(array $request = [])
     {
         foreach ($request as $clientKey => $clientVal){
-            if(!in_array($clientKey,$this->clientKeyList,true)){
+            if(!in_array($clientKey,array_merge($this->clientKeyList,$this->clientProcessList),true)){
                 Exception::customException('none');
             }
 
             $this->getRepository()->throwExceptionIfColumnNotExist($clientVal,function() use($clientKey,$clientVal){
-                if($clientKey=='sum'){
-                    $this->groupByQueryList[] = dbFacade::raw('sum('.$clientVal.') as '.$clientVal);
+                if(in_array($clientKey,$this->clientProcessList,true)){
+                    $clientProcessList = explode(',',$clientVal);
+                    foreach ($clientProcessList as $item){
+                        $this->groupByQueryList[] = dbFacade::raw(''.$clientKey.'('.$item.') as '.$clientKey.'_'.$item);
+                    }
                 }
 
                 return new class {};
