@@ -5,6 +5,21 @@ return [
     'apikeyString' => 'apikey',
     'defaultApiResponseFormatter' => 'json',
 
+    'allowedClientKeys' => [
+        'range',
+        'filter',
+        'select',
+        'with',
+        'append',
+        'orderBy',
+        'withRange',
+        'has',
+        'doesntHave',
+        'hasRange',
+        'page',
+        'limit'
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Application Name

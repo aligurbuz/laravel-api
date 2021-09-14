@@ -293,20 +293,7 @@ class Client extends ClientManager
             $this->capsule = array_merge($this->columnsForModel(),$this->capsule);
 
             if($this->requestMethod=='GET'){
-                $this->capsule = array_merge($this->capsule,[
-                    'range',
-                    'filter',
-                    'select',
-                    'with',
-                    'append',
-                    'orderBy',
-                    'withRange',
-                    'has',
-                    'doesntHave',
-                    'hasRange',
-                    'page',
-                    'limit'
-                ]);
+                $this->capsule = array_merge($this->capsule,config('app.allowedClientKeys'));
 
                 if(count($this->repository()->getCollects())){
                     $this->capsule = array_merge($this->capsule,['collect']);
