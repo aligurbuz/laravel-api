@@ -36,9 +36,9 @@ trait GroupByProcess
         $request = request()->query->get('groupBy');
         $field = $request['field'] ?? null;
 
-        $this->groupByRequestProcess((array)$request);
-
         if(!is_null($field)){
+            $this->groupByRequestProcess((array)$request);
+
             return $this->getRepository()->throwExceptionIfColumnNotExist($field,function() use($field,$builder){
                 return $builder->select(array_merge([$field],$this->groupByQueryList))->groupBy($field);
             });
