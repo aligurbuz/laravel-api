@@ -589,6 +589,7 @@ class EloquentRepository
             ->withQuery()
             ->selectQuery()
             ->orderByQuery()
+            ->groupByQuery()
             ->filterQuery()
             ->search();
 
@@ -622,7 +623,7 @@ class EloquentRepository
     public function throwExceptionIfColumnNotExist($column,callable $callback) : object
     {
         if(!Db::ensureColumnExists($this->getModel(),$column)){
-            return Exception::customException('collect column name is not valid');
+            return Exception::customException($column.' column name is not valid');
         }
 
         return call_user_func($callback);

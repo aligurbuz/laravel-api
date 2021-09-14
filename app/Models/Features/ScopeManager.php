@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Models\Features;
 
-use App\Repositories\Repository;
 use App\Services\Db;
 use Illuminate\Support\Str;
 use App\Exceptions\Exception;
+use App\Repositories\Repository;
 use Illuminate\Database\Eloquent\Builder;
 
 /**
@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\Builder;
  */
 trait ScopeManager
 {
-    use FullTextSearch,WithProcess,ScopeManagerTrait;
+    use FullTextSearch,WithProcess,ScopeManagerTrait,GroupByProcess;
 
     /**
      * @var array[]
@@ -131,6 +131,17 @@ trait ScopeManager
         }
 
         return $builder;
+    }
+
+    /**
+     * get groupBy scope for model
+     *
+     * @param Builder $builder
+     * @return object
+     */
+    public function scopeGroupByQuery(Builder $builder) : object
+    {
+        return $this->groupByProcessHandler($builder);
     }
 
     /**
