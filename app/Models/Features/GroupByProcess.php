@@ -59,16 +59,18 @@ trait GroupByProcess
                 Exception::customException('none');
             }
 
-            $this->getRepository()->throwExceptionIfColumnNotExist($clientVal,function() use($clientKey,$clientVal){
-                if(in_array($clientKey,$this->clientProcessList,true)){
-                    $clientProcessList = explode(',',$clientVal);
-                    foreach ($clientProcessList as $item){
-                        $this->groupByQueryList[] = dbFacade::raw(''.$clientKey.'('.$item.') as '.$clientKey.'_'.$item);
-                    }
-                }
+            $clientValues = explode(',',$clientVal);
 
-                return new class {};
-            });
+            foreach ($clientValues as $clientValue){
+                $this->getRepository()->throwExceptionIfColumnNotExist($clientValue,function() use($clientKey,$clientValue){
+                    if(in_array($clientKey,$this->clientProcessList,true)){
+                        $this->groupByQueryList[] = dbFacade::raw(''.$clientKey.'('.$clientValue.') as '.$clientKey.'_'.$clientValue);
+                    }
+
+                    return new class {};
+                });
+            }
+
         }
     }
 }
