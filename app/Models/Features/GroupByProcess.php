@@ -33,9 +33,13 @@ trait GroupByProcess
 
         $this->groupByRequestProcess((array)$request);
 
-        return $this->getRepository()->throwExceptionIfColumnNotExist($field,function() use($field,$builder){
-            return $builder->select(array_merge([$field],$this->groupByQueryList))->groupBy($field);
-        });
+        if(!is_null($field)){
+            return $this->getRepository()->throwExceptionIfColumnNotExist($field,function() use($field,$builder){
+                return $builder->select(array_merge([$field],$this->groupByQueryList))->groupBy($field);
+            });
+        }
+
+        return $builder;
     }
 
     /**
