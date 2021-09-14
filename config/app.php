@@ -17,7 +17,8 @@ return [
         'doesntHave',
         'hasRange',
         'page',
-        'limit'
+        'limit',
+        'groupBy'
     ],
 
     /*
