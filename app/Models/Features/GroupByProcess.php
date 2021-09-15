@@ -33,15 +33,22 @@ trait GroupByProcess
      */
     public function groupByProcessHandler(Builder $builder) : object
     {
-        $request = request()->query->get('groupBy');
+        $request = request()->query->get('groupBy',[]);
+
+        if(count($request) && !isset($request['field'])){
+            return Exception::customException(trans('exception.groupByDefaultException'));
+        }
+
         $field = $request['field'] ?? null;
 
         if(!is_null($field)){
             $this->groupByRequestProcess((array)$request);
 
-            return $this->getRepository()->throwExceptionIfColumnNotExist($field,function() use($field,$builder){
+            if(in_array($field,$this->getRepository()->getGroupByFields(),true)){
                 return $builder->select(array_merge([$field],$this->groupByQueryList))->groupBy($field);
-            });
+            }
+
+            return Exception::customException(trans('exception.groupByFieldException',['key' => $field]));
         }
 
         return $builder;
@@ -51,26 +58,30 @@ trait GroupByProcess
      * get group by request process for model
      *
      * @param array $request
+     * @return object
      */
-    private function groupByRequestProcess(array $request = [])
+    private function groupByRequestProcess(array $request = []): object
     {
         foreach ($request as $clientKey => $clientVal){
             if(!in_array($clientKey,array_merge($this->clientKeyList,$this->clientProcessList),true)){
-                Exception::customException('none');
+                Exception::customException(trans('exception.groupByKeyException',['key' => $clientKey]));
             }
 
             $clientValues = explode(',',$clientVal);
 
             foreach ($clientValues as $clientValue){
-                $this->getRepository()->throwExceptionIfColumnNotExist($clientValue,function() use($clientKey,$clientValue){
-                    if(in_array($clientKey,$this->clientProcessList,true)){
+                if(in_array($clientKey,$this->clientProcessList,true)){
+                    if(in_array($clientValue,$this->getRepository()->getGroupByProcessFields(),true)){
                         $this->groupByQueryList[] = dbFacade::raw(''.$clientKey.'('.$clientValue.') as '.$clientKey.'_'.$clientValue);
                     }
+                    else{
+                        return Exception::customException(trans('exception.groupByProcessFieldException',['key' => $clientValue]));
+                    }
+                }
 
-                    return new class {};
-                });
             }
-
         }
+
+        return new class {};
     }
 }

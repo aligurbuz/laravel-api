@@ -763,6 +763,34 @@ class EloquentRepository
     }
 
     /**
+     * get group by fields for repository
+     *
+     * @return array
+     */
+    public function getGroupByFields() : array
+    {
+        if(property_exists($this,'groupByFields') && is_array($this->groupByFields)){
+            return $this->groupByFields;
+        }
+
+        return [];
+    }
+
+    /**
+     * get group by process fields for repository
+     *
+     * @return array
+     */
+    public function getGroupByProcessFields() : array
+    {
+        if(property_exists($this,'groupByProcessFields') && is_array($this->groupByProcessFields)){
+            return $this->groupByProcessFields;
+        }
+
+        return [];
+    }
+
+    /**
      * get trait handler for repository
      *
      * @param array $data

@@ -27,4 +27,8 @@ return [
     'acceptLanguageNotIn'           => 'Accept-Language must be sent in the header request',
     'acceptLanguageNotValid'        => 'Accept-Language is not valid',
     'deniedEagerLoadings'           => 'You have been denied access to the relation :key',
+    'groupByFieldException'         => 'GroupBy field for :key is not valid',
+    'groupByProcessFieldException'  => 'GroupBy process field for :key is not valid',
+    'groupByKeyException'           => 'GroupBy key for :key is not valid',
+    'groupByDefaultException'       => 'field key for groupBy is mandatory',
 ];
