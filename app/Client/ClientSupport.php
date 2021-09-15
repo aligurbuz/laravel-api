@@ -31,7 +31,7 @@ trait ClientSupport
     {
         if($this->isDefault == '1' && request()->method() !== 'GET'){
             $this->ensureColumnExists($snakeFunction = Str::snake(__FUNCTION__),function() use($snakeFunction){
-                $this->repository()->update([[$snakeFunction => '0']],false);
+                $this->repository()->getDefault()->update([[$snakeFunction => '0']],false);
             });
         }
 

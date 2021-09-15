@@ -120,7 +120,7 @@ trait UpdateRepository
                 return $this->sqlException($exception);
             }
 
-            if($update=='0'){
+            if($update=='0' && count($oldData)){
                 return Exception::updateException();
             }
 

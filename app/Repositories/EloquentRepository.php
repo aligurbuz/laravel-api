@@ -575,6 +575,18 @@ class EloquentRepository
     }
 
     /**
+     * get values being 1 for is_default column for model
+     *
+     * @return object
+     */
+    public function getDefault() : object
+    {
+        $this->repository = $this->instance()->where('is_default',1);
+
+        return $this;
+    }
+
+    /**
      * get graphql builder
      *
      * @return $this
