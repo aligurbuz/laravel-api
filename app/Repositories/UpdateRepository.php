@@ -114,14 +114,15 @@ trait UpdateRepository
 
             try{
                 $update = $baseQuery->update($this->hitterProcess($data,$dataKey));
+
+                if($update=='0' && count($oldData)){
+                    return Exception::updateException();
+                }
+
                 $this->updateEventDispatcher($oldData,$data);
             }
             catch (\Exception $exception){
                 return $this->sqlException($exception);
-            }
-
-            if($update=='0' && count($oldData)){
-                return Exception::updateException();
             }
 
             $queryList[] = $result = ($baseQuery->get()->toArray())[0] ?? [];
