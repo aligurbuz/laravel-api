@@ -575,13 +575,14 @@ class EloquentRepository
     }
 
     /**
-     * get values being 1 for is_default column for model
+     * get values being 1 or 0 for is_default column for model
      *
+     * @param int $value
      * @return object
      */
-    public function getDefault() : object
+    public function default($value = 1) : object
     {
-        $this->repository = $this->instance()->where('is_default',1);
+        $this->repository = $this->instance()->where('is_default',$value);
 
         return $this;
     }
