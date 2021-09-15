@@ -113,6 +113,16 @@ class RepositoryCommand extends Command
             ->addComment('')
             ->addComment('@var array');
 
+        $class->addProperty('groupByFields',[])->setProtected()->setType('array')
+            ->addComment('it contains columns to be used by groupBy method.')
+            ->addComment('')
+            ->addComment('@var array');
+
+        $class->addProperty('groupByProcessFields',[])->setProtected()->setType('array')
+            ->addComment('it contains aggregate methods to be used together groupBy method.')
+            ->addComment('')
+            ->addComment('@var array');
+
         $class->addProperty('additionalResource',false)->setProtected()->setType('bool')
             ->addComment('get additional resource for repository')
             ->addComment('')
