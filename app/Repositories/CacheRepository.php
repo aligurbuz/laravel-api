@@ -180,15 +180,22 @@ trait CacheRepository
         {
             $callData = call_user_func($data);
             $proxy = $proxyCallback = $this->proxyUsing ? $this->proxy($callData) : $callData;
-            $proxyCallback['cache'] = 'true';
 
-            $this->cacheInstance->hset(
-                $this->cacheKey,
-                (string)$this->cacheTag,
-                json_encode($proxyCallback)
-            );
+            if(
+                isset($callData['data'])
+                && is_array($callData['data'])
+                && count($callData['data'])
+            ){
+                $proxyCallback['cache'] = 'true';
 
-            $this->cacheInstance->expire($this->cacheKey,$this->cacheExpire);
+                $this->cacheInstance->hset(
+                    $this->cacheKey,
+                    (string)$this->cacheTag,
+                    json_encode($proxyCallback)
+                );
+
+                $this->cacheInstance->expire($this->cacheKey,$this->cacheExpire);
+            }
 
             return call_user_func($callback,$proxy);
         };
