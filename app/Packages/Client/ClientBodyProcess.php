@@ -9,6 +9,7 @@ use App\Services\Db;
 use App\Exceptions\Exception;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Contracts\Validation\Validator as ValidatorContract;
+use Illuminate\Support\Str;
 
 /**
  * Class ClientBodyProcess
@@ -109,7 +110,7 @@ class ClientBodyProcess extends ClientVariableProcess
                 $this->typeValidator($value);
 
                 $generatorProcess = array_merge($this->generatorProcess($value),$this->autoGeneratorProcess($value));
-                //$overWriteStream = $this->client->getDataStream();
+                $overWriteStream = $this->client->getDataStream();
                 $this->variableProcess($generatorProcess);
                 $value = $this->client->getDataStream();
                 $this->client->setBodyData($key,$value);
@@ -118,15 +119,16 @@ class ClientBodyProcess extends ClientVariableProcess
 
                 $this->makeValidator($value);
 
-                /**if(count($overWriteStream)){
+
+                if(count($overWriteStream)){
                     foreach ($value as $streamKey => $streamValue){
-                        if(isset($overWriteStream[$streamKey])){
+                        if(isset($overWriteStream[$streamKey]) && (Str::endsWith($streamKey,'_image') || $streamKey=='image')){
                             $value[$streamKey] = $overWriteStream[$streamKey];
                         }
                     }
 
                     $this->client->setBodyData($key,$value);
-                }**/
+                }
             }
             else{
                 Exception::clientFormatException();
