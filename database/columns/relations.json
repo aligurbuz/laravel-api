@@ -26,7 +26,8 @@
         "SuperAdmin",
         "TableChange",
         "Timezone",
-        "User"
+        "User",
+        "UserPhoto"
     ],
     "Currency": [
         "Localization"
@@ -45,7 +46,8 @@
     "User": [
         "Role",
         "SuperAdmin",
-        "Localization"
+        "Localization",
+        "UserPhoto"
     ],
     "SuperAdmin": [
         "Role",
@@ -56,6 +58,10 @@
         "Localization"
     ],
     "Timezone": [
+        "Localization"
+    ],
+    "UserPhoto": [
+        "User",
         "Localization"
     ]
 }

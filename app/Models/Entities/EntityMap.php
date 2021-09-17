@@ -6,6 +6,15 @@ class EntityMap
 {
     /**
      * @param object $query
+     * @return UserPhoto
+     */
+    public function userPhoto(object $query) : UserPhoto
+    {
+        return new UserPhoto($query);
+    }
+    
+    /**
+     * @param object $query
      * @return Timezone
      */
     public function timezone(object $query) : Timezone

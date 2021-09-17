@@ -147,6 +147,206 @@
                     }
                 }
             ]
+        },
+        {
+            "name": "Photos",
+            "item": [
+                {
+                    "name": "User/Photos",
+                    "response": [],
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{bearerToken}}",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Apikey",
+                                "value": "{{apiKey}}",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "{{contentType}}",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Accept-Language",
+                                "value": "{{acceptLanguage}}",
+                                "type": "text"
+                            }
+                        ],
+                        "body": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/user/photos",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "user",
+                                "photos"
+                            ],
+                            "query": [
+                                {
+                                    "key": "range",
+                                    "value": "desc",
+                                    "description": "",
+                                    "disabled": true
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "User/Photos",
+                    "response": [],
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{bearerToken}}",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Apikey",
+                                "value": "{{apiKey}}",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "{{contentType}}",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Accept-Language",
+                                "value": "{{acceptLanguage}}",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "formdata",
+                            "formdata": [
+                                {
+                                    "key": "image_description",
+                                    "description": "",
+                                    "value": "string",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "image_name",
+                                    "description": "",
+                                    "value": "string",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "is_deleted",
+                                    "description": "",
+                                    "value": "0",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "sequence",
+                                    "description": "",
+                                    "value": "1",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "sequence_time",
+                                    "description": "",
+                                    "value": "0",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "status",
+                                    "description": "",
+                                    "value": "1",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "user_code",
+                                    "description": "",
+                                    "value": "integer",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "user_image",
+                                    "description": "",
+                                    "type": "file",
+                                    "src": []
+                                }
+                            ],
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/user/photos",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "user",
+                                "photos"
+                            ],
+                            "query": []
+                        }
+                    }
+                },
+                {
+                    "name": "User/Photos",
+                    "response": [],
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{bearerToken}}",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Apikey",
+                                "value": "{{apiKey}}",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "{{contentType}}",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Accept-Language",
+                                "value": "{{acceptLanguage}}",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"image_description\":\"string\",\"image_name\":\"string\",\"is_deleted\":\"0\",\"sequence\":\"1\",\"sequence_time\":\"0\",\"status\":\"1\",\"user_code\":\"integer\",\"user_image\":\"image\",\"user_photo_code\":\"0\"}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/user/photos",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "user",
+                                "photos"
+                            ],
+                            "query": []
+                        }
+                    }
+                }
+            ]
         }
     ],
     "name": "User"

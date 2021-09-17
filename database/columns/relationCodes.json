@@ -47,12 +47,16 @@
     ],
     "user_code": [
         "SuperAdmin",
-        "User"
+        "User",
+        "UserPhoto"
     ],
     "table_change_code": [
         "TableChange"
     ],
     "timezone_code": [
         "Timezone"
+    ],
+    "user_photo_code": [
+        "UserPhoto"
     ]
 }

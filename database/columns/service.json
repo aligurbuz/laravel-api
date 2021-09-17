@@ -1,1 +1,30 @@
-{"Currency":{"controller":"Currencies","dir":"Currencies"},"Timezone":{"controller":"Timezones","dir":"Timezones"},"User":{"controller":"User","dir":"User"},"Countries":{"controller":"Countries","dir":"Countries"},"Countries/cities":{"controller":"Cities","dir":"Countries"},"Countries/districts":{"controller":"Districts","dir":"Countries"}}
+{
+    "Currency": {
+        "controller": "Currencies",
+        "dir": "Currencies"
+    },
+    "Timezone": {
+        "controller": "Timezones",
+        "dir": "Timezones"
+    },
+    "User": {
+        "controller": "User",
+        "dir": "User"
+    },
+    "Countries": {
+        "controller": "Countries",
+        "dir": "Countries"
+    },
+    "Countries/cities": {
+        "controller": "Cities",
+        "dir": "Countries"
+    },
+    "Countries/districts": {
+        "controller": "Districts",
+        "dir": "Countries"
+    },
+    "User/photos": {
+        "controller": "Photos",
+        "dir": "User"
+    }
+}
