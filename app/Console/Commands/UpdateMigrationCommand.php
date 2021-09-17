@@ -53,6 +53,7 @@ class UpdateMigrationCommand extends Command
             Artisan::call('update:column',['model' => $this->argument('model')]);
             Artisan::call('doc:create',['controller' => $controller,'dir' => $dir,'model' => $this->argument('model')]);
             Artisan::call('postman:create',['collection' => config('app.name')]);
+            Artisan::call('update:relation');
 
             $this->warn('your updating is success for migration');
             return 0;
