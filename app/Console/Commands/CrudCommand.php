@@ -86,7 +86,7 @@ use '.$useController.';',$routeApiContent);
 
             if(!isset($serviceMaps[$this->argument('model')])){
                 $newValues = [
-                    $dirVariable.'/'.$controllerVariable => [
+                    ucfirst($dirVariable).'/'.$controllerVariable => [
                         'controller' => ucfirst($controllerVariable),
                         'dir' => ucfirst($dirVariable)
                     ]
@@ -95,6 +95,26 @@ use '.$useController.';',$routeApiContent);
                 $newServiceValues = array_merge_recursive($serviceMaps,$newValues);
 
                 File::put($serviceMapFile,json_encode($newServiceValues));
+            }
+        }
+
+        $modelServiceMapFile = base_path('database/columns/modelService.json');
+
+        if(file_exists($modelServiceMapFile)){
+            $serviceMaps = File::get($modelServiceMapFile);
+            $serviceMaps = json_decode($serviceMaps,1);
+
+            if(!isset($serviceMaps[$this->argument('model')])){
+                $newValues = [
+                    $this->argument('model').'/'.$controllerVariable => [
+                        'controller' => ucfirst($controllerVariable),
+                        'dir' => ucfirst($dirVariable)
+                    ]
+                ];
+
+                $newServiceValues = array_merge_recursive($serviceMaps,$newValues);
+
+                File::put($modelServiceMapFile,json_encode($newServiceValues));
             }
         }
 
