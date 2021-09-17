@@ -40,7 +40,7 @@ class UpdateMigrationCommand extends Command
     public function handle()
     {
         $model = ucfirst($this->argument('model'));
-        $serviceMapFile = base_path('database/columns/service.json');
+        $serviceMapFile = base_path('database/columns/modelService.json');
 
         $services = json_decode(File::get($serviceMapFile),1);
 
