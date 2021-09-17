@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\File;
 
@@ -94,7 +95,7 @@ use '.$useController.';',$routeApiContent);
 
                 $newServiceValues = array_merge_recursive($serviceMaps,$newValues);
 
-                File::put($serviceMapFile,json_encode($newServiceValues));
+                File::put($serviceMapFile,Collection::make($newServiceValues)->toJson(JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
             }
         }
 
@@ -106,7 +107,7 @@ use '.$useController.';',$routeApiContent);
 
             if(!isset($serviceMaps[$this->argument('model')])){
                 $newValues = [
-                    $this->argument('model').'/'.$controllerVariable => [
+                    $this->argument('model') => [
                         'controller' => ucfirst($controllerVariable),
                         'dir' => ucfirst($dirVariable)
                     ]
@@ -114,7 +115,7 @@ use '.$useController.';',$routeApiContent);
 
                 $newServiceValues = array_merge_recursive($serviceMaps,$newValues);
 
-                File::put($modelServiceMapFile,json_encode($newServiceValues));
+                File::put($modelServiceMapFile,Collection::make($newServiceValues)->toJson(JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
             }
         }
 
