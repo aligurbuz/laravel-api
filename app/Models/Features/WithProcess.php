@@ -6,7 +6,6 @@ namespace App\Models\Features;
 
 use App\Exceptions\Exception;
 use App\Repositories\Repository;
-use App\Services\Client;
 use Illuminate\Database\Eloquent\Builder;
 
 /**
@@ -103,6 +102,13 @@ trait WithProcess
         $builder->with([$with => function($query) use($with,$selectExplode,$params,$foreignRepository){
             $withRange = $params['withRange'][$with] ?? ($params['range'] ?? '');
             $repositoryInstance = Repository::$foreignRepository();
+
+            $filter = [];
+
+            if(isset($params['with'][$with]['filter'])){
+                $filter =  (array)$params['with'][$with]['filter'];
+            }
+
             if(isset($params['with'][$with]['with'])){
                 if(is_array($params['with'][$with]['with'])){
                     $selectExplode[] = getTableCode($with);
@@ -119,6 +125,10 @@ trait WithProcess
                 }
 
                 $query->withQuery($params['with'][$with]['with']);
+            }
+
+            if(count($filter)){
+                $query->filterQuery($filter);
             }
 
             $query->select($selectExplode);
@@ -140,6 +150,13 @@ trait WithProcess
         $builder->with([$with => function($query) use($with,$params,$foreignRepository){
             $withRange = $params['withRange'][$with] ?? ($params['range'] ?? '');
             $repositoryInstance = Repository::$foreignRepository();
+
+            $filter = [];
+
+            if(isset($params['with'][$with]['filter'])){
+                $filter =  (array)$params['with'][$with]['filter'];
+            }
+
             if(isset($params['with'][$with]['with'])){
 
                 foreach ($params['with'][$with]['with'] as $nestedKey => $nestedWith){
@@ -153,6 +170,10 @@ trait WithProcess
                 }
 
                 $query->withQuery($params['with'][$with]['with']);
+            }
+
+            if(count($filter)){
+                $query->filterQuery($filter);
             }
 
             $query->range($repositoryInstance,$withRange);

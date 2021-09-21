@@ -191,11 +191,12 @@ trait ScopeManager
      * get filter query data for model
      *
      * @param Builder $builder
+     * @param array $data
      * @return object
      */
-    public function scopeFilterQuery(Builder $builder): object
+    public function scopeFilterQuery(Builder $builder,array $data = []): object
     {
-        $params = request()->query->all();
+        $params = count($data) ? ['filter' => $data] : request()->query->all();
         $indexes = Db::indexes($this->getTable());
 
         if(isset($params['filter'])){
