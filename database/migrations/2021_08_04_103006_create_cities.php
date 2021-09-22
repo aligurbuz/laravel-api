@@ -3,6 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
+use App\Services\Date;
 
 class CreateCities extends Migration
 {
@@ -28,6 +30,20 @@ class CreateCities extends Migration
             $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });
+
+        DB::table('cities')->delete();
+        $cities = [
+            [
+                'id' => 1,
+                'city_code' => crc32('city_1'),
+                'country_code' => '4200868100',
+                'city_name' => 'Manhattan',
+                'created_at' => Date::now()->toDateTimeString(),
+                'updated_at' => Date::now()->toDateTimeString(),
+            ]
+        ];
+
+        DB::table('cities')->insert($cities);
     }
 
     /**
