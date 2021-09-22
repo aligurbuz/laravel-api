@@ -31,4 +31,5 @@ return [
     'groupByProcessFieldException'  => 'GroupBy process field for :key is not valid',
     'groupByKeyException'           => 'GroupBy key for :key is not valid',
     'groupByDefaultException'       => 'field key for groupBy is mandatory',
+    'updateException'               => 'Update process has been failed for :model',
 ];
