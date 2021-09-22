@@ -46,10 +46,22 @@ class Postman extends Command
         $list['info']['name'] = $collection = ucfirst($this->argument('collection'));
         $list['info']['schema'] = 'https://schema.getpostman.com/json/collection/v2.1.0/collection.json';
 
-        foreach (($mapJson['files'] ?? []) as $key => $maps){
-            $mapContents = json_decode(File::get($maps),1);
-            $list['item'][$key] = $mapContents;
+
+        $dirList = [];
+        $fileList = ($mapJson['files'] ?? []);
+
+        foreach ($fileList as $key => $maps){
+            $split = explode('/',$maps);
+            $dirList[$split[9]] = $key;
         }
+
+        ksort($dirList);
+
+        foreach ($dirList as $dirFile => $dirKey){
+            $mapContents = json_decode(File::get($fileList[$dirKey]),1);
+            $list['item'][] = $mapContents;
+        }
+
 
         $postmanFile = base_path('postman').''.DIRECTORY_SEPARATOR.''.$collection.'.postman_collection.json';
 
