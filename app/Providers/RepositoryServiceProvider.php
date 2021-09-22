@@ -28,10 +28,8 @@ use App\Repositories\Localizations\LocalizationsRepository;
 use App\Repositories\Countries\Contracts\CountriesRepositoryContract;
 use App\Repositories\Countries\CountriesRepository;
 use App\Repositories\User\UserRepository;
-use App\Repositories\User\CommentRepository;
 use App\Repositories\Logger\LoggerRepository;
 use App\Repositories\User\Contracts\UserRepositoryContract;
-use App\Repositories\User\Contracts\CommentRepositoryContract;
 use App\Repositories\Logger\Contracts\LoggerRepositoryContract;
 
 class RepositoryServiceProvider extends ServiceProvider
