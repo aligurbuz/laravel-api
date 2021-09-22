@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Services\Commands;
 
 use App\Constants;
 use App\Services\Db;

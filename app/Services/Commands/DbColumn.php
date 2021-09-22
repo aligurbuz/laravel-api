@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Services\Commands;
 
 use App\Models\Entities\EntityMap;
 use Illuminate\Console\Command;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Services\Commands;
 
 use App\Client\Client;
 use App\Client\ClientAutoGeneratorTrait;
