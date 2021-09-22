@@ -272,6 +272,10 @@ class EloquentRepository
      */
     protected function where(string $column,string|int $value,string $operator = '=') : object
     {
+        if(!isValidIndex($this->getTable(),$column)){
+            return Exception::customException(trans('exception.filterException',['key' => $column]));
+        }
+
         $this->repository = $this->instance()->where($column,$operator,$value);
 
         return $this;
