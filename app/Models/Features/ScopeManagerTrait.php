@@ -35,10 +35,18 @@ trait ScopeManagerTrait
         $ranges         = is_string($range) ? explode(',',$range) : [];
         $modelRanges    = array_merge($object->getRanges(),$this->autoRanges);
 
+        $inLineRanges = [];
+
+        foreach ($modelRanges as $modelRange => $description){
+            if(in_array($modelRange,$ranges,true)){
+                $inLineRanges[] = $modelRange;
+            }
+        }
+
         //We record the instruction value in the response data to inform the user.
         AppContainer::set('responseFormatterSupplement',['ranges' => $modelRanges],true);
 
-        return ['ranges' => $ranges,'modelRanges' => $modelRanges];
+        return ['ranges' => $inLineRanges,'modelRanges' => $modelRanges];
     }
 
     /**
