@@ -307,3 +307,20 @@ if(!function_exists('indexOrdering')){
         return array_merge($list,$data);
     }
 }
+
+if(!function_exists('isValidIndex')){
+
+    /**
+     * Sorts the given data value by index.
+     *
+     * @param string $table
+     * @param string $column
+     * @return bool
+     */
+    function isValidIndex(string $table,string $column): bool
+    {
+        $indexes = DBFacade::indexes($table);
+
+        return in_array($column,$indexes);
+    }
+}
