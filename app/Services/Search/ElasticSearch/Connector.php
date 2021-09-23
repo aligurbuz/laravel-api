@@ -19,7 +19,7 @@ class Connector
      */
     public function __construct(array $connections = [])
     {
-        $this->client = Search::create()->setHosts($connections)->build();
+        $this->client = Search::create()->setHosts($this->getConfig($connections))->build();
     }
 
     /**
@@ -38,5 +38,25 @@ class Connector
         $defaultAdapter = $configurationValues['default'] ?? 'none';
 
         return $configurationValues['connections'][$defaultAdapter] ?? [];
+    }
+
+    /**
+     * Returns a concise representation of the cluster health.
+     *
+     * $params['format'] = (string) a short version of the Accept header, e.g. json, yaml
+     * $params['h']      = (list) Comma-separated list of column names to display
+     * $params['help']   = (boolean) Return help information (Default = false)
+     * $params['s']      = (list) Comma-separated list of column names or column aliases to sort by
+     * $params['time']   = (enum) The unit in which to display time values (Options = d,h,m,s,ms,micros,nanos)
+     * $params['ts']     = (boolean) Set false to disable timestamping (Default = true)
+     * $params['v']      = (boolean) Verbose mode. Display column headers (Default = false)
+     *
+     * @param array $params Associative array of parameters
+     * @return array
+     * @see https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-health.html
+     */
+    public function health(array $params = []): array
+    {
+        return $this->client->cat()->health($params);
     }
 }

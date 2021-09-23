@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Factory\Search;
 
+use App\Services\Search\ElasticSearch\Connector;
 use App\Factory\Search\Interfaces\SearchInterface;
 
 /**
@@ -19,6 +20,11 @@ class ElasticSearch extends SearchManager implements SearchInterface
 	 */
 	protected array $binds = [];
 
+    /**
+     * @var Connector
+     */
+	protected Connector $search;
+
 	/**
 	 * ElasticSearch constructor
 	 *
@@ -27,5 +33,17 @@ class ElasticSearch extends SearchManager implements SearchInterface
 	public function __construct(array $binds = [])
 	{
 		$this->binds = $binds;
+		$this->search = new Connector();
 	}
+
+    /**
+     * Returns a concise representation of the cluster health.
+     *
+     * @param array $params
+     * @return array
+     */
+    public function health(array $params = []): array
+    {
+        return $this->search->health($params);
+    }
 }
