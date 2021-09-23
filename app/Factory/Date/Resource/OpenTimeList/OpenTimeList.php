@@ -43,6 +43,8 @@ class OpenTimeList
      */
     public function handle(array $data = []) : array
     {
+        $this->resultSet = [];
+
         foreach ($data as $valueAsNumericOfWeek => $times){
             // if key value sent by client does not fit,that throws exception
             // values numeric being days of week must be equal
@@ -52,7 +54,9 @@ class OpenTimeList
             // that throws exception for factory
             $this->exceptionIfTimesAreArray($times);
 
-            $this->timeHandler($times);
+            // this method explicitly converts
+            // the given time array to the time list.
+            $this->timeHandler((int)$valueAsNumericOfWeek,$times);
         }
 
         return $this->resultSet;
@@ -61,19 +65,18 @@ class OpenTimeList
     /**
      * get time handler process for date factory
      *
+     * @param int $dayKey
      * @param array $time
      * @return array
      */
-    public function timeHandler(array $time = []) : array
+    protected function timeHandler(int $dayKey = 0, array $time = []) : array
     {
-        $this->resultSet = [];
-
         foreach ($time as $startTime => $endTime){
-            $this->resultSet[] = $startTime;
+            $this->resultSet[$dayKey][] = $startTime;
 
             while(true){
                 $startTime = Date::createFormat($startTime,'H:i')->addMinute()->toTimeString('minute');
-                $this->resultSet[] = $startTime;
+                $this->resultSet[$dayKey][] = $startTime;
 
                 if($startTime==$endTime)  break;
             }

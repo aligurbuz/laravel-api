@@ -11,4 +11,12 @@ interface DateInterface
      * @return array
      */
     public function openTimeList(array $data = []) : array;
+
+    /**
+     * @param array $openTimeList
+     * @param string|null $time
+     * @param int|null $dayKey
+     * @return bool
+     */
+    public function isOpen(array $openTimeList = [], ?string $time = null,?int $dayKey = null) : bool;
 }
