@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 declare(strict_types=1);
 
@@ -19,6 +19,10 @@ class Date extends DateManager implements DateInterface
 	 */
 	protected array $binds = [];
 
+    /**
+     * @var array
+     */
+	protected array $resource = ['openTimelist'];
 
 	/**
 	 * Date constructor
@@ -29,4 +33,15 @@ class Date extends DateManager implements DateInterface
 	{
 		$this->binds = $binds;
 	}
+
+    /**
+     * returns open time list for the given array data
+     *
+     * @param array $data
+     * @return array
+     */
+	public function openTimeList(array $data = []) : array
+    {
+        return ($this->binds[__FUNCTION__])->handle($data);
+    }
 }
