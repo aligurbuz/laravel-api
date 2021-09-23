@@ -14,11 +14,12 @@ use App\Facades\Authenticate\Authenticate;
 class Client
 {
     /**
-     * get client finger print for request
+     * get client fingerprint for request
      *
+     * @param array $clientData
      * @return int
      */
-    public static function fingerPrint(): int
+    public static function fingerPrint(array $clientData = []): int
     {
         $request = request();
 
@@ -26,7 +27,7 @@ class Client
             ApiKey::who(),
             $request->method(),
             $request->url(),
-            $request->query->all(),
+            count($clientData) ? $clientData : request()->query->all(),
             Authenticate::code(),
             $request->header('accept-language'),
             $request->header('apikey')

@@ -18,7 +18,9 @@ return [
         'hasRange',
         'page',
         'limit',
-        'groupBy'
+        'groupBy',
+        'client_date',
+        'client_time'
     ],
 
     /*

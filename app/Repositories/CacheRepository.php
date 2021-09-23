@@ -26,6 +26,11 @@ trait CacheRepository
     protected int $cacheExpire = 600;
 
     /**
+     * @var array
+     */
+    protected array $exceptClientData = ['client_date','client_time'];
+
+    /**
      * @var string|null
      */
     protected ?string $cacheKey = null;
@@ -146,9 +151,15 @@ trait CacheRepository
         $this->rangeContainer($this);
         $this->relationContainer($this->getModelWithQueries());
 
+        $requestQuery = request()->query;
+
+        foreach ($this->exceptClientData as $exceptClientData){
+            $requestQuery->remove($exceptClientData);
+        }
+
         $this->cacheKey           = $this->generateCacheKey();
         $this->cacheInstance      = Factory::cache();
-        $this->cacheTag           = $this->cacheTag ?? Client::fingerPrint();
+        $this->cacheTag           = $this->cacheTag ?? Client::fingerPrint(request()->query->all());
     }
 
     /**
