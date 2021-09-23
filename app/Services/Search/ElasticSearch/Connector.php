@@ -21,4 +21,22 @@ class Connector
     {
         $this->client = Search::create()->setHosts($connections)->build();
     }
+
+    /**
+     * get configuration values for elasticSearch connection
+     *
+     * @param array $data
+     * @return array
+     */
+    public function getConfig(array $data = []) : array
+    {
+        if(count($data)){
+            return $data;
+        }
+
+        $configurationValues = config('search');
+        $defaultAdapter = $configurationValues['default'] ?? 'none';
+
+        return $configurationValues['connections'][$defaultAdapter] ?? [];
+    }
 }

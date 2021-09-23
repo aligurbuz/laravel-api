@@ -11,6 +11,7 @@ use App\Factory\Client\Interfaces\ClientInterface;
 use App\Factory\Hitter\Interfaces\HitterInterface;
 use App\Factory\Notify\Interfaces\NotifyInterface;
 use App\Factory\Logger\Interfaces\LoggerInterface;
+use App\Factory\Search\Interfaces\SearchInterface;
 use App\Factory\Storage\Interfaces\StorageInterface;
 use App\Factory\Permission\Interfaces\PermissionInterface;
 use App\Factory\Collection\Interfaces\CollectionInterface;
@@ -29,6 +30,7 @@ use App\Factory\Localization\Interfaces\LocalizationInterface;
  * @method static HitterInterface hitter($arguments = null)
  * @method static RoleInterface role($arguments = null)
  * @method static PermissionInterface permission($arguments = null)
+ * @method static SearchInterface search($arguments = null)
  * @package App\Factory
  */
 class Factory extends FactoryManager
@@ -43,6 +45,7 @@ class Factory extends FactoryManager
         'Logger'        => 'MongoDbLogger',
         'Notify'        => 'Slack',
         'Cache'         => 'Redis',
+        'Search'        => 'ElasticSearch',
     ];
 
     /**

@@ -13,7 +13,7 @@ class FactoryCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'make:factory';
+    protected $signature = 'create:factory';
 
     /**
      * The console command description.
