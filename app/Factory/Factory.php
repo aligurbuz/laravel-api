@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Factory;
 
+use App\Factory\Date\Interfaces\DateInterface;
 use App\Factory\Role\Interfaces\RoleInterface;
 use App\Factory\Code\Interfaces\CodeInterface;
 use App\Factory\Cache\Interfaces\CacheInterface;
@@ -31,6 +32,7 @@ use App\Factory\Localization\Interfaces\LocalizationInterface;
  * @method static RoleInterface role($arguments = null)
  * @method static PermissionInterface permission($arguments = null)
  * @method static SearchInterface search($arguments = null)
+ * @method static DateInterface date($arguments = null)
  * @package App\Factory
  */
 class Factory extends FactoryManager

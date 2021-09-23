@@ -22,7 +22,7 @@ class Date extends DateManager implements DateInterface
     /**
      * @var array
      */
-	protected array $resource = ['openTimelist'];
+	protected array $resource = ['openTimeList'];
 
 	/**
 	 * Date constructor
@@ -42,6 +42,6 @@ class Date extends DateManager implements DateInterface
      */
 	public function openTimeList(array $data = []) : array
     {
-        return ($this->binds[__FUNCTION__])->handle($data);
+        return ($this->getResource(__FUNCTION__))->handle($data);
     }
 }

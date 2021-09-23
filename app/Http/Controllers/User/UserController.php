@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\User;
 
+use App\Factory\Factory;
 use App\Http\Controllers\ApiController;
 use App\Client\User\User\Get\GetUserClient;
 use App\Client\User\User\Update\UpdateUserClient;
@@ -27,6 +28,11 @@ class UserController extends ApiController
      */
     public function get(GetUserClient $client, UserRepositoryContract $userRepository) : array
     {
+        dd(Factory::date()->openTimeList([
+            '0' => [
+                '11:00' => '18:00'
+            ]
+        ]));
         $client->handle();
         return $userRepository->get();
     }

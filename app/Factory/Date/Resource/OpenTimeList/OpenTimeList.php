@@ -23,6 +23,6 @@ class OpenTimeList
 
     public function handle(array $data = []) : array
     {
-        return [];
+        return $data;
     }
 }
