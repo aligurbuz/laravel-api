@@ -92,18 +92,20 @@ trait LocalizationRepository
                 }
             }
 
-            $localization   = Repository::localization()->localizedCode(($data[$this->getModelCode()] ?? 0));
-            $repository     = $localization->getRepository(false);
-            $values         = $repository[0]['values'][0] ?? [];
+            if(count($localizationData)){
+                $localization   = Repository::localization()->localizedCode(($data[$this->getModelCode()] ?? 0));
+                $repository     = $localization->getRepository(false);
+                $values         = $repository[0]['values'][0] ?? [];
 
-            $newData = [
-                [
-                    'localization_code' => ($repository[0]['localization_code'] ?? 0),
-                    'values' => [array_merge($values,$localizationData)]
-                ]
-            ];
+                $newData = [
+                    [
+                        'localization_code' => ($repository[0]['localization_code'] ?? 0),
+                        'values' => [array_merge($values,$localizationData)]
+                    ]
+                ];
 
-            $localization->update($newData,false);
+                $localization->update($newData,false);
+            }
         }
     }
 }
