@@ -23,6 +23,7 @@ use App\Services\Commands\RequestCommand;
 use App\Services\Commands\ServiceCommand;
 use App\Services\Commands\SupervisorCommand;
 use App\Services\Commands\UpdateMigrationCommand;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -34,6 +35,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->fullToSql();
         $this->commands([AppNameCommand::class]);
         $this->commands([ClientCommand::class]);
         $this->commands([ControllerCommand::class]);
@@ -79,5 +81,30 @@ class AppServiceProvider extends ServiceProvider
         }
 
         AppContainer::set('page',(int)$page);
+    }
+
+    /**
+     * set macro full to sql for builder query
+     *
+     * @return void
+     */
+    private function fullToSql()
+    {
+        Builder::macro('toFullSql', function () {
+            /*** @var Builder $this */
+            $sql = str_replace(['%', '?'], ['%%', '%s'], $this->toSql());
+
+            $handledBindings = array_map(function ($binding) {
+                if (is_numeric($binding)) {
+                    return $binding;
+                }
+
+                $value = str_replace(['\\', "'"], ['\\\\', "\'"], $binding);
+
+                return "'{$value}'";
+            }, $this->getConnection()->prepareBindings($this->getBindings()));
+
+            return vsprintf($sql, $handledBindings);
+        });
     }
 }
