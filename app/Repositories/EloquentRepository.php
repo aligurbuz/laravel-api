@@ -10,7 +10,6 @@ use App\Services\Db;
 use App\Services\Client;
 use Illuminate\Support\Str;
 use App\Exceptions\Exception;
-use App\Services\AppContainer;
 use App\Exceptions\SqlExceptionManager;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -326,16 +325,7 @@ class EloquentRepository
      */
     public function exists($field,$value) : bool
     {
-        $builder = $this->instance()->where($field,$value);
-        $fullToSqlHashing = $this->toFullSql($builder);
-
-        if(AppContainer::has($fullToSqlHashing)){
-            $query = AppContainer::get($fullToSqlHashing);
-        }
-        else{
-            $query = $builder->get()->toArray();
-            AppContainer::set($fullToSqlHashing,$query);
-        }
+        $query = $this->instance()->where($field,$value)->get()->toArray();
 
         return isset($query[0]);
     }
