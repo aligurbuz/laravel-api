@@ -317,6 +317,18 @@ class EloquentRepository
     }
 
     /**
+     * it adds to builder not deleted data.
+     *
+     * @return object
+     */
+    public function notDeleted() : object
+    {
+        $this->repository = $this->instance()->where('is_deleted',0);
+
+        return $this;
+    }
+
+    /**
      * checks if the data is available
      *
      * @param $field
@@ -325,7 +337,7 @@ class EloquentRepository
      */
     public function exists($field,$value) : bool
     {
-        $query = $this->instance()->where($field,$value)->get()->toArray();
+        $query = $this->instance()->where($field,$value)->where('is_deleted',0)->get()->toArray();
 
         return isset($query[0]);
     }
