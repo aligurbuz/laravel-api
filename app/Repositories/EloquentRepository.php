@@ -629,6 +629,7 @@ class EloquentRepository
     public function graphQl() : EloquentRepository
     {
         $this->graphQl = static::$model::repository($this)
+            ->filterQuery()
             ->range($this)
             ->instruction()
             ->doesntHaveQuery()
@@ -637,7 +638,6 @@ class EloquentRepository
             ->selectQuery()
             ->orderByQuery()
             ->groupByQuery()
-            ->filterQuery()
             ->search();
 
         return $this;
