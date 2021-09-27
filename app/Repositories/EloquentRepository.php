@@ -337,7 +337,7 @@ class EloquentRepository
      */
     public function exists($field,$value) : bool
     {
-        $query = $this->instance()->where($field,$value)->where('is_deleted',0)->get()->toArray();
+        $query = $this->instance()->where($field,$value)->get()->toArray();
 
         return isset($query[0]);
     }
