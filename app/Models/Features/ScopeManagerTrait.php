@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models\Features;
 
+use App\Exceptions\Exception;
 use App\Services\AppContainer;
 
 /**
@@ -16,10 +17,11 @@ trait ScopeManagerTrait
      * @var array|string[]
      */
     protected array $autoRanges = [
-        'desc'      => 'Sorts your object by last registration value.',
-        'asc'       => 'Sorts your object by first registration value.',
-        'active'    => 'It filters according to the status=1 value for your object.',
-        'sequence'  => 'It sorts by sequence value. This means changeable sorting.',
+        'desc'          => 'Sorts your object by last registration value.',
+        'asc'           => 'Sorts your object by first registration value.',
+        'active'        => 'It filters according to the status=1 value for your object.',
+        'sequence'      => 'It sorts by sequence value. This means changeable sorting.',
+        'notDeleted'    => 'Filters undeleted data.',
     ];
 
     /**
@@ -40,6 +42,12 @@ trait ScopeManagerTrait
         foreach ($modelRanges as $modelRange => $description){
             if(in_array($modelRange,$ranges,true)){
                 $inLineRanges[] = $modelRange;
+            }
+        }
+
+        foreach ($ranges as $rangeItem){
+            if(!method_exists($object,$rangeItem)){
+                Exception::rangeException('',['key' => $rangeItem]);
             }
         }
 
