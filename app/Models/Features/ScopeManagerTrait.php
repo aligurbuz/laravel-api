@@ -46,7 +46,7 @@ trait ScopeManagerTrait
         }
 
         foreach ($ranges as $rangeItem){
-            if(!method_exists($object,$rangeItem)){
+            if(strlen($rangeItem) && !method_exists($object,$rangeItem)){
                 Exception::rangeException('',['key' => $rangeItem]);
             }
         }
