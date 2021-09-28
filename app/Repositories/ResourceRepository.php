@@ -62,6 +62,10 @@ trait ResourceRepository
 
         return $this->addCollectDataToResource(function(array $collect = []) use($call){
             $result = array_merge($collect,$call->pagination());
+            if(isset($result['links'])){
+                unset($result['links']);
+            }
+
             $result['data'] = $this->resourcePropagation($result['data']);
 
             return $result;
