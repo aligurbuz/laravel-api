@@ -163,23 +163,21 @@ trait ResourceRepository
                                 )[0]) ?? [];
                         }
 
-                        if($this->getModelName()=='MenuItem'){
-                            if(is_array($withData)){
-                                foreach ($withData as $withDataKey => $withDatum){
-                                    if(is_array($withDatum) && count($withDatum) && isset($withData[$withDataKey.'_code'])){
-                                        $withDataModel = Str::camel($withDataKey);
-                                        if(isset($item[$withValueSnake][$withKey][$withDataKey]) && is_array($item[$withValueSnake][$withKey][$withDataKey])){
-                                            foreach ($item[$withValueSnake][$withKey][$withDataKey] as $recursiveKey => $recursiveVal){
-                                                if(isset($recursiveVal['localization'])){
-                                                    $item[$withValueSnake][$withKey][$withDataKey][$recursiveKey] = ($this->resourcePropagation(
-                                                            [$recursiveVal],
-                                                            $this->findRepositoryByModel($withDataModel)
-                                                        )[0]) ?? [];
-                                                }
+                        if(is_array($withData)){
+                            foreach ($withData as $withDataKey => $withDatum){
+                                if(is_array($withDatum) && count($withDatum) && isset($withData[$withDataKey.'_code'])){
+                                    $withDataModel = Str::camel($withDataKey);
+                                    if(isset($item[$withValueSnake][$withKey][$withDataKey]) && is_array($item[$withValueSnake][$withKey][$withDataKey])){
+                                        foreach ($item[$withValueSnake][$withKey][$withDataKey] as $recursiveKey => $recursiveVal){
+                                            if(isset($recursiveVal['localization'])){
+                                                $item[$withValueSnake][$withKey][$withDataKey][$recursiveKey] = ($this->resourcePropagation(
+                                                        [$recursiveVal],
+                                                        $this->findRepositoryByModel($withDataModel)
+                                                    )[0]) ?? [];
                                             }
                                         }
-
                                     }
+
                                 }
                             }
                         }
