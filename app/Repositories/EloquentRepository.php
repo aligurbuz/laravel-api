@@ -42,6 +42,11 @@ class EloquentRepository
     protected int $pagination = 20;
 
     /**
+     * @var array
+     */
+    protected array $withBindings = [];
+
+    /**
      * get data for user model
      *
      * @return array
@@ -395,13 +400,12 @@ class EloquentRepository
     /**
      * make eager loading via instance model
      *
-     * @param array $with
      * @param bool $repository
      * @return object
      */
-    public function with(array $with = [],bool $repository = true) : object
+    public function with(bool $repository = true) : object
     {
-        $this->repository = $this->instanceModel()->repository($this,$repository)->with($with);
+        $this->repository = $this->instanceModel()->repository($this,$repository)->with($this->withBindings);
 
         return $this;
     }
@@ -883,7 +887,8 @@ class EloquentRepository
             return $this->eagerLoadingHandler($model,$args);
         }
 
-        $this->with([$name => ($args[0] ?? function($query) {})]);
+        $this->withBindings[$name] = ($args[0] ?? function($query) {});
+        $this->with();
 
         return $this;
     }
