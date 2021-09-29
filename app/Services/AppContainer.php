@@ -106,4 +106,20 @@ class AppContainer
             unset(static::$data[$key]);
         }
     }
+
+    /**
+     * it takes name after $name value would be checked
+     *
+     * @param string $name
+     * @param callable $callback
+     * @return mixed
+     */
+    public static function use(string $name,callable $callback) : mixed
+    {
+        if(!static::has($name)){
+            static::set($name,call_user_func($callback));
+        }
+
+        return static::get($name);
+    }
 }
