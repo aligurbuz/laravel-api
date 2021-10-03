@@ -13,16 +13,38 @@ use Carbon\Carbon;
 class Date
 {
     /**
-     * @var string
+     * @var ?string
      */
-    protected string $timezone = 'Europe/Istanbul';
+    protected static ?string $timezone = null;
 
     /**
      * Date constructor.
+     * @param string|null $timezone
      */
-    public function __construct()
+    public function __construct(?string $timezone = null)
     {
-        //
+        static::$timezone = $timezone ?? timezone();
+    }
+
+    /**
+     * set timezone for carbon
+     *
+     * @param string $timezone
+     * @return static
+     */
+    public static function setTimeZone(string $timezone) : static
+    {
+        return new static($timezone);
+    }
+
+    /**
+     * get timezone for carbon
+     *
+     * @return string|null
+     */
+    public static function getTimezone(): ?string
+    {
+        return static::$timezone ?? timezone();
     }
 
     /**
@@ -32,7 +54,7 @@ class Date
      */
     public static function now(): Carbon
     {
-        return Carbon::now((new self())->timezone);
+        return Carbon::now(static::getTimezone());
     }
 
     /**
@@ -45,7 +67,7 @@ class Date
      */
     public static function createFormat($data, string $format = 'Y-m-d H:i:s', $tz = null): bool|Carbon
     {
-        $tz = is_null($tz) ? (new self())->timezone : $tz;
+        $tz = is_null($tz) ? static::getTimezone() : $tz;
 
         return Carbon::createFromFormat($format,$data,$tz);
     }

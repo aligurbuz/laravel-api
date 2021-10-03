@@ -26,6 +26,19 @@ if(!function_exists('entity')){
     }
 }
 
+if(!function_exists('timezone')){
+
+    /**
+     * get timezone for global gate accessing
+     *
+     * @return ?string
+     */
+    function timezone() : ?string
+    {
+        return 'America/New_York';
+    }
+}
+
 if(!function_exists('authGuard')){
 
     /**
