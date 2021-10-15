@@ -53,6 +53,7 @@ class RelationCommand extends Command
         $databaseColumns = base_path('database').''.DIRECTORY_SEPARATOR.'columns';
         $relationsMapFile = $databaseColumns.''.DIRECTORY_SEPARATOR.'relations.json';
         $relationsCodeFile = $databaseColumns.''.DIRECTORY_SEPARATOR.'relationCodes.json';
+        $configGlobalRepository = config('repository.globalScopes');
 
         foreach ($modelFiles as $modelFile){
             $modelName = str_replace('.php','',$modelFile->getFilename());
@@ -60,10 +61,13 @@ class RelationCommand extends Command
             $namespaceInstance = (new $namespace);
             $table = $namespaceInstance->getTable();
             $entityColumns = Db::columns($table);
+            $tableCode = Str::camel(getTableCode($modelName));
 
             foreach ($entityColumns as $entityColumn){
                 if(Str::endsWith($entityColumn,'_code')){
-                    $codes[$entityColumn][] = $modelName;
+                    if(!isset($codes[$entityColumn]) OR !in_array($tableCode,$configGlobalRepository)){
+                        $codes[$entityColumn][] = $modelName;
+                    }
                 }
             }
 
