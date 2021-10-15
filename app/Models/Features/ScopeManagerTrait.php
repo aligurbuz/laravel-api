@@ -46,7 +46,7 @@ trait ScopeManagerTrait
         }
 
         foreach ($ranges as $rangeItem){
-            if(strlen($rangeItem) && !method_exists($object,$rangeItem)){
+            if(strlen($rangeItem)>0 && !method_exists($object,$rangeItem)){
                 Exception::rangeException('',['key' => $rangeItem]);
             }
         }
@@ -66,11 +66,10 @@ trait ScopeManagerTrait
     public function relationContainer(array $data = []) : void
     {
         foreach ($data as $with => $items){
-            if(is_array($items) && isset($items['description']) && $with!=='localization'){
+            if(is_array($items) && $with!=='localization'){
                 AppContainer::set('responseFormatterSupplement',['relations' =>[
                     $with => [
-                        'description' => ($items['description'] ?? ''),
-                        'using' => ''.($items['withQuery']?? 'with['.$with.']').'[select] = \'*||columnName1||columnName1,columnName2\'',
+                        'using' => ''.($items['withQuery']?? 'with['.$with.']').'[select] = \'*',
                         'hasMany' => ($items['hasMany'] ?? true),
                     ]
                 ]
