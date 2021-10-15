@@ -7,7 +7,6 @@ namespace App\Services\Response;
 use Exception;
 use Throwable;
 use App\Constants;
-use App\Services\Date;
 use App\Services\AppContainer;
 use App\Facades\Authenticate\ApiKey;
 
@@ -48,7 +47,6 @@ class Response extends ResponseSupport
             'isAvailableData'   => $isAvailableData,
             'client'            => ApiKey::who(),
             'env'               => config('app.env'),
-            'responseTime'      => Date::now(),
             'responseCode'      => static::responseCode(),
             'resource'          => isset($data[0]) ? $data : [$data],
             'instructions'      => AppContainer::get(Constants::responseFormatterSupplement),
@@ -87,7 +85,6 @@ class Response extends ResponseSupport
             'code'          => $code,
             'client'        => ApiKey::who(),
             'env'           => config('app.env'),
-            'responseTime'  => Date::now(),
             'responseCode'  => static::responseCode(),
             'errorInput'    => static::errorInput(),
             'exception'     => $classBaseName,
