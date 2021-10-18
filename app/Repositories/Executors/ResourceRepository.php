@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Repositories;
+namespace App\Repositories\Executors;
 
 use Illuminate\Support\Str;
 use App\Exceptions\Exception;
 
 /**
  * Trait LocalizationRepository
- * @package App\Repositories
+ * @package App\Repositories\Executors
  */
 trait ResourceRepository
 {

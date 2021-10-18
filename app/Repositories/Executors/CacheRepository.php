@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Repositories;
+namespace App\Repositories\Executors;
 
 use Closure;
 use App\Services\Db;
@@ -14,7 +14,7 @@ use App\Factory\Cache\Interfaces\CacheInterface;
 
 /**
  * Trait CacheRepository
- * @package App\Repositories
+ * @package App\Repositories\Executors
  */
 trait CacheRepository
 {

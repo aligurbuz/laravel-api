@@ -2,14 +2,15 @@
 
 declare(strict_types=1);
 
-namespace App\Repositories;
+namespace App\Repositories\Executors;
 
 use Illuminate\Support\Str;
 use App\Models\Localization;
+use App\Repositories\Repository;
 
 /**
  * trait LocalizationRepository
- * @package App\Repositories
+ * @package App\Repositories\Executors
  */
 trait LocalizationRepository
 {

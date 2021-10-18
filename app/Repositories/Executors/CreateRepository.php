@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Repositories;
+namespace App\Repositories\Executors;
 
 use Exception;
 
 /**
  * Trait CreateRepository
- * @package App\Repositories
+ * @package App\Repositories\Executors
  */
 trait CreateRepository
 {

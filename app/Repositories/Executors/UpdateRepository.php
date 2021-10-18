@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Repositories;
+namespace App\Repositories\Executors;
 
 use App\Services\AppContainer;
 use Illuminate\Support\Str;
@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Builder;
 
 /**
  * Trait UpdateRepository
- * @package App\Repositories
+ * @package App\Repositories\Executors
  */
 trait UpdateRepository
 {
