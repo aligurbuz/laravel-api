@@ -8,7 +8,7 @@ use App\Http\Controllers\ApiController;
 use App\Client\User\User\Get\GetUserClient;
 use App\Client\User\User\Update\UpdateUserClient;
 use App\Client\User\User\Create\CreateUserClient;
-use App\Repositories\User\Contracts\UserRepositoryContract;
+use App\Repositories\Resources\User\Contracts\UserRepositoryContract;
 
 /**
  * Class UserController

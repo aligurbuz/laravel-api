@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 declare(strict_types=1);
 
@@ -8,7 +8,7 @@ use App\Client\User\Photos\Create\CreateClient;
 use App\Client\User\Photos\Get\GetClient;
 use App\Client\User\Photos\Update\UpdateClient;
 use App\Http\Controllers\ApiController;
-use App\Repositories\User\Contracts\PhotosRepositoryContract;
+use App\Repositories\Resources\User\Contracts\PhotosRepositoryContract;
 
 class PhotosController extends ApiController
 {

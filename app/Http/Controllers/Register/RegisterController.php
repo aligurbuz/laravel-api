@@ -8,7 +8,7 @@ use Exception;
 use App\Services\Response\Response;
 use App\Http\Controllers\Controller;
 use App\Client\User\User\Create\CreateUserClient;
-use App\Repositories\User\Contracts\UserRepositoryContract;
+use App\Repositories\Resources\User\Contracts\UserRepositoryContract;
 
 class RegisterController extends Controller
 {

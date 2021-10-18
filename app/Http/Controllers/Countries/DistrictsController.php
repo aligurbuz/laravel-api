@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 declare(strict_types=1);
 
@@ -8,7 +8,7 @@ use App\Client\Countries\Districts\Create\CreateClient;
 use App\Client\Countries\Districts\Get\GetClient;
 use App\Client\Countries\Districts\Update\UpdateClient;
 use App\Http\Controllers\ApiController;
-use App\Repositories\Countries\Contracts\DistrictsRepositoryContract;
+use App\Repositories\Resources\Countries\Contracts\DistrictsRepositoryContract;
 
 class DistrictsController extends ApiController
 {

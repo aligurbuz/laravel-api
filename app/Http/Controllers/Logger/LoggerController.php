@@ -8,7 +8,7 @@ use App\Http\Controllers\ApiController;
 use App\Client\Logger\Logger\Get\GetClient;
 use App\Client\Logger\Logger\Create\CreateClient;
 use App\Client\Logger\Logger\Update\UpdateClient;
-use App\Repositories\Logger\Contracts\LoggerRepositoryContract;
+use App\Repositories\Resources\Logger\Contracts\LoggerRepositoryContract;
 
 class LoggerController extends ApiController
 {

@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 declare(strict_types=1);
 
@@ -8,7 +8,7 @@ use App\Client\Gate\Roles\Create\CreateClient;
 use App\Client\Gate\Roles\Get\GetClient;
 use App\Client\Gate\Roles\Update\UpdateClient;
 use App\Http\Controllers\ApiController;
-use App\Repositories\Gate\Contracts\RolesRepositoryContract;
+use App\Repositories\Resources\Gate\Contracts\RolesRepositoryContract;
 
 class RolesController extends ApiController
 {

@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 declare(strict_types=1);
 
@@ -8,7 +8,7 @@ use App\Client\Timezones\Timezones\Create\CreateClient;
 use App\Client\Timezones\Timezones\Get\GetClient;
 use App\Client\Timezones\Timezones\Update\UpdateClient;
 use App\Http\Controllers\ApiController;
-use App\Repositories\Timezones\Contracts\TimezonesRepositoryContract;
+use App\Repositories\Resources\Timezones\Contracts\TimezonesRepositoryContract;
 
 class TimezonesController extends ApiController
 {

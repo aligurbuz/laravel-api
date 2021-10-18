@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 declare(strict_types=1);
 
@@ -8,7 +8,7 @@ use App\Client\Currencies\Currencies\Create\CreateClient;
 use App\Client\Currencies\Currencies\Get\GetClient;
 use App\Client\Currencies\Currencies\Update\UpdateClient;
 use App\Http\Controllers\ApiController;
-use App\Repositories\Currencies\Contracts\CurrenciesRepositoryContract;
+use App\Repositories\Resources\Currencies\Contracts\CurrenciesRepositoryContract;
 
 class CurrenciesController extends ApiController
 {

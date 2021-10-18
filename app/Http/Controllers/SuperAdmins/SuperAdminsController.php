@@ -8,7 +8,7 @@ use App\Http\Controllers\ApiController;
 use App\Client\SuperAdmins\SuperAdmins\Get\GetClient;
 use App\Client\SuperAdmins\SuperAdmins\Create\CreateClient;
 use App\Client\SuperAdmins\SuperAdmins\Update\UpdateClient;
-use App\Repositories\SuperAdmins\Contracts\SuperAdminsRepositoryContract;
+use App\Repositories\Resources\SuperAdmins\Contracts\SuperAdminsRepositoryContract;
 
 class SuperAdminsController extends ApiController
 {

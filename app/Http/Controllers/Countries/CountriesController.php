@@ -8,7 +8,7 @@ use App\Client\Countries\Countries\Create\CreateClient;
 use App\Client\Countries\Countries\Get\GetClient;
 use App\Client\Countries\Countries\Update\UpdateClient;
 use App\Http\Controllers\ApiController;
-use App\Repositories\Countries\Contracts\CountriesRepositoryContract;
+use App\Repositories\Resources\Countries\Contracts\CountriesRepositoryContract;
 
 class CountriesController extends ApiController
 {

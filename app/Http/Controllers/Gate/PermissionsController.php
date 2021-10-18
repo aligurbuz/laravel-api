@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 declare(strict_types=1);
 
@@ -8,7 +8,7 @@ use App\Client\Gate\Permissions\Create\CreateClient;
 use App\Client\Gate\Permissions\Get\GetClient;
 use App\Client\Gate\Permissions\Update\UpdateClient;
 use App\Http\Controllers\ApiController;
-use App\Repositories\Gate\Contracts\PermissionsRepositoryContract;
+use App\Repositories\Resources\Gate\Contracts\PermissionsRepositoryContract;
 
 class PermissionsController extends ApiController
 {

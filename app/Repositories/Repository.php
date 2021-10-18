@@ -4,20 +4,20 @@ declare(strict_types=1);
 
 namespace App\Repositories;
 
-use App\Repositories\User\Contracts\UserRepositoryContract;
-use App\Repositories\User\Contracts\PhotosRepositoryContract;
-use App\Repositories\Timezones\Contracts\TimezonesRepositoryContract;
-use App\Repositories\Currencies\Contracts\CurrenciesRepositoryContract;
-use App\Repositories\Countries\Contracts\DistrictsRepositoryContract;
-use App\Repositories\Countries\Contracts\CitiesRepositoryContract;
-use App\Repositories\Mix\Contracts\TableChangesRepositoryContract;
-use App\Repositories\Gate\Contracts\PermissionsRepositoryContract;
-use App\Repositories\Gate\Contracts\RolesRepositoryContract;
-use App\Repositories\SuperAdmins\Contracts\SuperAdminsRepositoryContract;
-use App\Repositories\Localizations\Contracts\LanguageRepositoryContract;
-use App\Repositories\Localizations\Contracts\LocalizationsRepositoryContract;
-use App\Repositories\Logger\Contracts\LoggerRepositoryContract;
-use App\Repositories\Countries\Contracts\CountriesRepositoryContract;
+use App\Repositories\Resources\User\Contracts\UserRepositoryContract;
+use App\Repositories\Resources\User\Contracts\PhotosRepositoryContract;
+use App\Repositories\Resources\Timezones\Contracts\TimezonesRepositoryContract;
+use App\Repositories\Resources\Currencies\Contracts\CurrenciesRepositoryContract;
+use App\Repositories\Resources\Countries\Contracts\DistrictsRepositoryContract;
+use App\Repositories\Resources\Countries\Contracts\CitiesRepositoryContract;
+use App\Repositories\Resources\Mix\Contracts\TableChangesRepositoryContract;
+use App\Repositories\Resources\Gate\Contracts\PermissionsRepositoryContract;
+use App\Repositories\Resources\Gate\Contracts\RolesRepositoryContract;
+use App\Repositories\Resources\SuperAdmins\Contracts\SuperAdminsRepositoryContract;
+use App\Repositories\Resources\Localizations\Contracts\LanguageRepositoryContract;
+use App\Repositories\Resources\Localizations\Contracts\LocalizationsRepositoryContract;
+use App\Repositories\Resources\Logger\Contracts\LoggerRepositoryContract;
+use App\Repositories\Resources\Countries\Contracts\CountriesRepositoryContract;
 
 /**
  * Class Repository
@@ -34,7 +34,7 @@ class Repository
     {
         return app()->get(PhotosRepositoryContract::class);
     }
-    
+
     /**
      * get timezone repository instance
      *
@@ -44,7 +44,7 @@ class Repository
     {
         return app()->get(TimezonesRepositoryContract::class);
     }
-    
+
     /**
      * get currency repository instance
      *
@@ -54,7 +54,7 @@ class Repository
     {
         return app()->get(CurrenciesRepositoryContract::class);
     }
-    
+
     /**
      * get district repository instance
      *
@@ -64,7 +64,7 @@ class Repository
     {
         return app()->get(DistrictsRepositoryContract::class);
     }
-    
+
     /**
      * get city repository instance
      *
@@ -74,7 +74,7 @@ class Repository
     {
         return app()->get(CitiesRepositoryContract::class);
     }
-    
+
     /**
      * get tableChange repository instance
      *
@@ -84,7 +84,7 @@ class Repository
     {
         return app()->get(TableChangesRepositoryContract::class);
     }
-    
+
     /**
      * get permission repository instance
      *
@@ -94,7 +94,7 @@ class Repository
     {
         return app()->get(PermissionsRepositoryContract::class);
     }
-    
+
     /**
      * get role repository instance
      *
@@ -104,7 +104,7 @@ class Repository
     {
         return app()->get(RolesRepositoryContract::class);
     }
-    
+
     /**
      * get superAdmin repository instance
      *
@@ -114,7 +114,7 @@ class Repository
     {
         return app()->get(SuperAdminsRepositoryContract::class);
     }
-    
+
     /**
      * get language repository instance
      *

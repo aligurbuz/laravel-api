@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 declare(strict_types=1);
 
@@ -8,7 +8,7 @@ use App\Client\Mix\TableChanges\Create\CreateClient;
 use App\Client\Mix\TableChanges\Get\GetClient;
 use App\Client\Mix\TableChanges\Update\UpdateClient;
 use App\Http\Controllers\ApiController;
-use App\Repositories\Mix\Contracts\TableChangesRepositoryContract;
+use App\Repositories\Resources\Mix\Contracts\TableChangesRepositoryContract;
 
 class TableChangesController extends ApiController
 {

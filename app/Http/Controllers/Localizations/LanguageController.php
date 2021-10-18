@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 declare(strict_types=1);
 
@@ -8,7 +8,7 @@ use App\Client\Localizations\Language\Create\CreateClient;
 use App\Client\Localizations\Language\Get\GetClient;
 use App\Client\Localizations\Language\Update\UpdateClient;
 use App\Http\Controllers\ApiController;
-use App\Repositories\Localizations\Contracts\LanguageRepositoryContract;
+use App\Repositories\Resources\Localizations\Contracts\LanguageRepositoryContract;
 
 class LanguageController extends ApiController
 {

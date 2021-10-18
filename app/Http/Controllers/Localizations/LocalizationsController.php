@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 declare(strict_types=1);
 
@@ -8,7 +8,7 @@ use App\Client\Localizations\Localizations\Create\CreateClient;
 use App\Client\Localizations\Localizations\Get\GetClient;
 use App\Client\Localizations\Localizations\Update\UpdateClient;
 use App\Http\Controllers\ApiController;
-use App\Repositories\Localizations\Contracts\LocalizationsRepositoryContract;
+use App\Repositories\Resources\Localizations\Contracts\LocalizationsRepositoryContract;
 
 class LocalizationsController extends ApiController
 {
