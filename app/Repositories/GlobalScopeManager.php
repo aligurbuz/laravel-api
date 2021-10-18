@@ -18,7 +18,7 @@ class GlobalScopeManager
     /**
      * @var string
      */
-    protected string $resource = 'App\Repositories';
+    protected string $resource = 'App\Repositories\Globals';
 
     /**
      * @var object

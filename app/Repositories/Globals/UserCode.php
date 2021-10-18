@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Repositories;
+namespace App\Repositories\Globals;
 
 use Illuminate\Database\Eloquent\Builder;
 use App\Facades\Authenticate\Authenticate;
