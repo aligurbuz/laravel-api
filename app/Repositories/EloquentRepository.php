@@ -12,11 +12,11 @@ use Illuminate\Support\Str;
 use App\Exceptions\Exception;
 use App\Exceptions\SqlExceptionManager;
 use Illuminate\Database\Eloquent\Builder;
-use App\Repositories\Executors\CacheRepository;
-use App\Repositories\Executors\CreateRepository;
-use App\Repositories\Executors\UpdateRepository;
-use App\Repositories\Executors\ResourceRepository;
-use App\Repositories\Executors\LocalizationRepository;
+use App\Repositories\Supporters\CacheRepository;
+use App\Repositories\Supporters\CreateRepository;
+use App\Repositories\Supporters\UpdateRepository;
+use App\Repositories\Supporters\ResourceRepository;
+use App\Repositories\Supporters\LocalizationRepository;
 
 /**
  * Class EloquentRepository

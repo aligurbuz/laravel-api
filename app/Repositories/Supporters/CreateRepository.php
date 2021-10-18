@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Repositories\Executors;
+namespace App\Repositories\Supporters;
 
 use Exception;
 

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Repositories\Executors;
+namespace App\Repositories\Supporters;
 
 use App\Services\AppContainer;
 use Illuminate\Support\Str;
