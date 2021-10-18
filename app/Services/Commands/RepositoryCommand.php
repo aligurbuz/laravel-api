@@ -2,16 +2,15 @@
 
 namespace App\Services\Commands;
 
-use App\Repositories\EloquentRepository;
-use App\Repositories\Repository;
 use App\Services\Db;
+use App\Repositories\Repository;
 use Illuminate\Console\Command;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Nette\PhpGenerator\Literal;
 use Nette\PhpGenerator\PhpNamespace;
+use App\Repositories\EloquentRepository;
 
 class RepositoryCommand extends Command
 {
@@ -53,11 +52,11 @@ class RepositoryCommand extends Command
         $className = ucfirst($repositoryName).'Repository';
         $contractClassName = ucfirst($repositoryName).'RepositoryContract';
 
-        $namespaceDirectory = 'App\Repositories\\'.ucfirst($argumentName);
-        $namespaceRepository = 'App\Repositories\\'.ucfirst($argumentName).'\\'.$className;
-        $namespaceContractDirectory = 'App\Repositories\\'.ucfirst($argumentName).'\Contracts';
-        $directory = app_path().''.DIRECTORY_SEPARATOR.'Repositories'.DIRECTORY_SEPARATOR.''.ucfirst($argumentName);
-        $directoryContract = app_path().''.DIRECTORY_SEPARATOR.'Repositories'.DIRECTORY_SEPARATOR.''.ucfirst($argumentName).''.DIRECTORY_SEPARATOR.'Contracts';
+        $namespaceDirectory = 'App\Repositories\Resources\\'.ucfirst($argumentName);
+        $namespaceRepository = 'App\Repositories\Resources\\'.ucfirst($argumentName).'\\'.$className;
+        $namespaceContractDirectory = 'App\Repositories\Resources\\'.ucfirst($argumentName).'\Contracts';
+        $directory = app_path().''.DIRECTORY_SEPARATOR.'Repositories'.DIRECTORY_SEPARATOR.'Resources'.DIRECTORY_SEPARATOR.''.ucfirst($argumentName);
+        $directoryContract = app_path().''.DIRECTORY_SEPARATOR.'Repositories'.DIRECTORY_SEPARATOR.'Resources'.DIRECTORY_SEPARATOR.''.ucfirst($argumentName).''.DIRECTORY_SEPARATOR.'Contracts';
 
         if(!file_exists($directory)){
             File::makeDirectory($directory);
@@ -278,7 +277,7 @@ use '.$namespaceRepository.';',$repositoryProviderContent);
 
             $getRepositoryFile = File::get($repositoryFile);
 
-            $getRepositoryFile = str_replace('use App\Repositories\User\Contracts\UserRepositoryContract;','use App\Repositories\User\Contracts\UserRepositoryContract;
+            $getRepositoryFile = str_replace('use App\Repositories\Resources\User\Contracts\UserRepositoryContract;','use App\Repositories\Resources\User\Contracts\UserRepositoryContract;
 use '.$contractClassRepositoryName.';',$getRepositoryFile);
 
             $getRepositoryFile = str_replace('class Repository

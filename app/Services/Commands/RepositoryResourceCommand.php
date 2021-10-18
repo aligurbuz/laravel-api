@@ -41,9 +41,9 @@ class RepositoryResourceCommand extends Command
     {
         $dir = ucfirst($this->argument('dir'));
         $repository = ucfirst($this->argument('repository'));
-        $repositoryNamespace = 'App\Repositories\\'.$dir.'\Resource';
-        $resourcePath = app_path().''.DIRECTORY_SEPARATOR.'Repositories'.DIRECTORY_SEPARATOR.''.$dir.''.DIRECTORY_SEPARATOR.'Resource';
-        $resourceFilePath = app_path().''.DIRECTORY_SEPARATOR.'Repositories'.DIRECTORY_SEPARATOR.''.$dir.''.DIRECTORY_SEPARATOR.'Resource'.DIRECTORY_SEPARATOR.''.$repository.'Resource.php';
+        $repositoryNamespace = 'App\Repositories\Resources\\'.$dir.'\Resource';
+        $resourcePath = app_path().''.DIRECTORY_SEPARATOR.'Repositories'.DIRECTORY_SEPARATOR.'Resources'.DIRECTORY_SEPARATOR.''.$dir.''.DIRECTORY_SEPARATOR.'Resource';
+        $resourceFilePath = app_path().''.DIRECTORY_SEPARATOR.'Repositories'.DIRECTORY_SEPARATOR.'Resources'.DIRECTORY_SEPARATOR.''.$dir.''.DIRECTORY_SEPARATOR.'Resource'.DIRECTORY_SEPARATOR.''.$repository.'Resource.php';
 
         if(!file_exists($resourcePath)){
             File::makeDirectory($resourcePath);
