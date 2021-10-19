@@ -230,7 +230,9 @@ trait CacheRepository
             }
         }
 
-        $this->deleteRelationCache($model);
+        if($model!=='Localization'){
+            $this->deleteRelationCache($model);
+        }
     }
 
     /**
@@ -254,7 +256,9 @@ trait CacheRepository
                 }
 
                 if($recursive && isset($relations[$relation])){
-                    $this->deleteRelationCache($relation,false);
+                    if($relation!=='Localization'){
+                        $this->deleteRelationCache($relation,false);
+                    }
                 }
             }
         }
