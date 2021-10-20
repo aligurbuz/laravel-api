@@ -41,17 +41,21 @@ trait ClientSupport
     /**
      * it is password in the client data
      *
-     * @var string
+     * @var string|null
      */
-    protected string $password;
+    protected ?string $password = null;
 
     /**
      * password value sent will be passed through the Hash::make() method.
      *
-     * @return string
+     * @return string|null
      */
-    protected function password(): string
+    protected function password(): ?string
     {
-        return Hash::make($this->password);
+        if(!is_null($this->password())){
+            return Hash::make($this->password);
+        }
+
+        return null;
     }
 }

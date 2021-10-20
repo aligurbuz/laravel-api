@@ -37,16 +37,16 @@ class CreateClient extends Client
     /**
      * it is password in the client data
      *
-     * @var string
+     * @var string|null
      */
-    protected string $password;
+    protected ?string $password = null;
 
     /**
      * password value for client
      *
-     * @return string
+     * @return string|null
      */
-    protected function password(): string
+    protected function password(): ?string
     {
         return $this->password;
     }
