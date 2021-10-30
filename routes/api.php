@@ -1,23 +1,23 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\User\PhotosController;
-use App\Http\Controllers\Timezones\TimezonesController;
-use App\Http\Controllers\Currencies\CurrenciesController;
-use App\Http\Controllers\Countries\DistrictsController;
-use App\Http\Controllers\Countries\CitiesController;
-use App\Http\Controllers\Mix\TableChangesController;
-use App\Http\Controllers\Gate\PermissionsController;
-use App\Http\Controllers\Gate\RolesController;
-use App\Http\Controllers\SuperAdmins\SuperAdminsController;
-use App\Http\Controllers\Localizations\LanguageController;
-use App\Http\Controllers\Localizations\LocalizationsController;
-use App\Http\Controllers\Countries\CountriesController;
-use App\Http\Controllers\User\UserController;
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Auth\LogoutController;
-use App\Http\Controllers\Logger\LoggerController;
-use App\Http\Controllers\Register\RegisterController;
+use App\Http\Controllers\Api\User\PhotosController;
+use App\Http\Controllers\Api\Timezones\TimezonesController;
+use App\Http\Controllers\Api\Currencies\CurrenciesController;
+use App\Http\Controllers\Api\Countries\DistrictsController;
+use App\Http\Controllers\Api\Countries\CitiesController;
+use App\Http\Controllers\Api\Mix\TableChangesController;
+use App\Http\Controllers\Api\Gate\PermissionsController;
+use App\Http\Controllers\Api\Gate\RolesController;
+use App\Http\Controllers\Api\SuperAdmins\SuperAdminsController;
+use App\Http\Controllers\Api\Localizations\LanguageController;
+use App\Http\Controllers\Api\Localizations\LocalizationsController;
+use App\Http\Controllers\Api\Countries\CountriesController;
+use App\Http\Controllers\Api\User\UserController;
+use App\Http\Controllers\Api\Auth\LoginController;
+use App\Http\Controllers\Api\Auth\LogoutController;
+use App\Http\Controllers\Api\Logger\LoggerController;
+use App\Http\Controllers\Api\Register\RegisterController;
 use App\Http\Controllers\GlobalController;
 
 /*
