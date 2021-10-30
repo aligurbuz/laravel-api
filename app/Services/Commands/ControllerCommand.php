@@ -44,8 +44,8 @@ class ControllerCommand extends Command
         $controllerName = ucfirst($controllerVariable).'Controller';
         $dirVariable = $this->argument('dir') ?? $controllerVariable;
 
-        $controllerPath = app_path().''.DIRECTORY_SEPARATOR.'Http'.DIRECTORY_SEPARATOR.'Controllers';
-        $controllerNamespace = 'App\Http\Controllers';
+        $controllerPath = app_path().''.DIRECTORY_SEPARATOR.'Http'.DIRECTORY_SEPARATOR.'Controllers'.DIRECTORY_SEPARATOR.'Api';
+        $controllerNamespace = 'App\Http\Controllers\Api';
 
         $controllerEndpointPath = $controllerPath.''.DIRECTORY_SEPARATOR.''.ucfirst($dirVariable);
         $controllerEndpointPathNamespace = $controllerNamespace.'\\'.ucfirst($dirVariable);
@@ -60,7 +60,7 @@ class ControllerCommand extends Command
 
             $namespace = new PhpNamespace($controllerEndpointPathNamespace);
             $addClass = $namespace->addClass($controllerName);
-            $addClass->setExtends('App\Http\Controllers\ApiController');
+            $addClass->setExtends('App\Http\Controllers\Api\ApiController');
 
             $clientGetClass = 'App\Client\\'.ucfirst($this->argument('dir')).'\\'.ucfirst($this->argument('controller')).'\Get\GetClient';
 
@@ -99,7 +99,7 @@ class ControllerCommand extends Command
             $method->addParameter($controllerVariable.'Repository')->setType('App\Repositories\Resources\\'.ucfirst($dirVariable).'\Contracts\\'.ucfirst($controllerVariable).'RepositoryContract');
 
 
-            $namespace->addUse('App\Http\Controllers\ApiController');
+            $namespace->addUse('App\Http\Controllers\Api\ApiController');
             $namespace->addUse($clientGetClass);
             $namespace->addUse($clientCreateClass);
             $namespace->addUse($clientUpdateClass);
