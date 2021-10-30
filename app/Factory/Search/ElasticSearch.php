@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Factory\Search;
 
+use App\Services\AppContainer;
 use App\Services\Search\ElasticSearch\Connector;
 use App\Factory\Search\Interfaces\SearchInterface;
 
@@ -33,7 +34,9 @@ class ElasticSearch extends SearchManager implements SearchInterface
 	public function __construct(array $binds = [])
 	{
 		$this->binds = $binds;
-		$this->search = new Connector();
+		$this->search = AppContainer::use('ElasticSearch',function(){
+		   return new Connector();
+        });
 	}
 
     /**
