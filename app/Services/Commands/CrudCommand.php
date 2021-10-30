@@ -56,7 +56,7 @@ class CrudCommand extends Command
         $controllerVariable = $this->argument('controller');
         $dirVariable = $this->argument('dir') ?? $controllerVariable;
 
-        $useController = 'App\Http\Controllers\\'.ucfirst($dirVariable).'\\'.ucfirst($controllerVariable).'Controller';
+        $useController = 'App\Http\Controllers\\Api\\'.ucfirst($dirVariable).'\\'.ucfirst($controllerVariable).'Controller';
 
         $routeApiContent = str_replace('use Illuminate\Support\Facades\Route;','use Illuminate\Support\Facades\Route;
 use '.$useController.';',$routeApiContent);
