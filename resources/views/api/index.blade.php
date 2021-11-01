@@ -80,12 +80,25 @@
                 The request url map is located on the left menu.</p>
 
             <h2 id="getting-started">Api Authenticate</h2>
-            <ul>
+            <p>The global available configuration options are:</p>
+            <table>
+                <thead>
+                <tr>
+                    <th style="width:200px;">Header Key</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
+                <tbody>
+
                 @foreach($headers as $header)
-                <li><strong><a href="">{{$header['key']}}</a></strong>: {{$header['description']}}</li>
+                    <tr>
+                        <td><code class="language-plaintext highlighter-rouge">{{$header['key']}}</code></td>
+                        <td>{{$header['description']}}</td>
+                    </tr>
                 @endforeach
 
-                </ul>
+                </tbody>
+            </table>
 
             <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Default Api Request</span>
 wget --no-check-certificate --quiet \
