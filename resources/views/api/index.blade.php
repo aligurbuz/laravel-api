@@ -4,7 +4,7 @@
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <title>{{config('app.name')}} Documentation</title>
+    <title>Api Documentation</title>
     <meta name="description" content="Filesystem abstraction library for PHP.">
     <script type="text/javascript" async="" src="{{publicPath()}}/api/apiDoc_files/analytics.js"></script><script async="" src="{{publicPath()}}/api/apiDoc_files/js"></script>
     <script>
