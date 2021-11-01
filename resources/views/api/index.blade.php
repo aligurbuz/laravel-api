@@ -74,7 +74,7 @@
             </menu>
         </nav>
         <article id="article" role="main" class="max-w-full md:block md:w-10/14">
-            <h1 class="mb-4">Http request behavior guidelines.</h1>
+            <h1 class="mb-4">Api Request Guidelines.</h1>
             <h2 id="about-flysystem">Introduce</h2>
             <p>The roadmap to follow in order to reach our API resource is very simple.Simply follow the instructions below.
                 The request url map is located on the left menu.</p>
