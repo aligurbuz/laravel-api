@@ -85,6 +85,12 @@ Api Documentation
                 <li><strong><a href="{{config('app.productBaseUrl')}}" target="_blank">Production Environment Base Url</a></strong></li>
             </ul>
 
+            <h3 id="commonly-used-adapters">Postman:</h3>
+            <ul>
+                <li><strong><a href="{{apiUrl()}}" target="_blank">Postman Collection Data</a></strong></li>
+                <li><strong><a href="{{apiUrl()}}" target="_blank">Postman Environment Data</a></strong></li>
+            </ul>
+
 
             <h2 id="getting-started">Api Authenticate</h2>
             <p>The header keys that must be sent are below.The Authorization value <b>(except for the login service)</b> is required for every request.
