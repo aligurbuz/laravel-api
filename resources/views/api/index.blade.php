@@ -24,7 +24,7 @@
             <a href="{{publicPath()}}/doc" class="flex items-center h-10">
                 <img class="h-10 w-10 mr-3" width="30" height="30" src="{{publicPath()}}/api/apiDoc_files/flysystem.svg">
                 <span class="pr-2 font-normal overflow-hidden font-heading text-3xl text-indigo-darkest -sm:hidden">
-{{config('app.name')}} Documentation
+Api Documentation
 <sup class="text-xs relative text-indigo" style="top: -20px;">1.0.0</sup>
 </span>
             </a>
