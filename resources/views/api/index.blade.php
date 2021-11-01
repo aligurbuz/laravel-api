@@ -80,7 +80,8 @@
                 The request url map is located on the left menu.</p>
 
             <h2 id="getting-started">Api Authenticate</h2>
-            <p>The global available configuration options are:</p>
+            <p>The header keys that must be sent are below.The Authorization value <b>(except for the login service)</b> is required for every request.
+                There is a token key in the response returned when the user logs in. </p>
             <table>
                 <thead>
                 <tr>
@@ -110,13 +111,91 @@ wget --no-check-certificate --quiet \
   --header 'Accept-Language: en' \
    'http://baseUrl/user'
 </code></pre></div></div>
-            <h2 id="getting-started">Meta Titles</h2>
-            <ul>
-                <li><strong><a href="https://flysystem.thephpleague.com/v2/docs/what-is-new/">New in V2</a></strong>: What is new in Flysystem V2?</li>
-                <li><strong><a href="https://flysystem.thephpleague.com/v2/docs/architecture/">Architecture</a></strong>: Flysystem’s internal architecture</li>
-                <li><strong><a href="https://flysystem.thephpleague.com/v2/docs/usage/filesystem-api/">Flysystem API</a></strong>: How to interact with your Flysystem instance</li>
-                <li><strong><a href="https://flysystem.thephpleague.com/v2/docs/advanced/upgrade-to-2.0.0/">Upgrade to V2</a></strong>: How to upgrade to V2</li>
-            </ul>
+
+
+            <h2 id="getting-started">Success Sample Response</h2>
+
+            <p>The following is the standard response capsule.This is a successful response.</p>
+            <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Default Any Endpoint Response</span>
+{
+    "status": true,
+    "code": 200,
+    "cache": false,
+    "isAvailableData": true,
+    "client": "admin",
+    "env": "local",
+    "responseCode": 2837728881,
+    "resource": [
+        {
+
+        }
+    ]
+}
+</code></pre></div></div>
+
+            <h2 id="getting-started">Meta Keys</h2>
+
+            <table>
+                <thead>
+                <tr>
+                    <th>Key</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <tr>
+                    <td><code class="language-plaintext highlighter-rouge">status</code></td>
+                    <td>Boolean</td>
+                    <td>tells if the http request was successful.</td>
+                </tr>
+
+                <tr>
+                    <td><code class="language-plaintext highlighter-rouge">code</code></td>
+                    <td>Integer</td>
+                    <td>returns the http code(200,201,400,500)</td>
+                </tr>
+
+                <tr>
+                    <td><code class="language-plaintext highlighter-rouge">resource</code></td>
+                    <td>array</td>
+                    <td>it is the key where the real data is stored for the client.</td>
+                </tr>
+
+                </tbody>
+            </table>
+
+            <h2 id="getting-started">Http Codes</h2>
+
+            <table>
+                <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <tr>
+                    <td><code class="language-plaintext highlighter-rouge">200</code></td>
+                    <td>it shows that the response was successful.</td>
+                </tr>
+
+                <tr>
+                    <td><code class="language-plaintext highlighter-rouge">400</code></td>
+                    <td>it shows that the response failed on the client side. the error should be fixed by looking at the ErrorMessage key.</td>
+                </tr>
+
+                <tr>
+                    <td><code class="language-plaintext highlighter-rouge">500</code></td>
+                    <td>it shows that the response failed on the server side.the client cannot do anything. The error must be fixed by the service provider.</td>
+                </tr>
+
+                </tbody>
+            </table>
+
+
             <h3 id="commonly-used-adapters">Data Titles</h3>
             <ul>
                 <li><strong><a href="https://flysystem.thephpleague.com/v2/docs/adapter/async-aws-s3/">AsyncAws S3</a></strong></li>
