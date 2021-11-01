@@ -18,7 +18,7 @@ class DocumentationController extends Controller
     {
         //doc header.json
         $headerJsonFile = app_path('Docs').''.DIRECTORY_SEPARATOR.'header.json';
-        $headers = json_decode(File::get($headerJsonFile),1);
+        $headers = json_decode(File::get($headerJsonFile),true);
 
         return view('api.index',['postman' => Postman::collection(),'headers' => $headers]);
     }
