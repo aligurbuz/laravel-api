@@ -64,6 +64,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        AppContainer::set('public_path',request()->getSchemeAndHttpHost().''.request()->getBasePath());
         $this->checkPaginationValue();
     }
 

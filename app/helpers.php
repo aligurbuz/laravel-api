@@ -26,6 +26,19 @@ if(!function_exists('entity')){
     }
 }
 
+if(!function_exists('publicPath')){
+
+    /**
+     * get publicPath for application
+     *
+     * @return string
+     */
+    function publicPath() : string
+    {
+        return AppContainer::get('public_path');
+    }
+}
+
 if(!function_exists('timezone')){
 
     /**
