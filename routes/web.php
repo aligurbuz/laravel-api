@@ -1,5 +1,6 @@
 <?php
 
+use App\Services\Postman;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\DocumentationController;
 
@@ -15,3 +16,11 @@ use App\Http\Controllers\Api\DocumentationController;
 */
 
 Route::get('/doc', [DocumentationController::class,'index']);
+
+Route::get('/postman/collection',function(){
+    return json_encode(Postman::collection());
+});
+
+Route::get('/postman/environment',function(){
+    return json_encode(Postman::environment());
+});

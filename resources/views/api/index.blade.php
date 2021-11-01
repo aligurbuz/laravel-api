@@ -87,8 +87,8 @@ Api Documentation
 
             <h3 id="commonly-used-adapters">Postman:</h3>
             <ul>
-                <li><strong><a href="{{apiUrl()}}" target="_blank">Postman Collection Data</a></strong></li>
-                <li><strong><a href="{{apiUrl()}}" target="_blank">Postman Environment Data</a></strong></li>
+                <li><strong><a href="postman/collection" target="_blank">Postman Collection Data</a></strong></li>
+                <li><strong><a href="postman/environment" target="_blank">Postman Environment Data</a></strong></li>
             </ul>
 
 
