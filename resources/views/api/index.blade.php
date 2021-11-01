@@ -79,6 +79,13 @@
             <p>The roadmap to follow in order to reach our API resource is very simple.Simply follow the instructions below.
                 The request url map is located on the left menu.</p>
 
+            <h3 id="commonly-used-adapters">Api Urls:</h3>
+            <ul>
+                <li><strong><a href="{{apiUrl()}}" target="_blank">Test Base Url</a></strong></li>
+                <li><strong><a href="{{config('app.productBaseUrl')}}" target="_blank">Product Base Url</a></strong></li>
+            </ul>
+
+
             <h2 id="getting-started">Api Authenticate</h2>
             <p>The header keys that must be sent are below.The Authorization value <b>(except for the login service)</b> is required for every request.
                 There is a token key in the response returned when the user logs in. </p>
@@ -215,7 +222,6 @@ wget --no-check-certificate --quiet \
     ]
 }
 </code></pre></div></div>
-
 
 
         </article>

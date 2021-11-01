@@ -39,6 +39,19 @@ if(!function_exists('publicPath')){
     }
 }
 
+if(!function_exists('apiUrl')){
+
+    /**
+     * get api url for application
+     *
+     * @return string
+     */
+    function apiUrl() : string
+    {
+        return AppContainer::get('apiUrl');
+    }
+}
+
 if(!function_exists('timezone')){
 
     /**

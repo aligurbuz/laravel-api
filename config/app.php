@@ -4,6 +4,7 @@ return [
 
     'apikeyString' => 'apikey',
     'defaultApiResponseFormatter' => 'json',
+    'productBaseUrl' => env('productBaseUrl','productBaseUrl'),
 
     'allowedClientKeys' => [
         'range',
