@@ -81,8 +81,8 @@
 
             <h3 id="commonly-used-adapters">Api Urls:</h3>
             <ul>
-                <li><strong><a href="{{apiUrl()}}" target="_blank">Test Base Url</a></strong></li>
-                <li><strong><a href="{{config('app.productBaseUrl')}}" target="_blank">Product Base Url</a></strong></li>
+                <li><strong><a href="{{apiUrl()}}" target="_blank">Test Environment Base Url</a></strong></li>
+                <li><strong><a href="{{config('app.productBaseUrl')}}" target="_blank">Production Environment Base Url</a></strong></li>
             </ul>
 
 
