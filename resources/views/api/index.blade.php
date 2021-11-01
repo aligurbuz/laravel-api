@@ -195,19 +195,26 @@ wget --no-check-certificate --quiet \
                 </tbody>
             </table>
 
+            <h2 id="getting-started">Error Sample Response</h2>
 
-            <h3 id="commonly-used-adapters">Data Titles</h3>
-            <ul>
-                <li><strong><a href="https://flysystem.thephpleague.com/v2/docs/adapter/async-aws-s3/">AsyncAws S3</a></strong></li>
-                <li><strong><a href="https://flysystem.thephpleague.com/v2/docs/adapter/aws-s3-v3/">AWS S3</a></strong></li>
-                <li><strong><a href="https://flysystem.thephpleague.com/v2/docs/adapter/local/">Local</a></strong></li>
-                <li><strong><a href="https://flysystem.thephpleague.com/v2/docs/adapter/in-memory/">Memory</a></strong></li>
-            </ul>
-            <h3 id="third-party-adapters">Http Error Types</h3>
-            <ul>
-                <li><strong><a href="https://flysystem.thephpleague.com/v2/docs/adapter/gitlab/">Gitlab</a></strong></li>
-            </ul>
-            <p>You can always <a href="https://flysystem.thephpleague.com/v2/docs/advanced/creating-an-adapter/">create an adapter</a> yourself.</p>
+            <p>As seen in the error response, the status value is returned false.In this case, the errorMessage value will be the key that tells the source of the error for the client.
+                <b>Notice that the errorMessage key is not returned in the resource key.</b></p>
+            <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Default Any Endpoint Response</span>
+{
+    "status": false,
+    "code": 400,
+    "client": "admin",
+    "env": "production",
+    "responseCode": 2877334582,
+    "errorInput": null,
+    "exception": "InvalidException",
+    "errorMessage": "Field is required",
+    "endpoint": "baseUrl/user",
+    "rules": [
+        null
+    ]
+}
+</code></pre></div></div>
 
 
 
