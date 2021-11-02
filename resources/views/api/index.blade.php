@@ -61,7 +61,7 @@ Api Documentation
                 <div style="position:absolute; margin-top: -20px;">
                     @foreach(($postman['item'] ?? []) as $key => $value )
                         <h2 class="tracking-wide mb-0 mt-0 text-xs leading-loose tracking-wide text-indigo-light uppercase">
-                            {{$value['name']}}</h2>
+                            <a href="doc?action={{$value['name']}}">{{$value['name']}}</a></h2>
                         <!--<ul class="list-reset mb-6 block pr-6">
                             <li class="block">
                                 <a class="leading-loose block w-full rounded text-md text-indigo-darkest" href="https://flysystem.thephpleague.com/v2/docs/what-is-new/">New In V2</a>
@@ -73,6 +73,70 @@ Api Documentation
 
             </menu>
         </nav>
+
+        @if(!is_null($action))
+
+            <article id="article" role="main" class="max-w-full md:block md:w-10/14">
+
+                @if(isset($postman['item'][$action]))
+
+                    @foreach($postman['item'][$action]['item'] as $key => $value)
+                        <h1 id="about-flysystem">{{$value['name']}}</h1>
+                        <p>The roadmap to follow in order to reach our API resource is very simple.Simply follow the instructions below.
+                            The request url map is located on the left menu.</p>
+
+                    @if(isset($value['item']))
+                        @foreach($value['item'] as $key => $value)
+                        <h3 id="commonly-used-adapters">{{$value['request']['method']}}</h3>
+                        <ul>
+                            <li>Url : <strong>{{$value['request']['url']['raw']}}</strong></li>
+                              </ul>
+
+                            @if(isset($value['request']['body']['raw']))
+                                @php
+                                $raw = json_decode($value['request']['body']['raw'],true);
+                                @endphp
+                                <table>
+                                    <thead>
+                                    <tr>
+                                        <th style="width:200px;">Body Parameters</th>
+                                        <th>Type</th>
+                                        <th>Required</th>
+                                        <th>Description</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    @foreach($raw as $field=> $type)
+                                        <tr>
+                                            <td><code class="language-plaintext highlighter-rouge">{{$field}}</code></td>
+                                            @if($field=='is_deleted' || $field=='status')
+                                                <td><code class="language-plaintext highlighter-rouge">boolean</code></td>
+                                            @else
+                                                <td><code class="language-plaintext highlighter-rouge">{{$type}}</code></td>
+                                            @endif
+
+                                            <td><code class="language-plaintext highlighter-rouge">true</code></td>
+                                            <td></td>
+                                        </tr>
+                                    @endforeach
+
+                                    </tbody>
+                                </table>
+                                @endif
+                            @endforeach
+
+                        @else
+                        @endif
+                        <hr>
+                    @endforeach
+
+                @endif
+
+
+            </article>
+
+            @else
         <article id="article" role="main" class="max-w-full md:block md:w-10/14">
             <h1 class="mb-4">Api Request Guidelines.</h1>
             <h2 id="about-flysystem">Introduce</h2>
@@ -231,6 +295,8 @@ wget --no-check-certificate --quiet \
 
 
         </article>
+
+        @endif
     </div>
 </main>
 <footer class="bg-indigo-darkest text-white">

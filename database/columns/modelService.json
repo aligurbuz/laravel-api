@@ -1,4 +1,8 @@
 {
+    "User": {
+        "controller": "User",
+        "dir": "User"
+    },
     "UserPhoto": {
         "controller": "Photos",
         "dir": "User"

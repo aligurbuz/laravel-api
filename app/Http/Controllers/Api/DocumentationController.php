@@ -20,6 +20,28 @@ class DocumentationController extends Controller
         $headerJsonFile = app_path('Docs').''.DIRECTORY_SEPARATOR.'header.json';
         $headers = json_decode(File::get($headerJsonFile),true);
 
-        return view('api.index',['postman' => Postman::collection(),'headers' => $headers]);
+        return view('api.index',[
+            'postman' => $collection = Postman::collection(),
+            'headers' => $headers,
+            'action' => $this->getActionIdFromCollection(request()->query->get('action'),$collection)
+        ]);
+    }
+
+    /**
+     * get action id from collection
+     *
+     * @param ?string $action
+     * @param array $collection
+     * @return ?int
+     */
+    private function getActionIdFromCollection(?string $action,array $collection = []) : ?int
+    {
+        foreach ($collection['item'] as $key => $value){
+            if($value['name']==$action){
+                return $key;
+            }
+        }
+
+        return null;
     }
 }
