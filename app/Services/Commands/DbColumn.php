@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Nette\PhpGenerator\PhpNamespace;
+use App\Services\Db as DatabaseService;
 
 class DbColumn extends Command
 {
@@ -42,12 +43,14 @@ class DbColumn extends Command
      */
     public function handle()
     {
+        $config = DatabaseService::config();
+        $configDatabaseName = $config['database'];
 
         $modelName = ucfirst($this->argument('model'));
         $model = 'App\Models\\'.$modelName;
         $table = (new $model)->getTable();
         $databaseColumnPath = base_path('database'.DIRECTORY_SEPARATOR.'columns'.DIRECTORY_SEPARATOR.''.$table.'.php');
-        $sqlString = 'SELECT * FROM information_schema.columns WHERE table_name = \''.$table.'\'';
+        $sqlString = 'SELECT * FROM information_schema.columns WHERE table_schema = \''.$configDatabaseName.'\' && table_name = \''.$table.'\'';
         $sqlIndexString = 'SHOW KEYS FROM '.$table;
         $indexes = DB::select($sqlIndexString);
         $columns = DB::select($sqlString);

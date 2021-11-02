@@ -180,4 +180,17 @@ class Db extends Model
 
         return false;
     }
+
+    /**
+     * get db config
+     *
+     * @return array
+     */
+    public static function config() : array
+    {
+        $databaseConfig = config('database');
+        $defaultDriver = $databaseConfig['default'];
+
+        return $databaseConfig['connections'][$defaultDriver];
+    }
 }
