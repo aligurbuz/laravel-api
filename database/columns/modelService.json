@@ -21,5 +21,37 @@
     "District": {
         "controller": "Districts",
         "dir": "Countries"
+    },
+    "Currency": {
+        "controller": "Currencies",
+        "dir": "Currencies"
+    },
+    "Permission": {
+        "controller": "Permissions",
+        "dir": "Gate"
+    },
+    "Role": {
+        "controller": "Roles",
+        "dir": "Gate"
+    },
+    "Language": {
+        "controller": "Language",
+        "dir": "Localizations"
+    },
+    "Localization": {
+        "controller": "Localizations",
+        "dir": "Localizations"
+    },
+    "TableChange": {
+        "controller": "TableChanges",
+        "dir": "Mix"
+    },
+    "SuperAdmin": {
+        "controller": "SuperAdmins",
+        "dir": "SuperAdmins"
+    },
+    "Timezone": {
+        "controller": "Timezones",
+        "dir": "Timezones"
     }
 }

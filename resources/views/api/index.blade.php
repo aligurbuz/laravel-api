@@ -92,6 +92,24 @@ Api Documentation
                             <li>Url : <strong>{{$value['request']['url']['raw']}}</strong></li>
                               </ul>
 
+                            @php
+                            $method = $value['request']['method'];
+                            $endpoint = str_replace('{{baseUrl}}/','',$value['request']['url']['raw']);
+                            $endpointSplit = explode('/',$endpoint);
+                            $dir = ucfirst($endpointSplit[0]);
+                            $controller = isset($endpointSplit[1]) ? ucfirst($endpointSplit[1]) : $dir;
+                            $modelServiceMapFile = base_path('database/columns/modelService.json');
+                            $modelServiceJson = json_decode(\Illuminate\Support\Facades\File::get($modelServiceMapFile),true);
+                            $model = null;
+                            foreach ($modelServiceJson as $modelName => $items){
+                                if($items['controller']==$controller && $items['dir']==$dir){
+                                    $model = $modelName;
+                                }
+                            }
+
+                            $entities = \App\Services\Db::entities(\App\Constants::modelNamespace.'\\'.$model);
+                            @endphp
+
                             @if(isset($value['request']['body']['raw']))
                                 @php
                                 $raw = json_decode($value['request']['body']['raw'],true);
@@ -116,7 +134,25 @@ Api Documentation
                                                 <td><code class="language-plaintext highlighter-rouge">{{$type}}</code></td>
                                             @endif
 
-                                            <td><code class="language-plaintext highlighter-rouge">true</code></td>
+                                            @if($method=='PUT')
+
+                                                @if(getTableCode($model)==$field)
+                                                    <td><code class="language-plaintext highlighter-rouge">true</code></td>
+                                                @else
+                                                    <td><code class="language-plaintext highlighter-rouge">false</code></td>
+                                                @endif
+
+                                            @else
+
+                                                @if(isset($entities['required_columns']) && in_array($field,$entities['required_columns'],true))
+                                                    <td><code class="language-plaintext highlighter-rouge">true</code></td>
+                                                @else
+                                                    <td><code class="language-plaintext highlighter-rouge">false</code></td>
+                                                @endif
+
+                                                @endif
+
+
                                             <td></td>
                                         </tr>
                                     @endforeach
