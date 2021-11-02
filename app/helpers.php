@@ -39,6 +39,20 @@ if(!function_exists('publicPath')){
     }
 }
 
+if(!function_exists('makeIfProduction')){
+
+    /**
+     * get publicPath for application
+     *
+     * @param $data
+     * @return mixed
+     */
+    function makeIfProduction($data) : mixed
+    {
+        return (isProduction()===true) ? $data : null;
+    }
+}
+
 if(!function_exists('apiUrl')){
 
     /**

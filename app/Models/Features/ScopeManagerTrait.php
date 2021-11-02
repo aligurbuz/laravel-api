@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Models\Features;
 
 use App\Exceptions\Exception;
-use App\Services\AppContainer;
+use App\Services\Response\Response;
 
 /**
  * Trait ScopeManagerTrait
@@ -52,7 +52,7 @@ trait ScopeManagerTrait
         }
 
         //We record the instruction value in the response data to inform the user.
-        AppContainer::set('responseFormatterSupplement',['ranges' => $modelRanges],true);
+        Response::formatterSupplement(['ranges' => $modelRanges],true);
 
         return ['ranges' => $inLineRanges,'modelRanges' => $modelRanges];
     }
@@ -67,7 +67,7 @@ trait ScopeManagerTrait
     {
         foreach ($data as $with => $items){
             if(is_array($items) && $with!=='localization'){
-                AppContainer::set('responseFormatterSupplement',['relations' =>[
+                Response::formatterSupplement(['relations' =>[
                     $with => [
                         'using' => ''.($items['withQuery']?? 'with['.$with.']').'[select] = \'*',
                         'hasMany' => ($items['hasMany'] ?? true),

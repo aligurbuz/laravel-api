@@ -7,8 +7,8 @@ namespace App\Models\Features;
 use App\Constants;
 use App\Exceptions\Exception;
 use App\Services\Db;
+use App\Services\Response\Response;
 use Illuminate\Support\Str;
-use App\Services\AppContainer;
 use App\Repositories\Repository;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
@@ -269,7 +269,7 @@ trait BaseManager
     {
         $list = [];
         $modelAppends = array_merge($this->autoModelAppends,($this->modelAppends ?? []));
-        AppContainer::set('responseFormatterSupplement',['appends' => $modelAppends]);
+        Response::formatterSupplement(['appends' => $modelAppends]);
 
         $clientAppends = (request()->query->all())['append'] ?? null;
 

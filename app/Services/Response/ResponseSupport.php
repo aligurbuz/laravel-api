@@ -193,4 +193,18 @@ abstract class ResponseSupport
 
         return response()->json($data,$code);
     }
+
+    /**
+     * set formatter supplement for response
+     *
+     * @param array $data
+     * @param bool $merge
+     * @return void
+     */
+    public static function formatterSupplement(array $data = [],bool $merge = false) : void
+    {
+        if(isProduction()===false){
+            AppContainer::set(Constants::responseFormatterSupplement,$data,$merge);
+        }
+    }
 }
