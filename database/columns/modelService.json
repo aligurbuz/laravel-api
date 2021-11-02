@@ -6,5 +6,20 @@
     "UserPhoto": {
         "controller": "Photos",
         "dir": "User"
+    },
+
+    "Country": {
+        "controller": "Countries",
+        "dir": "Countries"
+    },
+
+    "City": {
+        "controller": "Cities",
+        "dir": "Countries"
+    },
+
+    "District": {
+        "controller": "Districts",
+        "dir": "Countries"
     }
 }
