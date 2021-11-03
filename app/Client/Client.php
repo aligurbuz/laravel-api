@@ -89,6 +89,16 @@ class Client extends ClientManager
     }
 
     /**
+     * get array rule for client
+     *
+     * @return array
+     */
+    public function getArrayRule() : array
+    {
+        return property_exists($this,'arrayRule') ? $this->arrayRule : [];
+    }
+
+    /**
      * get rule for client
      *
      * @param $key

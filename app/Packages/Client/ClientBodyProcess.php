@@ -134,6 +134,32 @@ class ClientBodyProcess extends ClientVariableProcess
                 Exception::clientFormatException();
             }
         }
+
+        $this->arrayRuleValidator();
+    }
+
+    /**
+     * @return void
+     */
+    private function arrayRuleValidator() : void
+    {
+        $arrayRules = $this->client->getArrayRule();
+
+        foreach ($arrayRules as $field => $values){
+            $rules = $values['rules'] ?? [];
+
+            foreach ($this->data as $key => $value){
+                $arrayFields = $value[$field] ?? [];
+                foreach ($arrayFields as $arrayField){
+                    try{
+                        $this->makeValidator($arrayField,$rules);
+                    }
+                    catch (\Exception $exception){
+                        Exception::customException($exception->getMessage().'('.trans('exception.arrayRuleException',['key' => $field]).')');
+                    }
+                }
+            }
+        }
     }
 
     /**
