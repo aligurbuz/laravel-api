@@ -29,4 +29,15 @@ class Postman
         $headerJsonFile = app_path('Docs').''.DIRECTORY_SEPARATOR.'header.json';
         return json_decode(File::get($headerJsonFile),true);
     }
+
+    /**
+     * get postman ignore data
+     *
+     * @return array
+     */
+    public static function ignore() : array
+    {
+        $ignoreFile = base_path('postman').''.DIRECTORY_SEPARATOR.'PostmanIgnore.json';
+        return json_decode(File::get($ignoreFile),true);
+    }
 }
