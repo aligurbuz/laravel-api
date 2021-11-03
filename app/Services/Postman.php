@@ -40,4 +40,28 @@ class Postman
         $ignoreFile = base_path('postman').''.DIRECTORY_SEPARATOR.'PostmanIgnore.json';
         return json_decode(File::get($ignoreFile),true);
     }
+
+    /**
+     * get postman collection according to ignore
+     *
+     * @return array
+     */
+    public static function getCollectionAccordingToIgnore() : array
+    {
+        $ignore = static::ignore();
+        $collection = static::collection();
+        $itemCollection = $collection['item'] ?? [];
+
+        $list = [];
+
+        foreach ($itemCollection as $key => $item){
+            if(!in_array($item['name'],$ignore)){
+                $list[$key] = $item;
+            }
+        }
+
+        $collection['item'] = array_values($list);
+
+        return $collection;
+    }
 }

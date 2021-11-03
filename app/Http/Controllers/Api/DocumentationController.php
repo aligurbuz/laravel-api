@@ -21,7 +21,7 @@ class DocumentationController extends Controller
         $headers = json_decode(File::get($headerJsonFile),true);
 
         return view('api.index',[
-            'postman' => $collection = $this->getCollectionAccordingToIgnore(),
+            'postman' => $collection = Postman::getCollectionAccordingToIgnore(),
             'headers' => $headers,
             'action' => $this->getActionIdFromCollection(request()->query->get('action'),$collection),
             'arrayRules' => arrayRules(),
@@ -44,29 +44,5 @@ class DocumentationController extends Controller
         }
 
         return null;
-    }
-
-    /**
-     * get postman collection according to ignore
-     *
-     * @return array
-     */
-    private function getCollectionAccordingToIgnore() : array
-    {
-        $ignore = Postman::ignore();
-        $collection = Postman::collection();
-        $itemCollection = $collection['item'] ?? [];
-
-        $list = [];
-
-        foreach ($itemCollection as $key => $item){
-            if(!in_array($item['name'],$ignore)){
-                $list[$key] = $item;
-            }
-        }
-
-        $collection['item'] = array_values($list);
-
-        return $collection;
     }
 }
