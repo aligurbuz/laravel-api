@@ -12,6 +12,7 @@ use App\Models\Entities\EntityMap;
 use Illuminate\Support\Facades\DB;
 use App\Facades\Authenticate\ApiKey;
 use Illuminate\Support\Facades\Route;
+use App\Client\ArrayRules;
 
 if(!function_exists('entity')){
 
@@ -36,6 +37,23 @@ if(!function_exists('publicPath')){
     function publicPath() : string
     {
         return AppContainer::get('public_path');
+    }
+}
+
+if(!function_exists('arrayRules')){
+
+    /**
+     * get publicPath for application
+     *
+     * @return array
+     */
+    function arrayRules() : array
+    {
+        if(class_exists(ArrayRules::class)){
+            return (new ArrayRules())->handle();
+        }
+
+        return [];
     }
 }
 

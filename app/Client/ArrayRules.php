@@ -18,11 +18,11 @@ class ArrayRules
     public function handle() : array
     {
         return [
-          'countries' => [
-              'items' => [
+          'serviceName' => [
+              'field' => [
                   'name' => [
                       'description' => '',
-                      'required' => false,
+                      'required' => 'true',
                       'type' => 'string'
                   ]
               ]

@@ -23,7 +23,8 @@ class DocumentationController extends Controller
         return view('api.index',[
             'postman' => $collection = Postman::collection(),
             'headers' => $headers,
-            'action' => $this->getActionIdFromCollection(request()->query->get('action'),$collection)
+            'action' => $this->getActionIdFromCollection(request()->query->get('action'),$collection),
+            'arrayRules' => arrayRules(),
         ]);
     }
 

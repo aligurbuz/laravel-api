@@ -159,6 +159,42 @@ Api Documentation
 
                                     </tbody>
                                 </table>
+
+                                @foreach($arrayRules as $endpointName => $items)
+                                    @if($endpoint==$endpointName)
+                                        @foreach($items as $field => $lists)
+                                            @if(isset($raw[$field]))
+
+                                                <h3>{{ucfirst($field)}} Body Parameters:</h3>
+                                                    <p><b>The key values to be sent for the {{$field}} parameter are listed below. </b></p>
+                                                    <table>
+                                                        <thead>
+                                                        <tr>
+                                                            <th style="width:200px;">Body Parameters</th>
+                                                            <th>Type</th>
+                                                            <th>Required</th>
+                                                            <th>Description</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+
+                                                        @foreach($lists as $listKey => $listItems)
+                                                            <tr>
+                                                                <td><code class="language-plaintext highlighter-rouge">{{$listKey}}</code></td>
+                                                                <td><code class="language-plaintext highlighter-rouge">{{$listItems['type'] ?? ''}}</code></td>
+                                                                <td><code class="language-plaintext highlighter-rouge">{{$listItems['required'] ?? ''}}</code></td>
+                                                                <td><code class="language-plaintext highlighter-rouge">{{$listItems['description'] ?? ''}}</code></td>
+
+                                                            </tr>
+                                                        @endforeach
+
+                                                        </tbody>
+                                                    </table>
+                                                @endif
+                                            @endforeach
+                                        @endif
+                                    @endforeach
+
                                 @endif
                             @endforeach
 
