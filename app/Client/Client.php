@@ -44,13 +44,16 @@ class Client extends ClientManager
     /**
      * Client constructor.
      * @param array $data
+     * @param bool $handler
      */
-    public function __construct(array $data = [])
+    public function __construct(array $data = [],bool $handler = true)
     {
-        parent::__construct($data);
-        $this->modelRequiredFields();
-        $this->capsule();
-        $this->addRule();
+        if($handler){
+            parent::__construct($data);
+            $this->modelRequiredFields();
+            $this->capsule();
+            $this->addRule();
+        }
     }
 
     /**
