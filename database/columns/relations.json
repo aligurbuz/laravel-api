@@ -41,15 +41,21 @@
     "Role": [
         "User",
         "SuperAdmin",
+        "UserPhoto",
         "Localization"
     ],
     "User": [
         "Role",
         "SuperAdmin",
-        "Localization",
-        "UserPhoto"
+        "UserPhoto",
+        "Localization"
     ],
     "SuperAdmin": [
+        "Role",
+        "User",
+        "Localization"
+    ],
+    "UserPhoto": [
         "Role",
         "User",
         "Localization"
@@ -58,10 +64,6 @@
         "Localization"
     ],
     "Timezone": [
-        "Localization"
-    ],
-    "UserPhoto": [
-        "User",
         "Localization"
     ]
 }

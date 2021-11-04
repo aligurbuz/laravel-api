@@ -71,6 +71,8 @@ class DbColumn extends Command
 
         foreach ($columns as $column){
 
+            $list['comments'][] = '"'.$column->COLUMN_COMMENT.'"';
+
             if($column->COLUMN_TYPE=='tinyint(1)'){
                 $list['boolean_values'][] = '"'.$column->COLUMN_NAME.'"';
             }
@@ -119,6 +121,7 @@ class DbColumn extends Command
         }
 
         File::put($databaseColumnPath,'<?php return [
+        \'comments\' => ['.implode(',',$list['comments']).'],
         \'columns\' => ['.implode(',',$list['columns']).'],
         \'indexes\' => ['.implode(',',$list['indexes']).'],
         \'types\' => ['.implode(',',$list['types']).'],

@@ -13,7 +13,7 @@
         "/var/www/html/app/api/app/Docs/Endpoints/Global/Global.json"
     ],
     "keys": {
-        "/var/www/html/app/api/app/Docs/Endpoints/User/User.json": 1,
+        "/var/www/html/app/api/app/Docs/Endpoints/User/User.json": 0,
         "/var/www/html/app/api/app/Docs/Endpoints/Countries/Countries.json": 2,
         "/var/www/html/app/api/app/Docs/Endpoints/Localizations/Localizations.json": 0,
         "/var/www/html/app/api/app/Docs/Endpoints/SuperAdmins/SuperAdmins.json": 0,

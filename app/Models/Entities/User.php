@@ -16,9 +16,6 @@ namespace App\Models\Entities;
  * @property $this created_at
  * @property $this updated_at
  * @property $this username
- * @property $this USER
- * @property $this CURRENT_CONNECTIONS
- * @property $this TOTAL_CONNECTIONS
  */
 class User
 {
@@ -159,39 +156,6 @@ class User
 	protected static function username(): mixed
 	{
 		return self::$query->username;
-	}
-
-
-	/**
-	 * get USER column for database table
-	 *
-	 * @return mixed
-	 */
-	protected static function USER(): mixed
-	{
-		return self::$query->USER;
-	}
-
-
-	/**
-	 * get CURRENT_CONNECTIONS column for database table
-	 *
-	 * @return mixed
-	 */
-	protected static function CURRENT_CONNECTIONS(): mixed
-	{
-		return self::$query->CURRENT_CONNECTIONS;
-	}
-
-
-	/**
-	 * get TOTAL_CONNECTIONS column for database table
-	 *
-	 * @return mixed
-	 */
-	protected static function TOTAL_CONNECTIONS(): mixed
-	{
-		return self::$query->TOTAL_CONNECTIONS;
 	}
 
 

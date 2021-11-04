@@ -1904,22 +1904,26 @@
                                     {
                                         "key": "Authorization",
                                         "value": "Bearer {{bearerToken}}",
-                                        "type": "text"
+                                        "type": "text",
+                                        "description": "It is the token value received after the user logs in.(must)"
                                     },
                                     {
                                         "key": "Apikey",
                                         "value": "{{apiKey}}",
-                                        "type": "text"
+                                        "type": "text",
+                                        "description": "It is a hash value given to you by the system provider.(must)"
                                     },
                                     {
                                         "key": "Content-Type",
                                         "value": "{{contentType}}",
-                                        "type": "text"
+                                        "type": "text",
+                                        "description": "You can specify the return types for the returned response like json or xml.(not must)"
                                     },
                                     {
                                         "key": "Accept-Language",
                                         "value": "{{acceptLanguage}}",
-                                        "type": "text"
+                                        "type": "text",
+                                        "description": "You can select the language option for the returned string values.(must)"
                                     }
                                 ],
                                 "body": [],
@@ -1951,27 +1955,31 @@
                                     {
                                         "key": "Authorization",
                                         "value": "Bearer {{bearerToken}}",
-                                        "type": "text"
+                                        "type": "text",
+                                        "description": "It is the token value received after the user logs in.(must)"
                                     },
                                     {
                                         "key": "Apikey",
                                         "value": "{{apiKey}}",
-                                        "type": "text"
+                                        "type": "text",
+                                        "description": "It is a hash value given to you by the system provider.(must)"
                                     },
                                     {
                                         "key": "Content-Type",
                                         "value": "{{contentType}}",
-                                        "type": "text"
+                                        "type": "text",
+                                        "description": "You can specify the return types for the returned response like json or xml.(not must)"
                                     },
                                     {
                                         "key": "Accept-Language",
                                         "value": "{{acceptLanguage}}",
-                                        "type": "text"
+                                        "type": "text",
+                                        "description": "You can select the language option for the returned string values.(must)"
                                     }
                                 ],
                                 "body": {
                                     "mode": "raw",
-                                    "raw": "{\"role_code\":\"integer\",\"name\":\"string\",\"email\":\"string\",\"email_verified_at\":\"timestamp\",\"password\":\"string\",\"remember_token\":\"string\",\"username\":\"string\",\"USER\":\"string\",\"CURRENT_CONNECTIONS\":\"integer\",\"TOTAL_CONNECTIONS\":\"integer\"}",
+                                    "raw": "{\"role_code\":\"0\",\"name\":\"string\",\"email\":\"string\",\"email_verified_at\":\"timestamp\",\"password\":\"\",\"remember_token\":\"string\",\"username\":\"string\"}",
                                     "options": {
                                         "raw": {
                                             "language": "json"
@@ -1999,27 +2007,31 @@
                                     {
                                         "key": "Authorization",
                                         "value": "Bearer {{bearerToken}}",
-                                        "type": "text"
+                                        "type": "text",
+                                        "description": "It is the token value received after the user logs in.(must)"
                                     },
                                     {
                                         "key": "Apikey",
                                         "value": "{{apiKey}}",
-                                        "type": "text"
+                                        "type": "text",
+                                        "description": "It is a hash value given to you by the system provider.(must)"
                                     },
                                     {
                                         "key": "Content-Type",
                                         "value": "{{contentType}}",
-                                        "type": "text"
+                                        "type": "text",
+                                        "description": "You can specify the return types for the returned response like json or xml.(not must)"
                                     },
                                     {
                                         "key": "Accept-Language",
                                         "value": "{{acceptLanguage}}",
-                                        "type": "text"
+                                        "type": "text",
+                                        "description": "You can select the language option for the returned string values.(must)"
                                     }
                                 ],
                                 "body": {
                                     "mode": "raw",
-                                    "raw": "{\"user_code\":\"integer\",\"role_code\":\"integer\",\"name\":\"string\",\"email\":\"string\",\"email_verified_at\":\"timestamp\",\"password\":\"string\",\"remember_token\":\"string\",\"username\":\"string\",\"USER\":\"string\",\"CURRENT_CONNECTIONS\":\"integer\",\"TOTAL_CONNECTIONS\":\"integer\",\"is_deleted\":\"0\",\"status\":\"1\"}",
+                                    "raw": "{\"user_code\":\"integer\",\"role_code\":\"0\",\"name\":\"string\",\"email\":\"string\",\"email_verified_at\":\"timestamp\",\"password\":\"\",\"remember_token\":\"string\",\"username\":\"string\",\"is_deleted\":\"0\",\"status\":\"1\"}",
                                     "options": {
                                         "raw": {
                                             "language": "json"

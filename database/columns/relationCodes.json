@@ -36,8 +36,7 @@
         "Permission"
     ],
     "role_code": [
-        "Role",
-        "User"
+        "Role"
     ],
     "role_app_code": [
         "Role"
@@ -47,7 +46,6 @@
     ],
     "user_code": [
         "SuperAdmin",
-        "User",
         "UserPhoto"
     ],
     "table_change_code": [
