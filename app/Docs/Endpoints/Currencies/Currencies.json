@@ -87,7 +87,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"symbol\":\"string\",\"name\":\"string\",\"symbol_place_status\":\"integer\",\"status\":\"integer\",\"is_deleted\":\"integer\"}",
+                            "raw": "{\"symbol\":\"string\",\"name\":\"string\",\"symbol_place_status\":\"1\",\"status\":\"1\",\"is_deleted\":\"0\"}",
                             "options": {
                                 "raw": {
                                     "language": "json"
@@ -139,7 +139,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"currency_code\":\"integer\",\"symbol\":\"string\",\"name\":\"string\",\"symbol_place_status\":\"integer\",\"status\":\"1\",\"is_deleted\":\"0\"}",
+                            "raw": "{\"currency_code\":\"0\",\"symbol\":\"string\",\"name\":\"string\",\"symbol_place_status\":\"1\",\"status\":\"1\",\"is_deleted\":\"0\"}",
                             "options": {
                                 "raw": {
                                     "language": "json"

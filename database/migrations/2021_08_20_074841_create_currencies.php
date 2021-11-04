@@ -18,7 +18,7 @@ class CreateCurrencies extends Migration
             $table->bigInteger('currency_code')->default(0)->unique()->index();
             $table->char('symbol',10)->comment('currency symbol ($,€ etc.)');
             $table->char('name',20)->comment('currency name (EURO,USD etc.)');
-            $table->boolean('symbol_place_status')->default(1)->comment('Indicates whether the symbol is to the right or left of the number.(0:left,1:right');
+            $table->boolean('symbol_place_status')->default(1)->comment('Indicates whether the symbol is to the right or left of the number.(0:left,1:right)');
 
             $table->boolean('status')->default(1);
             $table->boolean('is_deleted')->default(0);
