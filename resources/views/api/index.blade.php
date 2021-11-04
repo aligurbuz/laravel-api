@@ -55,6 +55,22 @@ Api Documentation
 
                 <ul class="list-reset mb-6 block pr-6">
                     <li class="block">
+                        <a class="leading-loose block w-full rounded text-md text-white bg-indigo pl-2 -ml-2">Introduce</a>
+                    </li>
+                </ul>
+
+                <div style="position:absolute; margin-top: -20px;">
+                <h2 class="tracking-wide mb-0 mt-0 text-xs leading-loose tracking-wide text-indigo-light uppercase">
+                    <a href="doc">Common Rules</a></h2>
+
+                    <h2 class="tracking-wide mb-0 mt-0 text-xs leading-loose tracking-wide text-indigo-light uppercase">
+                        <a href="doc">Query Parameters</a></h2>
+                </div>
+
+                <br><br>
+
+                <ul class="list-reset mb-6 block pr-6">
+                    <li class="block">
                         <a class="leading-loose block w-full rounded text-md text-white bg-indigo pl-2 -ml-2">Endpoints</a>
                     </li>
                 </ul>
