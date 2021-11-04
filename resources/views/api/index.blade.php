@@ -112,6 +112,8 @@ Api Documentation
                             $entities = \App\Services\Db::entities(\App\Constants::modelNamespace.'\\'.$model);
                             $comments = \App\Services\Db::comments(\App\Constants::modelNamespace.'\\'.$model);
                             $booleans = \App\Services\Db::booleanValues(\App\Constants::modelNamespace.'\\'.$model);
+                            $types = \App\Services\Db::types(\App\Constants::modelNamespace.'\\'.$model);
+                            $tableCode = getTableCode($model);
                             @endphp
 
                             @if(isset($value['request']['body']['raw']))
@@ -138,7 +140,7 @@ Api Documentation
                                                 @if(in_array($field,$booleans,true))
                                                     <td><code class="language-plaintext highlighter-rouge">boolean</code></td>
                                                 @else
-                                                    <td><code class="language-plaintext highlighter-rouge">{{$type}}</code></td>
+                                                    <td><code class="language-plaintext highlighter-rouge">{{$types[$field] ?? 'string'}}</code></td>
                                                 @endif
 
                                             @endif
@@ -162,7 +164,12 @@ Api Documentation
                                                 @endif
 
 
-                                            <td>{{$comments[$field] ?? ''}}</td>
+                                            @if($tableCode==$field)
+                                                <td>Column code</td>
+                                            @else
+                                                <td>{{$comments[$field] ?? ''}}</td>
+                                            @endif
+
                                         </tr>
                                     @endforeach
 
