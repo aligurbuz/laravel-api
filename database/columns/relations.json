@@ -39,31 +39,27 @@
         "Localization"
     ],
     "Role": [
+        "Localization",
+        "User"
+    ],
+    "SuperAdmin": [
         "User",
-        "SuperAdmin",
-        "UserPhoto",
         "Localization"
     ],
     "User": [
-        "Role",
         "SuperAdmin",
         "UserPhoto",
-        "Localization"
-    ],
-    "SuperAdmin": [
         "Role",
-        "User",
-        "Localization"
-    ],
-    "UserPhoto": [
-        "Role",
-        "User",
         "Localization"
     ],
     "TableChange": [
         "Localization"
     ],
     "Timezone": [
+        "Localization"
+    ],
+    "UserPhoto": [
+        "User",
         "Localization"
     ]
 }

@@ -42,7 +42,7 @@ class CreateCurrencies extends Migration
                 'updated_at' => Date::now()->toDateTimeString(),
             ],
             [
-                'id' => 1,
+                'id' => 2,
                 'currency_code' => crc32(config('app.name').'_euroCurrency'),
                 'symbol' => '€',
                 'name' => 'EURO',
