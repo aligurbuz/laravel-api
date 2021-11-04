@@ -20,11 +20,16 @@ class DocumentationController extends Controller
         $headerJsonFile = app_path('Docs').''.DIRECTORY_SEPARATOR.'header.json';
         $headers = json_decode(File::get($headerJsonFile),true);
 
+        //description.json
+        $descriptionJsonFile = app_path('Docs').''.DIRECTORY_SEPARATOR.'description.json';
+        $description = json_decode(File::get($descriptionJsonFile),true);
+
         return view('api.index',[
             'postman' => $collection = Postman::getCollectionAccordingToIgnore(),
             'headers' => $headers,
             'action' => $this->getActionIdFromCollection(request()->query->get('action'),$collection),
             'arrayRules' => arrayRules(),
+            'descriptions' => $description
         ]);
     }
 

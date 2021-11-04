@@ -81,11 +81,13 @@ Api Documentation
                 @if(isset($postman['item'][$action]))
 
                     @foreach($postman['item'][$action]['item'] as $key => $value)
-                        <h1 id="about-flysystem">{{$value['name']}}</h1>
-                        <p>The roadmap to follow in order to reach our API resource is very simple.Simply follow the instructions below.
-                            The request url map is located on the left menu.</p>
 
                     @if(isset($value['item']))
+
+
+                            <h1 id="about-flysystem">{{$value['name']}}</h1>
+                            <p>{{$descriptions[$value['name']] ?? ''}}</p>
+
                         @foreach($value['item'] as $key => $value)
                         <h3 id="commonly-used-adapters">{{$value['request']['method']}}</h3>
                         <ul>
