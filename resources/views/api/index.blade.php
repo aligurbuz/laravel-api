@@ -108,6 +108,7 @@ Api Documentation
                             }
 
                             $entities = \App\Services\Db::entities(\App\Constants::modelNamespace.'\\'.$model);
+                            $comments = \App\Services\Db::comments(\App\Constants::modelNamespace.'\\'.$model);
                             @endphp
 
                             @if(isset($value['request']['body']['raw']))
@@ -153,7 +154,7 @@ Api Documentation
                                                 @endif
 
 
-                                            <td></td>
+                                            <td>{{$comments[$field] ?? ''}}</td>
                                         </tr>
                                     @endforeach
 

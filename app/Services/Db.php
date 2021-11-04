@@ -61,6 +61,19 @@ class Db extends Model
     }
 
     /**
+     * get table columns for model
+     *
+     * @param null $table
+     * @return array
+     */
+    public static function comments($table = null): array
+    {
+        $entities = static::entities($table);
+
+        return array_combine($columns = ($entities['columns'] ?? []),($entities['comments'] ?? $columns));
+    }
+
+    /**
      * get table columns max length for model
      *
      * @param null $table

@@ -290,6 +290,20 @@ if(!function_exists('getTableCode')){
     }
 }
 
+if(!function_exists('getTableName')){
+
+    /**
+     * @param $model
+     * @return string
+     */
+    function getTableName($model): string
+    {
+        $model = Constants::modelNamespace.'\\'.$model;
+
+        return (new $model)->getTable();
+    }
+}
+
 if(!function_exists('getModelWithPlural')){
 
     /**
