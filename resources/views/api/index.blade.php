@@ -61,7 +61,7 @@ Api Documentation
 
                 <div style="position:absolute; margin-top: -20px;">
                 <h2 class="tracking-wide mb-0 mt-0 text-xs leading-loose tracking-wide text-indigo-light uppercase">
-                    <a href="doc">Common Rules</a></h2>
+                    <a href="doc">Get Started</a></h2>
 
                     <h2 class="tracking-wide mb-0 mt-0 text-xs leading-loose tracking-wide text-indigo-light uppercase">
                         <a href="doc">Query Parameters</a></h2>
