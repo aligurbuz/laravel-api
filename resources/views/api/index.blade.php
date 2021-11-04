@@ -109,6 +109,7 @@ Api Documentation
 
                             $entities = \App\Services\Db::entities(\App\Constants::modelNamespace.'\\'.$model);
                             $comments = \App\Services\Db::comments(\App\Constants::modelNamespace.'\\'.$model);
+                            $booleans = \App\Services\Db::booleanValues(\App\Constants::modelNamespace.'\\'.$model);
                             @endphp
 
                             @if(isset($value['request']['body']['raw']))
@@ -132,7 +133,12 @@ Api Documentation
                                             @if($field=='is_deleted' || $field=='status')
                                                 <td><code class="language-plaintext highlighter-rouge">boolean</code></td>
                                             @else
-                                                <td><code class="language-plaintext highlighter-rouge">{{$type}}</code></td>
+                                                @if(in_array($field,$booleans,true))
+                                                    <td><code class="language-plaintext highlighter-rouge">boolean</code></td>
+                                                @else
+                                                    <td><code class="language-plaintext highlighter-rouge">{{$type}}</code></td>
+                                                @endif
+
                                             @endif
 
                                             @if($method=='PUT')
