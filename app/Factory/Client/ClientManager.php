@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Factory\Client;
 
 use App\Factory\Client\Resource\ClientIdentifier\ClientIdentifier;
+use App\Services\AppContainer;
 
 abstract class ClientManager
 {
@@ -37,9 +38,9 @@ abstract class ClientManager
 
         if(class_exists($clientNamespace)){
             $clientInstance = new $clientNamespace($data);
+            AppContainer::set('crRepositoryInstance',$clientInstance->repository());
             $clientInstance->requestMethod($clientIdentifier->getRequestMethod());
             $clientInstance->handle();
-
             return $clientInstance->getDataStream();
         }
 

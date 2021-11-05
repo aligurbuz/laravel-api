@@ -23,7 +23,7 @@ class ClientManager
     /**
      * @var null|mixed
      */
-    protected array $dataStream;
+    protected array $dataStream = [];
 
     /**
      * available http methods for client
@@ -110,10 +110,7 @@ class ClientManager
      */
     public function setData(array $data = []): void
     {
-        $this->data = count($data)
-            ? $this->clientBodyFormat($data)
-            :['params' => $this->getParamValues($data),'body' => $this->getBodyValues($data)];
-
+        $this->data = ['params' => $this->getParamValues($data),'body' => $this->getBodyValues($data)];
         $this->setContainerData();
     }
 

@@ -849,6 +849,20 @@ class EloquentRepository
     }
 
     /**
+     * get addPostQueries fields for repository
+     *
+     * @return array
+     */
+    public function getAddPostQueries() : array
+    {
+        if(property_exists($this,'addPostQueries') && is_array($this->addPostQueries)){
+            return $this->addPostQueries;
+        }
+
+        return [];
+    }
+
+    /**
      * get trait handler for repository
      *
      * @param array $data
