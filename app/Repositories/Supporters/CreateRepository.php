@@ -30,11 +30,18 @@ trait CreateRepository
         $this->addPostQueryDispatcher($data);
     }
 
-    public function addPostQueryDispatcher(array $data = [])
+    /**
+     * add post query dispatcher for repository
+     *
+     * @param array $data
+     * @return void
+     */
+    public function addPostQueryDispatcher(array $data = []) : void
     {
         foreach ($this->getAddPostQueries() as $key => $cr){
             if(isset($data[$key])){
                 $crData = [];
+
                 foreach ($data[$key] as $crKey => $crValues){
                     $crData[$crKey] = $crValues;
                     $crData[$crKey][getTableCode($this->getModel())] = $data[getTableCode($this->getModel())];
