@@ -73,21 +73,23 @@ class PermissionCommand extends Command
             }
         }
 
-        DB::table('permissions')->delete();
+        if(count($list)){
+            DB::table('permissions')->delete();
 
-        foreach ($list as $endpoint){
-            $createList = [];
-            $createList['endpoint'] = $endpoint;
-            $createList['description'] = $endpoint;
-            $createList['permission_code'] = crc32($endpoint);
+            foreach ($list as $endpoint){
+                $createList = [];
+                $createList['endpoint'] = $endpoint;
+                $createList['description'] = $endpoint;
+                $createList['permission_code'] = crc32($endpoint);
 
-            DB::table('permissions')->where('permission_code',$createList['permission_code'])->delete();
-            DB::table('Localizations')->where('localized_code',$createList['permission_code'])->delete();
+                DB::table('permissions')->where('permission_code',$createList['permission_code'])->delete();
+                DB::table('Localizations')->where('localized_code',$createList['permission_code'])->delete();
 
-            Repository::permission()->create([$createList]);
+                Repository::permission()->create([$createList]);
+            }
+
+            $this->warn('permission updating has been successfully');
         }
-
-        $this->warn('permission updating has been successfully');
 
         return 0;
     }
