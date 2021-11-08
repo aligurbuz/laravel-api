@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Api;
 
-use Illuminate\Support\Facades\DB;
+use App\Services\Db;
 
 /**
  * Trait Supporter
@@ -20,7 +20,7 @@ trait Supporter
      */
     public function transaction(callable $callback): mixed
     {
-        return DB::transaction(function() use($callback){
+        return Db::transaction(function() use($callback){
             return call_user_func($callback);
         });
     }

@@ -4,6 +4,7 @@ namespace App\Services;
 
 use Illuminate\Support\Facades\File;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB as DBFacade;
 
 /**
  * Class Db
@@ -205,5 +206,18 @@ class Db extends Model
         $defaultDriver = $databaseConfig['default'];
 
         return $databaseConfig['connections'][$defaultDriver];
+    }
+
+    /**
+     * db transaction callback for database
+     *
+     * @param callable $callback
+     * @return mixed
+     */
+    public static function transaction(callable $callback): mixed
+    {
+        return DBFacade::transaction(function() use($callback){
+            return call_user_func($callback);
+        });
     }
 }
