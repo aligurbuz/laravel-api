@@ -3,6 +3,7 @@
 use App\Constants;
 use App\Factory\Factory;
 use App\Services\Client;
+use App\Services\Git;
 use App\Services\Service;
 use Illuminate\Support\Str;
 use JetBrains\PhpStorm\Pure;
@@ -164,6 +165,21 @@ if(!function_exists('service')){
     {
         return AppContainer::use('appService',function(){
             return new Service();
+        });
+    }
+}
+
+if(!function_exists('git')){
+
+    /**
+     * git instance
+     *
+     * @return Git
+     */
+    function git(): Git
+    {
+        return AppContainer::use('git',function(){
+            return new Git();
         });
     }
 }
