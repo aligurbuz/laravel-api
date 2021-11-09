@@ -169,6 +169,24 @@ if(!function_exists('service')){
     }
 }
 
+if(!function_exists('pushMigration')){
+
+    /**
+     * push migration for application
+     *
+     * @param $service
+     * @param $directory
+     * @param $model
+     * @return void
+     */
+    function pushMigration($service,$directory,$model): void
+    {
+        \git()->commit('migration for '.$model.' has been created');
+        \service()->create($service,$directory,$model);
+        \git()->commit('service for '.$service.' has been created');
+    }
+}
+
 if(!function_exists('git')){
 
     /**
