@@ -78,6 +78,7 @@ class MigrationCommand extends Command
             $table->timestamp(\'deleted_at\')->nullable();',$content);
 
         $content = str_replace('});','});
+
         pushMigration(\''.$table.'\',\''.$table.'\',\''.$model.'\');',$content);
 
         File::put($createdFilePath,$content);
