@@ -12,7 +12,7 @@ class ServiceCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'service';
+    protected $signature = 'service {service?} {directory?} {model?}';
 
     /**
      * The console command description.
@@ -38,9 +38,9 @@ class ServiceCommand extends Command
      */
     public function handle()
     {
-        $serviceName = $this->ask('What is service name?');
-        $serviceDirectoryName = $this->ask('What is service it\'s directory name?',$serviceName);
-        $modelName = $this->ask('What is model name for service?');
+        $serviceName = $this->argument('service') ?? $this->ask('What is service name?');
+        $serviceDirectoryName = $this->argument('directory') ?? $this->ask('What is service it\'s directory name?',$serviceName);
+        $modelName = $this->argument('model') ?? $this->ask('What is model name for service?');
 
         Artisan::call('create:crud',[
            'controller' => $serviceName,
