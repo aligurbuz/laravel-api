@@ -77,6 +77,9 @@ class MigrationCommand extends Command
             $table->index([\'status\',\'is_deleted\']);
             $table->timestamp(\'deleted_at\')->nullable();',$content);
 
+        $content = str_replace('});','});
+        pushMigration(\''.$table.'\',\''.$table.'\',\''.$model.'\');',$content);
+
         File::put($createdFilePath,$content);
 
         $this->warn('migration has been successful created');
