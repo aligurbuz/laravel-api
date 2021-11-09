@@ -19,7 +19,7 @@ class Service
      * @param $directory
      * @param $model
      */
-    public static function create($service,$directory,$model)
+    public function create($service,$directory,$model)
     {
         Artisan::call('create:crud',[
             'controller' => $service,

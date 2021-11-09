@@ -3,6 +3,7 @@
 use App\Constants;
 use App\Factory\Factory;
 use App\Services\Client;
+use App\Services\Service;
 use Illuminate\Support\Str;
 use JetBrains\PhpStorm\Pure;
 use App\Exceptions\Exception;
@@ -149,6 +150,21 @@ if(!function_exists('cR')){
     function cR(string $client,array $data = []): array
     {
         return Factory::client(['client' => $client])->cR($data);
+    }
+}
+
+if(!function_exists('service')){
+
+    /**
+     * service instance
+     *
+     * @return Service
+     */
+    function service(): Service
+    {
+        return AppContainer::use('appService',function(){
+            return new Service();
+        });
     }
 }
 
