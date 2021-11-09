@@ -60,6 +60,7 @@ class PermissionCommand extends Command
      */
     public function handle()
     {
+        return 0;
         $routes = collect(Route::getRoutes())->map(function ($route) { return $route->uri(); })->toArray();
 
         $list = [];
