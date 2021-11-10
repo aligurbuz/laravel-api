@@ -130,6 +130,14 @@ Api Documentation
                             $configDocumentation = config('documentation');
                             @endphp
 
+                                @if(isset($configDocumentation['exceptMethods'][$endpoint]) && in_array($method,$configDocumentation['exceptMethods'][$endpoint]))
+                                    @continue
+                                @endif
+
+                            @if(isset($configDocumentation['exceptMethods']['all']) && in_array($method,$configDocumentation['exceptMethods']['all']))
+                                @continue
+                                @endif
+
                                 <h3 id="commonly-used-adapters">{{$value['request']['method']}}</h3>
                                 <ul>
                                     <li><strong>Test Environment Base Url</strong> : {{apiUrl()}}</li>
