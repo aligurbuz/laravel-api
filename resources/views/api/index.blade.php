@@ -104,12 +104,9 @@ Api Documentation
                             <h1 id="about-flysystem">{{$value['name']}}</h1>
                             <p>{{$descriptions[$value['name']] ?? ''}}</p>
 
-                        @foreach($value['item'] as $key => $value)
-                        <h3 id="commonly-used-adapters">{{$value['request']['method']}}</h3>
-                        <ul>
-                            <li>Url : <strong>{{$value['request']['url']['raw']}}</strong></li>
-                              </ul>
 
+
+                        @foreach($value['item'] as $key => $value)
                             @php
                             $method = $value['request']['method'];
                             $endpoint = str_replace('{{baseUrl}}/','',$value['request']['url']['raw']);
@@ -130,7 +127,26 @@ Api Documentation
                             $booleans = \App\Services\Db::booleanValues(\App\Constants::modelNamespace.'\\'.$model);
                             $types = \App\Services\Db::types(\App\Constants::modelNamespace.'\\'.$model);
                             $tableCode = getTableCode($model);
+                            $configDocumentation = config('documentation');
                             @endphp
+
+                                <h3 id="commonly-used-adapters">{{$value['request']['method']}}</h3>
+                                <ul>
+                                    <li><strong>Test Environment Base Url</strong> : {{apiUrl()}}</li>
+
+                                        @if(isset($configDocumentation['productionLinks'][$endpoint]['all']))
+                                            @if(isset($configDocumentation['productionLinks'][$endpoint][$method]))
+                                            <li><strong>Production Environment Base Url</strong> : {{$configDocumentation['productionLinks'][$endpoint][$method]}}</li>
+                                        @else
+                                            <li><strong>Production Environment Base Url</strong> : {{$configDocumentation['productionLinks'][$endpoint]['all']}}</li>
+                                        @endif
+
+                                        @else
+                                            <li><strong>Production Environment Base Url</strong> : {{config('app.productBaseUrl')}}</li>
+                                        @endif
+
+                                    <li><strong>Url</strong> : {{$value['request']['url']['raw']}}</li>
+                                </ul>
 
                             @if(isset($value['request']['body']['raw']))
                                 @php
@@ -246,12 +262,6 @@ Api Documentation
             <h2 id="about-flysystem">Introduce</h2>
             <p>The roadmap to follow in order to reach our API resource is very simple.Simply follow the instructions below.
                 The request url map is located on the left menu.</p>
-
-            <h3 id="commonly-used-adapters">Api Urls:</h3>
-            <ul>
-                <li><strong><a href="{{apiUrl()}}" target="_blank">Test Environment Base Url</a></strong></li>
-                <li><strong><a href="{{config('app.productBaseUrl')}}" target="_blank">Production Environment Base Url</a></strong></li>
-            </ul>
 
             <h3 id="commonly-used-adapters">Postman:</h3>
             <ul>
