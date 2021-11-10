@@ -24,7 +24,7 @@ class DocumentationController extends Controller
             'postman' => $collection = Postman::getCollectionAccordingToIgnore(),
             'headers' => $headers,
             'action' => $this->getActionIdFromCollection(request()->query->get('action'),$collection),
-            'arrayRules' => arrayRules(),
+            'arrayRules' => config('documentation.arrayRules'),
             'descriptions' => config('documentation.definitions')
         ]);
     }

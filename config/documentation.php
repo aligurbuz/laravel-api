@@ -17,5 +17,16 @@ return [
     "ignores" => [
         "SuperAdmins",
         "Mix"
+    ],
+    "arrayRules" => [
+        'serviceName' => [
+            'field' => [
+                'name' => [
+                    'description' => '',
+                    'required' => 'true',
+                    'type' => 'string'
+                ]
+            ]
+        ]
     ]
 ];
