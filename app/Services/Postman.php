@@ -31,24 +31,13 @@ class Postman
     }
 
     /**
-     * get postman ignore data
-     *
-     * @return array
-     */
-    public static function ignore() : array
-    {
-        $ignoreFile = base_path('postman').''.DIRECTORY_SEPARATOR.'PostmanIgnore.json';
-        return json_decode(File::get($ignoreFile),true);
-    }
-
-    /**
      * get postman collection according to ignore
      *
      * @return array
      */
     public static function getCollectionAccordingToIgnore() : array
     {
-        $ignore = static::ignore();
+        $ignore = config('documentation.ignores');
         $collection = static::collection();
         $itemCollection = $collection['item'] ?? [];
 

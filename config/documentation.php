@@ -13,5 +13,9 @@ return [
     'exceptMethods' => [
         //'all' => ['GET','PUT'],
         //'currencies' => ['GET','PUT'],
+    ],
+    "ignores" => [
+        "SuperAdmins",
+        "Mix"
     ]
 ];
