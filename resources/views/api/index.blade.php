@@ -106,13 +106,104 @@ Api Documentation
                     <h1 class="mb-4">{{ucfirst(str_replace('_',' ',\Illuminate\Support\Str::snake($list)))}} for query parameters.</h1>
                     <h2 id="about-flysystem">Introduce</h2>
 
-                    @if($list=='whatDataRelations')
+                @if($list=='dataFiltering')
+
+                        <p>The (Filter) statement will filter the entire data according to the key specified in the returned response data. This can be thought of as a kind of search.
+                        </p>
+
+                        <li>baseUrl/products?filter[product_code]=productCode</li>
+
+                        <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Api Request</span>
+wget --no-check-certificate --quiet \
+  --method GET \
+  --timeout=0 \
+  --header 'Authorization: Bearer Token' \
+  --header 'Apikey: ApiKey' \
+  --header 'Content-Type: application/json' \
+  --header 'Accept-Language: en' \
+   'baseUrl/products?filter[product_code]=productCode
+</code></pre></div></div>
+
+                    <p>You can use comma separated values for more than one productCode as per the example above.</p>
+
+
+                    <p><li>baseUrl/products?filter[product_code]=productCode1,productCode2</li></p>
+
+
+                        <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Api Request</span>
+wget --no-check-certificate --quiet \
+  --method GET \
+  --timeout=0 \
+  --header 'Authorization: Bearer Token' \
+  --header 'Apikey: ApiKey' \
+  --header 'Content-Type: application/json' \
+  --header 'Accept-Language: en' \
+   'baseUrl/products?filter[product_code]=productCode1,productCode2
+</code></pre></div></div>
+
+                    <p>Specifying more than one filter means searching by more than one key value.</p>
+
+
+                        <p><li>baseUrl/products?filter[product_code]=productCode&filter[status]=1</li></p>
+
+
+                        <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Api Request</span>
+wget --no-check-certificate --quiet \
+  --method GET \
+  --timeout=0 \
+  --header 'Authorization: Bearer Token' \
+  --header 'Apikey: ApiKey' \
+  --header 'Content-Type: application/json' \
+  --header 'Accept-Language: en' \
+   'baseUrl/products?filter[product_code]=productCode&filter[status]=1
+</code></pre></div></div>
+
+                    <b>Note:</b> Not every field can be filtered. Therefore, the fields allowed by the developer will be filtered. In case of unfiltered, you will get 400 response error.
+
+                    @elseif($list=='dataSelect')
+
+                        <p>The (Select) statement refers to filtering the key values in the returned response data.If the key values in the data will not be used, there is no point in asking them for nothing.
+                            That's why you can filter the keys you want in the data using something like the following.
+                        </p>
+
+                        <li>baseUrl/products?select=product_name,status</li>
+
+                        <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Api Request</span>
+wget --no-check-certificate --quiet \
+  --method GET \
+  --timeout=0 \
+  --header 'Authorization: Bearer Token' \
+  --header 'Apikey: ApiKey' \
+  --header 'Content-Type: application/json' \
+  --header 'Accept-Language: en' \
+   'baseUrl/products?select=product_name,status
+</code></pre></div></div>
+
+                        <li>baseUrl/products?select=* <b>(An asterisk means I want them all.)</b></li>
+
+                        <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Api Request</span>
+wget --no-check-certificate --quiet \
+  --method GET \
+  --timeout=0 \
+  --header 'Authorization: Bearer Token' \
+  --header 'Apikey: ApiKey' \
+  --header 'Content-Type: application/json' \
+  --header 'Accept-Language: en' \
+   'baseUrl/products?select=*
+</code></pre></div></div>
+
+                       <p>Tüm ilişkiler ((with) kullanımı) içinde select kuralı aynı şekildedir.</p>
+
+                    <p><b>Note:</b> It will only apply to HTTP GET requests.</p>
+
+
+                    @elseif($list=='whatDataRelations')
 
                         <p>Relationships contain extra data to be included in the response data.Relationships are managed with the (with) parameter.
                             Endpoints will definitely return datasets that tell you whether there is a relationship with the returned dataset.Relationships will be returned as  (relations) data in the response.It is bottom of the returned response
                         </p>
 
-                        <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Api Request</span>
+                        <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Api Response</span>
 "relations": {
             "items": {
                 "using": "with[items][select] = '*",
