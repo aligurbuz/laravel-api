@@ -96,7 +96,7 @@ Api Documentation
                 @if(!is_null(request()->query->get('list')))
 
                     @php
-                    $whiteList = ['dataRelations','dataFiltering','dataGrouping','dataPagination','dataSelect','nestedDataRelations','whatDataRelations'];
+                    $whiteList = ['dataRelations','dataFiltering','dataGrouping','hasAndDoesntHave','dataPagination','dataSelect','nestedDataRelations','whatDataRelations'];
                     $list = request()->query->get('list');
                     if(!in_array($list,$whiteList)){
                         exit();
@@ -106,7 +106,41 @@ Api Documentation
                     <h1 class="mb-4">{{ucfirst(str_replace('_',' ',\Illuminate\Support\Str::snake($list)))}} for query parameters.</h1>
                     <h2 id="about-flysystem">Introduce</h2>
 
-                @if($list=='dataFiltering')
+                    @if($list=='hasAndDoesntHave')
+                        <p>The (Has) parameter is used to check your top data set according to the existence of your relationships. For example: you may want to list only products having items.
+                            In this case, it will be sufficient to add the (has) key to your query parameter and write the relation name to its value.
+                        </p>
+
+                        <li>baseUrl/products?has=items</li>
+
+                        <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Api Request</span>
+wget --no-check-certificate --quiet \
+  --method GET \
+  --timeout=0 \
+  --header 'Authorization: Bearer Token' \
+  --header 'Apikey: ApiKey' \
+  --header 'Content-Type: application/json' \
+  --header 'Accept-Language: en' \
+   'baseUrl/products?has=items
+</code></pre></div></div>
+
+                        <p>In the opposite case; You may want to list products without (item) data.
+                            In this case, it will be sufficient to use (doesntHave) instead of (has).
+                        </p>
+
+                        <li>baseUrl/products?doesntHave=items</li>
+
+                        <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Api Request</span>
+wget --no-check-certificate --quiet \
+  --method GET \
+  --timeout=0 \
+  --header 'Authorization: Bearer Token' \
+  --header 'Apikey: ApiKey' \
+  --header 'Content-Type: application/json' \
+  --header 'Accept-Language: en' \
+   'baseUrl/products?doesntHave=items
+</code></pre></div></div>
+                    @elseif($list=='dataFiltering')
 
                         <p>The (Filter) statement will filter the entire data according to the key specified in the returned response data. This can be thought of as a kind of search.
                         </p>
@@ -225,6 +259,7 @@ wget --no-check-certificate --quiet \
                         <ul>
                             <li><a href="doc?definition=queryParams&list=dataRelations">Data Relations</a></li>
                             <li><a href="doc?definition=queryParams&list=nestedDataRelations">Nested Data Relations</a></li>
+                            <li><a href="doc?definition=queryParams&list=hasAndDoesntHave">Data Relations With (Has) And (DoesntHave)</a></li>
                         </ul>
 
                 @elseif($list=='nestedDataRelations')
