@@ -25,7 +25,8 @@ class DocumentationController extends Controller
             'headers' => $headers,
             'action' => $this->getActionIdFromCollection(request()->query->get('action'),$collection),
             'arrayRules' => config('documentation.arrayRules'),
-            'descriptions' => config('documentation.definitions')
+            'descriptions' => config('documentation.definitions'),
+            'definition' => request()->query->get('definition')
         ]);
     }
 

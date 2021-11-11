@@ -64,7 +64,7 @@ Api Documentation
                     <a href="doc">Get Started</a></h2>
 
                     <h2 class="tracking-wide mb-0 mt-0 text-xs leading-loose tracking-wide text-indigo-light uppercase">
-                        <a href="doc">Query Parameters</a></h2>
+                        <a href="doc?definition=queryParams">Query Parameters</a></h2>
                 </div>
 
                 <br><br>
@@ -90,7 +90,135 @@ Api Documentation
             </menu>
         </nav>
 
-        @if(!is_null($action))
+        @if(!is_null($definition))
+            <article id="article" role="main" class="max-w-full md:block md:w-10/14">
+
+                @if(!is_null(request()->query->get('list')))
+
+                    @php
+                    $whiteList = ['dataRelations','dataFiltering','dataGrouping','dataPagination','dataSelect'];
+                    $list = request()->query->get('list');
+                    if(!in_array($list,$whiteList)){
+                        exit();
+                    }
+
+                    @endphp
+                    <h1 class="mb-4">{{ucfirst(str_replace('_',' ',\Illuminate\Support\Str::snake($list)))}} for query parameters.</h1>
+                    <h2 id="about-flysystem">Introduce</h2>
+
+                @if($list=='dataRelations')
+                        <p>relationships contain extra data to be included in the response data.Relationships are managed with the (with) parameter.
+                            You will understand relationship management by reading the scenario below.
+                        </p>
+                        <li class="block">
+                            <a class="leading-loose block w-full rounded text-md text-white bg-indigo pl-2 -ml-2">Scenario : When I send a request to the user endpoint, how can I take roles of that user together with the users?</a>
+                        </li>
+                        <h2 id="about-flysystem">Request:</h2>
+                        <ul>
+                            <li>baseUrl/users?with[role]=*</li>
+
+                            <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Api Request</span>
+wget --no-check-certificate --quiet \
+  --method GET \
+  --timeout=0 \
+  --header 'Authorization: Bearer Token' \
+  --header 'Apikey: ApiKey' \
+  --header 'Content-Type: application/json' \
+  --header 'Accept-Language: en' \
+   'baseUrl/user?with[role]=*'
+</code></pre></div></div>
+                            <li>baseUrl/users?with[role][select]=* <b>(Note: Same as first request)</b></li>
+
+                            <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Api Request</span>
+wget --no-check-certificate --quiet \
+  --method GET \
+  --timeout=0 \
+  --header 'Authorization: Bearer Token' \
+  --header 'Apikey: ApiKey' \
+  --header 'Content-Type: application/json' \
+  --header 'Accept-Language: en' \
+   'baseUrl/user?with[role][select]=*'
+</code></pre></div></div>
+                        </ul>
+
+                        <h2 id="about-flysystem">Definition:</h2>
+                    <p>Data management can be provided with url parameters in HTTP GET requests.It is managed as an array with data relations (with).
+                        Therefore, you can easily use more than one relationship.</p>
+
+                        <h2 id="about-flysystem">Response:</h2>
+                        <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">
+
+    "resource": [
+        {
+            "data": [
+                {
+                    "user_code": 1355856141,
+                    "role_code": 2963074553,
+                    "name": "userTest",
+                    "email": "test@gmail.com",
+                    "email_verified_at": null,
+                    "created_at": "2021-08-25T17:57:27.000000Z",
+                    "updated_at": "2021-08-25T17:57:27.000000Z",
+                    "username": null,
+                    "role": [
+                        {
+                            "role_code": 2963074553,
+                            "role_app_code": 0,
+                            "role_name": "Administrator",
+                            "is_administrator": 1,
+                            "roles": [
+                                []
+                            ],
+                            "status": 1,
+                            "is_deleted": 0,
+                            "created_by": 0,
+                            "updated_by": 554218714,
+                            "deleted_by": 0,
+                            "deleted_at": null,
+                            "created_at": null,
+                            "updated_at": "2021-09-14T11:26:48.000000Z"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+</code></pre></div></div>
+
+
+                        Here, asterisk indicates filtering of desired data keys in relation data.If the client wants only the keys she wants for this role data, she can write the keys by separating them with commas instead of *.
+
+                    <br><br>
+                        <li>baseUrl/users?with[role][select]=role_name</li>
+                        <li>baseUrl/users?with[role][select]=role_name,status</li>
+
+                    @else
+                        <p>In HTTP GET requests sent by the client, the response data sent by the API has a flexible structure.
+                            This flexible structure will shape the data requested by the client with parameters such as graphQL requests.
+                            By reading the instructions shown on the following pages, you will be able to easily get the data you want from the endpoints.
+                        </p>
+                    @endif
+
+
+
+                @else
+                <h1 class="mb-4">Query Parameters For Http Get Method.</h1>
+                <h2 id="about-flysystem">Introduce</h2>
+            <p>In HTTP GET requests sent by the client, the response data sent by the API has a flexible structure.
+                This flexible structure will shape the data requested by the client with parameters such as graphQL requests.
+                By reading the instructions shown on the following pages, you will be able to easily get the data you want from the endpoints.</p>
+
+                <h2 id="about-flysystem">Pages</h2>
+                <ul>
+                    <li><a href="doc?definition=queryParams&list=dataSelect">Data Selecting</a></li>
+                    <li><a href="doc?definition=queryParams&list=dataRelations">Data Relations</a></li>
+                    <li><a href="doc?definition=queryParams&list=dataFiltering">Data Filtering</a></li>
+                    <li><a href="doc?definition=queryParams&list=dataGrouping">Data Grouping</a></li>
+                    <li><a href="doc?definition=queryParams&list=dataPagination">Data Pagination</a></li>
+                </ul>
+                @endif
+        @elseif(!is_null($action))
 
             <article id="article" role="main" class="max-w-full md:block md:w-10/14">
 
