@@ -96,7 +96,7 @@ Api Documentation
                 @if(!is_null(request()->query->get('list')))
 
                     @php
-                    $whiteList = ['dataRelations','dataFiltering','dataGrouping','dataPagination','dataSelect'];
+                    $whiteList = ['dataRelations','dataFiltering','dataGrouping','dataPagination','dataSelect','nestedDataRelations','whatDataRelations'];
                     $list = request()->query->get('list');
                     if(!in_array($list,$whiteList)){
                         exit();
@@ -106,7 +106,126 @@ Api Documentation
                     <h1 class="mb-4">{{ucfirst(str_replace('_',' ',\Illuminate\Support\Str::snake($list)))}} for query parameters.</h1>
                     <h2 id="about-flysystem">Introduce</h2>
 
-                @if($list=='dataRelations')
+                    @if($list=='whatDataRelations')
+
+                        <p>Relationships contain extra data to be included in the response data.Relationships are managed with the (with) parameter.
+                            Endpoints will definitely return datasets that tell you whether there is a relationship with the returned dataset.Relationships will be returned as  (relations) data in the response.It is bottom of the returned response
+                        </p>
+
+                        <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Api Request</span>
+"relations": {
+            "items": {
+                "using": "with[items][select] = '*",
+                "hasMany": true
+            },
+            "colors": {
+                "using": "with[items][with][colors][select] = '*",
+                "hasMany": true
+            }
+        }
+</code></pre></div></div>
+
+                        <p>Each relationship (using) key tells how to use this relationship.
+                            The (hasMany) expression defines whether the relationship is multiple or single.
+                        </p>
+
+                    <h2>Learn about how relationships are used.</h2>
+
+                        <ul>
+                            <li><a href="doc?definition=queryParams&list=dataRelations">Data Relations</a></li>
+                            <li><a href="doc?definition=queryParams&list=nestedDataRelations">Nested Data Relations</a></li>
+                        </ul>
+
+                @elseif($list=='nestedDataRelations')
+                        <p>Relationships contain extra data to be included in the response data.Relationships are managed with the (with) parameter.
+                            You will understand relationship management by reading the scenario below.
+                        </p>
+                        <li class="block">
+                            <a class="leading-loose block w-full rounded text-md text-white bg-indigo pl-2 -ml-2">Scenario : For example, we are pulling the products data, and let's get the item data connected to these products. Then,Let's get the colors data depending on this item data.</a>
+                        </li>
+                        <h2 id="about-flysystem">Request:</h2>
+                        <ul>
+                            <li>baseUrl/products?with[items][select]=*&with[items][with][colors][select]=*</li>
+
+                            <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Api Request</span>
+wget --no-check-certificate --quiet \
+  --method GET \
+  --timeout=0 \
+  --header 'Authorization: Bearer Token' \
+  --header 'Apikey: ApiKey' \
+  --header 'Content-Type: application/json' \
+  --header 'Accept-Language: en' \
+   'baseUrl/products?with[items][select]=*&with[items][with][colors][select]=*'
+</code></pre></div></div>
+
+                        </ul>
+
+                        <h2 id="about-flysystem">Definition:</h2>
+                        <p>The rule to note here is that the first set of keys after the with parameter defines the relationship, and every set of keys after this relationship name contains key features.
+                            Properties are described with values such as select,with,filter.</p>
+
+                        <p>For better understanding, it can be expressed as follows. Each (with) key represents a data set. <b>with[items]</b> is a data set.
+                            The expression <b>with[items][with][colors]</b> means include the colors dataset linked to the items dataset.</p>
+
+                        <p><b>Note</b> : The last rule to note is that every (with) statement must be terminated with select. According to the query value above;
+                            <b>with[items][select]=*</b> , <b>with[items][with][colors][select]=*</b>.This means that; All (with) statements must contain the select key.</p>
+
+                        <h2 id="about-flysystem">Response:</h2>
+                        <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">
+
+    "resource": [
+        {
+            "data": [
+                {
+                    "product_code": 3025014268,
+                    "product_name": "string",
+                    "status": 1,
+                    "is_deleted": 0,
+                    "created_by": 1355856141,
+                    "updated_by": 0,
+                    "deleted_by": 0,
+                    "deleted_at": null,
+                    "created_at": "2021-11-11T10:16:59.000000Z",
+                    "updated_at": "2021-11-11T10:16:59.000000Z",
+                    "items": [
+                        {
+                            "item_code": 1353785822,
+                            "product_code": 3025014268,
+                            "item_name": "item 1",
+                            "status": 1,
+                            "is_deleted": 0,
+                            "created_by": 1355856141,
+                            "updated_by": 0,
+                            "deleted_by": 0,
+                            "deleted_at": null,
+                            "created_at": "2021-11-11T10:17:19.000000Z",
+                            "updated_at": "2021-11-11T10:17:19.000000Z",
+                            "colors": [
+                                {
+                                    "color_code": 2237963010,
+                                    "item_code": 1353785822,
+                                    "color_name": "color 1",
+                                    "status": 1,
+                                    "is_deleted": 0,
+                                    "created_by": 1355856141,
+                                    "updated_by": 0,
+                                    "deleted_by": 0,
+                                    "deleted_at": null,
+                                    "created_at": "2021-11-11T10:17:40.000000Z",
+                                    "updated_at": "2021-11-11T10:17:40.000000Z"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+</code></pre></div></div>
+
+
+                        Here, asterisk indicates filtering of desired data keys in relation data.If the client wants only the keys she wants for this role data, she can write the keys by separating them with commas instead of *.
+                @elseif($list=='dataRelations')
                         <p>relationships contain extra data to be included in the response data.Relationships are managed with the (with) parameter.
                             You will understand relationship management by reading the scenario below.
                         </p>
@@ -212,7 +331,7 @@ wget --no-check-certificate --quiet \
                 <h2 id="about-flysystem">Pages</h2>
                 <ul>
                     <li><a href="doc?definition=queryParams&list=dataSelect">Data Selecting</a></li>
-                    <li><a href="doc?definition=queryParams&list=dataRelations">Data Relations</a></li>
+                    <li><a href="doc?definition=queryParams&list=whatDataRelations">What is Data Relations and How to use</a></li>
                     <li><a href="doc?definition=queryParams&list=dataFiltering">Data Filtering</a></li>
                     <li><a href="doc?definition=queryParams&list=dataGrouping">Data Grouping</a></li>
                     <li><a href="doc?definition=queryParams&list=dataPagination">Data Pagination</a></li>
