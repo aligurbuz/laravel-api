@@ -96,7 +96,7 @@ Api Documentation
                 @if(!is_null(request()->query->get('list')))
 
                     @php
-                    $whiteList = ['dataRelations','dataFiltering','dataGrouping','hasAndDoesntHave','dataPagination','dataSelect','nestedDataRelations','whatDataRelations'];
+                    $whiteList = ['dataRelations','dataFiltering','rangeUsing','dataGrouping','hasAndDoesntHave','dataPagination','dataSelect','nestedDataRelations','whatDataRelations'];
                     $list = request()->query->get('list');
                     if(!in_array($list,$whiteList)){
                         exit();
@@ -106,7 +106,62 @@ Api Documentation
                     <h1 class="mb-4">{{ucfirst(str_replace('_',' ',\Illuminate\Support\Str::snake($list)))}} for query parameters.</h1>
                     <h2 id="about-flysystem">Introduce</h2>
 
-                    @if($list=='hasAndDoesntHave')
+                    @if($list=='rangeUsing')
+                        <p>The use of (Range) is a convenience provided by the developer for the client side.
+                            (range) values are given to the client side under the (ranges) key at the bottom of the returned response value.</p>
+
+                        <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Api Response</span>
+"ranges": {
+            "desc": "Sorts your object by last registration value.",
+            "asc": "Sorts your object by first registration value.",
+            "active": "It filters according to the status=1 value for your object.",
+            "sequence": "It sorts by sequence value. This means changeable sorting.",
+            "notDeleted": "Filters undeleted data."
+        }
+</code></pre></div></div>
+
+                        <p>
+                            You can request the (range) values here with the range key as a query parameter.
+                        </p>
+
+                        <li>baseUrl/products?range=desc</li>
+                    <br>
+
+                        <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Api Response</span>
+wget --no-check-certificate --quiet \
+  --method GET \
+  --timeout=0 \
+  --header 'Authorization: Bearer Token' \
+  --header 'Apikey: ApiKey' \
+  --header 'Content-Type: application/json' \
+  --header 'Accept-Language: en' \
+   'baseUrl/products?range=desc
+</code></pre></div></div>
+
+                        <p>For example (range) specified as (desc). It will sort your dataset from the last record to the oldest record.
+                        Since the (range) values that are already available to you are in the form of (key) and (value),
+                            the (value) value gives a brief information about that range.
+                        </p>
+
+
+                        <p>You can use multiple (range) values separated by commas.</p>
+
+                        <li>baseUrl/products?range=desc,active</li>
+                        <br>
+
+                        <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Api Response</span>
+wget --no-check-certificate --quiet \
+  --method GET \
+  --timeout=0 \
+  --header 'Authorization: Bearer Token' \
+  --header 'Apikey: ApiKey' \
+  --header 'Content-Type: application/json' \
+  --header 'Accept-Language: en' \
+   'baseUrl/products?range=desc,active
+</code></pre></div></div>
+
+                        <p>This usage will both sort your data and filter according to the values of status=1 and is_deleted=0.</p>
+                    @elseif($list=='hasAndDoesntHave')
                         <p>The (Has) parameter is used to check your top data set according to the existence of your relationships. For example: you may want to list only products having items.
                             In this case, it will be sufficient to add the (has) key to your query parameter and write the relation name to its value.
                         </p>
@@ -459,6 +514,7 @@ wget --no-check-certificate --quiet \
                     <li><a href="doc?definition=queryParams&list=dataSelect">Data Selecting</a></li>
                     <li><a href="doc?definition=queryParams&list=whatDataRelations">What is Data Relations and How to use</a></li>
                     <li><a href="doc?definition=queryParams&list=dataFiltering">Data Filtering</a></li>
+                    <li><a href="doc?definition=queryParams&list=rangeUsing">Range Using</a></li>
                     <li><a href="doc?definition=queryParams&list=dataGrouping">Data Grouping</a></li>
                     <li><a href="doc?definition=queryParams&list=dataPagination">Data Pagination</a></li>
                 </ul>
