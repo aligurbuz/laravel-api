@@ -96,7 +96,7 @@ Api Documentation
                 @if(!is_null(request()->query->get('list')))
 
                     @php
-                    $whiteList = ['dataRelations','dataFiltering','rangeUsing','dataGrouping','hasAndDoesntHave','dataPagination','dataSelect','nestedDataRelations','whatDataRelations'];
+                    $whiteList = ['dataRelations','dataFiltering','rangeUsing','withRangeUsing','dataGrouping','hasAndDoesntHave','dataPagination','dataSelect','nestedDataRelations','whatDataRelations'];
                     $list = request()->query->get('list');
                     if(!in_array($list,$whiteList)){
                         exit();
@@ -106,7 +106,29 @@ Api Documentation
                     <h1 class="mb-4">{{ucfirst(str_replace('_',' ',\Illuminate\Support\Str::snake($list)))}} for query parameters.</h1>
                     <h2 id="about-flysystem">Introduce</h2>
 
-                    @if($list=='rangeUsing')
+                    @if($list=='withRangeUsing')
+                        <p>As mentioned in the (range) usage section, (range) values will automatically be reflected in your relations.
+                            If you want a different (range) usage in your relations, use the (witRange) key.</p>
+
+                        <li>baseUrl/products?range=desc&with[items][select]=*&withRange[items]=asc</li>
+                        <br>
+
+                        <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Api Response</span>
+wget --no-check-certificate --quiet \
+  --method GET \
+  --timeout=0 \
+  --header 'Authorization: Bearer Token' \
+  --header 'Apikey: ApiKey' \
+  --header 'Content-Type: application/json' \
+  --header 'Accept-Language: en' \
+   'baseUrl/products?range=desc&with[items][select]=*&withRange[items]=asc
+</code></pre></div></div>
+
+                        <p>As seen in the query (range) value (desc) was used. However, (items) relationship was requested.
+                            it will not automatically be subject to (desc) (range).</p>
+
+                        <p>With a request parameter such as withRange[items]=asc the relation (items) will be sorted from oldest to newest record.</p>
+                    @elseif($list=='rangeUsing')
                         <p>The use of (Range) is a convenience provided by the developer for the client side.
                             (range) values are given to the client side under the (ranges) key at the bottom of the returned response value.</p>
 
@@ -520,6 +542,7 @@ wget --no-check-certificate --quiet \
                     <li><a href="doc?definition=queryParams&list=whatDataRelations">What is Data Relations and How to use</a></li>
                     <li><a href="doc?definition=queryParams&list=dataFiltering">Data Filtering</a></li>
                     <li><a href="doc?definition=queryParams&list=rangeUsing">Range Using</a></li>
+                    <li><a href="doc?definition=queryParams&list=withRangeUsing">withRange Using</a></li>
                     <li><a href="doc?definition=queryParams&list=dataGrouping">Data Grouping</a></li>
                     <li><a href="doc?definition=queryParams&list=dataPagination">Data Pagination</a></li>
                 </ul>
