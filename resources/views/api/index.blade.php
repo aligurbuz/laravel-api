@@ -106,7 +106,42 @@ Api Documentation
                     <h1 class="mb-4">{{ucfirst(str_replace('_',' ',\Illuminate\Support\Str::snake($list)))}} for query parameters.</h1>
                     <h2 id="about-flysystem">Introduce</h2>
 
-                    @if($list=='withRangeUsing')
+                    @if($list=='dataPagination')
+                        <p>The metadata you requested will automatically return a set of 20 records. This means; API response data implements the concept of pagination.
+                            Therefore, you can select the records you want with the (page) key.</p>
+
+                        <li>baseUrl/products?page=1</li>
+                        <br>
+
+                        <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Api Response</span>
+wget --no-check-certificate --quiet \
+  --method GET \
+  --timeout=0 \
+  --header 'Authorization: Bearer Token' \
+  --header 'Apikey: ApiKey' \
+  --header 'Content-Type: application/json' \
+  --header 'Accept-Language: en' \
+   'baseUrl/products?page=1
+</code></pre></div></div>
+
+                        <p>If you want, you can specify the number of datasets returned in the response value, provided that it is less than 20.
+                            For example, if you request limit=5 using the (limit) key. Your datasets will return 5 records each.</p>
+
+                        <li>baseUrl/products?limit=5</li>
+                        <br>
+
+                        <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Api Response</span>
+wget --no-check-certificate --quiet \
+  --method GET \
+  --timeout=0 \
+  --header 'Authorization: Bearer Token' \
+  --header 'Apikey: ApiKey' \
+  --header 'Content-Type: application/json' \
+  --header 'Accept-Language: en' \
+   'baseUrl/products?limit=5
+</code></pre></div></div>
+
+                    @elseif($list=='withRangeUsing')
                         <p>As mentioned in the (range) usage section, (range) values will automatically be reflected in your relations.
                             If you want a different (range) usage in your relations, use the (witRange) key.</p>
 
@@ -543,7 +578,6 @@ wget --no-check-certificate --quiet \
                     <li><a href="doc?definition=queryParams&list=dataFiltering">Data Filtering</a></li>
                     <li><a href="doc?definition=queryParams&list=rangeUsing">Range Using</a></li>
                     <li><a href="doc?definition=queryParams&list=withRangeUsing">withRange Using</a></li>
-                    <li><a href="doc?definition=queryParams&list=dataGrouping">Data Grouping</a></li>
                     <li><a href="doc?definition=queryParams&list=dataPagination">Data Pagination</a></li>
                 </ul>
                 @endif
