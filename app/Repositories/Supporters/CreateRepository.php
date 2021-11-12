@@ -22,21 +22,23 @@ trait CreateRepository
      * get create event dispatcher for repository
      *
      * @param array $data
+     * @param int $clientDataKey
      */
-    public function createEventDispatcher(array $data = []) : void
+    public function createEventDispatcher(array $data = [],int $clientDataKey = 0) : void
     {
         $this->createLocalization($data);
         $this->deleteCache();
-        $this->addPostQueryDispatcher($data);
+        $this->addPostQueryDispatcher($data,$clientDataKey);
     }
 
     /**
      * add post query dispatcher for repository
      *
      * @param array $data
+     * @param int $clientDataKey
      * @return void
      */
-    public function addPostQueryDispatcher(array $data = []) : void
+    public function addPostQueryDispatcher(array $data = [],int $clientDataKey = 0) : void
     {
         foreach ($this->getAddPostQueries() as $key => $cr){
             if(isset($data[$key])){
@@ -48,7 +50,7 @@ trait CreateRepository
                 }
 
                 cR($cr,$crData);
-                $this->addPostQueryResults[$key] = AppContainer::get('crRepositoryInstance')->create();
+                $this->addPostQueryResults[$clientDataKey][$key] = AppContainer::get('crRepositoryInstance')->create();
             }
         }
     }
@@ -65,14 +67,22 @@ trait CreateRepository
         $clientData = $this->getClientData($data);
 
         try {
-            foreach ($clientData as $value){
-                $list[] = $result = $this->createModel($value);
+            foreach ($clientData as $clientDataKey => $value){
+                $result = $this->createModel($value);
+                $arrayResults = $result->toArray();
 
                 if(method_exists($this,'eventFireAfterCreate')){
-                    $this->eventFireAfterCreate($result->toArray());
+                    $this->eventFireAfterCreate($arrayResults);
                 }
 
-                $this->createEventDispatcher($value);
+                $this->createEventDispatcher($value,$clientDataKey);
+
+                if(count($this->addPostQueryResults)){
+                    $arrayResults = array_merge($arrayResults,$this->addPostQueryResults[$clientDataKey]);
+                }
+
+                $list[] = $arrayResults;
+
             }
 
             return $list;
