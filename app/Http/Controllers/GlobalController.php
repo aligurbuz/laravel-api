@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\File;
+use App\Http\Controllers\Api\ApiController;
 
 class GlobalController extends ApiController
 {
@@ -36,7 +37,7 @@ class GlobalController extends ApiController
 
             if(isset($serviceList[$service])){
                 $serviceData = $serviceList[$service];
-                $controller = 'App\Http\Controllers\\'.$serviceData['dir'].'\\'.$serviceData['controller'].'Controller';
+                $controller = 'App\Http\Controllers\Api\\'.$serviceData['dir'].'\\'.$serviceData['controller'].'Controller';
 
                 foreach ($params as $key => $value){
                     request()->query->set($key,$value);

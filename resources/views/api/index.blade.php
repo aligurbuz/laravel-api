@@ -589,6 +589,67 @@ wget --no-check-certificate --quiet \
 
                     @foreach($postman['item'][$action]['item'] as $key => $value)
 
+                        @if($value['name'] =='Global')
+                            @php
+                                $endpoint = 'global';
+                                $configDocumentation = config('documentation');
+                            @endphp
+
+                            <h1 id="about-flysystem">Global Endpoint</h1>
+                            <p>Web pages may want to request multiple API endpoints to receive their content.
+                                In this case, API resources are subject to excessive consumption.For HTTP GET requests to avoid this situation
+                                We have a global endpoint.</p>
+
+                            <p>
+                            <h3 id="commonly-used-adapters">POST</h3>
+                            <ul>
+                                <li><strong>Test Environment Base Url</strong> : {{apiUrl()}}</li>
+                                @if(isset($configDocumentation['productionLinks'][$endpoint]['all']))
+                                    @if(isset($configDocumentation['productionLinks'][$endpoint][$method]))
+                                        <li><strong>Production Environment Base Url</strong> : {{$configDocumentation['productionLinks'][$endpoint][$method]}}</li>
+                                    @else
+                                        <li><strong>Production Environment Base Url</strong> : {{$configDocumentation['productionLinks'][$endpoint]['all']}}</li>
+                                    @endif
+
+                                @else
+                                    <li><strong>Production Environment Base Url</strong> : {{config('app.productBaseUrl')}}</li>
+                                @endif
+
+                                <li><strong>Url</strong> : baseUrl/global</li>
+                            </ul>
+                            </p>
+
+                            <p>
+                            <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Api Request</span>
+{
+    "currencies" : {},
+    "timezones" : {}
+}
+</code></pre></div></div>
+                            </p>
+
+                            <p>
+                                For example, when we make a request as above in body data, it will be as if we made a request to currencies and timezones services at once.
+                                You can request as many services as you want.
+                                <b>After the service name,
+                                    you can use everything described in the query parameters and data relations section in the array.</b>
+                            </p>
+
+                            <p>
+                            <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Api Request</span>
+{
+    "currencies" : {
+        "filter" :  {
+            "currency_code" : "4021493886"
+        }
+    },
+    "timezones" : {}
+}
+</code></pre></div></div>
+                            </p>
+
+
+                        @endif
                         @if($value['name'] =='Login')
                             @php
                                 $endpoint = 'login';

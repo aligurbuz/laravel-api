@@ -1,9 +1,9 @@
 {
-    "Currency": {
+    "Currencies": {
         "controller": "Currencies",
         "dir": "Currencies"
     },
-    "Timezone": {
+    "Timezones": {
         "controller": "Timezones",
         "dir": "Timezones"
     },
