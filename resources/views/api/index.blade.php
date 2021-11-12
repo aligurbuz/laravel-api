@@ -589,6 +589,130 @@ wget --no-check-certificate --quiet \
 
                     @foreach($postman['item'][$action]['item'] as $key => $value)
 
+                        @if($value['name'] =='Login')
+                            @php
+                                $endpoint = 'login';
+                                $configDocumentation = config('documentation');
+                            @endphp
+                            <h1 id="about-flysystem">Login</h1>
+                            <p>The login service is the service that gives the authorization token value to the client side.
+                                If the post request without sending the token value to the login endpoint results in a successful response of 200,
+                                the system will issue a token to the user.</p>
+
+                            <h3 id="commonly-used-adapters">POST</h3>
+                        <ul>
+                            <li><strong>Test Environment Base Url</strong> : {{apiUrl()}}</li>
+                            @if(isset($configDocumentation['productionLinks'][$endpoint]['all']))
+                                @if(isset($configDocumentation['productionLinks'][$endpoint][$method]))
+                                    <li><strong>Production Environment Base Url</strong> : {{$configDocumentation['productionLinks'][$endpoint][$method]}}</li>
+                                @else
+                                    <li><strong>Production Environment Base Url</strong> : {{$configDocumentation['productionLinks'][$endpoint]['all']}}</li>
+                                @endif
+
+                            @else
+                                <li><strong>Production Environment Base Url</strong> : {{config('app.productBaseUrl')}}</li>
+                            @endif
+
+                            <li><strong>Url</strong> : baseUrl/login</li>
+                        </ul>
+
+                            <p>
+                            <table>
+                                <thead>
+                                <tr>
+                                    <th style="width:200px;">Body Parameters</th>
+                                    <th>Type</th>
+                                    <th>Required</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                <tr>
+                                    <td style="width:200px;">email</td>
+                                    <td>string</td>
+                                    <td>true</td>
+                                    <td>email address</td>
+                                </tr>
+
+                                <tr>
+                                    <td style="width:200px;">password</td>
+                                    <td>string</td>
+                                    <td>true</td>
+                                    <td>user password</td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                            </p>
+
+                            <p>
+                            <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Api Request</span>
+wget --no-check-certificate --quiet \
+  --method POST \
+  --timeout=0 \
+  --header 'Apikey: Apikey' \
+  --header 'Content-Type: application/json' \
+  --body-data '[
+    {
+        "email": "emailAddress",
+        "password": "password"
+    }
+]' \
+   'http://localhost/api/public/api/login'
+</code></pre></div></div>
+                            </p>
+
+
+                        @endif
+
+                            @if($value['name'] =='Login')
+                                <hr>
+                            @endif
+
+                            @if($value['name'] =='Login')
+                                @php
+                                    $endpoint = 'logout';
+                                    $configDocumentation = config('documentation');
+                                @endphp
+                                <h1 id="about-flysystem">Logout</h1>
+                                <p>The logout service is the token terminator service.
+                                    The token can be terminated by sending its value.No body value should be sent.</p>
+
+                                <h3 id="commonly-used-adapters">POST</h3>
+                                <ul>
+                                    <li><strong>Test Environment Base Url</strong> : {{apiUrl()}}</li>
+                                    @if(isset($configDocumentation['productionLinks'][$endpoint]['all']))
+                                        @if(isset($configDocumentation['productionLinks'][$endpoint][$method]))
+                                            <li><strong>Production Environment Base Url</strong> : {{$configDocumentation['productionLinks'][$endpoint][$method]}}</li>
+                                        @else
+                                            <li><strong>Production Environment Base Url</strong> : {{$configDocumentation['productionLinks'][$endpoint]['all']}}</li>
+                                        @endif
+
+                                    @else
+                                        <li><strong>Production Environment Base Url</strong> : {{config('app.productBaseUrl')}}</li>
+                                    @endif
+
+                                    <li><strong>Url</strong> : baseUrl/logout</li>
+                                </ul>
+
+
+                                <p>
+                                <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Api Request</span>
+wget --no-check-certificate --quiet \
+  --method POST \
+  --timeout=0 \
+  --header 'Authorization: Bearer Token' \
+  --header 'Apikey: Apikey' \
+  --header 'Content-Type: application/json' \
+  ' \
+   'http://localhost/api/public/api/logout'
+</code></pre></div></div>
+                                </p>
+
+
+                            @endif
+
                     @if(isset($value['item']))
 
 
@@ -612,6 +736,7 @@ wget --no-check-certificate --quiet \
                                     $model = $modelName;
                                 }
                             }
+
 
                             $entities = \App\Services\Db::entities(\App\Constants::modelNamespace.'\\'.$model);
                             $comments = \App\Services\Db::comments(\App\Constants::modelNamespace.'\\'.$model);
