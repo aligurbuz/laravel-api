@@ -343,7 +343,7 @@ wget --no-check-certificate --quiet \
    'baseUrl/products?select=*
 </code></pre></div></div>
 
-                       <p>Tüm ilişkiler ((with) kullanımı) içinde select kuralı aynı şekildedir.</p>
+                       <p>The select rule is the same for all relationships (using (with)).</p>
 
                     <p><b>Note:</b> It will only apply to HTTP GET requests.</p>
 
