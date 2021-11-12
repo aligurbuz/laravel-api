@@ -65,9 +65,12 @@ Api Documentation
 
                     <h2 class="tracking-wide mb-0 mt-0 text-xs leading-loose tracking-wide text-indigo-light uppercase">
                         <a href="doc?definition=queryParams">Query Parameters</a></h2>
+
+                    <h2 class="tracking-wide mb-0 mt-0 text-xs leading-loose tracking-wide text-indigo-light uppercase">
+                        <a href="doc?action=Global">Global Requests</a></h2>
                 </div>
 
-                <br><br>
+                <br><br><br>
 
                 <ul class="list-reset mb-6 block pr-6">
                     <li class="block">
@@ -76,8 +79,10 @@ Api Documentation
                 </ul>
                 <div style="position:absolute; margin-top: -20px;">
                     @foreach(($postman['item'] ?? []) as $key => $value )
+                        @if($value['name']!=='Global')
                         <h2 class="tracking-wide mb-0 mt-0 text-xs leading-loose tracking-wide text-indigo-light uppercase">
                             <a href="doc?action={{$value['name']}}">{{$value['name']}}</a></h2>
+                        @endif
                         <!--<ul class="list-reset mb-6 block pr-6">
                             <li class="block">
                                 <a class="leading-loose block w-full rounded text-md text-indigo-darkest" href="https://flysystem.thephpleague.com/v2/docs/what-is-new/">New In V2</a>
