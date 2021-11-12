@@ -16,7 +16,8 @@ return [
     ],
     "ignores" => [
         "SuperAdmins",
-        "Mix"
+        "Mix",
+        "Gate"
     ],
     "arrayRules" => [
         'serviceName' => [
