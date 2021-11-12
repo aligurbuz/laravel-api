@@ -114,7 +114,7 @@ Api Documentation
 "ranges": {
             "desc": "Sorts your object by last registration value.",
             "asc": "Sorts your object by first registration value.",
-            "active": "It filters according to the status=1 value for your object.",
+            "active": "It filters according to the status=1 and is_deleted=0 value for your object.",
             "sequence": "It sorts by sequence value. This means changeable sorting.",
             "notDeleted": "Filters undeleted data."
         }
@@ -161,6 +161,11 @@ wget --no-check-certificate --quiet \
 </code></pre></div></div>
 
                         <p>This usage will both sort your data and filter according to the values of status=1 and is_deleted=0.</p>
+
+                        <p><b>Note:</b>The use of (range) will also apply to all relationships of your dataset.
+                            For example: when you use range=desc, this (range) value will be used automatically in the relationship with[items]=*.</p>
+
+                        <p><b>If you need to use a custom (range) value in your relationships, see (withRange Using) section.</b></p>
                     @elseif($list=='hasAndDoesntHave')
                         <p>The (Has) parameter is used to check your top data set according to the existence of your relationships. For example: you may want to list only products having items.
                             In this case, it will be sufficient to add the (has) key to your query parameter and write the relation name to its value.
