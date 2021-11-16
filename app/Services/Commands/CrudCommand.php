@@ -120,6 +120,7 @@ use '.$useController.';',$routeApiContent);
         }
 
 
+        Artisan::call('update:relation');
         $this->warn('Crud has been created');
         return 0;
     }
