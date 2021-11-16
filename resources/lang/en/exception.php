@@ -32,5 +32,5 @@ return [
     'groupByKeyException'           => 'GroupBy key for :key is not valid',
     'groupByDefaultException'       => 'field key for groupBy is mandatory',
     'updateException'               => 'Update process has been failed for :model',
-    'arrayRuleException'            => 'for :key array',
+    'arrayRuleException'            => 'for :key array'
 ];

@@ -75,6 +75,19 @@ class Db extends Model
     }
 
     /**
+     * get table enum fields for model
+     *
+     * @param null $table
+     * @return array
+     */
+    public static function enums($table = null): array
+    {
+        $entities = static::entities($table);
+
+        return array_combine($enums = ($entities['enum_columns'] ?? []),($entities['enum_values'] ?? $enums));
+    }
+
+    /**
      * get table columns max length for model
      *
      * @param null $table

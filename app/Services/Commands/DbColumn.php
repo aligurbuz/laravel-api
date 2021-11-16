@@ -62,6 +62,8 @@ class DbColumn extends Command
         $list['boolean_values'] = [];
         $list['default_keys'] = [];
         $list['default_values'] = [];
+        $list['enum_columns'] = [];
+        $list['enum_values'] = [];
 
         foreach ($indexes as $index){
             $list['indexes'][] = '"'.$index->Column_name.'"';
@@ -71,7 +73,22 @@ class DbColumn extends Command
 
         foreach ($columns as $column){
 
+            $enum = null;
+
+            if($column->DATA_TYPE=='enum'){
+                $enum = $column->COLUMN_TYPE;
+                $enum = str_replace('enum(','',$enum);
+                $enum = str_replace(')','',$enum);
+                $enum = str_replace('\'','',$enum);
+            }
+
             $list['comments'][] = '"'.$column->COLUMN_COMMENT.'"';
+
+            if(!is_null($enum)){
+                $list['enum_columns'][] = '"'.$column->COLUMN_NAME.'"';
+                $list['enum_values'][] = '"'.$enum.'"';
+            }
+
 
             if($column->COLUMN_TYPE=='tinyint(1)'){
                 $list['boolean_values'][] = '"'.$column->COLUMN_NAME.'"';
@@ -131,6 +148,8 @@ class DbColumn extends Command
         \'boolean_values\' => ['.implode(',',$list['boolean_values']).'],
         \'default_keys\' => ['.implode(',',$list['default_keys']).'],
         \'default_values\' => ['.implode(',',$list['default_values']).'],
+        \'enum_columns\' => ['.implode(',',$list['enum_columns']).'],
+        \'enum_values\' => ['.implode(',',$list['enum_values']).'],
         ];');
 
         $databaseColumns = File::getRequire($databaseColumnPath);

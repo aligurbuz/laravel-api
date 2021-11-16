@@ -122,6 +122,8 @@ return [
     'url' => 'The :attribute format is invalid.',
     'uuid' => 'The :attribute must be a valid UUID.',
     'double' => 'The :attribute value must be sent in double format.',
+    'enum' => '(:column) field must be only :enum',
+    'enumSplitter' => 'or',
 
     /*
     |--------------------------------------------------------------------------

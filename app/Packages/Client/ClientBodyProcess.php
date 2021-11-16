@@ -238,6 +238,13 @@ class ClientBodyProcess extends ClientVariableProcess
                                 else{
                                     static::errorContainer($types[$key],'errorInput');
                                     $typeMessage = trans('validation.'.$types[$key],['attribute' => $key]);
+                                    $typeKeyExplode = explode(':',$types[$key]);
+                                    if(current($typeKeyExplode)=='in'){
+                                        $typeMessage = trans('validation.enum',[
+                                            'column' => $key,
+                                            'enum' => str_replace(',',' '.trans('validation.enumSplitter').' ',($typeKeyExplode[1] ?? ''))
+                                        ]);
+                                    }
                                 }
                             }
                         }

@@ -20,7 +20,22 @@ trait ClientSetRuleTrait
     public function setRuleProcess() : void
     {
         $this->setBooleanValues();
+        $this->setEnumValues();
         //$this->setRule('key','rule');
+    }
+
+    /**
+     * sets autoRule client to enum values
+     *
+     * @return void
+     */
+    private function setEnumValues() : void
+    {
+        $enumValues = Db::enums($this->getTable());
+
+        foreach ($enumValues as $enumKey => $enumValue){
+            $this->setAutoRule($enumKey,'in:'.$enumValue);
+        }
     }
 
     /**
