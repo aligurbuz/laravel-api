@@ -127,6 +127,11 @@ class RepositoryCommand extends Command
             ->addComment('')
             ->addComment('@var bool');
 
+        $class->addProperty('addPostQueries',[])->setProtected()->setType('array')
+            ->addComment('add post query for repository')
+            ->addComment('')
+            ->addComment('@var array');
+
         $method = $class->addMethod(lcfirst($className));
         $method->addParameter('builder',null)->setNullable(true)->setType('object');
         $method->setBody('return $this->apply($builder);')->setReturnType('object');
