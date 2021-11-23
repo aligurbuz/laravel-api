@@ -785,8 +785,6 @@ wget --no-check-certificate --quiet \
                             <h1 id="about-flysystem">{{$value['name']}}</h1>
                             <p>{{$descriptions[$value['name']] ?? ''}}</p>
 
-
-
                         @foreach($value['item'] as $key => $value)
                             @php
                             $method = $value['request']['method'];
@@ -838,9 +836,34 @@ wget --no-check-certificate --quiet \
                                     <li><strong>Url</strong> : {{$value['request']['url']['raw']}}</li>
                                 </ul>
 
-                            @if(isset($value['request']['body']['raw']))
                                 @php
-                                $raw = json_decode($value['request']['body']['raw'],true);
+
+                                @endphp
+
+                            @if(isset($value['request']['body']['mode']))
+                                @php
+                                    $raw = $value['request']['body'][$value['request']['body']['mode']];
+
+                                    if($value['request']['body']['mode']=='raw'){
+                                        $raw = json_decode($raw,true);
+                                        //dd($raw);
+                                    }
+                                    else{
+                                        $list = [];
+                                        foreach ($raw as $formData){
+                                            if($formData['type']!=='file'){
+                                                $list[$formData['key']] = $formData['value'];
+                                            }
+                                            else{
+                                                $list[$formData['key']] = 'file';
+                                            }
+
+                                        }
+
+                                        $raw = $list;
+
+                                    }
+
                                 @endphp
                                 <table>
                                     <thead>
