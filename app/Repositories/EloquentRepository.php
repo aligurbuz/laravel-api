@@ -633,7 +633,7 @@ class EloquentRepository
      * @param int $value
      * @return object
      */
-    public function default($value = 1) : object
+    public function default(int $value = 1) : object
     {
         $this->repository = $this->instance()->where('is_default',$value);
 
