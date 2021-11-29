@@ -6,8 +6,9 @@ namespace App\Repositories\Supporters;
 
 use Closure;
 use App\Services\Db;
-use App\Factory\Factory;
 use App\Services\Client;
+use App\Factory\Factory;
+use Illuminate\Support\Str;
 use App\Exceptions\Exception;
 use App\Models\Features\ScopeManagerTrait;
 use App\Factory\Cache\Interfaces\CacheInterface;
@@ -246,18 +247,24 @@ trait CacheRepository
         $relations  = Db::relations();
 
         if(isset($relations[$model]) && is_array($relations[$model])){
+            $globalScopes = config('repository.globalScopes');
+
             foreach ($relations[$model] as $relation){
-                $relationHash = $this->generateCacheKey($relation);
+                $camelCaseTableCode = Str::camel(getTableCode($relation));
 
-                if($this->cacheInstance->exists($relationHash)){
-                    if(!$this->cacheInstance->delete($relationHash)){
-                        Exception::cacheException();
+                if(!in_array($camelCaseTableCode,$globalScopes,true)){
+                    $relationHash = $this->generateCacheKey($relation);
+
+                    if($this->cacheInstance->exists($relationHash)){
+                        if(!$this->cacheInstance->delete($relationHash)){
+                            Exception::cacheException();
+                        }
                     }
-                }
 
-                if($recursive && isset($relations[$relation])){
-                    if($relation!=='Localization'){
-                        $this->deleteRelationCache($relation,false);
+                    if($recursive && isset($relations[$relation])){
+                        if($relation!=='Localization'){
+                            $this->deleteRelationCache($relation,false);
+                        }
                     }
                 }
             }
