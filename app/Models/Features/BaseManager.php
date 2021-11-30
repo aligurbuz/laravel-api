@@ -124,11 +124,15 @@ trait BaseManager
         $modelName                  = $model ?? $this->getModelName();
         $relationCodes              = Db::relationCodes();
         $currentModelName           = ucfirst($modelName);
-        $relationsAccordingToCode   = $relationCodes[getTableCode($modelName)] ?? [];
+        $relationsAccordingToCode   = $relationCodes[$tableCode = getTableCode($modelName)] ?? [];
+        $camelCaseTableCode         = Str::camel($tableCode);
+        $globalScopes               = config('repository.globalScopes');
         $repository                 = $this->getRepository();
         $deniedEagerLoadings        = (is_object($repository) && method_exists($repository,'getDeniedEagerLoadings')) ? $repository->getDeniedEagerLoadings() : [];
+        $clientEagerLoadingData     = request()->query->get('with',[]);
 
         foreach ($relationsAccordingToCode as $modelRelation){
+
             if(
                 $modelRelation!==$currentModelName
                 && $modelRelation!=='Localization'
@@ -136,29 +140,35 @@ trait BaseManager
                 $modelNamespace = Constants::modelNamespace.'\\'.$modelRelation;
                 $withModelKey = $this->getModelNormalize($modelRelation);
 
-                if(count($deniedEagerLoadings) && in_array($withModelKey,$deniedEagerLoadings,true)){
+                if(
+                    count($deniedEagerLoadings)
+                    && isset($clientEagerLoadingData[$withModelKey])
+                    &&  in_array($withModelKey,$deniedEagerLoadings,true)
+                ){
                     Exception::customException(trans('exception.deniedEagerLoadings',['key' => $withModelKey]));
                 }
 
-                if(class_exists($modelNamespace) && !isset($this->withQuery[$withModelKey])){
-                    $this->relationLists[] = '[with]['.$withModelKey.']';
-                    $relationListImplode = implode('',$this->relationLists);
-                    $relationListHandling = substr_replace($relationListImplode,'',0,1);
-                    $relationListHandling = substr_replace($relationListHandling,'',4,1);
+                if(!in_array($camelCaseTableCode,$globalScopes)){
+                    if(class_exists($modelNamespace) && !isset($this->withQuery[$withModelKey])){
+                        $this->relationLists[] = '[with]['.$withModelKey.']';
+                        $relationListImplode = implode('',$this->relationLists);
+                        $relationListHandling = substr_replace($relationListImplode,'',0,1);
+                        $relationListHandling = substr_replace($relationListHandling,'',4,1);
 
-                    $this->withQuery[$withModelKey] = [
-                        'hasMany' => true,
-                        'nested' => $nested,
-                        'foreignColumn' => getTableCode($currentModelName),
-                        'localColumn' => getTableCode($currentModelName),
-                        'table' => $withModelKey,
-                        'description' => 'You can use '.$withModelKey.' relation belonging to '.$currentModelName.' data.',
-                        'repository' => Str::camel($modelRelation),
-                        'withQuery' => $relationListHandling,
-                    ];
+                        $this->withQuery[$withModelKey] = [
+                            'hasMany' => true,
+                            'nested' => $nested,
+                            'foreignColumn' => getTableCode($currentModelName),
+                            'localColumn' => getTableCode($currentModelName),
+                            'table' => $withModelKey,
+                            'description' => 'You can use '.$withModelKey.' relation belonging to '.$currentModelName.' data.',
+                            'repository' => Str::camel($modelRelation),
+                            'withQuery' => $relationListHandling,
+                        ];
+                    }
+
+                    $this->getModelRelationsForCode($modelRelation,true);
                 }
-
-                $this->getModelRelationsForCode($modelRelation,true);
             }
         }
 
