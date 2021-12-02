@@ -38,6 +38,7 @@ abstract class ClientManager
 
         if(class_exists($clientNamespace)){
             $clientInstance = new $clientNamespace($data);
+            AppContainer::terminate('crRepositoryInstance');
             AppContainer::set('crRepositoryInstance',$clientInstance->repository());
             $clientInstance->requestMethod($clientIdentifier->getRequestMethod());
             $clientInstance->handle();
