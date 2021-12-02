@@ -44,6 +44,10 @@ trait CreateRepository
             if(isset($data[$key])){
                 $crData = [];
 
+                if(!isset($data[$key][0])){
+                    $data[$key] = [$data[$key]];
+                }
+
                 foreach ($data[$key] as $crKey => $crValues){
                     $crData[$crKey] = $crValues;
                     $crData[$crKey][getTableCode($this->getModel())] = $data[getTableCode($this->getModel())];
