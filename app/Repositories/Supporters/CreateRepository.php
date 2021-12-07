@@ -75,14 +75,14 @@ trait CreateRepository
                 $result = $this->createModel($value);
                 $arrayResults = $result->toArray();
 
-                if(method_exists($this,'eventFireAfterCreate')){
-                    $this->eventFireAfterCreate($arrayResults);
-                }
-
                 $this->createEventDispatcher($value,$clientDataKey);
 
                 if(count($this->addPostQueryResults)){
                     $arrayResults = array_merge($arrayResults,$this->addPostQueryResults[$clientDataKey]);
+                }
+
+                if(method_exists($this,'eventFireAfterCreate')){
+                    $this->eventFireAfterCreate($arrayResults);
                 }
 
                 $list[] = $arrayResults;
