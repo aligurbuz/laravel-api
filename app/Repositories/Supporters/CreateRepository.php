@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Repositories\Supporters;
 
+use App\Exceptions\Exception as ExceptionFacade;
 use App\Services\AppContainer;
 use Exception;
 
@@ -53,7 +54,13 @@ trait CreateRepository
                     $crData[$crKey][getTableCode($this->getModel())] = $data[getTableCode($this->getModel())];
                 }
 
-                cR($cr,$crData);
+                try{
+                    cR($cr,$crData);
+                }
+                catch (Exception $exception){
+                    ExceptionFacade::customException($exception->getMessage().'('.trans('exception.crKey',['key' => $key]).')');
+                }
+
                 $this->addPostQueryResults[$clientDataKey][$key] = AppContainer::get('crRepositoryInstance')->create();
             }
         }
