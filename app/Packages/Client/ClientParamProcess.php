@@ -33,6 +33,8 @@ class ClientParamProcess extends ClientVariableProcess
         $this->client = $client;
         $data = $this->client->getData();
         $this->data = $data['params'] ?? [];
+        $this->data = $this->generatorProcess($this->data);
+        $this->client->setData($this->data);
         $this->checkModelKeyWithoutFilter();
         $this->paramValidatorValueProcess();
         $this->capsuleProcess();
