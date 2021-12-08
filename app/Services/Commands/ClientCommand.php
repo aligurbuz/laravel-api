@@ -5,6 +5,7 @@ namespace App\Services\Commands;
 use App\Client\Client;
 use App\Client\ClientAutoGeneratorTrait;
 use Illuminate\Console\Command;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Nette\PhpGenerator\Literal;
@@ -69,6 +70,13 @@ class ClientCommand extends Command
         if(!file_exists($methodPath)){
             File::makeDirectory($methodPath);
         }
+
+        $modelClientJsonFile = database_path('columns').''.DIRECTORY_SEPARATOR.'modelClients.json';
+        $modelClientJson = File::get($modelClientJsonFile);
+        $modelClientJsonToArray = json_decode($modelClientJson);
+        $modelClientJsonToArray[$modelName][strtolower($method)] = $namespace;
+
+        File::put($modelClientJsonFile,Collection::make($modelClientJsonToArray)->toJson(JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
 
 
         $generator = new PhpNamespace($namespace);
