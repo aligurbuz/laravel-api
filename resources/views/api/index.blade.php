@@ -78,6 +78,11 @@ Api Documentation
                     </li>
                 </ul>
                 <div style="position:absolute; margin-top: -20px;">
+
+                    @php
+                        $listNames = [];
+                    @endphp
+
                     @foreach(($postman['item'] ?? []) as $key => $value )
                         @if($value['name']!=='Global')
                         <h2 class="tracking-wide mb-0 mt-0 text-xs leading-loose tracking-wide text-indigo-light uppercase">
@@ -782,9 +787,6 @@ wget --no-check-certificate --quiet \
                     @if(isset($value['item']))
 
 
-                            <h1 id="about-flysystem">{{$value['name']}}</h1>
-                            <p>{{$descriptions[$value['name']] ?? ''}}</p>
-
                         @foreach($value['item'] as $key => $value)
                             @php
                             $method = $value['request']['method'];
@@ -809,6 +811,19 @@ wget --no-check-certificate --quiet \
                             $tableCode = getTableCode($model);
                             $configDocumentation = config('documentation');
                             @endphp
+
+                                @if(!in_array($value['name'],$listNames))
+                                        @if(isset($configDocumentation['exceptMethods'][$endpoint]) && in_array($method,$configDocumentation['exceptMethods'][$endpoint]))
+                                            @continue
+                                        @endif
+
+                                        <h1 id="about-flysystem">{{$value['name']}}</h1>
+                                        <p>{{$descriptions[$value['name']] ?? ''}}</p>
+                                    @php
+                                    $listNames[] = $value['name'];
+                                    @endphp
+                                    @endif
+
 
                                 @if(isset($configDocumentation['exceptMethods'][$endpoint]) && in_array($method,$configDocumentation['exceptMethods'][$endpoint]))
                                     @continue

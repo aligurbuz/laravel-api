@@ -14,7 +14,7 @@ return [
     ],
     'exceptMethods' => [
         //'all' => ['GET','PUT'],
-        //'countries/districts' => ['GET','PUT'],
+        //'countries/districts' => ['GET','PUT','POST'],
     ],
     "ignores" => [
         "SuperAdmins",
