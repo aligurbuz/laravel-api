@@ -13,7 +13,7 @@ class Postman extends Command
      *
      * @var string
      */
-    protected $signature = 'postman:create {collection}';
+    protected $signature = 'postman:create {collection?}';
 
     /**
      * The console command description.
@@ -41,10 +41,11 @@ class Postman extends Command
     {
         $mapJson = json_decode(File::get(app_path('Docs').''.DIRECTORY_SEPARATOR.'map.json'),1);
         $documentationConfig = config('documentation');
+        $collection = ucfirst($this->argument('collection') ?? config('app.name'));
 
         $list = [];
         $list['info']['_postman_id'] = '7e099b49-992f-48b8-9515-37ae09f1af91';
-        $list['info']['name'] = $collection = ucfirst($this->argument('collection'));
+        $list['info']['name'] = $collection;
         $list['info']['schema'] = 'https://schema.getpostman.com/json/collection/v2.1.0/collection.json';
 
 
