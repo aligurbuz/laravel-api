@@ -14,7 +14,7 @@ class MigrationCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'create:migration {table} {model}';
+    protected $signature = 'create:migration {table} {model?}';
 
     /**
      * The console command description.
@@ -41,7 +41,7 @@ class MigrationCommand extends Command
     public function handle()
     {
         $table = $this->argument('table');
-        $model = $this->argument('model');
+        $model = $this->argument('model') ?? Str::camel(getModelWithPlural($table));
         $modelCode = Str::snake($model).'_code';
 
         Artisan::call('make:migration',['name' =>'create_'.$table]);
