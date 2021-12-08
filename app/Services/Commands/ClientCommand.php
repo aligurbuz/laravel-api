@@ -73,7 +73,7 @@ class ClientCommand extends Command
 
         $modelClientJsonFile = database_path('columns').''.DIRECTORY_SEPARATOR.'modelClients.json';
         $modelClientJson = File::get($modelClientJsonFile);
-        $modelClientJsonToArray = json_decode($modelClientJson);
+        $modelClientJsonToArray = json_decode($modelClientJson,1);
         $modelClientJsonToArray[$modelName][strtolower($method)] = $namespace;
 
         File::put($modelClientJsonFile,Collection::make($modelClientJsonToArray)->toJson(JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
