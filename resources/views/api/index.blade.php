@@ -897,7 +897,8 @@ wget --no-check-certificate --quiet \
 
                                     $isClientCapsuleRequired = [];
 
-                                $clientClass = (new $clientDataInstance());
+                                    if(class_exists($clientDataInstance)){
+                                         $clientClass = (new $clientDataInstance());
                                     $clientCapsule = $clientClass->getClientCapsule();
                                     $clientCapsuleDescriptions = $clientClass->getCapsuleDescriptions();
                                     $clientRule = $clientClass->getRule();
@@ -916,6 +917,8 @@ wget --no-check-certificate --quiet \
                                         $types[$capsule] = $capsuleType ?? 'string';
 
                                     }
+                                    }
+
 
 
                                 @endphp
