@@ -51,6 +51,22 @@ class AppContainer
     }
 
     /**
+     * set with terminating for container data
+     *
+     * @param $key
+     * @param $value
+     * @param bool $merge
+     */
+    public static function setWithTerminating($key,$value,bool $merge = false)
+    {
+        if(static::has($key)){
+            static::terminate($key);
+        }
+
+        static::set($key,$value,$merge);
+    }
+
+    /**
      * get value hash for appContainer instance
      *
      * @param array $value

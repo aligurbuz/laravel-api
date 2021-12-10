@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Client;
 
+use App\Services\AppContainer;
 use App\Services\Db;
 use Illuminate\Support\Str;
 use App\Repositories\Repository;
@@ -303,6 +304,7 @@ class Client extends ClientManager
             && is_array($this->model)
             && isset($this->model[0])
         ){
+            AppContainer::setWithTerminating('clientCapsule',(is_array($this->capsule) ? $this->capsule : []));
             $this->capsule = array_merge($this->columnsForModel(),$this->capsule);
 
             if($this->requestMethod=='GET'){
@@ -313,6 +315,27 @@ class Client extends ClientManager
                 }
             }
         }
+    }
+
+    /**
+     * get client capsule descriptions for standard client data
+     *
+     * @return array
+     */
+    public function getCapsuleDescriptions() : array
+    {
+        return (property_exists($this,'capsuleDescriptions') && is_array($this->capsuleDescriptions))
+            ? $this->capsuleDescriptions : [];
+    }
+
+    /**
+     * get client capsule for standard client data
+     *
+     * @return array
+     */
+    public function getClientCapsule() : array
+    {
+        return AppContainer::get('clientCapsule',[]);
     }
 
     /**

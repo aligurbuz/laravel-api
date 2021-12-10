@@ -810,6 +810,22 @@ wget --no-check-certificate --quiet \
                             $types = \App\Services\Db::types(\App\Constants::modelNamespace.'\\'.$model);
                             $tableCode = getTableCode($model);
                             $configDocumentation = config('documentation');
+                            $modelClientJsonData = json_decode(\Illuminate\Support\Facades\File::get(database_path('columns').''.DIRECTORY_SEPARATOR.'modelClients.json'),1);
+                            $clientDataList = $modelClientJsonData[$model] ?? [];
+
+                            if($method=='POST'){
+                                $clientMethodType = 'create';
+                            }
+
+                            if($method=='GET'){
+                                $clientMethodType = 'get';
+                            }
+
+                            if($method=='PUT'){
+                                $clientMethodType = 'update';
+                            }
+
+                            $clientDataInstance = $clientDataList[$clientMethodType] ?? null;
                             @endphp
 
                                 @if(!in_array($value['name'],$listNames))
@@ -879,6 +895,29 @@ wget --no-check-certificate --quiet \
 
                                     }
 
+                                    $isClientCapsuleRequired = [];
+
+                                $clientClass = (new $clientDataInstance());
+                                    $clientCapsule = $clientClass->getClientCapsule();
+                                    $clientCapsuleDescriptions = $clientClass->getCapsuleDescriptions();
+                                    $clientRule = $clientClass->getRule();
+
+                                    $clientCapsuleList = [];
+
+                                    foreach ($clientCapsule as $capsule){
+                                        if(isset($clientRule[$capsule])){
+                                            $capsuleRule = $clientRule[$capsule];
+                                            $isClientCapsuleRequired = [$capsule => \Illuminate\Support\Str::contains($capsuleRule,'required')];
+                                            $capsuleType = str_replace('required','',$capsuleRule);
+                                            $clientCapsuleList[$capsule]['required'] = $isClientCapsuleRequired[$capsule] ? 'true' : 'false';
+                                        }
+
+                                        $raw[$capsule] = $capsuleType ?? 'string';
+                                        $types[$capsule] = $capsuleType ?? 'string';
+
+                                    }
+
+
                                 @endphp
                                 <table>
                                     <thead>
@@ -918,7 +957,12 @@ wget --no-check-certificate --quiet \
                                                 @if(isset($entities['required_columns']) && in_array($field,$entities['required_columns'],true))
                                                     <td><code class="language-plaintext highlighter-rouge">true</code></td>
                                                 @else
-                                                    <td><code class="language-plaintext highlighter-rouge">false</code></td>
+                                                    @if(isset($clientCapsuleList[$field]['required']))
+                                                        <td><code class="language-plaintext highlighter-rouge">{{$clientCapsuleList[$field]['required']}}</code></td>
+                                                    @else
+                                                        <td><code class="language-plaintext highlighter-rouge">false</code></td>
+                                                        @endif
+
                                                 @endif
 
                                                 @endif
@@ -927,7 +971,12 @@ wget --no-check-certificate --quiet \
                                             @if($tableCode==$field)
                                                 <td>Column code</td>
                                             @else
-                                                <td>{{$comments[$field] ?? ''}}</td>
+                                                @if(isset($clientCapsuleDescriptions[$field]))
+                                                    <td>{{$clientCapsuleDescriptions[$field]}}</td>
+                                                @else
+                                                    <td>{{$comments[$field] ?? ''}}</td>
+                                                    @endif
+
                                             @endif
 
                                         </tr>
