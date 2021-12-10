@@ -914,7 +914,7 @@ wget --no-check-certificate --quiet \
                                         }
 
                                         $raw[$capsule] = $capsuleType ?? 'string';
-                                        $types[$capsule] = $capsuleType ?? 'string';
+                                        $types[$capsule] = str_replace('|',' ',($capsuleType ?? 'string'));
 
                                     }
                                     }
