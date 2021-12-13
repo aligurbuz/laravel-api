@@ -18,7 +18,7 @@ use App\Packages\Client\ClientManager;
  */
 class Client extends ClientManager
 {
-    use ClientSetRuleTrait,ClientSupport;
+    use ClientSetRuleTrait,ClientSupport,ClientAction;
 
     /**
      * @var array
@@ -50,7 +50,7 @@ class Client extends ClientManager
     public function __construct(array $data = [],bool $handler = true)
     {
         if($handler){
-            parent::__construct($this->getClientActionHandler($data));
+            parent::__construct($this->setClientAction($data));
             $this->modelRequiredFields();
             $this->capsule();
             $this->addRule();
@@ -68,20 +68,37 @@ class Client extends ClientManager
     }
 
     /**
-     * get client action handler for client instance
+     * set client action for client instance
      *
      * @param array $data
      * @return array
      */
-    private function getClientActionHandler(array $data = []): array
+    private function setClientAction(array $data = []): array
     {
         if(request()->method()=='GET'){
             $data = count($data)
                 ? $data
-                : (new ClientAction($data))->getAction();
+                : $this->clientActionDataHandler();
         }
 
         return $data;
+    }
+
+    /**
+     * get client action data handler for client instance
+     *
+     * @return array
+     */
+    private function clientActionDataHandler() : array
+    {
+        $actionClientData = request()->query->get('action');
+        $clientActionMethodName = $actionClientData.'Action';
+
+        if(!is_null($actionClientData) && method_exists($this,$clientActionMethodName)){
+            request()->query->add($this->{$clientActionMethodName}());
+        }
+
+        return request()->query->all();
     }
 
     /**
