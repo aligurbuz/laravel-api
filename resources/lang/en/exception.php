@@ -33,5 +33,6 @@ return [
     'groupByDefaultException'       => 'field key for groupBy is mandatory',
     'updateException'               => 'Update process has been failed for :model',
     'arrayRuleException'            => 'for :key array',
+    'clientActionException'         => 'The specified action value is not valid',
     'crKey'                         => 'in :key key',
 ];

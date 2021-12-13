@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Client;
 
+use App\Exceptions\Exception;
 use App\Services\Db;
 use Illuminate\Support\Str;
 use App\Services\AppContainer;
@@ -94,9 +95,13 @@ class Client extends ClientManager
         $actionClientData = request()->query->get('action');
         $clientActionMethodName = $actionClientData.'Action';
 
-        if(!is_null($actionClientData) && method_exists($this,$clientActionMethodName)){
-            request()->query->replace([]);
-            request()->query->add($this->{$clientActionMethodName}());
+        if(!is_null($actionClientData)){
+            if(method_exists($this,$clientActionMethodName)){
+                request()->query->replace([]);
+                request()->query->add($this->{$clientActionMethodName}());
+            }
+
+            return Exception::clientActionException();
         }
 
         return request()->query->all();
