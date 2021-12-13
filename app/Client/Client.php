@@ -100,8 +100,9 @@ class Client extends ClientManager
                 request()->query->replace([]);
                 request()->query->add($this->{$clientActionMethodName}());
             }
-
-            return Exception::clientActionException();
+            else{
+                return Exception::clientActionException();
+            }
         }
 
         return request()->query->all();
