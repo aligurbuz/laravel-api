@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Client;
 
-use App\Services\AppContainer;
 use App\Services\Db;
 use Illuminate\Support\Str;
+use App\Services\AppContainer;
 use App\Repositories\Repository;
 use App\Packages\Client\ClientManager;
 
@@ -50,7 +50,7 @@ class Client extends ClientManager
     public function __construct(array $data = [],bool $handler = true)
     {
         if($handler){
-            parent::__construct($data);
+            parent::__construct($this->getClientActionHandler($data));
             $this->modelRequiredFields();
             $this->capsule();
             $this->addRule();
@@ -65,6 +65,23 @@ class Client extends ClientManager
     public function addRule()
     {
         $this->setRuleProcess();
+    }
+
+    /**
+     * get client action handler for client instance
+     *
+     * @param array $data
+     * @return array
+     */
+    private function getClientActionHandler(array $data = []): array
+    {
+        if(request()->method()=='GET'){
+            $data = count($data)
+                ? $data
+                : (new ClientAction($data))->getAction();
+        }
+
+        return $data;
     }
 
     /**

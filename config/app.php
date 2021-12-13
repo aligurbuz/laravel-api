@@ -21,7 +21,8 @@ return [
         'limit',
         'groupBy',
         'client_date',
-        'client_time'
+        'client_time',
+        'action'
     ],
 
     /*
