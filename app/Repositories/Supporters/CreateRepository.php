@@ -42,6 +42,10 @@ trait CreateRepository
     public function addPostQueryDispatcher(array $data = [],int $clientDataKey = 0) : void
     {
         foreach ($this->getAddPostQueries() as $key => $cr){
+            $keyExplode = explode('|',$key);
+            $key = $keyExplode[0];
+            $createStatus = !((isset($keyExplode[1]) && $keyExplode[1] == 'false'));
+
             if(isset($data[$key])){
                 $crData = [];
 
@@ -61,7 +65,9 @@ trait CreateRepository
                     ExceptionFacade::customException($exception->getMessage().'('.trans('exception.crKey',['key' => $key]).')');
                 }
 
-                $this->addPostQueryResults[$clientDataKey][$key] = AppContainer::get('crRepositoryInstance')->create();
+                if($createStatus){
+                    $this->addPostQueryResults[$clientDataKey][$key] = AppContainer::get('crRepositoryInstance')->create();
+                }
             }
         }
     }
