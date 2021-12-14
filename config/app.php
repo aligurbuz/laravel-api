@@ -15,6 +15,7 @@ return [
         'orderBy',
         'withRange',
         'has',
+        'hasFilter',
         'doesntHave',
         'hasRange',
         'page',

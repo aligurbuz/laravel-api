@@ -264,8 +264,10 @@ trait ScopeManager
                     if(false===$withQuery[$has]['nested']){
                         $builder->whereHas($has,function(object $builder) use($request,$has){
                             $range = $request['hasRange'][$has] ?? ($request['range'] ?? '');
+                            $hasFilter = $request['hasFilter'][$has] ?? [];
                             $repository = getModelWithPlural($has);
-                            $builder->range(Repository::$repository(),(string)$range);
+                            $repositoryMethod = Repository::$repository();
+                            $builder->range($repositoryMethod,(string)$range)->filterQuery($hasFilter);
                             return $builder;
                         });
                     }
