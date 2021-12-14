@@ -265,6 +265,12 @@ trait ScopeManager
                         $builder->whereHas($has,function(object $builder) use($request,$has){
                             $range = $request['hasRange'][$has] ?? ($request['range'] ?? '');
                             $hasFilter = $request['hasFilter'][$has] ?? [];
+
+                            if(isset($request['hasFilter']) && count($hasFilter)=='0'){
+                                Exception::customException(trans('exception.hasFilterException',['key' => $has]));
+                                return $builder;
+                            }
+
                             $repository = getModelWithPlural($has);
                             $repositoryMethod = Repository::$repository();
                             $builder->range($repositoryMethod,(string)$range)->filterQuery($hasFilter);
