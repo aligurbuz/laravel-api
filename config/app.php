@@ -22,7 +22,7 @@ return [
         'groupBy',
         'client_date',
         'client_time',
-        'action'
+        'client_action'
     ],
 
     /*
