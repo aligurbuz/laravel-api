@@ -14,5 +14,6 @@ yarn-error.log
 .DS_Store
 .idea/
 worker.log
-rr
-.rr.yaml
+server/volumes/elasticsearch/*
+server/volumes/mongo/*
+server/volumes/mysql/*
