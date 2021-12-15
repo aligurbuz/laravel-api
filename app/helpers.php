@@ -5,6 +5,8 @@ use App\Factory\Factory;
 use App\Services\Client;
 use App\Services\Git;
 use App\Services\Service;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use JetBrains\PhpStorm\Pure;
 use App\Exceptions\Exception;
@@ -163,9 +165,33 @@ if(!function_exists('pushMigration')){
      */
     function pushMigration($service,$directory,$model): void
     {
-        \git()->commit('migration for '.$model.' has been created');
-        \service()->create($service,$directory,$model);
-        \git()->commit('service for '.$service.' has been created');
+        $pusherJsonPath = base_path('pusher.json');
+        $pusherJson = json_decode(File::get($pusherJsonPath),true);
+        $pusherHashing = md5($service.'_'.$directory.'_'.$model);
+
+        if(!in_array($pusherHashing,$pusherJson)){
+            \git()->commit('migration for '.$model.' has been created');
+            \service()->create($service,$directory,$model);
+            \git()->commit('service for '.$service.' has been created');
+
+            $pusherJson[] = $pusherHashing;
+            putJsonToFile($pusherJsonPath,$pusherJson);
+        }
+    }
+}
+
+if(!function_exists('putJsonToFile')){
+
+    /**
+     * put json to file
+     *
+     * @param string $path
+     * @param array $data
+     * @return bool|int
+     */
+    function putJsonToFile(string $path,array $data = []): bool|int
+    {
+        return File::put($path,Collection::make($data)->toJson(JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
     }
 }
 
