@@ -170,12 +170,12 @@ if(!function_exists('pushMigration')){
         $pusherHashing = md5($service.'_'.$directory.'_'.$model);
 
         if(!in_array($pusherHashing,$pusherJson)){
+            $pusherJson[] = $pusherHashing;
+            putJsonToFile($pusherJsonPath,$pusherJson);
+
             \git()->commit('migration for '.$model.' has been created');
             \service()->create($service,$directory,$model);
             \git()->commit('service for '.$service.' has been created');
-
-            $pusherJson[] = $pusherHashing;
-            putJsonToFile($pusherJsonPath,$pusherJson);
         }
     }
 }
