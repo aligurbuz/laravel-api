@@ -76,6 +76,15 @@ class ClientCommand extends Command
         $modelClientJsonToArray = json_decode($modelClientJson,1);
         $modelClientJsonToArray[$modelName][strtolower($method)] = $namespace.'\\'.$className;
 
+        $crMapFile = database_path('columns').''.DIRECTORY_SEPARATOR.'crMaps.json';
+        $crMapData = json_decode(File::get($crMapFile),1);
+
+        $crMapData[$this->argument('dir').'.'.$this->argument('client').'.'.$this->argument('method')]['class'] = $namespace.'\\'.$className;
+        $crMapData[$this->argument('dir').'.'.$this->argument('client').'.'.$this->argument('method')]['model'] = $this->argument('model');
+
+        File::put($crMapFile,Collection::make($crMapData)->toJson(JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
+
+
         File::put($modelClientJsonFile,Collection::make($modelClientJsonToArray)->toJson(JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
 
 
