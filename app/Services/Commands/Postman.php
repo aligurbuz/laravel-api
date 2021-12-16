@@ -5,6 +5,7 @@ namespace App\Services\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 
 class Postman extends Command
 {
@@ -40,6 +41,7 @@ class Postman extends Command
     public function handle()
     {
         $mapJson = json_decode(File::get(app_path('Docs').''.DIRECTORY_SEPARATOR.'map.json'),1);
+        $mockeryData = json_decode(File::get(app_path('Docs').''.DIRECTORY_SEPARATOR.'mockery.json'),1);
         $documentationConfig = config('documentation');
         $postmanIgnores = $documentationConfig['ignores'] ?? [];
         $collection = ucfirst($this->argument('collection') ?? config('app.name'));
@@ -62,9 +64,29 @@ class Postman extends Command
 
         ksort($dirList);
 
+
         foreach ($dirList as $dirFile => $dirKey){
             $mapContents = json_decode(File::get($fileList[$dirKey]),1);
             $mapItem = $mapContents['item'] ?? [];
+
+            foreach ($mapItem as $mapItemKey => $mapItemData){
+                if(isset($mapItemData['request']['method'])){
+                    $mapItemDataMethod = $mapItemData['request']['method'];
+                    $mockeryName = $mapItemDataMethod.'_'.$mapItemData['name'];
+                    if(isset($mockeryData[$mockeryName])){
+                        foreach ($mockeryData[$mockeryName] as $mockType => $mockValue){
+                            if($mockType=='body'){
+                                $mapContents['item'][$mapItemKey]['request']['body'] = array_merge(($mapItemData['request']['body'] ?? []),$mockeryData[$mockeryName]['body']);
+                            }
+                            if($mockType=='formdata'){
+                                $mapContents['item'][$mapItemKey]['request']['body'] = array_merge(($mapItemData['request']['body'] ?? []),$mockeryData[$mockeryName]['formdata']);
+                            }
+                        }
+
+
+                    }
+                }
+            }
 
             $list['item'][] = $mapContents;
         }
