@@ -76,10 +76,11 @@ class Postman extends Command
                 $mapItem[$mapItemKey] = $mapItemValue;
             }
 
-            $mapContents['item'] = $mapItem;
+            //$mapContents['item'] = $mapItem;
 
             $list['item'][] = $mapContents;
         }
+
 
         $postmanFile = base_path('postman').''.DIRECTORY_SEPARATOR.''.$collection.'.postman_collection.json';
 
