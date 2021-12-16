@@ -41,6 +41,7 @@ class Postman extends Command
     {
         $mapJson = json_decode(File::get(app_path('Docs').''.DIRECTORY_SEPARATOR.'map.json'),1);
         $documentationConfig = config('documentation');
+        $postmanIgnores = $documentationConfig['ignores'] ?? [];
         $collection = ucfirst($this->argument('collection') ?? config('app.name'));
 
         $list = [];
@@ -54,7 +55,9 @@ class Postman extends Command
 
         foreach ($fileList as $key => $maps){
             $split = explode('/',$maps);
-            $dirList[$split[9]] = $key;
+            if(!in_array($split[9],$postmanIgnores,true)){
+                $dirList[$split[9]] = $key;
+            }
         }
 
         ksort($dirList);
@@ -62,21 +65,6 @@ class Postman extends Command
         foreach ($dirList as $dirFile => $dirKey){
             $mapContents = json_decode(File::get($fileList[$dirKey]),1);
             $mapItem = $mapContents['item'] ?? [];
-
-            foreach ($mapItem as $mapItemKey => $mapItemValue){
-                $exceptList = [];
-                foreach (($mapItemValue['item'] ?? []) as $valueKey => $valueItem){
-                    if(!$this->isExceptMethod($valueItem['name'],$valueItem['request']['method'])){
-                        $exceptList[$valueKey] = $valueItem;
-                    }
-                }
-
-                $mapItemValue['item'] = array_values($exceptList);
-
-                $mapItem[$mapItemKey] = $mapItemValue;
-            }
-
-            //$mapContents['item'] = $mapItem;
 
             $list['item'][] = $mapContents;
         }
@@ -107,7 +95,7 @@ class Postman extends Command
             $list = $exceptMethods[$name];
         }
 
-        return (in_array($method,$list,1));
+        return (in_array($method,$list,true));
     }
 
     /**
