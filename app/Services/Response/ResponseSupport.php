@@ -203,7 +203,7 @@ abstract class ResponseSupport
      */
     public static function formatterSupplement(array $data = [],bool $merge = false) : void
     {
-        if(isProduction()===false){
+        if(isProduction()===false && request()->method()=='GET'){
             AppContainer::set(Constants::responseFormatterSupplement,$data,$merge);
         }
     }
