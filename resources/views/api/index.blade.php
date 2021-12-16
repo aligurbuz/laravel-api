@@ -924,6 +924,42 @@ wget --no-check-certificate --quiet \
 
                                 if($repository!==false){
                                     $extraPostQueries = $repository->getAddPostQueries();
+                                    $crMaps = json_decode(\Illuminate\Support\Facades\File::get(database_path('columns').''.DIRECTORY_SEPARATOR.'crMaps.json'),1);
+
+                                    $crColumnList = [];
+
+                                    foreach ($extraPostQueries as $extraClientKey => $crValue){
+                                        $extraClientKey = explode('|',$extraClientKey);
+                                        $crModel = $crMaps[$crValue]['model'] ?? 'none';
+                                        $crModelFile = \App\Constants::modelNamespace.'\\'.ucfirst($crModel);
+                                        if(class_exists($crModelFile)){
+                                            $crModelTable = (new $crModelFile)->getTable();
+                                            $crEntities = \App\Services\Db::entities($crModelTable);
+                                            $crColumns = $crEntities['columns'] ?? [];
+                                            $crBooleanValues = $crEntities['boolean_values'] ?? [];
+                                            $crTypes = $crEntities['types'] ?? [];
+                                            $crComments = $crEntities['comments'] ?? [];
+                                            $crRequireds = $crEntities['required_columns'] ?? [];
+
+                                            foreach ($crColumns as $crColumnKey => $crColumn){
+                                                if(
+                                                    getTableCode($crModel)!==$crColumn
+                                                    and $tableCode!==$crColumn
+                                                    and $crColumn!=='created_by'
+                                                    and $crColumn!=='created_at'
+                                                    and $crColumn!=='deleted_at'
+                                                    and $crColumn!=='deleted_by'
+                                                    and $crColumn!=='id'
+                                                    and $crColumn!=='updated_at'
+                                                    and $crColumn!=='updated_by'
+                                                    ){
+                                                    $crColumnList[$extraClientKey[0]][$crColumnKey] = $crColumn;
+                                                }
+                                            }
+                                        }
+                                    }
+
+
                                 }
 
                                 @endphp
@@ -992,6 +1028,52 @@ wget --no-check-certificate --quiet \
 
                                     </tbody>
                                 </table>
+
+                                    @foreach($crColumnList as $cckey => $ccitems)
+
+                                            <h3 style="color: #22863a;">{{ucfirst($cckey)}} Parameters:</h3>
+                                            <p><b>The values of the key named as ({{$cckey}}) in the body parameter are listed below.</b></p>
+
+                                            <table>
+                                                <thead>
+                                                <tr>
+                                                    <th style="width:200px; background-color: #999988;">{{$cckey}} Parameters</th>
+                                                    <th style ="background-color: #999988;">Type</th>
+                                                    <th style ="background-color: #999988;">Required</th>
+                                                    <th style ="background-color: #999988;">Description</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                @foreach($ccitems as $ccItemKey => $ccItemData)
+                                                <tr>
+                                                    <td><code class="language-plaintext highlighter-rouge">{{$ccItemData}}</code></td>
+
+
+                                                    @if(in_array($ccItemData,$crBooleanValues,true))
+                                                        <td><code class="language-plaintext highlighter-rouge">boolean</code></td>
+
+                                                    @else
+                                                        <td><code class="language-plaintext highlighter-rouge">{{$crTypes[$ccItemKey] ?? 'string'}}</code></td>
+
+                                                    @endif
+
+
+                                                    @if(in_array($ccItemData,$crRequireds,true))
+                                                        <td><code class="language-plaintext highlighter-rouge">true</code></td>
+                                                    @else
+                                                        <td><code class="language-plaintext highlighter-rouge">false</code></td>
+                                                    @endif
+
+                                                    <td><code class="language-plaintext highlighter-rouge">{{$crComments[$ccItemKey] ?? ''}}</code></td>
+
+                                                </tr>
+
+                                                @endforeach
+
+                                                </tbody>
+                                            </table>
+                                        @endforeach
 
 
                                 @foreach($arrayRules as $endpointName => $items)
