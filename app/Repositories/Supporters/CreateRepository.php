@@ -62,12 +62,10 @@ trait CreateRepository
                     cR($cr,$crData);
                 }
                 catch (Exception $exception){
-                    ExceptionFacade::customException($exception->getMessage().'('.trans('exception.crKey',['key' => $key]).')');
+                    ExceptionFacade::customException($exception->getMessage().' ('.trans('exception.crKey',['key' => $key]).')');
                 }
 
-                if($createStatus){
-                    $this->addPostQueryResults[$clientDataKey][$key] = AppContainer::get('crRepositoryInstance')->create();
-                }
+                $this->addPostQueryResults[$clientDataKey][$key] = $createStatus ? AppContainer::get('crRepositoryInstance')->create() : $data[$key];
             }
         }
     }
