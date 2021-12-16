@@ -920,6 +920,11 @@ wget --no-check-certificate --quiet \
                                     }
 
 
+                                $repository = \App\Repositories\Repository::$model();
+
+                                if($repository!==false){
+                                    $extraPostQueries = $repository->getAddPostQueries();
+                                }
 
                                 @endphp
                                 <table>
@@ -987,6 +992,7 @@ wget --no-check-certificate --quiet \
 
                                     </tbody>
                                 </table>
+
 
                                 @foreach($arrayRules as $endpointName => $items)
                                     @if($endpoint==$endpointName)
