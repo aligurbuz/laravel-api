@@ -61,6 +61,6 @@ class Factory extends FactoryManager
     public static function bindings() : void
     {
         static::bind('Storage',['files' => request()->allFiles()]);
-        static::bind('Email',['mailJob' => new EmailSender()]);
+        static::bind('Email',['mailer' => new EmailSender()]);
     }
 }
