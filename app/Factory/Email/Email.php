@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Factory\Email;
 
-use App\Jobs\EmailSender;
 use App\Mail\OrderShipped;
 use App\Factory\Email\Interfaces\EmailInterface;
 
@@ -38,6 +37,6 @@ class Email extends EmailManager implements EmailInterface
      */
     public function order() : void
     {
-        dispatch(new EmailSender(new OrderShipped()));
+        dispatch($this->binds['mailer'](new OrderShipped()));
     }
 }

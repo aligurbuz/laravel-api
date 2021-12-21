@@ -23,9 +23,9 @@ class EmailSender implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(object $mailObject)
+    public function __construct()
     {
-        $this->mailObject = $mailObject;
+
     }
 
     /**
@@ -36,5 +36,13 @@ class EmailSender implements ShouldQueue
     public function handle()
     {
         Mail::send($this->mailObject);
+    }
+
+    /**
+     * @param object $mailObject
+     */
+    public function __invoke(object $mailObject)
+    {
+        $this->mailObject = $mailObject;
     }
 }

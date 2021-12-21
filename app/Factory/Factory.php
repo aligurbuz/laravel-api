@@ -18,6 +18,7 @@ use App\Factory\Storage\Interfaces\StorageInterface;
 use App\Factory\Permission\Interfaces\PermissionInterface;
 use App\Factory\Collection\Interfaces\CollectionInterface;
 use App\Factory\Localization\Interfaces\LocalizationInterface;
+use App\Jobs\EmailSender;
 
 /**
  * Class Factory
@@ -60,5 +61,6 @@ class Factory extends FactoryManager
     public static function bindings() : void
     {
         static::bind('Storage',['files' => request()->allFiles()]);
+        static::bind('Email',['mailer' => new EmailSender()]);
     }
 }
