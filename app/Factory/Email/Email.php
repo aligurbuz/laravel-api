@@ -37,6 +37,6 @@ class Email extends EmailManager implements EmailInterface
      */
     public function order() : void
     {
-        dispatch($this->binds['mailer'](new OrderShipped()));
+        dispatch($this->binds['mailJob'](new OrderShipped()));
     }
 }
