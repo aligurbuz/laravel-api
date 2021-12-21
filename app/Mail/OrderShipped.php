@@ -29,8 +29,8 @@ class OrderShipped extends Mailable
     public function build()
     {
         return $this
-            ->from('alibilgegurbuz@gmail.com','Bronx Detail')
-            ->to(['galiant781@gmail.com'])
-            ->view('mail.order-shipped')->subject('test message');
+            ->from('verifiedMailAddress','name')
+            ->to(['recipientMails'])
+            ->view('mail.order-shipped')->subject('test messsage');
     }
 }
