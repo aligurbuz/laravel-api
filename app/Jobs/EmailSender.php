@@ -16,7 +16,7 @@ class EmailSender implements ShouldQueue
     /**
      * @var object
      */
-    protected object $mailObject;
+    protected object $mailJob;
 
     /**
      * Create a new job instance.
@@ -35,14 +35,14 @@ class EmailSender implements ShouldQueue
      */
     public function handle()
     {
-        Mail::send($this->mailObject);
+        Mail::send($this->mailJob);
     }
 
     /**
-     * @param object $mailObject
+     * @param object $mailJob
      */
-    public function __invoke(object $mailObject)
+    public function __invoke(object $mailJob)
     {
-        $this->mailObject = $mailObject;
+        $this->$mailJob = $mailJob;
     }
 }
