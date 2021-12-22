@@ -20,6 +20,11 @@ class Email extends EmailManager implements EmailInterface
 	 */
 	protected array $binds = [];
 
+    /**
+     * @var object
+     */
+    protected object $mailer;
+
 	/**
 	 * Email constructor
 	 *
@@ -28,6 +33,7 @@ class Email extends EmailManager implements EmailInterface
 	public function __construct(array $binds = [])
 	{
 		$this->binds = $binds;
+        $this->mailer = $this->binds['mailer'] ?? new class {};
 	}
 
     /**
@@ -37,6 +43,6 @@ class Email extends EmailManager implements EmailInterface
      */
     public function order() : void
     {
-        dispatch($this->binds['mailer'](new OrderShipped()));
+        dispatch(($this->mailer)(new OrderShipped()));
     }
 }
