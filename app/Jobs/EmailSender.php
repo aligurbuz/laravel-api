@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Mail\Mailable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
@@ -25,7 +26,7 @@ class EmailSender implements ShouldQueue
      */
     public function __construct()
     {
-
+        //
     }
 
     /**
@@ -39,9 +40,9 @@ class EmailSender implements ShouldQueue
     }
 
     /**
-     * @param object $mailJob
+     * @param Mailable $mailJob
      */
-    public function __invoke(object $mailJob)
+    public function __invoke(Mailable $mailJob)
     {
         $this->$mailJob = $mailJob;
     }
