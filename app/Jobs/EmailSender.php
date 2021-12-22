@@ -15,9 +15,9 @@ class EmailSender implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     /**
-     * @var object
+     * @var Mailable
      */
-    protected object $mailJob;
+    protected Mailable $mailable;
 
     /**
      * Create a new job instance.
@@ -36,14 +36,14 @@ class EmailSender implements ShouldQueue
      */
     public function handle()
     {
-        Mail::send($this->mailJob);
+        Mail::send($this->mailable);
     }
 
     /**
-     * @param Mailable $mailJob
+     * @param Mailable $mailable
      */
-    public function __invoke(Mailable $mailJob)
+    public function __invoke(Mailable $mailable)
     {
-        $this->$mailJob = $mailJob;
+        $this->mailable = $mailable;
     }
 }
