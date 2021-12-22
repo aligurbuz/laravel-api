@@ -31,6 +31,6 @@ class OrderShipped extends Mailable
         return $this
             ->from('verifiedMailAddress','name')
             ->to(['recipientMails'])
-            ->view('mail.order-shipped')->subject('test messsage');
+            ->view('mail.order-shipped')->subject('test message');
     }
 }
