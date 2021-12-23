@@ -2,6 +2,7 @@
 
 return [
 
+    'authenticate' => env('Authenticate',true),
     'apikeyString' => 'apikey',
     'defaultApiResponseFormatter' => 'json',
     'productBaseUrl' => env('productBaseUrl','productBaseUrl'),
