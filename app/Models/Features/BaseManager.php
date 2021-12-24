@@ -129,7 +129,16 @@ trait BaseManager
         $globalScopes               = config('repository.globalScopes');
         $repository                 = $this->getRepository();
         $deniedEagerLoadings        = (is_object($repository) && method_exists($repository,'getDeniedEagerLoadings')) ? $repository->getDeniedEagerLoadings() : [];
+
         $clientEagerLoadingData     = request()->query->get('with',[]);
+
+        if(count($deniedEagerLoadings)){
+            foreach ($deniedEagerLoadings as $deniedEagerLoading){
+                if(isset($clientEagerLoadingData[$deniedEagerLoading])){
+                    Exception::customException(trans('exception.deniedEagerLoadings',['key' => $deniedEagerLoading]));
+                }
+            }
+        }
 
         foreach ($relationsAccordingToCode as $modelRelation){
 
@@ -139,14 +148,6 @@ trait BaseManager
             ){
                 $modelNamespace = Constants::modelNamespace.'\\'.$modelRelation;
                 $withModelKey = $this->getModelNormalize($modelRelation);
-
-                if(
-                    count($deniedEagerLoadings)
-                    && isset($clientEagerLoadingData[$withModelKey])
-                    &&  in_array($withModelKey,$deniedEagerLoadings,true)
-                ){
-                    Exception::customException(trans('exception.deniedEagerLoadings',['key' => $withModelKey]));
-                }
 
                 if(!in_array($camelCaseTableCode,$globalScopes)){
                     if(class_exists($modelNamespace) && !isset($this->withQuery[$withModelKey])){

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Repositories\Supporters;
 
+use App\Constants;
 use Closure;
 use App\Services\Db;
 use App\Services\Client;
@@ -250,6 +251,16 @@ trait CacheRepository
             $globalScopes = config('repository.globalScopes');
 
             foreach ($relations[$model] as $relation){
+                $relationModelNamespace = Constants::modelNamespace.'\\'.$relation;
+
+                if(class_exists($relationModelNamespace)){
+                    $relationModelNamespaceInstance = new $relationModelNamespace;
+                    $relationDeniedLists = $relationModelNamespaceInstance->getRepository()->getDeniedEagerLoadings();
+
+                    if(in_array(Str::camel($model),$relationDeniedLists,true)){
+                        continue;
+                    }
+                }
                 $camelCaseTableCode = Str::camel(getTableCode($relation));
 
                 if(!in_array($camelCaseTableCode,$globalScopes,true)){
