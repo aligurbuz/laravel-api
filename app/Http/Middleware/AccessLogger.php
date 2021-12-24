@@ -22,6 +22,10 @@ class AccessLogger
     {
         $response = $next($request);
 
+        if(config('app.logger')===false){
+            return $response;
+        }
+
         if($this->isRouteLogger()) return $response;
 
         $standardResponse = AppContainer::get('response',[]);
