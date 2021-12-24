@@ -20,6 +20,10 @@ class AcceptLanguage
      */
     public function handle(Request $request, Closure $next): mixed
     {
+        if(config('app.language')===false){
+            return $next($request);
+        }
+
         // It checks the accept-language value sent
         // by the client and throws an exception if necessary.
         $acceptLanguage = $this->checkAcceptLanguage($request);

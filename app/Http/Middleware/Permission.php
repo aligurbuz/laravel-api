@@ -23,7 +23,7 @@ class Permission
      */
     public function handle(Request $request, Closure $next): mixed
     {
-        if(in_array(who(),$this->apiKeys,true)){
+        if(config('app.permission')===true && in_array(who(),$this->apiKeys,true)){
             if(!Factory::permission()->checkEndpoint()){
                 return Exception::permissionException();
             }

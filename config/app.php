@@ -4,6 +4,8 @@ return [
 
     'authenticate' => env('Authenticate',true),
     'logger' => env('Logger',true),
+    'permission' => env('Permission',true),
+    'language' => env('Language',true),
     'apikeyString' => 'apikey',
     'defaultApiResponseFormatter' => 'json',
     'productBaseUrl' => env('productBaseUrl','productBaseUrl'),
