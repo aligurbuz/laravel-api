@@ -131,4 +131,27 @@ class Request
 
         return $this;
     }
+
+    /**
+     * get requesting method to api.
+     *
+     * @param string|null $fullUrl
+     * @return $this
+     */
+    public function get(?string $fullUrl = null) : self
+    {
+        $ch = curl_init();
+        $query = http_build_query($this->data);
+        $url = $fullUrl ?? ($this->url.'/'.$this->endpoint.'?'.$query);
+        curl_setopt($ch, CURLOPT_URL,$url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $this->headers);
+
+        $result = curl_exec ($ch);
+        curl_close ($ch);
+
+        $this->result = json_decode($result,1);
+
+        return $this;
+    }
 }
