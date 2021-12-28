@@ -41,9 +41,12 @@ class EmailSender implements ShouldQueue
 
     /**
      * @param Mailable $mailable
+     * @return $this
      */
-    public function __invoke(Mailable $mailable)
+    public function __invoke(Mailable $mailable) : EmailSender
     {
         $this->mailable = $mailable;
+
+        return $this;
     }
 }
