@@ -68,7 +68,7 @@ class Request
     public function setHeaders(array $headers = []) : self
     {
         $init = [
-            'Apikey:'.$this->apikey,
+            //'Apikey:'.$this->apikey,
             'Content-Type:'.$this->contentType
         ];
 
