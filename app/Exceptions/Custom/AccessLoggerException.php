@@ -22,7 +22,7 @@ class AccessLoggerException extends Exception
      * @param int $code
      * @param Throwable|null $previous
      */
-    public function __construct($message = "access logger exception", $code = 400, Throwable $previous = null)
+    public function __construct($message = "access logger exception", $code = 500, Throwable $previous = null)
     {
         parent::__construct($this->setMessage($message), $code, $previous);
     }
