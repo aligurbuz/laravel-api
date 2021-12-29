@@ -43,6 +43,6 @@ class Email extends EmailManager implements EmailInterface
      */
     public function order() : void
     {
-        dispatch(($this->mailer)(new OrderShipped()));
+        $this->queue(($this->mailer)(new OrderShipped()));
     }
 }
