@@ -68,17 +68,17 @@ if(!function_exists('decodeString')){
     /**
      * the given hash string makes decoding
      *
-     * @param string $string
+     * @param string $hash
      * @return string
      */
-    function decodeString(string $string) : string
+    function decodeString(string $hash) : string
     {
         /*** @var HashGenerator $hashGenerator */
         $hashGenerator = AppContainer::use('hashGenerator',function(){
             return new HashGenerator();
         });
 
-        return $hashGenerator->decode($string);
+        return $hashGenerator->decode($hash);
     }
 }
 
