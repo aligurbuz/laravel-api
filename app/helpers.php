@@ -4,6 +4,7 @@ use App\Constants;
 use App\Factory\Factory;
 use App\Services\Client;
 use App\Services\Git;
+use App\Services\HashGenerator;
 use App\Services\Service;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
@@ -40,6 +41,44 @@ if(!function_exists('publicPath')){
     function publicPath() : string
     {
         return AppContainer::get('public_path');
+    }
+}
+
+if(!function_exists('encodeString')){
+
+    /**
+     * the given string value makes hashing
+     *
+     * @param string $string
+     * @return string
+     */
+    function encodeString(string $string) : string
+    {
+        /*** @var HashGenerator $hashGenerator */
+        $hashGenerator = AppContainer::use('hashGenerator',function(){
+            return new HashGenerator();
+        });
+
+        return $hashGenerator->encode($string);
+    }
+}
+
+if(!function_exists('decodeString')){
+
+    /**
+     * the given hash string makes decoding
+     *
+     * @param string $string
+     * @return string
+     */
+    function decodeString(string $string) : string
+    {
+        /*** @var HashGenerator $hashGenerator */
+        $hashGenerator = AppContainer::use('hashGenerator',function(){
+            return new HashGenerator();
+        });
+
+        return $hashGenerator->decode($string);
     }
 }
 
