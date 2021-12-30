@@ -70,27 +70,46 @@ class Postman extends Command
             $mapItem = $mapContents['item'] ?? [];
 
             foreach ($mapItem as $mapItemKey => $mapItemData){
-                if(isset($mapItemData['request']['method'])){
-                    $mapItemDataMethod = $mapItemData['request']['method'];
-                    $mockeryName = $mapItemDataMethod.'_'.$mapItemData['name'];
-                    if(isset($mockeryData[$mockeryName])){
-                        foreach ($mockeryData[$mockeryName] as $mockType => $mockValue){
-                            if($mockType=='body'){
-                                $mapContents['item'][$mapItemKey]['request']['body'] = array_merge(($mapItemData['request']['body'] ?? []),$mockeryData[$mockeryName]['body']);
-                            }
-                            if($mockType=='formdata'){
-                                $mapContents['item'][$mapItemKey]['request']['body'] = array_merge(($mapItemData['request']['body'] ?? []),$mockeryData[$mockeryName]['formdata']);
+
+                if(isset($mapItemData['item'])){
+                    foreach ($mapItemData['item'] as $mapItemItemKey => $mapItemItemData){
+                        if(isset($mapItemItemData['request']['method'])){
+                            $mapItemDataMethod = $mapItemItemData['request']['method'];
+                            $mockeryName = $mapItemDataMethod.'_'.$mapItemItemData['name'];
+                            if(isset($mockeryData[$mockeryName])){
+                                foreach ($mockeryData[$mockeryName] as $mockType => $mockValue){
+                                    if($mockType=='body'){
+                                        $mapContents['item'][$mapItemKey]['item'][$mapItemItemKey]['request']['body'] = array_merge(($mapItemItemData['request']['body'] ?? []),$mockeryData[$mockeryName]['body']);
+                                    }
+                                    if($mockType=='formdata'){
+                                        $mapContents['item'][$mapItemKey]['item'][$mapItemItemKey]['request']['body'] = array_merge(($mapItemItemData['request']['body'] ?? []),$mockeryData[$mockeryName]['formdata']);
+                                    }
+                                }
                             }
                         }
-
-
                     }
                 }
+                else{
+                    if(!isset($mapItemData['item']) && isset($mapItemData['request']['method'])){
+                        $mapItemDataMethod = $mapItemData['request']['method'];
+                        $mockeryName = $mapItemDataMethod.'_'.$mapItemData['name'];
+                        if(isset($mockeryData[$mockeryName])){
+                            foreach ($mockeryData[$mockeryName] as $mockType => $mockValue){
+                                if($mockType=='body'){
+                                    $mapContents['item'][$mapItemKey]['request']['body'] = array_merge(($mapItemData['request']['body'] ?? []),$mockeryData[$mockeryName]['body']);
+                                }
+                                if($mockType=='formdata'){
+                                    $mapContents['item'][$mapItemKey]['request']['body'] = array_merge(($mapItemData['request']['body'] ?? []),$mockeryData[$mockeryName]['formdata']);
+                                }
+                            }
+                        }
+                    }
+                }
+
             }
 
             $list['item'][] = $mapContents;
         }
-
 
         $postmanFile = base_path('postman').''.DIRECTORY_SEPARATOR.''.$collection.'.postman_collection.json';
 
