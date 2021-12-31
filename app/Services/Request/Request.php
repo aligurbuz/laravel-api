@@ -113,12 +113,14 @@ class Request
     /**
      * post requesting method to api.
      *
+     * @param string|null $fullUrl
      * @return $this
      */
-    public function post() : self
+    public function post(?string $fullUrl = null) : self
     {
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL,$this->url.'/'.$this->endpoint);
+        $url = $fullUrl ?? ($this->url.'/'.$this->endpoint);
+        curl_setopt($ch, CURLOPT_URL,$url);
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS,json_encode($this->data));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
