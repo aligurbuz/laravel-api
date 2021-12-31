@@ -18,9 +18,9 @@ use App\Http\Controllers\Api\DocumentationController;
 Route::get('/doc', [DocumentationController::class,'index']);
 
 Route::get('/postman/collection',function(){
-    return json_encode(Postman::collection());
+    return response()->json(Postman::collection());
 });
 
 Route::get('/postman/environment',function(){
-    return json_encode(Postman::environment());
+    return response()->json(Postman::environment());
 });
