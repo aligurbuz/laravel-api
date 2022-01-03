@@ -21,7 +21,7 @@ class Response extends ResponseSupport
      *
      * @var array
      */
-    protected static array $httpStatusCodes = ['POST' => 201];
+    protected static array $httpStatusCodes = [];
 
     /**
      * @var array|int[]
