@@ -15,11 +15,13 @@ return [
     'exceptMethods' => [
         //'all' => ['GET','PUT'],
         //'countries/districts' => ['GET','PUT','POST'],
+        //'countries/districts' => ['GET','PUT','POST'],
     ],
     "ignores" => [
         "SuperAdmins",
         "Mix",
-        "Gate"
+        "Gate",
+        "Register"
     ],
     "arrayRules" => [
         'serviceName' => [
