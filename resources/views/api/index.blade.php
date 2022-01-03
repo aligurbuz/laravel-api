@@ -827,6 +827,7 @@ wget --no-check-certificate --quiet \
                             }
 
                             $clientDataInstance = $clientDataList[$clientMethodType] ?? null;
+
                             @endphp
 
                                 @if(!in_array($value['name'],$listNames))
@@ -870,11 +871,51 @@ wget --no-check-certificate --quiet \
 
 
                                 @if($method=='GET')
-                                    <div style="padding:10px; background-color:#aaffaa;;">
-                                        > <b> You can directly (HTTP GET) request this endpoint without a query parameter.</b>
-                                    </div>
 
-                                    <br>
+                                        @php
+
+                                            $getClientClassRule = [];
+
+                                                if(class_exists($clientDataInstance)){
+                                                     $getClientClass = (new $clientDataInstance());
+                                                     $getClientClassRule = $getClientClass->getRule();
+
+                                        @endphp
+
+                                    @if(count($getClientClassRule))
+
+                                        <table>
+                                            <thead>
+                                            <tr>
+                                                <th style="width:200px;">Query Parameters</th>
+                                                <th>Rule</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+
+                                            @foreach($getClientClassRule as $getKey => $getRule)
+                                            <tr>
+                                                <td>{{$getKey}}</td>
+                                                <td>{{$getRule}}</td>
+                                            </tr>
+
+                                            @endforeach
+
+                                            </tbody>
+                                        </table>
+
+                                        @else
+                                            <div style="padding:10px; background-color:#aaffaa;;">
+                                                > <b> You can directly (HTTP GET) request this endpoint without a query parameter.</b>
+                                            </div>
+
+                                        @endif
+
+                                        @php
+                                            }
+
+                                        @endphp
+
                                         <div style="padding:10px; background-color:#eeeeee;">
                                             > <b> see QUERY PARAMETERS link for response management related to HTTP GET method..</b>
                                         </div>
@@ -893,8 +934,8 @@ wget --no-check-certificate --quiet \
 
                                         @endif
 
-
                                     @endif
+
 
                                 @php
 
