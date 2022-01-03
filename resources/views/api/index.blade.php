@@ -805,6 +805,7 @@ wget --no-check-certificate --quiet \
 
 
                             $entities = \App\Services\Db::entities(\App\Constants::modelNamespace.'\\'.$model);
+                            $indexes = $entities['indexes'] ?? [];
                             $comments = \App\Services\Db::comments(\App\Constants::modelNamespace.'\\'.$model);
                             $booleans = \App\Services\Db::booleanValues(\App\Constants::modelNamespace.'\\'.$model);
                             $types = \App\Services\Db::types(\App\Constants::modelNamespace.'\\'.$model);
@@ -866,6 +867,34 @@ wget --no-check-certificate --quiet \
 
                                     <li><strong>Url</strong> : {{$value['request']['url']['raw']}}</li>
                                 </ul>
+
+
+                                @if($method=='GET')
+                                    <div style="padding:10px; background-color:#aaffaa;;">
+                                        > <b> You can directly (HTTP GET) request this endpoint without a query parameter.</b>
+                                    </div>
+
+                                    <br>
+                                        <div style="padding:10px; background-color:#eeeeee;">
+                                            > <b> see QUERY PARAMETERS link for response management related to HTTP GET method..</b>
+                                        </div>
+
+                                    <br>
+
+                                    @if(count($indexes))
+                                    <div style="color: #22863a; font-weight: bold;">Filterable Fields :</div>
+                                    <ul>
+                                        @foreach($indexes as $index)
+                                            @if($index!=='id')
+                                        <li>{{$index}}</li>
+                                            @endif
+                                        @endforeach
+                                    </ul>
+
+                                        @endif
+
+
+                                    @endif
 
                                 @php
 
