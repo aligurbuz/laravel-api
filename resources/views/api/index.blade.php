@@ -880,6 +880,7 @@ wget --no-check-certificate --quiet \
                                                      $getClientClass = (new $clientDataInstance());
                                                      $getClientClassRule = $getClientClass->getRule();
 
+
                                         @endphp
 
                                     @if(count($getClientClassRule))
@@ -913,8 +914,18 @@ wget --no-check-certificate --quiet \
 
                                         @php
                                             }
+                                        else{
+                                            @endphp
+
+                                        <div style="padding:10px; background-color:#aaffaa;;">
+                                            > <b> You can directly (HTTP GET) request this endpoint without a query parameter.</b>
+                                        </div>
+                                    @php
+                                        }
+
 
                                         @endphp
+
 
                                         <div style="padding:10px; background-color:#eeeeee;">
                                             > <b> see QUERY PARAMETERS link for response management related to HTTP GET method..</b>
