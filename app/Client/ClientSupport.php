@@ -52,7 +52,7 @@ trait ClientSupport
      */
     protected function password(): ?string
     {
-        if(!is_null($this->password())){
+        if(!is_null($this->password)){
             return Hash::make($this->password);
         }
 
