@@ -60,7 +60,6 @@ class PermissionCommand extends Command
      */
     public function handle()
     {
-        return 0;
         $routes = collect(Route::getRoutes())->map(function ($route) { return $route->uri(); })->toArray();
 
         $list = [];
@@ -86,7 +85,7 @@ class PermissionCommand extends Command
                 DB::table('permissions')->where('permission_code',$createList['permission_code'])->delete();
                 DB::table('Localizations')->where('localized_code',$createList['permission_code'])->delete();
 
-                Repository::permission()->create([$createList]);
+                DB::table('permissions')->insert($createList);
             }
 
             $this->warn('permission updating has been successfully');
