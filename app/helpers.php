@@ -17,6 +17,7 @@ use App\Models\Entities\EntityMap;
 use Illuminate\Support\Facades\DB;
 use App\Facades\Authenticate\ApiKey;
 use Illuminate\Support\Facades\Route;
+use App\Repositories\Repository;
 
 if(!function_exists('entity')){
 
@@ -169,11 +170,18 @@ if(!function_exists('cR')){
      *
      * @param string $client
      * @param array $data
+     * @param string|null $repositoryNameForCreate
      * @return array
      */
-    function cR(string $client,array $data = []): array
+    function cR(string $client,array $data = [],?string $repositoryNameForCreate = null): array
     {
-        return Factory::client(['client' => $client])->cR($data);
+        $factory = Factory::client(['client' => $client])->cR($data);
+
+        if(!is_null($repositoryNameForCreate)){
+            return Repository::$repositoryNameForCreate()->create();
+        }
+
+        return $factory;
     }
 }
 
