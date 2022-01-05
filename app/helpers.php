@@ -170,15 +170,17 @@ if(!function_exists('cR')){
      *
      * @param string $client
      * @param array $data
-     * @param string|null $repositoryNameForCreate
+     * @param string|null $repositoryName
      * @return array
      */
-    function cR(string $client,array $data = [],?string $repositoryNameForCreate = null): array
+    function cR(string $client,array $data = [],?string $repositoryName = null): array
     {
+        $clientNames = explode('.',$client);
+
         $factory = Factory::client(['client' => $client])->cR($data);
 
-        if(!is_null($repositoryNameForCreate)){
-            return Repository::$repositoryNameForCreate()->create();
+        if(!is_null($repositoryName)){
+            return Repository::$repositoryName()->{$clientNames[2]}();
         }
 
         return $factory;
