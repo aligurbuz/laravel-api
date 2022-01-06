@@ -13,7 +13,7 @@ class AppNameCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'name {name} {default?}';
+    protected $signature = 'name {name}';
 
     /**
      * The console command description.
@@ -39,14 +39,11 @@ class AppNameCommand extends Command
      */
     public function handle()
     {
-        $default = $this->argument('default');
         $envFile = File::get('.env');
         $name = $this->argument('name');
 
-        if($default=='default'){
-            $change = str_replace('APP_NAME=Api','APP_NAME='.ucfirst($name).'',$envFile);
-            $change = str_replace('DB_DATABASE=api','DB_DATABASE='.$name.'',$change);
-        }
+        $change = str_replace('APP_NAME=Api','APP_NAME='.ucfirst($name).'',$envFile);
+        $change = str_replace('DB_DATABASE=api','DB_DATABASE='.$name.'',$change);
 
         File::put('.env',$change);
 
