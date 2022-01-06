@@ -27,16 +27,6 @@ class SuperAdminsRepository extends EloquentRepository implements SuperAdminsRep
 	 */
 	protected array $ranges = [];
 
-    /**
-     * SuperAdminsRepository constructor.
-     */
-	public function __construct()
-    {
-        if(app()->runningInConsole()===false && ApiKey::isSuperAdmin() === false){
-            Exception::grandAuthenticateException();
-        }
-    }
-
 	/**
 	 * get auto SuperAdminsRepository scope method
 	 *
