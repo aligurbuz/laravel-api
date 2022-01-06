@@ -143,18 +143,22 @@ class RepositoryCommand extends Command
 
         $afterCreate = $class->addMethod('eventFireAfterCreate');
         $afterCreate->addParameter('result',[])->setType('array');
+        $afterCreate->addParameter('clientData',[])->setType('array');
         $afterCreate->setBody('//')->setReturnType('void');
         $afterCreate->addComment('the fired event after create method for repository')
             ->addComment('')
             ->addComment('@param array $result')
+            ->addComment('@param array $clientData')
             ->addComment('@return void');
 
         $afterUpdate = $class->addMethod('eventFireAfterUpdate');
         $afterUpdate->addParameter('result',[])->setType('array');
+        $afterUpdate->addParameter('clientData',[])->setType('array');
         $afterUpdate->setBody('//')->setReturnType('void');
         $afterUpdate->addComment('the fired event after update method for repository')
             ->addComment('')
             ->addComment('@param array $result')
+            ->addComment('@param array $clientData')
             ->addComment('@return void');
 
         touch($file = $directory.''.DIRECTORY_SEPARATOR.''.$className.'.php');
