@@ -41,6 +41,31 @@ class PermissionsRepository extends EloquentRepository implements PermissionsRep
 	}
 
     /**
+     * the fired event after create method for repository
+     *
+     * @param array $result
+     * @param array $clientData
+     * @return void
+     */
+    public function eventFireAfterCreate(array $result = [],array $clientData = []): void
+    {
+        //
+    }
+
+
+    /**
+     * the fired event after update method for repository
+     *
+     * @param array $result
+     * @param array $clientData
+     * @return void
+     */
+    public function eventFireAfterUpdate(array $result = [],array $clientData = []): void
+    {
+        //
+    }
+
+    /**
      * get endpoint criteria for permission repository
      *
      * @param string|null $endpoint

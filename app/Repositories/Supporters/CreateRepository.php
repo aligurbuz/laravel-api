@@ -93,7 +93,7 @@ trait CreateRepository
                 }
 
                 if(method_exists($this,'eventFireAfterCreate')){
-                    $this->eventFireAfterCreate($arrayResults);
+                    $this->eventFireAfterCreate($arrayResults,$clientData);
                 }
 
                 $list[] = $arrayResults;

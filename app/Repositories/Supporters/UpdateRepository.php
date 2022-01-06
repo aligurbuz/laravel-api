@@ -96,7 +96,9 @@ trait UpdateRepository
     {
         $queryList = [];
 
-        foreach ($this->getClientData($data) as $dataKey => $data){
+        $updateClientData = $this->getClientData($data);
+
+        foreach ($updateClientData as $dataKey => $data){
             $baseQuery  =  $this->getBaseQueryForUpdate($data,$id);
             $oldData    =  $baseQuery->get()->toArray();
 
@@ -128,7 +130,7 @@ trait UpdateRepository
             $queryList[] = $result = ($baseQuery->get()->toArray())[0] ?? [];
 
             if(method_exists($this,'eventFireAfterUpdate')){
-                $this->eventFireAfterUpdate($result);
+                $this->eventFireAfterUpdate($result,$updateClientData);
             }
         }
 

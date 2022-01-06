@@ -37,6 +37,31 @@ class LocalizationsRepository extends EloquentRepository implements Localization
 	}
 
     /**
+     * the fired event after create method for repository
+     *
+     * @param array $result
+     * @param array $clientData
+     * @return void
+     */
+    public function eventFireAfterCreate(array $result = [],array $clientData = []): void
+    {
+        //
+    }
+
+
+    /**
+     * the fired event after update method for repository
+     *
+     * @param array $result
+     * @param array $clientData
+     * @return void
+     */
+    public function eventFireAfterUpdate(array $result = [],array $clientData = []): void
+    {
+        //
+    }
+
+    /**
      * finds data by localized_code column
      *
      * @param $localizedCode
