@@ -41,7 +41,7 @@ class AppNameCommand extends Command
     {
         $envFile = File::get('.env');
         $name = $this->argument('name');
-        $change = str_replace('APP_NAME=Laravel','APP_NAME='.ucfirst($name).'',$envFile);
+        $change = str_replace('APP_NAME=Api','APP_NAME='.ucfirst($name).'',$envFile);
         $change = str_replace('DB_DATABASE=api','DB_DATABASE='.$name.'',$change);
 
         File::put('.env',$change);
