@@ -4,7 +4,6 @@ namespace App\Services\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\File;
 
 class DatabaseCreatorCommand extends Command
 {
@@ -13,7 +12,7 @@ class DatabaseCreatorCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'create:database';
+    protected $signature = 'create:database {name}';
 
     /**
      * The console command description.
@@ -39,7 +38,7 @@ class DatabaseCreatorCommand extends Command
      */
     public function handle()
     {
-        if(app()->runningInConsole() && !File::exists('checkDb')){
+        if(app()->runningInConsole()){
             $databases = DB::select('SHOW DATABASES');
 
             $list = [];
@@ -48,11 +47,10 @@ class DatabaseCreatorCommand extends Command
                 $list[] = $database->Database;
             }
 
-            $appDatabase = config('database.connections.'.config('database.default').'.database');
+            $name = $this->argument('name');
 
-            if(!in_array($appDatabase,$list)){
-                DB::select('CREATE DATABASE '.$appDatabase);
-                File::put('checkDb','');
+            if(!in_array($name,$list)){
+                DB::select('CREATE DATABASE '.$name);
             }
         }
         return 0;
