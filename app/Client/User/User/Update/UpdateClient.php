@@ -10,7 +10,7 @@ use App\Models\User;
  * Class GetClient
  * @package App\Client\User
  */
-class UpdateUserClient extends Client
+class UpdateClient extends Client
 {
     use GeneratorTrait,ClientAutoGeneratorTrait;
 

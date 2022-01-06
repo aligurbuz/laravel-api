@@ -11,7 +11,7 @@ use App\Client\ClientAutoGeneratorTrait;
  * Class GetClient
  * @package App\Client\User
  */
-class CreateUserClient extends Client
+class CreateClient extends Client
 {
     use GeneratorTrait,ClientAutoGeneratorTrait;
 

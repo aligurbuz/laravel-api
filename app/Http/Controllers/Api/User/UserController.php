@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Api\User;
 
 use App\Http\Controllers\Api\ApiController;
-use App\Client\User\User\Get\GetUserClient;
-use App\Client\User\User\Update\UpdateUserClient;
-use App\Client\User\User\Create\CreateUserClient;
+use App\Client\User\User\Get\GetClient;
+use App\Client\User\User\Update\UpdateClient;
+use App\Client\User\User\Create\CreateClient;
 use App\Repositories\Resources\User\Contracts\UserRepositoryContract;
 
 /**
@@ -21,11 +21,11 @@ class UserController extends ApiController
     /**
      * get users data
      *
-     * @param GetUserClient $client
+     * @param GetClient $client
      * @param UserRepositoryContract $userRepository
      * @return array
      */
-    public function get(GetUserClient $client, UserRepositoryContract $userRepository) : array
+    public function get(GetClient $client, UserRepositoryContract $userRepository) : array
     {
         $client->handle();
         return $userRepository->get();
@@ -34,11 +34,11 @@ class UserController extends ApiController
     /**
      * get users data
      *
-     * @param CreateUserClient $client
+     * @param CreateClient $client
      * @param UserRepositoryContract $userRepository
      * @return array|object
      */
-    public function create(CreateUserClient $client, UserRepositoryContract $userRepository) : array|object
+    public function create(CreateClient $client, UserRepositoryContract $userRepository) : array|object
     {
         $client->handle();
 
@@ -51,11 +51,11 @@ class UserController extends ApiController
     /**
      * get users data
      *
-     * @param UpdateUserClient $client
+     * @param UpdateClient $client
      * @param UserRepositoryContract $userRepository
      * @return array|object
      */
-    public function update(UpdateUserClient $client, UserRepositoryContract $userRepository) : array|object
+    public function update(UpdateClient $client, UserRepositoryContract $userRepository) : array|object
     {
         $client->handle();
         return $userRepository->update();

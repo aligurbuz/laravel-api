@@ -9,7 +9,7 @@ use App\Client\ClientAutoGeneratorTrait;
  * Class GetClient
  * @package App\Client\User
  */
-class GetUserClient extends Client
+class GetClient extends Client
 {
     use GeneratorTrait,ClientAutoGeneratorTrait;
 
