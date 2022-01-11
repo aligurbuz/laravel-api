@@ -33,7 +33,7 @@ class CreateRegistrations extends Migration
             $table->timestamps();
         });
 
-        pushMigration('registrations','registrations','registration');
+        pushMigration('registration','registration','registration');
     }
 
     /**
