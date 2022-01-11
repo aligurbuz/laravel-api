@@ -936,9 +936,16 @@ wget --no-check-certificate --quiet \
                                     @if(count($indexes))
                                     <div style="color: #22863a; font-weight: bold;">Filterable Fields :</div>
                                     <ul>
+
+                                        @php
+                                        $indexWhiteList = [];
+                                        @endphp
                                         @foreach($indexes as $index)
-                                            @if($index!=='id')
+                                            @if($index!=='id' && !in_array($index,$indexWhiteList,true))
                                         <li>{{$index}}</li>
+                                                @php
+                                                $indexWhiteList[] = $index;
+                                                @endphp
                                             @endif
                                         @endforeach
                                     </ul>
