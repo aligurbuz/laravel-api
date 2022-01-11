@@ -37,6 +37,6 @@ trait GeneratorTrait
      */
     public function roleCodeGenerator() : int
     {
-        return Factory::role()->createAdministrator()[0]->role_code;
+        return Factory::role()->createAdministrator()[0]['role_code'];
     }
 }
