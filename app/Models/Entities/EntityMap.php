@@ -6,6 +6,15 @@ class EntityMap
 {
     /**
      * @param object $query
+     * @return Registration
+     */
+    public function registration(object $query) : Registration
+    {
+        return new Registration($query);
+    }
+    
+    /**
+     * @param object $query
      * @return UserPhoto
      */
     public function userPhoto(object $query) : UserPhoto

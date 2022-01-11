@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Repositories;
 
 use App\Repositories\Resources\User\Contracts\UserRepositoryContract;
+use App\Repositories\Resources\Registration\Contracts\RegistrationRepositoryContract;
 use App\Repositories\Resources\User\Contracts\PhotosRepositoryContract;
 use App\Repositories\Resources\Timezones\Contracts\TimezonesRepositoryContract;
 use App\Repositories\Resources\Currencies\Contracts\CurrenciesRepositoryContract;
@@ -25,6 +26,16 @@ use App\Repositories\Resources\Countries\Contracts\CountriesRepositoryContract;
  */
 class Repository
 {
+    /**
+     * get registration repository instance
+     *
+     * @return RegistrationRepositoryContract
+     */
+    public static function registration() : RegistrationRepositoryContract
+    {
+        return app()->get(RegistrationRepositoryContract::class);
+    }
+    
     /**
      * get userPhoto repository instance
      *

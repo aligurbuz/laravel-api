@@ -26,5 +26,9 @@
     "User/photos": {
         "controller": "Photos",
         "dir": "User"
+    },
+    "Registration/registration": {
+        "controller": "Registration",
+        "dir": "Registration"
     }
 }

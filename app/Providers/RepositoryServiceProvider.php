@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Repositories\Resources\Registration\Contracts\RegistrationRepositoryContract;
+use App\Repositories\Resources\Registration\RegistrationRepository;
 use App\Repositories\Resources\User\Contracts\PhotosRepositoryContract;
 use App\Repositories\Resources\User\PhotosRepository;
 use App\Repositories\Resources\Timezones\Contracts\TimezonesRepositoryContract;
@@ -55,6 +57,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(CurrenciesRepositoryContract::class,CurrenciesRepository::class);
         $this->app->bind(TimezonesRepositoryContract::class,TimezonesRepository::class);
         $this->app->bind(PhotosRepositoryContract::class,PhotosRepository::class);
+        $this->app->bind(RegistrationRepositoryContract::class,RegistrationRepository::class);
         //newBind
     }
 

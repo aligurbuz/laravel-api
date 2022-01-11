@@ -35,6 +35,9 @@
     "permission_code": [
         "Permission"
     ],
+    "registration_code": [
+        "Registration"
+    ],
     "role_code": [
         "Role"
     ],

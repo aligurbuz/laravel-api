@@ -1,1 +1,7 @@
-[]
+{
+    "Registration": {
+        "get": "App\\Client\\Registration\\Registration\\Get\\GetClient",
+        "create": "App\\Client\\Registration\\Registration\\Create\\CreateClient",
+        "update": "App\\Client\\Registration\\Registration\\Update\\UpdateClient"
+    }
+}

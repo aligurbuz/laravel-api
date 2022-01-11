@@ -1087,49 +1087,167 @@
             "name": "Localizations"
         },
         {
-            "name": "Register",
+            "name": "Registration",
             "item": [
                 {
-                    "name": "Register",
-                    "request": {
-                        "method": "POST",
-                        "header": [
-                            {
-                                "key": "Authorization",
-                                "value": "Bearer {{bearerToken}}",
-                                "type": "text"
-                            },
-                            {
-                                "key": "Apikey",
-                                "value": "{{apiKey}}",
-                                "type": "text"
-                            },
-                            {
-                                "key": "Content-Type",
-                                "value": "{{contentType}}",
-                                "type": "text"
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "{\n    \"name\": \"lorem ipsum\",\n    \"email\": \"test@gmail.com\",\n    \"password\": \"123456\",\n    \"username\": \"foo.bar\"\n}",
-                            "options": {
-                                "raw": {
-                                    "language": "json"
+                    "name": "Registration",
+                    "item": [
+                        {
+                            "name": "Registration",
+                            "response": [],
+                            "request": {
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Authorization",
+                                        "value": "Bearer {{bearerToken}}",
+                                        "type": "text",
+                                        "description": "It is the token value received after the user logs in.(must)"
+                                    },
+                                    {
+                                        "key": "Apikey",
+                                        "value": "{{apiKey}}",
+                                        "type": "text",
+                                        "description": "It is a hash value given to you by the system provider.(must)"
+                                    },
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "{{contentType}}",
+                                        "type": "text",
+                                        "description": "You can specify the return types for the returned response like json or xml.(not must)"
+                                    },
+                                    {
+                                        "key": "Accept-Language",
+                                        "value": "{{acceptLanguage}}",
+                                        "type": "text",
+                                        "description": "You can select the language option for the returned string values.(must)"
+                                    }
+                                ],
+                                "body": [],
+                                "url": {
+                                    "raw": "{{baseUrl}}/registration",
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "path": [
+                                        "registration"
+                                    ],
+                                    "query": [
+                                        {
+                                            "key": "range",
+                                            "value": "desc",
+                                            "description": "",
+                                            "disabled": true
+                                        }
+                                    ]
                                 }
                             }
                         },
-                        "url": {
-                            "raw": "{{baseUrl}}/register",
-                            "host": [
-                                "{{baseUrl}}"
-                            ],
-                            "path": [
-                                "register"
-                            ]
+                        {
+                            "name": "Registration",
+                            "response": [],
+                            "request": {
+                                "method": "POST",
+                                "header": [
+                                    {
+                                        "key": "Authorization",
+                                        "value": "Bearer {{bearerToken}}",
+                                        "type": "text",
+                                        "description": "It is the token value received after the user logs in.(must)"
+                                    },
+                                    {
+                                        "key": "Apikey",
+                                        "value": "{{apiKey}}",
+                                        "type": "text",
+                                        "description": "It is a hash value given to you by the system provider.(must)"
+                                    },
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "{{contentType}}",
+                                        "type": "text",
+                                        "description": "You can specify the return types for the returned response like json or xml.(not must)"
+                                    },
+                                    {
+                                        "key": "Accept-Language",
+                                        "value": "{{acceptLanguage}}",
+                                        "type": "text",
+                                        "description": "You can select the language option for the returned string values.(must)"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\"is_deleted\":\"0\",\"status\":\"1\",\"user\":\"array\"}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "{{baseUrl}}/registration",
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "path": [
+                                        "registration"
+                                    ],
+                                    "query": []
+                                }
+                            }
+                        },
+                        {
+                            "name": "Registration",
+                            "response": [],
+                            "request": {
+                                "method": "PUT",
+                                "header": [
+                                    {
+                                        "key": "Authorization",
+                                        "value": "Bearer {{bearerToken}}",
+                                        "type": "text",
+                                        "description": "It is the token value received after the user logs in.(must)"
+                                    },
+                                    {
+                                        "key": "Apikey",
+                                        "value": "{{apiKey}}",
+                                        "type": "text",
+                                        "description": "It is a hash value given to you by the system provider.(must)"
+                                    },
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "{{contentType}}",
+                                        "type": "text",
+                                        "description": "You can specify the return types for the returned response like json or xml.(not must)"
+                                    },
+                                    {
+                                        "key": "Accept-Language",
+                                        "value": "{{acceptLanguage}}",
+                                        "type": "text",
+                                        "description": "You can select the language option for the returned string values.(must)"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\"is_deleted\":\"0\",\"registration_code\":\"0\",\"status\":\"1\",\"user\":\"array\"}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "{{baseUrl}}/registration",
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "path": [
+                                        "registration"
+                                    ],
+                                    "query": []
+                                }
+                            }
                         }
-                    },
-                    "response": []
+                    ]
                 }
             ]
         },

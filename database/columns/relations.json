@@ -22,6 +22,7 @@
         "Language",
         "Localization",
         "Permission",
+        "Registration",
         "Role",
         "SuperAdmin",
         "TableChange",
@@ -38,6 +39,9 @@
     "Permission": [
         "Localization"
     ],
+    "Registration": [
+        "Localization"
+    ],
     "Role": [
         "Localization",
         "User"
@@ -48,9 +52,9 @@
     ],
     "User": [
         "SuperAdmin",
-        "UserPhoto",
         "Role",
-        "Localization"
+        "Localization",
+        "UserPhoto"
     ],
     "TableChange": [
         "Localization"

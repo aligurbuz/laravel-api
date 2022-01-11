@@ -1,1 +1,14 @@
-[]
+{
+    "registration.registration.get": {
+        "class": "App\\Client\\Registration\\Registration\\Get\\GetClient",
+        "model": "registration"
+    },
+    "registration.registration.create": {
+        "class": "App\\Client\\Registration\\Registration\\Create\\CreateClient",
+        "model": "registration"
+    },
+    "registration.registration.update": {
+        "class": "App\\Client\\Registration\\Registration\\Update\\UpdateClient",
+        "model": "registration"
+    }
+}
