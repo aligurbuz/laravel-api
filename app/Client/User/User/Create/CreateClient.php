@@ -20,7 +20,7 @@ class CreateClient extends Client
      *
      * @var array
      */
-    protected array $capsule = [];
+    protected array $capsule = ['registration_code'];
 
     /**
      * get model entity validation
