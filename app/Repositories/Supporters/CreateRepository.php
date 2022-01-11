@@ -60,7 +60,7 @@ trait CreateRepository
                     }
 
                     try{
-                        cR($cr,$crData);
+                        cR($cr,$crData,null,true);
                     }
                     catch (Exception $exception){
                         ExceptionFacade::customException($exception->getMessage().' ('.trans('exception.crKey',['key' => $key]).')');
