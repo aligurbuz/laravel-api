@@ -4,6 +4,7 @@ namespace App\Services\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 use Nette\PhpGenerator\PhpNamespace;
 
 class FactoryCommand extends Command
@@ -102,7 +103,40 @@ class FactoryCommand extends Command
 
 
         $namespaceManager = new PhpNamespace($mainNamespace);
+        $namespaceManager->addUse(Str::class);
         $addClass = $namespaceManager->addClass($factoryManagerName)->setAbstract();
+
+        $method = $addClass->addMethod('resource');
+        $method->addComment('get resource for bind');
+        $method->addComment('');
+        $method->addComment('@param string $resource');
+        $method->addComment('@return object');
+        $method->addParameter('resource')->setType('string');
+        $method->setReturnType('object');
+        $method->setBody('return $this->binds[\'resource\'][$resource] ?? new class {};');
+
+        $method = $addClass->addMethod('getResource');
+        $method->addComment('calling magic method for resource');
+        $method->addComment('');
+        $method->addComment('@param string $resource');
+        $method->addComment('@return mixed');
+        $method->addParameter('resource')->setType('string');
+        $method->setReturnType('mixed');
+        $method->setBody('return $this->resource($resource)->get();');
+
+
+        $method = $addClass->addMethod('get');
+        $method->addComment('get method for gate factory');
+        $method->addComment('');
+        $method->addComment('@return mixed');
+        $method->setReturnType('mixed');
+        $method->setBody('
+        if(method_exists($this,$who = who())){
+    return $this->{$who}();
+}
+
+$class = Str::camel(class_basename($this));
+return $this->{$class}();');
 
         $content = '<?php '.PHP_EOL.''.PHP_EOL.'declare(strict_types=1);'.PHP_EOL.''.PHP_EOL.''.$namespaceManager;
         File::put($factoryManagerPath,$content);
