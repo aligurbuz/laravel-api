@@ -902,6 +902,26 @@ class EloquentRepository
     }
 
     /**
+     * get columns for model
+     *
+     * @return array
+     */
+    public function getColumns() : array
+    {
+        return Db::columns($this->getTable());
+    }
+
+    /**
+     * get columns for model
+     *
+     * @return array
+     */
+    public function getIndexes() : array
+    {
+        return Db::indexes($this->getTable());
+    }
+
+    /**
      * get __call method for eloquent repository
      *
      * @param string $name
@@ -915,8 +935,18 @@ class EloquentRepository
             return $this->eagerLoadingHandler($model,$args);
         }
 
-        $this->withBindings[$name] = ($args[0] ?? function($query) {});
-        $this->with();
+        if(in_array($snakeName = Str::snake($name),$this->getColumns(),true)){
+            if(!in_array($snakeName,$this->getIndexes(),true)){
+                Exception::filterException(true,['key' => $snakeName]);
+            }
+
+            $this->repository = $this->instance()->where($snakeName,$args[0] ?? null);
+        }
+
+        if(in_array($name,$this->getModelWithValues(),true)){
+            $this->withBindings[$name] = ($args[0] ?? function($query) {});
+            $this->with();
+        }
 
         return $this;
     }
