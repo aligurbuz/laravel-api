@@ -42,10 +42,7 @@ class UserController extends ApiController
     {
         $client->handle();
 
-        $user = current($userRepository->create());
-        $user['token'] = $user->createToken(config('app.name'))->accessToken;
-
-        return $user;
+        return current($userRepository->create());
     }
 
     /**

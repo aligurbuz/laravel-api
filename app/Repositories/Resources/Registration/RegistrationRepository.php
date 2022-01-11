@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 declare(strict_types=1);
 
@@ -78,7 +78,9 @@ class RegistrationRepository extends EloquentRepository implements RegistrationR
 	 *
 	 * @var array
 	 */
-	protected array $addPostQueries = [];
+	protected array $addPostQueries = [
+        'user' => 'user.user.create'
+    ];
 
 
 	/**
