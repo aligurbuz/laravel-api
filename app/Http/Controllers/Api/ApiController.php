@@ -89,6 +89,10 @@ class ApiController extends BaseController
             $this->middlewares[] = 'superAdmin';
         }
 
+        if(property_exists($this,'authenticate') && !$this->authenticate){
+            return $this->middlewares;
+        }
+
         return array_merge(['auth:'.authGuard('check')],$this->middlewares);
     }
 }
