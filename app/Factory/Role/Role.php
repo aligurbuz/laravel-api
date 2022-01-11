@@ -43,7 +43,7 @@ class Role extends RoleManager implements RoleInterface
             'role_name' => 'Administrator',
             'is_administrator' => 1,
             'roles' => Factory::permission()->roleFormatter()
-        ]]);
+        ]],null,false);
 
         return Repository::role()->create([$clientRequest]);
     }

@@ -171,11 +171,12 @@ if(!function_exists('cR')){
      * @param string $client
      * @param array $data
      * @param string|null $repositoryName
+     * @param bool $container
      * @return array
      */
-    function cR(string $client,array $data = [],?string $repositoryName = null): array
+    function cR(string $client,array $data = [],?string $repositoryName = null,bool $container = true): array
     {
-        $factory = Factory::client(['client' => $client])->cR($data);
+        $factory = Factory::client(['client' => $client])->cR($data,$container);
 
         if(!is_null($repositoryName)){
             $clientNames = explode('.',$client);

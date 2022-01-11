@@ -41,31 +41,33 @@ trait CreateRepository
      */
     public function addPostQueryDispatcher(array $data = [],int $clientDataKey = 0) : void
     {
-        foreach ($this->getAddPostQueries() as $key => $cr){
-            $keyExplode = explode('|',$key);
-            $key = $keyExplode[0];
-            $createStatus = !((isset($keyExplode[1]) && $keyExplode[1] == 'false'));
+        if(count($this->getAddPostQueries())){
+            foreach ($this->getAddPostQueries() as $key => $cr){
+                $keyExplode = explode('|',$key);
+                $key = $keyExplode[0];
+                $createStatus = !((isset($keyExplode[1]) && $keyExplode[1] == 'false'));
 
-            if(isset($data[$key])){
-                $crData = [];
+                if(isset($data[$key])){
+                    $crData = [];
 
-                if(!isset($data[$key][0])){
-                    $data[$key] = [$data[$key]];
+                    if(!isset($data[$key][0])){
+                        $data[$key] = [$data[$key]];
+                    }
+
+                    foreach ($data[$key] as $crKey => $crValues){
+                        $crData[$crKey] = $crValues;
+                        $crData[$crKey][getTableCode($this->getModel())] = $data[getTableCode($this->getModel())];
+                    }
+
+                    try{
+                        cR($cr,$crData);
+                    }
+                    catch (Exception $exception){
+                        ExceptionFacade::customException($exception->getMessage().' ('.trans('exception.crKey',['key' => $key]).')');
+                    }
+
+                    $this->addPostQueryResults[$clientDataKey][$key] = $createStatus ? AppContainer::get('crRepositoryInstance')->create() : $data[$key];
                 }
-
-                foreach ($data[$key] as $crKey => $crValues){
-                    $crData[$crKey] = $crValues;
-                    $crData[$crKey][getTableCode($this->getModel())] = $data[getTableCode($this->getModel())];
-                }
-
-                try{
-                    cR($cr,$crData);
-                }
-                catch (Exception $exception){
-                    ExceptionFacade::customException($exception->getMessage().' ('.trans('exception.crKey',['key' => $key]).')');
-                }
-
-                $this->addPostQueryResults[$clientDataKey][$key] = $createStatus ? AppContainer::get('crRepositoryInstance')->create() : $data[$key];
             }
         }
     }

@@ -38,10 +38,11 @@ class Client extends ClientManager implements ClientInterface
      * cr(client request manipulation) method for factory
      *
      * @param array $data
+     * @param bool $container
      * @return array
      */
-	public function cR(array $data = []) : array
+	public function cR(array $data = [],bool $container = true) : array
     {
-        return $this->make($data);
+        return $this->make($data,$container);
     }
 }

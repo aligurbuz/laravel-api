@@ -13,13 +13,14 @@ abstract class ClientManager
      * make method for client factory
      *
      * @param array $data
+     * @param bool $container
      * @return array
      */
-    public function make(array $data = []) : array
+    public function make(array $data = [],bool $container = true) : array
     {
         if($this->isValidClientIdentifierResource()){
             $clientIdentifier = $this->binds['resource']['clientIdentifier'];
-            return $this->clientHandler($clientIdentifier,$data);
+            return $this->clientHandler($clientIdentifier,$data,$container);
         }
 
         return [];
@@ -30,16 +31,21 @@ abstract class ClientManager
      *
      * @param object $clientIdentifier
      * @param array $data
+     * @param bool $container
      * @return array
      */
-    private function clientHandler(object $clientIdentifier,array $data = []) : array
+    private function clientHandler(object $clientIdentifier,array $data = [],bool $container = true) : array
     {
         $clientNamespace = $clientIdentifier->clientNamespace();
 
         if(class_exists($clientNamespace)){
             $clientInstance = new $clientNamespace($data);
-            AppContainer::terminate('crRepositoryInstance');
-            AppContainer::set('crRepositoryInstance',$clientInstance->repository());
+
+            if($container){
+                AppContainer::terminate('crRepositoryInstance');
+                AppContainer::set('crRepositoryInstance',$clientInstance->repository());
+            }
+
             $clientInstance->requestMethod($clientIdentifier->getRequestMethod());
             $clientInstance->handle();
             return $clientInstance->getDataStream();
