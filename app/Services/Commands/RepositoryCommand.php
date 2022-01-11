@@ -52,6 +52,10 @@ class RepositoryCommand extends Command
         $className = ucfirst($repositoryName).'Repository';
         $contractClassName = ucfirst($repositoryName).'RepositoryContract';
 
+        $modelNamespace = 'App\Models\\'.ucfirst($modelName);
+        $modelColumns = Db::columns((new $modelNamespace)->getTable());
+        $modelIndexes = Db::indexes((new $modelNamespace)->getTable());
+
         $namespaceDirectory = 'App\Repositories\Resources\\'.ucfirst($argumentName);
         $namespaceRepository = 'App\Repositories\Resources\\'.ucfirst($argumentName).'\\'.$className;
         $namespaceContractDirectory = 'App\Repositories\Resources\\'.ucfirst($argumentName).'\Contracts';
@@ -77,9 +81,6 @@ class RepositoryCommand extends Command
             ->addComment('get client ranges for repository')
             ->addComment('')
             ->addComment('@var array|string[]');
-
-        $modelNamespace = 'App\Models\\'.ucfirst($modelName);
-        $modelColumns = Db::columns((new $modelNamespace)->getTable());
 
         $localizationList = [];
         foreach ( $modelColumns as $column){
@@ -173,6 +174,14 @@ class RepositoryCommand extends Command
         $namespace = new PhpNamespace($namespaceContractDirectory);
         $namespace->addUse($namespaceRepository);
         $class = $namespace->addInterface($contractClassName);
+
+        $modelIndexList = [];
+        foreach ($modelIndexes as $modelIndex){
+            if(!in_array($modelIndex,$modelIndexList,true)){
+                $class->addComment('@method $this '.Str::camel($modelIndex).'($'.$modelIndex.' = null)');
+                $modelIndexList[] = $modelIndex;
+            }
+        }
         $class->addMethod('get')->setPublic()->setReturnType('array')
             ->addComment('@return array')->addComment('@see '.$className.'::get()');
 
