@@ -122,7 +122,7 @@ return [
     'url' => 'The :attribute format is invalid.',
     'uuid' => 'The :attribute must be a valid UUID.',
     'double' => 'The :attribute value must be sent in double format.',
-    'atLeastUpperLowerNumber' => ':attribute must have at least 1 lowercase AND 1 uppercase AND 1 number',
+    'atLeastUpperLowerNumber' => ':attribute must have at least 1 lowercase and 1 uppercase and 1 number',
     'enum' => '(:column) field must be only :enum',
     'enumSplitter' => 'or',
 

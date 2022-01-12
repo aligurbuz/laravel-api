@@ -178,6 +178,7 @@ class ClientBodyProcess extends ClientVariableProcess
 
             $list = [];
             $types = Db::types($table);
+            $rules = $this->client->getRule();
             $autoRules = $this->client->getAutoRule();
             $customRules = $this->client->getCustomRule();
 
@@ -185,6 +186,20 @@ class ClientBodyProcess extends ClientVariableProcess
             foreach ($data as $key => $value){
                 if(isset($types[$key])){
                     $type = $types[$key];
+
+                    if(isset($rules[$key])){
+                        $keyRulesSplit = explode('|',$rules[$key]);
+                        foreach ($keyRulesSplit as $ruleSplit){
+                            if(isset($customRules[$ruleSplit])){
+                                foreach ($customRules[$ruleSplit] as $split){
+                                    $splitRegex = str_replace('regex:','',$split);
+                                    if(!preg_match($splitRegex,$value)){
+                                        Exception::customException(trans('validation.'.$ruleSplit.'',['attribute' => $key]));
+                                    }
+                                }
+                            }
+                        }
+                    }
 
                     if(isset($customRules[$type])){
                         $list[$key] = $customRules[$type];
@@ -271,7 +286,22 @@ class ClientBodyProcess extends ClientVariableProcess
     private function clientRuleProcess(array $validator = []) : array
     {
         $autoRules = $this->client->getAutoRule();
+        $customRules = $this->client->getCustomRule();
         $rules = count($validator) ? $validator : $this->client->getRule();
+
+        if(count($validator)=='0'){
+            foreach ($rules as $myKey => $myRule){
+                $myRuleList = is_array($myRule) ? $myRule : explode('|',$myRule);
+                $myRuleRealList = [];
+                foreach ($myRuleList as $myRuleData){
+                    if(!isset($customRules[$myRuleData])){
+                        $myRuleRealList[] = $myRuleData;
+                    }
+                }
+
+                $rules[$myKey] = $myRuleRealList;
+            }
+        }
 
         $list = [];
 
