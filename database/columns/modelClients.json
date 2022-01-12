@@ -3,5 +3,10 @@
         "get": "App\\Client\\Registration\\Registration\\Get\\GetClient",
         "create": "App\\Client\\Registration\\Registration\\Create\\CreateClient",
         "update": "App\\Client\\Registration\\Registration\\Update\\UpdateClient"
+    },
+    "User": {
+        "get": "App\\Client\\User\\User\\Get\\GetClient",
+        "create": "App\\Client\\User\\User\\Create\\CreateClient",
+        "update": "App\\Client\\User\\User\\Update\\UpdateClient"
     }
 }
