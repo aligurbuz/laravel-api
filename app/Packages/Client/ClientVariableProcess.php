@@ -16,15 +16,16 @@ class ClientVariableProcess
      * get variable process
      *
      * @param array $data
+     * @param bool $callMethod
      * @return array
      */
-    protected function variableProcess(array $data = []): array
+    protected function variableProcess(array $data = [],bool $callMethod = false): array
     {
         $list = [];
 
         foreach ($data as $key => $value){
             $camelCaseForKey = Str::camel($key);
-            if(property_exists($this->client,$camelCaseForKey)){
+            if(property_exists($this->client,$camelCaseForKey) && $callMethod){
                 $this->client->setProperty($key,$value);
 
                 if(method_exists($this->client,$camelCaseForKey)){

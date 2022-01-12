@@ -120,6 +120,9 @@ class ClientBodyProcess extends ClientVariableProcess
 
                 $this->makeValidator($value);
 
+                $this->variableProcess($value,true);
+                $value = $this->client->getDataStream();
+
                 if(count($overWriteStream)){
                     foreach ($value as $streamKey => $streamValue){
                         if(isset($overWriteStream[$streamKey]) && (Str::endsWith($streamKey,'_image') || $streamKey=='image')){
