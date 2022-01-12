@@ -1176,7 +1176,7 @@
                                 ],
                                 "body": {
                                     "mode": "raw",
-                                    "raw": "{\"is_deleted\":\"0\",\"status\":\"1\",\"user\":\"array\"}",
+                                    "raw": "{\n    \"user\" : {\n        \"name\" : \"fullname\",\n        \"email\" : \"test@gmail.com\",\n        \"password\" : \"Ab123456\"\n    }\n}",
                                     "options": {
                                         "raw": {
                                             "language": "json"
