@@ -21,7 +21,20 @@ trait ClientSetRuleTrait
     {
         $this->setBooleanValues();
         $this->setEnumValues();
-        //$this->setRule('key','rule');
+        $this->passwordRule();
+
+    }
+
+    /**
+     * set password rule for client
+     *
+     * @return void
+     */
+    private function passwordRule()
+    {
+        $this->ensureColumnExists('password',function(){
+            $this->setRule('password','required|min:6|max:18');
+        });
     }
 
     /**
