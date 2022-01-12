@@ -10,7 +10,7 @@ return [
     'definitions' => [
         "Currencies" => "Currency is a medium of exchange for goods and services. In short, it's money, in the form of paper or coins, usually issued by a government and generally accepted at its face value as a method of payment.",
         "Timezones" => "The term time zone can be used to describe several different things, but mostly it refers to the local time of a region or a country.",
-        "Registration" => "The system is the service that makes user and other critical records.",
+        "Registration" => "This endpoint is the service that makes user and other critical records.",
 
     ],
     'exceptMethods' => [
