@@ -299,7 +299,9 @@ class ClientBodyProcess extends ClientVariableProcess
                     }
                 }
 
-                $rules[$myKey] = $myRuleRealList;
+                if(count($myRuleRealList)){
+                    $rules[$myKey] = implode('|',$myRuleRealList);
+                }
             }
         }
 
