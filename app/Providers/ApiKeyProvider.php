@@ -3,7 +3,6 @@
 namespace App\Providers;
 
 use App\Services\ApiKeyManager;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
 class ApiKeyProvider extends ServiceProvider
@@ -27,7 +26,7 @@ class ApiKeyProvider extends ServiceProvider
     {
         if(
             $this->app->runningInConsole()===false
-            && strpos(request()->getRequestUri(),'public/api')
+            && strpos(request()->getRequestUri(),isProduction() ? 'api' : 'public/api')
         ){
             (new ApiKeyManager())->handle();
         }
