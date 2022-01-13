@@ -593,7 +593,7 @@ class EloquentRepository
     public function instance(bool $repository = true) : object
     {
         if(is_null($this->repository)){
-            $this->repository = static::$model::repository($this,$repository);
+            $this->repository = $this->instanceModel()->repository($this,$repository);
         }
 
         return $this->repository;
