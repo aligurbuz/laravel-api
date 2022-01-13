@@ -408,8 +408,8 @@ class EloquentRepository
     {
         $model = $this->getModel();
 
-        if(!is_null($this->getConnection())){
-            return (new $model)->setConnection($this->getConnection());
+        if(!is_null($connection = $this->getConnection())){
+            return (new $model)->setConnection($connection);
         }
 
         return new $model;
