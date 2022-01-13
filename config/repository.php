@@ -16,4 +16,10 @@ return [
      * This setting will not initialize the repository based on .ClientKey values.
      */
     'dontGlobalScopes' => ['superAdmin'],
+
+    /**
+     * This setting represents the connection adapter
+     * for the cache that will work on your repository connections.
+     */
+    'repositoryCacheConnection' => env('REPOSITORY_CACHE_CONNECTION','default'),
 ];

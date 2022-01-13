@@ -43,7 +43,7 @@ class Redis extends CacheManager implements CacheInterface
      */
     public function getInstance() : object
     {
-        return RedisInstance::client();
+        return RedisInstance::client(($this->binds['connection'] ?? 'default'));
     }
 
     /**

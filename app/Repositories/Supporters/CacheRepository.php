@@ -160,7 +160,7 @@ trait CacheRepository
         }
 
         $this->cacheKey           = $this->generateCacheKey();
-        $this->cacheInstance      = Factory::cache();
+        $this->cacheInstance      = Factory::cache(['adapter' => 'redis','connection' => config('repository.repositoryCacheConnection')]);
         $this->cacheTag           = $this->cacheTag ?? Client::fingerPrint(request()->query->all());
     }
 
