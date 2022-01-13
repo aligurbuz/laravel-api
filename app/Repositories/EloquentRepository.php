@@ -408,6 +408,10 @@ class EloquentRepository
     {
         $model = $this->getModel();
 
+        if(!is_null($this->getConnection())){
+            return (new $model)->setConnection($this->getConnection());
+        }
+
         return new $model;
     }
 
@@ -641,13 +645,31 @@ class EloquentRepository
     }
 
     /**
+     * get model connection for repository
+     *
+     * @return string|null
+     */
+    public function getConnection() : ?string
+    {
+        if(property_exists($this,'connection')){
+            return $this->connection;
+        }
+
+        if(method_exists($this,'setConnection')){
+            return $this->setConnection();
+        }
+
+        return null;
+    }
+
+    /**
      * get graphql builder
      *
      * @return $this
      */
     public function graphQl() : EloquentRepository
     {
-        $this->graphQl = static::$model::repository($this)
+        $this->graphQl = ($this->instanceModel())->repository($this)
             ->filterQuery()
             ->range($this)
             ->instruction()
