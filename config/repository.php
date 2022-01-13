@@ -22,4 +22,10 @@ return [
      * for the cache that will work on your repository connections.
      */
     'repositoryCacheConnection' => env('REPOSITORY_CACHE_CONNECTION','default'),
+
+    /**
+     * This setting is responsible for caching your repository links.
+     * If its value is set to false, no cache data will be created for your repository transactions.
+     */
+    'repositoryCache' => env('REPOSITORY_CACHE',false),
 ];

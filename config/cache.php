@@ -4,8 +4,6 @@ use Illuminate\Support\Str;
 
 return [
 
-    'repository_cache' => env('REPOSITORY_CACHE',false),
-
     /*
     |--------------------------------------------------------------------------
     | Default Cache Store

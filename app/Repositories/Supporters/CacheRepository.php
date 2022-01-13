@@ -132,7 +132,7 @@ trait CacheRepository
      */
     public function cacheCondition(callable $callback,callable $returnCallback): mixed
     {
-        if(true === config('cache.repository_cache')){
+        if(true === config('repository.repositoryCache')){
             $this->setProperties();
 
             return $this->cacheHandler($callback,function($proxy){
