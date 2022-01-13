@@ -26,7 +26,7 @@ class ApiKeyProvider extends ServiceProvider
     {
         if(
             $this->app->runningInConsole()===false
-            && strpos(request()->getRequestUri(),isProduction() ? 'api' : 'public/api')
+            && strpos(request()->getRequestUri(),isLocale() ? 'public/api' : 'api')
         ){
             (new ApiKeyManager())->handle();
         }
