@@ -11,6 +11,7 @@ use App\Services\Commands\CrudCommand;
 use App\Services\Commands\DatabaseCreatorCommand;
 use App\Services\Commands\DbColumn;
 use App\Services\Commands\Documentation;
+use App\Services\Commands\EnvironmentCommand;
 use App\Services\Commands\FactoryCommand;
 use App\Services\Commands\MigrationCommand;
 use App\Services\Commands\ModelCommand;
@@ -36,6 +37,7 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         $this->fullToSql();
+        $this->commands([EnvironmentCommand::class]);
         $this->commands([AppNameCommand::class]);
         $this->commands([ClientCommand::class]);
         $this->commands([ControllerCommand::class]);
