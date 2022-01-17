@@ -14,6 +14,11 @@ use App\Repositories\Resources\Countries\Contracts\CountriesRepositoryContract;
  */
 class CountriesRepository extends EloquentRepository implements CountriesRepositoryContract
 {
+    /**
+     * @var bool
+     */
+    protected bool $paginator = false;
+
 	/**
 	 * get model name for repository
 	 *

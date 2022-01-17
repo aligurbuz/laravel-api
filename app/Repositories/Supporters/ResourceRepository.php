@@ -66,7 +66,9 @@ trait ResourceRepository
                 unset($result['links']);
             }
 
-            $result['data'] = $this->resourcePropagation($result['data']);
+            if(isset($result['data'])){
+                $result['data'] = $this->resourcePropagation($result['data']);
+            }
 
             return $result;
         });

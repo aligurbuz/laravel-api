@@ -10,6 +10,11 @@ use App\Repositories\Resources\Localizations\Contracts\LanguageRepositoryContrac
 
 class LanguageRepository extends EloquentRepository implements LanguageRepositoryContract
 {
+    /**
+     * @var bool
+     */
+    protected bool $paginator = false;
+
 	/**
 	 * get model name for repository
 	 *

@@ -81,6 +81,10 @@ class EloquentRepository
      */
     public function pagination(?int $pagination = null) : array
     {
+        if(property_exists($this,'paginator') && !$this->paginator){
+            return $this->graphQl->get()->toArray();
+        }
+
         return $this->graphQl->paginate($pagination ?? $this->paginationHandler())->toArray();
     }
 
