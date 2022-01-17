@@ -50,7 +50,8 @@ class GlobalController extends ApiController
 
                 // we are calling the controller get methods with
                 // the call method of the app object that exists in the laravel framework.
-                $results[lcfirst($service)] = [app()->call($controller.'@get')];
+                $callingData = app()->call($controller.'@get');
+                $results[lcfirst($service)] = (isset($callingData['data'])) ? [$callingData] : $callingData;
                 $this->resetQueryAll();
             }
         }
