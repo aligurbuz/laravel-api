@@ -3,6 +3,10 @@
         "controller": "Currencies",
         "dir": "Currencies"
     },
+    "Localizations/language": {
+        "controller": "Language",
+        "dir": "Localizations"
+    },
     "Timezones": {
         "controller": "Timezones",
         "dir": "Timezones"

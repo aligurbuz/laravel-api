@@ -10,6 +10,11 @@ use App\Http\Controllers\Api\ApiController;
 class GlobalController extends ApiController
 {
     /**
+     * @var bool
+     */
+    protected bool $authenticate = false;
+
+    /**
      * Controller method that handles global requests.
      *
      * @return array
