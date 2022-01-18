@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Exceptions\Exception;
 use App\Facades\Authenticate\ApiKey;
+use App\Services\ApiKeyManager;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -37,6 +38,13 @@ class ApiController extends BaseController
      */
     public function __construct()
     {
+        if(
+            app()->runningInConsole()===false
+            && strpos(request()->getRequestUri(),isLocale() ? 'public/api' : 'api')
+        ){
+            (new ApiKeyManager())->handle();
+        }
+
         foreach ($this->getMiddlewares() as $middleware){
             $this->exceptMiddlewares($middleware,function() use($middleware){
                 $this->middleware($middleware);

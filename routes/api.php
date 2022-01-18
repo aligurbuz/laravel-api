@@ -35,6 +35,10 @@ use App\Http\Controllers\GlobalController;
 Route::post('/login', [LoginController::class,'login']);
 Route::post('/register', [RegisterController::class,'register']);
 
+Route::get('testing',function(){
+   return response()->json(['status' => 1]);
+});
+
 Route::middleware([])->group(function(){
 
     Route::get('/registration', [RegistrationController::class,'get']);
