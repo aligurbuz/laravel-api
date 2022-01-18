@@ -83,7 +83,7 @@ class PermissionCommand extends Command
                 $createList['permission_code'] = crc32($endpoint);
 
                 DB::table('permissions')->where('permission_code',$createList['permission_code'])->delete();
-                DB::table('Localizations')->where('localized_code',$createList['permission_code'])->delete();
+                DB::table('localizations')->where('localized_code',$createList['permission_code'])->delete();
 
                 DB::table('permissions')->insert($createList);
             }
