@@ -38,12 +38,7 @@ class ApiController extends BaseController
      */
     public function __construct()
     {
-        if(
-            app()->runningInConsole()===false
-            && strpos(request()->getRequestUri(),isLocale() ? 'public/api' : 'api')
-        ){
-            (new ApiKeyManager())->handle();
-        }
+        (new ApiKeyManager())->handle();
 
         foreach ($this->getMiddlewares() as $middleware){
             $this->exceptMiddlewares($middleware,function() use($middleware){
