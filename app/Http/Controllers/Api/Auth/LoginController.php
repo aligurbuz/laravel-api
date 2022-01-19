@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Api\Auth;
 
 use App\Facades\Authenticate\ApiKey;
+use App\Factory\Factory;
 use Exception;
 use App\Services\Client;
 use App\Services\Response\Response;
@@ -23,6 +24,8 @@ class LoginController extends Controller
      */
     public function login(CreateClient $client) : object
     {
+        Factory::apikey();
+
         $client->handle();
         $clientData = (Client::data())[0] ?? [];
         $authGuard = Auth::guard(authGuard());

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Factory\Factory;
 use App\Exceptions\Exception;
 use App\Facades\Authenticate\ApiKey;
-use App\Services\ApiKeyManager;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -38,7 +38,7 @@ class ApiController extends BaseController
      */
     public function __construct()
     {
-        (new ApiKeyManager())->handle();
+        Factory::apikey();
 
         foreach ($this->getMiddlewares() as $middleware){
             $this->exceptMiddlewares($middleware,function() use($middleware){

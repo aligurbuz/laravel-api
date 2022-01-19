@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Factory;
 
+use App\Factory\ApiKey\Interfaces\ApiKeyInterface;
 use App\Factory\Date\Interfaces\DateInterface;
 use App\Factory\Email\Interfaces\EmailInterface;
 use App\Factory\Role\Interfaces\RoleInterface;
@@ -36,6 +37,7 @@ use App\Jobs\EmailSender;
  * @method static SearchInterface search($arguments = null)
  * @method static DateInterface date($arguments = null)
  * @method static EmailInterface email($arguments = null)
+ * @method static ApiKeyInterface apikey($arguments = null)
  * @package App\Factory
  */
 class Factory extends FactoryManager
