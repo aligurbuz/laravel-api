@@ -24,7 +24,7 @@ class LoginController extends Controller
      */
     public function login(CreateClient $client) : object
     {
-        Factory::apikey();
+        Factory::apiKey();
 
         $client->handle();
         $clientData = (Client::data())[0] ?? [];

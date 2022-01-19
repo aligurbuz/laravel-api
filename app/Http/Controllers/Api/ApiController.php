@@ -38,7 +38,7 @@ class ApiController extends BaseController
      */
     public function __construct()
     {
-        Factory::apikey();
+        Factory::apiKey();
 
         foreach ($this->getMiddlewares() as $middleware){
             $this->exceptMiddlewares($middleware,function() use($middleware){
