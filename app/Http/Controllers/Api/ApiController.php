@@ -67,7 +67,7 @@ class ApiController extends BaseController
             }
 
             if($this->apiAuthInhibitoryException){
-                Exception::permissionException();
+                Exception::permissionException(true,['key' => endpoint()]);
             }
         }
 

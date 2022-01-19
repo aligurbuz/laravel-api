@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Services\AppContainer;
 use Illuminate\Support\Facades\File;
 use App\Http\Controllers\Api\ApiController;
 
@@ -21,6 +22,8 @@ class GlobalController extends ApiController
      */
     public function handle() : array
     {
+        AppContainer::set('globalRequest',true);
+
         // we are pulling the existing route paths in the service.json file.
         // and we convert this json file to array.
         $services       = File::get(database_path('columns').''.DIRECTORY_SEPARATOR.'service.json');
@@ -50,8 +53,12 @@ class GlobalController extends ApiController
 
                 // we are calling the controller get methods with
                 // the call method of the app object that exists in the laravel framework.
+                $service = lcfirst($service);
+                AppContainer::setWithTerminating('endpoint',$service);
+
                 $callingData = app()->call($controller.'@get');
-                $results[lcfirst($service)] = (isset($callingData['data'])) ? [$callingData] : $callingData;
+
+                $results[$service] = (isset($callingData['data'])) ? [$callingData] : $callingData;
                 $this->resetQueryAll();
             }
         }

@@ -450,7 +450,9 @@ if(!function_exists('endpoint')){
      */
     function endpoint(): string
     {
-        return str_replace('api/','',Route::getCurrentRoute()->uri());
+        return AppContainer::use('endpoint',function(){
+            return str_replace('api/','',Route::getCurrentRoute()->uri());
+        });
     }
 }
 
