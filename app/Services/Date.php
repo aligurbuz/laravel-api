@@ -58,6 +58,21 @@ class Date
     }
 
     /**
+     * get day of week (as numeric) for carbon
+     *
+     * @param string|null $date
+     * @param string $format
+     * @param null $tz
+     * @return int
+     */
+    public static function getDayOfWeek(?string $date= null, string $format = 'Y-m-d', $tz = null): int
+    {
+        return $date
+            ? static::createFormat($date,$format,$tz)->dayOfWeek
+            : static::now()->dayOfWeek;
+    }
+
+    /**
      * create format for date
      *
      * @param string $format
@@ -67,7 +82,7 @@ class Date
      */
     public static function createFormat($data, string $format = 'Y-m-d H:i:s', $tz = null): bool|Carbon
     {
-        $tz = is_null($tz) ? static::getTimezone() : $tz;
+        $tz = $tz ?? static::getTimezone();
 
         return Carbon::createFromFormat($format,$data,$tz);
     }
