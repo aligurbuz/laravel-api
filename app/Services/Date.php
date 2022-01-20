@@ -75,26 +75,24 @@ class Date
      * get short day name for carbon
      *
      * @param string|null $date
-     * @param string $format
      * @param null $tz
      * @return string
      */
-    public static function getShortDayName(?string $date = null, string $format = 'Y-m-d', $tz = null): string
+    public static function getShortDayName(?string $date = null, $tz = null): string
     {
-        return static::info($date,$format,$tz,'shortDayName');
+        return static::info($date,'Y-m-d',$tz,'shortDayName');
     }
 
     /**
      * get short day name for carbon
      *
      * @param string|null $date
-     * @param string $format
      * @param null $tz
      * @return string|DateTimeZone|bool|int|null
      */
-    public static function getDayOfWeek(?string $date = null, string $format = 'Y-m-d', $tz = null): string|DateTimeZone|bool|int|null
+    public static function getDayOfWeek(?string $date = null, $tz = null): string|DateTimeZone|bool|int|null
     {
-        return static::info($date,$format,$tz);
+        return static::info($date,'Y-m-d',$tz);
     }
 
     /**
@@ -121,7 +119,7 @@ class Date
      * @param string $info
      * @return string|int|bool|DateTimeZone|null
      */
-    protected static function info(?string $date = null, string $format = 'Y-m-d', $tz = null,string $info = 'dayOfWeek'): string|int|bool|DateTimeZone|null
+    public static function info(?string $date = null, string $format = 'Y-m-d', $tz = null,string $info = 'dayOfWeek'): string|int|bool|DateTimeZone|null
     {
         return $date
             ? static::createFormat($date,$format,$tz)->{$info}
