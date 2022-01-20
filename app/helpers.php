@@ -32,6 +32,19 @@ if(!function_exists('entity')){
     }
 }
 
+if(!function_exists('isExistAuthorization')){
+
+    /**
+     * checks if the user is logged
+     *
+     * @return bool
+     */
+    function isExistAuthorization(): bool
+    {
+        return request()->headers->has('authorization');
+    }
+}
+
 if(!function_exists('publicPath')){
 
     /**
