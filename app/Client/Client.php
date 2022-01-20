@@ -30,8 +30,8 @@ class Client extends ClientManager
      * @var array|string[]
      */
     protected array $customRules = [
-        'double' => ['regex:/^[0-9]+(\\.[0-9]+)?$/i'],
-        'atLeastUpperLowerNumber' => ['regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/']
+        'double'                    => ['regex:/^[0-9]+(\\.[0-9]+)?$/i'],
+        'atLeastUpperLowerNumber'   => ['regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/']
     ];
 
     /**
