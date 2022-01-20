@@ -93,7 +93,9 @@ class ApiController extends BaseController
         }
 
         if(property_exists($this,'authenticate') && !$this->authenticate){
-            return $this->middlewares;
+            if(!isExistAuthorization()){
+                return $this->middlewares;
+            }
         }
 
         return array_merge(['auth:'.authGuard('check')],$this->middlewares);
