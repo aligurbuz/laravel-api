@@ -76,14 +76,14 @@ class Date
      * create format for date
      *
      * @param string $format
-     * @param $data
+     * @param $date
      * @param null $tz
      * @return Carbon|false
      */
-    public static function createFormat($data, string $format = 'Y-m-d H:i:s', $tz = null): bool|Carbon
+    public static function createFormat($date, string $format = 'Y-m-d H:i:s', $tz = null): bool|Carbon
     {
         $tz = $tz ?? static::getTimezone();
 
-        return Carbon::createFromFormat($format,$data,$tz);
+        return Carbon::createFromFormat($format,$date,$tz);
     }
 }
