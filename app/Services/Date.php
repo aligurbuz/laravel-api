@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Services;
 
 use Carbon\Carbon;
+use DateTimeZone;
 
 /**
  * Class DateManager
@@ -58,18 +59,42 @@ class Date
     }
 
     /**
-     * get day of week (as numeric) for carbon
+     * get day name for carbon
      *
      * @param string|null $date
      * @param string $format
      * @param null $tz
-     * @return int
+     * @return string
      */
-    public static function getDayOfWeek(?string $date= null, string $format = 'Y-m-d', $tz = null): int
+    public static function getDayName(?string $date = null, string $format = 'Y-m-d', $tz = null): string
     {
-        return $date
-            ? static::createFormat($date,$format,$tz)->dayOfWeek
-            : static::now()->dayOfWeek;
+        return static::info($date,$format,$tz,'dayName');
+    }
+
+    /**
+     * get short day name for carbon
+     *
+     * @param string|null $date
+     * @param string $format
+     * @param null $tz
+     * @return string
+     */
+    public static function getShortDayName(?string $date = null, string $format = 'Y-m-d', $tz = null): string
+    {
+        return static::info($date,$format,$tz,'shortDayName');
+    }
+
+    /**
+     * get short day name for carbon
+     *
+     * @param string|null $date
+     * @param string $format
+     * @param null $tz
+     * @return string|DateTimeZone|bool|int|null
+     */
+    public static function getDayOfWeek(?string $date = null, string $format = 'Y-m-d', $tz = null): string|DateTimeZone|bool|int|null
+    {
+        return static::info($date,$format,$tz);
     }
 
     /**
@@ -85,5 +110,21 @@ class Date
         $tz = $tz ?? static::getTimezone();
 
         return Carbon::createFromFormat($format,$date,$tz);
+    }
+
+    /**
+     * get day of week (as numeric) for carbon
+     *
+     * @param string|null $date
+     * @param string $format
+     * @param null $tz
+     * @param string $info
+     * @return string|int|bool|DateTimeZone|null
+     */
+    protected static function info(?string $date = null, string $format = 'Y-m-d', $tz = null,string $info = 'dayOfWeek'): string|int|bool|DateTimeZone|null
+    {
+        return $date
+            ? static::createFormat($date,$format,$tz)->{$info}
+            : static::now()->{$info};
     }
 }
