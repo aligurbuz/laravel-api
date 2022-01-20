@@ -4,28 +4,29 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Api\Auth;
 
-use App\Facades\Authenticate\ApiKey;
-use App\Factory\Factory;
 use Exception;
 use App\Services\Client;
-use App\Services\Response\Response;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Facades\Authenticate\ApiKey;
+use App\Http\Controllers\Api\ApiController;
 use App\Client\Auth\Login\Create\CreateClient;
 use App\Exceptions\Exception as ExceptionService;
 
-class LoginController extends Controller
+class LoginController extends ApiController
 {
     /**
+     * @var bool
+     */
+    protected bool $authenticate = false;
+
+    /**
      * @param CreateClient $client
-     * @return object
+     * @return array
      *
      * @throws Exception
      */
-    public function login(CreateClient $client) : object
+    public function login(CreateClient $client) : array
     {
-        Factory::apiKey();
-
         $client->handle();
         $clientData = (Client::data())[0] ?? [];
         $authGuard = Auth::guard(authGuard());
@@ -43,7 +44,7 @@ class LoginController extends Controller
             $data['user']  = $user->toArray();
             $data['token'] = $user->createToken(ApiKey::who())->accessToken;
 
-            return Response::ok($data);
+            return $data;
         }
 
         return ExceptionService::loginException();
