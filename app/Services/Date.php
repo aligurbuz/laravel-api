@@ -62,13 +62,12 @@ class Date
      * get day name for carbon
      *
      * @param string|null $date
-     * @param string $format
      * @param null $tz
      * @return string
      */
-    public static function getDayName(?string $date = null, string $format = 'Y-m-d', $tz = null): string
+    public static function getDayName(?string $date = null, $tz = null): string
     {
-        return static::info($date,$format,$tz,'dayName');
+        return static::info($date,'Y-m-d',$tz,'dayName');
     }
 
     /**
