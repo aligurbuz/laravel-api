@@ -68,6 +68,12 @@ abstract class TestCase extends BaseTestCase
      */
     public function getToken() : string
     {
+        $token = $this->getRedisConnection()->get(self::unitTestToken);
+
+        if(is_null($token)){
+            $this->test_login();
+        }
+
         return $this->getRedisConnection()->get(self::unitTestToken);
     }
 
