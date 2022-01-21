@@ -15,7 +15,11 @@ class UserTest extends TestCase
     {
         $response = $this->get('api/user',$this->headersWithAuthorization());
 
-        dd($this->getContentArray($response));
+        $content = $this->getContentArray($response);
+        $resourceData = $this->getResourceData($content);
+
         $response->assertStatus(200);
+        $this->assertIsArray($resourceData);
+        $this->assertCount(1, $resourceData);
     }
 }

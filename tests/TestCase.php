@@ -47,6 +47,15 @@ abstract class TestCase extends BaseTestCase
     }
 
     /**
+     * @param array $data
+     * @return array
+     */
+    public function getResourceData(array $data = []) : array
+    {
+        return $data['resource'][0]['data'] ?? $data['resource'];
+    }
+
+    /**
      * @return ClientInterface
      */
     public function getRedisConnection() : ClientInterface
