@@ -24,17 +24,7 @@ class SupervisorCommand extends Command
     /**
      * @var array|string[]
      */
-    protected array $contents = ['laravel-redis-worker' => '[program:laravel-worker]
-process_name=%(program_name)s_%(process_num)02d
-command=php /var/www/html/app/api/artisan queue:work redis --sleep=3 --tries=3 --max-time=3600
-autostart=true
-autorestart=true
-stopasgroup=true
-killasgroup=true
-numprocs=8
-redirect_stderr=true
-stdout_logfile=/var/www/html/app/api/worker.log
-stopwaitsecs=3600'];
+    protected array $contents = [];
 
     /**
      * Create a new command instance.
@@ -44,6 +34,20 @@ stopwaitsecs=3600'];
     public function __construct()
     {
         parent::__construct();
+
+        $basePath = isLocale() ? __DIR__ : '/var/www/html/app';
+
+        $this->contents = ['laravel-redis-worker' => '[program:laravel-worker]
+process_name=%(program_name)s_%(process_num)02d
+command=php '.$basePath.'/artisan queue:work redis --sleep=3 --tries=3 --max-time=3600
+autostart=true
+autorestart=true
+stopasgroup=true
+killasgroup=true
+numprocs=8
+redirect_stderr=true
+stdout_logfile='.$basePath.'/worker.log
+stopwaitsecs=3600'];
     }
 
     /**
