@@ -19,6 +19,10 @@ class LoginTest extends TestCase
             'password' => '123456'
         ],['Apikey' => '36a43836036ead1a475de70bab62ba5c','Accept-Language' => 'en'] );
 
+        $content = json_decode($response->getContent(),true);
+
         $response->assertStatus(200);
+        $this->assertArrayHasKey('token',$content['resource'][0]);
+        $this->assertArrayHasKey('user',$content['resource'][0]);
     }
 }
