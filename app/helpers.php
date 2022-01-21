@@ -45,6 +45,19 @@ if(!function_exists('isExistAuthorization')){
     }
 }
 
+if(!function_exists('consoleAuthorizationStatus')){
+
+    /**
+     * checks if the user is logged
+     *
+     * @return bool
+     */
+    function consoleAuthorizationStatus(): bool
+    {
+        return request()->headers->has('authorization') || !app()->runningInConsole();
+    }
+}
+
 if(!function_exists('publicPath')){
 
     /**

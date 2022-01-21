@@ -13,8 +13,9 @@ class UserTest extends TestCase
      */
     public function test_user()
     {
-        $response = $this->get('api/user?limit=1',$this->headersWithAuthorization());
+        $response = $this->get('api/user',$this->headersWithAuthorization());
 
+        dd($this->getContentArray($response));
         $response->assertStatus(200);
     }
 }

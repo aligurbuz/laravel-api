@@ -85,7 +85,7 @@ trait ScopeManager
      */
     public function scopeRepository(Builder $builder,object $object,bool $repository = true): object
     {
-        if(app()->runningInConsole()) $repository = false;
+        if(!consoleAuthorizationStatus()) $repository = false;
 
         $objectName = lcfirst(class_basename($object));
 
