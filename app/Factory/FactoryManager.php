@@ -28,6 +28,7 @@ class FactoryManager extends FactoryResourceManager
      */
     protected static ?string $factory;
 
+
     /**
      * get call static for factory
      *
@@ -71,13 +72,13 @@ class FactoryManager extends FactoryResourceManager
     private function factoryMaker(): mixed
     {
         $name = static::$name;
-        static::$factory = 'App\Factory\\'.$name.'\\'.static::getAdapterName($name);
+        static::$factory = 'App\Factory\\'.$name.'\\'.ucfirst(static::getAdapterName($name));
 
         if(class_exists(static::$factory)){
             return $this->callFactory();
         }
 
-        return throw new Exception('factory is not valid');
+        return throw new Exception('factory named '.$name.' is not valid');
     }
 
     /**
