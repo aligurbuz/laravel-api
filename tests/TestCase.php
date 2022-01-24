@@ -2,6 +2,7 @@
 
 namespace Tests;
 
+use App\Constants;
 use App\Services\Redis;
 use Predis\ClientInterface;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
@@ -11,6 +12,18 @@ abstract class TestCase extends BaseTestCase
     use CreatesApplication;
 
     protected const unitTestToken = 'unitTestToken';
+
+    /**
+     * get api request prefix for feature test class
+     *
+     * @param string|null $endpoint
+     * @return string
+     */
+    public function apiRequestPrefix(?string $endpoint = null) : string
+    {
+        $endpoint = $endpoint ?? $this->endpoint;
+        return Constants::apiPrefix.'/'.$endpoint;
+    }
 
     /**
      * @return string[]

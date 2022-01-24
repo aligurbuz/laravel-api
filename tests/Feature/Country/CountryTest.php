@@ -7,13 +7,18 @@ use Tests\TestCase;
 class CountryTest extends TestCase
 {
     /**
+     * @var string
+     */
+    protected string $endpoint = 'countries';
+
+    /**
      * A basic test countries.
      *
      * @return void
      */
     public function test_countries()
     {
-        $response = $this->get('api/countries',$this->headersWithAuthorization());
+        $response = $this->get($this->apiRequestPrefix(),$this->headersWithAuthorization());
 
         $content = $this->getContentArray($response);
         $resourceData = $this->getResourceData($content);
@@ -30,7 +35,7 @@ class CountryTest extends TestCase
      */
     public function test_countries_withoutAuth()
     {
-        $response = $this->get('api/countries',$this->headers());
+        $response = $this->get($this->apiRequestPrefix(),$this->headers());
 
         $content = $this->getContentArray($response);
         $resourceData = $this->getResourceData($content);

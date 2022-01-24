@@ -10,6 +10,7 @@ namespace App;
  */
 class Constants
 {
+    public const apiPrefix                          = 'api';
     public const response                           = 'response';
     public const errorInput                         = 'errorInput';
     public const acceptLanguage                     = 'acceptLanguage';
