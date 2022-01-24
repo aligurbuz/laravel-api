@@ -38,6 +38,18 @@ class Collection extends CollectionManager implements CollectionInterface
 	}
 
     /**
+     * Shows the difference between the two arrays.
+     *
+     * @param array $first
+     * @param array $second
+     * @return array
+     */
+    public function different(array $first = [], array $second = []) : array
+    {
+        return $this->differentProcess($first,$second);
+    }
+
+    /**
      * It is a method for adding the double elements of two given arrays.
      *
      * @param array $first

@@ -27,4 +27,12 @@ interface CollectionInterface
      * @see Collection::subtractionDoubleElementsOfArrays()
      */
     public function subtractionDoubleElementsOfArrays(array $first = [], array $last  = []) : array;
+
+    /**
+     * @param array $first
+     * @param array $second
+     * @return array
+     * @see Collection::different()
+     */
+    public function different(array $first = [], array $second = []) : array;
 }

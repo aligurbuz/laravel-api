@@ -31,6 +31,18 @@ abstract class CollectionManager
     }
 
     /**
+     * Shows the difference between the two arrays.
+     *
+     * @param array $first
+     * @param array $second
+     * @return array
+     */
+    protected function differentProcess(array $first = [],array $second = []) : array
+    {
+        return [];
+    }
+
+    /**
      * Additions two given values as a double.
      *
      * @param $key
