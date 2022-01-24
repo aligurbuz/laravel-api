@@ -17,9 +17,14 @@ We can start by running the command below.
 
 ```php
 
-php artisan passport:install
-php artisan passport:keys
-php artisan migrate
+sudo chmod +x server.sh 
+./server.sh projectName Environtname
+
+//for testing environment
+./server.sh projectName testing
+
+//for production environment
+./server.sh projectName production
 
 ```
 
