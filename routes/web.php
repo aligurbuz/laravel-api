@@ -2,6 +2,7 @@
 
 use App\Services\Postman;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DeploymentController;
 use App\Http\Controllers\Api\DocumentationController;
 
 /*
@@ -16,6 +17,7 @@ use App\Http\Controllers\Api\DocumentationController;
 */
 
 Route::get('/doc', [DocumentationController::class,'index']);
+Route::post('/deployment/{key}', [DeploymentController::class,'handle']);
 
 Route::get('/postman/collection',function(){
     return response()->json(Postman::collection());

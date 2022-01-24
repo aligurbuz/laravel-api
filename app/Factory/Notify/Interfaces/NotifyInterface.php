@@ -20,4 +20,10 @@ interface NotifyInterface
      * @see Slack::internalServerError()
      */
     public function internalServerError() : void;
+
+    /**
+     * @param string $message
+     * @see Slack::deployment()
+     */
+    public function deployment(string $message) : void;
 }

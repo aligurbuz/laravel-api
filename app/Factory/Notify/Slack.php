@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Factory\Notify;
 
+use App\Jobs\Deployment;
 use App\Jobs\SlackPusher;
 use App\Factory\Notify\Interfaces\NotifyInterface;
 
@@ -57,5 +58,16 @@ class Slack extends NotifyManager implements NotifyInterface
     public function push(string $channel,string $message) : void
     {
         dispatch(new SlackPusher($channel,$message));
+    }
+
+    /**
+     * The method by which you can push your deployment information.
+     *
+     * @param string $message
+     * @return void
+     */
+    public function deployment(string $message) : void
+    {
+        dispatch(new Deployment('error500',$message));
     }
 }

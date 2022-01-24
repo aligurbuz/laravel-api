@@ -35,7 +35,7 @@ class SupervisorCommand extends Command
     {
         parent::__construct();
 
-        $basePath = isLocale() ? __DIR__ : '/var/www/html/app';
+        $basePath = isLocale() ? base_path() : '/var/www/html/app';
 
         $this->contents = ['laravel-redis-worker' => '[program:laravel-worker]
 process_name=%(program_name)s_%(process_num)02d
