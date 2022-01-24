@@ -7,13 +7,18 @@ use Tests\TestCase;
 class UserTest extends TestCase
 {
     /**
+     * @var string
+     */
+    protected string $endpoint = 'user';
+
+    /**
      * A basic test user.
      *
      * @return void
      */
     public function test_user()
     {
-        $response = $this->get('api/user?with[role]=*',$this->headersWithAuthorization());
+        $response = $this->get(''.$this->apiRequestPrefix().'?with[role]=*',$this->headersWithAuthorization());
 
         $content = $this->getContentArray($response);
         $resourceData = $this->getResourceData($content);
