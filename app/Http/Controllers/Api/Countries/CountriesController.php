@@ -12,6 +12,11 @@ use App\Repositories\Resources\Countries\Contracts\CountriesRepositoryContract;
 
 class CountriesController extends ApiController
 {
+    /**
+     * @var bool
+     */
+    protected bool $authenticate = false;
+
 	/**
 	 * get countries data
 	 *
