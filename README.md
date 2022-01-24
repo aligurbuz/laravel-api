@@ -18,7 +18,7 @@ We can start by running the command below.
 ```php
 
 sudo chmod +x server.sh 
-./server.sh projectName Environtname
+./server.sh projectName environtname
 
 //for testing environment
 ./server.sh projectName testing
