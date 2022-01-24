@@ -13,7 +13,7 @@ class UserTest extends TestCase
      */
     public function test_user()
     {
-        $response = $this->get('api/user',$this->headersWithAuthorization());
+        $response = $this->get('api/user?with[role]=*',$this->headersWithAuthorization());
 
         $content = $this->getContentArray($response);
         $resourceData = $this->getResourceData($content);
@@ -21,5 +21,7 @@ class UserTest extends TestCase
         $response->assertStatus(200);
         $this->assertIsArray($resourceData);
         $this->assertCount(1, $resourceData);
+        $this->assertTrue(true, isset($resourceData[0]['role']));
+        $this->assertTrue(true, isset($resourceData[0]['role'][0]['role_name']));
     }
 }
