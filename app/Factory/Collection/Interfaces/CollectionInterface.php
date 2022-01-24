@@ -31,8 +31,9 @@ interface CollectionInterface
     /**
      * @param array $first
      * @param array $second
+     * @param string|null $criteria
      * @return array
      * @see Collection::different()
      */
-    public function different(array $first = [], array $second = []) : array;
+    public function different(array $first = [], array $second = [], ?string $criteria = null) : array;
 }

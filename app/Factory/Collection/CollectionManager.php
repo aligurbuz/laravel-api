@@ -14,7 +14,7 @@ abstract class CollectionManager
      * @param string $operator
      * @return array
      */
-    public function additionSubtractionProcess(array $first = [], array $last = [], $operator = 'addition') : array
+    public function additionSubtractionProcess(array $first = [], array $last = [], string $operator = 'addition') : array
     {
         $list = [];
 
@@ -35,9 +35,10 @@ abstract class CollectionManager
      *
      * @param array $first
      * @param array $second
+     * @param string|null $criteria
      * @return array
      */
-    protected function differentProcess(array $first = [],array $second = []) : array
+    protected function differentProcess(array $first = [],array $second = [],?string $criteria = null) : array
     {
         return [];
     }

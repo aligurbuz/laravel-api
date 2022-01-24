@@ -42,11 +42,12 @@ class Collection extends CollectionManager implements CollectionInterface
      *
      * @param array $first
      * @param array $second
+     * @param string|null $criteria
      * @return array
      */
-    public function different(array $first = [], array $second = []) : array
+    public function different(array $first = [], array $second = [], ?string $criteria = null) : array
     {
-        return $this->differentProcess($first,$second);
+        return $this->differentProcess($first,$second,$criteria);
     }
 
     /**
