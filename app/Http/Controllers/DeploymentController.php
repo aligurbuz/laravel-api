@@ -25,6 +25,7 @@ class DeploymentController extends Controller
         if($deployKey==config('deployment.key')){
             $deployment = exec('cd '.base_path().' && git pull origin '.$this->branch);
             Factory::notify()->deployment($deployment);
+
             return $deployment;
         }
 
