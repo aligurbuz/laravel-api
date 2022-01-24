@@ -18,5 +18,6 @@ class Constants
     public const validatorRules                     = 'validatorRules';
     public const modelNamespace                     = 'App\Models';
     public const controllerNamespace                = 'App\Http\Controllers';
+    public const testFeatureNamespace               = 'Tests\Feature';
     public const responseFormatterSupplement        = 'responseFormatterSupplement';
 }

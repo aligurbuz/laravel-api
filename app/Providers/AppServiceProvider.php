@@ -13,6 +13,7 @@ use App\Services\Commands\DbColumn;
 use App\Services\Commands\Documentation;
 use App\Services\Commands\EnvironmentCommand;
 use App\Services\Commands\FactoryCommand;
+use App\Services\Commands\FeatureTestCommand;
 use App\Services\Commands\MigrationCommand;
 use App\Services\Commands\ModelCommand;
 use App\Services\Commands\PermissionCommand;
@@ -37,6 +38,7 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         $this->fullToSql();
+        $this->commands([FeatureTestCommand::class]);
         $this->commands([EnvironmentCommand::class]);
         $this->commands([AppNameCommand::class]);
         $this->commands([ClientCommand::class]);

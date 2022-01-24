@@ -3,6 +3,7 @@
 namespace App\Services\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\File;
 use Nette\PhpGenerator\Literal;
 use Nette\PhpGenerator\PhpNamespace;
@@ -57,6 +58,8 @@ class ControllerCommand extends Command
         }
 
         if(!file_exists($controllerEndpointFilePath)){
+
+            Artisan::call('feature:test:create',['dir' => $dirVariable,'class' => $controllerVariable]);
 
             $namespace = new PhpNamespace($controllerEndpointPathNamespace);
             $addClass = $namespace->addClass($controllerName);

@@ -1,0 +1,27 @@
+namespace Tests\Feature\__DIR__;
+
+use Tests\TestCase;
+
+class __CLASS__Test extends TestCase
+{
+    /**
+     * @var string
+     */
+    protected string $endpoint = '__ENDPOINT__';
+
+    /**
+     * A basic test countries.
+     *
+     * @return void
+     */
+    public function test___ENDPOINTMETHOD__()
+    {
+        $response = $this->get($this->apiRequestPrefix(),$this->headersWithAuthorization());
+
+        $content = $this->getContentArray($response);
+        $resourceData = $this->getResourceData($content);
+
+        $response->assertStatus(200);
+        $this->assertIsArray($resourceData);
+    }
+}
