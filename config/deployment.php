@@ -1,5 +1,5 @@
 <?php
 
 return [
-  'key' => '__dpyLaravel_098123'
+  'key' => env('DEPLOYMENT_KEY','__dpyLaravel_098123')
 ];
