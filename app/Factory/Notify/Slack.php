@@ -68,6 +68,6 @@ class Slack extends NotifyManager implements NotifyInterface
      */
     public function deployment(string $message) : void
     {
-        dispatch(new Deployment('error500',$message));
+        dispatch(new Deployment('deployment',$message));
     }
 }
