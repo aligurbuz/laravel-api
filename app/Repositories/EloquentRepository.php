@@ -79,7 +79,7 @@ class EloquentRepository
      * @param bool $fullSql
      * @return string
      */
-    public function sql(bool $fullSql = true) : string
+    public function toSql(bool $fullSql = true) : string
     {
         $this->get();
 
