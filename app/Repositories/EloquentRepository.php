@@ -74,6 +74,21 @@ class EloquentRepository
     }
 
     /**
+     * get sql syntax information for user model
+     *
+     * @param bool $fullSql
+     * @return string
+     */
+    public function sql(bool $fullSql = true) : string
+    {
+        $this->get();
+
+        $sqlMethod = $fullSql ? 'toFullSql' : 'toSql';
+
+        return $this->graphQl->{$sqlMethod}();
+    }
+
+    /**
      * get pagination model repository
      *
      * @param int|null $pagination
