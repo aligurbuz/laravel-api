@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Repositories;
 
+use App\Services\AppContainer;
 use Throwable;
 use App\Constants;
 use App\Services\Db;
@@ -96,6 +97,8 @@ class EloquentRepository
      */
     public function pagination(?int $pagination = null) : array
     {
+        $this->setEndpointQueries($this->graphQl);
+
         if(property_exists($this,'paginator') && !$this->paginator){
             return $this->graphQl->get()->toArray();
         }
@@ -503,9 +506,22 @@ class EloquentRepository
             $this->repository = $this->afterLoadingRepository();
         }
 
+        $this->setEndpointQueries($this->repository);
+
         return $this->additionalResourceHandler(
             $this->baseResource($this->repository->get()->toArray())
         );
+    }
+
+    /**
+     * It collects all endpoint database queries in a container.
+     *
+     * @param object $instance
+     * @return void
+     */
+    private function setEndpointQueries(object $instance) : void
+    {
+        AppContainer::set('endpointQueries',[$instance->toFullSql()],true);
     }
 
     /**
