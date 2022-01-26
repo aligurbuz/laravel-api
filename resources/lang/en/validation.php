@@ -163,9 +163,6 @@ return [
     |
     */
 
-    'attributes' => [],
-    'comments' => [
-        //
-    ]
+    'attributes' => []
 
 ];

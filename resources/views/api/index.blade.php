@@ -879,6 +879,8 @@ wget --no-check-certificate --quiet \
                                                 if(class_exists($clientDataInstance)){
                                                      $getClientClass = (new $clientDataInstance());
                                                      $getClientClassRule = $getClientClass->getRule();
+                                                     $getClientCapsuleComments = $getClientClass->getCapsuleComments();
+
 
 
                                         @endphp
@@ -899,7 +901,7 @@ wget --no-check-certificate --quiet \
                                             <tr>
                                                 <td>{{$getKey}}</td>
                                                 <td>{{$getRule}}</td>
-                                                <td>{{trans('validation.comments.'.$getKey)}}</td>
+                                                <td>{{$getClientCapsuleComments[$getKey] ?? 'invalid.client.capsuleComments'}}</td>
                                             </tr>
 
                                             @endforeach

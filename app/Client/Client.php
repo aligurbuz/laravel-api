@@ -145,6 +145,16 @@ class Client extends ClientManager
     }
 
     /**
+     * get array capsule comments for client
+     *
+     * @return array
+     */
+    public function getCapsuleComments() : array
+    {
+        return property_exists($this,'capsuleComments') ? $this->capsuleComments : [];
+    }
+
+    /**
      * get rule for client
      *
      * @param $key
