@@ -890,6 +890,7 @@ wget --no-check-certificate --quiet \
                                             <tr>
                                                 <th style="width:200px;">Query Parameters</th>
                                                 <th>Rule</th>
+                                                <th>Description</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -898,6 +899,7 @@ wget --no-check-certificate --quiet \
                                             <tr>
                                                 <td>{{$getKey}}</td>
                                                 <td>{{$getRule}}</td>
+                                                <td>{{trans('validation.comments.'.$getKey)}}</td>
                                             </tr>
 
                                             @endforeach

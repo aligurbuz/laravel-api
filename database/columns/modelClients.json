@@ -8,5 +8,10 @@
         "get": "App\\Client\\User\\User\\Get\\GetClient",
         "create": "App\\Client\\User\\User\\Create\\CreateClient",
         "update": "App\\Client\\User\\User\\Update\\UpdateClient"
+    },
+    "Timezone": {
+        "get": "App\\Client\\Timezones\\Timezones\\Get\\GetClient",
+        "create": "App\\Client\\Timezones\\Timezones\\Create\\CreateClient",
+        "update": "App\\Client\\Timezones\\Timezones\\Update\\UpdateClient"
     }
 }

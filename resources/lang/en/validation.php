@@ -164,5 +164,8 @@ return [
     */
 
     'attributes' => [],
+    'comments' => [
+        //
+    ]
 
 ];
