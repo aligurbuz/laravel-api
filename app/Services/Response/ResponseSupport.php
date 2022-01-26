@@ -30,6 +30,18 @@ abstract class ResponseSupport
     }
 
     /**
+     * get resource data for response
+     *
+     * @param array $data
+     * @return array
+     */
+    protected static function getResourceData(array $data = []) : array
+    {
+        $resource = isset($data[0]) ? $data : [$data];
+        return isset($resource[0]['data']) ? $resource : [['data' => $resource]];
+    }
+
+    /**
      * includes the needed extra information to exception data
      *
      * @param null $trace

@@ -48,7 +48,7 @@ class Response extends ResponseSupport
             'client'            => ApiKey::who(),
             'env'               => config('app.env'),
             'responseCode'      => static::responseCode(),
-            'resource'          => isset($data[0]) ? $data : [$data],
+            'resource'          => static::getResourceData($data),
             'instructions'      => AppContainer::get(Constants::responseFormatterSupplement),
         ];
 
