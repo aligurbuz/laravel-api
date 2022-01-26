@@ -10,5 +10,9 @@
     "registration.registration.update": {
         "class": "App\\Client\\Registration\\Registration\\Update\\UpdateClient",
         "model": "registration"
+    },
+    "user.user.create": {
+        "class": "App\\Client\\User\\User\\Create\\CreateClient",
+        "model": "user"
     }
 }
