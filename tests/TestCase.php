@@ -107,10 +107,11 @@ abstract class TestCase extends BaseTestCase
 
             $content = json_decode($response->getContent(),true);
 
+
             $response->assertStatus(200);
-            $this->assertArrayHasKey('token',$content['resource'][0]);
-            $this->assertArrayHasKey('user',$content['resource'][0]);
-            $redis->set(self::unitTestToken,$content['resource'][0]['token']);
+            $this->assertArrayHasKey('token',$content['resource'][0]['data'][0]);
+            $this->assertArrayHasKey('user',$content['resource'][0]['data'][0]);
+            $redis->set(self::unitTestToken,$content['resource'][0]['data'][0]['token']);
             $redis->expire(self::unitTestToken,3600);
         }
         else{
