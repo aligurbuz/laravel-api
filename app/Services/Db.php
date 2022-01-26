@@ -36,6 +36,19 @@ class Db extends Model
     }
 
     /**
+     * get table required columns for model
+     *
+     * @param null $table
+     * @return array
+     */
+    public static function requiredColumns($table = null): array
+    {
+        $entities = static::entities($table);
+
+        return $entities['required_columns'] ?? [];
+    }
+
+    /**
      * get table columns for model
      *
      * @param null $table
