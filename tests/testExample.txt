@@ -36,5 +36,8 @@ class __CLASS__Test extends TestCase
             $response = $this->post($this->apiRequestPrefix(),[],$this->headersWithAuthorization());
             $response->assertStatus(400);
         }
+        else{
+            $this->assertTrue(true,true);
+        }
     }
 }
