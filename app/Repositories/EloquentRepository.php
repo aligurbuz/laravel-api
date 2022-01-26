@@ -100,7 +100,7 @@ class EloquentRepository
         $this->setEndpointQueries($this->graphQl);
 
         if(property_exists($this,'paginator') && !$this->paginator){
-            return $this->graphQl->get()->toArray();
+            return ['data' => $this->graphQl->get()->toArray()];
         }
 
         return $this->graphQl->paginate($pagination ?? $this->paginationHandler())->toArray();
