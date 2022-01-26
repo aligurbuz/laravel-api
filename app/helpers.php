@@ -32,6 +32,27 @@ if(!function_exists('entity')){
     }
 }
 
+
+if(!function_exists('getServiceJson')){
+
+    /**
+     * get service json
+     *
+     * @param string|null $key
+     * @return array
+     */
+    function getServiceJson(?string $key = null) : array
+    {
+        $serviceJsonFile = database_path('columns').''.DIRECTORY_SEPARATOR.'service.json';
+        $serviceJson = json_decode(File::get($serviceJsonFile),true);
+
+        $classicEndpoint = ucfirst($key).''.DIRECTORY_SEPARATOR.''.$key;
+        $serviceJsonKey = $serviceJson[ucfirst($key)] ?? ($serviceJson[$classicEndpoint] ?? []);
+
+        return !is_null($key) ? $serviceJsonKey : $serviceJson;
+    }
+}
+
 if(!function_exists('isExistAuthorization')){
 
     /**
