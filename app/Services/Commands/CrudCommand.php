@@ -90,7 +90,7 @@ use '.$useController.';',$routeApiContent);
                     ucfirst($dirVariable).'/'.$controllerVariable => [
                         'controller' => ucfirst($controllerVariable),
                         'dir' => ucfirst($dirVariable),
-                        'model' => $this->argument('model')
+                        'model' => ucfirst($this->argument('model'))
                     ]
                 ];
 
