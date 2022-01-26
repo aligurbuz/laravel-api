@@ -3,6 +3,7 @@
 namespace Tests;
 
 use App\Constants;
+use App\Services\Db;
 use App\Services\Redis;
 use Predis\ClientInterface;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
@@ -66,6 +67,21 @@ abstract class TestCase extends BaseTestCase
     public function getResourceData(array $data = []) : array
     {
         return $data['resource'][0]['data'] ?? $data['resource'];
+    }
+
+    /**
+     * get required columns
+     *
+     * @return array
+     */
+    public function getRequiredColumns() : array
+    {
+        $serviceJson = getServiceJson($this->endpoint);
+        $model = $serviceJson['model'] ?? 'none';
+        $modelNamespace = Constants::modelNamespace.'\\'.$model;
+        $modelInstance = new $modelNamespace;
+
+        return Db::requiredColumns($modelInstance->getTable());
     }
 
     /**
