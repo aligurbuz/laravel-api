@@ -89,7 +89,8 @@ use '.$useController.';',$routeApiContent);
                 $newValues = [
                     ucfirst($dirVariable).'/'.$controllerVariable => [
                         'controller' => ucfirst($controllerVariable),
-                        'dir' => ucfirst($dirVariable)
+                        'dir' => ucfirst($dirVariable),
+                        'model' => $this->argument('model')
                     ]
                 ];
 
