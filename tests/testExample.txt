@@ -33,11 +33,34 @@ class __CLASS__Test extends TestCase
     public function test___ENDPOINTMETHOD___post_required_columns()
     {
         if(count($this->getRequiredColumns())){
-            $response = $this->post($this->apiRequestPrefix(),[],$this->headersWithAuthorization());
+            $response = $this->postJson($this->apiRequestPrefix(),[],$this->headersWithAuthorization());
             $response->assertStatus(400);
         }
         else{
             $this->assertTrue(true,true);
+        }
+    }
+
+    /**
+     * A basic test countries.
+     *
+     * @return void
+     */
+    public function test___ENDPOINTMETHOD___post()
+    {
+        $testMock = config('testmock.'.$this->endpoint,[]);
+
+        $response = $this->postJson(
+            $this->apiRequestPrefix(),
+            $testMock,
+            $this->headersWithAuthorization()
+        );
+
+        if(is_array($testMock) && count($testMock)){
+            $response->assertStatus(200);
+        }
+        else{
+            $response->assertStatus(400);
         }
     }
 }
