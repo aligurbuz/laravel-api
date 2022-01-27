@@ -86,7 +86,7 @@ class __CLASS__Test extends TestCase
         );
 
         if(is_array($testMock) && count($testMock)){
-            $response->assertStatus(400);
+            $response->assertStatus(200);
         }
         else{
             $response->assertStatus(400);
