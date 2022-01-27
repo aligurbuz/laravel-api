@@ -3,8 +3,10 @@
 namespace Tests;
 
 use App\Constants;
+use App\Services\AppContainer;
 use App\Services\Db;
 use App\Services\Redis;
+use Illuminate\Support\Facades\File;
 use Predis\ClientInterface;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 
@@ -70,15 +72,58 @@ abstract class TestCase extends BaseTestCase
     }
 
     /**
+     * get client for endpoint
+     *
+     * @return array
+     */
+    public function getClient() : array
+    {
+        $client = json_decode(File::get(database_path('columns').''.DIRECTORY_SEPARATOR.'modelClients.json'),true);
+        return $client[ucfirst($this->getModel())] ?? [];
+    }
+
+    /**
+     * @param string $method
+     * @return object
+     */
+    public function getClientInstance(string $method = 'get') : object
+    {
+        return AppContainer::use('testClientInstance',function() use($method){
+           $client = $this->getClient();
+           return new $client[$method];
+        });
+    }
+
+    /**
+     * get client rule for endpoint
+     *
+     * @param string $method
+     * @return array
+     */
+    public function getClientRules(string $method = 'get') : array
+    {
+        return $this->getClientInstance($method)->getRule();
+    }
+
+    /**
+     * get model for endpoint
+     *
+     * @return string
+     */
+    public function getModel() : string
+    {
+        $serviceJson = getServiceJson($this->endpoint);
+        return $serviceJson['model'] ?? 'none';
+    }
+
+    /**
      * get required columns
      *
      * @return array
      */
     public function getRequiredColumns() : array
     {
-        $serviceJson = getServiceJson($this->endpoint);
-        $model = $serviceJson['model'] ?? 'none';
-        $modelNamespace = Constants::modelNamespace.'\\'.$model;
+        $modelNamespace = Constants::modelNamespace.'\\'.$this->getModel();
         $modelInstance = new $modelNamespace;
 
         return Db::requiredColumns($modelInstance->getTable());
