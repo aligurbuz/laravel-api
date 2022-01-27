@@ -3,11 +3,12 @@
 namespace Tests;
 
 use App\Constants;
-use App\Services\AppContainer;
 use App\Services\Db;
 use App\Services\Redis;
-use Illuminate\Support\Facades\File;
 use Predis\ClientInterface;
+use App\Services\AppContainer;
+use App\Repositories\Repository;
+use Illuminate\Support\Facades\File;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 
 abstract class TestCase extends BaseTestCase
@@ -114,6 +115,33 @@ abstract class TestCase extends BaseTestCase
     {
         $serviceJson = getServiceJson($this->endpoint);
         return $serviceJson['model'] ?? 'none';
+    }
+
+    /**
+     * get model for endpoint
+     *
+     * @param object $response
+     * @return void
+     */
+    public function setResponseModelCode(object $response) : void
+    {
+        $content = $this->getContentArray($response);
+        $resource = $this->getResourceData($content);
+        $modelCode = $resource['0'][$this->getRepository()->getModelCode()];
+        AppContainer::setWithTerminating('testModelCode',$modelCode);
+    }
+
+    /**
+     * get model for endpoint
+     *
+     * @return object
+     */
+    public function getRepository() : object
+    {
+        $serviceJson = getServiceJson($this->endpoint);
+        $model = lcfirst(($serviceJson['model'] ?? 'none'));
+
+        return Repository::$model();
     }
 
     /**
