@@ -1,6 +1,7 @@
 namespace Tests\Feature\__DIR__;
 
 use Tests\TestCase;
+use App\Services\AppContainer;
 
 class __CLASS__Test extends TestCase
 {
