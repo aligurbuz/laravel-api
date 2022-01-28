@@ -95,7 +95,14 @@ class __CLASS__Test extends TestCase
             $response->assertStatus(200);
         }
         else{
-            $response->assertStatus(400);
+            $responseData = $this->getContentArray($response);
+
+            if($responseData['status']){
+                $response->assertStatus(200);
+            }
+            else{
+                $response->assertStatus(400);
+            }
         }
     }
 }
