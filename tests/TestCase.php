@@ -90,10 +90,8 @@ abstract class TestCase extends BaseTestCase
      */
     public function getClientInstance(string $method = 'get') : object
     {
-        return AppContainer::use('testClientInstance',function() use($method){
-           $client = $this->getClient();
-           return new $client[$method];
-        });
+        $client = $this->getClient();
+        return new $client[$method];
     }
 
     /**
