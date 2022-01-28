@@ -17,13 +17,19 @@ class __CLASS__Test extends TestCase
      */
     public function test___ENDPOINTMETHOD__()
     {
-        $response = $this->get($this->apiRequestPrefix(),$this->headersWithAuthorization());
+        $testMock = config('testmock.'.$this->endpoint.'.get',[]);
 
-        $content = $this->getContentArray($response);
-        $resourceData = $this->getResourceData($content);
-
-        $response->assertStatus(200);
-        $this->assertIsArray($resourceData);
+        if(!$this->isAvailableRequiredInRules()){
+            $this->status200($this->getRequest());
+        }
+        else{
+            if(count($testMock)){
+                $this->status200($this->getRequest($testMock));
+            }
+            else{
+                $this->getRequest()->assertStatus(400);
+            }
+        }
     }
 
     /**
@@ -49,7 +55,7 @@ class __CLASS__Test extends TestCase
      */
     public function test___ENDPOINTMETHOD___post()
     {
-        $testMock = config('testmock.'.$this->endpoint,[]);
+        $testMock = config('testmock.'.$this->endpoint.'.post',[]);
 
         $response = $this->postJson(
             $this->apiRequestPrefix(),
@@ -73,7 +79,7 @@ class __CLASS__Test extends TestCase
      */
     public function test___ENDPOINTMETHOD___put()
     {
-        $testMock = config('testmock.'.$this->endpoint,[]);
+        $testMock = config('testmock.'.$this->endpoint.'.put',[]);
 
         $modelCode = [
             $this->getRepository()->getModelCode() => AppContainer::get('testModelCode')

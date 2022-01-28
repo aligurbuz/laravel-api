@@ -5,6 +5,7 @@ namespace Tests;
 use App\Constants;
 use App\Services\Db;
 use App\Services\Redis;
+use Illuminate\Support\Str;
 use Predis\ClientInterface;
 use App\Services\AppContainer;
 use App\Repositories\Repository;
@@ -104,6 +105,82 @@ abstract class TestCase extends BaseTestCase
     public function getClientRules(string $method = 'get') : array
     {
         return $this->getClientInstance($method)->getRule();
+    }
+
+    /**
+     * get client required rules for endpoint
+     *
+     * @param string|null $key
+     * @param array $rules
+     * @return bool
+     */
+    public function isRequired(?string $key = null,array $rules = []) : bool
+    {
+        $clientRules = count($rules) ? $rules : $this->getClientRules();
+
+        if(
+            isset($clientRules[$key])
+            && is_array($clientRules[$key])
+            && in_array('required',$clientRules[$key],true)
+        ){
+            return true;
+        }
+
+        if(
+            isset($clientRules[$key])
+            && is_string($clientRules[$key])
+            && Str::contains('required',$clientRules[$key])
+        ){
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * get is available required in rules for endpoint
+     *
+     * @param string $method
+     * @return bool
+     */
+    public function isAvailableRequiredInRules(string $method = 'get') : bool
+    {
+        $rules = $this->getClientRules($method);
+
+        foreach ($rules as $key => $value){
+            if($this->isRequired($key,$rules)){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * get status 200
+     *
+     * @param object $response
+     */
+    public function status200(object $response)
+    {
+        $content = $this->getContentArray($response);
+        $resourceData = $this->getResourceData($content);
+
+        $response->assertStatus(200);
+        $this->assertIsArray($resourceData);
+    }
+
+    /**
+     * get request for endpoint
+     *
+     * @param array $params
+     * @return object
+     */
+    public function getRequest(array $params = []) : object
+    {
+        $params = count($params) ? '?'.http_build_query($params) : '';
+
+        return $this->get($this->apiRequestPrefix().''.$params,$this->headersWithAuthorization());
     }
 
     /**
