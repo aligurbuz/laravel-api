@@ -29,6 +29,33 @@ trait TestHttpSupport
     }
 
     /**
+     * get http method results for test case
+     *
+     * @return void
+     */
+    protected function getHttpMethodWithRelations() : void
+    {
+        AppContainer::terminate(Constants::responseFormatterSupplement);
+
+        $testMock = array_merge(
+            config('testmock.'.$this->endpoint.'.get',[]),
+            $this->getTestEndpointRelations()
+        );
+
+        if(!$this->isAvailableRequiredInRules()){
+            $this->status200($this->getRequest($testMock));
+        }
+        else{
+            if(count($testMock)){
+                $this->status200($this->getRequest($testMock));
+            }
+            else{
+                $this->getRequest()->assertStatus(400);
+            }
+        }
+    }
+
+    /**
      * post required columns for test case
      *
      * @return void

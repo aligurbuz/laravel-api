@@ -69,7 +69,7 @@ trait ScopeManagerTrait
             if(is_array($items) && $with!=='localization'){
                 Response::formatterSupplement(['relations' =>[
                     $with => [
-                        'using' => ''.($items['withQuery']?? 'with['.$with.']').'[select] = \'*',
+                        'using' => ''.($items['withQuery']?? 'with['.$with.']').'[select]=*',
                         'hasMany' => ($items['hasMany'] ?? true),
                     ]
                 ]

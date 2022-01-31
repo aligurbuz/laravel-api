@@ -24,6 +24,16 @@ class __CLASS__Test extends TestCase
      *
      * @return void
      */
+    public function test_products_relations()
+    {
+        $this->getHttpMethodWithRelations();
+    }
+
+    /**
+     * A basic test countries.
+     *
+     * @return void
+     */
     public function test___ENDPOINTMETHOD___post_required_columns()
     {
         $this->postRequiredColumns();

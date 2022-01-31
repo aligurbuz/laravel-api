@@ -164,8 +164,43 @@ abstract class TestCase extends BaseTestCase
         $content = $this->getContentArray($response);
         $resourceData = $this->getResourceData($content);
 
+        AppContainer::setWithTerminating('testEndpointRelations',$this->getRelations($content));
+
         $response->assertStatus(200);
         $this->assertIsArray($resourceData);
+    }
+
+    /**
+     * get test endpoint relations
+     *
+     * @return array
+     */
+    public function getTestEndpointRelations() : array
+    {
+        $relations = AppContainer::get('testEndpointRelations',[]);
+
+        $list = [];
+
+        foreach ($relations as $item){
+            $using = $item['using'] ?? '';
+            $usingExplode = explode('=',$using);
+            if(isset($usingExplode[1])){
+                $list[$usingExplode[0]] = $usingExplode[1];
+            }
+        }
+
+        return $list;
+    }
+
+    /**
+     * get relations
+     *
+     * @param array $content
+     * @return array
+     */
+    public function getRelations(array $content = []) : array
+    {
+        return $content['instructions']['relations'] ?? [];
     }
 
     /**
