@@ -2,6 +2,7 @@
 
 namespace Tests;
 
+use App\Constants;
 use App\Services\AppContainer;
 
 trait TestHttpSupport
@@ -13,6 +14,8 @@ trait TestHttpSupport
      */
     protected function getHttpMethod() : void
     {
+        AppContainer::terminate(Constants::responseFormatterSupplement);
+
         $testMock = config('testmock.'.$this->endpoint.'.get',[]);
 
         if(!$this->isAvailableRequiredInRules()){
@@ -35,8 +38,6 @@ trait TestHttpSupport
      */
     protected function getHttpMethodWithRelations() : void
     {
-        AppContainer::terminate(Constants::responseFormatterSupplement);
-
         $testMock = array_merge(
             config('testmock.'.$this->endpoint.'.get',[]),
             $this->getTestEndpointRelations()
