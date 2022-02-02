@@ -32,7 +32,6 @@ sudo chmod +x server.sh
 
 ```
 
-After defining your keys for passport to your system
 We can send a request to the user endpoint that is pre-defined in the routes/api file.
 
 - Before;
