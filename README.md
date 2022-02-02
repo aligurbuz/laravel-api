@@ -44,7 +44,7 @@ We will use this as a bearer token in every request.
 
 # Controller Directory
 
-Controller directories are always in the App/Http/Controllers directory. Their places will not change.
+Api Controller directories are always in the App/Http/Controllers/Api directory. Their places will not change.
 So this is the first place to look.
 
 - For example, the directory User represents the user prefix, so it points to the api/user endpoint.
