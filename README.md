@@ -15,7 +15,9 @@ I will explain how I set up this system below, along with the images.
 Starting with the ones other than the standard installation of Laravel. If you are ready with everything;
 We can start by running the command below.It will be enough to have docker installed on your system.
 
+```diff
 - In fact, the following command is ideal for your test and production servers outside of your local computer.
+```
 
 ```php
 
