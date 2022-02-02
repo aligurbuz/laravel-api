@@ -32,6 +32,8 @@ sudo chmod +x server.sh
 
 ```
 
+# Contents 
+
 We can send a request to the user endpoint that is pre-defined in the routes/api file.
 
 - Before;
