@@ -34,14 +34,12 @@ sudo chmod +x server.sh
 
 # Contents 
 
-- **<a href="https://github.com/aligurbuz/laravel-api#how-to-authenticate">How to authenticate</a>**
+- **<a href="https://github.com/aligurbuz/laravel-api#how-to-authenticate">How To Authenticate</a>**
 - **<a href="https://github.com/aligurbuz/laravel-api#controller-directory">Controller Directory</a>**
 - **<a href="https://github.com/aligurbuz/laravel-api#response-formatter">Response Formatter</a>**
 - **<a href="https://github.com/aligurbuz/laravel-api#middleware-response-formatter">Middle Response Formatter</a>**
 - **<a href="https://github.com/aligurbuz/laravel-api#response-service-class">Response Service Class</a>**
 - **<a href="https://github.com/aligurbuz/laravel-api#exceptions">Exceptions</a>**
-- **<a href="https://github.com/aligurbuz/laravel-api#well-then-lets-move-on-to-special-exceptions">Well then let's move on to special exceptions.</a>**
-- **<a href="https://github.com/aligurbuz/laravel-api#exception-language-files">Exception Language files</a>**
 - **<a href="https://github.com/aligurbuz/laravel-api#validations">Validations</a>**
 
 # How to Authenticate
