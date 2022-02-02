@@ -115,22 +115,30 @@ An example 200 response format:
  /**
      * application success 200 content for response
      *
-     * @param mixed $data
+     * @param bool $data
+     * @param int $code
+     * @param bool $isAvailableData
      * @return object
      *
      * @throws Exception
      */
-    public static function ok(mixed $data) : object
+    public static function ok(mixed $data, int $code = 200,bool $isAvailableData = true) : object
     {
         $standard = [
-            'status'        => true,
-            'code'          => $code = static::getHttpSuccessCode(),
-            'client'        => ApiKey::who(),
-            'env'           => config('app.env'),
-            'responseCode'  => static::responseCode(),
-            'resource'      => $data,
-            'instructions'  => AppContainer::get('responseFormatterSupplement'),
+            'status'            => true,
+            'code'              => $code = static::getHttpSuccessCode($code),
+            'cache'             => (isset($data['cache'])),
+            'isAvailableData'   => $isAvailableData,
+            'client'            => ApiKey::who(),
+            'env'               => config('app.env'),
+            'responseCode'      => static::responseCode(),
+            'resource'          => static::getResourceData($data),
+            'instructions'      => AppContainer::get(Constants::responseFormatterSupplement),
         ];
+
+        if(isProduction()){
+            unset($standard['instructions']);
+        }
 
         return static::response($standard,$code);
     }
