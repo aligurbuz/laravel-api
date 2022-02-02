@@ -9,7 +9,7 @@
 
 ## About Laravel Restful Api
 
-I share with you the framework I created for Laravel restful api.
+I share with you the structure I created for Laravel restful api.
 I will explain how I set up this system below, along with the images.
 
 Starting with the ones other than the standard installation of Laravel. If you are ready with everything;
