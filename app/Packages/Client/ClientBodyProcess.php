@@ -7,6 +7,7 @@ namespace App\Packages\Client;
 use App\Services\AppContainer;
 use App\Services\Db;
 use App\Exceptions\Exception;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Contracts\Validation\Validator as ValidatorContract;
 use Illuminate\Support\Str;
@@ -105,11 +106,17 @@ class ClientBodyProcess extends ClientVariableProcess
                     Exception::clientArrayLimiterException('client data must have a maximum of '.$arrayLimiter.' record.');
                 }
 
-                $this->client->setDataStream($value);
-
                 $this->typeValidator($value);
 
-                $generatorProcess = array_merge($this->generatorProcess($value),$this->autoGeneratorProcess($value));
+                $generatorProcess = array_merge(
+                    $defaultGenerator = $this->generatorProcess($value),
+                    $this->autoGeneratorProcess($value,$defaultGenerator)
+                );
+
+                $generatorProcess = Collection::make($generatorProcess)->filter(function($value, $key){
+                    return $value != null;
+                })->toArray();
+
                 $overWriteStream = $this->client->getDataStream();
                 $this->variableProcess($generatorProcess);
                 $value = $this->client->getDataStream();
@@ -119,9 +126,6 @@ class ClientBodyProcess extends ClientVariableProcess
                 $this->capsuleProcess($value);
 
                 $this->makeValidator($value);
-
-                $this->variableProcess($value,true);
-                $value = $this->client->getDataStream();
 
                 if(count($overWriteStream)){
                     foreach ($value as $streamKey => $streamValue){
@@ -178,7 +182,6 @@ class ClientBodyProcess extends ClientVariableProcess
 
             $list = [];
             $types = Db::types($table);
-            $rules = $this->client->getRule();
             $autoRules = $this->client->getAutoRule();
             $customRules = $this->client->getCustomRule();
 
@@ -186,20 +189,6 @@ class ClientBodyProcess extends ClientVariableProcess
             foreach ($data as $key => $value){
                 if(isset($types[$key])){
                     $type = $types[$key];
-
-                    if(isset($rules[$key])){
-                        $keyRulesSplit = explode('|',$rules[$key]);
-                        foreach ($keyRulesSplit as $ruleSplit){
-                            if(isset($customRules[$ruleSplit])){
-                                foreach ($customRules[$ruleSplit] as $split){
-                                    $splitRegex = str_replace('regex:','',$split);
-                                    if(!preg_match($splitRegex,$value)){
-                                        Exception::customException(trans('validation.'.$ruleSplit.'',['attribute' => $key]));
-                                    }
-                                }
-                            }
-                        }
-                    }
 
                     if(isset($customRules[$type])){
                         $list[$key] = $customRules[$type];
@@ -286,24 +275,7 @@ class ClientBodyProcess extends ClientVariableProcess
     private function clientRuleProcess(array $validator = []) : array
     {
         $autoRules = $this->client->getAutoRule();
-        $customRules = $this->client->getCustomRule();
         $rules = count($validator) ? $validator : $this->client->getRule();
-
-        if(count($validator)=='0'){
-            foreach ($rules as $myKey => $myRule){
-                $myRuleList = is_array($myRule) ? $myRule : explode('|',$myRule);
-                $myRuleRealList = [];
-                foreach ($myRuleList as $myRuleData){
-                    if(!isset($customRules[$myRuleData])){
-                        $myRuleRealList[] = $myRuleData;
-                    }
-                }
-
-                if(count($myRuleRealList)){
-                    $rules[$myKey] = implode('|',$myRuleRealList);
-                }
-            }
-        }
 
         $list = [];
 

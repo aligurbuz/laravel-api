@@ -16,16 +16,15 @@ class ClientVariableProcess
      * get variable process
      *
      * @param array $data
-     * @param bool $callMethod
      * @return array
      */
-    protected function variableProcess(array $data = [],bool $callMethod = false): array
+    protected function variableProcess(array $data = []): array
     {
         $list = [];
 
         foreach ($data as $key => $value){
             $camelCaseForKey = Str::camel($key);
-            if(property_exists($this->client,$camelCaseForKey) && $callMethod){
+            if(property_exists($this->client,$camelCaseForKey)){
                 $this->client->setProperty($key,$value);
 
                 if(method_exists($this->client,$camelCaseForKey)){
@@ -61,6 +60,9 @@ class ClientVariableProcess
                 if(!is_null($callMethod)){
                     $data[$generator] = $callMethod;
                 }
+                else{
+                    $data[$generator] = null;
+                }
             }
 
             if(isset($clientData[$generator]) && !in_array($generator,$dontOverWriteGenerators)){
@@ -75,9 +77,10 @@ class ClientVariableProcess
      * get generator process for client
      *
      * @param array $data
+     * @param array $defaultGenerator
      * @return array
      */
-    protected function autoGeneratorProcess(array $data = []) : array
+    protected function autoGeneratorProcess(array $data = [],array $defaultGenerator = []) : array
     {
         $clientData = $data;
 
@@ -94,6 +97,15 @@ class ClientVariableProcess
 
             if(isset($clientData[$generator]) && !in_array($generator,$dontOverWriteAutoGenerators)){
                 $data[$generator] = $clientData[$generator];
+            }
+        }
+
+        foreach ($data as $dataKey => $dataValue){
+            if(isset($defaultGenerator[$dataKey])){
+                $data[$dataKey] = $defaultGenerator[$dataKey];
+            }
+            elseif(array_key_exists($dataKey,$defaultGenerator) && is_null($defaultGenerator[$dataKey])){
+                unset($data[$dataKey]);
             }
         }
 
