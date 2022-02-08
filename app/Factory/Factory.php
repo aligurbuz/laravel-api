@@ -7,6 +7,7 @@ namespace App\Factory;
 use App\Factory\ApiKey\Interfaces\ApiKeyInterface;
 use App\Factory\Date\Interfaces\DateInterface;
 use App\Factory\Email\Interfaces\EmailInterface;
+use App\Factory\Request\Interfaces\RequestInterface;
 use App\Factory\Role\Interfaces\RoleInterface;
 use App\Factory\Code\Interfaces\CodeInterface;
 use App\Factory\Cache\Interfaces\CacheInterface;
@@ -38,6 +39,7 @@ use App\Jobs\EmailSender;
  * @method static DateInterface date($arguments = null)
  * @method static EmailInterface email($arguments = null)
  * @method static ApiKeyInterface apiKey($arguments = null)
+ * @method static RequestInterface request($arguments = null)
  * @package App\Factory
  */
 class Factory extends FactoryManager

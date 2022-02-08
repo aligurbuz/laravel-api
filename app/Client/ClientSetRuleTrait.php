@@ -21,7 +21,7 @@ trait ClientSetRuleTrait
     {
         $this->setBooleanValues();
         $this->setEnumValues();
-        $this->setPasswordRule();
+        //$this->setPasswordRule();
 
     }
 
