@@ -45,7 +45,7 @@ class RegistrationController extends ApiController
         $registration = call_user_func($callback);
 
         $userEmail = $registration[0]['user'][0]['email'];
-        $verifyEmailHash = encodeString((string)$registration[0]['user'][0]['user_code']);
+        $verifyEmailHash = encodeString((string)$registration[0]['registration_code']);
 
         Factory::email()->verifyingEmailForUser($userEmail,$verifyEmailHash);
 
