@@ -34,6 +34,8 @@ class Request extends RequestManager implements RequestInterface
 	}
 
     /**
+     * the login request it is made
+     *
      * @param string $email
      * @param string $password
      * @return array
