@@ -14,5 +14,13 @@
     "user.user.create": {
         "class": "App\\Client\\User\\User\\Create\\CreateClient",
         "model": "user"
+    },
+    "auth.verifying.post": {
+        "class": "App\\Client\\Auth\\Verifying\\Post\\PostClient",
+        "model": "user"
+    },
+    "auth.verifying.create": {
+        "class": "App\\Client\\Auth\\Verifying\\Create\\CreateClient",
+        "model": "user"
     }
 }

@@ -6,12 +6,16 @@
     },
     "User": {
         "get": "App\\Client\\User\\User\\Get\\GetClient",
-        "create": "App\\Client\\User\\User\\Create\\CreateClient",
-        "update": "App\\Client\\User\\User\\Update\\UpdateClient"
+        "create": "App\\Client\\Auth\\Verifying\\Create\\CreateClient",
+        "update": "App\\Client\\User\\User\\Update\\UpdateClient",
+        "post": "App\\Client\\Auth\\Verifying\\Post\\PostClient"
     },
     "Timezone": {
         "get": "App\\Client\\Timezones\\Timezones\\Get\\GetClient",
         "create": "App\\Client\\Timezones\\Timezones\\Create\\CreateClient",
         "update": "App\\Client\\Timezones\\Timezones\\Update\\UpdateClient"
+    },
+    "": {
+        "post": "App\\Client\\Auth\\Verifying\\Post\\PostClient"
     }
 }

@@ -18,7 +18,7 @@ use App\Http\Controllers\Api\User\UserController;
 use App\Http\Controllers\Api\Auth\LoginController;
 use App\Http\Controllers\Api\Auth\LogoutController;
 use App\Http\Controllers\Api\Logger\LoggerController;
-use App\Http\Controllers\Api\Register\RegisterController;
+use App\Http\Controllers\Api\Auth\VerifyingController;
 use App\Http\Controllers\GlobalController;
 
 /*
@@ -33,7 +33,6 @@ use App\Http\Controllers\GlobalController;
 */
 
 Route::post('/login', [LoginController::class,'login']);
-Route::post('/register', [RegisterController::class,'register']);
 
 Route::get('testing',function(){
    return response()->json(['status' => 1]);
@@ -42,6 +41,7 @@ Route::get('testing',function(){
 Route::middleware([])->group(function(){
 
     Route::post('/registration', [RegistrationController::class,'create']);
+    Route::post('/verifying', [VerifyingController::class,'verifying']);
 
     Route::get('/user/photos', [PhotosController::class,'get']);
     Route::post('/user/photos', [PhotosController::class,'create']);

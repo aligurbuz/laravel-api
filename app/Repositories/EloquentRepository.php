@@ -303,7 +303,7 @@ class EloquentRepository
      * @param string $operator
      * @return object
      */
-    protected function where(string $column,string|int $value,string $operator = '=') : object
+    public function where(string $column,string|int $value,string $operator = '=') : object
     {
         if(!isValidIndex($this->getTable(),$column)){
             return Exception::customException(trans('exception.filterException',['key' => $column]));
