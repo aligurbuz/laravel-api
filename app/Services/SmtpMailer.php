@@ -28,8 +28,8 @@ class SmtpMailer
         $this->setPassword();
         $this->mail->isHTML(true);
         $this->setPort();
-        $this->mail->setFrom('info@stepfront.com','Stepfront');
-        $this->mail->addReplyTo('info@stepfront.com', 'Stepfront');
+        $this->mail->setFrom('fromMailAddress','fromMailShortName');
+        $this->mail->addReplyTo('replyMailAddress', 'replyMailShortName');
     }
 
     /**
