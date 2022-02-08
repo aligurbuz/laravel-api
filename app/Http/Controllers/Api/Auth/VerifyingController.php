@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Api\Auth;
 
+use App\Services\Date;
 use App\Services\Client;
 use App\Exceptions\Exception;
 use App\Repositories\Repository;
 use App\Http\Controllers\Api\ApiController;
 use App\Client\Auth\Verifying\Create\CreateClient;
-use App\Services\Date;
 
 class VerifyingController extends  ApiController
 {
