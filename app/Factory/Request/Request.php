@@ -55,9 +55,12 @@ class Request extends RequestManager implements RequestInterface
 
             $data = [];
             $data['user']  = $user->toArray();
-            $data['token'] = $user->createToken(ApiKey::who())->accessToken;
 
-            return $data;
+            if($data['user']['status']=='1'){
+                $data['token'] = $user->createToken(ApiKey::who())->accessToken;
+
+                return $data;
+            }
         }
 
         return ExceptionService::loginException();

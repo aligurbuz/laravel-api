@@ -11,14 +11,14 @@ trait GeneratorTrait
      *
      * @var array
      */
-    protected array $generators = ['user_code','role_code'];
+    protected array $generators = ['user_code','role_code','status'];
 
     /**
      * get dont overwrite generator for client
      *
      * @var array
      */
-    protected array $dontOverWriteGenerators = ['user_code','role_code'];
+    protected array $dontOverWriteGenerators = ['user_code','role_code','status'];
 
     /**
      * generates user_code for client
@@ -38,5 +38,15 @@ trait GeneratorTrait
     public function roleCodeGenerator() : int
     {
         return Factory::role()->createAdministrator()[0]['role_code'];
+    }
+
+    /**
+     * generates status for client
+     *
+     * @return int
+     */
+    public function statusGenerator() : int
+    {
+        return 0;
     }
 }
