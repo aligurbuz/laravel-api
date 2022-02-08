@@ -27,21 +27,23 @@ class VerifyingController extends  ApiController
      */
     public function verifying(CreateClient $client) : array
     {
-        $client->handle();
+        return $this->transaction(function() use($client){
+            $client->handle();
 
-        $hash = (Client::data())[0]['hash'];
-        $registrationCode = (int) decodeString($hash);
+            $hash = (Client::data())[0]['hash'];
+            $registrationCode = (int) decodeString($hash);
 
-        $registrationRepository = $this->getRegistrationData($registrationCode);
-        $registrationData = $registrationRepository->getRepository();
+            $registrationRepository = $this->getRegistrationData($registrationCode);
+            $registrationData = $registrationRepository->getRepository();
 
-        if(isset($registrationData[0]['user']['email'])){
-            $this->updateUserStatus($registrationData[0]['user']['email']);
-            $registrationRepository->update([['status' => 0]]);
-            return ['user' => 'active'];
-        }
+            if(isset($registrationData[0]['user']['email'])){
+                $this->updateUserStatus($registrationData[0]['user']['email']);
+                $registrationRepository->update([['status' => 0]]);
+                return ['user' => 'active'];
+            }
 
-        return Exception::customException('hash is not valid');
+            return Exception::customException('hash is not valid');
+        });
     }
 
     /**
