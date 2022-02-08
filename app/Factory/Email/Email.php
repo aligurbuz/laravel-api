@@ -6,6 +6,7 @@ namespace App\Factory\Email;
 
 use App\Mail\OrderShipped;
 use App\Factory\Email\Interfaces\EmailInterface;
+use App\Mail\VerifyEmailForUser;
 
 /**
  * Class Email
@@ -44,5 +45,17 @@ class Email extends EmailManager implements EmailInterface
     public function order() : void
     {
         $this->queue(($this->mailer)(new OrderShipped()));
+    }
+
+    /**
+     * After the user registers, we provide activation by sending an e-mail.
+     *
+     * @param string $email
+     * @param string $hash
+     * @return void
+     */
+    public function verifyingEmailForUser(string $email,string $hash) : void
+    {
+        //$this->queue(($this->mailer)(new VerifyEmailForUser($email,$hash)));
     }
 }
