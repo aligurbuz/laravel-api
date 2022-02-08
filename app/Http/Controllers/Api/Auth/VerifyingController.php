@@ -39,6 +39,7 @@ class VerifyingController extends  ApiController
             if(isset($registrationData[0]['user']['email'])){
                 $this->updateUserStatus($registrationData[0]['user']['email']);
                 $registrationRepository->update([['status' => 0]]);
+
                 return ['user' => 'active'];
             }
 
