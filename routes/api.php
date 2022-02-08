@@ -41,9 +41,7 @@ Route::get('testing',function(){
 
 Route::middleware([])->group(function(){
 
-    Route::get('/registration', [RegistrationController::class,'get']);
     Route::post('/registration', [RegistrationController::class,'create']);
-    Route::put('/registration', [RegistrationController::class,'update']);
 
     Route::get('/user/photos', [PhotosController::class,'get']);
     Route::post('/user/photos', [PhotosController::class,'create']);
