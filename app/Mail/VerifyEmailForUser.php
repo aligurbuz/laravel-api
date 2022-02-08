@@ -44,6 +44,7 @@ class VerifyEmailForUser extends Mailable
             ->to([$this->mail])
             ->view('mail.verify-email',[
                 'hash' => $this->hash
-            ])->subject('test message');
+            ])
+            ->subject('test message');
     }
 }
