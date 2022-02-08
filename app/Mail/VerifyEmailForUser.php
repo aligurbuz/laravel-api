@@ -42,6 +42,8 @@ class VerifyEmailForUser extends Mailable
         return $this
             ->from('verifiedMailAddress','name')
             ->to([$this->mail])
-            ->view('mail.verify-email',[])->subject('test message');
+            ->view('mail.verify-email',[
+                'hash' => $this->hash
+            ])->subject('test message');
     }
 }
