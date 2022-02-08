@@ -5,8 +5,9 @@ declare(strict_types=1);
 namespace App\Factory\Request;
 
 use App\Facades\Authenticate\ApiKey;
-use App\Factory\Request\Interfaces\RequestInterface;
 use Illuminate\Support\Facades\Auth;
+use App\Exceptions\Exception as ExceptionService;
+use App\Factory\Request\Interfaces\RequestInterface;
 
 /**
  * Class Request
@@ -57,6 +58,6 @@ class Request extends RequestManager implements RequestInterface
             return $data;
         }
 
-        return [];
+        return ExceptionService::loginException();
     }
 }

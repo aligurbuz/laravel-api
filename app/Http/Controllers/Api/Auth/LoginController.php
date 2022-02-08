@@ -9,7 +9,6 @@ use App\Factory\Factory;
 use App\Services\Client;
 use App\Http\Controllers\Api\ApiController;
 use App\Client\Auth\Login\Create\CreateClient;
-use App\Exceptions\Exception as ExceptionService;
 
 class LoginController extends ApiController
 {
@@ -29,12 +28,6 @@ class LoginController extends ApiController
         $client->handle();
         $clientData = (Client::data())[0] ?? [];
 
-        $loginRequest = Factory::request()->login($clientData['email'],$clientData['password']);
-
-        if(count($loginRequest)){
-            return $loginRequest;
-        }
-
-        return ExceptionService::loginException();
+        return Factory::request()->login($clientData['email'],$clientData['password']);
     }
 }
