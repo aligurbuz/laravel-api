@@ -36,6 +36,7 @@ class CreateUsersTable extends Migration
               'name' => 'userTest',
               'email' => 'test@gmail.com',
               'password' => Hash::make(123456),
+              'status' => 1,
               'created_at' => Date::now()->toDateTimeString(),
               'updated_at' => Date::now()->toDateTimeString(),
           ]
