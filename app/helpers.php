@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\DB;
 use App\Facades\Authenticate\ApiKey;
 use Illuminate\Support\Facades\Route;
 use App\Repositories\Repository;
+use App\Services\Request\Request as HttpRequest;
 
 if(!function_exists('entity')){
 
@@ -29,6 +30,20 @@ if(!function_exists('entity')){
     #[Pure] function entity(): EntityMap
     {
         return new EntityMap();
+    }
+}
+
+if(!function_exists('httpRequest')){
+
+    /**
+     * get factory instance
+     *
+     * @param array $data
+     * @return HttpRequest
+     */
+    function httpRequest(array $data = []): HttpRequest
+    {
+        return new HttpRequest($data);
     }
 }
 
