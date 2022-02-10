@@ -11,6 +11,7 @@ use App\Repositories\Resources\User\Contracts\UserRepositoryContract;
 /**
  * Class UserRepository
  * @package App\Repositories\Resources\User
+ * @method $this role()
  */
 class UserRepository extends EloquentRepository implements UserRepositoryContract
 {
