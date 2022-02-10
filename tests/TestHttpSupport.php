@@ -39,7 +39,7 @@ trait TestHttpSupport
     protected function getHttpMethodWithRelations() : void
     {
         $testMock = array_merge(
-            config('testmock.'.$this->endpoint.'.get',[]),
+            $this->getMockData('get'),
             $this->getTestEndpointRelations()
         );
 
@@ -79,7 +79,7 @@ trait TestHttpSupport
      */
     protected function postHttpMethod() : void
     {
-        $testMock = config('testmock.'.$this->endpoint.'.post',[]);
+        $testMock = $this->getMockData('post');
 
         $response = $this->postJson(
             $this->apiRequestPrefix(),
@@ -103,7 +103,7 @@ trait TestHttpSupport
      */
     protected function putHttpMethod() : void
     {
-        $testMock = config('testmock.'.$this->endpoint.'.put',[]);
+        $testMock = $this->getMockData('put');
 
         $modelCode = [
             $this->getRepository()->getModelCode() => AppContainer::get('testModelCode')
@@ -128,5 +128,16 @@ trait TestHttpSupport
                 $response->assertStatus(400);
             }
         }
+    }
+
+    /**
+     * get mock data for test case
+     *
+     * @param string $method
+     * @return array
+     */
+    protected function getMockData(string $method) : array
+    {
+        return config('testmock.'.$this->endpoint.'.'.$method,[]);
     }
 }
