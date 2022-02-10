@@ -18,9 +18,28 @@ class RegistrationTest extends TestCase
      */
     public function test_registration()
     {
-        if(!count($this->requires())){
+        if(count($this->getRequiredColumns())){
             $response = $this->post($this->apiRequestPrefix(),[],$this->headers());
             $response->assertStatus(400);
+        }
+    }
+
+    /**
+     * A basic test user.
+     *
+     * @return void
+     */
+    public function test_registration2()
+    {
+        if(count($requiredColumns = $this->getRequiredColumns())){
+            $mockData = $this->getMockData('get');
+
+            foreach ($requiredColumns as $field){
+                if(!isset($mockData[$field])){
+                    $response = $this->post($this->apiRequestPrefix(),$mockData,$this->headers());
+                    $response->assertStatus(400);
+                }
+            }
         }
     }
 }

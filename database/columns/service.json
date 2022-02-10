@@ -33,6 +33,7 @@
     },
     "Registration/registration": {
         "controller": "Registration",
-        "dir": "Registration"
+        "dir": "Registration",
+        "model": "Registration"
     }
 }
