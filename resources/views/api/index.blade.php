@@ -809,7 +809,7 @@ wget --no-check-certificate --quiet \
                                         <li><strong>Production Environment Base Url</strong> : {{config('app.productBaseUrl')}}</li>
                                     @endif
 
-                                    <li><strong>Url</strong> : baseUrl/logout</li>
+                                    <li><strong>Url</strong> : baseUrl/verifying</li>
                                 </ul>
 
                                 <table>
