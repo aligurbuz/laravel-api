@@ -42,4 +42,23 @@ class RegistrationTest extends TestCase
             }
         }
     }
+
+    /**
+     * A basic test user.
+     *
+     * @return void
+     */
+    public function test_registration_post()
+    {
+        $mockData = $this->getMockData('post');
+
+        if(count($mockData)){
+            $response = $this->postJson($this->apiRequestPrefix(),$mockData,$this->headers());
+            $response->assertStatus(200);
+        }
+        else{
+            $response = $this->post($this->apiRequestPrefix(),$mockData,$this->headers());
+            $response->assertStatus(400);
+        }
+    }
 }

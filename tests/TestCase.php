@@ -116,6 +116,10 @@ abstract class TestCase extends BaseTestCase
     {
         $clientRules = count($rules) ? $rules : $this->getClientRules();
 
+        if(in_array($key,$this->getRequiredColumns(),true)){
+            return true;
+        }
+
         if(
             isset($clientRules[$key])
             && is_array($clientRules[$key])
