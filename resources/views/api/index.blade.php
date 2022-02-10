@@ -784,6 +784,76 @@ wget --no-check-certificate --quiet \
 
                             @endif
 
+                            @if($value['name'] =='Login')
+                                <hr>
+                                @php
+                                    $endpoint = 'verifying';
+                                    $configDocumentation = config('documentation');
+                                @endphp
+                                <h1 id="about-flysystem">Verifying</h1>
+                                <p>When the user registers to the system from (registration) endpoint, that will be passively registered to the system.
+                                    In order to activate the user, a hash is given via mail and the client must post this hash data to the "verifying" endpoint.
+                                </p>
+
+                                <h3 id="commonly-used-adapters">POST</h3>
+                                <ul>
+                                    <li><strong>Test Environment Base Url</strong> : {{apiUrl()}}</li>
+                                    @if(isset($configDocumentation['productionLinks'][$endpoint]['all']))
+                                        @if(isset($configDocumentation['productionLinks'][$endpoint][$method]))
+                                            <li><strong>Production Environment Base Url</strong> : {{$configDocumentation['productionLinks'][$endpoint][$method]}}</li>
+                                        @else
+                                            <li><strong>Production Environment Base Url</strong> : {{$configDocumentation['productionLinks'][$endpoint]['all']}}</li>
+                                        @endif
+
+                                    @else
+                                        <li><strong>Production Environment Base Url</strong> : {{config('app.productBaseUrl')}}</li>
+                                    @endif
+
+                                    <li><strong>Url</strong> : baseUrl/logout</li>
+                                </ul>
+
+                                <table>
+                                    <thead>
+                                    <tr>
+                                        <th style="width:200px;">Body Parameters</th>
+                                        <th>Type</th>
+                                        <th>Required</th>
+                                        <th>Description</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    <tr>
+                                        <td style="width:200px;">hash</td>
+                                        <td>string</td>
+                                        <td>true</td>
+                                        <td>Data that needs to be sent to the endpoint in order to activate the user</td>
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+
+                                <p>
+                                <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Api Request</span>
+wget --no-check-certificate --quiet \
+  --method POST \
+  --timeout=0 \
+  --header 'Apikey: Apikey' \
+  --header 'Content-Type: application/json' \
+  --body-data '[
+    {
+        "hash": "string"
+    }
+]' \
+   'http://localhost/api/public/api/verifying'
+</code></pre></div></div>
+                                </p>
+
+
+                            @endif
+
+
+
                     @if(isset($value['item']))
 
 
