@@ -43,6 +43,7 @@ class Postman extends Command
         $mapJson = json_decode(File::get(app_path('Docs').''.DIRECTORY_SEPARATOR.'map.json'),1);
         $mockeryData = json_decode(File::get(app_path('Docs').''.DIRECTORY_SEPARATOR.'mockery.json'),1);
         $documentationConfig = config('documentation');
+        $exceptMethods = $documentationConfig['exceptMethods'] ?? [];
         $postmanIgnores = $documentationConfig['ignores'] ?? [];
         $collection = ucfirst($this->argument('collection') ?? config('app.name'));
 
@@ -75,6 +76,10 @@ class Postman extends Command
                     foreach ($mapItemData['item'] as $mapItemItemKey => $mapItemItemData){
                         if(isset($mapItemItemData['request']['method'])){
                             $mapItemDataMethod = $mapItemItemData['request']['method'];
+                            $serviceName = strtolower($mapItemItemData['name']);
+                            $serviceExceptMethods = $exceptMethods[$serviceName] ?? [];
+
+
                             $mockeryName = $mapItemDataMethod.'_'.$mapItemItemData['name'];
                             if(isset($mockeryData[$mockeryName])){
                                 foreach ($mockeryData[$mockeryName] as $mockType => $mockValue){
@@ -86,8 +91,13 @@ class Postman extends Command
                                     }
                                 }
                             }
+
+                            if(in_array($mapItemDataMethod,$serviceExceptMethods,true)){
+                                unset($mapContents['item'][$mapItemKey]['item'][$mapItemItemKey]);
+                            }
                         }
                     }
+
                 }
                 else{
                     if(!isset($mapItemData['item']) && isset($mapItemData['request']['method'])){
@@ -105,6 +115,11 @@ class Postman extends Command
                         }
                     }
                 }
+
+                if(isset($mapContents['item'][$mapItemKey]['item']) && is_array($mapContents['item'][$mapItemKey]['item'])){
+                    $mapContents['item'][$mapItemKey]['item'] = array_values($mapContents['item'][$mapItemKey]['item']);
+                }
+
 
             }
 
