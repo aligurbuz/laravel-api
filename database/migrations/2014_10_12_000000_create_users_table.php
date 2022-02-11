@@ -22,6 +22,8 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
+            $table->boolean('status')->default(0)->comment('status:1 - active,status:0 passive');
+            $table->boolean('is_deleted')->default(0)->comment('is_deleted:0 - undeleted,is_deleted:1 deleted');
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
