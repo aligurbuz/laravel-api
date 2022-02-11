@@ -32,7 +32,7 @@ services:
       - ./server/volumes/mysql:/var/lib/mysql
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: _x2334411__6564646
       MYSQL_DATABASE : api
     networks:
       default:
