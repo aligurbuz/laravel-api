@@ -3,13 +3,16 @@
 
 $envFile = __DIR__.'/.env';
 
+$dockerCompose = __DIR__.'/docker-compose.yml';
+
 if(!file_exists($envFile) && isset($argv[1],$argv[2])){
     copy(__DIR__.'/.env.example',$envFile);
     $dir = ($argv[2]=='local') ? __DIR__.'/'.$argv[1] : __DIR__;
 
     exec('cd '.$dir.' && sudo chmod -R 777 storage');
-    exec('cd '.$dir.' && composer install && php artisan key:generate && php artisan create:database '.$argv[1].'');
+    exec('cd '.$dir.' && composer install && php artisan key:generate');
     exec('cd '.$dir.' && php artisan environment '.$argv[2]);
+    exec('cd '.$dir.' && php artisan create:database '.$argv[1]);
     exec('cd '.$dir.' && php artisan name '.$argv[1].'');
     exec('cd '.$dir.' && php artisan migrate');
     exec('cd '.$dir.' && php artisan passport:install');
