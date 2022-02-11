@@ -16,7 +16,21 @@ abstract class TestCase extends BaseTestCase
 {
     use CreatesApplication,TestHttpSupport;
 
-    protected const unitTestToken = 'unitTestToken';
+    /**
+     * @var string
+     */
+    protected static string $unitTestToken = 'unitTestToken';
+
+    /**
+     * @param string|null $name
+     * @param array $data
+     * @param string $dataName
+     */
+    public function __construct(?string $name = null, array $data = [], $dataName = '')
+    {
+        parent::__construct($name, $data, $dataName);
+        static::$unitTestToken = static::$unitTestToken.'_'.md5(__DIR__);
+    }
 
     /**
      * get api request prefix for feature test class
@@ -284,13 +298,13 @@ abstract class TestCase extends BaseTestCase
      */
     public function getToken() : string
     {
-        $token = $this->getRedisConnection()->get(self::unitTestToken);
+        $token = $this->getRedisConnection()->get(static::$unitTestToken);
 
         if(is_null($token)){
             $this->test_login();
         }
 
-        return $this->getRedisConnection()->get(self::unitTestToken);
+        return $this->getRedisConnection()->get(static::$unitTestToken);
     }
 
     /**
@@ -302,7 +316,7 @@ abstract class TestCase extends BaseTestCase
     {
         $redis = $this->getRedisConnection();
 
-        if(!$redis->exists(self::unitTestToken)){
+        if(!$redis->exists(static::$unitTestToken)){
             $response = $this->postJson('/api/login',[
                 'email' => 'test@gmail.com',
                 'password' => '123456'
@@ -314,8 +328,8 @@ abstract class TestCase extends BaseTestCase
             $response->assertStatus(200);
             $this->assertArrayHasKey('token',$content['resource'][0]['data'][0]);
             $this->assertArrayHasKey('user',$content['resource'][0]['data'][0]);
-            $redis->set(self::unitTestToken,$content['resource'][0]['data'][0]['token']);
-            $redis->expire(self::unitTestToken,3600);
+            $redis->set(static::$unitTestToken,$content['resource'][0]['data'][0]['token']);
+            $redis->expire(static::$unitTestToken,3600);
         }
         else{
             $this->assertTrue(true);

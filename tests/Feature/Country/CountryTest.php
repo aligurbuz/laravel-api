@@ -18,7 +18,7 @@ class CountryTest extends TestCase
      */
     public function test_countries()
     {
-        $response = $this->get($this->apiRequestPrefix(),$this->headersWithAuthorization());
+        $response = $this->get($this->apiRequestPrefix(),$this->headers());
 
         $content = $this->getContentArray($response);
         $resourceData = $this->getResourceData($content);
