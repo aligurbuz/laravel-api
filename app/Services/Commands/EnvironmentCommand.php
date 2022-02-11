@@ -49,7 +49,7 @@ class EnvironmentCommand extends Command
         $change = str_replace('APP_ENV=local','APP_ENV='.$name.'',$envFile);
         $change = str_replace('REPOSITORY_CACHE = false','REPOSITORY_CACHE=true',$change);
 
-        if(isset($database['MYSQL_ROOT_PASSWORD'])){
+        if($name!=='local' && isset($database['MYSQL_ROOT_PASSWORD'])){
             $change = str_replace('DB_PASSWORD=root','DB_PASSWORD='.$database['MYSQL_ROOT_PASSWORD'],$change);
         }
 
