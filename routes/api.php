@@ -7,7 +7,6 @@ use App\Http\Controllers\Api\Timezones\TimezonesController;
 use App\Http\Controllers\Api\Currencies\CurrenciesController;
 use App\Http\Controllers\Api\Countries\DistrictsController;
 use App\Http\Controllers\Api\Countries\CitiesController;
-use App\Http\Controllers\Api\Mix\TableChangesController;
 use App\Http\Controllers\Api\Gate\PermissionsController;
 use App\Http\Controllers\Api\Gate\RolesController;
 use App\Http\Controllers\Api\SuperAdmins\SuperAdminsController;
@@ -62,10 +61,6 @@ Route::middleware([])->group(function(){
     Route::get('/countries/cities', [CitiesController::class,'get']);
     Route::post('/countries/cities', [CitiesController::class,'create']);
     Route::put('/countries/cities', [CitiesController::class,'update']);
-
-    Route::get('/mix/tableChanges', [TableChangesController::class,'get']);
-    Route::post('/mix/tableChanges', [TableChangesController::class,'create']);
-    Route::put('/mix/tableChanges', [TableChangesController::class,'update']);
 
     Route::get('/gate/permissions', [PermissionsController::class,'get']);
     Route::post('/gate/permissions', [PermissionsController::class,'create']);
