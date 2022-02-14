@@ -291,6 +291,16 @@ class ClientManager
         $data = !isset($data[0]) ? [$data] : $data;
 
         foreach ($data as $key => $value) {
+
+            $valueList = [];
+            foreach ($value as $valueKey => $valueItem){
+                if(!is_null($valueItem)){
+                    $valueList[$valueKey] = $valueItem;
+                }
+            }
+
+            $value = $valueList;
+
             if (!$multipleDimension) {
                 $value = $value[$repository.'Client'] ?? $value;
                 $value = array_merge($value,$this->getRegister());
