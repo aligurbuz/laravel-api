@@ -17,6 +17,7 @@ if(!file_exists($envFile) && isset($argv[1],$argv[2])){
     exec('cd '.$dir.' && php artisan passport:install');
     exec('cd '.$dir.' && php artisan permission');
     exec('cd '.$dir.' && php artisan supervisor');
+    exec('cd '.$dir.' && sudo chmod -R 777 storage');
 }
 else{
     throw new Exception('your parameters is missing.(this file has 2 parameters');
