@@ -39,3 +39,4 @@ RUN cd ~
 RUN sudo curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 RUN echo 'cd /var/www/html/app' >> ~/.bashrc
+RUN alias test="vendor/bin/phpunit"
