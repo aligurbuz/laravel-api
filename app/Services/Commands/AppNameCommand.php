@@ -43,26 +43,27 @@ class AppNameCommand extends Command
         $name = $this->argument('name');
 
         $change = str_replace('APP_NAME=Api','APP_NAME='.ucfirst($name).'',$envFile);
-        $change = str_replace('DB_DATABASE=api','DB_DATABASE='.$name.'',$change);
+        //$change = str_replace('DB_DATABASE=api','DB_DATABASE='.$name.'',$change);
 
         File::put('.env',$change);
 
-        $postman = File::get('postman/Laravel.postman_collection.json');
-        $postmanData = json_decode($postman,1);
-        $postmanData['info']['name'] = ucfirst($name);
+        if(isLocale()){
+            $postman = File::get('postman/Laravel.postman_collection.json');
+            $postmanData = json_decode($postman,1);
+            $postmanData['info']['name'] = ucfirst($name);
 
 
-        File::put('postman/'.ucfirst($name).'.postman_collection.json',Collection::make($postmanData)->toJson(JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
+            File::put('postman/'.ucfirst($name).'.postman_collection.json',Collection::make($postmanData)->toJson(JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
 
 
-        $environment = File::get('postman/Api-Collections.postman_environment.json');
-        $environmentChange = str_replace('localhost/api','localhost/'.$name,$environment);
-        $environmentData = json_decode($environmentChange,1);
-        $environmentData['name'] = ucfirst($name).'-Local';
+            $environment = File::get('postman/Api-Collections.postman_environment.json');
+            $environmentChange = str_replace('localhost/api','localhost/'.$name,$environment);
+            $environmentData = json_decode($environmentChange,1);
+            $environmentData['name'] = ucfirst($name).'-Local';
 
 
-        File::put('postman/'.ucfirst($environmentData['name']).'.postman_environment.json',Collection::make($environmentData)->toJson(JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
-
+            File::put('postman/'.ucfirst($environmentData['name']).'.postman_environment.json',Collection::make($environmentData)->toJson(JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
+        }
 
         $this->warn('environment has been changed');
         return 0;
