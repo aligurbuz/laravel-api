@@ -117,8 +117,7 @@ class ClientBodyProcess extends ClientVariableProcess
                     return $value != null;
                 })->toArray();
 
-                $overWriteStream = $this->client->getDataStream();
-                $this->variableProcess($generatorProcess);
+                $this->variableProcess($generatorProcess,false);
                 $value = $this->client->getDataStream();
 
                 $this->client->setBodyData($key,$value);
@@ -126,6 +125,10 @@ class ClientBodyProcess extends ClientVariableProcess
                 $this->capsuleProcess($value);
 
                 $this->makeValidator($value);
+
+                $overWriteStream = $this->client->getDataStream();
+                $this->variableProcess($generatorProcess);
+                $value = $this->client->getDataStream();
 
                 if(count($overWriteStream)){
                     foreach ($value as $streamKey => $streamValue){
