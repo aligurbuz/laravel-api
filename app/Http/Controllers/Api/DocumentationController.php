@@ -16,6 +16,10 @@ class DocumentationController extends Controller
      */
     public function index(): Factory|View|Application
     {
+        if(isProduction()){
+            return view('api.noAccess');
+        }
+
         //doc header.json
         $headerJsonFile = app_path('Docs').''.DIRECTORY_SEPARATOR.'header.json';
         $headers = json_decode(File::get($headerJsonFile),true);
