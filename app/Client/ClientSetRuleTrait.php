@@ -32,9 +32,11 @@ trait ClientSetRuleTrait
      */
     private function setPasswordRule()
     {
-        $this->ensureColumnExists('password',function(){
-            $this->setRule('password','required|min:6|max:18');
-        });
+        if(request()->method()!=='GET'){
+            $this->ensureColumnExists('password',function(){
+                $this->setRule('password','required|min:6|max:18');
+            });
+        }
     }
 
     /**
