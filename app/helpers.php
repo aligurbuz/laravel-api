@@ -276,17 +276,19 @@ if(!function_exists('pushMigration')){
      */
     function pushMigration($service,$directory,$model): void
     {
-        $pusherJsonPath = base_path('pusher.json');
-        $pusherJson = json_decode(File::get($pusherJsonPath),true);
-        $pusherHashing = md5($service.'_'.$directory.'_'.$model);
+        if(isLocale()){
+            $pusherJsonPath = base_path('pusher.json');
+            $pusherJson = json_decode(File::get($pusherJsonPath),true);
+            $pusherHashing = md5($service.'_'.$directory.'_'.$model);
 
-        if(!in_array($pusherHashing,$pusherJson)){
-            $pusherJson[] = $pusherHashing;
-            putJsonToFile($pusherJsonPath,$pusherJson);
+            if(!in_array($pusherHashing,$pusherJson)){
+                $pusherJson[] = $pusherHashing;
+                putJsonToFile($pusherJsonPath,$pusherJson);
 
-            \git()->commit('migration for '.$model.' has been created');
-            \service()->create($service,$directory,$model);
-            \git()->commit('service for '.$service.' has been created');
+                \git()->commit('migration for '.$model.' has been created');
+                \service()->create($service,$directory,$model);
+                \git()->commit('service for '.$service.' has been created');
+            }
         }
     }
 }
