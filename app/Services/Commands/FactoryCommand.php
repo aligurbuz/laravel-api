@@ -141,16 +141,13 @@ return $this->{$class}();');
         $content = '<?php '.PHP_EOL.''.PHP_EOL.'declare(strict_types=1);'.PHP_EOL.''.PHP_EOL.''.$namespaceManager;
         File::put($factoryManagerPath,$content);
 
+        if(!file_exists($factoryInterfacePath)){
+            $namespaceInterface = new PhpNamespace($interfaceNamespace);
+            $addClass = $namespaceInterface->addInterface($factoryInterfaceName);
 
-
-
-
-        $namespaceInterface = new PhpNamespace($interfaceNamespace);
-        $addClass = $namespaceInterface->addInterface($factoryInterfaceName);
-
-        $content = '<?php '.PHP_EOL.''.PHP_EOL.'declare(strict_types=1);'.PHP_EOL.''.PHP_EOL.''.$namespaceInterface;
-        File::put($factoryInterfacePath,$content);
-
+            $content = '<?php '.PHP_EOL.''.PHP_EOL.'declare(strict_types=1);'.PHP_EOL.''.PHP_EOL.''.$namespaceInterface;
+            File::put($factoryInterfacePath,$content);
+        }
 
         return 0;
     }
