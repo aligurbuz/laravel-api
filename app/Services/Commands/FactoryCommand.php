@@ -60,7 +60,6 @@ class FactoryCommand extends Command
             File::makeDirectory($resourcePath);
             File::makeDirectory($interfacePath);
             touch($resourcePath.''.DIRECTORY_SEPARATOR.'resource.html');
-            touch($factoryInterfacePath);
         }
 
         $factoryFilePath = $mainPath.''.DIRECTORY_SEPARATOR.''.$factoryFile.'.php';
@@ -142,6 +141,7 @@ return $this->{$class}();');
         File::put($factoryManagerPath,$content);
 
         if(!file_exists($factoryInterfacePath)){
+            touch($factoryInterfacePath);
             $namespaceInterface = new PhpNamespace($interfaceNamespace);
             $addClass = $namespaceInterface->addInterface($factoryInterfaceName);
 
