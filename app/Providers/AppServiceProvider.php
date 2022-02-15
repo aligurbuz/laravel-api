@@ -11,6 +11,7 @@ use App\Services\Commands\CrudCommand;
 use App\Services\Commands\DatabaseCreatorCommand;
 use App\Services\Commands\DbColumn;
 use App\Services\Commands\Documentation;
+use App\Services\Commands\DocumentationUpdate;
 use App\Services\Commands\EnvironmentCommand;
 use App\Services\Commands\FactoryCommand;
 use App\Services\Commands\FeatureTestCommand;
@@ -38,6 +39,7 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         $this->fullToSql();
+        $this->commands([DocumentationUpdate::class]);
         $this->commands([FeatureTestCommand::class]);
         $this->commands([EnvironmentCommand::class]);
         $this->commands([AppNameCommand::class]);
