@@ -167,7 +167,12 @@ trait ClientAutoGeneratorTrait
     {
         $data = count($data) ? $data : (array)$this->get();
 
+
         foreach ($data as $key => $value){
+            if(request()->method()=='POST' && getTableCode($this->getModel())==$key){
+                continue;
+            }
+
             if(is_numeric($key) && is_array($value)){
                 $this->codeProcessAutoGenerator($value);
             }
