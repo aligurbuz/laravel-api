@@ -52,6 +52,12 @@ trait BaseManager
     {
         $this->fillable = Db::columns($this->getTable());
 
+        $booleans = Db::booleanValues($this->getTable());
+
+        foreach ($booleans as $boolean){
+            $this->casts[$boolean] = 'boolean';
+        }
+
         foreach (Db::types($this->getTable()) as $dbTypeColumn => $dbType){
             if($dbType=='array'){
                 $this->casts[$dbTypeColumn] = 'array';
