@@ -7,6 +7,7 @@ return [
                 'name' => 'name',
                 'email' => 'test_'.rand(0,999999999999).'@gmail.com',
                 'password' => "1234567",
+                'status' => true
             ]
         ]
     ]
