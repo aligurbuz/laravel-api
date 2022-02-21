@@ -39,9 +39,9 @@ class Client extends ClientManager
      */
     protected array $autoRule = [
         'email'         => 'email:rfc,dns',
-        'status'        => ['regex:/^0$|^1$/i'],
-        'is_deleted'    => ['regex:/^0$|^1$/i'],
-        'is_default'    => ['regex:/^0$|^1$/i'],
+        'status'        => ['boolean'],
+        'is_deleted'    => ['boolean'],
+        'is_default'    => ['boolean'],
     ];
 
     /**

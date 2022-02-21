@@ -64,7 +64,7 @@ trait ClientSetRuleTrait
         $booleanValues = Db::booleanValues($this->getTable());
 
         foreach ($booleanValues as $booleanValue){
-            $this->setAutoRule($booleanValue,['regex:/^0$|^1$/i']);
+            $this->setAutoRule($booleanValue,['boolean']);
         }
     }
 }
