@@ -142,13 +142,13 @@ return [
             'rule-name' => 'custom-message',
         ],
         'status' => [
-            'regex' => 'The status value must only have a value of 0 and 1',
+            'regex' => 'The status value must only have a value of true and false',
         ],
         'bool' => [
-            'regex' => 'The :attribute value must only have a value of 0 and 1',
+            'regex' => 'The :attribute value must only have a value of true and false',
         ],
         'is_deleted' => [
-            'regex' => 'The is_deleted value must only have a value of 0 and 1',
+            'regex' => 'The is_deleted value must only have a value of true and false',
         ]
     ],
 
