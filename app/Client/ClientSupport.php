@@ -16,20 +16,20 @@ trait ClientSupport
     /**
      * it is is_default in the client data
      *
-     * @var string|null
+     * @var bool|null
      */
-    protected ?string $isDefault;
+    protected ?bool $isDefault;
 
     /**
      * when the is_default value is sent as 1,
      * if there is is_default in the table,
      * it will automatically run as a trigger that makes the previous records 0.
      *
-     * @return string|null
+     * @return boolean|null
      */
-    protected function isDefault(): ?string
+    protected function isDefault(): ?bool
     {
-        if($this->isDefault == '1' && request()->method() !== 'GET'){
+        if($this->isDefault && request()->method() !== 'GET'){
             $this->ensureColumnExists($snakeFunction = Str::snake(__FUNCTION__),function() use($snakeFunction){
                 $this->repository()->default()->update([[$snakeFunction => '0']],false);
             });
