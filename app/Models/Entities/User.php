@@ -13,6 +13,8 @@ namespace App\Models\Entities;
  * @property $this email_verified_at
  * @property $this password
  * @property $this remember_token
+ * @property $this status
+ * @property $this is_deleted
  * @property $this created_at
  * @property $this updated_at
  * @property $this username
@@ -123,6 +125,28 @@ class User
 	protected static function remember_token(): mixed
 	{
 		return self::$query->remember_token;
+	}
+
+
+	/**
+	 * get status column for database table
+	 *
+	 * @return mixed
+	 */
+	protected static function status(): mixed
+	{
+		return self::$query->status;
+	}
+
+
+	/**
+	 * get is_deleted column for database table
+	 *
+	 * @return mixed
+	 */
+	protected static function is_deleted(): mixed
+	{
+		return self::$query->is_deleted;
 	}
 
 
