@@ -31,7 +31,10 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $e): object
     {
-        $this->notifyForInternalServer($e);
+        if(!app()->runningInConsole()){
+            $this->notifyForInternalServer($e);
+        }
+
         return Response::error($e->getMessage(),(int)$e->getCode(),$e);
     }
 

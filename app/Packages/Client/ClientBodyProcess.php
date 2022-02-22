@@ -301,7 +301,7 @@ class ClientBodyProcess extends ClientVariableProcess
                 }
             }
 
-            $rule = $ruleValues;
+            $rule = implode('|',$ruleValues);
 
             if(isset($autoRules[$key])){
                 if(is_array($autoRules[$key])){
