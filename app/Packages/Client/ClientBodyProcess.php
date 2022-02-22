@@ -11,6 +11,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Contracts\Validation\Validator as ValidatorContract;
 use Illuminate\Support\Str;
+use Laravel\Octane\Exceptions\DdException;
 
 /**
  * Class ClientBodyProcess
@@ -221,7 +222,7 @@ class ClientBodyProcess extends ClientVariableProcess
     private function makeValidator(array $data = [],array $validators = [],array $types = [])
     {
         tap(
-            Validator::make($data,$this->clientRuleProcess($validators)),
+            Validator::make($data,$this->clientRuleProcess($validators,$data)),
             function(ValidatorContract $validator) use($types){
                 $message = $validator->getMessageBag();
                 static::errorContainer($this->client->getRule(),'validatorRules');
@@ -264,7 +265,8 @@ class ClientBodyProcess extends ClientVariableProcess
                         static::errorContainer($inputKey,'errorInput');
                     }
 
-                    Exception::validationException(isset($typeMessage) ? $typeMessage : $message->first());
+                    $validationExceptionMessage = $typeMessage ?? $message->first();
+                    Exception::validationException($validationExceptionMessage);
                 }
             });
     }
@@ -273,16 +275,34 @@ class ClientBodyProcess extends ClientVariableProcess
      * get client rule process
      *
      * @param array $validator
+     * @param array $data
      * @return array
+     * @throws DdException
      */
-    private function clientRuleProcess(array $validator = []) : array
+    private function clientRuleProcess(array $validator = [],array $data = []) : array
     {
         $autoRules = $this->client->getAutoRule();
         $rules = count($validator) ? $validator : $this->client->getRule();
+        $customRules = $this->client->getCustomRules();
 
         $list = [];
 
         foreach ($rules as $key => $rule){
+            $ruleValues = is_string($rule) ? explode('|',$rule) : $rule;
+
+            foreach ($ruleValues as $ruleValueKey => $ruleValueItem){
+                if(isset($customRules[$ruleValueItem]) && isset($data[$key])){
+                    $regexCustomRule = str_replace('regex:','',$customRules[$ruleValueItem][0]);
+                    if(!preg_match($regexCustomRule,$data[$key])){
+                        Exception::customException(trans('validation.'.$ruleValueItem.'',['attribute' => $key]));
+                    }
+
+                    unset($ruleValues[$ruleValueKey]);
+                }
+            }
+
+            $rule = $ruleValues;
+
             if(isset($autoRules[$key])){
                 if(is_array($autoRules[$key])){
                     $list[$key] = $autoRules[$key];

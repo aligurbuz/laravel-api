@@ -70,6 +70,16 @@ class Client extends ClientManager
     }
 
     /**
+     * get custom rules for client
+     *
+     * @return array
+     */
+    public function getCustomRules() : array
+    {
+        return $this->customRules;
+    }
+
+    /**
      * set client action for client instance
      *
      * @param array $data
