@@ -58,6 +58,29 @@ class RegistrationTest extends TestCase
             $response->assertStatus(200);
 
             $userRepository = Repository::user();
+            $user = $userRepository->role()->where('email',$mockData['user']['email'])->getRepository();
+            $this->assertCount(0, $user);
+        }
+        else{
+            $response = $this->post($this->apiRequestPrefix(),$mockData,$this->headers());
+            $response->assertStatus(400);
+        }
+    }
+
+    /**
+     * A basic test user.
+     *
+     * @return void
+     */
+    public function test_registration_post2()
+    {
+        $mockData = $this->getMockData('post');
+
+        if(count($mockData)){
+            $response = $this->postJson($this->apiRequestPrefix(),$mockData,$this->headers());
+            $response->assertStatus(200);
+
+            $userRepository = Repository::user();
             $user = $userRepository->role()->where('email',$mockData['user']['email'])->getRepository(false);
             $this->assertEquals($user[0]['email'],$mockData['user']['email']);
             $this->assertEquals(false,$user[0]['status']);
