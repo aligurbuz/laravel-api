@@ -449,6 +449,22 @@ if(!function_exists('isThrowableInstance')){
     }
 }
 
+if(!function_exists('booleanChecks')){
+
+    /**
+     * @param mixed $data
+     * @return bool
+     */
+    function booleanChecks(mixed $data): bool
+    {
+        $data = ($data=='1') ? true : $data;
+        $data = ($data=='0') ? false : $data;
+        $data = ($data==1) ? true : $data;
+
+        return ($data==0) ? false : $data;
+    }
+}
+
 if(!function_exists('getTableCode')){
 
     /**

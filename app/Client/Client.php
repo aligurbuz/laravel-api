@@ -457,9 +457,19 @@ class Client extends ClientManager
      */
     public function get(?string $key = null) : mixed
     {
-        $streamData = $this->getDataStream();
+        $streamData = $this->getClientDataStreams();
 
         return $streamData[$key] ?? $streamData;
+    }
+
+    /**
+     * get client data stream for client
+     *
+     * @return array
+     */
+    public function getClientDataStreams() : array
+    {
+        return AppContainer::get('clientDataStreams',[]);
     }
 
     /**
@@ -470,7 +480,7 @@ class Client extends ClientManager
      */
     public function has(?string $key = null) : bool
     {
-        $streamData = $this->getDataStream();
+        $streamData = $this->getClientDataStreams();
 
         return (isset($streamData[$key]));
     }

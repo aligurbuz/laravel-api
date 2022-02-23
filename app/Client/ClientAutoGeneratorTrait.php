@@ -107,7 +107,7 @@ trait ClientAutoGeneratorTrait
         if(
             request()->method()=='PUT'
             && $this->has('is_deleted')
-            && $this->get('is_deleted')=='1')
+            && booleanChecks($this->get('is_deleted')))
         {
             return $this->ensureColumnExists('deleted_by',function(){
                 return Authenticate::code();
@@ -127,7 +127,7 @@ trait ClientAutoGeneratorTrait
         if(
             request()->method()=='PUT'
             && $this->has('is_deleted')
-            && $this->get('is_deleted')=='1')
+            && booleanChecks($this->get('is_deleted')))
         {
             return $this->ensureColumnExists('deleted_at',function(){
                 return Date::now()->toDateTimeString();
