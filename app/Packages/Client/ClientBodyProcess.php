@@ -114,12 +114,14 @@ class ClientBodyProcess extends ClientVariableProcess
                     $this->autoGeneratorProcess($value,$defaultGenerator)
                 );
 
+
                 $generatorProcess = Collection::make($generatorProcess)->filter(function($value, $key){
-                    return $value != null;
+                    return $value !== null;
                 })->toArray();
 
                 $this->variableProcess($generatorProcess,false);
                 $value = $this->client->getDataStream();
+
 
                 $this->client->setBodyData($key,$value);
 
