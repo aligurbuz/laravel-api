@@ -144,17 +144,25 @@ trait TestHttpSupport
      */
     protected function putHttpMethodActivation(array $mockData = [],int $boolCount = 0) : void
     {
-        $this->putHttpMethod($mockData);
+        $testMock = $this->getMockData('put');
 
-        $response = $this->getRequest([
-            'filter' => [
-                $this->getRepository()->getModelCode() => AppContainer::get('testModelCode')
-            ],
-            'range' => 'active'
-        ]);
+        if(count($testMock)){
+            $this->putHttpMethod($mockData);
 
-        $resource = $this->getResourceData($this->getContentArray($response));
-        $this->assertCount($boolCount,$resource);
+            $response = $this->getRequest([
+                'filter' => [
+                    $this->getRepository()->getModelCode() => AppContainer::get('testModelCode')
+                ],
+                'range' => 'active'
+            ]);
+
+            $resource = $this->getResourceData($this->getContentArray($response));
+            $this->assertCount($boolCount,$resource);
+        }
+        else{
+            $this->assertTrue(true);
+        }
+
     }
 
     /**
