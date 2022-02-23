@@ -99,11 +99,16 @@ trait TestHttpSupport
     /**
      * put http method for test case
      *
+     * @param array $mockData
      * @return void
      */
-    protected function putHttpMethod() : void
+    protected function putHttpMethod(array $mockData = []) : void
     {
         $testMock = $this->getMockData('put');
+
+        if(count($testMock)){
+            $testMock = array_merge($testMock,$mockData);
+        }
 
         $modelCode = [
             $this->getRepository()->getModelCode() => AppContainer::get('testModelCode')
@@ -128,6 +133,16 @@ trait TestHttpSupport
                 $response->assertStatus(400);
             }
         }
+    }
+
+    /**
+     * Controls the behavior of the status and is_deleted columns via put.
+     *
+     * @return void
+     */
+    protected function putHttpMethodActivation() : void
+    {
+        $this->putHttpMethod(['status' => "0",'is_deleted' => "0"]);
     }
 
     /**
