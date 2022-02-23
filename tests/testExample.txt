@@ -66,7 +66,7 @@ class __CLASS__Test extends TestCase
      */
     public function test___ENDPOINTMETHOD___put_activation()
     {
-        $this->putHttpMethodActivation();
+        $this->putHttpMethodActivation([],1);
     }
 
     /**
