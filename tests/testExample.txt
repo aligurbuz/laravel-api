@@ -98,4 +98,34 @@ class __CLASS__Test extends TestCase
     {
         $this->putHttpMethodActivation(['status' => true,'is_deleted' => false],1);
     }
+
+    /**
+     * A basic test countries.
+     *
+     * @return void
+     */
+    public function test___ENDPOINTMETHOD___put_activation5()
+    {
+        $this->putHttpMethodActivation(['status' => false,'is_deleted' => false]);
+    }
+
+    /**
+     * A basic test countries.
+     *
+     * @return void
+     */
+    public function test___ENDPOINTMETHOD___put_activation6()
+    {
+        $this->putHttpMethodActivation(['status' => false,'is_deleted' => true]);
+    }
+
+    /**
+     * A basic test countries.
+     *
+     * @return void
+     */
+    public function test___ENDPOINTMETHOD___put_activation7()
+    {
+        $this->putHttpMethodActivation(['status' => true,'is_deleted' => false],1);
+    }
 }
