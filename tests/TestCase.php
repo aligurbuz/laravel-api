@@ -6,6 +6,7 @@ use App\Constants;
 use App\Services\Db;
 use App\Services\Redis;
 use Illuminate\Support\Str;
+use Illuminate\Testing\TestResponse;
 use Predis\ClientInterface;
 use App\Services\AppContainer;
 use App\Repositories\Repository;
@@ -225,9 +226,9 @@ abstract class TestCase extends BaseTestCase
      * get request for endpoint
      *
      * @param array $params
-     * @return object
+     * @return TestResponse
      */
-    public function getRequest(array $params = []) : object
+    public function getRequest(array $params = []) : TestResponse
     {
         $params = count($params) ? '?'.http_build_query($params) : '';
 

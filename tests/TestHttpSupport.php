@@ -138,11 +138,43 @@ trait TestHttpSupport
     /**
      * Controls the behavior of the status and is_deleted columns via put.
      *
+     * @param array $mockData
+     * @param int $boolCount
      * @return void
      */
-    protected function putHttpMethodActivation() : void
+    protected function putHttpMethodActivation(array $mockData = [],int $boolCount = 0) : void
     {
-        $this->putHttpMethod(['status' => "0",'is_deleted' => "0"]);
+        $this->putHttpMethod($mockData);
+
+        $response = $this->getRequest([
+            'filter' => [
+                $this->getRepository()->getModelCode() => AppContainer::get('testModelCode')
+            ],
+            'range' => 'active'
+        ]);
+
+        $resource = $this->getResourceData($this->getContentArray($response));
+        $this->assertCount($boolCount,$resource);
+    }
+
+    /**
+     * Controls the behavior of the status and is_deleted columns via put.
+     *
+     * @return void
+     */
+    protected function putHttpMethodActivation2() : void
+    {
+        $this->putHttpMethod(['status' => true,'is_deleted' => false]);
+
+        $response = $this->getRequest([
+            'filter' => [
+                $this->getRepository()->getModelCode() => AppContainer::get('testModelCode')
+            ],
+            'range' => 'active'
+        ]);
+
+        $resource = $this->getResourceData($this->getContentArray($response));
+        $this->assertCount(1,$resource);
     }
 
     /**
