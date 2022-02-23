@@ -86,8 +86,11 @@ use '.$useController.';',$routeApiContent);
             $serviceMaps = json_decode($serviceMaps,1);
 
             if(!isset($serviceMaps[$this->argument('model')])){
+
+                $controlDirVariable = ($dirVariable==$controllerVariable) ? ucfirst($dirVariable) : ucfirst($dirVariable).'/'.$controllerVariable;
+
                 $newValues = [
-                    ucfirst($dirVariable).'/'.$controllerVariable => [
+                    $controlDirVariable => [
                         'controller' => ucfirst($controllerVariable),
                         'dir' => ucfirst($dirVariable),
                         'model' => ucfirst($this->argument('model'))
