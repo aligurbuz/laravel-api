@@ -50,7 +50,7 @@ class ClientParamProcess extends ClientVariableProcess
     {
         if($this->client->requestMethod()=='GET'){
             foreach ($this->data as $key => $value){
-                if(in_array($key,$this->client->columnsForModel(),true)){
+                if(!in_array($key,$this->client->columnsForModel(),true)){
                     Exception::clientCapsuleException('', ['key' => $key]);
                     return;
                 }
