@@ -11,10 +11,10 @@ if(!file_exists($envFile) && isset($argv[1],$argv[2])){
 
     exec('cd '.$dir.' && sudo chmod -R 777 storage');
     exec('cd '.$dir.' && composer install && php artisan key:generate');
-    exec('cd '.$dir.' && php artisan environment '.$argv[2].'');
     exec('cd '.$dir.' && php artisan name '.$argv[1].'');
     exec('cd '.$dir.' && php artisan migrate');
     exec('cd '.$dir.' && php artisan passport:install');
+    exec('cd '.$dir.' && php artisan environment '.$argv[2].'');
     exec('cd '.$dir.' && php artisan permission');
     exec('cd '.$dir.' && php artisan supervisor');
     exec('cd '.$dir.' && php artisan doc:update');
