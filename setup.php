@@ -12,13 +12,24 @@ if(!file_exists($envFile) && isset($argv[1],$argv[2])){
     exec('cd '.$dir.' && sudo chmod -R 777 storage');
     exec('cd '.$dir.' && composer install && php artisan key:generate');
     exec('cd '.$dir.' && php artisan name '.$argv[1].'');
-    exec('cd '.$dir.' && php artisan migrate');
-    exec('cd '.$dir.' && php artisan passport:install');
-    exec('cd '.$dir.' && php artisan environment '.$argv[2].'');
-    exec('cd '.$dir.' && php artisan permission');
-    exec('cd '.$dir.' && php artisan supervisor');
-    exec('cd '.$dir.' && php artisan doc:update');
-    exec('cd '.$dir.' && sudo chmod -R 777 storage');
+    if($argv[2]=='production'){
+        exec('cd '.$dir.' && php artisan environment testing');
+    }
+
+    exec('cd '.$dir.' && php artisan migrate' ,$output);
+    var_dump($output);
+    exec('cd '.$dir.' && php artisan passport:install',$output);
+    var_dump($output);
+    exec('cd '.$dir.' && php artisan environment '.$argv[2].'',$output);
+    var_dump($output);
+    exec('cd '.$dir.' && php artisan permission',$output);
+    var_dump($output);
+    exec('cd '.$dir.' && php artisan supervisor',$output);
+    var_dump($output);
+    exec('cd '.$dir.' && php artisan doc:update',$output);
+    var_dump($output);
+    exec('cd '.$dir.' && sudo chmod -R 777 storage',$output);
+    var_dump($output);
 }
 else{
     throw new Exception('your parameters is missing.(this file has 2 parameters');
