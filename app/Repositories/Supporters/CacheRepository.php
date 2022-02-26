@@ -150,8 +150,8 @@ trait CacheRepository
      */
     private function setProperties() : void
     {
-        $this->rangeContainer($this);
-        $this->relationContainer($this->getModelWithQueries());
+        //$this->rangeContainer($this);
+        //$this->relationContainer($this->getModelWithQueries());
 
         $requestQuery = request()->query;
 
