@@ -49,8 +49,8 @@ class Exception
         static::setKeyForContainer('debugBackTrace',debug_backtrace());
 
         if(isset($arguments[0])){
-            static::setKeyForContainer($namespace,($arguments[1] ?? []));
-            throw new $namespace($arguments[0]);
+            static::setKeyForContainer($namespace,($arguments[1] ?? (is_array($arguments[0]) ? $arguments[0] : [])));
+            throw new $namespace((is_array($arguments[0]) ? '' : $arguments[0]));
         }
         else{
             throw new $namespace();
