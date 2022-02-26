@@ -61,10 +61,10 @@ class Exception
      * set key for container
      *
      * @param $exceptionName
-     * @param array $data
+     * @param mixed $data
      */
-    private static function setKeyForContainer($exceptionName,array $data = []) : void
+    private static function setKeyForContainer($exceptionName,mixed $data) : void
     {
-        AppContainer::set($exceptionName,$data,true);
+        AppContainer::set($exceptionName,is_string($data) ? ['key' => $data] : $data,true);
     }
 }
