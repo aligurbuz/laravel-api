@@ -17,7 +17,21 @@ trait ExceptionTrait
         $languageStatement = 'exception.'.$this->langKey;
         $language = trans($languageStatement,$this->getKeys());
 
-        return ($language == $languageStatement) ? $message : $language;
+        return ($language == $languageStatement) ? $this->getMessageForTranslate($message) : $language;
+    }
+
+    /**
+     * If the custom message is in the exception,
+     * it will be replaced with this message.
+     *
+     * @param string $message
+     * @return string
+     */
+    private function getMessageForTranslate(string $message) : string
+    {
+        $customMessage = trans('exception.'.$message,$this->getKeys());
+
+        return ($customMessage=='exception'.$message) ? $message : $customMessage;
     }
 
     /**
@@ -25,7 +39,7 @@ trait ExceptionTrait
      *
      * @return array
      */
-    public function getKeys() : array
+    private function getKeys() : array
     {
         $calledClass = get_called_class();
 
