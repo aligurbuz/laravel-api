@@ -68,6 +68,41 @@ if(!function_exists('getServiceJson')){
     }
 }
 
+if(!function_exists('isException')){
+
+    /**
+     * throws exception for invalid code
+     *
+     * @param callable $callback
+     * @return mixed
+     */
+    function isException(callable $callback): mixed
+    {
+        try{
+            return call_user_func($callback,false);
+        }
+        catch (\Exception){
+            return call_user_func($callback,true);
+        }
+    }
+}
+
+if(!function_exists('checkBool')){
+
+    /**
+     * get company code for application
+     *
+     * @param $value
+     * @return bool
+     */
+    function checkBool($value): bool
+    {
+        $value = $value=='1' ? true : $value;
+
+        return $value==1 ? true : $value;
+    }
+}
+
 if(!function_exists('isExistAuthorization')){
 
     /**
