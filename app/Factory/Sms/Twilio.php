@@ -31,11 +31,6 @@ class Twilio extends SmsManager implements SmsInterface
     /**
      * @var string|null
      */
-    protected ?string $from = '+19035468742';
-
-    /**
-     * @var string|null
-     */
     protected ?string $to = null;
 
     /**
@@ -96,7 +91,7 @@ class Twilio extends SmsManager implements SmsInterface
             return [
                 'smsResponse' => $this->client->messages->create($this->to,
                     [
-                        'from' => $this->from,
+                        'from' => config('sms.twilioPhoneNumber'),
                         'body' => $this->message
                     ]
                 )
