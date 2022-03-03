@@ -23,7 +23,8 @@
         "phpmailer/phpmailer": "^6.5",
         "predis/predis": "^1.1",
         "spatie/array-to-xml": "^3.0",
-        "symfony/yaml": "^6.0"
+        "symfony/yaml": "^6.0",
+        "twilio/sdk": "^6.35"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
