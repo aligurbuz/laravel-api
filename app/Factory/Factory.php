@@ -16,6 +16,7 @@ use App\Factory\Hitter\Interfaces\HitterInterface;
 use App\Factory\Notify\Interfaces\NotifyInterface;
 use App\Factory\Logger\Interfaces\LoggerInterface;
 use App\Factory\Search\Interfaces\SearchInterface;
+use App\Factory\Sms\Interfaces\SmsInterface;
 use App\Factory\Storage\Interfaces\StorageInterface;
 use App\Factory\Permission\Interfaces\PermissionInterface;
 use App\Factory\Collection\Interfaces\CollectionInterface;
@@ -40,6 +41,7 @@ use App\Jobs\EmailSender;
  * @method static EmailInterface email($arguments = null)
  * @method static ApiKeyInterface apiKey($arguments = null)
  * @method static RequestInterface request($arguments = null)
+ * @method static SmsInterface sms($arguments = null)
  * @package App\Factory
  */
 class Factory extends FactoryManager
@@ -55,6 +57,7 @@ class Factory extends FactoryManager
         'Notify'        => 'Slack',
         'Cache'         => 'Redis',
         'Search'        => 'ElasticSearch',
+        'Sms'           => 'Twilio',
     ];
 
     /**
