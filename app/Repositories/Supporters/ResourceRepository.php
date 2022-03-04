@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Repositories\Supporters;
 
+use App\Services\AppContainer;
 use Illuminate\Support\Str;
 use App\Exceptions\Exception;
 
@@ -16,7 +17,7 @@ trait ResourceRepository
     /**
      * @var object|null
      */
-    protected static ?object $resourceInstance = null;
+    protected static array $resourceInstance = [];
 
     /**
      * @var string
@@ -31,8 +32,17 @@ trait ResourceRepository
     public function getResource() : string
     {
         //base class property for repository
-        $className = class_basename(get_called_class());
-        $currentNamespace = $this->getCurrentNamespace();
+        if(AppContainer::has('resourcePropagationRepository')){
+            $resourcePropagationRepository = AppContainer::get('resourcePropagationRepository');
+            $className = class_basename($resourcePropagationRepository);
+            $currentNamespace = get_class($resourcePropagationRepository);
+        }
+        else{
+            $className = class_basename(get_called_class());
+            $currentNamespace = get_called_class();
+        }
+
+        AppContainer::terminate('resourcePropagationRepository');
 
         //get directory name for repository model
         $dir = str_replace('\\'.$className,'',$currentNamespace);
@@ -143,14 +153,20 @@ trait ResourceRepository
      * @param array $data
      * @param object|null $repository
      * @param bool $localizationHandler
+     * @param bool $recursive
      * @return array
      */
-    public function resourcePropagation(array $data = [], ?object $repository = null, bool $localizationHandler = true): array
+    public function resourcePropagation(array $data = [], ?object $repository = null, bool $localizationHandler = true,bool $recursive = false): array
     {
         $list           = [];
 
         if($localizationHandler){
             $repository     = $repository ?? $this;
+
+            if($recursive){
+                AppContainer::set('resourcePropagationRepository',$repository);
+            }
+
             $localizations  = $this->getLocalizations($repository);
             $withValues     = $repository->getModelWithValues();
         }
@@ -161,11 +177,14 @@ trait ResourceRepository
 
                 foreach ($withValues as $withValue){
                     $withValueSnake = Str::snake($withValue);
-                    foreach (($item[$withValueSnake] ?? []) as $withKey => $withData){
+                    $itemRelations = ($item[$withValueSnake] ?? []);
+                    foreach ($itemRelations as $withKey => $withData){
                         if(isset($withData['localization'])){
                             $item[$withValueSnake][$withKey] = ($this->resourcePropagation(
                                     [$withData],
-                                    $this->findRepositoryByModel(getModelWithPlural($withValue))
+                                    $this->findRepositoryByModel(getModelWithPlural($withValue)),
+                                    true,
+                                    true
                                 )[0]) ?? [];
                         }
 
@@ -178,7 +197,9 @@ trait ResourceRepository
                                             if(isset($recursiveVal['localization'])){
                                                 $item[$withValueSnake][$withKey][$withDataKey][$recursiveKey] = ($this->resourcePropagation(
                                                         [$recursiveVal],
-                                                        $this->findRepositoryByModel($withDataModel)
+                                                        $this->findRepositoryByModel($withDataModel),
+                                                        true,
+                                                        true
                                                     )[0]) ?? [];
                                             }
                                         }
@@ -217,12 +238,12 @@ trait ResourceRepository
         $resource = $this->getResource();
 
         if(class_exists($resource)){
-            if(is_null(static::$resourceInstance)){
-                static::$resourceInstance = new $resource;
+            if(!isset(static::$resourceInstance[$resource])){
+                static::$resourceInstance[$resource] = new $resource;
             }
         }
 
-        return (is_null(static::$resourceInstance)) ? $data : call_user_func($callback,static::$resourceInstance);
+        return (!isset(static::$resourceInstance[$resource])) ? $data : call_user_func($callback,static::$resourceInstance[$resource]);
     }
 
 
