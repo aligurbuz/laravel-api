@@ -48,6 +48,10 @@ class Exception
         // this container data is used in the script running on the access_logger middleware layer.
         // this data saved in the trace field in the access_logger table gives the debugBackTrace data in the exception system.
         static::setKeyForContainer('debugBackTrace',debug_backtrace());
+
+        // if the application throws an exception,
+        // if the developer sends true as the 3rd parameter of the exception,
+        // the notification will be thrown with the exception.(etc..slack)
         AppContainer::set(Constants::exceptionNotify,$arguments[2] ?? null);
 
         if(isset($arguments[0])){
