@@ -9,6 +9,7 @@ return [
     'apikeyString' => 'apikey',
     'defaultApiResponseFormatter' => 'json',
     'productBaseUrl' => env('productBaseUrl','productBaseUrl'),
+    'exceptionNotifyChannel' => env('EXCEPTION_NOTIFY_CHANNEL','EXCEPTION_NOTIFY_CHANNEL'),
 
     'allowedClientKeys' => [
         'range',

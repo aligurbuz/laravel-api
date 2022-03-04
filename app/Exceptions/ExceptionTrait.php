@@ -2,6 +2,8 @@
 
 namespace App\Exceptions;
 
+use App\Constants;
+use App\Factory\Factory;
 use App\Services\AppContainer;
 
 trait ExceptionTrait
@@ -17,7 +19,13 @@ trait ExceptionTrait
         $languageStatement = 'exception.'.$this->langKey;
         $language = trans($languageStatement,$this->getKeys());
 
-        return ($language == $languageStatement) ? $this->getMessageForTranslate($message) : $language;
+        $message = ($language == $languageStatement) ? $this->getMessageForTranslate($message) : $language;
+
+        if(AppContainer::get(Constants::exceptionNotify)===true){
+            Factory::notify()->push(config('app.exceptionNotifyChannel'),$message);
+        }
+
+        return $message;
     }
 
     /**

@@ -20,4 +20,5 @@ class Constants
     public const controllerNamespace                = 'App\Http\Controllers';
     public const testFeatureNamespace               = 'Tests\Feature';
     public const responseFormatterSupplement        = 'responseFormatterSupplement';
+    public const exceptionNotify                    = 'exceptionNotify';
 }
