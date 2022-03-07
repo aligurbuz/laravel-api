@@ -87,6 +87,18 @@ if(!function_exists('isException')){
     }
 }
 
+if(!function_exists('currency')){
+
+    /**
+     * get currency string for application
+     *
+     */
+    function currency(): string
+    {
+        return 'USD';
+    }
+}
+
 if(!function_exists('checkBool')){
 
     /**
