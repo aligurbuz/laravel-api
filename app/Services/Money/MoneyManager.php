@@ -18,7 +18,7 @@ class MoneyManager
      * @param string|null $currency
      * @return string
      */
-    public static function toCent(string $amount,?string $currency = null): string
+    public function toCent(string $amount,?string $currency = null): string
     {
         $currencies = new ISOCurrencies();
 
@@ -38,7 +38,7 @@ class MoneyManager
      * @param string|null $currency
      * @return string
      */
-    public static function currency(string|int $amount,?string $currency = null): string
+    public function currency(string|int $amount,?string $currency = null): string
     {
         $money = new Money($amount, new Currency(($currency ?? currency())));
         $currencies = new ISOCurrencies();
@@ -57,7 +57,7 @@ class MoneyManager
      * @param string|null $currency
      * @return string
      */
-    public static function decimal(string|int $amount,?string $currency = null): string
+    public function decimal(string|int $amount,?string $currency = null): string
     {
         $money = new Money($amount, new Currency(($currency ?? currency())));
         $currencies = new ISOCurrencies();
@@ -76,7 +76,7 @@ class MoneyManager
      * @param string|null $currency
      * @return mixed
      */
-    public static function add(string|int $money1,string|int $money2,?string $currency = null): mixed
+    public function add(string|int $money1,string|int $money2,?string $currency = null): mixed
     {
         $currency = $currency ?? currency();
 
@@ -95,7 +95,7 @@ class MoneyManager
      * @param string|null $currency
      * @return mixed
      */
-    public static function subtract(string|int $money1,string|int $money2,?string $currency = null): mixed
+    public function subtract(string|int $money1,string|int $money2,?string $currency = null): mixed
     {
         $currency = $currency ?? currency();
 
