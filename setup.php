@@ -12,7 +12,7 @@ if(!file_exists($envFile) && isset($argv[1],$argv[2])){
     exec('cd '.$dir.' && sudo chmod -R 777 storage');
     exec('cd '.$dir.' && composer install && php artisan key:generate');
     exec('cd '.$dir.' && php artisan name '.$argv[1].'');
-    if($argv[2]=='production'){
+    if($argv[2]!=='local'){
         exec('cd '.$dir.' && php artisan environment testing');
     }
 
