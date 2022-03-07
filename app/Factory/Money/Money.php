@@ -69,7 +69,7 @@ class Money extends MoneyManager implements MoneyInterface
      */
     public function decimal(string|int $amount,?string $currency = null): string
     {
-        return $this->money->decimal($amount,$currency);
+        return $this->money->decimal($this->toCent($amount),$currency);
     }
 
     /**
@@ -83,12 +83,15 @@ class Money extends MoneyManager implements MoneyInterface
      */
     public function add(string|int $money1,string|int $money2,?string $currency = null): mixed
     {
+        $money1 = is_string($money1) ? $this->toCent($money1) : $money1;
+        $money2 = is_string($money2) ? $this->toCent($money2) : $money2;
+
         return $this->money->add($money1,$money2,$currency);
     }
 
     /**
      * Returns a new Money object that represents
-     * the difference of this and an other Money object.
+     * the difference of this and another Money object.
      *
      * @param string|int $money1
      * @param string|int $money2
@@ -97,6 +100,9 @@ class Money extends MoneyManager implements MoneyInterface
      */
     public function subtract(string|int $money1,string|int $money2,?string $currency = null): mixed
     {
+        $money1 = is_string($money1) ? $this->toCent($money1) : $money1;
+        $money2 = is_string($money2) ? $this->toCent($money2) : $money2;
+
         return $this->money->subtract($money1,$money2,$currency);
     }
 }
