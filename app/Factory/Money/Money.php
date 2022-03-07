@@ -23,7 +23,7 @@ class Money extends MoneyManager implements MoneyInterface
     /**
      * @var MoneyManager
      */
-    protected MoneyManager $client;
+    protected MoneyManager $money;
 
 	/**
 	 * Money constructor
@@ -33,7 +33,7 @@ class Money extends MoneyManager implements MoneyInterface
 	public function __construct(array $binds = [])
 	{
 		$this->binds = $binds;
-        $this->client = new MoneyManager();
+        $this->money = new MoneyManager();
 	}
 
     /**
@@ -45,7 +45,7 @@ class Money extends MoneyManager implements MoneyInterface
      */
     public function toCent(string $amount, ?string $currency = null): string
     {
-        return $this->client->toCent($amount,$currency);
+        return $this->money->toCent($amount,$currency);
     }
 
     /**
@@ -57,7 +57,7 @@ class Money extends MoneyManager implements MoneyInterface
      */
     public function currency(string|int $amount,?string $currency = null): string
     {
-        return $this->client->currency($amount,$currency);
+        return $this->money->currency($amount,$currency);
     }
 
     /**
@@ -69,7 +69,7 @@ class Money extends MoneyManager implements MoneyInterface
      */
     public function decimal(string|int $amount,?string $currency = null): string
     {
-        return $this->client->decimal($amount,$currency);
+        return $this->money->decimal($amount,$currency);
     }
 
     /**
@@ -83,7 +83,7 @@ class Money extends MoneyManager implements MoneyInterface
      */
     public function add(string|int $money1,string|int $money2,?string $currency = null): mixed
     {
-        return $this->client->add($money1,$money2,$currency);
+        return $this->money->add($money1,$money2,$currency);
     }
 
     /**
@@ -97,6 +97,6 @@ class Money extends MoneyManager implements MoneyInterface
      */
     public function subtract(string|int $money1,string|int $money2,?string $currency = null): mixed
     {
-        return $this->client->subtract($money1,$money2,$currency);
+        return $this->money->subtract($money1,$money2,$currency);
     }
 }
