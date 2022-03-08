@@ -159,7 +159,7 @@ class Money extends MoneyManager implements MoneyInterface
      */
     public function tax(string|int $money,?string $tax = null,?string $currency = null) : string
     {
-        $money = is_string($money) ? $this->toCent($money) : $money;
+        $money = is_string($money) ? $this->toCent(numberFormatter($money)) : $money;
 
         $currency = $currency ?? currency();
         $tax = $tax ?? tax();

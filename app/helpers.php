@@ -95,6 +95,8 @@ if(!function_exists('numberFormatter')){
      */
     function numberFormatter($value): string
     {
+        $value = (float) $value;
+
         if(is_float($value)){
             return number_format($value,2,',','.');
         }
