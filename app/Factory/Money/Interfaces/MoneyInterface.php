@@ -71,10 +71,10 @@ interface MoneyInterface
     public function subtract(string|int $money1,string|int $money2,?string $currency = null): mixed;
 
     /**
-     * @param string $money
+     * @param string|int $money
      * @param string|null $tax
      * @return string
      * @see Money::tax()
      */
-    public function tax(string $money,?string $tax = null) : string;
+    public function tax(string|int $money,?string $tax = null) : string;
 }

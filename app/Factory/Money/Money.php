@@ -149,7 +149,7 @@ class Money extends MoneyManager implements MoneyInterface
     /**
      * Calculates the tax of money
      *
-     * @param string $money
+     * @param string|int $money
      * @param string|null $tax
      * @param string|null $currency
      * @return string
@@ -157,13 +157,15 @@ class Money extends MoneyManager implements MoneyInterface
      * @throws UnknownCurrencyException
      * @throws MoneyMismatchException
      */
-    public function tax(string $money,?string $tax = null,?string $currency = null) : string
+    public function tax(string|int $money,?string $tax = null,?string $currency = null) : string
     {
+        $money = is_string($money) ? $this->toCent($money) : $money;
+
         $currency = $currency ?? currency();
         $tax = $tax ?? tax();
 
-        $moneyAmount = M::of($money,$currency);
-        $taxAmount = $moneyAmount->dividedBy(100,RoundingMode::HALF_UP)->multipliedBy($tax,RoundingMode::HALF_UP);
+        $moneyAmount = M::ofMinor($money,$currency);
+        $taxAmount = $moneyAmount->dividedBy(100,RoundingMode::CEILING)->multipliedBy($tax,RoundingMode::CEILING);
 
         return $moneyAmount->plus($taxAmount)->getMinorAmount()->jsonSerialize();
     }

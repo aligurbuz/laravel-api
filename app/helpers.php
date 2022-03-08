@@ -87,6 +87,22 @@ if(!function_exists('isException')){
     }
 }
 
+if(!function_exists('numberFormatter')){
+
+    /**
+     * get currency string for application
+     *
+     */
+    function numberFormatter($value): string
+    {
+        if(is_float($value)){
+            return number_format($value,2,',','.');
+        }
+
+        return $value;
+    }
+}
+
 if(!function_exists('currency')){
 
     /**
