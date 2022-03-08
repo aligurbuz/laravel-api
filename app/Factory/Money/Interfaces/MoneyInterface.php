@@ -41,6 +41,23 @@ interface MoneyInterface
      */
     public function add(string|int $money1,string|int $money2,?string $currency = null): mixed;
 
+    /**
+     * @param string|int $money1
+     * @param float $multiply
+     * @param string|null $currency
+     * @return mixed
+     * @see MoneyManager::multiply()
+     */
+    public function multiply(string|int $money1,float $multiply,?string $currency = null): mixed;
+
+    /**
+     * @param string|int $money1
+     * @param float $multiply
+     * @param string|null $currency
+     * @return mixed
+     * @see MoneyManager::divide()
+     */
+    public function divide(string|int $money1,float $multiply,?string $currency = null): mixed;
 
     /**
      * @param string|int $money1

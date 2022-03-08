@@ -104,4 +104,40 @@ class MoneyManager
 
         return $money1->subtract($money2)->getAmount();
     }
+
+    /**
+     * Returns a new Money object that represents
+     * the multiplied value by the given factor.
+     *
+     * @param string|int $money1
+     * @param float $multiply
+     * @param string|null $currency
+     * @return mixed
+     */
+    public function multiply(string|int $money1,float $multiply,?string $currency = null): mixed
+    {
+        $currency = $currency ?? currency();
+
+        $value = Money::$currency($money1);
+
+        return $value->multiply($multiply)->getAmount();
+    }
+
+    /**
+     * Returns a new Money object that represents
+     * the divided value by the given factor.
+     *
+     * @param string|int $money1
+     * @param float $multiply
+     * @param string|null $currency
+     * @return mixed
+     */
+    public function divide(string|int $money1,float $multiply,?string $currency = null): mixed
+    {
+        $currency = $currency ?? currency();
+
+        $value = Money::$currency($money1);
+
+        return $value->divide($multiply)->getAmount();
+    }
 }

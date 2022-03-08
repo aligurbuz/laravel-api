@@ -105,4 +105,36 @@ class Money extends MoneyManager implements MoneyInterface
 
         return $this->money->subtract($money1,$money2,$currency);
     }
+
+    /**
+     * Returns a new Money object that represents
+     * the multiplied value by the given factor.
+     *
+     * @param string|int $money1
+     * @param float $multiply
+     * @param string|null $currency
+     * @return mixed
+     */
+    public function multiply(string|int $money1,float $multiply,?string $currency = null): mixed
+    {
+        $money1 = is_string($money1) ? $this->toCent($money1) : $money1;
+
+        return $this->money->multiply($money1,$multiply,$currency);
+    }
+
+    /**
+     * Returns a new Money object that represents
+     * the divided value by the given factor.
+     *
+     * @param string|int $money1
+     * @param float $multiply
+     * @param string|null $currency
+     * @return mixed
+     */
+    public function divide(string|int $money1,float $multiply,?string $currency = null): mixed
+    {
+        $money1 = is_string($money1) ? $this->toCent($money1) : $money1;
+
+        return $this->money->divide($money1,$multiply,$currency);
+    }
 }
