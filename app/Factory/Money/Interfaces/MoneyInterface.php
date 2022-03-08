@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace App\Factory\Money\Interfaces;
 
-use App\Services\Money\MoneyManager;
+use App\Factory\Money\Money;
+use Money\Money as M;
 
 interface MoneyInterface
 {
@@ -12,7 +13,7 @@ interface MoneyInterface
      * @param string $amount
      * @param string|null $currency
      * @return string
-     * @see MoneyManager::toCent()
+     * @see Money::toCent()
      */
     public function toCent(string $amount, ?string $currency = null): string;
 
@@ -20,7 +21,7 @@ interface MoneyInterface
      * @param string|int $amount
      * @param string|null $currency
      * @return string
-     * @see MoneyManager::currency()
+     * @see Money::currency()
      */
     public function currency(string|int $amount,?string $currency = null): string;
 
@@ -28,7 +29,7 @@ interface MoneyInterface
      * @param string|int $amount
      * @param string|null $currency
      * @return string
-     * @see MoneyManager::decimal()
+     * @see Money::decimal()
      */
     public function decimal(string|int $amount,?string $currency = null): string;
 
@@ -37,7 +38,7 @@ interface MoneyInterface
      * @param string|int $money2
      * @param string|null $currency
      * @return mixed
-     * @see MoneyManager::add()
+     * @see Money::add()
      */
     public function add(string|int $money1,string|int $money2,?string $currency = null): mixed;
 
@@ -46,25 +47,34 @@ interface MoneyInterface
      * @param float $multiply
      * @param string|null $currency
      * @return mixed
-     * @see MoneyManager::multiply()
+     * @see Money::multiply()
      */
-    public function multiply(string|int $money1,float $multiply,?string $currency = null): mixed;
+    public function multiply(string|int $money1, float $multiply, ?string $currency = null): mixed;
 
     /**
      * @param string|int $money1
-     * @param float $multiply
+     * @param float $divide
      * @param string|null $currency
+     * @param mixed $rounding
      * @return mixed
-     * @see MoneyManager::divide()
+     * @see Money::divide()
      */
-    public function divide(string|int $money1,float $multiply,?string $currency = null): mixed;
+    public function divide(string|int $money1, float $divide, ?string $currency = null,mixed $rounding = M::ROUND_HALF_UP): mixed;
 
     /**
      * @param string|int $money1
      * @param string|int $money2
      * @param string|null $currency
      * @return mixed
-     * @see MoneyManager::subtract()
+     * @see Money::subtract()
      */
     public function subtract(string|int $money1,string|int $money2,?string $currency = null): mixed;
+
+    /**
+     * @param string $money
+     * @param string|null $tax
+     * @return string
+     * @see Money::tax()
+     */
+    public function tax(string $money,?string $tax = null) : string;
 }

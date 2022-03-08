@@ -99,6 +99,18 @@ if(!function_exists('currency')){
     }
 }
 
+if(!function_exists('tax')){
+
+    /**
+     * get tax string for application
+     *
+     */
+    function tax(): string
+    {
+        return '8.875';
+    }
+}
+
 if(!function_exists('checkBool')){
 
     /**

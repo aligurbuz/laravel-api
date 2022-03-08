@@ -128,16 +128,17 @@ class MoneyManager
      * the divided value by the given factor.
      *
      * @param string|int $money1
-     * @param float $multiply
+     * @param float $divide
      * @param string|null $currency
+     * @param mixed $rounding
      * @return mixed
      */
-    public function divide(string|int $money1,float $multiply,?string $currency = null): mixed
+    public function divide(string|int $money1,float $divide,?string $currency = null,mixed $rounding = Money::ROUND_HALF_UP): mixed
     {
         $currency = $currency ?? currency();
 
         $value = Money::$currency($money1);
 
-        return $value->divide($multiply)->getAmount();
+        return $value->divide($divide,$rounding)->getAmount();
     }
 }
