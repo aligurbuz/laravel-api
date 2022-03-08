@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace App\Factory\Money;
 
+use Money\Money as MM;
+use Brick\Money\Money as M;
+use Brick\Math\RoundingMode;
 use App\Services\Money\MoneyManager;
 use App\Factory\Money\Interfaces\MoneyInterface;
-use Brick\Math\RoundingMode;
 use Brick\Money\Exception\MoneyMismatchException;
 use Brick\Money\Exception\UnknownCurrencyException;
-use Brick\Money\Money as M;
-use Money\Money as MM;
 
 /**
  * Class Money
