@@ -18,7 +18,7 @@ class MoneyManager
      * @param string|null $currency
      * @return string
      */
-    public function toCent(string $amount,?string $currency = null): string
+    public function toCent(float $amount,?string $currency = null): string
     {
         $currencies = new ISOCurrencies();
 
@@ -34,12 +34,13 @@ class MoneyManager
     /**
      * Formats a Money object using intl extension.
      *
-     * @param string|int $amount
+     * @param float $amount
      * @param string|null $currency
      * @return string
      */
-    public function currency(string|int $amount,?string $currency = null): string
+    public function currency(float $amount,?string $currency = null): string
     {
+        $amount = $amount * 100;
         $money = new Money($amount, new Currency(($currency ?? currency())));
         $currencies = new ISOCurrencies();
 
@@ -53,11 +54,11 @@ class MoneyManager
      * This formatter outputs a simple decimal string
      * which is always in a consistent format independent of locale
      *
-     * @param string|int $amount
+     * @param float $amount
      * @param string|null $currency
      * @return string
      */
-    public function decimal(string|int $amount,?string $currency = null): string
+    public function decimal(float $amount,?string $currency = null): string
     {
         $money = new Money($amount, new Currency(($currency ?? currency())));
         $currencies = new ISOCurrencies();

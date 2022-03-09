@@ -31,4 +31,12 @@ interface MoneyInterface
      * @see Money::tax()
      */
     public function tax(float $money): TaxInterface;
+
+    /**
+     * @param float $money
+     * @param string|null $currency
+     * @return string
+     * @see Money::currency()
+     */
+    public function currency(float $money,?string $currency = null): string;
 }

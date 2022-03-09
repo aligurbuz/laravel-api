@@ -7,6 +7,7 @@ namespace App\Factory\Money;
 use App\Factory\Factory;
 use App\Factory\Tax\Interfaces\TaxInterface;
 use App\Factory\Money\Interfaces\MoneyInterface;
+use App\Services\Money\MoneyManager as M;
 
 /**
  * Class Money
@@ -21,6 +22,11 @@ class Money extends MoneyManager implements MoneyInterface
 	 */
 	protected array $binds = [];
 
+    /**
+     * @var M
+     */
+    protected M $money;
+
 	/**
 	 * Money constructor
 	 *
@@ -29,6 +35,7 @@ class Money extends MoneyManager implements MoneyInterface
 	public function __construct(array $binds = [])
 	{
 		$this->binds = $binds;
+        $this->money = (new M);
 	}
 
     /**
@@ -53,6 +60,20 @@ class Money extends MoneyManager implements MoneyInterface
     public function subtract(float $money1,float $money2): float
     {
         return moneyFormatter(($money1 - $money2));
+    }
+
+    /**
+     * get currency for money factory
+     *
+     * @param float $money
+     * @param string|null $currency
+     * @return string
+     */
+    public function currency(float $money,?string $currency = null): string
+    {
+        $currency = $currency ?? currency();
+
+        return $this->money->currency($money,$currency);
     }
 
     /**
