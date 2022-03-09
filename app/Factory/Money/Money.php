@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\Factory\Money;
 
 use App\Factory\Factory;
+use App\Services\Money\MoneyManager as M;
 use App\Factory\Tax\Interfaces\TaxInterface;
 use App\Factory\Money\Interfaces\MoneyInterface;
-use App\Services\Money\MoneyManager as M;
 
 /**
  * Class Money
