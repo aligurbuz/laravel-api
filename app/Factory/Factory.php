@@ -22,6 +22,7 @@ use App\Factory\Storage\Interfaces\StorageInterface;
 use App\Factory\Permission\Interfaces\PermissionInterface;
 use App\Factory\Collection\Interfaces\CollectionInterface;
 use App\Factory\Localization\Interfaces\LocalizationInterface;
+use App\Factory\Tax\Interfaces\TaxInterface;
 use App\Jobs\EmailSender;
 
 /**
@@ -44,6 +45,7 @@ use App\Jobs\EmailSender;
  * @method static RequestInterface request($arguments = null)
  * @method static SmsInterface sms($arguments = null)
  * @method static MoneyInterface money($arguments = null)
+ * @method static TaxInterface tax($arguments = null)
  * @package App\Factory
  */
 class Factory extends FactoryManager

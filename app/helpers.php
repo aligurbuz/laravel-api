@@ -87,18 +87,23 @@ if(!function_exists('isException')){
     }
 }
 
-if(!function_exists('numberFormatter')){
+if(!function_exists('moneyFormatter')){
 
     /**
      * get currency string for application
      *
      */
-    function numberFormatter($value): string
+    function moneyFormatter($value,bool $floatReturn = true): string|float
     {
         $value = (float) $value;
 
         if(is_float($value)){
-            return number_format($value,2,',','.');
+
+            if($floatReturn){
+                return (float) number_format($value,2,'.','');
+            }
+
+            return number_format($value,2,'.',',');
         }
 
         return $value;
