@@ -63,6 +63,30 @@ class Money extends MoneyManager implements MoneyInterface
     }
 
     /**
+     * Multiplies two float values.
+     *
+     * @param float $money1
+     * @param float $money2
+     * @return float
+     */
+    public function multiply(float $money1,float $money2): float
+    {
+        return moneyFormatter(($money1 * $money2));
+    }
+
+    /**
+     * Multiplies two float values.
+     *
+     * @param float $money1
+     * @param float $money2
+     * @return float
+     */
+    public function divide(float $money1,float $money2): float
+    {
+        return moneyFormatter(($money1 / $money2));
+    }
+
+    /**
      * get currency for money factory
      *
      * @param float $money
