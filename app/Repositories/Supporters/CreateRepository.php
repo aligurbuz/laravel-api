@@ -85,6 +85,11 @@ trait CreateRepository
 
         try {
             foreach ($clientData as $clientDataKey => $value){
+
+                if(method_exists($this,'eventFireBeforeCreate')){
+                    $this->eventFireBeforeCreate($value);
+                }
+
                 $result = $this->createModel($value);
                 $arrayResults = $result->toArray();
 
