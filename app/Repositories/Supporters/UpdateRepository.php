@@ -121,8 +121,8 @@ trait UpdateRepository
             try{
                 $update = $baseQuery->update($this->hitterProcess($data,$dataKey));
 
-                if($update=='0' && count($oldData)){
-                    return Exception::updateException(null,['model' => $this->getModelName()]);
+                if($update=='0'){
+                    return Exception::updateException('',['model' => $this->getModelName()]);
                 }
 
                 $this->updateEventDispatcher($oldData,$data);
