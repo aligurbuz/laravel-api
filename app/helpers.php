@@ -97,16 +97,11 @@ if(!function_exists('moneyFormatter')){
     {
         $value = (float) $value;
 
-        if(is_float($value)){
-
-            if($floatReturn){
-                return (float) number_format($value,2,'.','');
-            }
-
-            return number_format($value,2,'.',',');
+        if($floatReturn){
+            return (float) number_format($value,2,'.','');
         }
 
-        return $value;
+        return number_format($value,2,'.',',');
     }
 }
 
