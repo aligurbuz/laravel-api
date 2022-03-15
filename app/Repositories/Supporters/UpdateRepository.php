@@ -134,7 +134,7 @@ trait UpdateRepository
             $queryList[] = $result = ($baseQuery->get()->toArray())[0] ?? [];
 
             if(method_exists($this,'eventFireAfterUpdate')){
-                $this->eventFireAfterUpdate($result,$updateClientData);
+                $this->eventFireAfterUpdate($result,$data);
             }
         }
 
