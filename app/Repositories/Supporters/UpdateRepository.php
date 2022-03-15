@@ -103,7 +103,7 @@ trait UpdateRepository
             $oldData    =  $baseQuery->get()->toArray();
 
             if(method_exists($this,'eventFireBeforeUpdate')){
-                $this->eventFireBeforeUpdate($data,$oldData);
+                $this->eventFireBeforeUpdate($data,($oldData[0] ?? []));
             }
 
             if(
