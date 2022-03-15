@@ -57,13 +57,89 @@ class RepositoryCommand extends Command
         $modelIndexes = Db::indexes((new $modelNamespace)->getTable());
 
         $namespaceDirectory = 'App\Repositories\Resources\\'.ucfirst($argumentName);
+        $eventsNamespaceDirectory = 'App\Repositories\Resources\\'.ucfirst($argumentName).'\\Events';
+        $eventsRepositoryNamespaceDirectory = 'App\Repositories\Resources\\'.ucfirst($argumentName).'\\Events\\'.ucfirst($repositoryName);
         $namespaceRepository = 'App\Repositories\Resources\\'.ucfirst($argumentName).'\\'.$className;
         $namespaceContractDirectory = 'App\Repositories\Resources\\'.ucfirst($argumentName).'\Contracts';
+        $eventsDirectory = app_path().''.DIRECTORY_SEPARATOR.'Repositories'.DIRECTORY_SEPARATOR.'Resources'.DIRECTORY_SEPARATOR.''.ucfirst($argumentName).''.DIRECTORY_SEPARATOR.'Events';
+        $eventsRepositoryDirectory = app_path().''.DIRECTORY_SEPARATOR.'Repositories'.DIRECTORY_SEPARATOR.'Resources'.DIRECTORY_SEPARATOR.''.ucfirst($argumentName).''.DIRECTORY_SEPARATOR.'Events'.DIRECTORY_SEPARATOR.''.ucfirst($repositoryName);
         $directory = app_path().''.DIRECTORY_SEPARATOR.'Repositories'.DIRECTORY_SEPARATOR.'Resources'.DIRECTORY_SEPARATOR.''.ucfirst($argumentName);
         $directoryContract = app_path().''.DIRECTORY_SEPARATOR.'Repositories'.DIRECTORY_SEPARATOR.'Resources'.DIRECTORY_SEPARATOR.''.ucfirst($argumentName).''.DIRECTORY_SEPARATOR.'Contracts';
 
         if(!file_exists($directory)){
             File::makeDirectory($directory);
+        }
+
+        if(!file_exists($eventsDirectory)){
+            File::makeDirectory($eventsDirectory);
+        }
+
+        if(!file_exists($eventsRepositoryDirectory)){
+            File::makeDirectory($eventsRepositoryDirectory);
+            $eventsRepositoryAfterCreateNamespace = new PhpNamespace($eventsRepositoryNamespaceDirectory);
+            $traitAfterCreate = $eventsRepositoryAfterCreateNamespace->addTrait('AfterCreate');
+            $traitMethod = $traitAfterCreate->addMethod('eventFireAfterCreate');
+            $traitMethod->addComment('event performed after repository create');
+            $traitMethod->addComment('');
+            $traitMethod->addComment('@param array $result');
+            $traitMethod->addComment('@param array $clientData');
+            $traitMethod->addComment('@return void');
+            $traitMethod->addParameter('result',[])->setType('array');
+            $traitMethod->addParameter('clientData',[])->setType('array');
+            $traitMethod->setBody('//');
+            $traitMethod->setReturnType('void');
+            touch($file = $eventsRepositoryDirectory.''.DIRECTORY_SEPARATOR.'AfterCreate.php');
+            $content = '<?php '.PHP_EOL.''.PHP_EOL.'declare(strict_types=1);'.PHP_EOL.''.PHP_EOL.''.$eventsRepositoryAfterCreateNamespace;
+            File::put($file,$content);
+
+            $eventsRepositoryBeforeCreateNamespace = new PhpNamespace($eventsRepositoryNamespaceDirectory);
+            $eventsRepositoryBeforeCreateNamespace->addTrait('BeforeCreate');
+            $traitBeforeCreate = $eventsRepositoryBeforeCreateNamespace->addTrait('BeforeCreate');
+            $traitMethod = $traitBeforeCreate->addMethod('eventFireBeforeCreate');
+            $traitMethod->addComment('event performed before repository create');
+            $traitMethod->addComment('');
+            $traitMethod->addComment('@param array $result');
+            $traitMethod->addComment('@param array $clientData');
+            $traitMethod->addComment('@return void');
+            $traitMethod->addParameter('result',[])->setType('array');
+            $traitMethod->addParameter('clientData',[])->setType('array');
+            $traitMethod->setBody('//');
+            $traitMethod->setReturnType('void');
+            touch($file = $eventsRepositoryDirectory.''.DIRECTORY_SEPARATOR.'BeforeCreate.php');
+            $content = '<?php '.PHP_EOL.''.PHP_EOL.'declare(strict_types=1);'.PHP_EOL.''.PHP_EOL.''.$eventsRepositoryBeforeCreateNamespace;
+            File::put($file,$content);
+
+            $eventsRepositoryAfterUpdateNamespace = new PhpNamespace($eventsRepositoryNamespaceDirectory);
+            $traitAfterUpdate = $eventsRepositoryAfterUpdateNamespace->addTrait('AfterUpdate');
+            $traitMethod = $traitAfterUpdate->addMethod('eventFireAfterUpdate');
+            $traitMethod->addComment('event performed after repository update');
+            $traitMethod->addComment('');
+            $traitMethod->addComment('@param array $result');
+            $traitMethod->addComment('@param array $clientData');
+            $traitMethod->addComment('@return void');
+            $traitMethod->addParameter('result',[])->setType('array');
+            $traitMethod->addParameter('clientData',[])->setType('array');
+            $traitMethod->setBody('//');
+            $traitMethod->setReturnType('void');
+            touch($file = $eventsRepositoryDirectory.''.DIRECTORY_SEPARATOR.'AfterUpdate.php');
+            $content = '<?php '.PHP_EOL.''.PHP_EOL.'declare(strict_types=1);'.PHP_EOL.''.PHP_EOL.''.$eventsRepositoryAfterUpdateNamespace;
+            File::put($file,$content);
+
+            $eventsRepositoryBeforeUpdateNamespace = new PhpNamespace($eventsRepositoryNamespaceDirectory);
+            $traitBeforeUpdate = $eventsRepositoryBeforeUpdateNamespace->addTrait('BeforeUpdate');
+            $traitMethod = $traitBeforeUpdate->addMethod('eventFireBeforeUpdate');
+            $traitMethod->addComment('event performed before repository update');
+            $traitMethod->addComment('');
+            $traitMethod->addComment('@param array $result');
+            $traitMethod->addComment('@param array $clientData');
+            $traitMethod->addComment('@return void');
+            $traitMethod->addParameter('result',[])->setType('array');
+            $traitMethod->addParameter('clientData',[])->setType('array');
+            $traitMethod->setBody('//');
+            $traitMethod->setReturnType('void');
+            touch($file = $eventsRepositoryDirectory.''.DIRECTORY_SEPARATOR.'BeforeUpdate.php');
+            $content = '<?php '.PHP_EOL.''.PHP_EOL.'declare(strict_types=1);'.PHP_EOL.''.PHP_EOL.''.$eventsRepositoryBeforeUpdateNamespace;
+            File::put($file,$content);
         }
 
         $namespace = new PhpNamespace($namespaceDirectory);
