@@ -144,10 +144,18 @@ class RepositoryCommand extends Command
 
         $namespace = new PhpNamespace($namespaceDirectory);
         $namespace->addUse(EloquentRepository::class);
+        $namespace->addUse($afterCreateNamespace = $eventsRepositoryNamespaceDirectory.'\AfterCreate');
+        $namespace->addUse($afterUpdateNamespace = $eventsRepositoryNamespaceDirectory.'\AfterUpdate');
+        $namespace->addUse($beforeCreateNamespace = $eventsRepositoryNamespaceDirectory.'\BeforeCreate');
+        $namespace->addUse($beforeUpdateNamespace =  $eventsRepositoryNamespaceDirectory.'\BeforeUpdate');
         $namespace->addUse('App\Models\\'.ucfirst($modelName));
         //$namespace->addUse(Builder::class);
         $namespace->addUse($contractClassRepositoryName = $namespaceContractDirectory.'\\'.ucfirst($contractClassName));
         $class = $namespace->addClass($className)->setExtends(EloquentRepository::class)->addImplement($contractClassRepositoryName);
+        $class->addTrait($afterCreateNamespace);
+        $class->addTrait($afterUpdateNamespace);
+        $class->addTrait($beforeCreateNamespace);
+        $class->addTrait($beforeUpdateNamespace);
         $class->addProperty('model',new Literal(ucfirst($modelName).'::class'))->setProtected()->setStatic(true)->setType('string')
             ->addComment('get model name for repository')
             ->addComment('')
@@ -218,7 +226,7 @@ class RepositoryCommand extends Command
             //->addComment('@param Builder $builder')
             ->addComment('@return object');
 
-        $afterCreate = $class->addMethod('eventFireAfterCreate');
+        /**$afterCreate = $class->addMethod('eventFireAfterCreate');
         $afterCreate->addParameter('result',[])->setType('array');
         $afterCreate->addParameter('clientData',[])->setType('array');
         $afterCreate->setBody('//')->setReturnType('void');
@@ -236,7 +244,7 @@ class RepositoryCommand extends Command
             ->addComment('')
             ->addComment('@param array $result')
             ->addComment('@param array $clientData')
-            ->addComment('@return void');
+            ->addComment('@return void');**/
 
         touch($file = $directory.''.DIRECTORY_SEPARATOR.''.$className.'.php');
         $content = '<?php '.PHP_EOL.''.PHP_EOL.'declare(strict_types=1);'.PHP_EOL.''.PHP_EOL.''.$namespace;
