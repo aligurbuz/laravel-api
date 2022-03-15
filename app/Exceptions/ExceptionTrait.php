@@ -41,7 +41,7 @@ trait ExceptionTrait
     {
         $customMessage = trans('exception.'.$message,$this->getKeys());
 
-        return ($customMessage=='exception'.$message) ? $message : $customMessage;
+        return ($customMessage=='exception.'.$message) ? $message : $customMessage;
     }
 
     /**
