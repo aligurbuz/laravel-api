@@ -98,10 +98,8 @@ class RepositoryCommand extends Command
             $traitMethod = $traitBeforeCreate->addMethod('eventFireBeforeCreate');
             $traitMethod->addComment('event performed before repository create');
             $traitMethod->addComment('');
-            $traitMethod->addComment('@param array $result');
             $traitMethod->addComment('@param array $clientData');
             $traitMethod->addComment('@return void');
-            $traitMethod->addParameter('result',[])->setType('array');
             $traitMethod->addParameter('clientData',[])->setType('array');
             $traitMethod->setBody('//');
             $traitMethod->setReturnType('void');
@@ -130,10 +128,8 @@ class RepositoryCommand extends Command
             $traitMethod = $traitBeforeUpdate->addMethod('eventFireBeforeUpdate');
             $traitMethod->addComment('event performed before repository update');
             $traitMethod->addComment('');
-            $traitMethod->addComment('@param array $result');
             $traitMethod->addComment('@param array $clientData');
             $traitMethod->addComment('@return void');
-            $traitMethod->addParameter('result',[])->setType('array');
             $traitMethod->addParameter('clientData',[])->setType('array');
             $traitMethod->setBody('//');
             $traitMethod->setReturnType('void');
