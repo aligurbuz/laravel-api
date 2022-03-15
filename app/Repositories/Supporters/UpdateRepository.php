@@ -99,6 +99,10 @@ trait UpdateRepository
         $updateClientData = $this->getClientData($data);
 
         foreach ($updateClientData as $dataKey => $data){
+            if(method_exists($this,'eventFireBeforeUpdate')){
+                $this->eventFireBeforeUpdate($data);
+            }
+
             $baseQuery  =  $this->getBaseQueryForUpdate($data,$id);
             $oldData    =  $baseQuery->get()->toArray();
 
