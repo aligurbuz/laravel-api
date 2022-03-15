@@ -29,7 +29,8 @@ trait ClientAutoGeneratorTrait
         'updated_by',
         'deleted_by',
         'deleted_at',
-        'clientFileProcess'
+        'clientFileProcess',
+        'codeProcess',
     ];
 
     /**
@@ -44,7 +45,8 @@ trait ClientAutoGeneratorTrait
         'updated_by',
         'deleted_by',
         'deleted_at',
-        'clientFileProcess'
+        'clientFileProcess',
+        'codeProcess',
     ];
 
     /**
@@ -149,6 +151,34 @@ trait ClientAutoGeneratorTrait
 
             foreach ($files as $key => $value){
                 $this->set($key,$value);
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * code process for client
+     *
+     * @param array $data
+     * @return mixed
+     */
+    public function codeProcessAutoGenerator(array $data = []): mixed
+    {
+        $data = count($data) ? $data : (array)$this->get();
+
+
+        foreach ($data as $key => $value){
+            if(request()->method()=='POST' && getTableCode($this->getModel())==$key){
+                continue;
+            }
+
+            if(is_numeric($key) && is_array($value)){
+                $this->codeProcessAutoGenerator($value);
+            }
+
+            if(preg_match('@(.*?)_code@is',$key)){
+                Factory::code([$key => $value])->throwExceptionIfDoesntExist();
             }
         }
 
