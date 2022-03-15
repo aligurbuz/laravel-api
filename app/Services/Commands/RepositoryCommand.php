@@ -129,8 +129,10 @@ class RepositoryCommand extends Command
             $traitMethod->addComment('event performed before repository update');
             $traitMethod->addComment('');
             $traitMethod->addComment('@param array $clientData');
+            $traitMethod->addComment('@param array $oldData');
             $traitMethod->addComment('@return void');
             $traitMethod->addParameter('clientData',[])->setType('array');
+            $traitMethod->addParameter('oldData',[])->setType('array');
             $traitMethod->setBody('//');
             $traitMethod->setReturnType('void');
             touch($file = $eventsRepositoryDirectory.''.DIRECTORY_SEPARATOR.'BeforeUpdate.php');
