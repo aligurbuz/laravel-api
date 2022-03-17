@@ -105,6 +105,18 @@ if(!function_exists('moneyFormatter')){
     }
 }
 
+if(!function_exists('redisPublisher')){
+
+    /**
+     * get currency string for application
+     *
+     */
+    function redisPublisher(array $message = []): void
+    {
+        \Illuminate\Support\Facades\Redis::publish('test-channel', json_encode($message));
+    }
+}
+
 if(!function_exists('currency')){
 
     /**
