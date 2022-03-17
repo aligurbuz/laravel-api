@@ -105,13 +105,13 @@ if(!function_exists('moneyFormatter')){
     }
 }
 
-if(!function_exists('redisPublisher')){
+if(!function_exists('publisher')){
 
     /**
-     * get currency string for application
+     * publisher method
      *
      */
-    function redisPublisher(array $message = []): void
+    function publisher(array $message = []): void
     {
         \Illuminate\Support\Facades\Redis::publish('test-channel', json_encode($message));
     }
