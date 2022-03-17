@@ -148,8 +148,8 @@ return [
         'default' => [
             'mongoDbHost' => env('mongoDbHost',null),
             'mongoDbPort' => env('mongoDbPort',null),
-            'mongoDbUser' => env('mongoDbPort',null),
-            'mongoDbPassword' => env('mongoDbPort',null),
+            'mongoDbUser' => env('mongoDbUser',null),
+            'mongoDbPassword' => env('mongoDbPassword',null),
         ]
     ]
 
