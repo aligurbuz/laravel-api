@@ -23,10 +23,7 @@ class UserTest extends TestCase
         $content = $this->getContentArray($response);
         $resourceData = $this->getResourceData($content);
 
-        $response->assertStatus(200);
-        $this->assertIsArray($resourceData);
-        $this->assertCount(1, $resourceData);
-        $this->assertTrue(true, isset($resourceData[0]['role']));
-        $this->assertTrue(true, isset($resourceData[0]['role'][0]['role_name']));
+        $this->assertTrue(isset($resourceData[0]['role']));
+        $this->assertTrue(isset($resourceData[0]['role'][0]['role_name']));
     }
 }
