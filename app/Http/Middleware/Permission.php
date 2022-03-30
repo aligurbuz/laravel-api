@@ -25,7 +25,7 @@ class Permission
     {
         if(config('app.permission')===true && in_array(who(),$this->apiKeys,true)){
             if(!Factory::permission()->checkEndpoint()){
-                return Exception::permissionException();
+                return Exception::permissionException('',endpoint());
             }
         }
 
