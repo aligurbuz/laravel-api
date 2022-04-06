@@ -60,6 +60,10 @@ class Documentation extends Command
                 $isAvailableImage = true;
             }
 
+            if($columnValue=='file'){
+                $isAvailableImage = true;
+            }
+
             if(isset($entities['default_keys']) && in_array($columnKey,$entities['default_keys'],true)){
                 $searchKey = array_search($columnKey,$entities['default_keys']);
                 $columns[$columnKey] = $entities['default_values'][$searchKey];

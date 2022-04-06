@@ -122,7 +122,7 @@ class DbColumn extends Command
                         $list['types'][] = '"image"';
                     }
                     elseif($column->COLUMN_NAME=='file' OR Str::endsWith($column->COLUMN_NAME,'_file')){
-                        $list['types'][] = '"image"';
+                        $list['types'][] = '"file"';
                     }
                     else{
                         $list['types'][] = '"string"';
