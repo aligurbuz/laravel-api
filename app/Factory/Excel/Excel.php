@@ -52,11 +52,13 @@ class Excel extends ExcelManager implements ExcelInterface
     /**
      * createUser for Excel factory
      *
-     * @return void
+     * @return array
      */
-    public function import(): void
+    public function import(): array
     {
         $importClass = Constants::importsNamespace.'\\'.$this->importClass;
         ExcelFacade::import(new $importClass, request()->file('excel_file')->store('files'));
+
+        return ['import' => true];
     }
 }

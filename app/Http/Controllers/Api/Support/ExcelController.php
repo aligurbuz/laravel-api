@@ -38,8 +38,7 @@ class ExcelController extends ApiController
 	{
 		return $this->transaction(function() use($client,$excelRepository) {
 		    $client->handle();
-		    Factory::excel()->import();
-            return [];
+		    return Factory::excel()->import();
 		});
 	}
 

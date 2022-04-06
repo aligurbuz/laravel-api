@@ -9,8 +9,8 @@ use App\Factory\Excel\Excel;
 interface ExcelInterface
 {
     /**
-     * @return void;
+     * @return array
      * @see Excel::import()
      */
-    public function import(): void;
+    public function import(): array;
 }
