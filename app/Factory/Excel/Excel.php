@@ -55,8 +55,14 @@ class Excel extends ExcelManager implements ExcelInterface
     public function import(): array
     {
         $importClass = Constants::importsNamespace.'\\'.$this->importClass;
-        ExcelFacade::import(new $importClass, ($this->binds['file'] ?? null));
 
-        return ['import' => true];
+        try{
+            ExcelFacade::import(new $importClass, ($this->binds['file'] ?? null));
+            return ['import' => true];
+        }
+        catch (\Exception $exception){
+            Exception::customException($exception->getMessage(),[],true);
+            return [];
+        }
     }
 }
