@@ -173,6 +173,10 @@ class Documentation extends Command
                     $formDataList[$fcounter]['type'] = 'file';
                     $formDataList[$fcounter]['src'] = [];
                 }
+                elseif(isset($columns[$fkey]) && $columns[$fkey]=='file'){
+                    $formDataList[$fcounter]['type'] = 'file';
+                    $formDataList[$fcounter]['src'] = [];
+                }
                 else{
                     $formDataList[$fcounter]['value'] = $fvalue;
                     $formDataList[$fcounter]['type'] = 'text';
