@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Api\Auth;
 
 use App\Services\Date;
-use App\Services\Client;
 use App\Exceptions\Exception;
 use App\Repositories\Repository;
 use App\Http\Controllers\Api\ApiController;
@@ -30,7 +29,7 @@ class VerifyingController extends  ApiController
         return $this->transaction(function() use($client){
             $client->handle();
 
-            $hash = (Client::data())[0]['hash'];
+            $hash = client('hash');
             $registrationCode = (int) decodeString($hash);
 
             $registrationRepository = $this->getRegistrationData($registrationCode);

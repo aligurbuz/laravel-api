@@ -26,7 +26,7 @@ class LoginController extends ApiController
     public function login(CreateClient $client) : array
     {
         $client->handle();
-        $clientData = (Client::data())[0] ?? [];
+        $clientData = client();
 
         return Factory::request()->login($clientData['email'],$clientData['password']);
     }
