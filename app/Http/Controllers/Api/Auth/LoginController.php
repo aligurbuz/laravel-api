@@ -6,7 +6,6 @@ namespace App\Http\Controllers\Api\Auth;
 
 use Exception;
 use App\Factory\Factory;
-use App\Services\Client;
 use App\Http\Controllers\Api\ApiController;
 use App\Client\Auth\Login\Create\CreateClient;
 
