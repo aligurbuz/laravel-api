@@ -121,6 +121,9 @@ class DbColumn extends Command
                     if($column->COLUMN_NAME=='image' OR Str::endsWith($column->COLUMN_NAME,'_image')){
                         $list['types'][] = '"image"';
                     }
+                    elseif($column->COLUMN_NAME=='file' OR Str::endsWith($column->COLUMN_NAME,'_file')){
+                        $list['types'][] = '"image"';
+                    }
                     else{
                         $list['types'][] = '"string"';
                     }
