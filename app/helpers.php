@@ -157,6 +157,26 @@ if(!function_exists('checkBool')){
     }
 }
 
+if(!function_exists('client')){
+
+    /**
+     * get client data
+     *
+     * @param string|null $key
+     * @return array|string|null
+     */
+    function client(?string $key = null): array|string|null
+    {
+        $clientData = (Client::data())[0] ?? [];
+
+        if(!is_null($key)){
+            return $clientData[$key] ?? null;
+        }
+
+        return $clientData;
+    }
+}
+
 if(!function_exists('isExistAuthorization')){
 
     /**

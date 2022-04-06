@@ -2,7 +2,6 @@
 
 namespace App\Facades\Excel;
 
-use App\Services\Client;
 use App\Jobs\ExcelImport;
 
 class Excel
@@ -14,10 +13,8 @@ class Excel
      */
     public static function import() : void
     {
-        $clientData = (Client::data())[0] ?? [];
-
         $file   = request()->file('excel_file')->store('files');
-        $model  = $clientData['excel_factory'] ?? null;
+        $model  = client('excel_factory');
 
         dispatch(new ExcelImport($file,$model));
     }
