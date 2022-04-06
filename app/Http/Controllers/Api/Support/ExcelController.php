@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Api\Support;
 
-use App\Factory\Factory;
+use App\Facades\Excel\Excel;
 use App\Http\Controllers\Api\ApiController;
 use App\Client\Support\Excel\Create\CreateClient;
 use App\Repositories\Resources\Support\Contracts\ExcelRepositoryContract;
@@ -22,7 +22,11 @@ class ExcelController extends ApiController
 	{
 		return $this->transaction(function() use($client,$excelRepository) {
 		    $client->handle();
-		    return Factory::excel()->import();
+
+            //The Excel file will be queued.
+            Excel::import();
+
+		    return [];
 		});
 	}
 }

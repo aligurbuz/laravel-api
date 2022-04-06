@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Factory\Excel;
 
 use App\Constants;
-use App\Services\Client;
 use App\Exceptions\Exception;
 use App\Factory\Excel\Interfaces\ExcelInterface;
 use Maatwebsite\Excel\Facades\Excel as ExcelFacade;
@@ -36,9 +35,8 @@ class Excel extends ExcelManager implements ExcelInterface
 	public function __construct(array $binds = [])
 	{
 		$this->binds = $binds;
-        $clientData = (Client::data())[0] ?? [];
 
-        $model = $clientData['excel_factory'] ?? null;
+        $model = $this->binds['model'] ?? null;
         $modelNamespace = Constants::modelNamespace.'\\'.ucfirst($model);
 
         if(!class_exists($modelNamespace)){
@@ -57,7 +55,7 @@ class Excel extends ExcelManager implements ExcelInterface
     public function import(): array
     {
         $importClass = Constants::importsNamespace.'\\'.$this->importClass;
-        ExcelFacade::import(new $importClass, request()->file('excel_file')->store('files'));
+        ExcelFacade::import(new $importClass, ($this->binds['file'] ?? null));
 
         return ['import' => true];
     }
