@@ -22,6 +22,9 @@
     "district_code": [
         "District"
     ],
+    "excel_code": [
+        "Excel"
+    ],
     "language_code": [
         "Language",
         "Localization"

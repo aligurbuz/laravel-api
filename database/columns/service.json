@@ -35,5 +35,10 @@
         "controller": "Registration",
         "dir": "Registration",
         "model": "Registration"
+    },
+    "Support/excel": {
+        "controller": "Excel",
+        "dir": "Support",
+        "model": "Excel"
     }
 }

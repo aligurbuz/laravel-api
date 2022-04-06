@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Repositories;
 
 use App\Repositories\Resources\User\Contracts\UserRepositoryContract;
+use App\Repositories\Resources\Support\Contracts\ExcelRepositoryContract;
 use App\Repositories\Resources\Registration\Contracts\RegistrationRepositoryContract;
 use App\Repositories\Resources\User\Contracts\PhotosRepositoryContract;
 use App\Repositories\Resources\Timezones\Contracts\TimezonesRepositoryContract;
@@ -26,6 +27,16 @@ use App\Repositories\Resources\Countries\Contracts\CountriesRepositoryContract;
  */
 class Repository
 {
+    /**
+     * get excel repository instance
+     *
+     * @return ExcelRepositoryContract
+     */
+    public static function excel() : ExcelRepositoryContract
+    {
+        return app()->get(ExcelRepositoryContract::class);
+    }
+    
     /**
      * get registration repository instance
      *

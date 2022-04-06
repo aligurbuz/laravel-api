@@ -17,5 +17,10 @@
     },
     "": {
         "post": "App\\Client\\Auth\\Verifying\\Post\\PostClient"
+    },
+    "Excel": {
+        "get": "App\\Client\\Support\\Excel\\Get\\GetClient",
+        "create": "App\\Client\\Support\\Excel\\Create\\CreateClient",
+        "update": "App\\Client\\Support\\Excel\\Update\\UpdateClient"
     }
 }

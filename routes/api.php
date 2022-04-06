@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\Support\ExcelController;
 use App\Http\Controllers\Api\Registration\RegistrationController;
 use App\Http\Controllers\Api\User\PhotosController;
 use App\Http\Controllers\Api\Timezones\TimezonesController;
@@ -38,6 +39,10 @@ Route::get('testing',function(){
 });
 
 Route::middleware([])->group(function(){
+
+    Route::get('/support/excel', [ExcelController::class,'get']);
+    Route::post('/support/excel', [ExcelController::class,'create']);
+    Route::put('/support/excel', [ExcelController::class,'update']);
 
     Route::post('/registration', [RegistrationController::class,'create']);
     Route::post('/verifying', [VerifyingController::class,'verifying']);

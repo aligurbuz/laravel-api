@@ -19,6 +19,7 @@
         "Country",
         "Currency",
         "District",
+        "Excel",
         "Language",
         "Localization",
         "Permission",
@@ -31,6 +32,9 @@
         "UserPhoto"
     ],
     "Currency": [
+        "Localization"
+    ],
+    "Excel": [
         "Localization"
     ],
     "Language": [

@@ -22,5 +22,17 @@
     "auth.verifying.create": {
         "class": "App\\Client\\Auth\\Verifying\\Create\\CreateClient",
         "model": "user"
+    },
+    "support.excel.get": {
+        "class": "App\\Client\\Support\\Excel\\Get\\GetClient",
+        "model": "excel"
+    },
+    "support.excel.create": {
+        "class": "App\\Client\\Support\\Excel\\Create\\CreateClient",
+        "model": "excel"
+    },
+    "support.excel.update": {
+        "class": "App\\Client\\Support\\Excel\\Update\\UpdateClient",
+        "model": "excel"
     }
 }
