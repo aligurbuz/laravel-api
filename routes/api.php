@@ -40,9 +40,7 @@ Route::get('testing',function(){
 
 Route::middleware([])->group(function(){
 
-    Route::get('/support/excel', [ExcelController::class,'get']);
     Route::post('/support/excel', [ExcelController::class,'create']);
-    Route::put('/support/excel', [ExcelController::class,'update']);
 
     Route::post('/registration', [RegistrationController::class,'create']);
     Route::post('/verifying', [VerifyingController::class,'verifying']);
