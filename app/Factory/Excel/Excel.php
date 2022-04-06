@@ -40,7 +40,7 @@ class Excel extends ExcelManager implements ExcelInterface
         $modelNamespace = Constants::modelNamespace.'\\'.ucfirst($model);
 
         if(!class_exists($modelNamespace)){
-            Exception::customException('excelFile',$model);
+            Exception::customException('excelFile',$model,true);
         }
 
         $table = ucfirst((new $modelNamespace)->getTable());
