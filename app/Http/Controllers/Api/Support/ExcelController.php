@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 declare(strict_types=1);
 
@@ -7,6 +7,7 @@ namespace App\Http\Controllers\Api\Support;
 use App\Client\Support\Excel\Create\CreateClient;
 use App\Client\Support\Excel\Get\GetClient;
 use App\Client\Support\Excel\Update\UpdateClient;
+use App\Factory\Factory;
 use App\Http\Controllers\Api\ApiController;
 use App\Repositories\Resources\Support\Contracts\ExcelRepositoryContract;
 
@@ -37,7 +38,8 @@ class ExcelController extends ApiController
 	{
 		return $this->transaction(function() use($client,$excelRepository) {
 		    $client->handle();
-		    return $excelRepository->create();
+		    Factory::excel()->import();
+            return [];
 		});
 	}
 

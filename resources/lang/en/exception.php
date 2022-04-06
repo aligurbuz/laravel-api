@@ -36,4 +36,5 @@ return [
     'arrayRuleException'            => 'for :key array',
     'clientActionException'         => 'The specified action value is not valid',
     'crKey'                         => 'in :key key',
+    'excelFile'                     => 'The requested factory named (:key) is invalid.',
 ];

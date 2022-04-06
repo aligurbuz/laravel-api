@@ -21,4 +21,5 @@ class Constants
     public const testFeatureNamespace               = 'Tests\Feature';
     public const responseFormatterSupplement        = 'responseFormatterSupplement';
     public const exceptionNotify                    = 'exceptionNotify';
+    public const importsNamespace                   = 'App\Imports';
 }
