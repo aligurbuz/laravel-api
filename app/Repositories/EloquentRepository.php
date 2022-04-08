@@ -643,10 +643,13 @@ class EloquentRepository
      * apply method for repository
      *
      * @param object|null $builder
+     * @param bool $globalScope
      * @return object
      */
-    public function apply(?object $builder = null): object
+    public function apply(?object $builder = null,bool $globalScope = true): object
     {
+        AppContainer::setWithTerminating('globalScope',$globalScope);
+
         return $builder ?? $this->globalScope();
     }
 

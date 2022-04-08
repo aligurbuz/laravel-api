@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Repositories\Supporters;
 
+use App\Services\AppContainer;
 use App\Services\Db;
 use Illuminate\Support\Str;
 use App\Facades\Authenticate\ApiKey;
@@ -68,7 +69,9 @@ class GlobalScopeManager
      */
     public function make(): object
     {
-        $this->handleScopes();
+        if(true===AppContainer::get('globalScope',true)){
+            $this->handleScopes();
+        }
 
         return $this->builder;
     }
