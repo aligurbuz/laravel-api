@@ -244,10 +244,15 @@ trait ScopeManager
      *
      * @param Builder $builder
      * @param string|null $has
+     * @param array $filter
      * @return Builder
      */
-    public function scopeHasQuery(Builder $builder,?string $has = null): Builder
+    public function scopeHasQuery(Builder $builder,?string $has = null,array $filter = []): Builder
     {
+        if(count($filter)){
+            assignQueryParameters(['hasFilter' => [$has => $filter]]);
+        }
+
         $request = request()->query->all();
 
         $params = (!is_null($has))
