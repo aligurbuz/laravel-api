@@ -47,6 +47,25 @@ if(!function_exists('httpRequest')){
     }
 }
 
+if(!function_exists('assignQueryParameters')){
+
+    /**
+     * Query parameter assignment is made for the get method.
+     *
+     * @param array $data
+     * @return void
+     */
+    function assignQueryParameters(array $data = []): void
+    {
+        if(request()->method()=='GET'){
+            $request = request()->query->all();
+            $clientWithAutoKeys = array_replace_recursive($request,$data);
+            request()->query->replace([]);
+            request()->query->add($clientWithAutoKeys);
+        }
+    }
+}
+
 
 if(!function_exists('getServiceJson')){
 
