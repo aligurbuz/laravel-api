@@ -60,6 +60,21 @@ class Client extends ClientManager
     }
 
     /**
+     * Query parameter assignment is made for the get method.
+     *
+     * @param array $data
+     */
+    public function assignQueryParameter(array $data = []) : void
+    {
+        if(request()->method()=='GET'){
+            $request = request()->query->all();
+            $clientWithAutoKeys = array_replace_recursive($request,$data);
+            request()->query->replace([]);
+            request()->query->add($clientWithAutoKeys);
+        }
+    }
+
+    /**
      * add rule for client
      *
      * @return void
