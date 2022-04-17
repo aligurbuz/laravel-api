@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "05b4a0f24b3b145ad1c81ca7477e008c",
+    "content-hash": "2a4faf96112d402426c6c9412195d5ba",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -114,16 +114,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.219.4",
+            "version": "3.219.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "2bbbf5f1ff0764441372fc9e312e6b463da0043e"
+                "reference": "7e8da5b45d545ca3129a14e972001698212b1a00"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/2bbbf5f1ff0764441372fc9e312e6b463da0043e",
-                "reference": "2bbbf5f1ff0764441372fc9e312e6b463da0043e",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/7e8da5b45d545ca3129a14e972001698212b1a00",
+                "reference": "7e8da5b45d545ca3129a14e972001698212b1a00",
                 "shasum": ""
             },
             "require": {
@@ -199,9 +199,9 @@
             "support": {
                 "forum": "https://forums.aws.amazon.com/forum.jspa?forumID=80",
                 "issues": "https://github.com/aws/aws-sdk-php/issues",
-                "source": "https://github.com/aws/aws-sdk-php/tree/3.219.4"
+                "source": "https://github.com/aws/aws-sdk-php/tree/3.219.5"
             },
-            "time": "2022-04-14T18:14:31+00:00"
+            "time": "2022-04-15T18:16:29+00:00"
         },
         {
             "name": "beberlei/assert",
@@ -1463,16 +1463,16 @@
         },
         {
             "name": "firebase/php-jwt",
-            "version": "v6.1.0",
+            "version": "v6.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/firebase/php-jwt.git",
-                "reference": "fbb2967a3a68b07e37678c00c0cf51165051495f"
+                "reference": "e67638d067a537731e3f9c03e097c7c1b1f31fe8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/firebase/php-jwt/zipball/fbb2967a3a68b07e37678c00c0cf51165051495f",
-                "reference": "fbb2967a3a68b07e37678c00c0cf51165051495f",
+                "url": "https://api.github.com/repos/firebase/php-jwt/zipball/e67638d067a537731e3f9c03e097c7c1b1f31fe8",
+                "reference": "e67638d067a537731e3f9c03e097c7c1b1f31fe8",
                 "shasum": ""
             },
             "require": {
@@ -1514,9 +1514,9 @@
             ],
             "support": {
                 "issues": "https://github.com/firebase/php-jwt/issues",
-                "source": "https://github.com/firebase/php-jwt/tree/v6.1.0"
+                "source": "https://github.com/firebase/php-jwt/tree/v6.1.1"
             },
-            "time": "2022-03-23T18:26:04+00:00"
+            "time": "2022-04-13T23:27:14+00:00"
         },
         {
             "name": "flix-tech/avro-php",
@@ -11673,7 +11673,7 @@
         "php": "^7.3|^8.0",
         "ext-curl": "*",
         "ext-mongodb": "*",
-        "ext-rdkafka": "^4.0|^5.0|^6.0"
+        "ext-rdkafka": "^6.0"
     },
     "platform-dev": [],
     "plugin-api-version": "2.3.0"
