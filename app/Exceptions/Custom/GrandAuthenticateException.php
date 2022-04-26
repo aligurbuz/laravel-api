@@ -4,6 +4,7 @@ namespace App\Exceptions\Custom;
 
 use Exception;
 use Throwable;
+use App\Constants;
 use App\Exceptions\ExceptionTrait;
 
 class GrandAuthenticateException extends Exception
@@ -22,7 +23,7 @@ class GrandAuthenticateException extends Exception
      * @param int $code
      * @param Throwable|null $previous
      */
-    public function __construct($message = "Grand Authenticate exception", $code = 403, Throwable $previous = null)
+    public function __construct($message = "Grand Authenticate exception", $code = Constants::error403, Throwable $previous = null)
     {
         parent::__construct($this->setMessage($message), $code, $previous);
     }

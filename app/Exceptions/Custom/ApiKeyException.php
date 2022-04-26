@@ -4,6 +4,7 @@ namespace App\Exceptions\Custom;
 
 use Exception;
 use Throwable;
+use App\Constants;
 use App\Exceptions\ExceptionTrait;
 
 class ApiKeyException extends Exception
@@ -22,7 +23,7 @@ class ApiKeyException extends Exception
      * @param int $code
      * @param Throwable|null $previous
      */
-    public function __construct($message = "apikey exception", $code = 401, Throwable $previous = null)
+    public function __construct($message = "apikey exception", $code = Constants::error401, Throwable $previous = null)
     {
         parent::__construct($this->setMessage($message), $code, $previous);
     }

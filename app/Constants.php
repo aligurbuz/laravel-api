@@ -10,6 +10,12 @@ namespace App;
  */
 class Constants
 {
+    //exception status codes
+    public const error400                          = 400;
+    public const error500                          = 500;
+    public const error401                          = 401;
+    public const error403                          = 403;
+
     public const apiPrefix                          = 'api';
     public const response                           = 'response';
     public const errorInput                         = 'errorInput';

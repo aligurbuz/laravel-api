@@ -4,6 +4,7 @@ namespace App\Exceptions\Custom;
 
 use Exception;
 use Throwable;
+use App\Constants;
 use App\Exceptions\ExceptionTrait;
 
 class ModelCreateException extends Exception
@@ -22,7 +23,7 @@ class ModelCreateException extends Exception
      * @param int $code
      * @param Throwable|null $previous
      */
-    public function __construct($message = "model create exception", $code = 400, Throwable $previous = null)
+    public function __construct($message = "model create exception", $code = Constants::error400, Throwable $previous = null)
     {
         parent::__construct($this->setMessage($message), $code, $previous);
     }
