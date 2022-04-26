@@ -24,9 +24,9 @@ class Authenticate extends FacadeManager
     /**
      * get id value for user data
      *
-     * @return mixed
+     * @return int
      */
-    public static function code(): mixed
+    public static function code(): int
     {
         return (new self)->data->user_code ?? 0;
     }
@@ -34,9 +34,9 @@ class Authenticate extends FacadeManager
     /**
      * get role_code value for user data
      *
-     * @return mixed
+     * @return int
      */
-    public static function role_code(): mixed
+    public static function role_code(): int
     {
         return (new self)->data->role_code ?? 0;
     }
@@ -44,9 +44,9 @@ class Authenticate extends FacadeManager
     /**
      * get username value for user data
      *
-     * @return mixed
+     * @return ?string
      */
-    public static function username(): mixed
+    public static function username(): ?string
     {
         return (new self)->data->username ?? null;
     }
@@ -54,9 +54,9 @@ class Authenticate extends FacadeManager
     /**
      * get name value for user data
      *
-     * @return mixed
+     * @return ?string
      */
-    public static function name(): mixed
+    public static function name(): ?string
     {
         return (new self)->data->name ?? null;
     }
@@ -64,9 +64,9 @@ class Authenticate extends FacadeManager
     /**
      * get email value for user data
      *
-     * @return mixed
+     * @return ?string
      */
-    public static function email(): mixed
+    public static function email(): ?string
     {
         return (new self)->data->email ?? null;
     }
