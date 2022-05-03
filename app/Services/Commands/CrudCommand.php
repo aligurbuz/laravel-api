@@ -77,10 +77,20 @@ Route::prefix(\''.$routeFile.'\')->group(function(){
 use '.$useController.';',$routeApiContent);
 
         if($controllerVariable!==$dirVariable){
-            $endpointName = ''.$dirVariable.'/'.$controllerVariable;
+            if(is_null($routeFile)){
+                $endpointName = ''.$dirVariable.'/'.$controllerVariable;
+            }
+            else{
+                $endpointName = $controllerVariable;
+            }
         }
         else{
-            $endpointName = $controllerVariable;
+            if(is_null($routeFile)){
+                $endpointName = $controllerVariable;
+            }
+            else{
+                $endpointName = '';
+            }
         }
 
         if(is_null($routeFile)){
