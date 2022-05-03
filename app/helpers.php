@@ -402,7 +402,7 @@ if(!function_exists('pushMigration')){
      * @param $model
      * @return void
      */
-    function pushMigration($service,$directory,$model): void
+    function pushMigration($service,$directory,$model,$routeFile = null): void
     {
         if(isLocale()){
             $pusherJsonPath = base_path('pusher.json');
@@ -414,7 +414,7 @@ if(!function_exists('pushMigration')){
                 putJsonToFile($pusherJsonPath,$pusherJson);
 
                 \git()->commit('migration for '.$model.' has been created');
-                \service()->create($service,$directory,$model);
+                \service()->create($service,$directory,$model,$routeFile);
                 \git()->commit('service for '.$service.' has been created');
             }
         }

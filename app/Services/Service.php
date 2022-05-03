@@ -18,13 +18,15 @@ class Service
      * @param $service
      * @param $directory
      * @param $model
+     * @param null $routeFile
      */
-    public function create($service,$directory,$model)
+    public function create($service, $directory, $model, $routeFile = null)
     {
         Artisan::call('create:crud',[
             'controller' => $service,
             'dir' => $directory,
-            'model' => $model
+            'model' => $model,
+            'routeFile' => $routeFile
         ]);
     }
 }
