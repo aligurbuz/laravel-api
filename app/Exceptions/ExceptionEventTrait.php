@@ -10,7 +10,13 @@ use App\Services\AppContainer;
 
 trait ExceptionEventTrait
 {
-    public function eventHandler(string $message)
+    /**
+     * exception event handler
+     *
+     * @param string $message
+     * @return void
+     */
+    public function eventHandler(string $message) : void
     {
         // if the developer marks the notify parameter as true for exception,
         // the Container variable will return true.
