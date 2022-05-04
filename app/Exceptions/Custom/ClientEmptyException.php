@@ -6,10 +6,11 @@ use Exception;
 use Throwable;
 use App\Constants;
 use App\Exceptions\ExceptionTrait;
+use App\Exceptions\ExceptionEventTrait;
 
 class ClientEmptyException extends Exception
 {
-    use ExceptionTrait;
+    use ExceptionTrait,ExceptionEventTrait;
 
     /**
      * @var string
@@ -25,6 +26,8 @@ class ClientEmptyException extends Exception
      */
     public function __construct($message = "client empty exception", $code = Constants::error400, Throwable $previous = null)
     {
-        parent::__construct($this->setMessage($message), $code, $previous);
+        parent::__construct($getMessage = $this->setMessage($message), $code, $previous);
+
+        $this->eventHandler($getMessage);
     }
 }
