@@ -21,6 +21,11 @@ class AppContainer
     protected static array $values = [];
 
     /**
+     * @var array
+     */
+    protected static array $whereValues = [];
+
+    /**
      * set key and value for app factory
      *
      * @param $key
@@ -47,6 +52,10 @@ class AppContainer
 
         if($merge && !static::has($key) && is_array($value)){
             static::$data[$key] = $value;
+        }
+
+        if(isset(static::$data[$key])){
+            static::$whereValues[$key] = (debug_backtrace())[0] ?? [];
         }
     }
 
@@ -87,6 +96,17 @@ class AppContainer
     public static function get($key, mixed $default = null): mixed
     {
         return static::$data[$key] ?? $default;
+    }
+
+    /**
+     * detects where the key was saved for app factory
+     *
+     * @param ?string $key
+     * @return array
+     */
+    public static function where(?string $key = null): array
+    {
+        return static::$whereValues[$key] ?? static::$whereValues;
     }
 
     /**
