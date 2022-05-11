@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Api\User;
 
-use App\Exceptions\Exception;
 use App\Http\Controllers\Api\ApiController;
 use App\Client\User\User\Get\GetClient;
 use App\Client\User\User\Update\UpdateClient;
@@ -28,7 +27,6 @@ class UserController extends ApiController
      */
     public function get(GetClient $client, UserRepositoryContract $userRepository) : array
     {
-        Exception::customException('test',[],true);
         $client->handle();
         return $userRepository->get();
     }
