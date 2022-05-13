@@ -6,7 +6,12 @@ namespace App\Repositories\Resources\User;
 
 use App\Models\User;
 use App\Repositories\EloquentRepository;
+use App\Repositories\Resources\User\Events\User\AfterCreate;
+use App\Repositories\Resources\User\Events\User\AfterUpdate;
+use App\Repositories\Resources\User\Events\User\BeforeCreate;
+use App\Repositories\Resources\User\Events\User\BeforeUpdate;
 use App\Repositories\Resources\User\Contracts\UserRepositoryContract;
+use App\Repositories\Resources\User\PropertyHandlers\UserPropertyHandlerTrait;
 
 /**
  * Class UserRepository
@@ -15,20 +20,16 @@ use App\Repositories\Resources\User\Contracts\UserRepositoryContract;
  */
 class UserRepository extends EloquentRepository implements UserRepositoryContract
 {
+    use AfterCreate;
+    use AfterUpdate;
+    use BeforeCreate;
+    use BeforeUpdate;
+    use UserPropertyHandlerTrait;
+
     /**
      * @var string
      */
     protected static string $model = User::class;
-
-    /**
-     * @var array|string[]
-     */
-    protected array $ranges = [];
-
-    /**
-     * @var array
-     */
-    protected array $traits = [];
 
     /**
      * get auto user range method
@@ -39,31 +40,6 @@ class UserRepository extends EloquentRepository implements UserRepositoryContrac
     public function userRepository(?object $builder = null) : object
     {
         return $this->apply($builder);
-    }
-
-    /**
-     * the fired event after create method for repository
-     *
-     * @param array $result
-     * @param array $clientData
-     * @return void
-     */
-    public function eventFireAfterCreate(array $result = [],array $clientData = []): void
-    {
-        //
-    }
-
-
-    /**
-     * the fired event after update method for repository
-     *
-     * @param array $result
-     * @param array $clientData
-     * @return void
-     */
-    public function eventFireAfterUpdate(array $result = [],array $clientData = []): void
-    {
-        //
     }
 
     /**
