@@ -6,45 +6,27 @@ namespace App\Repositories\Resources\Timezones;
 
 use App\Models\Timezone;
 use App\Repositories\EloquentRepository;
+use App\Repositories\Resources\Timezones\Events\Timezones\AfterCreate;
+use App\Repositories\Resources\Timezones\Events\Timezones\AfterUpdate;
+use App\Repositories\Resources\Timezones\Events\Timezones\BeforeCreate;
+use App\Repositories\Resources\Timezones\Events\Timezones\BeforeUpdate;
 use App\Repositories\Resources\Timezones\Contracts\TimezonesRepositoryContract;
+use App\Repositories\Resources\Timezones\PropertyHandlers\TimezonesPropertyHandlerTrait;
 
 class TimezonesRepository extends EloquentRepository implements TimezonesRepositoryContract
 {
+    use AfterCreate;
+    use AfterUpdate;
+    use BeforeCreate;
+    use BeforeUpdate;
+    use TimezonesPropertyHandlerTrait;
+
 	/**
 	 * get model name for repository
 	 *
 	 * @var string
 	 */
 	protected static string $model = Timezone::class;
-
-	/**
-	 * get client ranges for repository
-	 *
-	 * @var array|string[]
-	 */
-	protected array $ranges = [];
-
-	/**
-	 * localization values for repository
-	 *
-	 * @var array|string[]
-	 */
-	protected array $localization = [];
-
-	/**
-	 * hitter values for repository
-	 *
-	 * @var array|string[]
-	 */
-	protected array $hitter = [];
-
-	/**
-	 * denied eager loadings values for repository
-	 *
-	 * @var array
-	 */
-	protected array $deniedEagerLoadings = [];
-
 
 	/**
 	 * get auto TimezonesRepository scope method
@@ -56,30 +38,4 @@ class TimezonesRepository extends EloquentRepository implements TimezonesReposit
 	{
 		return $this->apply($builder);
 	}
-
-
-    /**
-     * the fired event after create method for repository
-     *
-     * @param array $result
-     * @param array $clientData
-     * @return void
-     */
-    public function eventFireAfterCreate(array $result = [],array $clientData = []): void
-    {
-        //
-    }
-
-
-    /**
-     * the fired event after update method for repository
-     *
-     * @param array $result
-     * @param array $clientData
-     * @return void
-     */
-    public function eventFireAfterUpdate(array $result = [],array $clientData = []): void
-    {
-        //
-    }
 }
