@@ -59,16 +59,91 @@ class RepositoryCommand extends Command
         $namespaceDirectory = 'App\Repositories\Resources\\'.ucfirst($argumentName);
         $eventsNamespaceDirectory = 'App\Repositories\Resources\\'.ucfirst($argumentName).'\\Events';
         $eventsRepositoryNamespaceDirectory = 'App\Repositories\Resources\\'.ucfirst($argumentName).'\\Events\\'.ucfirst($repositoryName);
+        $propertHandlersNamespaceDirectory = 'App\Repositories\Resources\\'.ucfirst($argumentName).'\\PropertyHandlers';
         $namespaceRepository = 'App\Repositories\Resources\\'.ucfirst($argumentName).'\\'.$className;
         $namespaceContractDirectory = 'App\Repositories\Resources\\'.ucfirst($argumentName).'\Contracts';
         $eventsDirectory = app_path().''.DIRECTORY_SEPARATOR.'Repositories'.DIRECTORY_SEPARATOR.'Resources'.DIRECTORY_SEPARATOR.''.ucfirst($argumentName).''.DIRECTORY_SEPARATOR.'Events';
         $eventsRepositoryDirectory = app_path().''.DIRECTORY_SEPARATOR.'Repositories'.DIRECTORY_SEPARATOR.'Resources'.DIRECTORY_SEPARATOR.''.ucfirst($argumentName).''.DIRECTORY_SEPARATOR.'Events'.DIRECTORY_SEPARATOR.''.ucfirst($repositoryName);
+        $propertyHandlersDirectory = app_path().''.DIRECTORY_SEPARATOR.'Repositories'.DIRECTORY_SEPARATOR.'Resources'.DIRECTORY_SEPARATOR.''.ucfirst($argumentName).''.DIRECTORY_SEPARATOR.'PropertyHandlers';
+        $propertyHandlersNamespace = 'App\Repositories\Resources\\'.ucfirst($argumentName).'\PropertyHandlers';
         $directory = app_path().''.DIRECTORY_SEPARATOR.'Repositories'.DIRECTORY_SEPARATOR.'Resources'.DIRECTORY_SEPARATOR.''.ucfirst($argumentName);
         $directoryContract = app_path().''.DIRECTORY_SEPARATOR.'Repositories'.DIRECTORY_SEPARATOR.'Resources'.DIRECTORY_SEPARATOR.''.ucfirst($argumentName).''.DIRECTORY_SEPARATOR.'Contracts';
 
         if(!file_exists($directory)){
             File::makeDirectory($directory);
         }
+
+        if(!file_exists($propertyHandlersDirectory)){
+            File::makeDirectory($propertyHandlersDirectory);
+        }
+
+        $propertyHandlerClassName = ucfirst($repositoryName).'PropertyHandlerTrait';
+        $propertyHandlerClassNamespace = $propertyHandlersNamespace.'\\'.$propertyHandlerClassName;
+
+        if(!file_exists($propertyHandlersDirectory.''.DIRECTORY_SEPARATOR.''.$propertyHandlerClassName.'.php')){
+            $propertyHandlerNamespace = new PhpNamespace($propertyHandlersNamespace);
+            $traitPropertyHandler = $propertyHandlerNamespace->addTrait($propertyHandlerClassName);
+            $traitPropertyHandler->addProperty('ranges',[])->setProtected()->setType('array')
+                ->addComment('get client ranges for repository')
+                ->addComment('')
+                ->addComment('@var array');
+
+            $localizationList = [];
+            foreach ( $modelColumns as $column){
+                if($column=='name' || Str::endsWith($column,'_name')){
+                    $localizationList[] = $column;
+                }
+
+                if($column=='description' || Str::endsWith($column,'_description')){
+                    $localizationList[] = $column;
+                }
+            }
+
+            $traitPropertyHandler->addProperty('localization',$localizationList)->setProtected()->setType('array')
+                ->addComment('localization values for repository')
+                ->addComment('')
+                ->addComment('@var array');
+
+            $traitPropertyHandler->addProperty('hitter',[])->setProtected()->setType('array')
+                ->addComment('hitter values for repository')
+                ->addComment('')
+                ->addComment('@var array');
+
+            $traitPropertyHandler->addProperty('deniedEagerLoadings',[])->setProtected()->setType('array')
+                ->addComment('denied eager loadings values for repository')
+                ->addComment('')
+                ->addComment('@var array');
+
+            $traitPropertyHandler->addProperty('autoEagerLoadings',[])->setProtected()->setType('array')
+                ->addComment('get auto eager loading values for repository')
+                ->addComment('')
+                ->addComment('@var array');
+
+            $traitPropertyHandler->addProperty('groupByFields',[])->setProtected()->setType('array')
+                ->addComment('it contains columns to be used by groupBy method.')
+                ->addComment('')
+                ->addComment('@var array');
+
+            $traitPropertyHandler->addProperty('groupByProcessFields',[])->setProtected()->setType('array')
+                ->addComment('it contains aggregate methods to be used together groupBy method.')
+                ->addComment('')
+                ->addComment('@var array');
+
+            $traitPropertyHandler->addProperty('additionalResource',[])->setProtected()->setType('array')
+                ->addComment('get additional resource for repository')
+                ->addComment('')
+                ->addComment('@var array');
+
+            $traitPropertyHandler->addProperty('addPostQueries',[])->setProtected()->setType('array')
+                ->addComment('add post query for repository')
+                ->addComment('')
+                ->addComment('@var array');
+
+            touch($file = $propertyHandlersDirectory.''.DIRECTORY_SEPARATOR.''.$propertyHandlerClassName.'.php');
+            $content = '<?php '.PHP_EOL.''.PHP_EOL.'declare(strict_types=1);'.PHP_EOL.''.PHP_EOL.''.$propertyHandlerNamespace;
+            File::put($file,$content);
+        }
+
 
         if(!file_exists($eventsDirectory)){
             File::makeDirectory($eventsDirectory);
@@ -146,74 +221,19 @@ class RepositoryCommand extends Command
         $namespace->addUse($afterUpdateNamespace = $eventsRepositoryNamespaceDirectory.'\AfterUpdate');
         $namespace->addUse($beforeCreateNamespace = $eventsRepositoryNamespaceDirectory.'\BeforeCreate');
         $namespace->addUse($beforeUpdateNamespace =  $eventsRepositoryNamespaceDirectory.'\BeforeUpdate');
-        $namespace->addUse('App\Models\\'.ucfirst($modelName));
-        //$namespace->addUse(Builder::class);
         $namespace->addUse($contractClassRepositoryName = $namespaceContractDirectory.'\\'.ucfirst($contractClassName));
+        $namespace->addUse($propertyHandlerClassNamespace);
+        $namespace->addUse('App\Models\\'.ucfirst($modelName));
         $class = $namespace->addClass($className)->setExtends(EloquentRepository::class)->addImplement($contractClassRepositoryName);
         $class->addTrait($afterCreateNamespace);
         $class->addTrait($afterUpdateNamespace);
         $class->addTrait($beforeCreateNamespace);
         $class->addTrait($beforeUpdateNamespace);
+        $class->addTrait($propertyHandlerClassNamespace);
         $class->addProperty('model',new Literal(ucfirst($modelName).'::class'))->setProtected()->setStatic(true)->setType('string')
             ->addComment('get model name for repository')
             ->addComment('')
             ->addComment('@var string');
-
-        $class->addProperty('ranges',[])->setProtected()->setType('array')
-            ->addComment('get client ranges for repository')
-            ->addComment('')
-            ->addComment('@var array|string[]');
-
-        $localizationList = [];
-        foreach ( $modelColumns as $column){
-            if($column=='name' || Str::endsWith($column,'_name')){
-                $localizationList[] = $column;
-            }
-
-            if($column=='description' || Str::endsWith($column,'_description')){
-                $localizationList[] = $column;
-            }
-        }
-
-        $class->addProperty('localization',$localizationList)->setProtected()->setType('array')
-            ->addComment('localization values for repository')
-            ->addComment('')
-            ->addComment('@var array|string[]');
-
-        $class->addProperty('hitter',[])->setProtected()->setType('array')
-            ->addComment('hitter values for repository')
-            ->addComment('')
-            ->addComment('@var array|string[]');
-
-        $class->addProperty('deniedEagerLoadings',[])->setProtected()->setType('array')
-            ->addComment('denied eager loadings values for repository')
-            ->addComment('')
-            ->addComment('@var array');
-
-        $class->addProperty('autoEagerLoadings',[])->setProtected()->setType('array')
-            ->addComment('get auto eager loading values for repository')
-            ->addComment('')
-            ->addComment('@var array');
-
-        $class->addProperty('groupByFields',[])->setProtected()->setType('array')
-            ->addComment('it contains columns to be used by groupBy method.')
-            ->addComment('')
-            ->addComment('@var array');
-
-        $class->addProperty('groupByProcessFields',[])->setProtected()->setType('array')
-            ->addComment('it contains aggregate methods to be used together groupBy method.')
-            ->addComment('')
-            ->addComment('@var array');
-
-        $class->addProperty('additionalResource',false)->setProtected()->setType('bool')
-            ->addComment('get additional resource for repository')
-            ->addComment('')
-            ->addComment('@var bool');
-
-        $class->addProperty('addPostQueries',[])->setProtected()->setType('array')
-            ->addComment('add post query for repository')
-            ->addComment('')
-            ->addComment('@var array');
 
         $method = $class->addMethod(lcfirst($className));
         $method->addParameter('builder',null)->setNullable(true)->setType('object');
