@@ -17,8 +17,6 @@ use App\Repositories\Resources\Countries\Contracts\DistrictsRepositoryContract;
 use App\Repositories\Resources\Countries\DistrictsRepository;
 use App\Repositories\Resources\Countries\Contracts\CitiesRepositoryContract;
 use App\Repositories\Resources\Countries\CitiesRepository;
-use App\Repositories\Resources\Mix\Contracts\TableChangesRepositoryContract;
-use App\Repositories\Resources\Mix\TableChangesRepository;
 use App\Repositories\Resources\Gate\Contracts\PermissionsRepositoryContract;
 use App\Repositories\Resources\Gate\PermissionsRepository;
 use App\Repositories\Resources\Gate\Contracts\RolesRepositoryContract;
@@ -53,7 +51,6 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(SuperAdminsRepositoryContract::class,SuperAdminsRepository::class);
         $this->app->bind(RolesRepositoryContract::class,RolesRepository::class);
         $this->app->bind(PermissionsRepositoryContract::class,PermissionsRepository::class);
-        $this->app->bind(TableChangesRepositoryContract::class,TableChangesRepository::class);
         $this->app->bind(CitiesRepositoryContract::class,CitiesRepository::class);
         $this->app->bind(DistrictsRepositoryContract::class,DistrictsRepository::class);
         $this->app->bind(CurrenciesRepositoryContract::class,CurrenciesRepository::class);

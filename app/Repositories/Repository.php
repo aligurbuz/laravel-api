@@ -12,7 +12,6 @@ use App\Repositories\Resources\Timezones\Contracts\TimezonesRepositoryContract;
 use App\Repositories\Resources\Currencies\Contracts\CurrenciesRepositoryContract;
 use App\Repositories\Resources\Countries\Contracts\DistrictsRepositoryContract;
 use App\Repositories\Resources\Countries\Contracts\CitiesRepositoryContract;
-use App\Repositories\Resources\Mix\Contracts\TableChangesRepositoryContract;
 use App\Repositories\Resources\Gate\Contracts\PermissionsRepositoryContract;
 use App\Repositories\Resources\Gate\Contracts\RolesRepositoryContract;
 use App\Repositories\Resources\SuperAdmins\Contracts\SuperAdminsRepositoryContract;
@@ -36,7 +35,7 @@ class Repository
     {
         return app()->get(ExcelRepositoryContract::class);
     }
-    
+
     /**
      * get registration repository instance
      *
@@ -46,7 +45,7 @@ class Repository
     {
         return app()->get(RegistrationRepositoryContract::class);
     }
-    
+
     /**
      * get userPhoto repository instance
      *
@@ -95,16 +94,6 @@ class Repository
     public static function city() : CitiesRepositoryContract
     {
         return app()->get(CitiesRepositoryContract::class);
-    }
-
-    /**
-     * get tableChange repository instance
-     *
-     * @return TableChangesRepositoryContract
-     */
-    public static function tableChange() : TableChangesRepositoryContract
-    {
-        return app()->get(TableChangesRepositoryContract::class);
     }
 
     /**
