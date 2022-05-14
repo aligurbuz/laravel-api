@@ -6,7 +6,12 @@ namespace App\Repositories\Resources\Countries;
 
 use App\Models\Country;
 use App\Repositories\EloquentRepository;
+use App\Repositories\Resources\Countries\Events\Countries\AfterCreate;
+use App\Repositories\Resources\Countries\Events\Countries\AfterUpdate;
+use App\Repositories\Resources\Countries\Events\Countries\BeforeCreate;
+use App\Repositories\Resources\Countries\Events\Countries\BeforeUpdate;
 use App\Repositories\Resources\Countries\Contracts\CountriesRepositoryContract;
+use App\Repositories\Resources\Countries\PropertyHandlers\CountriesPropertyHandlerTrait;
 
 /**
  * Class CountriesRepository
@@ -14,28 +19,22 @@ use App\Repositories\Resources\Countries\Contracts\CountriesRepositoryContract;
  */
 class CountriesRepository extends EloquentRepository implements CountriesRepositoryContract
 {
-    /**
-     * @var bool
-     */
-    protected bool $paginator = false;
+    use AfterCreate;
+    use AfterUpdate;
+    use BeforeCreate;
+    use BeforeUpdate;
+    use CountriesPropertyHandlerTrait;
 
-	/**
+    /**
 	 * get model name for repository
 	 *
 	 * @var string
 	 */
 	protected static string $model = Country::class;
 
-	/**
-	 * get client ranges for repository
-	 *
-	 * @var array|string[]
-	 */
-	protected array $ranges = [];
-
-
     /**
      * get auto CountriesRepository scope method
+     *
      * @param object|null $builder
      * @return object
      */
@@ -43,29 +42,4 @@ class CountriesRepository extends EloquentRepository implements CountriesReposit
 	{
 		return $this->apply($builder);
 	}
-
-    /**
-     * the fired event after create method for repository
-     *
-     * @param array $result
-     * @param array $clientData
-     * @return void
-     */
-    public function eventFireAfterCreate(array $result = [],array $clientData = []): void
-    {
-        //
-    }
-
-
-    /**
-     * the fired event after update method for repository
-     *
-     * @param array $result
-     * @param array $clientData
-     * @return void
-     */
-    public function eventFireAfterUpdate(array $result = [],array $clientData = []): void
-    {
-        //
-    }
 }

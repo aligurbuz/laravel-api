@@ -5,39 +5,28 @@ declare(strict_types=1);
 namespace App\Repositories\Resources\Countries;
 
 use App\Models\District;
-use App\Repositories\Resources\Countries\Contracts\DistrictsRepositoryContract;
 use App\Repositories\EloquentRepository;
+use App\Repositories\Resources\Countries\Events\District\AfterCreate;
+use App\Repositories\Resources\Countries\Events\District\AfterUpdate;
+use App\Repositories\Resources\Countries\Events\District\BeforeCreate;
+use App\Repositories\Resources\Countries\Events\District\BeforeUpdate;
+use App\Repositories\Resources\Countries\Contracts\DistrictsRepositoryContract;
+use App\Repositories\Resources\Countries\PropertyHandlers\DistrictPropertyHandlerTrait;
 
 class DistrictsRepository extends EloquentRepository implements DistrictsRepositoryContract
 {
+    use AfterCreate;
+    use AfterUpdate;
+    use BeforeCreate;
+    use BeforeUpdate;
+    use DistrictPropertyHandlerTrait;
+
 	/**
 	 * get model name for repository
 	 *
 	 * @var string
 	 */
 	protected static string $model = District::class;
-
-	/**
-	 * get client ranges for repository
-	 *
-	 * @var array|string[]
-	 */
-	protected array $ranges = [];
-
-	/**
-	 * localization values for repository
-	 *
-	 * @var array|string[]
-	 */
-	protected array $localization = [];
-
-	/**
-	 * hitter values for repository
-	 *
-	 * @var array|string[]
-	 */
-	protected array $hitter = [];
-
 
 	/**
 	 * get auto DistrictsRepository scope method
@@ -49,30 +38,4 @@ class DistrictsRepository extends EloquentRepository implements DistrictsReposit
 	{
 		return $this->apply($builder);
 	}
-
-
-    /**
-     * the fired event after create method for repository
-     *
-     * @param array $result
-     * @param array $clientData
-     * @return void
-     */
-    public function eventFireAfterCreate(array $result = [],array $clientData = []): void
-    {
-        //
-    }
-
-
-    /**
-     * the fired event after update method for repository
-     *
-     * @param array $result
-     * @param array $clientData
-     * @return void
-     */
-    public function eventFireAfterUpdate(array $result = [],array $clientData = []): void
-    {
-        //
-    }
 }
