@@ -14,7 +14,6 @@ use App\Factory\Role\Interfaces\RoleInterface;
 use App\Factory\Code\Interfaces\CodeInterface;
 use App\Factory\Cache\Interfaces\CacheInterface;
 use App\Factory\Client\Interfaces\ClientInterface;
-use App\Factory\Hitter\Interfaces\HitterInterface;
 use App\Factory\Notify\Interfaces\NotifyInterface;
 use App\Factory\Logger\Interfaces\LoggerInterface;
 use App\Factory\Search\Interfaces\SearchInterface;
@@ -36,7 +35,6 @@ use App\Jobs\EmailSender;
  * @method static LocalizationInterface localization($arguments = null)
  * @method static CollectionInterface collection($arguments = null)
  * @method static ClientInterface client($arguments = null)
- * @method static HitterInterface hitter($arguments = null)
  * @method static RoleInterface role($arguments = null)
  * @method static PermissionInterface permission($arguments = null)
  * @method static SearchInterface search($arguments = null)
@@ -67,7 +65,7 @@ class Factory extends FactoryManager
     ];
 
     /**
-     * binds to classes as parameters.
+     * binds to class as parameters.
      *
      * @return void
      */
