@@ -23,7 +23,7 @@ trait CountriesPropertyHandlerTrait
 	 *
 	 * @var array
 	 */
-	protected array $localization = ['name', 'default_name'];
+	protected array $localization = [];
 
 	/**
 	 * hitter values for repository
