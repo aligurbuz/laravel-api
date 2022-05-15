@@ -7,24 +7,27 @@ namespace App\Repositories\Resources\Gate;
 use App\Models\Role;
 use App\Repositories\EloquentRepository;
 use App\Facades\Authenticate\Authenticate;
+use App\Repositories\Resources\Gate\Events\Roles\AfterCreate;
+use App\Repositories\Resources\Gate\Events\Roles\AfterUpdate;
+use App\Repositories\Resources\Gate\Events\Roles\BeforeCreate;
+use App\Repositories\Resources\Gate\Events\Roles\BeforeUpdate;
 use App\Repositories\Resources\Gate\Contracts\RolesRepositoryContract;
+use App\Repositories\Resources\Gate\PropertyHandlers\RolesPropertyHandlerTrait;
 
 class RolesRepository extends EloquentRepository implements RolesRepositoryContract
 {
+    use AfterCreate;
+    use AfterUpdate;
+    use BeforeCreate;
+    use BeforeUpdate;
+    use RolesPropertyHandlerTrait;
+
 	/**
 	 * get model name for repository
 	 *
 	 * @var string
 	 */
 	protected static string $model = Role::class;
-
-	/**
-	 * get client ranges for repository
-	 *
-	 * @var array|string[]
-	 */
-	protected array $ranges = [];
-
 
 	/**
 	 * get auto RolesRepository scope method
@@ -36,31 +39,6 @@ class RolesRepository extends EloquentRepository implements RolesRepositoryContr
 	{
 		return $this->apply($builder);
 	}
-
-    /**
-     * the fired event after create method for repository
-     *
-     * @param array $result
-     * @param array $clientData
-     * @return void
-     */
-    public function eventFireAfterCreate(array $result = [],array $clientData = []): void
-    {
-        //
-    }
-
-
-    /**
-     * the fired event after update method for repository
-     *
-     * @param array $result
-     * @param array $clientData
-     * @return void
-     */
-    public function eventFireAfterUpdate(array $result = [],array $clientData = []): void
-    {
-        //
-    }
 
     /**
      * getUser for role repository
