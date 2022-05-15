@@ -7,23 +7,27 @@ namespace App\Repositories\Resources\Localizations;
 use Illuminate\Support\Str;
 use App\Models\Localization;
 use App\Repositories\EloquentRepository;
+use App\Repositories\Resources\Localizations\Events\Localizations\AfterCreate;
+use App\Repositories\Resources\Localizations\Events\Localizations\AfterUpdate;
+use App\Repositories\Resources\Localizations\Events\Localizations\BeforeCreate;
+use App\Repositories\Resources\Localizations\Events\Localizations\BeforeUpdate;
 use App\Repositories\Resources\Localizations\Contracts\LocalizationsRepositoryContract;
+use App\Repositories\Resources\Localizations\PropertyHandlers\LocalizationsPropertyHandlerTrait;
 
 class LocalizationsRepository extends EloquentRepository implements LocalizationsRepositoryContract
 {
+    use AfterCreate;
+    use AfterUpdate;
+    use BeforeCreate;
+    use BeforeUpdate;
+    use LocalizationsPropertyHandlerTrait;
+
 	/**
 	 * get model name for repository
 	 *
 	 * @var string
 	 */
 	protected static string $model = Localization::class;
-
-	/**
-	 * get client ranges for repository
-	 *
-	 * @var array|string[]
-	 */
-	protected array $ranges = [];
 
     /**
      * get auto LocalizationsRepository scope method
@@ -35,31 +39,6 @@ class LocalizationsRepository extends EloquentRepository implements Localization
 	{
 		return $this->apply($builder)->where('language_code',appLanguageCode());
 	}
-
-    /**
-     * the fired event after create method for repository
-     *
-     * @param array $result
-     * @param array $clientData
-     * @return void
-     */
-    public function eventFireAfterCreate(array $result = [],array $clientData = []): void
-    {
-        //
-    }
-
-
-    /**
-     * the fired event after update method for repository
-     *
-     * @param array $result
-     * @param array $clientData
-     * @return void
-     */
-    public function eventFireAfterUpdate(array $result = [],array $clientData = []): void
-    {
-        //
-    }
 
     /**
      * finds data by localized_code column
