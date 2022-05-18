@@ -6,11 +6,11 @@ namespace App\Repositories\Resources\User;
 
 use App\Models\User;
 use App\Repositories\EloquentRepository;
+use App\Repositories\Resources\User\Contracts\UserRepositoryContract;
 use App\Repositories\Resources\User\Events\User\AfterCreate;
 use App\Repositories\Resources\User\Events\User\AfterUpdate;
 use App\Repositories\Resources\User\Events\User\BeforeCreate;
 use App\Repositories\Resources\User\Events\User\BeforeUpdate;
-use App\Repositories\Resources\User\Contracts\UserRepositoryContract;
 use App\Repositories\Resources\User\PropertyHandlers\UserPropertyHandlerTrait;
 
 /**
@@ -37,7 +37,7 @@ class UserRepository extends EloquentRepository implements UserRepositoryContrac
      * @param object|null $builder
      * @return object
      */
-    public function userRepository(?object $builder = null) : object
+    public function userRepository(?object $builder = null): object
     {
         return $this->apply($builder);
     }
@@ -51,6 +51,6 @@ class UserRepository extends EloquentRepository implements UserRepositoryContrac
      */
     public function update(array $data = [], bool $id = true): array
     {
-        return parent::update($data,false);
+        return parent::update($data, false);
     }
 }

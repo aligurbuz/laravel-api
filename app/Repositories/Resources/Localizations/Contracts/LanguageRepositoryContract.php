@@ -6,19 +6,19 @@ use App\Repositories\Resources\Localizations\LanguageRepository;
 
 interface LanguageRepositoryContract
 {
-	/**
-	 * @return array
-	 * @see LanguageRepository::get()
-	 */
-	function get(): array;
+    /**
+     * @return array
+     * @see LanguageRepository::get()
+     */
+    function get(): array;
 
 
-	/**
-	 * @param array $data
-	 * @return array|object
-	 * @see LanguageRepository::create()
-	 */
-	function create(array $data = []): array|object;
+    /**
+     * @param array $data
+     * @return array|object
+     * @see LanguageRepository::create()
+     */
+    function create(array $data = []): array|object;
 
 
     /**
@@ -27,46 +27,46 @@ interface LanguageRepositoryContract
      * @return array|object
      * @see LanguageRepository::update()
      */
-	function update(array $data = [],bool $id = true): array|object;
+    function update(array $data = [], bool $id = true): array|object;
 
 
-	/**
-	 * @param int $id
-	 * @param array|string[] $select
-	 * @return array
-	 * @see LanguageRepository::find()
-	 */
-	function find(int $id, array $select = ['*']): array;
+    /**
+     * @param int $id
+     * @param array|string[] $select
+     * @return array
+     * @see LanguageRepository::find()
+     */
+    function find(int $id, array $select = ['*']): array;
 
 
-	/**
-	 * @return array
-	 * @see LanguageRepository::all()
-	 */
-	function all(): array;
+    /**
+     * @return array
+     * @see LanguageRepository::all()
+     */
+    function all(): array;
 
 
-	/**
-	 * @param $field
-	 * @param $value
-	 * @return bool
-	 * @see LanguageRepository::exists()
-	 */
-	function exists($field, $value): bool;
+    /**
+     * @param $field
+     * @param $value
+     * @return bool
+     * @see LanguageRepository::exists()
+     */
+    function exists($field, $value): bool;
 
     /**
      * @param bool $afterLoadingRepository
      * @return array
      * @see LanguageRepository::getRepository()
      */
-    public function getRepository(bool $afterLoadingRepository = true) : array;
+    public function getRepository(bool $afterLoadingRepository = true): array;
 
     /**
      * @param null $name
      * @return LanguageRepositoryContract
      * @see LanguageRepository::name()
      */
-    public function name($name = null) : LanguageRepositoryContract;
+    public function name($name = null): LanguageRepositoryContract;
 
     /**
      * @param object|null $builder
@@ -80,32 +80,32 @@ interface LanguageRepositoryContract
      * @return object
      * @see LanguageRepository::active()
      */
-    public function code(int $code = 0) : object;
+    public function code(int $code = 0): object;
 
     /**
      * @param array $data
      * @return object
      * @see LanguageRepository::select()
      */
-    public function select(array $data = []) : object;
+    public function select(array $data = []): object;
 
     /**
      * @return array
      * @see LanguageRepository::latest()
      */
-    public function latest() : array;
+    public function latest(): array;
 
     /**
      * @param mixed $tag
      * @param callable $callback
      * @return array
      */
-    public function cache(mixed $tag,callable $callback): array;
+    public function cache(mixed $tag, callable $callback): array;
 
     /**
      * @param array $updateData
      * @param array $createData
      * @return array|object
      */
-    public function updateOrCreate(array $updateData = [],array $createData = []): array|object;
+    public function updateOrCreate(array $updateData = [], array $createData = []): array|object;
 }

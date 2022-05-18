@@ -25,11 +25,11 @@ trait CreateRepository
      * @param array $data
      * @param int $clientDataKey
      */
-    public function createEventDispatcher(array $data = [],int $clientDataKey = 0) : void
+    public function createEventDispatcher(array $data = [], int $clientDataKey = 0): void
     {
         $this->createLocalization($data);
         $this->deleteCache();
-        $this->addPostQueryDispatcher($data,$clientDataKey);
+        $this->addPostQueryDispatcher($data, $clientDataKey);
     }
 
     /**
@@ -39,31 +39,30 @@ trait CreateRepository
      * @param int $clientDataKey
      * @return void
      */
-    public function addPostQueryDispatcher(array $data = [],int $clientDataKey = 0) : void
+    public function addPostQueryDispatcher(array $data = [], int $clientDataKey = 0): void
     {
-        if(count($this->getAddPostQueries())){
-            foreach ($this->getAddPostQueries() as $key => $cr){
-                $keyExplode = explode('|',$key);
+        if (count($this->getAddPostQueries())) {
+            foreach ($this->getAddPostQueries() as $key => $cr) {
+                $keyExplode = explode('|', $key);
                 $key = $keyExplode[0];
                 $createStatus = !((isset($keyExplode[1]) && $keyExplode[1] == 'false'));
 
-                if(isset($data[$key])){
+                if (isset($data[$key])) {
                     $crData = [];
 
-                    if(!isset($data[$key][0])){
+                    if (!isset($data[$key][0])) {
                         $data[$key] = [$data[$key]];
                     }
 
-                    foreach ($data[$key] as $crKey => $crValues){
+                    foreach ($data[$key] as $crKey => $crValues) {
                         $crData[$crKey] = $crValues;
                         $crData[$crKey][getTableCode($this->getModel())] = $data[getTableCode($this->getModel())];
                     }
 
-                    try{
-                        cR($cr,$crData,null,true);
-                    }
-                    catch (Exception $exception){
-                        ExceptionFacade::customException($exception->getMessage().' ('.trans('exception.crKey',['key' => $key]).')');
+                    try {
+                        cR($cr, $crData, null, true);
+                    } catch (Exception $exception) {
+                        ExceptionFacade::customException($exception->getMessage() . ' (' . trans('exception.crKey', ['key' => $key]) . ')');
                     }
 
                     $this->addPostQueryResults[$clientDataKey][$key] = $createStatus ? AppContainer::get('crRepositoryInstance')->create() : $data[$key];
@@ -84,23 +83,23 @@ trait CreateRepository
         $clientData = $this->getClientData($data);
 
         try {
-            foreach ($clientData as $clientDataKey => $value){
+            foreach ($clientData as $clientDataKey => $value) {
 
-                if(method_exists($this,'eventFireBeforeCreate')){
+                if (method_exists($this, 'eventFireBeforeCreate')) {
                     $this->eventFireBeforeCreate($value);
                 }
 
                 $result = $this->createModel($value);
                 $arrayResults = $result->toArray();
 
-                $this->createEventDispatcher($value,$clientDataKey);
+                $this->createEventDispatcher($value, $clientDataKey);
 
-                if(count($this->addPostQueryResults)){
-                    $arrayResults = array_merge($arrayResults,$this->addPostQueryResults[$clientDataKey]);
+                if (count($this->addPostQueryResults)) {
+                    $arrayResults = array_merge($arrayResults, $this->addPostQueryResults[$clientDataKey]);
                 }
 
-                if(method_exists($this,'eventFireAfterCreate')){
-                    $this->eventFireAfterCreate($arrayResults,$value);
+                if (method_exists($this, 'eventFireAfterCreate')) {
+                    $this->eventFireAfterCreate($arrayResults, $value);
                 }
 
                 $list[] = $arrayResults;
@@ -108,8 +107,7 @@ trait CreateRepository
             }
 
             return $list;
-        }
-        catch (Exception $exception){
+        } catch (Exception $exception) {
             return $this->sqlException($exception);
         }
     }

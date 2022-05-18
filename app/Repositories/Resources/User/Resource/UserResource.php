@@ -16,7 +16,7 @@ class UserResource
      * @param array $data
      * @return array
      */
-    public function handle(array $data = []) : array
+    public function handle(array $data = []): array
     {
         return $data;
     }
@@ -27,7 +27,7 @@ class UserResource
      * @param array $data
      * @return array
      */
-    public function traitHandler(array $data = []) : array
+    public function traitHandler(array $data = []): array
     {
         return $data;
     }

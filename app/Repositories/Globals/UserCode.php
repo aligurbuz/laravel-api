@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Repositories\Globals;
 
-use Illuminate\Database\Eloquent\Builder;
 use App\Facades\Authenticate\Authenticate;
+use Illuminate\Database\Eloquent\Builder;
 
 /**
  * Class UserId
@@ -33,9 +33,9 @@ class UserCode
      * @param $column
      * @return object
      */
-    public function handle($column) : object
+    public function handle($column): object
     {
-        return $this->builder->where($column,Authenticate::code());
+        return $this->builder->where($column, Authenticate::code());
     }
 }
 

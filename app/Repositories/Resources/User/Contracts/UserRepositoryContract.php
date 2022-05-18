@@ -16,7 +16,7 @@ interface UserRepositoryContract
      * @return array
      * @see UserRepository::all()
      */
-    public function all() : array;
+    public function all(): array;
 
     /**
      * @param array $data
@@ -31,14 +31,14 @@ interface UserRepositoryContract
      * @return mixed
      * @see UserRepository::update()
      */
-    public function update(array $data = [],bool $id = true): array;
+    public function update(array $data = [], bool $id = true): array;
 
     /**
      * @param $field
      * @param $value
      * @return bool
      */
-    public function exists($field,$value) : bool;
+    public function exists($field, $value): bool;
 
     /**
      * @param int $id
@@ -46,7 +46,7 @@ interface UserRepositoryContract
      * @return array
      * @see UserRepository::find()
      */
-    public function find(int $id,array $select = ['*']): array;
+    public function find(int $id, array $select = ['*']): array;
 
     /**
      * @param bool $afterLoadingRepository
@@ -67,32 +67,32 @@ interface UserRepositoryContract
      * @return object
      * @see UserRepository::active()
      */
-    public function code(int $code = 0) : object;
+    public function code(int $code = 0): object;
 
     /**
      * @param array $data
      * @return object
      * @see UserRepository::select()
      */
-    public function select(array $data = []) : object;
+    public function select(array $data = []): object;
 
     /**
      * @return array
      * @see UserRepository::latest()
      */
-    public function latest() : array;
+    public function latest(): array;
 
     /**
      * @param mixed $tag
      * @param callable $callback
      * @return array
      */
-    public function cache(mixed $tag,callable $callback): array;
+    public function cache(mixed $tag, callable $callback): array;
 
     /**
      * @param array $updateData
      * @param array $createData
      * @return array|object
      */
-    public function updateOrCreate(array $updateData = [],array $createData = []): array|object;
+    public function updateOrCreate(array $updateData = [], array $createData = []): array|object;
 }

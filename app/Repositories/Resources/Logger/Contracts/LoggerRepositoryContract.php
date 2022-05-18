@@ -6,24 +6,24 @@ use App\Repositories\Resources\Logger\LoggerRepository;
 
 interface LoggerRepositoryContract
 {
-	/**
-	 * @return array
-	 * @see LoggerRepository::get()
-	 */
-	function get(): array;
+    /**
+     * @return array
+     * @see LoggerRepository::get()
+     */
+    function get(): array;
 
     /**
      * @return array
      * @see LoggerRepository::all()
      */
-    public function all() : array;
+    public function all(): array;
 
-	/**
-	 * @param array $data
-	 * @return array|object
-	 * @see LoggerRepository::create()
-	 */
-	function create(array $data = []): array|object;
+    /**
+     * @param array $data
+     * @return array|object
+     * @see LoggerRepository::create()
+     */
+    function create(array $data = []): array|object;
 
 
     /**
@@ -32,14 +32,14 @@ interface LoggerRepositoryContract
      * @return array|object
      * @see LoggerRepository::update()
      */
-	function update(array $data = [],bool $id = true): array|object;
+    function update(array $data = [], bool $id = true): array|object;
 
     /**
      * @param $field
      * @param $value
      * @return bool
      */
-    public function exists($field,$value) : bool;
+    public function exists($field, $value): bool;
 
 
     /**
@@ -48,7 +48,7 @@ interface LoggerRepositoryContract
      * @return array
      * @see CommentRepository::find()
      */
-    function find(int $id,array $select = ['*']): array;
+    function find(int $id, array $select = ['*']): array;
 
     /**
      * @param object|null $builder
@@ -62,14 +62,14 @@ interface LoggerRepositoryContract
      * @return object
      * @see LoggerRepository::active()
      */
-    public function code(int $code = 0) : object;
+    public function code(int $code = 0): object;
 
     /**
      * @param array $data
      * @return object
      * @see LoggerRepository::select()
      */
-    public function select(array $data = []) : object;
+    public function select(array $data = []): object;
 
     /**
      * @param bool $afterLoadingRepository
@@ -82,19 +82,19 @@ interface LoggerRepositoryContract
      * @return array
      * @see LoggerRepository::latest()
      */
-    public function latest() : array;
+    public function latest(): array;
 
     /**
      * @param mixed $tag
      * @param callable $callback
      * @return array
      */
-    public function cache(mixed $tag,callable $callback): array;
+    public function cache(mixed $tag, callable $callback): array;
 
     /**
      * @param array $updateData
      * @param array $createData
      * @return array|object
      */
-    public function updateOrCreate(array $updateData = [],array $createData = []): array|object;
+    public function updateOrCreate(array $updateData = [], array $createData = []): array|object;
 }

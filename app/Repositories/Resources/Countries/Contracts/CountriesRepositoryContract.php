@@ -6,24 +6,24 @@ use App\Repositories\Resources\Countries\CountriesRepository;
 
 interface CountriesRepositoryContract
 {
-	/**
-	 * @return array
-	 * @see CountriesRepository::get()
-	 */
-	public function get(): array;
+    /**
+     * @return array
+     * @see CountriesRepository::get()
+     */
+    public function get(): array;
 
     /**
      * @return array
      * @see CountriesRepository::all()
      */
-    public function all() : array;
+    public function all(): array;
 
-	/**
-	 * @param array $data
-	 * @return array|object
-	 * @see CountriesRepository::create()
-	 */
-	public function create(array $data = []): array|object;
+    /**
+     * @param array $data
+     * @return array|object
+     * @see CountriesRepository::create()
+     */
+    public function create(array $data = []): array|object;
 
 
     /**
@@ -32,25 +32,25 @@ interface CountriesRepositoryContract
      * @return array|object
      * @see CountriesRepository::update()
      */
-	public function update(array $data = [],bool $id = true): array|object;
+    public function update(array $data = [], bool $id = true): array|object;
 
 
-	/**
-	 * @param int $id
-	 * @param array|string[] $select
-	 * @return array
-	 * @see CountriesRepository::find()
-	 */
-	public function find(int $id, array $select = ['*']): array;
+    /**
+     * @param int $id
+     * @param array|string[] $select
+     * @return array
+     * @see CountriesRepository::find()
+     */
+    public function find(int $id, array $select = ['*']): array;
 
 
-	/**
-	 * @param $field
-	 * @param $value
-	 * @return bool
-	 * @see CountriesRepository::exists()
-	 */
-	public function exists($field, $value): bool;
+    /**
+     * @param $field
+     * @param $value
+     * @return bool
+     * @see CountriesRepository::exists()
+     */
+    public function exists($field, $value): bool;
 
     /**
      * @param object|null $builder
@@ -64,14 +64,14 @@ interface CountriesRepositoryContract
      * @return object
      * @see CountriesRepository::active()
      */
-    public function code(int $code = 0) : object;
+    public function code(int $code = 0): object;
 
     /**
      * @param array $data
      * @return object
      * @see CountriesRepository::select()
      */
-    public function select(array $data = []) : object;
+    public function select(array $data = []): object;
 
     /**
      * @param bool $afterLoadingRepository
@@ -84,19 +84,19 @@ interface CountriesRepositoryContract
      * @return array
      * @see CountriesRepository::latest()
      */
-    public function latest() : array;
+    public function latest(): array;
 
     /**
      * @param mixed $tag
      * @param callable $callback
      * @return array
      */
-    public function cache(mixed $tag,callable $callback): array;
+    public function cache(mixed $tag, callable $callback): array;
 
     /**
      * @param array $updateData
      * @param array $createData
      * @return array|object
      */
-    public function updateOrCreate(array $updateData = [],array $createData = []): array|object;
+    public function updateOrCreate(array $updateData = [], array $createData = []): array|object;
 }

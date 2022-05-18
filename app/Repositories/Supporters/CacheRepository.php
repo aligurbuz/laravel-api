@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace App\Repositories\Supporters;
 
 use App\Constants;
-use Closure;
-use App\Services\Db;
-use App\Services\Client;
-use App\Factory\Factory;
-use Illuminate\Support\Str;
 use App\Exceptions\Exception;
-use App\Models\Features\ScopeManagerTrait;
 use App\Factory\Cache\Interfaces\CacheInterface;
+use App\Factory\Factory;
+use App\Models\Features\ScopeManagerTrait;
+use App\Services\Client;
+use App\Services\Db;
+use Closure;
+use Illuminate\Support\Str;
 
 /**
  * Trait CacheRepository
@@ -30,7 +30,7 @@ trait CacheRepository
     /**
      * @var array
      */
-    protected array $exceptClientData = ['client_date','client_time'];
+    protected array $exceptClientData = ['client_date', 'client_time'];
 
     /**
      * @var string|null
@@ -58,7 +58,7 @@ trait CacheRepository
      * @param string $model
      * @return string
      */
-    public function specificCacheKey(string $model) : string
+    public function specificCacheKey(string $model): string
     {
         return $model;
     }
@@ -69,7 +69,7 @@ trait CacheRepository
      * @param string|null $model
      * @return string
      */
-    public function generateCacheKey(?string $model = null) : string
+    public function generateCacheKey(?string $model = null): string
     {
         return $this->specificCacheKey(($model ?? $this->getModelName()));
     }
@@ -80,11 +80,11 @@ trait CacheRepository
      * @param callable $callback
      * @return array
      */
-    public function useProxyCache(callable $callback) : array
+    public function useProxyCache(callable $callback): array
     {
         $this->proxyUsing = true;
 
-        return $this->cacheCondition($callback,function() use($callback){
+        return $this->cacheCondition($callback, function () use ($callback) {
             return $this->proxyUsing ? $this->proxy($callback) : call_user_func($callback);
         });
     }
@@ -95,20 +95,20 @@ trait CacheRepository
      * @param callable $callback
      * @return array
      */
-    public function useCache(callable $callback) : array
+    public function useCache(callable $callback): array
     {
         $this->proxyUsing = false;
 
-        if((page()>1)
+        if ((page() > 1)
             || (
-                property_exists($this,'cache')
+                property_exists($this, 'cache')
                 && is_bool($this->cache)
                 && !$this->cache)
-        ){
+        ) {
             return call_user_func($callback);
         }
 
-        return $this->cacheCondition($callback,function() use($callback){
+        return $this->cacheCondition($callback, function () use ($callback) {
             return $this->proxyUsing ? $this->proxy($callback) : call_user_func($callback);
         });
     }
@@ -118,7 +118,7 @@ trait CacheRepository
      *
      * @param mixed $tag
      */
-    public function setCacheTag(mixed $tag) : void
+    public function setCacheTag(mixed $tag): void
     {
         $this->cacheTag = $tag;
     }
@@ -130,12 +130,12 @@ trait CacheRepository
      * @param callable $returnCallback
      * @return mixed
      */
-    public function cacheCondition(callable $callback,callable $returnCallback): mixed
+    public function cacheCondition(callable $callback, callable $returnCallback): mixed
     {
-        if(true === config('repository.repositoryCache')){
+        if (true === config('repository.repositoryCache')) {
             $this->setProperties();
 
-            return $this->cacheHandler($callback,function($proxy){
+            return $this->cacheHandler($callback, function ($proxy) {
                 return $proxy;
             });
         }
@@ -148,20 +148,20 @@ trait CacheRepository
      *
      * @return void
      */
-    private function setProperties() : void
+    private function setProperties(): void
     {
         //$this->rangeContainer($this);
         //$this->relationContainer($this->getModelWithQueries());
 
         $requestQuery = request()->query;
 
-        foreach ($this->exceptClientData as $exceptClientData){
+        foreach ($this->exceptClientData as $exceptClientData) {
             $requestQuery->remove($exceptClientData);
         }
 
-        $this->cacheKey           = $this->generateCacheKey();
-        $this->cacheInstance      = Factory::cache(['adapter' => 'redis','connection' => config('repository.repositoryCacheConnection')]);
-        $this->cacheTag           = $this->cacheTag ?? Client::fingerPrint(request()->query->all());
+        $this->cacheKey = $this->generateCacheKey();
+        $this->cacheInstance = Factory::cache(['adapter' => 'redis', 'connection' => config('repository.repositoryCacheConnection')]);
+        $this->cacheTag = $this->cacheTag ?? Client::fingerPrint(request()->query->all());
     }
 
     /**
@@ -171,12 +171,12 @@ trait CacheRepository
      * @param callable $callback
      * @return array
      */
-    private function cacheHandler(callable $data,callable $callback) : array
+    private function cacheHandler(callable $data, callable $callback): array
     {
         return $this->cacheInstance->hget(
             $this->cacheKey,
             (string)$this->cacheTag,
-            $this->setCacheRepository($data,$callback)
+            $this->setCacheRepository($data, $callback)
         );
     }
 
@@ -189,16 +189,15 @@ trait CacheRepository
      */
     private function setCacheRepository(callable $data, callable $callback): Closure
     {
-        return function() use($data,$callback)
-        {
+        return function () use ($data, $callback) {
             $callData = call_user_func($data);
             $proxy = $proxyCallback = $this->proxyUsing ? $this->proxy($callData) : $callData;
 
-            if(
+            if (
                 isset($callData['data'])
                 && is_array($callData['data'])
                 && count($callData['data'])
-            ){
+            ) {
                 $proxyCallback['cache'] = 'true';
 
                 $this->cacheInstance->hset(
@@ -207,10 +206,10 @@ trait CacheRepository
                     json_encode($proxyCallback)
                 );
 
-                $this->cacheInstance->expire($this->cacheKey,$this->cacheExpire);
+                $this->cacheInstance->expire($this->cacheKey, $this->cacheExpire);
             }
 
-            return call_user_func($callback,$proxy);
+            return call_user_func($callback, $proxy);
         };
     }
 
@@ -219,20 +218,20 @@ trait CacheRepository
      *
      * @return void
      */
-    public function deleteCache() : void
+    public function deleteCache(): void
     {
         $this->setProperties();
 
-        $model      = $this->getModelName();
-        $cacheKey   = $this->cacheKey;
+        $model = $this->getModelName();
+        $cacheKey = $this->cacheKey;
 
-        if($this->cacheInstance->exists($cacheKey)){
-            if(!$this->cacheInstance->delete($cacheKey)){
+        if ($this->cacheInstance->exists($cacheKey)) {
+            if (!$this->cacheInstance->delete($cacheKey)) {
                 Exception::cacheException();
             }
         }
 
-        if($model!=='Localization'){
+        if ($model !== 'Localization') {
             $this->deleteRelationCache($model);
         }
     }
@@ -243,38 +242,38 @@ trait CacheRepository
      * @param string $model
      * @param bool $recursive
      */
-    private function deleteRelationCache(string $model,bool $recursive = true)
+    private function deleteRelationCache(string $model, bool $recursive = true)
     {
-        $relations  = Db::relations();
+        $relations = Db::relations();
 
-        if(isset($relations[$model]) && is_array($relations[$model])){
+        if (isset($relations[$model]) && is_array($relations[$model])) {
             $globalScopes = config('repository.globalScopes');
 
-            foreach ($relations[$model] as $relation){
-                $relationModelNamespace = Constants::modelNamespace.'\\'.$relation;
+            foreach ($relations[$model] as $relation) {
+                $relationModelNamespace = Constants::modelNamespace . '\\' . $relation;
 
-                if(class_exists($relationModelNamespace)){
+                if (class_exists($relationModelNamespace)) {
                     $relationModelNamespaceInstance = new $relationModelNamespace;
                     $relationDeniedLists = $relationModelNamespaceInstance->getRepository()->getDeniedEagerLoadings();
 
-                    if(in_array(Str::camel($model),$relationDeniedLists,true)){
+                    if (in_array(Str::camel($model), $relationDeniedLists, true)) {
                         continue;
                     }
                 }
                 $camelCaseTableCode = Str::camel(getTableCode($relation));
 
-                if(!in_array($camelCaseTableCode,$globalScopes,true)){
+                if (!in_array($camelCaseTableCode, $globalScopes, true)) {
                     $relationHash = $this->generateCacheKey($relation);
 
-                    if($this->cacheInstance->exists($relationHash)){
-                        if(!$this->cacheInstance->delete($relationHash)){
+                    if ($this->cacheInstance->exists($relationHash)) {
+                        if (!$this->cacheInstance->delete($relationHash)) {
                             Exception::cacheException();
                         }
                     }
 
-                    if($recursive && isset($relations[$relation])){
-                        if($relation!=='Localization'){
-                            $this->deleteRelationCache($relation,false);
+                    if ($recursive && isset($relations[$relation])) {
+                        if ($relation !== 'Localization') {
+                            $this->deleteRelationCache($relation, false);
                         }
                     }
                 }

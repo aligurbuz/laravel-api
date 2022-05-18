@@ -6,11 +6,11 @@ namespace App\Repositories\Resources\Logger;
 
 use App\Models\AccessLogger;
 use App\Repositories\EloquentRepository;
+use App\Repositories\Resources\Logger\Contracts\LoggerRepositoryContract;
 use App\Repositories\Resources\Logger\Events\Logger\AfterCreate;
 use App\Repositories\Resources\Logger\Events\Logger\AfterUpdate;
 use App\Repositories\Resources\Logger\Events\Logger\BeforeCreate;
 use App\Repositories\Resources\Logger\Events\Logger\BeforeUpdate;
-use App\Repositories\Resources\Logger\Contracts\LoggerRepositoryContract;
 use App\Repositories\Resources\Logger\PropertyHandlers\LoggerPropertyHandlerTrait;
 
 /**
@@ -30,7 +30,7 @@ class LoggerRepository extends EloquentRepository implements LoggerRepositoryCon
      *
      * @var string
      */
-	protected static string $model = AccessLogger::class;
+    protected static string $model = AccessLogger::class;
 
     /**
      * get auto loggerRepository scope method

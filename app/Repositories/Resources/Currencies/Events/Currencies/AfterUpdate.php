@@ -6,15 +6,15 @@ namespace App\Repositories\Resources\Currencies\Events\Currencies;
 
 trait AfterUpdate
 {
-	/**
-	 * event performed after repository update
-	 *
-	 * @param array $result
-	 * @param array $clientData
-	 * @return void
-	 */
-	public function eventFireAfterUpdate(array $result = [], array $clientData = []): void
-	{
-		//
-	}
+    /**
+     * event performed after repository update
+     *
+     * @param array $result
+     * @param array $clientData
+     * @return void
+     */
+    public function eventFireAfterUpdate(array $result = [], array $clientData = []): void
+    {
+        //
+    }
 }

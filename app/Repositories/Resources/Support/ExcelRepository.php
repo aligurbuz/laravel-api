@@ -6,11 +6,11 @@ namespace App\Repositories\Resources\Support;
 
 use App\Models\Excel;
 use App\Repositories\EloquentRepository;
+use App\Repositories\Resources\Support\Contracts\ExcelRepositoryContract;
 use App\Repositories\Resources\Support\Events\Excel\AfterCreate;
 use App\Repositories\Resources\Support\Events\Excel\AfterUpdate;
 use App\Repositories\Resources\Support\Events\Excel\BeforeCreate;
 use App\Repositories\Resources\Support\Events\Excel\BeforeUpdate;
-use App\Repositories\Resources\Support\Contracts\ExcelRepositoryContract;
 use App\Repositories\Resources\Support\PropertyHandlers\ExcelPropertyHandlerTrait;
 
 class ExcelRepository extends EloquentRepository implements ExcelRepositoryContract

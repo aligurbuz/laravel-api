@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Repositories\Supporters;
 
+use App\Exceptions\Exception;
 use App\Services\AppContainer;
 use Illuminate\Support\Str;
-use App\Exceptions\Exception;
 
 /**
  * Trait LocalizationRepository
@@ -29,15 +29,14 @@ trait ResourceRepository
      *
      * @return string
      */
-    public function getResource() : string
+    public function getResource(): string
     {
         //base class property for repository
-        if(AppContainer::has('resourcePropagationRepository')){
+        if (AppContainer::has('resourcePropagationRepository')) {
             $resourcePropagationRepository = AppContainer::get('resourcePropagationRepository');
             $className = class_basename($resourcePropagationRepository);
             $currentNamespace = get_class($resourcePropagationRepository);
-        }
-        else{
+        } else {
             $className = class_basename(get_called_class());
             $currentNamespace = get_called_class();
         }
@@ -45,9 +44,9 @@ trait ResourceRepository
         AppContainer::terminate('resourcePropagationRepository');
 
         //get directory name for repository model
-        $dir = str_replace('\\'.$className,'',$currentNamespace);
+        $dir = str_replace('\\' . $className, '', $currentNamespace);
 
-        return $dir.'\Resource\\'.str_replace('Repository','',$className).'Resource';
+        return $dir . '\Resource\\' . str_replace('Repository', '', $className) . 'Resource';
     }
 
     /**
@@ -55,7 +54,7 @@ trait ResourceRepository
      *
      * @return string
      */
-    public function getCurrentNamespace() : string
+    public function getCurrentNamespace(): string
     {
         return get_called_class();
     }
@@ -66,17 +65,17 @@ trait ResourceRepository
      * @param callable $callback
      * @return array
      */
-    public function resource(callable $callback) : array
+    public function resource(callable $callback): array
     {
-        $call =  call_user_func($callback);
+        $call = call_user_func($callback);
 
-        return $this->addCollectDataToResource(function(array $collect = []) use($call){
-            $result = array_merge($collect,$call->pagination());
-            if(isset($result['links'])){
+        return $this->addCollectDataToResource(function (array $collect = []) use ($call) {
+            $result = array_merge($collect, $call->pagination());
+            if (isset($result['links'])) {
                 unset($result['links']);
             }
 
-            if(isset($result['data'])){
+            if (isset($result['data'])) {
                 $result['data'] = $this->resourcePropagation($result['data']);
             }
 
@@ -90,10 +89,10 @@ trait ResourceRepository
      * @param array $data
      * @return array
      */
-    public function baseResource(array $data = []) : array
+    public function baseResource(array $data = []): array
     {
-        return $this->addCollectDataToResource(function(array $collect = []) use($data){
-            $result = array_merge($collect,$data);
+        return $this->addCollectDataToResource(function (array $collect = []) use ($data) {
+            $result = array_merge($collect, $data);
             return $this->resourcePropagation($result);
         });
     }
@@ -105,14 +104,13 @@ trait ResourceRepository
      * @param string $methodName
      * @return array
      */
-    public function additionalResource(array $data,string $methodName) : array
+    public function additionalResource(array $data, string $methodName): array
     {
         $this->resourceMethod = $methodName;
-        if(isset($data['data'])){
-            $data['data'] = $this->resourcePropagation(($data['data'] ?? []),null,false);
-        }
-        else{
-            $data = $this->resourcePropagation($data,null,false);
+        if (isset($data['data'])) {
+            $data['data'] = $this->resourcePropagation(($data['data'] ?? []), null, false);
+        } else {
+            $data = $this->resourcePropagation($data, null, false);
         }
 
         return $data;
@@ -124,27 +122,26 @@ trait ResourceRepository
      * @param callable $callback
      * @return mixed
      */
-    public function addCollectDataToResource(callable $callback) : mixed
+    public function addCollectDataToResource(callable $callback): mixed
     {
-        $list  = [];
+        $list = [];
         $collectRequest = request()->query->get('collect');
 
-        if(is_string($collectRequest)){
-            $collectArray = explode(',',$collectRequest);
-            foreach ($collectArray as $collect){
-                if(
-                    property_exists($this,'collects')
-                    && in_array($collect,$this->collects,true)
-                ){
+        if (is_string($collectRequest)) {
+            $collectArray = explode(',', $collectRequest);
+            foreach ($collectArray as $collect) {
+                if (
+                    property_exists($this, 'collects')
+                    && in_array($collect, $this->collects, true)
+                ) {
                     $list['collects'][$collect] = $this->graphQl->get()->sum($collect);
-                }
-                else{
+                } else {
                     return Exception::customException(trans('exception.resourceCollection'));
                 }
             }
         }
 
-        return call_user_func($callback,$list);
+        return call_user_func($callback, $list);
     }
 
     /**
@@ -156,30 +153,30 @@ trait ResourceRepository
      * @param bool $recursive
      * @return array
      */
-    public function resourcePropagation(array $data = [], ?object $repository = null, bool $localizationHandler = true,bool $recursive = false): array
+    public function resourcePropagation(array $data = [], ?object $repository = null, bool $localizationHandler = true, bool $recursive = false): array
     {
-        $list           = [];
+        $list = [];
 
-        if($localizationHandler){
-            $repository     = $repository ?? $this;
+        if ($localizationHandler) {
+            $repository = $repository ?? $this;
 
-            if($recursive){
-                AppContainer::set('resourcePropagationRepository',$repository);
+            if ($recursive) {
+                AppContainer::set('resourcePropagationRepository', $repository);
             }
 
-            $localizations  = $this->getLocalizations($repository);
-            $withValues     = $repository->getModelWithValues();
+            $localizations = $this->getLocalizations($repository);
+            $withValues = $repository->getModelWithValues();
         }
 
-        foreach ($data as $key => $item){
-            if($localizationHandler){
+        foreach ($data as $key => $item) {
+            if ($localizationHandler) {
                 $values = $item['localization']['values'][0] ?? [];
 
-                foreach ($withValues as $withValue){
+                foreach ($withValues as $withValue) {
                     $withValueSnake = Str::snake($withValue);
                     $itemRelations = ($item[$withValueSnake] ?? []);
-                    foreach ($itemRelations as $withKey => $withData){
-                        if(isset($withData['localization'])){
+                    foreach ($itemRelations as $withKey => $withData) {
+                        if (isset($withData['localization'])) {
                             $item[$withValueSnake][$withKey] = ($this->resourcePropagation(
                                     [$withData],
                                     $this->findRepositoryByModel(getModelWithPlural($withValue)),
@@ -188,13 +185,13 @@ trait ResourceRepository
                                 )[0]) ?? [];
                         }
 
-                        if(is_array($withData)){
-                            foreach ($withData as $withDataKey => $withDatum){
-                                if(is_array($withDatum) && count($withDatum) && isset($withData[$withDataKey.'_code'])){
+                        if (is_array($withData)) {
+                            foreach ($withData as $withDataKey => $withDatum) {
+                                if (is_array($withDatum) && count($withDatum) && isset($withData[$withDataKey . '_code'])) {
                                     $withDataModel = Str::camel($withDataKey);
-                                    if(isset($item[$withValueSnake][$withKey][$withDataKey]) && is_array($item[$withValueSnake][$withKey][$withDataKey])){
-                                        foreach ($item[$withValueSnake][$withKey][$withDataKey] as $recursiveKey => $recursiveVal){
-                                            if(isset($recursiveVal['localization'])){
+                                    if (isset($item[$withValueSnake][$withKey][$withDataKey]) && is_array($item[$withValueSnake][$withKey][$withDataKey])) {
+                                        foreach ($item[$withValueSnake][$withKey][$withDataKey] as $recursiveKey => $recursiveVal) {
+                                            if (isset($recursiveVal['localization'])) {
                                                 $item[$withValueSnake][$withKey][$withDataKey][$recursiveKey] = ($this->resourcePropagation(
                                                         [$recursiveVal],
                                                         $this->findRepositoryByModel($withDataModel),
@@ -212,14 +209,14 @@ trait ResourceRepository
 
                 }
 
-                foreach ($localizations as $localization){
+                foreach ($localizations as $localization) {
                     $item[$localization] = $values[$localization] ?? ($item[$localization] ?? null);
                     unset($item['localization']);
                 }
             }
 
-            $list[$key] = $this->resourceHandler($item,function(object $resource) use($item){
-                return (method_exists($resource,$this->resourceMethod)) ?  $resource->{$this->resourceMethod}($item) : $item;
+            $list[$key] = $this->resourceHandler($item, function (object $resource) use ($item) {
+                return (method_exists($resource, $this->resourceMethod)) ? $resource->{$this->resourceMethod}($item) : $item;
             });
         }
 
@@ -233,17 +230,17 @@ trait ResourceRepository
      * @param callable $callback
      * @return array
      */
-    public function resourceHandler(array $data,callable $callback) : array
+    public function resourceHandler(array $data, callable $callback): array
     {
         $resource = $this->getResource();
 
-        if(class_exists($resource)){
-            if(!isset(static::$resourceInstance[$resource])){
+        if (class_exists($resource)) {
+            if (!isset(static::$resourceInstance[$resource])) {
                 static::$resourceInstance[$resource] = new $resource;
             }
         }
 
-        return (!isset(static::$resourceInstance[$resource])) ? $data : call_user_func($callback,static::$resourceInstance[$resource]);
+        return (!isset(static::$resourceInstance[$resource])) ? $data : call_user_func($callback, static::$resourceInstance[$resource]);
     }
 
 

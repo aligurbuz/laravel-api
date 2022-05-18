@@ -4,21 +4,21 @@ declare(strict_types=1);
 
 namespace App\Repositories;
 
-use Throwable;
 use App\Constants;
-use App\Services\Db;
-use App\Services\Client;
-use Illuminate\Support\Str;
 use App\Exceptions\Exception;
-use App\Services\AppContainer;
 use App\Exceptions\SqlExceptionManager;
-use Illuminate\Database\Eloquent\Builder;
 use App\Repositories\Supporters\CacheRepository;
 use App\Repositories\Supporters\CreateRepository;
-use App\Repositories\Supporters\UpdateRepository;
 use App\Repositories\Supporters\GlobalScopeManager;
-use App\Repositories\Supporters\ResourceRepository;
 use App\Repositories\Supporters\LocalizationRepository;
+use App\Repositories\Supporters\ResourceRepository;
+use App\Repositories\Supporters\UpdateRepository;
+use App\Services\AppContainer;
+use App\Services\Client;
+use App\Services\Db;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Str;
+use Throwable;
 
 /**
  * Class EloquentRepository
@@ -26,7 +26,7 @@ use App\Repositories\Supporters\LocalizationRepository;
  */
 class EloquentRepository
 {
-    use CacheRepository,ResourceRepository,LocalizationRepository,CreateRepository,UpdateRepository;
+    use CacheRepository, ResourceRepository, LocalizationRepository, CreateRepository, UpdateRepository;
 
     /**
      * @var object|null
@@ -58,17 +58,17 @@ class EloquentRepository
      *
      * @return array
      */
-    public function get() : array
+    public function get(): array
     {
         $this->setAutoEagerLoadings();
 
         // cache will be made according to your model.
         // this will make your queries very performance.
-        return $this->additionalResourceHandler($this->useCache(function(){
+        return $this->additionalResourceHandler($this->useCache(function () {
 
             // a resource class will be valid,
             // where you can manipulate all the returned result set values one by one.
-            return $this->resource(function(){
+            return $this->resource(function () {
                 return $this->graphQl();
             });
         }));
@@ -80,7 +80,7 @@ class EloquentRepository
      * @param bool $fullSql
      * @return string
      */
-    public function toSql(bool $fullSql = true) : string
+    public function toSql(bool $fullSql = true): string
     {
         $this->get();
 
@@ -95,11 +95,11 @@ class EloquentRepository
      * @param int|null $pagination
      * @return array
      */
-    public function pagination(?int $pagination = null) : array
+    public function pagination(?int $pagination = null): array
     {
         $this->setEndpointQueries($this->graphQl);
 
-        if(property_exists($this,'paginator') && !$this->paginator){
+        if (property_exists($this, 'paginator') && !$this->paginator) {
             return $this->graphQl->get()->toArray();
         }
 
@@ -111,11 +111,11 @@ class EloquentRepository
      *
      * @return int
      */
-    private function paginationHandler() : int
+    private function paginationHandler(): int
     {
-        $limit = request()->query->get('limit',$this->pagination);
+        $limit = request()->query->get('limit', $this->pagination);
 
-        if(!is_numeric($limit)){
+        if (!is_numeric($limit)) {
             Exception::customException(trans('exception.limitException'));
         }
 
@@ -130,12 +130,11 @@ class EloquentRepository
      * @param int $pagination
      * @return void
      */
-    public function setPagination(int $pagination) : void
+    public function setPagination(int $pagination): void
     {
-        if($pagination<=$this->pagination){
+        if ($pagination <= $this->pagination) {
             $this->pagination = $pagination;
-        }
-        else{
+        } else {
             Exception::customException(trans('exception.limitExceedException'));
         }
     }
@@ -146,7 +145,7 @@ class EloquentRepository
      * @param int $limit
      * @return object
      */
-    public function limit(int $limit) : object
+    public function limit(int $limit): object
     {
         $this->repository = $this->instance()->limit($limit);
 
@@ -160,7 +159,7 @@ class EloquentRepository
      * @param int $take
      * @return object
      */
-    public function skipTake(int $skip,int $take) : object
+    public function skipTake(int $skip, int $take): object
     {
         $this->repository = $this->instance()->skip($skip)->take($take);
 
@@ -174,12 +173,12 @@ class EloquentRepository
      * @param callable $callback
      * @return array
      */
-    public function cache(mixed $tag,callable $callback): array
+    public function cache(mixed $tag, callable $callback): array
     {
         $this->setCacheTag($tag);
-        $this->repository = call_user_func($callback,$this);
+        $this->repository = call_user_func($callback, $this);
 
-        return $this->useCache(function(){
+        return $this->useCache(function () {
             return $this->getRepository();
         });
     }
@@ -189,12 +188,12 @@ class EloquentRepository
      *
      * @return array
      */
-    public function getDeniedEagerLoadings() : array
+    public function getDeniedEagerLoadings(): array
     {
-        if(
-            property_exists($this,'deniedEagerLoadings')
+        if (
+            property_exists($this, 'deniedEagerLoadings')
             && is_array($this->deniedEagerLoadings)
-        ){
+        ) {
             return $this->deniedEagerLoadings;
         }
 
@@ -206,7 +205,7 @@ class EloquentRepository
      *
      * @return array
      */
-    public function toArray() : array
+    public function toArray(): array
     {
         return $this->graphQl->get()->toArray();
     }
@@ -228,7 +227,7 @@ class EloquentRepository
      * @param $value
      * @return object
      */
-    public function createModel($value) : object
+    public function createModel($value): object
     {
         return static::$model::create($value);
     }
@@ -239,7 +238,7 @@ class EloquentRepository
      * @param array $data
      * @return array
      */
-    public function getClientData(array $data = []) : array
+    public function getClientData(array $data = []): array
     {
         return count($data) ? $data : Client::data();
     }
@@ -251,9 +250,9 @@ class EloquentRepository
      * @param bool $id
      * @return array|object
      */
-    public function update(array $data = [],bool $id = true): array|object
+    public function update(array $data = [], bool $id = true): array|object
     {
-        return $this->updateHandler($data,$id);
+        return $this->updateHandler($data, $id);
     }
 
     /**
@@ -263,9 +262,9 @@ class EloquentRepository
      * @param array $createData
      * @return array|object
      */
-    public function updateOrCreate(array $updateData = [],array $createData = []): array|object
+    public function updateOrCreate(array $updateData = [], array $createData = []): array|object
     {
-        return $this->updateHandler($updateData,false,(count($createData) ? $createData : $updateData));
+        return $this->updateHandler($updateData, false, (count($createData) ? $createData : $updateData));
     }
 
     /**
@@ -275,9 +274,9 @@ class EloquentRepository
      * @param string $method
      * @return mixed
      */
-    public function proxy(mixed $callback,string $method = 'pagination') : mixed
+    public function proxy(mixed $callback, string $method = 'pagination'): mixed
     {
-        return proxyClosure($callback,function(EloquentRepository $repository) use($method){
+        return proxyClosure($callback, function (EloquentRepository $repository) use ($method) {
             return $repository->$method();
         });
     }
@@ -288,7 +287,7 @@ class EloquentRepository
      * @param array $data
      * @return object
      */
-    public function select(array $data = []) : object
+    public function select(array $data = []): object
     {
         $this->repository = $this->instance()->select($data);
 
@@ -303,13 +302,13 @@ class EloquentRepository
      * @param string $operator
      * @return object
      */
-    public function where(string $column,string|int $value,string $operator = '=') : object
+    public function where(string $column, string|int $value, string $operator = '='): object
     {
-        if(!isValidIndex($this->getTable(),$column)){
-            return Exception::customException(trans('exception.filterException',['key' => $column]));
+        if (!isValidIndex($this->getTable(), $column)) {
+            return Exception::customException(trans('exception.filterException', ['key' => $column]));
         }
 
-        $this->repository = $this->instance()->where($column,$operator,$value);
+        $this->repository = $this->instance()->where($column, $operator, $value);
 
         return $this;
     }
@@ -320,9 +319,9 @@ class EloquentRepository
      * @param int $code
      * @return object
      */
-    public function code(int $code = 0) : object
+    public function code(int $code = 0): object
     {
-        return $this->where($this->getModelCode(),$code);
+        return $this->where($this->getModelCode(), $code);
     }
 
     /**
@@ -330,9 +329,9 @@ class EloquentRepository
      * @param array $select
      * @return array
      */
-    public function find(int $id,array $select = ['*']) : array
+    public function find(int $id, array $select = ['*']): array
     {
-        $find = $this->instance()->find($id,$select);
+        $find = $this->instance()->find($id, $select);
 
         return $find ? $find->toArray() : [];
     }
@@ -342,9 +341,9 @@ class EloquentRepository
      *
      * @return array
      */
-    public function latest() : array
+    public function latest(): array
     {
-        $this->repository = $this->instance()->orderBy('id','desc')->take(1);
+        $this->repository = $this->instance()->orderBy('id', 'desc')->take(1);
 
         return ($this->getRepository())[0] ?? [];
     }
@@ -357,8 +356,8 @@ class EloquentRepository
      */
     public function notDeleted(?object $builder = null): object
     {
-        $this->ensureColumnExists('is_deleted',$this->instance(),function () use($builder){
-            $this->repository = $this->builder($builder)->where('is_deleted',0);
+        $this->ensureColumnExists('is_deleted', $this->instance(), function () use ($builder) {
+            $this->repository = $this->builder($builder)->where('is_deleted', 0);
         });
 
         return $this;
@@ -371,9 +370,9 @@ class EloquentRepository
      * @param $value
      * @return bool
      */
-    public function exists($field,$value) : bool
+    public function exists($field, $value): bool
     {
-        $query = $this->instance()->where($field,$value)->get()->toArray();
+        $query = $this->instance()->where($field, $value)->get()->toArray();
 
         return isset($query[0]);
     }
@@ -383,11 +382,11 @@ class EloquentRepository
      * @param false $hash
      * @return mixed
      */
-    public function toFullSql(object $builder,bool $hash = false) : mixed
+    public function toFullSql(object $builder, bool $hash = false): mixed
     {
         $sql = $builder->toFullSql();
 
-        if($hash){
+        if ($hash) {
             return crc32($sql);
         }
 
@@ -420,11 +419,11 @@ class EloquentRepository
      *
      * @return object
      */
-    public function instanceModel() : object
+    public function instanceModel(): object
     {
         $model = $this->getModel();
 
-        if(!is_null($connection = $this->getConnection())){
+        if (!is_null($connection = $this->getConnection())) {
             return (new $model)->setConnection($connection);
         }
 
@@ -437,9 +436,9 @@ class EloquentRepository
      * @param bool $repository
      * @return object
      */
-    public function with(bool $repository = true) : object
+    public function with(bool $repository = true): object
     {
-        $this->repository = $this->instanceModel()->repository($this,$repository)->with($this->withBindings);
+        $this->repository = $this->instanceModel()->repository($this, $repository)->with($this->withBindings);
 
         return $this;
     }
@@ -490,13 +489,13 @@ class EloquentRepository
      * @param bool $afterLoadingRepository
      * @return array
      */
-    public function getRepository(bool $afterLoadingRepository = true) : array
+    public function getRepository(bool $afterLoadingRepository = true): array
     {
-        if(is_null($this->repository)){
+        if (is_null($this->repository)) {
             $this->repository = $this->instance();
         }
 
-        if($afterLoadingRepository && method_exists($this,'afterLoadingRepository')){
+        if ($afterLoadingRepository && method_exists($this, 'afterLoadingRepository')) {
             $this->repository = $this->afterLoadingRepository();
         }
 
@@ -513,9 +512,9 @@ class EloquentRepository
      * @param object $instance
      * @return void
      */
-    private function setEndpointQueries(object $instance) : void
+    private function setEndpointQueries(object $instance): void
     {
-        AppContainer::set('endpointQueries',[$instance->toFullSql()],true);
+        AppContainer::set('endpointQueries', [$instance->toFullSql()], true);
     }
 
     /**
@@ -523,7 +522,7 @@ class EloquentRepository
      *
      * @return object
      */
-    public function afterLoadingRepository() : object
+    public function afterLoadingRepository(): object
     {
         return $this->active()->instance();
     }
@@ -536,12 +535,12 @@ class EloquentRepository
      */
     public function active(?object $builder = null): object
     {
-        $this->ensureColumnExists('status',$this->instance(),function() use($builder){
-            $this->repository = $this->builder($builder)->where('status',1);
+        $this->ensureColumnExists('status', $this->instance(), function () use ($builder) {
+            $this->repository = $this->builder($builder)->where('status', 1);
         });
 
-        $this->ensureColumnExists('is_deleted',$this->instance(),function() use($builder){
-            $this->repository = $this->builder($builder)->where('is_deleted',0);
+        $this->ensureColumnExists('is_deleted', $this->instance(), function () use ($builder) {
+            $this->repository = $this->builder($builder)->where('is_deleted', 0);
         });
 
         return $this;
@@ -555,12 +554,12 @@ class EloquentRepository
      */
     public function sequence(?object $builder = null): object
     {
-        $this->ensureColumnExists('sequence_time',$this->instance(),function() use($builder){
-            $this->repository = $this->builder($builder)->orderBy('sequence_time','desc');
+        $this->ensureColumnExists('sequence_time', $this->instance(), function () use ($builder) {
+            $this->repository = $this->builder($builder)->orderBy('sequence_time', 'desc');
         });
 
-        $this->ensureColumnExists('sequence',$this->instance(),function() use($builder){
-            $this->repository = $this->builder($builder)->orderBy('sequence','asc');
+        $this->ensureColumnExists('sequence', $this->instance(), function () use ($builder) {
+            $this->repository = $this->builder($builder)->orderBy('sequence', 'asc');
         });
 
         return $this;
@@ -574,7 +573,7 @@ class EloquentRepository
      */
     public function desc(Builder $builder = null): EloquentRepository
     {
-        $this->repository = $this->builder($builder)->orderBy('id','desc');
+        $this->repository = $this->builder($builder)->orderBy('id', 'desc');
 
         return $this;
     }
@@ -587,7 +586,7 @@ class EloquentRepository
      */
     public function asc(Builder $builder = null): EloquentRepository
     {
-        $this->repository = $this->builder($builder)->orderBy('id','asc');
+        $this->repository = $this->builder($builder)->orderBy('id', 'asc');
 
         return $this;
     }
@@ -597,7 +596,7 @@ class EloquentRepository
      *
      * @return array
      */
-    public function getRanges() : array
+    public function getRanges(): array
     {
         return $this->ranges ?? [];
     }
@@ -619,10 +618,10 @@ class EloquentRepository
      * @param bool $repository
      * @return object
      */
-    public function instance(bool $repository = true) : object
+    public function instance(bool $repository = true): object
     {
-        if(is_null($this->repository)){
-            $this->repository = $this->instanceModel()->repository($this,$repository);
+        if (is_null($this->repository)) {
+            $this->repository = $this->instanceModel()->repository($this, $repository);
         }
 
         return $this->repository;
@@ -646,9 +645,9 @@ class EloquentRepository
      * @param bool $globalScope
      * @return object
      */
-    public function apply(?object $builder = null,bool $globalScope = true): object
+    public function apply(?object $builder = null, bool $globalScope = true): object
     {
-        AppContainer::setWithTerminating('globalScope',$globalScope);
+        AppContainer::setWithTerminating('globalScope', $globalScope);
 
         return $builder ?? $this->globalScope();
     }
@@ -658,7 +657,7 @@ class EloquentRepository
      *
      * @return array
      */
-    public function all() : array
+    public function all(): array
     {
         return $this->instance()->get()->toArray();
     }
@@ -669,9 +668,9 @@ class EloquentRepository
      * @param int $value
      * @return object
      */
-    public function default(int $value = 1) : object
+    public function default(int $value = 1): object
     {
-        $this->repository = $this->instance()->where('is_default',$value);
+        $this->repository = $this->instance()->where('is_default', $value);
 
         return $this;
     }
@@ -681,13 +680,13 @@ class EloquentRepository
      *
      * @return string|null
      */
-    public function getConnection() : ?string
+    public function getConnection(): ?string
     {
-        if(property_exists($this,'connection')){
+        if (property_exists($this, 'connection')) {
             return $this->connection;
         }
 
-        if(method_exists($this,'setConnection')){
+        if (method_exists($this, 'setConnection')) {
             return $this->setConnection();
         }
 
@@ -699,7 +698,7 @@ class EloquentRepository
      *
      * @return $this
      */
-    public function graphQl() : EloquentRepository
+    public function graphQl(): EloquentRepository
     {
         $this->graphQl = ($this->instanceModel())->repository($this)
             ->filterQuery()
@@ -724,9 +723,9 @@ class EloquentRepository
      * @param callable $callback
      * @return ?object
      */
-    public function ensureColumnExists($column,$builder,callable $callback) : ?object
+    public function ensureColumnExists($column, $builder, callable $callback): ?object
     {
-        if(Db::ensureColumnExists($this->getModel(),$column)){
+        if (Db::ensureColumnExists($this->getModel(), $column)) {
             return call_user_func($callback);
         }
 
@@ -740,10 +739,10 @@ class EloquentRepository
      * @param callable $callback
      * @return object
      */
-    public function throwExceptionIfColumnNotExist($column,callable $callback) : object
+    public function throwExceptionIfColumnNotExist($column, callable $callback): object
     {
-        if(!Db::ensureColumnExists($this->getModel(),$column)){
-            return Exception::customException($column.' column name is not valid');
+        if (!Db::ensureColumnExists($this->getModel(), $column)) {
+            return Exception::customException($column . ' column name is not valid');
         }
 
         return call_user_func($callback);
@@ -755,9 +754,9 @@ class EloquentRepository
      * @param Throwable $throwable
      * @return mixed
      */
-    public function sqlException(Throwable $throwable) : mixed
+    public function sqlException(Throwable $throwable): mixed
     {
-        return SqlExceptionManager::make($throwable,$this->getTable(),function() use($throwable){
+        return SqlExceptionManager::make($throwable, $this->getTable(), function () use ($throwable) {
             return Exception::modelCreateException(
                 is_null($throwable->getPrevious()) ? $throwable->getMessage() : $throwable->getPrevious()->getMessage()
             );
@@ -770,7 +769,7 @@ class EloquentRepository
      * @param $model
      * @return object
      */
-    public function findRepositoryByModel($model) : object
+    public function findRepositoryByModel($model): object
     {
         $modelName = getModelName($model);
         return Repository::$modelName();
@@ -781,9 +780,9 @@ class EloquentRepository
      *
      * @return array
      */
-    public function getHitter() : array
+    public function getHitter(): array
     {
-        if(property_exists($this,'hitter')){
+        if (property_exists($this, 'hitter')) {
             return $this->hitter;
         }
 
@@ -797,7 +796,7 @@ class EloquentRepository
      * @param callable $callback
      * @return object
      */
-    public function setEagerLoading(?string $model,callable $callback) : object
+    public function setEagerLoading(?string $model, callable $callback): object
     {
         $model = $model ?? $this->getModelName();
 
@@ -817,16 +816,16 @@ class EloquentRepository
      * @param array $args
      * @return object
      */
-    public function eagerLoadingHandler(string $model,array $args = []) : object
+    public function eagerLoadingHandler(string $model, array $args = []): object
     {
         $withKey = Str::camel($model);
         $model = getModelWithPlural($model);
 
-        $modelInstance    = $args[0] ?? $this->instanceModel();
-        $modelNamespace   = Constants::modelNamespace.'\\'.$model;
+        $modelInstance = $args[0] ?? $this->instanceModel();
+        $modelNamespace = Constants::modelNamespace . '\\' . $model;
 
-        return $this->setEagerLoading($modelNamespace,function() use($modelNamespace,$modelInstance,$model,$withKey){
-            $queries = (method_exists($modelInstance,'getWithQueries')) ? $modelInstance->getWithQueries() : [];
+        return $this->setEagerLoading($modelNamespace, function () use ($modelNamespace, $modelInstance, $model, $withKey) {
+            $queries = (method_exists($modelInstance, 'getWithQueries')) ? $modelInstance->getWithQueries() : [];
             $list = $queries[$withKey] ?? [];
 
             $getLocalizations = $this->findRepositoryByModel($model)->getLocalizations();
@@ -845,9 +844,9 @@ class EloquentRepository
      *
      * @return array
      */
-    public function getCollects() : array
+    public function getCollects(): array
     {
-        if(property_exists($this,'collects') && is_array($this->collects)){
+        if (property_exists($this, 'collects') && is_array($this->collects)) {
             return $this->collects;
         }
 
@@ -859,9 +858,9 @@ class EloquentRepository
      *
      * @return array
      */
-    public function getAutoEagerLoadings() : array
+    public function getAutoEagerLoadings(): array
     {
-        if(property_exists($this,'autoEagerLoadings') && is_array($this->autoEagerLoadings)){
+        if (property_exists($this, 'autoEagerLoadings') && is_array($this->autoEagerLoadings)) {
             return $this->autoEagerLoadings;
         }
 
@@ -873,9 +872,9 @@ class EloquentRepository
      *
      * @return bool
      */
-    public function getAdditionalResource() : bool
+    public function getAdditionalResource(): bool
     {
-        if(property_exists($this,'additionalResource') && is_bool($this->additionalResource)){
+        if (property_exists($this, 'additionalResource') && is_bool($this->additionalResource)) {
             return $this->additionalResource;
         }
 
@@ -887,9 +886,9 @@ class EloquentRepository
      *
      * @return array
      */
-    public function getGroupByFields() : array
+    public function getGroupByFields(): array
     {
-        if(property_exists($this,'groupByFields') && is_array($this->groupByFields)){
+        if (property_exists($this, 'groupByFields') && is_array($this->groupByFields)) {
             return $this->groupByFields;
         }
 
@@ -901,9 +900,9 @@ class EloquentRepository
      *
      * @return array
      */
-    public function getGroupByProcessFields() : array
+    public function getGroupByProcessFields(): array
     {
-        if(property_exists($this,'groupByProcessFields') && is_array($this->groupByProcessFields)){
+        if (property_exists($this, 'groupByProcessFields') && is_array($this->groupByProcessFields)) {
             return $this->groupByProcessFields;
         }
 
@@ -915,9 +914,9 @@ class EloquentRepository
      *
      * @return array
      */
-    public function getAddPostQueries() : array
+    public function getAddPostQueries(): array
     {
-        if(property_exists($this,'addPostQueries') && is_array($this->addPostQueries)){
+        if (property_exists($this, 'addPostQueries') && is_array($this->addPostQueries)) {
             return $this->addPostQueries;
         }
 
@@ -930,9 +929,9 @@ class EloquentRepository
      * @param array $data
      * @return array
      */
-    public function additionalResourceHandler(array $data = []) : array
+    public function additionalResourceHandler(array $data = []): array
     {
-        return ($this->getAdditionalResource()) ? $this->additionalResource($data,__FUNCTION__) : $data;
+        return ($this->getAdditionalResource()) ? $this->additionalResource($data, __FUNCTION__) : $data;
     }
 
     /**
@@ -940,17 +939,17 @@ class EloquentRepository
      *
      * @return void
      */
-    public function setAutoEagerLoadings() : void
+    public function setAutoEagerLoadings(): void
     {
-        $with = request()->query->get('with',[]);
+        $with = request()->query->get('with', []);
 
-        if(property_exists($this,'localization') && count($this->localization)){
-            request()->query->set('with',array_merge($with,['localization' => 'values']));
+        if (property_exists($this, 'localization') && count($this->localization)) {
+            request()->query->set('with', array_merge($with, ['localization' => 'values']));
         }
 
-        foreach ($this->getAutoEagerLoadings() as $loading){
-            if(!isset($with[$loading])){
-                request()->query->set('with',array_merge($with,[$loading => '*']));
+        foreach ($this->getAutoEagerLoadings() as $loading) {
+            if (!isset($with[$loading])) {
+                request()->query->set('with', array_merge($with, [$loading => '*']));
             }
         }
     }
@@ -960,7 +959,7 @@ class EloquentRepository
      *
      * @return array
      */
-    public function getColumns() : array
+    public function getColumns(): array
     {
         return Db::columns($this->getTable());
     }
@@ -970,7 +969,7 @@ class EloquentRepository
      *
      * @return array
      */
-    public function getIndexes() : array
+    public function getIndexes(): array
     {
         return Db::indexes($this->getTable());
     }
@@ -982,23 +981,24 @@ class EloquentRepository
      * @param array $args
      * @return object|null
      */
-    public function __call(string $name,array $args = []) : ?object
+    public function __call(string $name, array $args = []): ?object
     {
-        if(Str::startsWith($name,'with')){
-            $model = str_replace('with','',$name);
-            return $this->eagerLoadingHandler($model,$args);
+        if (Str::startsWith($name, 'with')) {
+            $model = str_replace('with', '', $name);
+            return $this->eagerLoadingHandler($model, $args);
         }
 
-        if(in_array($snakeName = Str::snake($name),$this->getColumns(),true)){
-            if(!in_array($snakeName,$this->getIndexes(),true)){
-                Exception::filterException(true,['key' => $snakeName]);
+        if (in_array($snakeName = Str::snake($name), $this->getColumns(), true)) {
+            if (!in_array($snakeName, $this->getIndexes(), true)) {
+                Exception::filterException(true, ['key' => $snakeName]);
             }
 
-            $this->repository = $this->instance()->where($snakeName,$args[0] ?? null);
+            $this->repository = $this->instance()->where($snakeName, $args[0] ?? null);
         }
 
-        if(in_array($name,$this->getModelWithValues(),true)){
-            $this->withBindings[$name] = ($args[0] ?? function($query) {});
+        if (in_array($name, $this->getModelWithValues(), true)) {
+            $this->withBindings[$name] = ($args[0] ?? function ($query) {
+                });
             $this->with();
         }
 

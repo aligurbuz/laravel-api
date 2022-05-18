@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Repositories\Supporters;
 
+use App\Facades\Authenticate\ApiKey;
 use App\Services\AppContainer;
 use App\Services\Db;
-use Illuminate\Support\Str;
-use App\Facades\Authenticate\ApiKey;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Str;
 
 /**
  * Class GlobalScopeManager
@@ -55,7 +55,7 @@ class GlobalScopeManager
      * @param ?object $builder
      * @return $this
      */
-    public function setBuilder(?object $builder = null) : GlobalScopeManager
+    public function setBuilder(?object $builder = null): GlobalScopeManager
     {
         $this->builder = $builder ?? $this->builder;
 
@@ -69,7 +69,7 @@ class GlobalScopeManager
      */
     public function make(): object
     {
-        if(true===AppContainer::get('globalScope',true)){
+        if (true === AppContainer::get('globalScope', true)) {
             $this->handleScopes();
         }
 
@@ -81,13 +81,13 @@ class GlobalScopeManager
      *
      * @return void
      */
-    private function handleScopes() : void
+    private function handleScopes(): void
     {
-        foreach (config('repository.globalScopes') as $scope){
+        foreach (config('repository.globalScopes') as $scope) {
 
             // the clientKey values in the dontRepository key
             // in the config settings will disable the repository application.
-            if(!in_array(ApiKey::who(),config('repository.dontGlobalScopes'))){
+            if (!in_array(ApiKey::who(), config('repository.dontGlobalScopes'))) {
                 $this->handler($scope);
             }
         }
@@ -107,7 +107,7 @@ class GlobalScopeManager
             if (class_exists($resource) && consoleAuthorizationStatus()) {
                 $resourceInstance = (new $resource($this->builder));
 
-                return (method_exists($resourceInstance,$camelCaseMethod = Str::camel(who())))
+                return (method_exists($resourceInstance, $camelCaseMethod = Str::camel(who())))
                     ? $resourceInstance->{$camelCaseMethod}($columnName)
                     : $resourceInstance->handle($columnName);
             }
@@ -123,9 +123,9 @@ class GlobalScopeManager
      * @param callable $callback
      * @return object
      */
-    protected function ensureColumnExists($function,callable $callback) : object
+    protected function ensureColumnExists($function, callable $callback): object
     {
-        return $this->builder = $this->repository->{__FUNCTION__}($function,$this->builder,$callback);
+        return $this->builder = $this->repository->{__FUNCTION__}($function, $this->builder, $callback);
     }
 }
 

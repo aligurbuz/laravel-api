@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Repositories\Supporters;
 
-use App\Services\AppContainer;
-use Illuminate\Support\Str;
 use App\Exceptions\Exception;
-use Illuminate\Support\Facades\DB;
+use App\Services\AppContainer;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 /**
  * Trait UpdateRepository
@@ -23,12 +23,12 @@ trait UpdateRepository
      * @param bool $id
      * @return object
      */
-    public function getBaseQueryForUpdate(array $data = [],bool $id = true) : object
+    public function getBaseQueryForUpdate(array $data = [], bool $id = true): object
     {
-        return $this->instance()->where(function(Builder $builder) use($data,$id){
-            $modelCode = Str::snake($this->getModelName()).'_code';
-            if(isset($data[$modelCode]) && $id === true){
-                $builder->where($modelCode,intval(($data[$modelCode] ?? 0)));
+        return $this->instance()->where(function (Builder $builder) use ($data, $id) {
+            $modelCode = Str::snake($this->getModelName()) . '_code';
+            if (isset($data[$modelCode]) && $id === true) {
+                $builder->where($modelCode, intval(($data[$modelCode] ?? 0)));
             }
         });
     }
@@ -39,9 +39,9 @@ trait UpdateRepository
      * @param array $oldData
      * @param array $newData
      */
-    public function updateEventDispatcher(array $oldData = [],array $newData = []) : void
+    public function updateEventDispatcher(array $oldData = [], array $newData = []): void
     {
-        $this->createTableChanges(($oldData[0] ?? []),$newData);
+        $this->createTableChanges(($oldData[0] ?? []), $newData);
         $this->updateLocalization($newData);
         $this->deleteCache();
     }
@@ -52,7 +52,7 @@ trait UpdateRepository
      * @param array $oldData
      * @param array $newData
      */
-    public function createTableChanges(array $oldData = [],array $newData = []) : void
+    public function createTableChanges(array $oldData = [], array $newData = []): void
     {
         //
     }
@@ -64,19 +64,19 @@ trait UpdateRepository
      * @param int $key
      * @return array
      */
-    public function hitterProcess(array $data = [],int $key = 0): array
+    public function hitterProcess(array $data = [], int $key = 0): array
     {
-        if(
-            property_exists($this,'hitter')
+        if (
+            property_exists($this, 'hitter')
             && is_array($this->hitter)
             && count($this->hitter)
         ) {
-            foreach ($this->hitter as $hit){
-                if(isset($data[$hit])){
-                    $operator = AppContainer::has('repositoryHitter.'.$key.'.'.$hit)
-                        ? AppContainer::get('repositoryHitter.'.$key.'.'.$hit)
+            foreach ($this->hitter as $hit) {
+                if (isset($data[$hit])) {
+                    $operator = AppContainer::has('repositoryHitter.' . $key . '.' . $hit)
+                        ? AppContainer::get('repositoryHitter.' . $key . '.' . $hit)
                         : '+';
-                    $data[$hit] = DB::raw(''.$hit.''.$operator.''.$data[$hit]);
+                    $data[$hit] = DB::raw('' . $hit . '' . $operator . '' . $data[$hit]);
                 }
             }
         }
@@ -92,49 +92,48 @@ trait UpdateRepository
      * @param array $create
      * @return array|object
      */
-    public function updateHandler(array $data = [],bool $id = true,array $create = []): array|object
+    public function updateHandler(array $data = [], bool $id = true, array $create = []): array|object
     {
         $queryList = [];
 
         $updateClientData = $this->getClientData($data);
 
-        foreach ($updateClientData as $dataKey => $data){
-            $baseQuery  =  $this->getBaseQueryForUpdate($data,$id);
-            $oldData    =  $baseQuery->get()->toArray();
+        foreach ($updateClientData as $dataKey => $data) {
+            $baseQuery = $this->getBaseQueryForUpdate($data, $id);
+            $oldData = $baseQuery->get()->toArray();
 
-            if(method_exists($this,'eventFireBeforeUpdate')){
-                $this->eventFireBeforeUpdate($data,($oldData[0] ?? []));
+            if (method_exists($this, 'eventFireBeforeUpdate')) {
+                $this->eventFireBeforeUpdate($data, ($oldData[0] ?? []));
             }
 
-            if(
+            if (
                 !isset($oldData[0])
                 && $id === false
                 && count($create)
-            ){
+            ) {
                 return $this->create($create);
             }
 
-            if(!$id && count($create) && isset($data[getTableCode($this->getModel())])){
+            if (!$id && count($create) && isset($data[getTableCode($this->getModel())])) {
                 unset($data[getTableCode($this->getModel())]);
             }
 
-            try{
-                $update = $baseQuery->update($this->hitterProcess($data,$dataKey));
+            try {
+                $update = $baseQuery->update($this->hitterProcess($data, $dataKey));
 
-                if($update=='0'){
-                    return Exception::updateException('',['model' => $this->getModelName()]);
+                if ($update == '0') {
+                    return Exception::updateException('', ['model' => $this->getModelName()]);
                 }
 
-                $this->updateEventDispatcher($oldData,$data);
-            }
-            catch (\Exception $exception){
+                $this->updateEventDispatcher($oldData, $data);
+            } catch (\Exception $exception) {
                 return $this->sqlException($exception);
             }
 
             $queryList[] = $result = ($baseQuery->get()->toArray())[0] ?? [];
 
-            if(method_exists($this,'eventFireAfterUpdate')){
-                $this->eventFireAfterUpdate($result,$data);
+            if (method_exists($this, 'eventFireAfterUpdate')) {
+                $this->eventFireAfterUpdate($result, $data);
             }
         }
 

@@ -4,21 +4,21 @@ declare(strict_types=1);
 
 namespace App\Repositories;
 
-use App\Repositories\Resources\User\Contracts\UserRepositoryContract;
-use App\Repositories\Resources\Support\Contracts\ExcelRepositoryContract;
-use App\Repositories\Resources\Registration\Contracts\RegistrationRepositoryContract;
-use App\Repositories\Resources\User\Contracts\PhotosRepositoryContract;
-use App\Repositories\Resources\Timezones\Contracts\TimezonesRepositoryContract;
-use App\Repositories\Resources\Currencies\Contracts\CurrenciesRepositoryContract;
-use App\Repositories\Resources\Countries\Contracts\DistrictsRepositoryContract;
 use App\Repositories\Resources\Countries\Contracts\CitiesRepositoryContract;
+use App\Repositories\Resources\Countries\Contracts\CountriesRepositoryContract;
+use App\Repositories\Resources\Countries\Contracts\DistrictsRepositoryContract;
+use App\Repositories\Resources\Currencies\Contracts\CurrenciesRepositoryContract;
 use App\Repositories\Resources\Gate\Contracts\PermissionsRepositoryContract;
 use App\Repositories\Resources\Gate\Contracts\RolesRepositoryContract;
-use App\Repositories\Resources\SuperAdmins\Contracts\SuperAdminsRepositoryContract;
 use App\Repositories\Resources\Localizations\Contracts\LanguageRepositoryContract;
 use App\Repositories\Resources\Localizations\Contracts\LocalizationsRepositoryContract;
 use App\Repositories\Resources\Logger\Contracts\LoggerRepositoryContract;
-use App\Repositories\Resources\Countries\Contracts\CountriesRepositoryContract;
+use App\Repositories\Resources\Registration\Contracts\RegistrationRepositoryContract;
+use App\Repositories\Resources\SuperAdmins\Contracts\SuperAdminsRepositoryContract;
+use App\Repositories\Resources\Support\Contracts\ExcelRepositoryContract;
+use App\Repositories\Resources\Timezones\Contracts\TimezonesRepositoryContract;
+use App\Repositories\Resources\User\Contracts\PhotosRepositoryContract;
+use App\Repositories\Resources\User\Contracts\UserRepositoryContract;
 
 /**
  * Class Repository
@@ -31,7 +31,7 @@ class Repository
      *
      * @return ExcelRepositoryContract
      */
-    public static function excel() : ExcelRepositoryContract
+    public static function excel(): ExcelRepositoryContract
     {
         return app()->get(ExcelRepositoryContract::class);
     }
@@ -41,7 +41,7 @@ class Repository
      *
      * @return RegistrationRepositoryContract
      */
-    public static function registration() : RegistrationRepositoryContract
+    public static function registration(): RegistrationRepositoryContract
     {
         return app()->get(RegistrationRepositoryContract::class);
     }
@@ -51,7 +51,7 @@ class Repository
      *
      * @return PhotosRepositoryContract
      */
-    public static function userPhoto() : PhotosRepositoryContract
+    public static function userPhoto(): PhotosRepositoryContract
     {
         return app()->get(PhotosRepositoryContract::class);
     }
@@ -61,7 +61,7 @@ class Repository
      *
      * @return TimezonesRepositoryContract
      */
-    public static function timezone() : TimezonesRepositoryContract
+    public static function timezone(): TimezonesRepositoryContract
     {
         return app()->get(TimezonesRepositoryContract::class);
     }
@@ -71,7 +71,7 @@ class Repository
      *
      * @return CurrenciesRepositoryContract
      */
-    public static function currency() : CurrenciesRepositoryContract
+    public static function currency(): CurrenciesRepositoryContract
     {
         return app()->get(CurrenciesRepositoryContract::class);
     }
@@ -81,7 +81,7 @@ class Repository
      *
      * @return DistrictsRepositoryContract
      */
-    public static function district() : DistrictsRepositoryContract
+    public static function district(): DistrictsRepositoryContract
     {
         return app()->get(DistrictsRepositoryContract::class);
     }
@@ -91,7 +91,7 @@ class Repository
      *
      * @return CitiesRepositoryContract
      */
-    public static function city() : CitiesRepositoryContract
+    public static function city(): CitiesRepositoryContract
     {
         return app()->get(CitiesRepositoryContract::class);
     }
@@ -101,7 +101,7 @@ class Repository
      *
      * @return PermissionsRepositoryContract
      */
-    public static function permission() : PermissionsRepositoryContract
+    public static function permission(): PermissionsRepositoryContract
     {
         return app()->get(PermissionsRepositoryContract::class);
     }
@@ -111,7 +111,7 @@ class Repository
      *
      * @return RolesRepositoryContract
      */
-    public static function role() : RolesRepositoryContract
+    public static function role(): RolesRepositoryContract
     {
         return app()->get(RolesRepositoryContract::class);
     }
@@ -121,7 +121,7 @@ class Repository
      *
      * @return SuperAdminsRepositoryContract
      */
-    public static function superAdmin() : SuperAdminsRepositoryContract
+    public static function superAdmin(): SuperAdminsRepositoryContract
     {
         return app()->get(SuperAdminsRepositoryContract::class);
     }
@@ -131,7 +131,7 @@ class Repository
      *
      * @return LanguageRepositoryContract
      */
-    public static function language() : LanguageRepositoryContract
+    public static function language(): LanguageRepositoryContract
     {
         return app()->get(LanguageRepositoryContract::class);
     }
@@ -141,7 +141,7 @@ class Repository
      *
      * @return LocalizationsRepositoryContract
      */
-    public static function localization() : LocalizationsRepositoryContract
+    public static function localization(): LocalizationsRepositoryContract
     {
         return app()->get(LocalizationsRepositoryContract::class);
     }
@@ -151,7 +151,7 @@ class Repository
      *
      * @return CountriesRepositoryContract
      */
-    public static function country() : CountriesRepositoryContract
+    public static function country(): CountriesRepositoryContract
     {
         return app()->get(CountriesRepositoryContract::class);
     }
@@ -161,7 +161,7 @@ class Repository
      *
      * @return UserRepositoryContract
      */
-    public static function user() : UserRepositoryContract
+    public static function user(): UserRepositoryContract
     {
         return app()->get(UserRepositoryContract::class);
     }
@@ -171,7 +171,7 @@ class Repository
      *
      * @return LoggerRepositoryContract
      */
-    public static function logger() : LoggerRepositoryContract
+    public static function logger(): LoggerRepositoryContract
     {
         return app()->get(LoggerRepositoryContract::class);
     }
@@ -183,7 +183,7 @@ class Repository
      * @param array $arguments
      * @return bool;
      */
-    public static function __callStatic(?string $name,array $arguments = []) : bool
+    public static function __callStatic(?string $name, array $arguments = []): bool
     {
         return false;
     }
