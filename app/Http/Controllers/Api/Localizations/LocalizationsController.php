@@ -12,48 +12,48 @@ use App\Repositories\Resources\Localizations\Contracts\LocalizationsRepositoryCo
 
 class LocalizationsController extends ApiController
 {
-	/**
-	 * get localizations data
-	 *
-	 * @param GetClient $client
-	 * @param LocalizationsRepositoryContract $localizationsRepository
-	 * @return array
-	 */
-	public function get(GetClient $client, LocalizationsRepositoryContract $localizationsRepository): array
-	{
-		$client->handle();
-		return $localizationsRepository->get();
-	}
+    /**
+     * get localizations data
+     *
+     * @param GetClient $client
+     * @param LocalizationsRepositoryContract $localizationsRepository
+     * @return array
+     */
+    public function get(GetClient $client, LocalizationsRepositoryContract $localizationsRepository): array
+    {
+        $client->handle();
+        return $localizationsRepository->get();
+    }
 
 
-	/**
-	 * create localizations data
-	 *
-	 * @param CreateClient $client
-	 * @param LocalizationsRepositoryContract $localizationsRepository
-	 * @return array|object
-	 */
-	public function create(CreateClient $client, LocalizationsRepositoryContract $localizationsRepository): array|object
-	{
-		return $this->transaction(function() use($client,$localizationsRepository) {
-		    $client->handle();
-		    return $localizationsRepository->create();
-		});
-	}
+    /**
+     * create localizations data
+     *
+     * @param CreateClient $client
+     * @param LocalizationsRepositoryContract $localizationsRepository
+     * @return array|object
+     */
+    public function create(CreateClient $client, LocalizationsRepositoryContract $localizationsRepository): array|object
+    {
+        return $this->transaction(function () use ($client, $localizationsRepository) {
+            $client->handle();
+            return $localizationsRepository->create();
+        });
+    }
 
 
-	/**
-	 * update localizations data
-	 *
-	 * @param UpdateClient $client
-	 * @param LocalizationsRepositoryContract $localizationsRepository
-	 * @return array|object
-	 */
-	public function update(UpdateClient $client, LocalizationsRepositoryContract $localizationsRepository): array|object
-	{
-		return $this->transaction(function() use($client,$localizationsRepository) {
-		    $client->handle();
-		    return $localizationsRepository->update();
-		});
-	}
+    /**
+     * update localizations data
+     *
+     * @param UpdateClient $client
+     * @param LocalizationsRepositoryContract $localizationsRepository
+     * @return array|object
+     */
+    public function update(UpdateClient $client, LocalizationsRepositoryContract $localizationsRepository): array|object
+    {
+        return $this->transaction(function () use ($client, $localizationsRepository) {
+            $client->handle();
+            return $localizationsRepository->update();
+        });
+    }
 }

@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Factory\Factory;
 use App\Exceptions\Exception;
 use App\Facades\Authenticate\ApiKey;
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Routing\Controller as BaseController;
-use Illuminate\Foundation\Validation\ValidatesRequests;
+use App\Factory\Factory;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Foundation\Bus\DispatchesJobs;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Routing\Controller as BaseController;
 
 /**
  * Class ApiController
@@ -16,7 +16,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
  */
 class ApiController extends BaseController
 {
-    use AuthorizesRequests,DispatchesJobs,ValidatesRequests,Supporter,ApiAuthInhibitory;
+    use AuthorizesRequests, DispatchesJobs, ValidatesRequests, Supporter, ApiAuthInhibitory;
 
     /**
      * @var array
@@ -40,8 +40,8 @@ class ApiController extends BaseController
     {
         Factory::apiKey();
 
-        foreach ($this->getMiddlewares() as $middleware){
-            $this->exceptMiddlewares($middleware,function() use($middleware){
+        foreach ($this->getMiddlewares() as $middleware) {
+            $this->exceptMiddlewares($middleware, function () use ($middleware) {
                 $this->middleware($middleware);
             });
         }
@@ -54,27 +54,27 @@ class ApiController extends BaseController
      * @param callable $callback
      * @return mixed
      */
-    private function exceptMiddlewares($middleware,callable $callback): mixed
+    private function exceptMiddlewares($middleware, callable $callback): mixed
     {
         $calledClass = get_called_class();
         $middlewares = $this->getMiddlewares();
 
         // we are conditionally removing
         // the concept of apiAuth authenticate.
-        if($middleware==($middlewares[0] ?? null)){
-            if(!$this->apiAuthInhibitory()){
+        if ($middleware == ($middlewares[0] ?? null)) {
+            if (!$this->apiAuthInhibitory()) {
                 return false;
             }
 
-            if($this->apiAuthInhibitoryException){
-                Exception::permissionException(true,['key' => endpoint()]);
+            if ($this->apiAuthInhibitoryException) {
+                Exception::permissionException(true, ['key' => endpoint()]);
             }
         }
 
-        if(
+        if (
             isset($this->exceptMiddlewares[$calledClass])
-            && in_array($middleware,$this->exceptMiddlewares[$calledClass])
-        ){
+            && in_array($middleware, $this->exceptMiddlewares[$calledClass])
+        ) {
             return false;
         }
 
@@ -86,18 +86,18 @@ class ApiController extends BaseController
      *
      * @return array
      */
-    private function getMiddlewares() : array
+    private function getMiddlewares(): array
     {
-        if(ApiKey::isSuperAdmin()){
+        if (ApiKey::isSuperAdmin()) {
             $this->middlewares[] = 'superAdmin';
         }
 
-        if(property_exists($this,'authenticate') && !$this->authenticate){
-            if(!isExistAuthorization()){
+        if (property_exists($this, 'authenticate') && !$this->authenticate) {
+            if (!isExistAuthorization()) {
                 return $this->middlewares;
             }
         }
 
-        return array_merge(['auth:'.authGuard('check')],$this->middlewares);
+        return array_merge(['auth:' . authGuard('check')], $this->middlewares);
     }
 }

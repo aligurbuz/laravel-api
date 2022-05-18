@@ -14,14 +14,14 @@ trait RegistrationSupportTrait
      * @param callable $callback
      * @return array
      */
-    protected function verifyingEmail(callable $callback) : array
+    protected function verifyingEmail(callable $callback): array
     {
         $registration = call_user_func($callback);
 
         $userEmail = $registration[0]['user'][0]['email'];
         $verifyEmailHash = encodeString((string)$registration[0]['registration_code']);
 
-        Factory::email()->verifyingEmailForUser($userEmail,$verifyEmailHash);
+        Factory::email()->verifyingEmailForUser($userEmail, $verifyEmailHash);
 
         return $registration;
     }

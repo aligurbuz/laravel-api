@@ -14,11 +14,11 @@ class LogoutController extends ApiController
      *
      * @return bool|object
      */
-    public function logout() : bool|object
+    public function logout(): bool|object
     {
         $logout = auth()->user()->token()->revoke();
 
-        if(!$logout){
+        if (!$logout) {
             return Exception::loginException();
         }
 

@@ -12,48 +12,48 @@ use App\Repositories\Resources\Currencies\Contracts\CurrenciesRepositoryContract
 
 class CurrenciesController extends ApiController
 {
-	/**
-	 * get currencies data
-	 *
-	 * @param GetClient $client
-	 * @param CurrenciesRepositoryContract $currenciesRepository
-	 * @return array
-	 */
-	public function get(GetClient $client, CurrenciesRepositoryContract $currenciesRepository): array
-	{
-		$client->handle();
-		return $currenciesRepository->get();
-	}
+    /**
+     * get currencies data
+     *
+     * @param GetClient $client
+     * @param CurrenciesRepositoryContract $currenciesRepository
+     * @return array
+     */
+    public function get(GetClient $client, CurrenciesRepositoryContract $currenciesRepository): array
+    {
+        $client->handle();
+        return $currenciesRepository->get();
+    }
 
 
-	/**
-	 * create currencies data
-	 *
-	 * @param CreateClient $client
-	 * @param CurrenciesRepositoryContract $currenciesRepository
-	 * @return array|object
-	 */
-	public function create(CreateClient $client, CurrenciesRepositoryContract $currenciesRepository): array|object
-	{
-		return $this->transaction(function() use($client,$currenciesRepository) {
-		    $client->handle();
-		    return $currenciesRepository->create();
-		});
-	}
+    /**
+     * create currencies data
+     *
+     * @param CreateClient $client
+     * @param CurrenciesRepositoryContract $currenciesRepository
+     * @return array|object
+     */
+    public function create(CreateClient $client, CurrenciesRepositoryContract $currenciesRepository): array|object
+    {
+        return $this->transaction(function () use ($client, $currenciesRepository) {
+            $client->handle();
+            return $currenciesRepository->create();
+        });
+    }
 
 
-	/**
-	 * update currencies data
-	 *
-	 * @param UpdateClient $client
-	 * @param CurrenciesRepositoryContract $currenciesRepository
-	 * @return array|object
-	 */
-	public function update(UpdateClient $client, CurrenciesRepositoryContract $currenciesRepository): array|object
-	{
-		return $this->transaction(function() use($client,$currenciesRepository) {
-		    $client->handle();
-		    return $currenciesRepository->update();
-		});
-	}
+    /**
+     * update currencies data
+     *
+     * @param UpdateClient $client
+     * @param CurrenciesRepositoryContract $currenciesRepository
+     * @return array|object
+     */
+    public function update(UpdateClient $client, CurrenciesRepositoryContract $currenciesRepository): array|object
+    {
+        return $this->transaction(function () use ($client, $currenciesRepository) {
+            $client->handle();
+            return $currenciesRepository->update();
+        });
+    }
 }

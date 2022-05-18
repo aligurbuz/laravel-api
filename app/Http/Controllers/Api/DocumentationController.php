@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\Services\Postman;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\File;
-use App\Http\Controllers\Controller;
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Contracts\Foundation\Application;
 
 class DocumentationController extends Controller
 {
@@ -16,18 +16,18 @@ class DocumentationController extends Controller
      */
     public function index(): Factory|View|Application
     {
-        if(isProduction()){
+        if (isProduction()) {
             return view('api.noAccess');
         }
 
         //doc header.json
-        $headerJsonFile = app_path('Docs').''.DIRECTORY_SEPARATOR.'header.json';
-        $headers = json_decode(File::get($headerJsonFile),true);
+        $headerJsonFile = app_path('Docs') . '' . DIRECTORY_SEPARATOR . 'header.json';
+        $headers = json_decode(File::get($headerJsonFile), true);
 
-        return view('api.index',[
+        return view('api.index', [
             'postman' => $collection = Postman::getCollectionAccordingToIgnore(),
             'headers' => $headers,
-            'action' => $this->getActionIdFromCollection(request()->query->get('action'),$collection),
+            'action' => $this->getActionIdFromCollection(request()->query->get('action'), $collection),
             'arrayRules' => config('documentation.arrayRules'),
             'descriptions' => config('documentation.definitions'),
             'definition' => request()->query->get('definition')
@@ -41,10 +41,10 @@ class DocumentationController extends Controller
      * @param array $collection
      * @return ?int
      */
-    private function getActionIdFromCollection(?string $action,array $collection = []) : ?int
+    private function getActionIdFromCollection(?string $action, array $collection = []): ?int
     {
-        foreach ($collection['item'] as $key => $value){
-            if($value['name']==$action){
+        foreach ($collection['item'] as $key => $value) {
+            if ($value['name'] == $action) {
                 return $key;
             }
         }

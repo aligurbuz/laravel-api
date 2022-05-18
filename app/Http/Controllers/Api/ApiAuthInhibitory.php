@@ -27,11 +27,11 @@ trait ApiAuthInhibitory
      *
      * @return bool
      */
-    public function apiAuthInhibitory() : bool
+    public function apiAuthInhibitory(): bool
     {
         $this->inhibitory = config('inhibitory');
 
-        if(isset($this->inhibitory[who()])){
+        if (isset($this->inhibitory[who()])) {
             return $this->inhibitoryHandler($this->inhibitory[who()]);
         }
 
@@ -44,38 +44,38 @@ trait ApiAuthInhibitory
      * @param array $inhibitory
      * @return bool
      */
-    private function inhibitoryHandler(array $inhibitory = []) : bool
+    private function inhibitoryHandler(array $inhibitory = []): bool
     {
-        $endpoint                   = endpoint();
-        $endpointSplit              = explode('/',$endpoint);
-        $rootEndpoint               = $endpointSplit[0] ?? null;
-        $authenticateInhibitory     = $this->inhibitory[Str::camel('authenticate_'.who())] ?? [];
+        $endpoint = endpoint();
+        $endpointSplit = explode('/', $endpoint);
+        $rootEndpoint = $endpointSplit[0] ?? null;
+        $authenticateInhibitory = $this->inhibitory[Str::camel('authenticate_' . who())] ?? [];
 
-        if(isset($authenticateInhibitory[$endpoint]) && is_array($authenticateInhibitory[$endpoint])){
-            if($this->methods($authenticateInhibitory[$endpoint])){
+        if (isset($authenticateInhibitory[$endpoint]) && is_array($authenticateInhibitory[$endpoint])) {
+            if ($this->methods($authenticateInhibitory[$endpoint])) {
                 return true;
             }
         }
 
-        if(isset($authenticateInhibitory[$rootEndpoint.'/*']) && is_array($authenticateInhibitory[$rootEndpoint.'/*'])){
-            if($this->methods($authenticateInhibitory[$rootEndpoint.'/*'])){
+        if (isset($authenticateInhibitory[$rootEndpoint . '/*']) && is_array($authenticateInhibitory[$rootEndpoint . '/*'])) {
+            if ($this->methods($authenticateInhibitory[$rootEndpoint . '/*'])) {
                 return true;
             }
         }
 
-        if(isset($inhibitory[$endpoint]) && is_array($inhibitory[$endpoint])){
-            if($this->methods($inhibitory[$endpoint])){
+        if (isset($inhibitory[$endpoint]) && is_array($inhibitory[$endpoint])) {
+            if ($this->methods($inhibitory[$endpoint])) {
                 return false;
             }
         }
 
-        if(isset($inhibitory[$rootEndpoint.'/*']) && is_array($inhibitory[$rootEndpoint.'/*'])){
-            if($this->methods($inhibitory[$rootEndpoint.'/*'])){
+        if (isset($inhibitory[$rootEndpoint . '/*']) && is_array($inhibitory[$rootEndpoint . '/*'])) {
+            if ($this->methods($inhibitory[$rootEndpoint . '/*'])) {
                 return false;
             }
         }
 
-        if(count($inhibitory)) $this->apiAuthInhibitoryException = true;
+        if (count($inhibitory)) $this->apiAuthInhibitoryException = true;
 
         return true;
     }
@@ -86,8 +86,8 @@ trait ApiAuthInhibitory
      * @param array $methods
      * @return bool
      */
-    private function methods (array $methods = []) : bool
+    private function methods(array $methods = []): bool
     {
-        return in_array(request()->method(),$methods,true);
+        return in_array(request()->method(), $methods, true);
     }
 }

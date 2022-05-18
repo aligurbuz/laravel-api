@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Api\Auth;
 
-use App\Services\Date;
-use App\Exceptions\Exception;
-use App\Repositories\Repository;
-use App\Http\Controllers\Api\ApiController;
 use App\Client\Auth\Verifying\Create\CreateClient;
+use App\Exceptions\Exception;
+use App\Http\Controllers\Api\ApiController;
+use App\Repositories\Repository;
+use App\Services\Date;
 
-class VerifyingController extends  ApiController
+class VerifyingController extends ApiController
 {
     /**
      * @var bool
@@ -24,18 +24,18 @@ class VerifyingController extends  ApiController
      * @param CreateClient $client
      * @return array
      */
-    public function verifying(CreateClient $client) : array
+    public function verifying(CreateClient $client): array
     {
-        return $this->transaction(function() use($client){
+        return $this->transaction(function () use ($client) {
             $client->handle();
 
             $hash = client('hash');
-            $registrationCode = (int) decodeString($hash);
+            $registrationCode = (int)decodeString($hash);
 
             $registrationRepository = $this->getRegistrationData($registrationCode);
             $registrationData = $registrationRepository->getRepository();
 
-            if(isset($registrationData[0]['user']['email'])){
+            if (isset($registrationData[0]['user']['email'])) {
                 $this->updateUserStatus($registrationData[0]['user']['email']);
                 $registrationRepository->update([['status' => 0]]);
 
@@ -52,7 +52,7 @@ class VerifyingController extends  ApiController
      * @param int $registrationCode
      * @return object
      */
-    private function getRegistrationData(int $registrationCode) : object
+    private function getRegistrationData(int $registrationCode): object
     {
         $registrationRepository = Repository::registration();
         $registrationRepository->instance(false);
@@ -65,11 +65,11 @@ class VerifyingController extends  ApiController
      *
      * @param string $email
      */
-    private function updateUserStatus(string $email) : void
+    private function updateUserStatus(string $email): void
     {
         $userRepository = Repository::user();
         $userRepository->instance(false);
 
-        $userRepository->where('email',$email)->update([['status' => 1,'email_verified_at' => Date::now()]]);
+        $userRepository->where('email', $email)->update([['status' => 1, 'email_verified_at' => Date::now()]]);
     }
 }

@@ -12,48 +12,48 @@ use App\Repositories\Resources\Timezones\Contracts\TimezonesRepositoryContract;
 
 class TimezonesController extends ApiController
 {
-	/**
-	 * get timezones data
-	 *
-	 * @param GetClient $client
-	 * @param TimezonesRepositoryContract $timezonesRepository
-	 * @return array
-	 */
-	public function get(GetClient $client, TimezonesRepositoryContract $timezonesRepository): array
-	{
-		$client->handle();
-		return $timezonesRepository->get();
-	}
+    /**
+     * get timezones data
+     *
+     * @param GetClient $client
+     * @param TimezonesRepositoryContract $timezonesRepository
+     * @return array
+     */
+    public function get(GetClient $client, TimezonesRepositoryContract $timezonesRepository): array
+    {
+        $client->handle();
+        return $timezonesRepository->get();
+    }
 
 
-	/**
-	 * create timezones data
-	 *
-	 * @param CreateClient $client
-	 * @param TimezonesRepositoryContract $timezonesRepository
-	 * @return array|object
-	 */
-	public function create(CreateClient $client, TimezonesRepositoryContract $timezonesRepository): array|object
-	{
-		return $this->transaction(function() use($client,$timezonesRepository) {
-		    $client->handle();
-		    return $timezonesRepository->create();
-		});
-	}
+    /**
+     * create timezones data
+     *
+     * @param CreateClient $client
+     * @param TimezonesRepositoryContract $timezonesRepository
+     * @return array|object
+     */
+    public function create(CreateClient $client, TimezonesRepositoryContract $timezonesRepository): array|object
+    {
+        return $this->transaction(function () use ($client, $timezonesRepository) {
+            $client->handle();
+            return $timezonesRepository->create();
+        });
+    }
 
 
-	/**
-	 * update timezones data
-	 *
-	 * @param UpdateClient $client
-	 * @param TimezonesRepositoryContract $timezonesRepository
-	 * @return array|object
-	 */
-	public function update(UpdateClient $client, TimezonesRepositoryContract $timezonesRepository): array|object
-	{
-		return $this->transaction(function() use($client,$timezonesRepository) {
-		    $client->handle();
-		    return $timezonesRepository->update();
-		});
-	}
+    /**
+     * update timezones data
+     *
+     * @param UpdateClient $client
+     * @param TimezonesRepositoryContract $timezonesRepository
+     * @return array|object
+     */
+    public function update(UpdateClient $client, TimezonesRepositoryContract $timezonesRepository): array|object
+    {
+        return $this->transaction(function () use ($client, $timezonesRepository) {
+            $client->handle();
+            return $timezonesRepository->update();
+        });
+    }
 }

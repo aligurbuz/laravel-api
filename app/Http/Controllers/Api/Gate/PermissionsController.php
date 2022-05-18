@@ -12,48 +12,48 @@ use App\Repositories\Resources\Gate\Contracts\PermissionsRepositoryContract;
 
 class PermissionsController extends ApiController
 {
-	/**
-	 * get permissions data
-	 *
-	 * @param GetClient $client
-	 * @param PermissionsRepositoryContract $permissionsRepository
-	 * @return array
-	 */
-	public function get(GetClient $client, PermissionsRepositoryContract $permissionsRepository): array
-	{
-		$client->handle();
-		return $permissionsRepository->get();
-	}
+    /**
+     * get permissions data
+     *
+     * @param GetClient $client
+     * @param PermissionsRepositoryContract $permissionsRepository
+     * @return array
+     */
+    public function get(GetClient $client, PermissionsRepositoryContract $permissionsRepository): array
+    {
+        $client->handle();
+        return $permissionsRepository->get();
+    }
 
 
-	/**
-	 * create permissions data
-	 *
-	 * @param CreateClient $client
-	 * @param PermissionsRepositoryContract $permissionsRepository
-	 * @return array|object
-	 */
-	public function create(CreateClient $client, PermissionsRepositoryContract $permissionsRepository): array|object
-	{
-		return $this->transaction(function() use($client,$permissionsRepository) {
-		    $client->handle();
-		    return $permissionsRepository->create();
-		});
-	}
+    /**
+     * create permissions data
+     *
+     * @param CreateClient $client
+     * @param PermissionsRepositoryContract $permissionsRepository
+     * @return array|object
+     */
+    public function create(CreateClient $client, PermissionsRepositoryContract $permissionsRepository): array|object
+    {
+        return $this->transaction(function () use ($client, $permissionsRepository) {
+            $client->handle();
+            return $permissionsRepository->create();
+        });
+    }
 
 
-	/**
-	 * update permissions data
-	 *
-	 * @param UpdateClient $client
-	 * @param PermissionsRepositoryContract $permissionsRepository
-	 * @return array|object
-	 */
-	public function update(UpdateClient $client, PermissionsRepositoryContract $permissionsRepository): array|object
-	{
-		return $this->transaction(function() use($client,$permissionsRepository) {
-		    $client->handle();
-		    return $permissionsRepository->update();
-		});
-	}
+    /**
+     * update permissions data
+     *
+     * @param UpdateClient $client
+     * @param PermissionsRepositoryContract $permissionsRepository
+     * @return array|object
+     */
+    public function update(UpdateClient $client, PermissionsRepositoryContract $permissionsRepository): array|object
+    {
+        return $this->transaction(function () use ($client, $permissionsRepository) {
+            $client->handle();
+            return $permissionsRepository->update();
+        });
+    }
 }

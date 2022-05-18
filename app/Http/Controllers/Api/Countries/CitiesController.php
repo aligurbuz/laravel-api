@@ -12,48 +12,48 @@ use App\Repositories\Resources\Countries\Contracts\CitiesRepositoryContract;
 
 class CitiesController extends ApiController
 {
-	/**
-	 * get cities data
-	 *
-	 * @param GetClient $client
-	 * @param CitiesRepositoryContract $citiesRepository
-	 * @return array
-	 */
-	public function get(GetClient $client, CitiesRepositoryContract $citiesRepository): array
-	{
-		$client->handle();
-		return $citiesRepository->get();
-	}
+    /**
+     * get cities data
+     *
+     * @param GetClient $client
+     * @param CitiesRepositoryContract $citiesRepository
+     * @return array
+     */
+    public function get(GetClient $client, CitiesRepositoryContract $citiesRepository): array
+    {
+        $client->handle();
+        return $citiesRepository->get();
+    }
 
 
-	/**
-	 * create cities data
-	 *
-	 * @param CreateClient $client
-	 * @param CitiesRepositoryContract $citiesRepository
-	 * @return array|object
-	 */
-	public function create(CreateClient $client, CitiesRepositoryContract $citiesRepository): array|object
-	{
-		return $this->transaction(function() use($client,$citiesRepository) {
-		    $client->handle();
-		    return $citiesRepository->create();
-		});
-	}
+    /**
+     * create cities data
+     *
+     * @param CreateClient $client
+     * @param CitiesRepositoryContract $citiesRepository
+     * @return array|object
+     */
+    public function create(CreateClient $client, CitiesRepositoryContract $citiesRepository): array|object
+    {
+        return $this->transaction(function () use ($client, $citiesRepository) {
+            $client->handle();
+            return $citiesRepository->create();
+        });
+    }
 
 
-	/**
-	 * update cities data
-	 *
-	 * @param UpdateClient $client
-	 * @param CitiesRepositoryContract $citiesRepository
-	 * @return array|object
-	 */
-	public function update(UpdateClient $client, CitiesRepositoryContract $citiesRepository): array|object
-	{
-		return $this->transaction(function() use($client,$citiesRepository) {
-		    $client->handle();
-		    return $citiesRepository->update();
-		});
-	}
+    /**
+     * update cities data
+     *
+     * @param UpdateClient $client
+     * @param CitiesRepositoryContract $citiesRepository
+     * @return array|object
+     */
+    public function update(UpdateClient $client, CitiesRepositoryContract $citiesRepository): array|object
+    {
+        return $this->transaction(function () use ($client, $citiesRepository) {
+            $client->handle();
+            return $citiesRepository->update();
+        });
+    }
 }

@@ -17,48 +17,48 @@ class CountriesController extends ApiController
      */
     protected bool $authenticate = false;
 
-	/**
-	 * get countries data
-	 *
-	 * @param GetClient $client
-	 * @param CountriesRepositoryContract $countriesRepository
-	 * @return array
-	 */
-	public function get(GetClient $client, CountriesRepositoryContract $countriesRepository): array
-	{
-		$client->handle();
+    /**
+     * get countries data
+     *
+     * @param GetClient $client
+     * @param CountriesRepositoryContract $countriesRepository
+     * @return array
+     */
+    public function get(GetClient $client, CountriesRepositoryContract $countriesRepository): array
+    {
+        $client->handle();
         return $countriesRepository->get();
-	}
+    }
 
 
-	/**
-	 * create countries data
-	 *
-	 * @param CreateClient $client
-	 * @param CountriesRepositoryContract $countriesRepository
-	 * @return array|object
-	 */
-	public function create(CreateClient $client, CountriesRepositoryContract $countriesRepository): array|object
-	{
-		return $this->transaction(function() use($client,$countriesRepository) {
-		    $client->handle();
-		    return $countriesRepository->create();
-		});
-	}
+    /**
+     * create countries data
+     *
+     * @param CreateClient $client
+     * @param CountriesRepositoryContract $countriesRepository
+     * @return array|object
+     */
+    public function create(CreateClient $client, CountriesRepositoryContract $countriesRepository): array|object
+    {
+        return $this->transaction(function () use ($client, $countriesRepository) {
+            $client->handle();
+            return $countriesRepository->create();
+        });
+    }
 
 
-	/**
-	 * update countries data
-	 *
-	 * @param UpdateClient $client
-	 * @param CountriesRepositoryContract $countriesRepository
-	 * @return array|object
-	 */
-	public function update(UpdateClient $client, CountriesRepositoryContract $countriesRepository): array|object
-	{
-		return $this->transaction(function() use($client,$countriesRepository) {
-		    $client->handle();
-		    return $countriesRepository->update();
-		});
-	}
+    /**
+     * update countries data
+     *
+     * @param UpdateClient $client
+     * @param CountriesRepositoryContract $countriesRepository
+     * @return array|object
+     */
+    public function update(UpdateClient $client, CountriesRepositoryContract $countriesRepository): array|object
+    {
+        return $this->transaction(function () use ($client, $countriesRepository) {
+            $client->handle();
+            return $countriesRepository->update();
+        });
+    }
 }

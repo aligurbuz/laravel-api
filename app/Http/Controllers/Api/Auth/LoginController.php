@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Api\Auth;
 
-use Exception;
+use App\Client\Auth\Login\Create\CreateClient;
 use App\Factory\Factory;
 use App\Http\Controllers\Api\ApiController;
-use App\Client\Auth\Login\Create\CreateClient;
+use Exception;
 
 class LoginController extends ApiController
 {
@@ -22,11 +22,11 @@ class LoginController extends ApiController
      *
      * @throws Exception
      */
-    public function login(CreateClient $client) : array
+    public function login(CreateClient $client): array
     {
         $client->handle();
         $clientData = client();
 
-        return Factory::request()->login($clientData['email'],$clientData['password']);
+        return Factory::request()->login($clientData['email'], $clientData['password']);
     }
 }

@@ -20,7 +20,7 @@ trait Supporter
      */
     public function transaction(callable $callback): mixed
     {
-        return Db::transaction(function() use($callback){
+        return Db::transaction(function () use ($callback) {
             return call_user_func($callback);
         });
     }

@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Api\Logger;
 
-use App\Http\Controllers\Api\ApiController;
-use App\Client\Logger\Logger\Get\GetClient;
 use App\Client\Logger\Logger\Create\CreateClient;
+use App\Client\Logger\Logger\Get\GetClient;
 use App\Client\Logger\Logger\Update\UpdateClient;
+use App\Http\Controllers\Api\ApiController;
 use App\Repositories\Resources\Logger\Contracts\LoggerRepositoryContract;
 
 class LoggerController extends ApiController
@@ -19,12 +19,12 @@ class LoggerController extends ApiController
      * @param LoggerRepositoryContract $loggerRepository
      * @return array
      */
-	public function get(GetClient $client, LoggerRepositoryContract $loggerRepository): array
-	{
-		$client->handle();
+    public function get(GetClient $client, LoggerRepositoryContract $loggerRepository): array
+    {
+        $client->handle();
 
-		return $loggerRepository->get();
-	}
+        return $loggerRepository->get();
+    }
 
 
     /**
@@ -34,12 +34,12 @@ class LoggerController extends ApiController
      * @param LoggerRepositoryContract $loggerRepository
      * @return array|object
      */
-	public function create(CreateClient $client, LoggerRepositoryContract $loggerRepository): array|object
-	{
-		$client->handle();
+    public function create(CreateClient $client, LoggerRepositoryContract $loggerRepository): array|object
+    {
+        $client->handle();
 
-		return $loggerRepository->create();
-	}
+        return $loggerRepository->create();
+    }
 
 
     /**
@@ -49,10 +49,10 @@ class LoggerController extends ApiController
      * @param LoggerRepositoryContract $loggerRepository
      * @return array|object
      */
-	public function update(UpdateClient $client, LoggerRepositoryContract $loggerRepository): array|object
-	{
-		$client->handle();
+    public function update(UpdateClient $client, LoggerRepositoryContract $loggerRepository): array|object
+    {
+        $client->handle();
 
-		return $loggerRepository->update();
-	}
+        return $loggerRepository->update();
+    }
 }

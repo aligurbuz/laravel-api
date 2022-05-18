@@ -11,7 +11,7 @@ class WebController extends Controller
      *
      * @return string
      */
-    public function index() : string
+    public function index(): string
     {
         return 'web';
     }
