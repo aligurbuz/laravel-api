@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Factory\Notify\Resource\Slack500Formatter;
 
-use Throwable;
-use App\Services\Date;
 use App\Facades\Authenticate\ApiKey;
 use App\Facades\Authenticate\Authenticate;
+use App\Services\Date;
+use Throwable;
 
 /**
  * Class Slack500Formatter
@@ -34,7 +34,8 @@ class Slack500Formatter
     {
         $this->binds = $binds;
 
-        if(isThrowableInstance(($this->binds['error'] ?? new class{}))){
+        if (isThrowableInstance(($this->binds['error'] ?? new class {
+            }))) {
             $this->slack500Formatter($this->binds['error']);
         }
     }
@@ -45,22 +46,22 @@ class Slack500Formatter
      */
     protected function slack500Formatter(Throwable $error): void
     {
-        $list[] = '*'.config('app.name').' System 500 Internal Server Errors - '.Date::now()->toDateTimeString().'*';
+        $list[] = '*' . config('app.name') . ' System 500 Internal Server Errors - ' . Date::now()->toDateTimeString() . '*';
 
-        $list[] = '> *Client*: '.ApiKey::who();
-        $list[] = '> *Error Message*: '.$error->getMessage();
-        $list[] = '> *Error File*: '.$error->getFile();
-        $list[] = '> *Endpoint*: '.request()->url();
-        $list[] = '> *Safe*: '.request()->isMethodSafe();
-        $list[] = '> *Error Line*: '.$error->getLine();
-        $list[] = '> *Client Ip*: '.request()->getClientIp();
-        $list[] = '> *Auth*: '.Authenticate::code();
-        $list[] = '> *Request Method*: '.request()->method();
-        $list[] = '> *Client Get Data*: '.json_encode(request()->query->all()).'';
-        $list[] = '> *Client Post Data*: '.json_encode(request()->request->all()).'';
-        $list[] = '> *Client Put Data*: '.json_encode(request()->request->all()).'';
+        $list[] = '> *Client*: ' . ApiKey::who();
+        $list[] = '> *Error Message*: ' . $error->getMessage();
+        $list[] = '> *Error File*: ' . $error->getFile();
+        $list[] = '> *Endpoint*: ' . request()->url();
+        $list[] = '> *Safe*: ' . request()->isMethodSafe();
+        $list[] = '> *Error Line*: ' . $error->getLine();
+        $list[] = '> *Client Ip*: ' . request()->getClientIp();
+        $list[] = '> *Auth*: ' . Authenticate::code();
+        $list[] = '> *Request Method*: ' . request()->method();
+        $list[] = '> *Client Get Data*: ' . json_encode(request()->query->all()) . '';
+        $list[] = '> *Client Post Data*: ' . json_encode(request()->request->all()) . '';
+        $list[] = '> *Client Put Data*: ' . json_encode(request()->request->all()) . '';
 
-        $this->error500 = implode(PHP_EOL,$list);
+        $this->error500 = implode(PHP_EOL, $list);
     }
 
     /**

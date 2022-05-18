@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Factory\Storage;
 
-use Exception;
 use App\Factory\Storage\Interfaces\StorageInterface;
+use Exception;
 
 /**
  * Class AwsS3
@@ -33,9 +33,10 @@ class AwsS3 extends StorageManager implements StorageInterface
     public function __construct(array $binds = [])
     {
         $this->binds = $binds;
-        $this->client = $this->binds['client'] ?? new class{};
+        $this->client = $this->binds['client'] ?? new class {
+            };
 
-        if(!method_exists($this->client,'ensureColumnExists')){
+        if (!method_exists($this->client, 'ensureColumnExists')) {
             throw new Exception('client bind is invalid');
         }
     }
@@ -49,8 +50,8 @@ class AwsS3 extends StorageManager implements StorageInterface
     {
         $list = [];
 
-        foreach (($this->binds['files'] ?? []) as $input => $data){
-            $this->client->ensureColumnExists($input,function() use($input,$data,$list) {
+        foreach (($this->binds['files'] ?? []) as $input => $data) {
+            $this->client->ensureColumnExists($input, function () use ($input, $data, $list) {
                 $list[$input] = $data->getClientOriginalName();
             });
         }

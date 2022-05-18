@@ -12,17 +12,17 @@ interface TaxInterface
      * @return float
      * @see Tax::getTax()
      */
-    public function getTax() : float;
+    public function getTax(): float;
 
     /**
      * @return float
      * @see Tax::getMoney()
      */
-    public function getMoney() : float;
+    public function getMoney(): float;
 
     /**
      * @return float
      * @see Tax::getTotal()
      */
-    public function getTotal() : float;
+    public function getTotal(): float;
 }

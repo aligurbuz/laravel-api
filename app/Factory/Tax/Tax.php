@@ -12,12 +12,12 @@ use App\Factory\Tax\Interfaces\TaxInterface;
  */
 class Tax extends TaxManager implements TaxInterface
 {
-	/**
-	 * binds property variable
-	 *
-	 * @var array
-	 */
-	protected array $binds = [];
+    /**
+     * binds property variable
+     *
+     * @var array
+     */
+    protected array $binds = [];
 
     /**
      * @var float
@@ -29,25 +29,25 @@ class Tax extends TaxManager implements TaxInterface
      */
     protected float $tax = 0;
 
-	/**
-	 * Tax constructor
-	 *
-	 * @param array $binds
-	 */
-	public function __construct(array $binds = [])
-	{
-		$this->binds = $binds;
+    /**
+     * Tax constructor
+     *
+     * @param array $binds
+     */
+    public function __construct(array $binds = [])
+    {
+        $this->binds = $binds;
 
-        $this->tax      = $this->binds['tax'] ?? 0;
-        $this->money    = $this->binds['money'] ?? 0;
-	}
+        $this->tax = $this->binds['tax'] ?? 0;
+        $this->money = $this->binds['money'] ?? 0;
+    }
 
     /**
      * get tax rate for tax factory
      *
      * @return float
      */
-    public function getTax() : float
+    public function getTax(): float
     {
         return $this->tax;
     }
@@ -57,7 +57,7 @@ class Tax extends TaxManager implements TaxInterface
      *
      * @return float
      */
-    public function getMoney() : float
+    public function getMoney(): float
     {
         return $this->money;
     }
@@ -67,7 +67,7 @@ class Tax extends TaxManager implements TaxInterface
      *
      * @return float
      */
-    public function getTotal() : float
+    public function getTotal(): float
     {
         return moneyFormatter($this->getMoney() + $this->getTax());
     }

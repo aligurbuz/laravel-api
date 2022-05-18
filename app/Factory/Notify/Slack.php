@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Factory\Notify;
 
+use App\Factory\Notify\Interfaces\NotifyInterface;
 use App\Jobs\Deployment;
 use App\Jobs\SlackPusher;
-use App\Factory\Notify\Interfaces\NotifyInterface;
 
 /**
  * Class Slack
@@ -14,37 +14,37 @@ use App\Factory\Notify\Interfaces\NotifyInterface;
  */
 class Slack extends NotifyManager implements NotifyInterface
 {
-	/**
-	 * binds property variable
-	 *
-	 * @var array
-	 */
-	protected array $binds = [];
+    /**
+     * binds property variable
+     *
+     * @var array
+     */
+    protected array $binds = [];
 
     /**
      * @var array|string[]
      */
-	protected array $resource = ['slack500Formatter'];
+    protected array $resource = ['slack500Formatter'];
 
-	/**
-	 * Slack constructor
-	 *
-	 * @param array $binds
-	 */
-	public function __construct(array $binds = [])
-	{
-		$this->binds = $binds;
-	}
+    /**
+     * Slack constructor
+     *
+     * @param array $binds
+     */
+    public function __construct(array $binds = [])
+    {
+        $this->binds = $binds;
+    }
 
     /**
      * You can write custom notifications about internal server errors in this method.
      *
      * @return void
      */
-    public function internalServerError() : void
+    public function internalServerError(): void
     {
-        $this->slack500Formatter(function($message){
-            $this->push('error500',$message);
+        $this->slack500Formatter(function ($message) {
+            $this->push('error500', $message);
         });
     }
 
@@ -55,9 +55,9 @@ class Slack extends NotifyManager implements NotifyInterface
      * @param string $message
      * @return void
      */
-    public function push(string $channel,string $message) : void
+    public function push(string $channel, string $message): void
     {
-        dispatch(new SlackPusher($channel,$message));
+        dispatch(new SlackPusher($channel, $message));
     }
 
     /**
@@ -66,8 +66,8 @@ class Slack extends NotifyManager implements NotifyInterface
      * @param string $message
      * @return void
      */
-    public function deployment(string $message) : void
+    public function deployment(string $message): void
     {
-        dispatch(new Deployment('deployment',$message));
+        dispatch(new Deployment('deployment', $message));
     }
 }

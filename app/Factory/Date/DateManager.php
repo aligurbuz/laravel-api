@@ -10,8 +10,9 @@ abstract class DateManager
      * @param string $resource
      * @return object
      */
-    public function getResource(string $resource) : object
+    public function getResource(string $resource): object
     {
-        return $this->binds['resource'][$resource] ?? new class {};
+        return $this->binds['resource'][$resource] ?? new class {
+            };
     }
 }

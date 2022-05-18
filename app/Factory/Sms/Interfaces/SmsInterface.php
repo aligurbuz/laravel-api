@@ -13,14 +13,14 @@ interface SmsInterface
      * @return SmsInterface
      * @see Twilio::to()
      */
-    public function to(string $number) : SmsInterface;
+    public function to(string $number): SmsInterface;
 
     /**
      * @param string $message
      * @return SmsInterface
      * @see Twilio::message()
      */
-    public function message(string $message) : SmsInterface;
+    public function message(string $message): SmsInterface;
 
     /**
      * @return array

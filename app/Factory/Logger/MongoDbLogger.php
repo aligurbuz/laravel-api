@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Factory\Logger;
 
-use App\Factory\Factory;
-use App\Services\MongoDb;
 use App\Exceptions\Exception;
+use App\Factory\Factory;
 use App\Factory\Logger\Interfaces\LoggerInterface;
+use App\Services\MongoDb;
 
 /**
  * Class Logger
@@ -35,19 +35,18 @@ class MongoDbLogger extends LoggerManager implements LoggerInterface
      * @param array $data
      * @return array|object
      */
-    public function create(array $data = []) : array|object
+    public function create(array $data = []): array|object
     {
         //We are making a mongoDb connection.
         $mongoDbConnection = MongoDb::connection();
 
-        if(!$mongoDbConnection->isSuccess()){
+        if (!$mongoDbConnection->isSuccess()) {
             return Factory::logger(['adapter' => 'DatabaseLogger'])->create($data);
         }
 
         try {
-            return $mongoDbConnection->write('logger',$data);
-        }
-        catch (\Exception $e){
+            return $mongoDbConnection->write('logger', $data);
+        } catch (\Exception $e) {
             return Exception::accessLoggerException($e->getMessage());
         }
     }

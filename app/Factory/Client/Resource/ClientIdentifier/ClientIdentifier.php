@@ -43,16 +43,16 @@ class ClientIdentifier
      *
      * @return string
      */
-    public function clientNamespace() : string
+    public function clientNamespace(): string
     {
         $partitions = $this->clientPartitions();
 
-        $dir        = $partitions['dir'] ?? null;
-        $client     = $partitions['client'] ?? null;
-        $method     = $partitions['method'] ?? null;
-        $clientName = $method.'Client';
+        $dir = $partitions['dir'] ?? null;
+        $client = $partitions['client'] ?? null;
+        $method = $partitions['method'] ?? null;
+        $clientName = $method . 'Client';
 
-        return 'App\Client\\'.$dir.'\\'.$client.'\\'.$method.'\\'.$clientName;
+        return 'App\Client\\' . $dir . '\\' . $client . '\\' . $method . '\\' . $clientName;
     }
 
     /**
@@ -60,7 +60,7 @@ class ClientIdentifier
      *
      * @return string
      */
-    public function getRequestMethod() : string
+    public function getRequestMethod(): string
     {
         return $this->requestMethod;
     }
@@ -72,9 +72,9 @@ class ClientIdentifier
     {
         $clientPartitions = $this->client();
 
-        if(count($clientPartitions)==3){
-            [$dir,$client,$method] = $clientPartitions;
-            return $this->setClientPartitions($dir,$client,$method);
+        if (count($clientPartitions) == 3) {
+            [$dir, $client, $method] = $clientPartitions;
+            return $this->setClientPartitions($dir, $client, $method);
         }
 
         return $this->setClientPartitions();
@@ -88,12 +88,12 @@ class ClientIdentifier
      * @param ?string $method
      * @return array
      */
-    private function setClientPartitions(?string $dir = null,?string $client = null,?string $method = null) : array
+    private function setClientPartitions(?string $dir = null, ?string $client = null, ?string $method = null): array
     {
         return [
-            'dir'       => $dir ?? 'none',
-            'client'    => $client ?? 'none',
-            'method'    => $this->setRequestMethod($method) ?? 'none',
+            'dir' => $dir ?? 'none',
+            'client' => $client ?? 'none',
+            'method' => $this->setRequestMethod($method) ?? 'none',
         ];
     }
 
@@ -102,13 +102,13 @@ class ClientIdentifier
      *
      * @return array
      */
-    private function client() : array
+    private function client(): array
     {
         return array_map(
-            function($value){
+            function ($value) {
                 return Str::ucfirst($value);
             }
-            ,explode('.',$this->client)
+            , explode('.', $this->client)
         );
     }
 
@@ -118,10 +118,10 @@ class ClientIdentifier
      * @param $method
      * @return string
      */
-    private function setRequestMethod(?string $method) : string
+    private function setRequestMethod(?string $method): string
     {
-        if($method=='Create') $this->requestMethod = 'POST';
-        if($method=='Update') $this->requestMethod = 'PUT';
+        if ($method == 'Create') $this->requestMethod = 'POST';
+        if ($method == 'Update') $this->requestMethod = 'PUT';
 
         return $method;
     }

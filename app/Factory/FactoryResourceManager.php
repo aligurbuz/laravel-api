@@ -21,11 +21,11 @@ abstract class FactoryResourceManager
      */
     public function callFactory(): mixed
     {
-        foreach ($this->getResources() as $resource){
+        foreach ($this->getResources() as $resource) {
             $resource = ucfirst($resource);
-            $callableResource = $this->getResourceNamespace().'\\'.$resource.'\\'.$resource;
+            $callableResource = $this->getResourceNamespace() . '\\' . $resource . '\\' . $resource;
 
-            if(class_exists($callableResource)){
+            if (class_exists($callableResource)) {
                 static::$arguments['resource'][lcfirst($resource)] = new $callableResource(static::$arguments);
             }
         }
@@ -44,7 +44,7 @@ abstract class FactoryResourceManager
     {
         $reflectionClass = new ReflectionClass(static::$factory);
 
-        if($reflectionClass->hasProperty('resource')){
+        if ($reflectionClass->hasProperty('resource')) {
             return $reflectionClass->getProperty('resource')->getDefaultValue();
         }
 
@@ -58,6 +58,6 @@ abstract class FactoryResourceManager
      */
     public function getResourceNamespace(): string
     {
-        return 'App\Factory\\'.static::$name.'\Resource';
+        return 'App\Factory\\' . static::$name . '\Resource';
     }
 }

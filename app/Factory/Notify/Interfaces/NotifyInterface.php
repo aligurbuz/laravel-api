@@ -13,17 +13,17 @@ interface NotifyInterface
      * @param string $message
      * @see Slack::push()
      */
-    public function push(string $channel,string $message) : void;
+    public function push(string $channel, string $message): void;
 
     /**
      * @return void
      * @see Slack::internalServerError()
      */
-    public function internalServerError() : void;
+    public function internalServerError(): void;
 
     /**
      * @param string $message
      * @see Slack::deployment()
      */
-    public function deployment(string $message) : void;
+    public function deployment(string $message): void;
 }

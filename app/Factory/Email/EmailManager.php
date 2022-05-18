@@ -11,7 +11,7 @@ abstract class EmailManager
      *
      * @param mixed $queue
      */
-    public function queue(mixed $queue) : void
+    public function queue(mixed $queue): void
     {
         dispatch($queue);
     }

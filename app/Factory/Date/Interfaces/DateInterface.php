@@ -10,7 +10,7 @@ interface DateInterface
      * @param array $data
      * @return array
      */
-    public function openTimeList(array $data = []) : array;
+    public function openTimeList(array $data = []): array;
 
     /**
      * @param array $openTimeList
@@ -18,5 +18,5 @@ interface DateInterface
      * @param int|null $dayKey
      * @return bool
      */
-    public function isOpen(array $openTimeList = [], ?string $time = null,?int $dayKey = null) : bool;
+    public function isOpen(array $openTimeList = [], ?string $time = null, ?int $dayKey = null): bool;
 }

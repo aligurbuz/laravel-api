@@ -12,30 +12,30 @@ use App\Factory\Notify\Interfaces\NotifyInterface;
  */
 class Notify extends NotifyManager implements NotifyInterface
 {
-	/**
-	 * binds property variable
-	 *
-	 * @var array
-	 */
-	protected array $binds = [];
+    /**
+     * binds property variable
+     *
+     * @var array
+     */
+    protected array $binds = [];
 
 
-	/**
-	 * Notify constructor
-	 *
-	 * @param array $binds
-	 */
-	public function __construct(array $binds = [])
-	{
-		$this->binds = $binds;
-	}
+    /**
+     * Notify constructor
+     *
+     * @param array $binds
+     */
+    public function __construct(array $binds = [])
+    {
+        $this->binds = $binds;
+    }
 
     /**
      * You can write custom notifications about internal server errors in this method.
      *
      * @return void
      */
-    public function internalServerError() : void
+    public function internalServerError(): void
     {
         //
     }
@@ -47,7 +47,7 @@ class Notify extends NotifyManager implements NotifyInterface
      * @param string $message
      * @return void
      */
-    public function push(string $channel,string $message) : void
+    public function push(string $channel, string $message): void
     {
         //
     }

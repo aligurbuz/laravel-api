@@ -15,7 +15,7 @@ interface MoneyInterface
      * @return float
      * @see Money::add()
      */
-    public function add(float $money1,float $money2): float;
+    public function add(float $money1, float $money2): float;
 
     /**
      * @param float $money1
@@ -23,7 +23,7 @@ interface MoneyInterface
      * @return float
      * @see Money::subtract()
      */
-    public function subtract(float $money1,float $money2): float;
+    public function subtract(float $money1, float $money2): float;
 
     /**
      * @param float $money1
@@ -31,7 +31,7 @@ interface MoneyInterface
      * @return float
      * @see Money::multiply()
      */
-    public function multiply(float $money1,float $money2): float;
+    public function multiply(float $money1, float $money2): float;
 
     /**
      * @param float $money1
@@ -39,7 +39,7 @@ interface MoneyInterface
      * @return float
      * @see Money::divide()
      */
-    public function divide(float $money1,float $money2): float;
+    public function divide(float $money1, float $money2): float;
 
     /**
      * @param float $money
@@ -54,5 +54,5 @@ interface MoneyInterface
      * @return string
      * @see Money::currency()
      */
-    public function currency(float $money,?string $currency = null): string;
+    public function currency(float $money, ?string $currency = null): string;
 }

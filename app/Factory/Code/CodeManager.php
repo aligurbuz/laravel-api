@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Factory\Code;
 
-use Illuminate\Support\Str;
 use App\Repositories\Repository;
+use Illuminate\Support\Str;
 
 /**
  * Class CodeManager
@@ -18,11 +18,11 @@ abstract class CodeManager
      *
      * @return array
      */
-    public function getCodeIdentifier() : array
+    public function getCodeIdentifier(): array
     {
         $list = [];
 
-        foreach ($this->binds as $codeName => $value){
+        foreach ($this->binds as $codeName => $value) {
             $list['codeName'] = Str::snake($codeName);
             $list['value'] = intval($value);
         }
@@ -35,12 +35,12 @@ abstract class CodeManager
      *
      * @return string|null
      */
-    public function getRepositoryName() : ?string
+    public function getRepositoryName(): ?string
     {
         $code = $this->getCodeIdentifier();
 
-        if(isset($code['codeName'])){
-            return Str::camel(str_replace('_code','',$code['codeName']));
+        if (isset($code['codeName'])) {
+            return Str::camel(str_replace('_code', '', $code['codeName']));
         }
 
         return null;
@@ -52,12 +52,12 @@ abstract class CodeManager
      * @param callable $callback
      * @return mixed
      */
-    public function isValidRepository(callable $callback) : mixed
+    public function isValidRepository(callable $callback): mixed
     {
         $repository = Repository::{$this->getRepositoryName()}();
 
-        if(false !== $repository){
-            return call_user_func($callback,$repository);
+        if (false !== $repository) {
+            return call_user_func($callback, $repository);
         }
 
         return null;

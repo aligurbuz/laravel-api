@@ -15,37 +15,37 @@ use Maatwebsite\Excel\Facades\Excel as ExcelFacade;
  */
 class Excel extends ExcelManager implements ExcelInterface
 {
-	/**
-	 * binds property variable
-	 *
-	 * @var array
-	 */
-	protected array $binds = [];
+    /**
+     * binds property variable
+     *
+     * @var array
+     */
+    protected array $binds = [];
 
     /**
      * @var string|null
      */
     protected ?string $importClass = null;
 
-	/**
-	 * Excel constructor
-	 *
-	 * @param array $binds
-	 */
-	public function __construct(array $binds = [])
-	{
-		$this->binds = $binds;
+    /**
+     * Excel constructor
+     *
+     * @param array $binds
+     */
+    public function __construct(array $binds = [])
+    {
+        $this->binds = $binds;
 
         $model = $this->binds['model'] ?? null;
-        $modelNamespace = Constants::modelNamespace.'\\'.ucfirst($model);
+        $modelNamespace = Constants::modelNamespace . '\\' . ucfirst($model);
 
-        if(!class_exists($modelNamespace)){
-            Exception::customException('excelFile',$model,true);
+        if (!class_exists($modelNamespace)) {
+            Exception::customException('excelFile', $model, true);
         }
 
         $table = ucfirst((new $modelNamespace)->getTable());
-        $this->importClass = $table.'Import';
-	}
+        $this->importClass = $table . 'Import';
+    }
 
     /**
      * createUser for Excel factory
@@ -54,14 +54,13 @@ class Excel extends ExcelManager implements ExcelInterface
      */
     public function import(): array
     {
-        $importClass = Constants::importsNamespace.'\\'.$this->importClass;
+        $importClass = Constants::importsNamespace . '\\' . $this->importClass;
 
-        try{
+        try {
             ExcelFacade::import(new $importClass, ($this->binds['file'] ?? null));
             return ['import' => true];
-        }
-        catch (\Exception $exception){
-            Exception::customException($exception->getMessage(),[],true);
+        } catch (\Exception $exception) {
+            Exception::customException($exception->getMessage(), [], true);
             return [];
         }
     }

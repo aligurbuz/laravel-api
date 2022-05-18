@@ -12,30 +12,30 @@ use App\Factory\Collection\Interfaces\CollectionInterface;
  */
 class Collection extends CollectionManager implements CollectionInterface
 {
-	/**
-	 * binds property variable
-	 *
-	 * @var array
-	 */
-	protected array $binds = [];
+    /**
+     * binds property variable
+     *
+     * @var array
+     */
+    protected array $binds = [];
 
     /**
      * get collection data
      *
      * @var array
      */
-	protected array $data = [];
+    protected array $data = [];
 
-	/**
-	 * Collection constructor
-	 *
-	 * @param array $binds
-	 */
-	public function __construct(array $binds = [])
-	{
-		$this->binds = $binds;
-		$this->data = $this->binds[0] ?? [];
-	}
+    /**
+     * Collection constructor
+     *
+     * @param array $binds
+     */
+    public function __construct(array $binds = [])
+    {
+        $this->binds = $binds;
+        $this->data = $this->binds[0] ?? [];
+    }
 
     /**
      * Shows the difference between the two arrays.
@@ -45,9 +45,9 @@ class Collection extends CollectionManager implements CollectionInterface
      * @param string|null $criteria
      * @return array
      */
-    public function different(array $first = [], array $second = [], ?string $criteria = null) : array
+    public function different(array $first = [], array $second = [], ?string $criteria = null): array
     {
-        return $this->differentProcess($first,$second,$criteria);
+        return $this->differentProcess($first, $second, $criteria);
     }
 
     /**
@@ -57,9 +57,9 @@ class Collection extends CollectionManager implements CollectionInterface
      * @param array $last
      * @return array
      */
-	public function additionDoubleElementsOfArrays(array $first = [], array $last  = []) : array
+    public function additionDoubleElementsOfArrays(array $first = [], array $last = []): array
     {
-        return $this->additionSubtractionProcess($first,$last);
+        return $this->additionSubtractionProcess($first, $last);
     }
 
     /**
@@ -69,8 +69,8 @@ class Collection extends CollectionManager implements CollectionInterface
      * @param array $last
      * @return array
      */
-    public function subtractionDoubleElementsOfArrays(array $first = [], array $last  = []) : array
+    public function subtractionDoubleElementsOfArrays(array $first = [], array $last = []): array
     {
-        return $this->additionSubtractionProcess($first,$last,'subtraction');
+        return $this->additionSubtractionProcess($first, $last, 'subtraction');
     }
 }

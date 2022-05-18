@@ -9,5 +9,5 @@ interface RoleInterface
     /**
      * @return array
      */
-    public function createAdministrator() : array;
+    public function createAdministrator(): array;
 }

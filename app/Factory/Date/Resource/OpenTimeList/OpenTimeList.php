@@ -18,7 +18,7 @@ class OpenTimeList
     /**
      * @var array
      */
-    protected array $valuesAsNumericOfWeek = [0,1,2,3,4,5,6];
+    protected array $valuesAsNumericOfWeek = [0, 1, 2, 3, 4, 5, 6];
 
     /**
      * @var array
@@ -41,11 +41,11 @@ class OpenTimeList
      * @param array $data
      * @return array
      */
-    public function handle(array $data = []) : array
+    public function handle(array $data = []): array
     {
         $this->resultSet = [];
 
-        foreach ($data as $valueAsNumericOfWeek => $times){
+        foreach ($data as $valueAsNumericOfWeek => $times) {
             // if key value sent by client does not fit,that throws exception
             // values numeric being days of week must be equal
             $this->exceptionValueAsNumericOfWeek($valueAsNumericOfWeek);
@@ -56,7 +56,7 @@ class OpenTimeList
 
             // this method explicitly converts
             // the given time array to the time list.
-            $this->timeHandler((int)$valueAsNumericOfWeek,$times);
+            $this->timeHandler((int)$valueAsNumericOfWeek, $times);
         }
 
         return $this->resultSet;
@@ -69,16 +69,16 @@ class OpenTimeList
      * @param array $time
      * @return array
      */
-    protected function timeHandler(int $dayKey = 0, array $time = []) : array
+    protected function timeHandler(int $dayKey = 0, array $time = []): array
     {
-        foreach ($time as $startTime => $endTime){
+        foreach ($time as $startTime => $endTime) {
             $this->resultSet[$dayKey][] = $startTime;
 
-            while(true){
-                $startTime = Date::createFormat($startTime,'H:i')->addMinute()->toTimeString('minute');
+            while (true) {
+                $startTime = Date::createFormat($startTime, 'H:i')->addMinute()->toTimeString('minute');
                 $this->resultSet[$dayKey][] = $startTime;
 
-                if($startTime==$endTime)  break;
+                if ($startTime == $endTime) break;
             }
         }
 

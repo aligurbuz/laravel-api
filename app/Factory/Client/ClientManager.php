@@ -16,11 +16,11 @@ abstract class ClientManager
      * @param bool $container
      * @return array
      */
-    public function make(array $data = [],bool $container = false) : array
+    public function make(array $data = [], bool $container = false): array
     {
-        if($this->isValidClientIdentifierResource()){
+        if ($this->isValidClientIdentifierResource()) {
             $clientIdentifier = $this->binds['resource']['clientIdentifier'];
-            return $this->clientHandler($clientIdentifier,$data,$container);
+            return $this->clientHandler($clientIdentifier, $data, $container);
         }
 
         return [];
@@ -34,16 +34,16 @@ abstract class ClientManager
      * @param bool $container
      * @return array
      */
-    private function clientHandler(object $clientIdentifier,array $data = [],bool $container = false) : array
+    private function clientHandler(object $clientIdentifier, array $data = [], bool $container = false): array
     {
         $clientNamespace = $clientIdentifier->clientNamespace();
 
-        if(class_exists($clientNamespace)){
+        if (class_exists($clientNamespace)) {
             $clientInstance = new $clientNamespace($data);
 
-            if($container){
+            if ($container) {
                 AppContainer::terminate('crRepositoryInstance');
-                AppContainer::set('crRepositoryInstance',$clientInstance->repository());
+                AppContainer::set('crRepositoryInstance', $clientInstance->repository());
             }
 
             $clientInstance->requestMethod($clientIdentifier->getRequestMethod());
@@ -59,10 +59,10 @@ abstract class ClientManager
      *
      * @return bool
      */
-    private function isValidClientIdentifierResource() : bool
+    private function isValidClientIdentifierResource(): bool
     {
         return isset($this->binds['resource']['clientIdentifier'])
             && $this->binds['resource']['clientIdentifier'] instanceof ClientIdentifier
-            && method_exists($this->binds['resource']['clientIdentifier'],'clientNamespace');
+            && method_exists($this->binds['resource']['clientIdentifier'], 'clientNamespace');
     }
 }

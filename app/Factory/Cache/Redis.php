@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Factory\Cache;
 
-use Predis\ClientInterface;
-use App\Services\Redis as RedisInstance;
 use App\Factory\Cache\Interfaces\CacheInterface;
+use App\Services\Redis as RedisInstance;
+use Predis\ClientInterface;
 
 /**
  * Class Redis
@@ -41,7 +41,7 @@ class Redis extends CacheManager implements CacheInterface
      *
      * @return ClientInterface
      */
-    public function getInstance() : object
+    public function getInstance(): object
     {
         return RedisInstance::client(($this->binds['connection'] ?? 'default'));
     }
@@ -53,9 +53,9 @@ class Redis extends CacheManager implements CacheInterface
      * @param mixed $value
      * @return void
      */
-    public function set(string $key,mixed $value) : void
+    public function set(string $key, mixed $value): void
     {
-        $this->getInstance()->set($key,$value);
+        $this->getInstance()->set($key, $value);
     }
 
     /**
@@ -64,7 +64,7 @@ class Redis extends CacheManager implements CacheInterface
      * @param string $key
      * @return bool
      */
-    public function delete(string $key) : bool
+    public function delete(string $key): bool
     {
         return !(($this->getInstance()->del($key) === 0));
     }
@@ -76,9 +76,9 @@ class Redis extends CacheManager implements CacheInterface
      * @param int $expire
      * @return int
      */
-    public function expire(string $key,int $expire = 60) : int
+    public function expire(string $key, int $expire = 60): int
     {
-        return $this->getInstance()->expire($key,$expire);
+        return $this->getInstance()->expire($key, $expire);
     }
 
     /**
@@ -89,9 +89,9 @@ class Redis extends CacheManager implements CacheInterface
      * @param mixed $value
      * @return void
      */
-    public function hset(string $key,string $field,mixed $value) : void
+    public function hset(string $key, string $field, mixed $value): void
     {
-        $this->getInstance()->hset($key,$field,$value);
+        $this->getInstance()->hset($key, $field, $value);
     }
 
     /**
@@ -100,7 +100,7 @@ class Redis extends CacheManager implements CacheInterface
      * @param string $key
      * @return mixed
      */
-    public function get(string $key) : mixed
+    public function get(string $key): mixed
     {
         return $this->getInstance()->get($key);
     }
@@ -113,17 +113,17 @@ class Redis extends CacheManager implements CacheInterface
      * @param callable|null $callback
      * @return mixed
      */
-    public function hget(string $key,string $field,?callable $callback = null) : mixed
+    public function hget(string $key, string $field, ?callable $callback = null): mixed
     {
-        if(is_callable($callback)){
-            if($this->hexists($key,$field)){
-                return json_decode($this->hget($key,$field),true);
+        if (is_callable($callback)) {
+            if ($this->hexists($key, $field)) {
+                return json_decode($this->hget($key, $field), true);
             }
 
             return call_user_func($callback);
         }
 
-        return $this->getInstance()->hget($key,$field);
+        return $this->getInstance()->hget($key, $field);
     }
 
     /**
@@ -132,7 +132,7 @@ class Redis extends CacheManager implements CacheInterface
      * @param string $key
      * @return bool
      */
-    public function exists(string $key) : bool
+    public function exists(string $key): bool
     {
         return !(($this->getInstance()->exists($key) === 0));
     }
@@ -144,7 +144,7 @@ class Redis extends CacheManager implements CacheInterface
      * @param mixed $field
      * @return bool
      */
-    public function hexists(string $key,mixed $field) : bool
+    public function hexists(string $key, mixed $field): bool
     {
         return !(($this->getInstance()->hexists($key, $field) === 0));
     }

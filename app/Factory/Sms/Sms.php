@@ -12,20 +12,20 @@ use App\Factory\Sms\Interfaces\SmsInterface;
  */
 class Sms extends SmsManager implements SmsInterface
 {
-	/**
-	 * binds property variable
-	 *
-	 * @var array
-	 */
-	protected array $binds = [];
+    /**
+     * binds property variable
+     *
+     * @var array
+     */
+    protected array $binds = [];
 
-	/**
-	 * Sms constructor
-	 *
-	 * @param array $binds
-	 */
-	public function __construct(array $binds = [])
-	{
-		$this->binds = $binds;
-	}
+    /**
+     * Sms constructor
+     *
+     * @param array $binds
+     */
+    public function __construct(array $binds = [])
+    {
+        $this->binds = $binds;
+    }
 }

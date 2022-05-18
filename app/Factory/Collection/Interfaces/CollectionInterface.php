@@ -18,7 +18,7 @@ interface CollectionInterface
      * @return array
      * @see Collection::additionDoubleElementsOfArrays()
      */
-    public function additionDoubleElementsOfArrays(array $first = [],array $last  = []) : array;
+    public function additionDoubleElementsOfArrays(array $first = [], array $last = []): array;
 
     /**
      * @param array $first
@@ -26,7 +26,7 @@ interface CollectionInterface
      * @return array
      * @see Collection::subtractionDoubleElementsOfArrays()
      */
-    public function subtractionDoubleElementsOfArrays(array $first = [], array $last  = []) : array;
+    public function subtractionDoubleElementsOfArrays(array $first = [], array $last = []): array;
 
     /**
      * @param array $first
@@ -35,5 +35,5 @@ interface CollectionInterface
      * @return array
      * @see Collection::different()
      */
-    public function different(array $first = [], array $second = [], ?string $criteria = null) : array;
+    public function different(array $first = [], array $second = [], ?string $criteria = null): array;
 }

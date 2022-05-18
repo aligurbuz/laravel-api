@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Factory\Localization;
 
-use App\Repositories\Repository;
 use App\Factory\Localization\Interfaces\LocalizationInterface;
+use App\Repositories\Repository;
 
 /**
  * Class Localization
@@ -13,49 +13,49 @@ use App\Factory\Localization\Interfaces\LocalizationInterface;
  */
 class Localization extends LocalizationManager implements LocalizationInterface
 {
-	/**
-	 * binds property variable
-	 *
-	 * @var array
-	 */
-	protected array $binds = [];
+    /**
+     * binds property variable
+     *
+     * @var array
+     */
+    protected array $binds = [];
 
     /**
      * @var int
      */
-	protected int $code = 0;
+    protected int $code = 0;
 
     /**
      * @var mixed
      */
-	protected mixed $default;
+    protected mixed $default;
 
     /**
      * @var array|null
      */
-	protected static ?array $repository = null;
+    protected static ?array $repository = null;
 
-	/**
-	 * Localization constructor
-	 *
-	 * @param array $binds
-	 */
-	public function __construct(array $binds = [])
-	{
-		$this->binds = $binds;
+    /**
+     * Localization constructor
+     *
+     * @param array $binds
+     */
+    public function __construct(array $binds = [])
+    {
+        $this->binds = $binds;
 
-		$this->code = $this->binds[0] ?? 0;
-		$this->default = ['default' => ($this->binds[1] ?? null)];
-	}
+        $this->code = $this->binds[0] ?? 0;
+        $this->default = ['default' => ($this->binds[1] ?? null)];
+    }
 
     /**
      * get localization data for factory
      *
      * @return array
      */
-	public function get() : array
+    public function get(): array
     {
-        if(!isset(static::$repository[$this->code])){
+        if (!isset(static::$repository[$this->code])) {
             static::$repository[$this->code] = Repository::localization()->localizedCode($this->code)->getRepository();
         }
 
@@ -67,7 +67,7 @@ class Localization extends LocalizationManager implements LocalizationInterface
      *
      * @return object
      */
-    public function getValues() : object
+    public function getValues(): object
     {
         $data = $this->get();
 

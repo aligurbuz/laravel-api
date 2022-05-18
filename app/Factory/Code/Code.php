@@ -12,31 +12,31 @@ use App\Factory\Code\Interfaces\CodeInterface;
  */
 class Code extends CodeManager implements CodeInterface
 {
-	/**
-	 * binds property variable
-	 *
-	 * @var array
-	 */
-	protected array $binds = [];
+    /**
+     * binds property variable
+     *
+     * @var array
+     */
+    protected array $binds = [];
 
-	/**
-	 * Code constructor
-	 *
-	 * @param array $binds
-	 */
-	public function __construct(array $binds = [])
-	{
-		$this->binds = $binds;
-	}
+    /**
+     * Code constructor
+     *
+     * @param array $binds
+     */
+    public function __construct(array $binds = [])
+    {
+        $this->binds = $binds;
+    }
 
     /**
      * throws exception if does not exits code for the specified model
      *
      * @return mixed
      */
-	public function throwExceptionIfDoesntExist() : mixed
+    public function throwExceptionIfDoesntExist(): mixed
     {
-        return $this->isValidRepository(function($repository){
+        return $this->isValidRepository(function ($repository) {
 
             // it determines the code and
             // code value according to the binds value.
@@ -44,8 +44,8 @@ class Code extends CodeManager implements CodeInterface
 
             // we detect the existence of the code value using the repository.
             // if false, an exception will be thrown.
-            if(isset($code['codeName'],$code['value']) && !$repository->exists($code['codeName'],$code['value'])){
-                return inValidCodeException($code['codeName'],$code['value']);
+            if (isset($code['codeName'], $code['value']) && !$repository->exists($code['codeName'], $code['value'])) {
+                return inValidCodeException($code['codeName'], $code['value']);
             }
 
             return null;

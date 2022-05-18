@@ -9,15 +9,15 @@ interface PermissionInterface
     /**
      * @return array
      */
-    public function get() : array;
+    public function get(): array;
 
     /**
      * @return array
      */
-    public function roleFormatter() : array;
+    public function roleFormatter(): array;
 
     /**
      * @return bool
      */
-    public function checkEndpoint() : bool;
+    public function checkEndpoint(): bool;
 }

@@ -11,5 +11,5 @@ interface RequestInterface
      * @param string $password
      * @return array
      */
-    public function login(string $email,string $password) : array;
+    public function login(string $email, string $password): array;
 }

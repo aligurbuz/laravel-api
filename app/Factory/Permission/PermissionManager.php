@@ -13,16 +13,16 @@ abstract class PermissionManager
      * @param array $permission
      * @return bool
      */
-    public function permissionHandler(array $role,array $permission) : bool
+    public function permissionHandler(array $role, array $permission): bool
     {
-        if(isset($role[0]['roles'],$permission[0]['permission_code'])){
+        if (isset($role[0]['roles'], $permission[0]['permission_code'])) {
             $roles = $role[0]['roles'];
             $permissionCode = $permission[0]['permission_code'];
 
-            if(isset($roles[$permissionCode],$roles[$permissionCode][request()->method()])){
+            if (isset($roles[$permissionCode], $roles[$permissionCode][request()->method()])) {
                 $method = $roles[$permissionCode][request()->method()];
 
-                if($method=='0'){
+                if ($method == '0') {
                     return false;
                 }
             }

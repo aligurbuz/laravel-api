@@ -10,5 +10,5 @@ interface ClientInterface
      * @param array $data
      * @return array
      */
-    public function cR(array $data = []) : array;
+    public function cR(array $data = []): array;
 }

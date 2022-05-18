@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Factory\Sms;
 
-use Exception;
-use Twilio\Rest\Client;
-use App\Factory\Sms\Interfaces\SmsInterface;
 use App\Exceptions\Exception as AppException;
+use App\Factory\Sms\Interfaces\SmsInterface;
+use Exception;
 use Twilio\Exceptions\ConfigurationException;
+use Twilio\Rest\Client;
 
 /**
  * Class Twilio
@@ -16,12 +16,12 @@ use Twilio\Exceptions\ConfigurationException;
  */
 class Twilio extends SmsManager implements SmsInterface
 {
-	/**
-	 * binds property variable
-	 *
-	 * @var array
-	 */
-	protected array $binds = [];
+    /**
+     * binds property variable
+     *
+     * @var array
+     */
+    protected array $binds = [];
 
     /**
      * @var Client
@@ -44,15 +44,15 @@ class Twilio extends SmsManager implements SmsInterface
      * @param array $binds
      * @throws ConfigurationException
      */
-	public function __construct(array $binds = [])
-	{
-		$this->binds = $binds;
+    public function __construct(array $binds = [])
+    {
+        $this->binds = $binds;
 
         $sid = config('sms.twilioSid');
         $token = config('sms.twilioToken');
 
-        $this->client = new Client($sid,$token);
-	}
+        $this->client = new Client($sid, $token);
+    }
 
     /**
      * It represents the number to which the sms will be sent.
@@ -60,7 +60,7 @@ class Twilio extends SmsManager implements SmsInterface
      * @param string $number
      * @return SmsInterface
      */
-    public function to(string $number) : SmsInterface
+    public function to(string $number): SmsInterface
     {
         $this->to = $number;
 
@@ -73,7 +73,7 @@ class Twilio extends SmsManager implements SmsInterface
      * @param string $message
      * @return SmsInterface
      */
-    public function message(string $message) : SmsInterface
+    public function message(string $message): SmsInterface
     {
         $this->message = $message;
 
@@ -87,7 +87,7 @@ class Twilio extends SmsManager implements SmsInterface
      */
     public function send(): array
     {
-        try{
+        try {
             return [
                 'smsResponse' => $this->client->messages->create($this->to,
                     [
@@ -96,9 +96,8 @@ class Twilio extends SmsManager implements SmsInterface
                     ]
                 )
             ];
-        }
-        catch (Exception $exception){
-            AppException::customException($exception->getMessage(),[],true);
+        } catch (Exception $exception) {
+            AppException::customException($exception->getMessage(), [], true);
             return [];
         }
 

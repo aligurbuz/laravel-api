@@ -14,9 +14,9 @@ trait OpenTimeListException
      * @param $value
      * @return object|null
      */
-    public function exceptionValueAsNumericOfWeek($value) : ?object
+    public function exceptionValueAsNumericOfWeek($value): ?object
     {
-        if(!in_array($value,$this->valuesAsNumericOfWeek,true)){
+        if (!in_array($value, $this->valuesAsNumericOfWeek, true)) {
             return Exception::customException('value numeric exception');
         }
 
@@ -29,9 +29,9 @@ trait OpenTimeListException
      * @param $value
      * @return object|null
      */
-    public function exceptionIfTimesAreArray($value) : ?object
+    public function exceptionIfTimesAreArray($value): ?object
     {
-        if(!is_array($value)){
+        if (!is_array($value)) {
             return Exception::customException('time exception');
         }
 

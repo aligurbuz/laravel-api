@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Factory\Logger;
 
 use App\Exceptions\Exception;
-use App\Repositories\Repository;
 use App\Factory\Logger\Interfaces\LoggerInterface;
+use App\Repositories\Repository;
 
 /**
  * Class Logger
@@ -34,12 +34,11 @@ class DatabaseLogger extends LoggerManager implements LoggerInterface
      * @param array $data
      * @return array|object
      */
-    public function create(array $data = []) : array|object
+    public function create(array $data = []): array|object
     {
         try {
             return Repository::logger()->create([$data]);
-        }
-        catch (\Exception $e){
+        } catch (\Exception $e) {
             return Exception::accessLoggerException($e->getMessage());
         }
     }

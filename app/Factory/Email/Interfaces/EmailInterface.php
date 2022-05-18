@@ -12,12 +12,12 @@ interface EmailInterface
      * @return void
      * @see Email::order()
      */
-    public function order() : void;
+    public function order(): void;
 
     /**
      * @param string $email
      * @param string $hash
      * @see Email::verifyingEmailForUser()
      */
-    public function verifyingEmailForUser(string $email,string $hash) : void;
+    public function verifyingEmailForUser(string $email, string $hash): void;
 }

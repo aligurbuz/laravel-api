@@ -35,10 +35,10 @@ abstract class NotifyManager
 
         $isValid = $this->isValidResource($resource)
             && $this->binds['resource'][$resource] instanceof Slack500Formatter
-            && method_exists($this->binds['resource'][$resource],'getError500');
+            && method_exists($this->binds['resource'][$resource], 'getError500');
 
-        if($isValid && !is_null($maker = $this->binds['resource'][$resource]->getError500())){
-            return call_user_func($callback,$maker);
+        if ($isValid && !is_null($maker = $this->binds['resource'][$resource]->getError500())) {
+            return call_user_func($callback, $maker);
         }
 
         return null;

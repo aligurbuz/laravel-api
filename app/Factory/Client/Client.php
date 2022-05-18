@@ -12,27 +12,27 @@ use App\Factory\Client\Interfaces\ClientInterface;
  */
 class Client extends ClientManager implements ClientInterface
 {
-	/**
-	 * binds property variable
-	 *
-	 * @var array
-	 */
-	protected array $binds = [];
+    /**
+     * binds property variable
+     *
+     * @var array
+     */
+    protected array $binds = [];
 
     /**
      * @var array|string[]
      */
-	protected array $resource = ['ClientIdentifier'];
+    protected array $resource = ['ClientIdentifier'];
 
-	/**
-	 * Client constructor
-	 *
-	 * @param array $binds
-	 */
-	public function __construct(array $binds = [])
-	{
-		$this->binds = $binds;
-	}
+    /**
+     * Client constructor
+     *
+     * @param array $binds
+     */
+    public function __construct(array $binds = [])
+    {
+        $this->binds = $binds;
+    }
 
     /**
      * cr(client request manipulation) method for factory
@@ -41,8 +41,8 @@ class Client extends ClientManager implements ClientInterface
      * @param bool $container
      * @return array
      */
-	public function cR(array $data = [],bool $container = false) : array
+    public function cR(array $data = [], bool $container = false): array
     {
-        return $this->make($data,$container);
+        return $this->make($data, $container);
     }
 }

@@ -12,22 +12,22 @@ use App\Factory\Cache\Interfaces\CacheInterface;
  */
 class MongoDb extends CacheManager implements CacheInterface
 {
-	/**
-	 * binds property variable
-	 *
-	 * @var array
-	 */
-	protected array $binds = [];
+    /**
+     * binds property variable
+     *
+     * @var array
+     */
+    protected array $binds = [];
 
-	/**
-	 * MongoDb constructor
-	 *
-	 * @param array $binds
-	 */
-	public function __construct(array $binds = [])
-	{
-		$this->binds = $binds;
-	}
+    /**
+     * MongoDb constructor
+     *
+     * @param array $binds
+     */
+    public function __construct(array $binds = [])
+    {
+        $this->binds = $binds;
+    }
 
     public function getInstance(): object
     {

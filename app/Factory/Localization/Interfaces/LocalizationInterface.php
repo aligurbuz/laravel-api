@@ -16,11 +16,11 @@ interface LocalizationInterface
      * @return array
      * @see Localization::get()
      */
-    public function get() : array;
+    public function get(): array;
 
     /**
      * @return object
      * @see Localization::getValues()
      */
-    public function getValues() : object;
+    public function getValues(): object;
 }

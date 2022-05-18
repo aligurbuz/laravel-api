@@ -5,23 +5,23 @@ declare(strict_types=1);
 namespace App\Factory;
 
 use App\Factory\ApiKey\Interfaces\ApiKeyInterface;
+use App\Factory\Cache\Interfaces\CacheInterface;
+use App\Factory\Client\Interfaces\ClientInterface;
+use App\Factory\Code\Interfaces\CodeInterface;
+use App\Factory\Collection\Interfaces\CollectionInterface;
 use App\Factory\Date\Interfaces\DateInterface;
 use App\Factory\Email\Interfaces\EmailInterface;
 use App\Factory\Excel\Interfaces\ExcelInterface;
+use App\Factory\Localization\Interfaces\LocalizationInterface;
+use App\Factory\Logger\Interfaces\LoggerInterface;
 use App\Factory\Money\Interfaces\MoneyInterface;
+use App\Factory\Notify\Interfaces\NotifyInterface;
+use App\Factory\Permission\Interfaces\PermissionInterface;
 use App\Factory\Request\Interfaces\RequestInterface;
 use App\Factory\Role\Interfaces\RoleInterface;
-use App\Factory\Code\Interfaces\CodeInterface;
-use App\Factory\Cache\Interfaces\CacheInterface;
-use App\Factory\Client\Interfaces\ClientInterface;
-use App\Factory\Notify\Interfaces\NotifyInterface;
-use App\Factory\Logger\Interfaces\LoggerInterface;
 use App\Factory\Search\Interfaces\SearchInterface;
 use App\Factory\Sms\Interfaces\SmsInterface;
 use App\Factory\Storage\Interfaces\StorageInterface;
-use App\Factory\Permission\Interfaces\PermissionInterface;
-use App\Factory\Collection\Interfaces\CollectionInterface;
-use App\Factory\Localization\Interfaces\LocalizationInterface;
 use App\Factory\Tax\Interfaces\TaxInterface;
 use App\Jobs\EmailSender;
 
@@ -57,11 +57,11 @@ class Factory extends FactoryManager
      * @var array
      */
     protected static array $adapters = [
-        'Logger'        => 'MongoDbLogger',
-        'Notify'        => 'Slack',
-        'Cache'         => 'Redis',
-        'Search'        => 'ElasticSearch',
-        'Sms'           => 'Twilio',
+        'Logger' => 'MongoDbLogger',
+        'Notify' => 'Slack',
+        'Cache' => 'Redis',
+        'Search' => 'ElasticSearch',
+        'Sms' => 'Twilio',
     ];
 
     /**
@@ -69,9 +69,9 @@ class Factory extends FactoryManager
      *
      * @return void
      */
-    public static function bindings() : void
+    public static function bindings(): void
     {
-        static::bind('Storage',['files' => request()->allFiles()]);
-        static::bind('Email',['mailer' => new EmailSender()]);
+        static::bind('Storage', ['files' => request()->allFiles()]);
+        static::bind('Email', ['mailer' => new EmailSender()]);
     }
 }

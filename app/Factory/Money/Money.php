@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\Factory\Money;
 
 use App\Factory\Factory;
-use App\Services\Money\MoneyManager as M;
-use App\Factory\Tax\Interfaces\TaxInterface;
 use App\Factory\Money\Interfaces\MoneyInterface;
+use App\Factory\Tax\Interfaces\TaxInterface;
+use App\Services\Money\MoneyManager as M;
 
 /**
  * Class Money
@@ -15,28 +15,28 @@ use App\Factory\Money\Interfaces\MoneyInterface;
  */
 class Money extends MoneyManager implements MoneyInterface
 {
-	/**
-	 * binds property variable
-	 *
-	 * @var array
-	 */
-	protected array $binds = [];
+    /**
+     * binds property variable
+     *
+     * @var array
+     */
+    protected array $binds = [];
 
     /**
      * @var M
      */
     protected M $money;
 
-	/**
-	 * Money constructor
-	 *
-	 * @param array $binds
-	 */
-	public function __construct(array $binds = [])
-	{
-		$this->binds = $binds;
+    /**
+     * Money constructor
+     *
+     * @param array $binds
+     */
+    public function __construct(array $binds = [])
+    {
+        $this->binds = $binds;
         $this->money = (new M);
-	}
+    }
 
     /**
      * Adds two float values.
@@ -45,7 +45,7 @@ class Money extends MoneyManager implements MoneyInterface
      * @param float $money2
      * @return float
      */
-    public function add(float $money1,float $money2): float
+    public function add(float $money1, float $money2): float
     {
         return moneyFormatter(($money1 + $money2));
     }
@@ -57,7 +57,7 @@ class Money extends MoneyManager implements MoneyInterface
      * @param float $money2
      * @return float
      */
-    public function subtract(float $money1,float $money2): float
+    public function subtract(float $money1, float $money2): float
     {
         return moneyFormatter(($money1 - $money2));
     }
@@ -69,7 +69,7 @@ class Money extends MoneyManager implements MoneyInterface
      * @param float $money2
      * @return float
      */
-    public function multiply(float $money1,float $money2): float
+    public function multiply(float $money1, float $money2): float
     {
         return moneyFormatter(($money1 * $money2));
     }
@@ -81,7 +81,7 @@ class Money extends MoneyManager implements MoneyInterface
      * @param float $money2
      * @return float
      */
-    public function divide(float $money1,float $money2): float
+    public function divide(float $money1, float $money2): float
     {
         return moneyFormatter(($money1 / $money2));
     }
@@ -93,11 +93,11 @@ class Money extends MoneyManager implements MoneyInterface
      * @param string|null $currency
      * @return string
      */
-    public function currency(float $money,?string $currency = null): string
+    public function currency(float $money, ?string $currency = null): string
     {
         $currency = $currency ?? currency();
 
-        return $this->money->currency($money,$currency);
+        return $this->money->currency($money, $currency);
     }
 
     /**
@@ -111,7 +111,7 @@ class Money extends MoneyManager implements MoneyInterface
         $tax = tax();
         $taxRate = ($money / 100) * $tax;
 
-        return Factory::tax(['money' => $money,'tax' => $taxRate]);
+        return Factory::tax(['money' => $money, 'tax' => $taxRate]);
     }
 
 
