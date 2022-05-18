@@ -43,10 +43,10 @@ class RouteServiceProvider extends ServiceProvider
             Route::prefix(Constants::apiPrefix)
                 ->middleware('api')
                 ->namespace($this->namespace)
-                ->group(function(){
+                ->group(function () {
                     $apiRouteFiles = File::glob(base_path('routes/api/*'));
 
-                    foreach ($apiRouteFiles as $apiRouteFile){
+                    foreach ($apiRouteFiles as $apiRouteFile) {
                         require $apiRouteFile;
                     }
 

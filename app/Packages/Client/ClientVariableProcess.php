@@ -19,23 +19,22 @@ class ClientVariableProcess
      * @param bool $callMethod
      * @return array
      */
-    protected function variableProcess(array $data = [],bool $callMethod = true): array
+    protected function variableProcess(array $data = [], bool $callMethod = true): array
     {
         $list = [];
 
-        foreach ($data as $key => $value){
+        foreach ($data as $key => $value) {
             $camelCaseForKey = Str::camel($key);
-            if(property_exists($this->client,$camelCaseForKey) && $callMethod){
-                $this->client->setProperty($key,$value);
+            if (property_exists($this->client, $camelCaseForKey) && $callMethod) {
+                $this->client->setProperty($key, $value);
 
-                if(method_exists($this->client,$camelCaseForKey)){
+                if (method_exists($this->client, $camelCaseForKey)) {
                     $list[$key] = $callMethod = $this->client->callMethod($camelCaseForKey);
-                    $this->client->putDataStream($key,$callMethod);
+                    $this->client->putDataStream($key, $callMethod);
                 }
-            }
-            else{
+            } else {
                 $list[$key] = $value;
-                $this->client->putDataStream($key,$value);
+                $this->client->putDataStream($key, $value);
             }
         }
 
@@ -48,25 +47,24 @@ class ClientVariableProcess
      * @param array $data
      * @return array
      */
-    protected function generatorProcess(array $data = []) : array
+    protected function generatorProcess(array $data = []): array
     {
         $clientData = $data;
 
         $dontOverWriteGenerators = $this->client->dontOverWriteGenerators();
 
-        foreach ($generators = $this->client->generators() as $generator){
-            $generatorPrefix = Str::camel($generator).'Generator';
-            if(in_array($generator,$generators)){
+        foreach ($generators = $this->client->generators() as $generator) {
+            $generatorPrefix = Str::camel($generator) . 'Generator';
+            if (in_array($generator, $generators)) {
                 $callMethod = $this->client->callMethod($generatorPrefix);
-                if(!is_null($callMethod)){
+                if (!is_null($callMethod)) {
                     $data[$generator] = $callMethod;
-                }
-                else{
+                } else {
                     $data[$generator] = null;
                 }
             }
 
-            if(isset($clientData[$generator]) && !in_array($generator,$dontOverWriteGenerators)){
+            if (isset($clientData[$generator]) && !in_array($generator, $dontOverWriteGenerators)) {
                 $data[$generator] = $clientData[$generator];
             }
         }
@@ -81,31 +79,30 @@ class ClientVariableProcess
      * @param array $defaultGenerator
      * @return array
      */
-    protected function autoGeneratorProcess(array $data = [],array $defaultGenerator = []) : array
+    protected function autoGeneratorProcess(array $data = [], array $defaultGenerator = []): array
     {
         $clientData = $data;
 
         $dontOverWriteAutoGenerators = $this->client->dontOverWriteAutoGenerators();
 
-        foreach ($generators = $this->client->autoGenerators() as $generator){
-            $generatorPrefix = Str::camel($generator).'AutoGenerator';
-            if(in_array($generator,$generators)){
+        foreach ($generators = $this->client->autoGenerators() as $generator) {
+            $generatorPrefix = Str::camel($generator) . 'AutoGenerator';
+            if (in_array($generator, $generators)) {
                 $callMethod = $this->client->callMethod($generatorPrefix);
-                if(!is_null($callMethod)){
+                if (!is_null($callMethod)) {
                     $data[$generator] = $callMethod;
                 }
             }
 
-            if(isset($clientData[$generator]) && !in_array($generator,$dontOverWriteAutoGenerators)){
+            if (isset($clientData[$generator]) && !in_array($generator, $dontOverWriteAutoGenerators)) {
                 $data[$generator] = $clientData[$generator];
             }
         }
 
-        foreach ($data as $dataKey => $dataValue){
-            if(isset($defaultGenerator[$dataKey])){
+        foreach ($data as $dataKey => $dataValue) {
+            if (isset($defaultGenerator[$dataKey])) {
                 $data[$dataKey] = $defaultGenerator[$dataKey];
-            }
-            elseif(array_key_exists($dataKey,$defaultGenerator) && is_null($defaultGenerator[$dataKey])){
+            } elseif (array_key_exists($dataKey, $defaultGenerator) && is_null($defaultGenerator[$dataKey])) {
                 unset($data[$dataKey]);
             }
         }

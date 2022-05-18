@@ -39,13 +39,13 @@ class ServiceCommand extends Command
     public function handle()
     {
         $serviceName = $this->argument('service') ?? $this->ask('What is service name?');
-        $serviceDirectoryName = $this->argument('directory') ?? $this->ask('What is service it\'s directory name?',$serviceName);
+        $serviceDirectoryName = $this->argument('directory') ?? $this->ask('What is service it\'s directory name?', $serviceName);
         $modelName = $this->argument('model') ?? $this->ask('What is model name for service?');
 
-        Artisan::call('create:crud',[
-           'controller' => $serviceName,
-           'dir' => $serviceDirectoryName,
-           'model' => $modelName
+        Artisan::call('create:crud', [
+            'controller' => $serviceName,
+            'dir' => $serviceDirectoryName,
+            'model' => $modelName
         ]);
 
         Artisan::call('update:relation');

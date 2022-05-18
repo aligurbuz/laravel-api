@@ -2,12 +2,13 @@
 
 namespace App\Services\Money;
 
-use Money\Formatter\DecimalMoneyFormatter;
-use Money\Money;
-use Money\Currency;
 use Money\Currencies\ISOCurrencies;
+use Money\Currency;
+use Money\Formatter\DecimalMoneyFormatter;
 use Money\Formatter\IntlMoneyFormatter;
+use Money\Money;
 use Money\Parser\IntlLocalizedDecimalParser;
+use NumberFormatter;
 
 class MoneyManager
 {
@@ -18,11 +19,11 @@ class MoneyManager
      * @param string|null $currency
      * @return string
      */
-    public function toCent(float $amount,?string $currency = null): string
+    public function toCent(float $amount, ?string $currency = null): string
     {
         $currencies = new ISOCurrencies();
 
-        $numberFormatter = new \NumberFormatter('nl_NL', \NumberFormatter::DECIMAL);
+        $numberFormatter = new NumberFormatter('nl_NL', NumberFormatter::DECIMAL);
         $moneyParser = new IntlLocalizedDecimalParser($numberFormatter, $currencies);
 
         $money = $moneyParser->parse($amount, new Currency(($currency ?? currency())));
@@ -38,13 +39,13 @@ class MoneyManager
      * @param string|null $currency
      * @return string
      */
-    public function currency(float $amount,?string $currency = null): string
+    public function currency(float $amount, ?string $currency = null): string
     {
         $amount = $amount * 100;
         $money = new Money($amount, new Currency(($currency ?? currency())));
         $currencies = new ISOCurrencies();
 
-        $numberFormatter = new \NumberFormatter('en_US', \NumberFormatter::CURRENCY);
+        $numberFormatter = new NumberFormatter('en_US', NumberFormatter::CURRENCY);
         $moneyFormatter = new IntlMoneyFormatter($numberFormatter, $currencies);
 
         return $moneyFormatter->format($money);
@@ -58,7 +59,7 @@ class MoneyManager
      * @param string|null $currency
      * @return string
      */
-    public function decimal(float $amount,?string $currency = null): string
+    public function decimal(float $amount, ?string $currency = null): string
     {
         $money = new Money($amount, new Currency(($currency ?? currency())));
         $currencies = new ISOCurrencies();
@@ -77,7 +78,7 @@ class MoneyManager
      * @param string|null $currency
      * @return mixed
      */
-    public function add(string|int $money1,string|int $money2,?string $currency = null): mixed
+    public function add(string|int $money1, string|int $money2, ?string $currency = null): mixed
     {
         $currency = $currency ?? currency();
 
@@ -96,7 +97,7 @@ class MoneyManager
      * @param string|null $currency
      * @return mixed
      */
-    public function subtract(string|int $money1,string|int $money2,?string $currency = null): mixed
+    public function subtract(string|int $money1, string|int $money2, ?string $currency = null): mixed
     {
         $currency = $currency ?? currency();
 
@@ -115,7 +116,7 @@ class MoneyManager
      * @param string|null $currency
      * @return mixed
      */
-    public function multiply(string|int $money1,float $multiply,?string $currency = null): mixed
+    public function multiply(string|int $money1, float $multiply, ?string $currency = null): mixed
     {
         $currency = $currency ?? currency();
 
@@ -134,12 +135,12 @@ class MoneyManager
      * @param mixed $rounding
      * @return mixed
      */
-    public function divide(string|int $money1,float $divide,?string $currency = null,mixed $rounding = Money::ROUND_HALF_UP): mixed
+    public function divide(string|int $money1, float $divide, ?string $currency = null, mixed $rounding = Money::ROUND_HALF_UP): mixed
     {
         $currency = $currency ?? currency();
 
         $value = Money::$currency($money1);
 
-        return $value->divide($divide,$rounding)->getAmount();
+        return $value->divide($divide, $rounding)->getAmount();
     }
 }

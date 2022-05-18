@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Client;
 
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 /**
  * Trait ClientSupport
@@ -29,9 +29,9 @@ trait ClientSupport
      */
     protected function isDefault(): bool|string|int
     {
-        if($this->isDefault && request()->method() !== 'GET'){
-            $this->ensureColumnExists($snakeFunction = Str::snake(__FUNCTION__),function() use($snakeFunction){
-                $this->repository()->default()->update([[$snakeFunction => '0']],false);
+        if ($this->isDefault && request()->method() !== 'GET') {
+            $this->ensureColumnExists($snakeFunction = Str::snake(__FUNCTION__), function () use ($snakeFunction) {
+                $this->repository()->default()->update([[$snakeFunction => '0']], false);
             });
         }
 
@@ -52,7 +52,7 @@ trait ClientSupport
      */
     protected function password(): ?string
     {
-        if(!is_null($this->password)){
+        if (!is_null($this->password)) {
             return Hash::make($this->password);
         }
 

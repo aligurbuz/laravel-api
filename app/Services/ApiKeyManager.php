@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Services;
 
-use Illuminate\Http\Request;
 use App\Exceptions\Exception;
+use Illuminate\Http\Request;
 
 /**
  * Class ApiKeyManager
@@ -25,12 +25,12 @@ class ApiKeyManager
         $apiKeys = $this->apiKeys();
         $header = $this->getHeaderKey($request);
 
-        if(!in_array($header,$apiKeys)){
+        if (!in_array($header, $apiKeys)) {
             return Exception::apiKeyException();
         }
 
-        AppContainer::set('apiKey',$header);
-        AppContainer::set('apiKeys',$apiKeys);
+        AppContainer::set('apiKey', $header);
+        AppContainer::set('apiKeys', $apiKeys);
 
         return null;
     }

@@ -26,7 +26,7 @@ class VerifyEmailForUser extends Mailable
      * @param string $mail
      * @param string $hash
      */
-    public function __construct(string $mail,string $hash)
+    public function __construct(string $mail, string $hash)
     {
         $this->mail = $mail;
         $this->hash = $hash;
@@ -40,9 +40,9 @@ class VerifyEmailForUser extends Mailable
     public function build()
     {
         return $this
-            ->from('verifiedMailAddress','name')
+            ->from('verifiedMailAddress', 'name')
             ->to([$this->mail])
-            ->view('mail.verify-email',[
+            ->view('mail.verify-email', [
                 'hash' => $this->hash
             ])
             ->subject('test message');

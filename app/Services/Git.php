@@ -16,6 +16,6 @@ class Git
     public function commit($commitName)
     {
         exec('git add --all');
-        exec('git commit -m \''.$commitName.'\'');
+        exec('git commit -m \'' . $commitName . '\'');
     }
 }

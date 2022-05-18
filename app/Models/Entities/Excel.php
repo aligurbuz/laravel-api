@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 declare(strict_types=1);
 
@@ -20,159 +20,159 @@ namespace App\Models\Entities;
  */
 class Excel
 {
-	/**
-	 * query data object for entity
-	 *
-	 * @var object
-	 */
-	protected static object $query;
+    /**
+     * query data object for entity
+     *
+     * @var object
+     */
+    protected static object $query;
 
 
-	/**
-	 * Excel constructor
-	 *
-	 * @param object $query
-	 */
-	public function __construct(object $query)
-	{
-		self::$query = $query;
-	}
+    /**
+     * Excel constructor
+     *
+     * @param object $query
+     */
+    public function __construct(object $query)
+    {
+        self::$query = $query;
+    }
 
 
-	/**
-	 * get id column for database table
-	 *
-	 * @return mixed
-	 */
-	protected static function id(): mixed
-	{
-		return self::$query->id;
-	}
+    /**
+     * get id column for database table
+     *
+     * @return mixed
+     */
+    protected static function id(): mixed
+    {
+        return self::$query->id;
+    }
 
 
-	/**
-	 * get excel_code column for database table
-	 *
-	 * @return mixed
-	 */
-	protected static function excel_code(): mixed
-	{
-		return self::$query->excel_code;
-	}
+    /**
+     * get excel_code column for database table
+     *
+     * @return mixed
+     */
+    protected static function excel_code(): mixed
+    {
+        return self::$query->excel_code;
+    }
 
 
-	/**
-	 * get excel_file column for database table
-	 *
-	 * @return mixed
-	 */
-	protected static function excel_file(): mixed
-	{
-		return self::$query->excel_file;
-	}
+    /**
+     * get excel_file column for database table
+     *
+     * @return mixed
+     */
+    protected static function excel_file(): mixed
+    {
+        return self::$query->excel_file;
+    }
 
 
-	/**
-	 * get excel_factory column for database table
-	 *
-	 * @return mixed
-	 */
-	protected static function excel_factory(): mixed
-	{
-		return self::$query->excel_factory;
-	}
+    /**
+     * get excel_factory column for database table
+     *
+     * @return mixed
+     */
+    protected static function excel_factory(): mixed
+    {
+        return self::$query->excel_factory;
+    }
 
 
-	/**
-	 * get status column for database table
-	 *
-	 * @return mixed
-	 */
-	protected static function status(): mixed
-	{
-		return self::$query->status;
-	}
+    /**
+     * get status column for database table
+     *
+     * @return mixed
+     */
+    protected static function status(): mixed
+    {
+        return self::$query->status;
+    }
 
 
-	/**
-	 * get is_deleted column for database table
-	 *
-	 * @return mixed
-	 */
-	protected static function is_deleted(): mixed
-	{
-		return self::$query->is_deleted;
-	}
+    /**
+     * get is_deleted column for database table
+     *
+     * @return mixed
+     */
+    protected static function is_deleted(): mixed
+    {
+        return self::$query->is_deleted;
+    }
 
 
-	/**
-	 * get created_by column for database table
-	 *
-	 * @return mixed
-	 */
-	protected static function created_by(): mixed
-	{
-		return self::$query->created_by;
-	}
+    /**
+     * get created_by column for database table
+     *
+     * @return mixed
+     */
+    protected static function created_by(): mixed
+    {
+        return self::$query->created_by;
+    }
 
 
-	/**
-	 * get updated_by column for database table
-	 *
-	 * @return mixed
-	 */
-	protected static function updated_by(): mixed
-	{
-		return self::$query->updated_by;
-	}
+    /**
+     * get updated_by column for database table
+     *
+     * @return mixed
+     */
+    protected static function updated_by(): mixed
+    {
+        return self::$query->updated_by;
+    }
 
 
-	/**
-	 * get deleted_by column for database table
-	 *
-	 * @return mixed
-	 */
-	protected static function deleted_by(): mixed
-	{
-		return self::$query->deleted_by;
-	}
+    /**
+     * get deleted_by column for database table
+     *
+     * @return mixed
+     */
+    protected static function deleted_by(): mixed
+    {
+        return self::$query->deleted_by;
+    }
 
 
-	/**
-	 * get deleted_at column for database table
-	 *
-	 * @return mixed
-	 */
-	protected static function deleted_at(): mixed
-	{
-		return self::$query->deleted_at;
-	}
+    /**
+     * get deleted_at column for database table
+     *
+     * @return mixed
+     */
+    protected static function deleted_at(): mixed
+    {
+        return self::$query->deleted_at;
+    }
 
 
-	/**
-	 * get created_at column for database table
-	 *
-	 * @return mixed
-	 */
-	protected static function created_at(): mixed
-	{
-		return self::$query->created_at;
-	}
+    /**
+     * get created_at column for database table
+     *
+     * @return mixed
+     */
+    protected static function created_at(): mixed
+    {
+        return self::$query->created_at;
+    }
 
 
-	/**
-	 * get updated_at column for database table
-	 *
-	 * @return mixed
-	 */
-	protected static function updated_at(): mixed
-	{
-		return self::$query->updated_at;
-	}
+    /**
+     * get updated_at column for database table
+     *
+     * @return mixed
+     */
+    protected static function updated_at(): mixed
+    {
+        return self::$query->updated_at;
+    }
 
 
-	public function __get($name)
-	{
-		return static::{$name}();
-	}
+    public function __get($name)
+    {
+        return static::{$name}();
+    }
 }

@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace App\Client;
 
 use App\Exceptions\Exception;
+use App\Packages\Client\ClientManager;
+use App\Repositories\Repository;
+use App\Services\AppContainer;
 use App\Services\Db;
 use Illuminate\Support\Str;
-use App\Services\AppContainer;
-use App\Repositories\Repository;
-use App\Packages\Client\ClientManager;
 
 /**
  * Class Client
@@ -19,7 +19,7 @@ use App\Packages\Client\ClientManager;
  */
 class Client extends ClientManager
 {
-    use ClientSetRuleTrait,ClientSupport,ClientAction;
+    use ClientSetRuleTrait, ClientSupport, ClientAction;
 
     /**
      * @var array
@@ -30,18 +30,18 @@ class Client extends ClientManager
      * @var array|string[]
      */
     protected array $customRules = [
-        'double'                    => ['regex:/^[0-9]+(\\.[0-9]+)?$/i'],
-        'atLeastUpperLowerNumber'   => ['regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/']
+        'double' => ['regex:/^[0-9]+(\\.[0-9]+)?$/i'],
+        'atLeastUpperLowerNumber' => ['regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/']
     ];
 
     /**
      * @var array
      */
     protected array $autoRule = [
-        'email'         => 'email:rfc,dns',
-        'status'        => ['boolean'],
-        'is_deleted'    => ['boolean'],
-        'is_default'    => ['boolean'],
+        'email' => 'email:rfc,dns',
+        'status' => ['boolean'],
+        'is_deleted' => ['boolean'],
+        'is_default' => ['boolean'],
     ];
 
     /**
@@ -49,9 +49,9 @@ class Client extends ClientManager
      * @param array $data
      * @param bool $handler
      */
-    public function __construct(array $data = [],bool $handler = true)
+    public function __construct(array $data = [], bool $handler = true)
     {
-        if($handler){
+        if ($handler) {
             parent::__construct($this->setClientAction($data));
             $this->modelRequiredFields();
             $this->capsule();
@@ -74,7 +74,7 @@ class Client extends ClientManager
      *
      * @return array
      */
-    public function getCustomRules() : array
+    public function getCustomRules(): array
     {
         return $this->customRules;
     }
@@ -87,7 +87,7 @@ class Client extends ClientManager
      */
     private function setClientAction(array $data = []): array
     {
-        if(request()->method()=='GET'){
+        if (request()->method() == 'GET') {
             $data = count($data)
                 ? $data
                 : $this->clientActionDataHandler();
@@ -101,17 +101,16 @@ class Client extends ClientManager
      *
      * @return array
      */
-    private function clientActionDataHandler() : array
+    private function clientActionDataHandler(): array
     {
         $actionClientData = request()->query->get('client_action');
-        $clientActionMethodName = $actionClientData.'Action';
+        $clientActionMethodName = $actionClientData . 'Action';
 
-        if(!is_null($actionClientData)){
-            if(method_exists($this,$clientActionMethodName)){
+        if (!is_null($actionClientData)) {
+            if (method_exists($this, $clientActionMethodName)) {
                 request()->query->replace([]);
                 request()->query->add($this->{$clientActionMethodName}());
-            }
-            else{
+            } else {
                 return Exception::clientActionException();
             }
         }
@@ -129,7 +128,7 @@ class Client extends ClientManager
     {
         $camelCaseModelName = Str::camel($this->getModelName());
 
-        if($justName) return $camelCaseModelName;
+        if ($justName) return $camelCaseModelName;
 
         return Repository::$camelCaseModelName();
     }
@@ -139,7 +138,7 @@ class Client extends ClientManager
      *
      * @return array
      */
-    public function getRule() : array
+    public function getRule(): array
     {
         return $this->rule;
     }
@@ -149,9 +148,9 @@ class Client extends ClientManager
      *
      * @return array
      */
-    public function getArrayRule() : array
+    public function getArrayRule(): array
     {
-        return property_exists($this,'arrayRule') ? $this->arrayRule : [];
+        return property_exists($this, 'arrayRule') ? $this->arrayRule : [];
     }
 
     /**
@@ -159,9 +158,9 @@ class Client extends ClientManager
      *
      * @return array
      */
-    public function getCapsuleComments() : array
+    public function getCapsuleComments(): array
     {
-        return property_exists($this,'capsuleComments') ? $this->capsuleComments : [];
+        return property_exists($this, 'capsuleComments') ? $this->capsuleComments : [];
     }
 
     /**
@@ -172,12 +171,11 @@ class Client extends ClientManager
      * @param bool $isset
      * @return void
      */
-    public function setRule($key, $value, bool $isset = true) : void
+    public function setRule($key, $value, bool $isset = true): void
     {
-        if($isset && isset($this->rule[$key])){
-            $this->rule[$key] = $value.'|'.$this->rule[$key];
-        }
-        elseif(!isset($this->rule[$key])){
+        if ($isset && isset($this->rule[$key])) {
+            $this->rule[$key] = $value . '|' . $this->rule[$key];
+        } elseif (!isset($this->rule[$key])) {
             $this->rule[$key] = $value;
         }
     }
@@ -187,7 +185,7 @@ class Client extends ClientManager
      *
      * @return array
      */
-    public function getCustomRule() : array
+    public function getCustomRule(): array
     {
         return $this->customRules;
     }
@@ -197,7 +195,7 @@ class Client extends ClientManager
      *
      * @return array
      */
-    public function getAutoRule() : array
+    public function getAutoRule(): array
     {
         return $this->autoRule;
     }
@@ -209,9 +207,9 @@ class Client extends ClientManager
      * @param $value
      * @return void
      */
-    public function setAutoRule($key,$value) : void
+    public function setAutoRule($key, $value): void
     {
-        if(!isset($this->autoRule[$key])){
+        if (!isset($this->autoRule[$key])) {
             $this->autoRule[$key] = $value;
         }
     }
@@ -222,7 +220,7 @@ class Client extends ClientManager
      * @param $key
      * @param $value
      */
-    public function setProperty($key,$value)
+    public function setProperty($key, $value)
     {
         $key = Str::camel($key);
         $this->{$key} = $value;
@@ -238,7 +236,7 @@ class Client extends ClientManager
     {
         $key = Str::camel($key);
 
-        if(method_exists($this,$key)){
+        if (method_exists($this, $key)) {
             return $this->{$key}();
         }
 
@@ -310,7 +308,7 @@ class Client extends ClientManager
      *
      * @return array
      */
-    public function getCapsule() : array
+    public function getCapsule(): array
     {
         return $this->capsule;
     }
@@ -320,7 +318,7 @@ class Client extends ClientManager
      *
      * @return string
      */
-    public function getModel() : string
+    public function getModel(): string
     {
         return $this->model[0] ?? 'no-model';
     }
@@ -330,10 +328,10 @@ class Client extends ClientManager
      *
      * @return string
      */
-    public function getModelName() : string
+    public function getModelName(): string
     {
         $model = $this->getModel();
-        $modelSplit = explode('\\',$model);
+        $modelSplit = explode('\\', $model);
 
         return end($modelSplit);
     }
@@ -343,11 +341,11 @@ class Client extends ClientManager
      *
      * @return null|string
      */
-    public function getTable() : null|string
+    public function getTable(): null|string
     {
         $model = $this->getModel();
 
-        if(class_exists($model)){
+        if (class_exists($model)) {
             return (new $model)->getTable();
         }
 
@@ -359,21 +357,21 @@ class Client extends ClientManager
      *
      * @return void
      */
-    public function capsule() : void
+    public function capsule(): void
     {
-        if(
-            property_exists($this,'model')
+        if (
+            property_exists($this, 'model')
             && is_array($this->model)
             && isset($this->model[0])
-        ){
-            AppContainer::setWithTerminating('clientCapsule',(is_array($this->capsule) ? $this->capsule : []));
-            $this->capsule = array_merge($this->columnsForModel(),$this->capsule);
+        ) {
+            AppContainer::setWithTerminating('clientCapsule', (is_array($this->capsule) ? $this->capsule : []));
+            $this->capsule = array_merge($this->columnsForModel(), $this->capsule);
 
-            if($this->requestMethod=='GET'){
-                $this->capsule = array_merge($this->capsule,config('app.allowedClientKeys'));
+            if ($this->requestMethod == 'GET') {
+                $this->capsule = array_merge($this->capsule, config('app.allowedClientKeys'));
 
-                if(count($this->repository()->getCollects())){
-                    $this->capsule = array_merge($this->capsule,['collect']);
+                if (count($this->repository()->getCollects())) {
+                    $this->capsule = array_merge($this->capsule, ['collect']);
                 }
             }
         }
@@ -384,9 +382,9 @@ class Client extends ClientManager
      *
      * @return array
      */
-    public function getCapsuleDescriptions() : array
+    public function getCapsuleDescriptions(): array
     {
-        return (property_exists($this,'capsuleDescriptions') && is_array($this->capsuleDescriptions))
+        return (property_exists($this, 'capsuleDescriptions') && is_array($this->capsuleDescriptions))
             ? $this->capsuleDescriptions : [];
     }
 
@@ -395,9 +393,9 @@ class Client extends ClientManager
      *
      * @return array
      */
-    public function getClientCapsule() : array
+    public function getClientCapsule(): array
     {
-        return AppContainer::get('clientCapsule',[]);
+        return AppContainer::get('clientCapsule', []);
     }
 
     /**
@@ -405,7 +403,7 @@ class Client extends ClientManager
      *
      * @return array
      */
-    public function columnsForModel() : array
+    public function columnsForModel(): array
     {
         return Db::columns($this->getTable());
     }
@@ -415,9 +413,9 @@ class Client extends ClientManager
      * @param callable $callback
      * @return mixed
      */
-    public function ensureColumnExists($column,callable $callback): mixed
+    public function ensureColumnExists($column, callable $callback): mixed
     {
-        if(Db::ensureColumnExists($this->getTable(),$column)){
+        if (Db::ensureColumnExists($this->getTable(), $column)) {
             return call_user_func($callback);
         }
 
@@ -430,9 +428,9 @@ class Client extends ClientManager
      * @param $key
      * @param $value
      */
-    public function set($key,$value) : void
+    public function set($key, $value): void
     {
-        $this->putDataStream($key,$value);
+        $this->putDataStream($key, $value);
     }
 
     /**
@@ -442,9 +440,9 @@ class Client extends ClientManager
      * @param $value
      * @return $this
      */
-    public function register($key,$value): Client
+    public function register($key, $value): Client
     {
-        $this->setRegister($key,$value);
+        $this->setRegister($key, $value);
 
         return $this;
     }
@@ -455,7 +453,7 @@ class Client extends ClientManager
      * @param null|string $key
      * @return mixed
      */
-    public function get(?string $key = null) : mixed
+    public function get(?string $key = null): mixed
     {
         $streamData = $this->getClientDataStreams();
 
@@ -467,9 +465,9 @@ class Client extends ClientManager
      *
      * @return array
      */
-    public function getClientDataStreams() : array
+    public function getClientDataStreams(): array
     {
-        return AppContainer::get('clientDataStreams',[]);
+        return AppContainer::get('clientDataStreams', []);
     }
 
     /**
@@ -478,7 +476,7 @@ class Client extends ClientManager
      * @param null|string $key
      * @return bool
      */
-    public function has(?string $key = null) : bool
+    public function has(?string $key = null): bool
     {
         $streamData = $this->getClientDataStreams();
 
@@ -490,24 +488,24 @@ class Client extends ClientManager
      *
      * @return void
      */
-    public function modelRequiredFields() : void
+    public function modelRequiredFields(): void
     {
         $maxLength = Db::columnMaxLength($this->getTable());
 
-        if(request()->method()==='POST'){
+        if (request()->method() === 'POST') {
             $entities = Db::entities($this->getTable());
             $requiredColumns = $entities['required_columns'] ?? [];
 
-            foreach ($requiredColumns as $requiredColumn){
+            foreach ($requiredColumns as $requiredColumn) {
                 (isset($maxLength[$requiredColumn]))
-                    ? $this->setRule($requiredColumn,'required|max:'.$maxLength[$requiredColumn])
-                    : $this->setRule($requiredColumn,'required');
+                    ? $this->setRule($requiredColumn, 'required|max:' . $maxLength[$requiredColumn])
+                    : $this->setRule($requiredColumn, 'required');
             }
         }
 
-        if(request()->method()!=='GET'){
-            foreach ($maxLength as $maxLengthColumn => $maxLengthValue){
-                $this->setRule($maxLengthColumn,'max:'.$maxLengthValue,false);
+        if (request()->method() !== 'GET') {
+            foreach ($maxLength as $maxLengthColumn => $maxLengthValue) {
+                $this->setRule($maxLengthColumn, 'max:' . $maxLengthValue, false);
             }
         }
     }

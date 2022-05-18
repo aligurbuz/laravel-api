@@ -42,27 +42,27 @@ class MigrationCommand extends Command
     {
         $table = $this->argument('table');
         $model = $this->argument('model') ?? Str::camel(getModelWithPlural($table));
-        $modelCode = Str::snake($model).'_code';
+        $modelCode = Str::snake($model) . '_code';
 
-        Artisan::call('make:migration',['name' =>'create_'.$table]);
+        Artisan::call('make:migration', ['name' => 'create_' . $table]);
 
         $migrationDirectory = database_path('migrations');
         $migrationFiles = File::files($migrationDirectory);
 
         $createdFile = null;
 
-        foreach ($migrationFiles as $file){
+        foreach ($migrationFiles as $file) {
             $fileName = $file->getFilename();
-            if(preg_match('@(.*)_create_'.$table.'\.php@',$fileName,$catch)){
+            if (preg_match('@(.*)_create_' . $table . '\.php@', $fileName, $catch)) {
                 $createdFile = $catch[0] ?? null;
             }
         }
 
-        $createdFilePath = $migrationDirectory.''.DIRECTORY_SEPARATOR.''.$createdFile;
+        $createdFilePath = $migrationDirectory . '' . DIRECTORY_SEPARATOR . '' . $createdFile;
 
         $content = File::get($createdFilePath);
-        $content = str_replace('$table->id();','$table->id();
-            $table->bigInteger(\''.$modelCode.'\')->default(0)->unique();
+        $content = str_replace('$table->id();', '$table->id();
+            $table->bigInteger(\'' . $modelCode . '\')->default(0)->unique();
 
             //$table->char(\'column\')->comment(\'\');
 
@@ -75,13 +75,13 @@ class MigrationCommand extends Command
             $table->bigInteger(\'updated_by\')->default(0);
             $table->bigInteger(\'deleted_by\')->default(0);
             $table->index([\'status\',\'is_deleted\']);
-            $table->timestamp(\'deleted_at\')->nullable();',$content);
+            $table->timestamp(\'deleted_at\')->nullable();', $content);
 
-        $content = str_replace('});','});
+        $content = str_replace('});', '});
 
-        pushMigration(\''.$table.'\',\''.$table.'\',\''.$model.'\');',$content);
+        pushMigration(\'' . $table . '\',\'' . $table . '\',\'' . $model . '\');', $content);
 
-        File::put($createdFilePath,$content);
+        File::put($createdFilePath, $content);
 
         $this->warn('migration has been successful created');
         return 0;

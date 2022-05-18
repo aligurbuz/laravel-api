@@ -2,18 +2,18 @@
 
 namespace App\Models;
 
+use App\Models\Features\BaseManager;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Features\BaseManager;
 
 /**
  * Class AccessLogger
- * @method static|$this create($data = [])
+ * @method static |$this create($data = [])
  * @package App\Models
  */
 class AccessLogger extends Model
 {
-    use HasFactory,BaseManager;
+    use HasFactory, BaseManager;
 
     /**
      * @var array

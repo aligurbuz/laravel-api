@@ -16,7 +16,7 @@ class FacadeManager
      */
     public function __construct()
     {
-        if(AppContainer::has($this->facade)){
+        if (AppContainer::has($this->facade)) {
             $this->data = AppContainer::get($this->facade);
         }
     }

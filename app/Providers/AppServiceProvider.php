@@ -70,8 +70,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        AppContainer::set('apiUrl',request()->getSchemeAndHttpHost().''.request()->getBaseUrl().''.DIRECTORY_SEPARATOR.'api');
-        AppContainer::set('public_path',request()->getSchemeAndHttpHost().''.request()->getBasePath());
+        AppContainer::set('apiUrl', request()->getSchemeAndHttpHost() . '' . request()->getBaseUrl() . '' . DIRECTORY_SEPARATOR . 'api');
+        AppContainer::set('public_path', request()->getSchemeAndHttpHost() . '' . request()->getBasePath());
         $this->checkPaginationValue();
     }
 
@@ -80,15 +80,15 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    private function checkPaginationValue() : void
+    private function checkPaginationValue(): void
     {
-        $page = request()->query->get('page',1);
+        $page = request()->query->get('page', 1);
 
-        if(!is_numeric($page)){
+        if (!is_numeric($page)) {
             Exception::customException(trans('exception.page'));
         }
 
-        AppContainer::set('page',(int)$page);
+        AppContainer::set('page', (int)$page);
     }
 
     /**

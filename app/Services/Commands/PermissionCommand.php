@@ -2,7 +2,6 @@
 
 namespace App\Services\Commands;
 
-use App\Repositories\Repository;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
@@ -60,30 +59,32 @@ class PermissionCommand extends Command
      */
     public function handle()
     {
-        $routes = collect(Route::getRoutes())->map(function ($route) { return $route->uri(); })->toArray();
+        $routes = collect(Route::getRoutes())->map(function ($route) {
+            return $route->uri();
+        })->toArray();
 
         $list = [];
 
-        foreach ($routes as $key => $route){
-            if(Str::startsWith($route,'api/')){
-                $endpoint = str_replace('api/','',$route);
-                if(!in_array($endpoint,$list,true) && !in_array($endpoint,$this->forbiddenRoutes,true)){
+        foreach ($routes as $key => $route) {
+            if (Str::startsWith($route, 'api/')) {
+                $endpoint = str_replace('api/', '', $route);
+                if (!in_array($endpoint, $list, true) && !in_array($endpoint, $this->forbiddenRoutes, true)) {
                     $list[] = $endpoint;
                 }
             }
         }
 
-        if(count($list)){
+        if (count($list)) {
             DB::table('permissions')->delete();
 
-            foreach ($list as $endpoint){
+            foreach ($list as $endpoint) {
                 $createList = [];
                 $createList['endpoint'] = $endpoint;
                 $createList['description'] = $endpoint;
                 $createList['permission_code'] = crc32($endpoint);
 
-                DB::table('permissions')->where('permission_code',$createList['permission_code'])->delete();
-                DB::table('localizations')->where('localized_code',$createList['permission_code'])->delete();
+                DB::table('permissions')->where('permission_code', $createList['permission_code'])->delete();
+                DB::table('localizations')->where('localized_code', $createList['permission_code'])->delete();
 
                 DB::table('permissions')->insert($createList);
             }

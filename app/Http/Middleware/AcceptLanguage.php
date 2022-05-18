@@ -2,12 +2,12 @@
 
 namespace App\Http\Middleware;
 
-use Closure;
 use App\Constants;
-use Illuminate\Http\Request;
 use App\Exceptions\Exception;
-use App\Services\AppContainer;
 use App\Repositories\Repository;
+use App\Services\AppContainer;
+use Closure;
+use Illuminate\Http\Request;
 
 class AcceptLanguage
 {
@@ -20,7 +20,7 @@ class AcceptLanguage
      */
     public function handle(Request $request, Closure $next): mixed
     {
-        if(config('app.language')===false){
+        if (config('app.language') === false) {
             return $next($request);
         }
 
@@ -33,7 +33,7 @@ class AcceptLanguage
         $repositoryCode = $this->checkRepositoryCode($acceptLanguage);
 
         //we assign the language_code value as the application container value.
-        AppContainer::set(Constants::acceptLanguage,$repositoryCode);
+        AppContainer::set(Constants::acceptLanguage, $repositoryCode);
 
         return $next($request);
     }
@@ -44,11 +44,11 @@ class AcceptLanguage
      * @param Request $request
      * @return string|null
      */
-    private function checkAcceptLanguage(Request $request) : ?string
+    private function checkAcceptLanguage(Request $request): ?string
     {
         $acceptLanguage = $request->headers->get('accept-language');
 
-        if(is_null($acceptLanguage)){
+        if (is_null($acceptLanguage)) {
             return Exception::customException(trans('exception.acceptLanguageNotIn'));
         }
 
@@ -61,11 +61,11 @@ class AcceptLanguage
      * @param string|null $acceptLanguage
      * @return mixed
      */
-    private function checkRepositoryCode(?string $acceptLanguage) : mixed
+    private function checkRepositoryCode(?string $acceptLanguage): mixed
     {
         $repository = Repository::language()->name($acceptLanguage)->getRepository();
 
-        if(!isset($repository[0]['language_code'])){
+        if (!isset($repository[0]['language_code'])) {
             return Exception::customException(trans('exception.acceptLanguageNotValid'));
         }
 

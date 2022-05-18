@@ -18,7 +18,7 @@ trait GroupByProcess
     /**
      * @var array|string[]
      */
-    protected array $clientProcessList = ['sum','avg','max','min'];
+    protected array $clientProcessList = ['sum', 'avg', 'max', 'min'];
 
     /**
      * @var array
@@ -31,24 +31,24 @@ trait GroupByProcess
      * @param Builder $builder
      * @return object
      */
-    public function groupByProcessHandler(Builder $builder) : object
+    public function groupByProcessHandler(Builder $builder): object
     {
-        $request = request()->query->get('groupBy',[]);
+        $request = request()->query->get('groupBy', []);
 
-        if(count($request) && !isset($request['field'])){
+        if (count($request) && !isset($request['field'])) {
             return Exception::customException(trans('exception.groupByDefaultException'));
         }
 
         $field = $request['field'] ?? null;
 
-        if(!is_null($field)){
+        if (!is_null($field)) {
             $this->groupByRequestProcess((array)$request);
 
-            if(in_array($field,$this->getRepository()->getGroupByFields(),true)){
-                return $builder->select(array_merge([$field],$this->groupByQueryList))->groupBy($field);
+            if (in_array($field, $this->getRepository()->getGroupByFields(), true)) {
+                return $builder->select(array_merge([$field], $this->groupByQueryList))->groupBy($field);
             }
 
-            return Exception::customException(trans('exception.groupByFieldException',['key' => $field]));
+            return Exception::customException(trans('exception.groupByFieldException', ['key' => $field]));
         }
 
         return $builder;
@@ -62,26 +62,26 @@ trait GroupByProcess
      */
     private function groupByRequestProcess(array $request = []): object
     {
-        foreach ($request as $clientKey => $clientVal){
-            if(!in_array($clientKey,array_merge($this->clientKeyList,$this->clientProcessList),true)){
-                Exception::customException(trans('exception.groupByKeyException',['key' => $clientKey]));
+        foreach ($request as $clientKey => $clientVal) {
+            if (!in_array($clientKey, array_merge($this->clientKeyList, $this->clientProcessList), true)) {
+                Exception::customException(trans('exception.groupByKeyException', ['key' => $clientKey]));
             }
 
-            $clientValues = explode(',',$clientVal);
+            $clientValues = explode(',', $clientVal);
 
-            foreach ($clientValues as $clientValue){
-                if(in_array($clientKey,$this->clientProcessList,true)){
-                    if(in_array($clientValue,$this->getRepository()->getGroupByProcessFields(),true)){
-                        $this->groupByQueryList[] = dbFacade::raw(''.$clientKey.'('.$clientValue.') as '.$clientKey.'_'.$clientValue);
-                    }
-                    else{
-                        return Exception::customException(trans('exception.groupByProcessFieldException',['key' => $clientValue]));
+            foreach ($clientValues as $clientValue) {
+                if (in_array($clientKey, $this->clientProcessList, true)) {
+                    if (in_array($clientValue, $this->getRepository()->getGroupByProcessFields(), true)) {
+                        $this->groupByQueryList[] = dbFacade::raw('' . $clientKey . '(' . $clientValue . ') as ' . $clientKey . '_' . $clientValue);
+                    } else {
+                        return Exception::customException(trans('exception.groupByProcessFieldException', ['key' => $clientValue]));
                     }
                 }
 
             }
         }
 
-        return new class {};
+        return new class {
+        };
     }
 }

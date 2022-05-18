@@ -6,11 +6,11 @@ namespace App\Models\Features;
 
 use App\Constants;
 use App\Exceptions\Exception;
+use App\Repositories\Repository;
 use App\Services\Db;
 use App\Services\Response\Response;
-use Illuminate\Support\Str;
-use App\Repositories\Repository;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Support\Str;
 
 /**
  * Trait BaseManager
@@ -19,7 +19,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  */
 trait BaseManager
 {
-    use ScopeManager,GeneralAppends;
+    use ScopeManager, GeneralAppends;
 
     /**
      * @var array
@@ -48,18 +48,18 @@ trait BaseManager
      * @param array $attributes
      * @param bool $withQueryConstructor
      */
-    public function __construct(array $attributes = [],bool $withQueryConstructor = true)
+    public function __construct(array $attributes = [], bool $withQueryConstructor = true)
     {
         $this->fillable = Db::columns($this->getTable());
 
         $booleans = Db::booleanValues($this->getTable());
 
-        foreach ($booleans as $boolean){
+        foreach ($booleans as $boolean) {
             $this->casts[$boolean] = 'boolean';
         }
 
-        foreach (Db::types($this->getTable()) as $dbTypeColumn => $dbType){
-            if($dbType=='array'){
+        foreach (Db::types($this->getTable()) as $dbTypeColumn => $dbType) {
+            if ($dbType == 'array') {
                 $this->casts[$dbTypeColumn] = 'array';
             }
         }
@@ -67,11 +67,11 @@ trait BaseManager
         $this->assignAppends();
         $this->localizationWithQuery['localization']['localColumn'] = getTableCode($this->getModelName());
 
-        if(in_array('sequence',$this->fillable,true) && request()->method()=='GET'){
-            $this->setHidden(array_merge($this->getHidden(),['sequence','sequence_time']));
+        if (in_array('sequence', $this->fillable, true) && request()->method() == 'GET') {
+            $this->setHidden(array_merge($this->getHidden(), ['sequence', 'sequence_time']));
         }
 
-        if($withQueryConstructor){
+        if ($withQueryConstructor) {
             $this->withQueryConstructor();
         }
 
@@ -97,8 +97,8 @@ trait BaseManager
     {
         $this->withModelHandler();
 
-        if(property_exists($this,'withQuery') && is_array($this->withQuery)){
-            $this->withQuery = array_merge_recursive($this->withQuery,$this->localizationWithQuery);
+        if (property_exists($this, 'withQuery') && is_array($this->withQuery)) {
+            $this->withQuery = array_merge_recursive($this->withQuery, $this->localizationWithQuery);
         }
     }
 
@@ -110,11 +110,10 @@ trait BaseManager
      */
     public function getModelNormalize($model): string
     {
-        if(Str::endsWith($model,'y')){
-            return substr(Str::camel($model),0,-1).'ies';
-        }
-        else{
-            return Str::camel($model).'s';
+        if (Str::endsWith($model, 'y')) {
+            return substr(Str::camel($model), 0, -1) . 'ies';
+        } else {
+            return Str::camel($model) . 's';
         }
     }
 
@@ -125,42 +124,42 @@ trait BaseManager
      * @param bool $nested
      * @return void
      */
-    public function getModelRelationsForCode(?string $model = null,bool $nested = false) : void
+    public function getModelRelationsForCode(?string $model = null, bool $nested = false): void
     {
-        $modelName                  = $model ?? $this->getModelName();
-        $relationCodes              = Db::relationCodes();
-        $currentModelName           = ucfirst($modelName);
-        $relationsAccordingToCode   = $relationCodes[$tableCode = getTableCode($modelName)] ?? [];
-        $camelCaseTableCode         = Str::camel($tableCode);
-        $globalScopes               = config('repository.globalScopes');
-        $repository                 = $this->getRepository();
-        $deniedEagerLoadings        = (is_object($repository) && method_exists($repository,'getDeniedEagerLoadings')) ? $repository->getDeniedEagerLoadings() : [];
+        $modelName = $model ?? $this->getModelName();
+        $relationCodes = Db::relationCodes();
+        $currentModelName = ucfirst($modelName);
+        $relationsAccordingToCode = $relationCodes[$tableCode = getTableCode($modelName)] ?? [];
+        $camelCaseTableCode = Str::camel($tableCode);
+        $globalScopes = config('repository.globalScopes');
+        $repository = $this->getRepository();
+        $deniedEagerLoadings = (is_object($repository) && method_exists($repository, 'getDeniedEagerLoadings')) ? $repository->getDeniedEagerLoadings() : [];
 
-        $clientEagerLoadingData     = request()->query->get('with',[]);
+        $clientEagerLoadingData = request()->query->get('with', []);
 
-        if(count($deniedEagerLoadings)){
-            foreach ($deniedEagerLoadings as $deniedEagerLoading){
-                if(isset($clientEagerLoadingData[$deniedEagerLoading])){
-                    Exception::customException(trans('exception.deniedEagerLoadings',['key' => $deniedEagerLoading]));
+        if (count($deniedEagerLoadings)) {
+            foreach ($deniedEagerLoadings as $deniedEagerLoading) {
+                if (isset($clientEagerLoadingData[$deniedEagerLoading])) {
+                    Exception::customException(trans('exception.deniedEagerLoadings', ['key' => $deniedEagerLoading]));
                 }
             }
         }
 
-        foreach ($relationsAccordingToCode as $modelRelation){
+        foreach ($relationsAccordingToCode as $modelRelation) {
 
-            if(
-                $modelRelation!==$currentModelName
-                && $modelRelation!=='Localization'
-            ){
-                $modelNamespace = Constants::modelNamespace.'\\'.$modelRelation;
+            if (
+                $modelRelation !== $currentModelName
+                && $modelRelation !== 'Localization'
+            ) {
+                $modelNamespace = Constants::modelNamespace . '\\' . $modelRelation;
                 $withModelKey = $this->getModelNormalize($modelRelation);
 
-                if(!in_array($camelCaseTableCode,$globalScopes)){
-                    if(class_exists($modelNamespace) && !isset($this->withQuery[$withModelKey])){
-                        $this->relationLists[] = '[with]['.$withModelKey.']';
-                        $relationListImplode = implode('',$this->relationLists);
-                        $relationListHandling = substr_replace($relationListImplode,'',0,1);
-                        $relationListHandling = substr_replace($relationListHandling,'',4,1);
+                if (!in_array($camelCaseTableCode, $globalScopes)) {
+                    if (class_exists($modelNamespace) && !isset($this->withQuery[$withModelKey])) {
+                        $this->relationLists[] = '[with][' . $withModelKey . ']';
+                        $relationListImplode = implode('', $this->relationLists);
+                        $relationListHandling = substr_replace($relationListImplode, '', 0, 1);
+                        $relationListHandling = substr_replace($relationListHandling, '', 4, 1);
 
                         $this->withQuery[$withModelKey] = [
                             'hasMany' => true,
@@ -168,13 +167,13 @@ trait BaseManager
                             'foreignColumn' => getTableCode($currentModelName),
                             'localColumn' => getTableCode($currentModelName),
                             'table' => $withModelKey,
-                            'description' => 'You can use '.$withModelKey.' relation belonging to '.$currentModelName.' data.',
+                            'description' => 'You can use ' . $withModelKey . ' relation belonging to ' . $currentModelName . ' data.',
                             'repository' => Str::camel($modelRelation),
                             'withQuery' => $relationListHandling,
                         ];
                     }
 
-                    $this->getModelRelationsForCode($modelRelation,true);
+                    $this->getModelRelationsForCode($modelRelation, true);
                 }
             }
         }
@@ -194,23 +193,23 @@ trait BaseManager
 
         $this->getModelRelationsForCode();
 
-        foreach ($columns as $column){
-            if(Str::endsWith($column,'_code')){
-                $relationModel = Str::camel(str_replace('_code','',$column));
+        foreach ($columns as $column) {
+            if (Str::endsWith($column, '_code')) {
+                $relationModel = Str::camel(str_replace('_code', '', $column));
 
-                if($relationModel!==$this->getModelName()){
-                    $relationModelNamespace = Constants::modelNamespace.'\\'.Str::ucfirst($relationModel);
+                if ($relationModel !== $this->getModelName()) {
+                    $relationModelNamespace = Constants::modelNamespace . '\\' . Str::ucfirst($relationModel);
 
-                    if(class_exists($relationModelNamespace)){
-                        $relationTable = (new $relationModelNamespace([],false))->getTable();
+                    if (class_exists($relationModelNamespace)) {
+                        $relationTable = (new $relationModelNamespace([], false))->getTable();
 
                         $this->withQuery[$relationModel] = [
                             'hasMany' => false,
                             'nested' => false,
-                            'foreignColumn' => Str::snake($relationModel).'_code',
-                            'localColumn' => Str::snake($relationModel).'_code',
+                            'foreignColumn' => Str::snake($relationModel) . '_code',
+                            'localColumn' => Str::snake($relationModel) . '_code',
                             'table' => $relationTable,
-                            'description' => 'You can use '.$relationModel.' relation belonging to '.$this->getModelName().' data.',
+                            'description' => 'You can use ' . $relationModel . ' relation belonging to ' . $this->getModelName() . ' data.',
                             'repository' => Str::camel($relationModel)
                         ];
                     }
@@ -225,7 +224,7 @@ trait BaseManager
      *
      * @return string
      */
-    public function getModelName() : string
+    public function getModelName(): string
     {
         return getModelName(get_called_class());
     }
@@ -235,7 +234,7 @@ trait BaseManager
      *
      * @return object|bool
      */
-    public function getRepository() : object|bool
+    public function getRepository(): object|bool
     {
         $model = $this->getModelName();
         return Repository::$model();
@@ -246,9 +245,9 @@ trait BaseManager
      *
      * @return array
      */
-    public function getWithQueries() : array
+    public function getWithQueries(): array
     {
-        return property_exists($this,'withQuery') ? $this->withQuery : [];
+        return property_exists($this, 'withQuery') ? $this->withQuery : [];
     }
 
     /**
@@ -256,11 +255,11 @@ trait BaseManager
      *
      * @return array
      */
-    public function getWithValues() : array
+    public function getWithValues(): array
     {
         $list = [];
 
-        foreach ($this->getWithQueries() as $relation => $withQuery){
+        foreach ($this->getWithQueries() as $relation => $withQuery) {
             $list[] = $relation;
         }
 
@@ -285,16 +284,16 @@ trait BaseManager
     public function assignAppends()
     {
         $list = [];
-        $modelAppends = array_merge($this->autoModelAppends,($this->modelAppends ?? []));
+        $modelAppends = array_merge($this->autoModelAppends, ($this->modelAppends ?? []));
         Response::formatterSupplement(['appends' => $modelAppends]);
 
         $clientAppends = (request()->query->all())['append'] ?? null;
 
-        if(!is_null($clientAppends)){
-            $appendsList = explode(',',$clientAppends);
+        if (!is_null($clientAppends)) {
+            $appendsList = explode(',', $clientAppends);
 
-            foreach ($appendsList as $item){
-                if(isset($modelAppends[$item])){
+            foreach ($appendsList as $item) {
+                if (isset($modelAppends[$item])) {
                     $list[] = $item;
                 }
             }
@@ -310,15 +309,15 @@ trait BaseManager
      * @param array $args
      * @return mixed
      */
-    public function __call($name,$args = [])
+    public function __call($name, $args = [])
     {
         $queries = $this->getWithQueries();
 
-        if(isset($queries[$name])){
-            $withName = 'with'.Str::ucfirst($name);
+        if (isset($queries[$name])) {
+            $withName = 'with' . Str::ucfirst($name);
             return $this->getRepository()->{$withName}($this);
         }
 
-        return parent::__call($name,$args);
+        return parent::__call($name, $args);
     }
 }

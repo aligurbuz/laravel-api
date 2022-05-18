@@ -41,16 +41,16 @@ class RepositoryResourceCommand extends Command
     {
         $dir = ucfirst($this->argument('dir'));
         $repository = ucfirst($this->argument('repository'));
-        $repositoryNamespace = 'App\Repositories\Resources\\'.$dir.'\Resource';
-        $resourcePath = app_path().''.DIRECTORY_SEPARATOR.'Repositories'.DIRECTORY_SEPARATOR.'Resources'.DIRECTORY_SEPARATOR.''.$dir.''.DIRECTORY_SEPARATOR.'Resource';
-        $resourceFilePath = app_path().''.DIRECTORY_SEPARATOR.'Repositories'.DIRECTORY_SEPARATOR.'Resources'.DIRECTORY_SEPARATOR.''.$dir.''.DIRECTORY_SEPARATOR.'Resource'.DIRECTORY_SEPARATOR.''.$repository.'Resource.php';
+        $repositoryNamespace = 'App\Repositories\Resources\\' . $dir . '\Resource';
+        $resourcePath = app_path() . '' . DIRECTORY_SEPARATOR . 'Repositories' . DIRECTORY_SEPARATOR . 'Resources' . DIRECTORY_SEPARATOR . '' . $dir . '' . DIRECTORY_SEPARATOR . 'Resource';
+        $resourceFilePath = app_path() . '' . DIRECTORY_SEPARATOR . 'Repositories' . DIRECTORY_SEPARATOR . 'Resources' . DIRECTORY_SEPARATOR . '' . $dir . '' . DIRECTORY_SEPARATOR . 'Resource' . DIRECTORY_SEPARATOR . '' . $repository . 'Resource.php';
 
-        if(!file_exists($resourcePath)){
+        if (!file_exists($resourcePath)) {
             File::makeDirectory($resourcePath);
         }
 
         $namespace = new PhpNamespace($repositoryNamespace);
-        $addClass = $namespace->addClass($repository.'Resource');
+        $addClass = $namespace->addClass($repository . 'Resource');
 
         $method = $addClass->addMethod('handle');
         $method->addComment('handle process for repository resource');
@@ -58,7 +58,7 @@ class RepositoryResourceCommand extends Command
         $method->addComment('@param array $data');
         $method->addComment('@return array');
         $method->setReturnType('array')->setBody('return $data;');
-        $method->addParameter('data',[])->setType('array');
+        $method->addParameter('data', [])->setType('array');
 
         $method2 = $addClass->addMethod('additionalResourceHandler');
         $method2->addComment('additional resource handler for repository resource');
@@ -66,11 +66,11 @@ class RepositoryResourceCommand extends Command
         $method2->addComment('@param array $data');
         $method2->addComment('@return array');
         $method2->setReturnType('array')->setBody('return $data;');
-        $method2->addParameter('data',[])->setType('array');
+        $method2->addParameter('data', [])->setType('array');
 
         touch($resourceFilePath);
-        $content = '<?php '.PHP_EOL.''.PHP_EOL.'declare(strict_types=1);'.PHP_EOL.''.PHP_EOL.''.$namespace;
-        File::put($resourceFilePath,$content);
+        $content = '<?php ' . PHP_EOL . '' . PHP_EOL . 'declare(strict_types=1);' . PHP_EOL . '' . PHP_EOL . '' . $namespace;
+        File::put($resourceFilePath, $content);
 
         return 0;
     }

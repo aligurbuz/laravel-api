@@ -28,9 +28,9 @@ class Connector
      * @param array $data
      * @return array
      */
-    public function getConfig(array $data = []) : array
+    public function getConfig(array $data = []): array
     {
-        if(count($data)){
+        if (count($data)) {
             return $data;
         }
 

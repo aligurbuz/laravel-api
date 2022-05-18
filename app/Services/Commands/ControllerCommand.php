@@ -5,7 +5,6 @@ namespace App\Services\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\File;
-use Nette\PhpGenerator\Literal;
 use Nette\PhpGenerator\PhpNamespace;
 
 class ControllerCommand extends Command
@@ -42,76 +41,76 @@ class ControllerCommand extends Command
     public function handle()
     {
         $controllerVariable = $this->argument('controller');
-        $controllerName = ucfirst($controllerVariable).'Controller';
+        $controllerName = ucfirst($controllerVariable) . 'Controller';
         $dirVariable = $this->argument('dir') ?? $controllerVariable;
 
-        $controllerPath = app_path().''.DIRECTORY_SEPARATOR.'Http'.DIRECTORY_SEPARATOR.'Controllers'.DIRECTORY_SEPARATOR.'Api';
+        $controllerPath = app_path() . '' . DIRECTORY_SEPARATOR . 'Http' . DIRECTORY_SEPARATOR . 'Controllers' . DIRECTORY_SEPARATOR . 'Api';
         $controllerNamespace = 'App\Http\Controllers\Api';
 
-        $controllerEndpointPath = $controllerPath.''.DIRECTORY_SEPARATOR.''.ucfirst($dirVariable);
-        $controllerEndpointPathNamespace = $controllerNamespace.'\\'.ucfirst($dirVariable);
+        $controllerEndpointPath = $controllerPath . '' . DIRECTORY_SEPARATOR . '' . ucfirst($dirVariable);
+        $controllerEndpointPathNamespace = $controllerNamespace . '\\' . ucfirst($dirVariable);
 
-        $controllerEndpointFilePath = $controllerPath.''.DIRECTORY_SEPARATOR.''.ucfirst($dirVariable).''.DIRECTORY_SEPARATOR.''.$controllerName.'.php';
+        $controllerEndpointFilePath = $controllerPath . '' . DIRECTORY_SEPARATOR . '' . ucfirst($dirVariable) . '' . DIRECTORY_SEPARATOR . '' . $controllerName . '.php';
 
-        if(!file_exists($controllerEndpointPath)){
+        if (!file_exists($controllerEndpointPath)) {
             File::makeDirectory($controllerEndpointPath);
         }
 
-        if(!file_exists($controllerEndpointFilePath)){
+        if (!file_exists($controllerEndpointFilePath)) {
 
-            Artisan::call('feature:test:create',['dir' => $dirVariable,'class' => $controllerVariable]);
+            Artisan::call('feature:test:create', ['dir' => $dirVariable, 'class' => $controllerVariable]);
 
             $namespace = new PhpNamespace($controllerEndpointPathNamespace);
             $addClass = $namespace->addClass($controllerName);
             $addClass->setExtends('App\Http\Controllers\Api\ApiController');
 
-            $clientGetClass = 'App\Client\\'.ucfirst($this->argument('dir')).'\\'.ucfirst($this->argument('controller')).'\Get\GetClient';
+            $clientGetClass = 'App\Client\\' . ucfirst($this->argument('dir')) . '\\' . ucfirst($this->argument('controller')) . '\Get\GetClient';
 
             $method = $addClass->addMethod('get');
-            $method->addComment('get '.$controllerVariable.' data');
+            $method->addComment('get ' . $controllerVariable . ' data');
             $method->addComment('');
             $method->addComment('@param GetClient $client');
-            $method->addComment('@param '.ucfirst($controllerVariable).'RepositoryContract $'.$controllerVariable.'Repository');
+            $method->addComment('@param ' . ucfirst($controllerVariable) . 'RepositoryContract $' . $controllerVariable . 'Repository');
             $method->addComment('@return array');
-            $method->setReturnType('array')->setBody('$client->handle(); '.PHP_EOL.'return $'.$controllerVariable.'Repository->get();');
+            $method->setReturnType('array')->setBody('$client->handle(); ' . PHP_EOL . 'return $' . $controllerVariable . 'Repository->get();');
             $method->addParameter('client')->setType($clientGetClass);
-            $method->addParameter($controllerVariable.'Repository')->setType('App\Repositories\Resources\\'.ucfirst($dirVariable).'\Contracts\\'.ucfirst($controllerVariable).'RepositoryContract');
+            $method->addParameter($controllerVariable . 'Repository')->setType('App\Repositories\Resources\\' . ucfirst($dirVariable) . '\Contracts\\' . ucfirst($controllerVariable) . 'RepositoryContract');
 
-            $clientCreateClass = 'App\Client\\'.ucfirst($this->argument('dir')).'\\'.ucfirst($this->argument('controller')).'\Create\CreateClient';
+            $clientCreateClass = 'App\Client\\' . ucfirst($this->argument('dir')) . '\\' . ucfirst($this->argument('controller')) . '\Create\CreateClient';
 
             $method = $addClass->addMethod('create');
-            $method->addComment('create '.$controllerVariable.' data');
+            $method->addComment('create ' . $controllerVariable . ' data');
             $method->addComment(' ');
             $method->addComment('@param CreateClient $client');
-            $method->addComment('@param '.ucfirst($controllerVariable).'RepositoryContract $'.$controllerVariable.'Repository');
+            $method->addComment('@param ' . ucfirst($controllerVariable) . 'RepositoryContract $' . $controllerVariable . 'Repository');
             $method->addComment('@return array|object');
-            $method->setReturnType('array|object')->setBody('return $this->transaction(function() use($client,$'.$controllerVariable.'Repository) {'.PHP_EOL.'    $client->handle(); '.PHP_EOL.'    return $'.$controllerVariable.'Repository->create();'.PHP_EOL.'});');
+            $method->setReturnType('array|object')->setBody('return $this->transaction(function() use($client,$' . $controllerVariable . 'Repository) {' . PHP_EOL . '    $client->handle(); ' . PHP_EOL . '    return $' . $controllerVariable . 'Repository->create();' . PHP_EOL . '});');
             $method->addParameter('client')->setType($clientCreateClass);
-            $method->addParameter($controllerVariable.'Repository')->setType('App\Repositories\Resources\\'.ucfirst($dirVariable).'\Contracts\\'.ucfirst($controllerVariable).'RepositoryContract');
+            $method->addParameter($controllerVariable . 'Repository')->setType('App\Repositories\Resources\\' . ucfirst($dirVariable) . '\Contracts\\' . ucfirst($controllerVariable) . 'RepositoryContract');
 
-            $clientUpdateClass = 'App\Client\\'.ucfirst($this->argument('dir')).'\\'.ucfirst($this->argument('controller')).'\Update\UpdateClient';
+            $clientUpdateClass = 'App\Client\\' . ucfirst($this->argument('dir')) . '\\' . ucfirst($this->argument('controller')) . '\Update\UpdateClient';
 
             $method = $addClass->addMethod('update');
-            $method->addComment('update '.$controllerVariable.' data');
+            $method->addComment('update ' . $controllerVariable . ' data');
             $method->addComment('  ');
             $method->addComment('@param UpdateClient $client');
-            $method->addComment('@param '.ucfirst($controllerVariable).'RepositoryContract $'.$controllerVariable.'Repository');
+            $method->addComment('@param ' . ucfirst($controllerVariable) . 'RepositoryContract $' . $controllerVariable . 'Repository');
             $method->addComment('@return array|object');
-            $method->setReturnType('array|object')->setBody('return $this->transaction(function() use($client,$'.$controllerVariable.'Repository) {'.PHP_EOL.'    $client->handle(); '.PHP_EOL.'    return $'.$controllerVariable.'Repository->update();'.PHP_EOL.'});');
+            $method->setReturnType('array|object')->setBody('return $this->transaction(function() use($client,$' . $controllerVariable . 'Repository) {' . PHP_EOL . '    $client->handle(); ' . PHP_EOL . '    return $' . $controllerVariable . 'Repository->update();' . PHP_EOL . '});');
             $method->addParameter('client')->setType($clientUpdateClass);
-            $method->addParameter($controllerVariable.'Repository')->setType('App\Repositories\Resources\\'.ucfirst($dirVariable).'\Contracts\\'.ucfirst($controllerVariable).'RepositoryContract');
+            $method->addParameter($controllerVariable . 'Repository')->setType('App\Repositories\Resources\\' . ucfirst($dirVariable) . '\Contracts\\' . ucfirst($controllerVariable) . 'RepositoryContract');
 
 
             $namespace->addUse('App\Http\Controllers\Api\ApiController');
             $namespace->addUse($clientGetClass);
             $namespace->addUse($clientCreateClass);
             $namespace->addUse($clientUpdateClass);
-            $namespace->addUse('App\Repositories\Resources\\'.ucfirst($dirVariable).'\Contracts\\'.ucfirst($controllerVariable).'RepositoryContract');
+            $namespace->addUse('App\Repositories\Resources\\' . ucfirst($dirVariable) . '\Contracts\\' . ucfirst($controllerVariable) . 'RepositoryContract');
 
 
             touch($controllerEndpointFilePath);
-            $content = '<?php '.PHP_EOL.''.PHP_EOL.'declare(strict_types=1);'.PHP_EOL.''.PHP_EOL.''.$namespace;
-            File::put($controllerEndpointFilePath,$content);
+            $content = '<?php ' . PHP_EOL . '' . PHP_EOL . 'declare(strict_types=1);' . PHP_EOL . '' . PHP_EOL . '' . $namespace;
+            File::put($controllerEndpointFilePath, $content);
         }
 
 

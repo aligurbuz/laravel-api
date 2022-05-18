@@ -28,7 +28,7 @@ class SmtpMailer
         $this->setPassword();
         $this->mail->isHTML(true);
         $this->setPort();
-        $this->mail->setFrom('fromMailAddress','fromMailShortName');
+        $this->mail->setFrom('fromMailAddress', 'fromMailShortName');
         $this->mail->addReplyTo('replyMailAddress', 'replyMailShortName');
     }
 
@@ -38,7 +38,7 @@ class SmtpMailer
      * @param string|null $host
      * @return $this
      */
-    public function setHost(?string $host = null) : SmtpMailer
+    public function setHost(?string $host = null): SmtpMailer
     {
         $this->mail->Host = $host ?? 'asmtp.dandomain.dk';
 
@@ -51,7 +51,7 @@ class SmtpMailer
      * @param string|null $username
      * @return $this
      */
-    public function setUsername(?string $username = null) : SmtpMailer
+    public function setUsername(?string $username = null): SmtpMailer
     {
         $this->mail->Username = $username ?? 'info@stepfront.dk';
 
@@ -64,7 +64,7 @@ class SmtpMailer
      * @param string|null $password
      * @return $this
      */
-    public function setPassword(?string $password = null) : SmtpMailer
+    public function setPassword(?string $password = null): SmtpMailer
     {
         $this->mail->Password = $password ?? 'Step2022+';
 
@@ -77,7 +77,7 @@ class SmtpMailer
      * @param int|null $port
      * @return $this
      */
-    public function setPort(?int $port = null) : SmtpMailer
+    public function setPort(?int $port = null): SmtpMailer
     {
         $this->mail->Port = $port ?? 587;
 
@@ -91,7 +91,7 @@ class SmtpMailer
      * @return $this
      * @throws Exception
      */
-    public function email(string $email) : SmtpMailer
+    public function email(string $email): SmtpMailer
     {
         $this->mail->addAddress($email);
 
@@ -104,7 +104,7 @@ class SmtpMailer
      * @param string $subject
      * @return $this
      */
-    public function subject(string $subject) : SmtpMailer
+    public function subject(string $subject): SmtpMailer
     {
         $this->mail->Subject = $subject;
 
@@ -117,7 +117,7 @@ class SmtpMailer
      * @param string $body
      * @return SmtpMailer
      */
-    public function body(string $body) : SmtpMailer
+    public function body(string $body): SmtpMailer
     {
         $this->mail->Body = $body;
 
@@ -130,7 +130,7 @@ class SmtpMailer
      * @return void
      * @throws Exception
      */
-    public function send() : void
+    public function send(): void
     {
         $this->mail->send();
     }

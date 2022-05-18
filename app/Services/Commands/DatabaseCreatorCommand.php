@@ -38,19 +38,19 @@ class DatabaseCreatorCommand extends Command
      */
     public function handle()
     {
-        if(app()->runningInConsole()){
+        if (app()->runningInConsole()) {
             $databases = DB::select('SHOW DATABASES');
 
             $list = [];
 
-            foreach ($databases as $database){
+            foreach ($databases as $database) {
                 $list[] = $database->Database;
             }
 
             $name = $this->argument('name');
 
-            if(!in_array($name,$list)){
-                DB::select('CREATE DATABASE '.$name);
+            if (!in_array($name, $list)) {
+                DB::select('CREATE DATABASE ' . $name);
             }
         }
         return 0;

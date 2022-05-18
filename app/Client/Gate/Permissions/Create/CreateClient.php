@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Client\Gate\Permissions\Create;
 
@@ -8,27 +8,27 @@ use App\Models\Permission;
 
 class CreateClient extends Client
 {
-	use GeneratorTrait;
-	use ClientAutoGeneratorTrait;
+    use GeneratorTrait;
+    use ClientAutoGeneratorTrait;
 
-	/**
-	 * get capsule for client
-	 *
-	 * @var array
-	 */
-	protected array $capsule = [];
+    /**
+     * get capsule for client
+     *
+     * @var array
+     */
+    protected array $capsule = [];
 
-	/**
-	 * get model entity validation
-	 *
-	 * @var array|string[]
-	 */
-	protected array $model = [Permission::class];
+    /**
+     * get model entity validation
+     *
+     * @var array|string[]
+     */
+    protected array $model = [Permission::class];
 
-	/**
-	 * get rule for client
-	 *
-	 * @var array
-	 */
-	protected array $rule = [];
+    /**
+     * get rule for client
+     *
+     * @var array
+     */
+    protected array $rule = [];
 }

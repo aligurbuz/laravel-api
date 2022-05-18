@@ -1,26 +1,26 @@
 <?php
 
 use App\Constants;
+use App\Exceptions\Exception;
+use App\Facades\Authenticate\ApiKey;
 use App\Factory\Factory;
+use App\Models\Entities\EntityMap;
+use App\Repositories\Repository;
+use App\Services\AppContainer;
 use App\Services\Client;
+use App\Services\Db as DBFacade;
 use App\Services\Git;
 use App\Services\HashGenerator;
+use App\Services\Request\Request as HttpRequest;
 use App\Services\Service;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 use JetBrains\PhpStorm\Pure;
-use App\Exceptions\Exception;
-use App\Services\AppContainer;
-use App\Services\Db as DBFacade;
-use App\Models\Entities\EntityMap;
-use Illuminate\Support\Facades\DB;
-use App\Facades\Authenticate\ApiKey;
-use Illuminate\Support\Facades\Route;
-use App\Repositories\Repository;
-use App\Services\Request\Request as HttpRequest;
 
-if(!function_exists('entity')){
+if (!function_exists('entity')) {
 
     /**
      * get factory instance
@@ -33,7 +33,7 @@ if(!function_exists('entity')){
     }
 }
 
-if(!function_exists('httpRequest')){
+if (!function_exists('httpRequest')) {
 
     /**
      * get factory instance
@@ -47,7 +47,7 @@ if(!function_exists('httpRequest')){
     }
 }
 
-if(!function_exists('assignQueryParameters')){
+if (!function_exists('assignQueryParameters')) {
 
     /**
      * Query parameter assignment is made for the get method.
@@ -57,9 +57,9 @@ if(!function_exists('assignQueryParameters')){
      */
     function assignQueryParameters(array $data = []): void
     {
-        if(request()->method()=='GET'){
+        if (request()->method() == 'GET') {
             $request = request()->query->all();
-            $clientWithAutoKeys = array_replace_recursive($request,$data);
+            $clientWithAutoKeys = array_replace_recursive($request, $data);
             request()->query->replace([]);
             request()->query->add($clientWithAutoKeys);
         }
@@ -67,7 +67,7 @@ if(!function_exists('assignQueryParameters')){
 }
 
 
-if(!function_exists('getServiceJson')){
+if (!function_exists('getServiceJson')) {
 
     /**
      * get service json
@@ -75,19 +75,19 @@ if(!function_exists('getServiceJson')){
      * @param string|null $key
      * @return array
      */
-    function getServiceJson(?string $key = null) : array
+    function getServiceJson(?string $key = null): array
     {
-        $serviceJsonFile = database_path('columns').''.DIRECTORY_SEPARATOR.'service.json';
-        $serviceJson = json_decode(File::get($serviceJsonFile),true);
+        $serviceJsonFile = database_path('columns') . '' . DIRECTORY_SEPARATOR . 'service.json';
+        $serviceJson = json_decode(File::get($serviceJsonFile), true);
 
-        $classicEndpoint = ucfirst($key).''.DIRECTORY_SEPARATOR.''.$key;
+        $classicEndpoint = ucfirst($key) . '' . DIRECTORY_SEPARATOR . '' . $key;
         $serviceJsonKey = $serviceJson[ucfirst($key)] ?? ($serviceJson[$classicEndpoint] ?? []);
 
         return !is_null($key) ? $serviceJsonKey : $serviceJson;
     }
 }
 
-if(!function_exists('isException')){
+if (!function_exists('isException')) {
 
     /**
      * throws exception for invalid code
@@ -97,34 +97,33 @@ if(!function_exists('isException')){
      */
     function isException(callable $callback): mixed
     {
-        try{
-            return call_user_func($callback,false);
-        }
-        catch (\Exception){
-            return call_user_func($callback,true);
+        try {
+            return call_user_func($callback, false);
+        } catch (\Exception) {
+            return call_user_func($callback, true);
         }
     }
 }
 
-if(!function_exists('moneyFormatter')){
+if (!function_exists('moneyFormatter')) {
 
     /**
      * get currency string for application
      *
      */
-    function moneyFormatter($value,bool $floatReturn = true): string|float
+    function moneyFormatter($value, bool $floatReturn = true): string|float
     {
-        $value = (float) $value;
+        $value = (float)$value;
 
-        if($floatReturn){
-            return (float) number_format($value,2,'.','');
+        if ($floatReturn) {
+            return (float)number_format($value, 2, '.', '');
         }
 
-        return number_format($value,2,'.',',');
+        return number_format($value, 2, '.', ',');
     }
 }
 
-if(!function_exists('publisher')){
+if (!function_exists('publisher')) {
 
     /**
      * publisher method
@@ -136,7 +135,7 @@ if(!function_exists('publisher')){
     }
 }
 
-if(!function_exists('currency')){
+if (!function_exists('currency')) {
 
     /**
      * get currency string for application
@@ -148,7 +147,7 @@ if(!function_exists('currency')){
     }
 }
 
-if(!function_exists('tax')){
+if (!function_exists('tax')) {
 
     /**
      * get tax string for application
@@ -160,7 +159,7 @@ if(!function_exists('tax')){
     }
 }
 
-if(!function_exists('checkBool')){
+if (!function_exists('checkBool')) {
 
     /**
      * get company code for application
@@ -170,13 +169,13 @@ if(!function_exists('checkBool')){
      */
     function checkBool($value): bool
     {
-        $value = $value=='1' ? true : $value;
+        $value = $value == '1' ? true : $value;
 
-        return $value==1 ? true : $value;
+        return $value == 1 ? true : $value;
     }
 }
 
-if(!function_exists('client')){
+if (!function_exists('client')) {
 
     /**
      * get client data
@@ -188,7 +187,7 @@ if(!function_exists('client')){
     {
         $clientData = (Client::data())[0] ?? [];
 
-        if(!is_null($key)){
+        if (!is_null($key)) {
             return $clientData[$key] ?? null;
         }
 
@@ -196,7 +195,7 @@ if(!function_exists('client')){
     }
 }
 
-if(!function_exists('isExistAuthorization')){
+if (!function_exists('isExistAuthorization')) {
 
     /**
      * checks if the user is logged
@@ -209,7 +208,7 @@ if(!function_exists('isExistAuthorization')){
     }
 }
 
-if(!function_exists('consoleAuthorizationStatus')){
+if (!function_exists('consoleAuthorizationStatus')) {
 
     /**
      * checks if the user is logged
@@ -222,20 +221,20 @@ if(!function_exists('consoleAuthorizationStatus')){
     }
 }
 
-if(!function_exists('publicPath')){
+if (!function_exists('publicPath')) {
 
     /**
      * get publicPath for application
      *
      * @return string
      */
-    function publicPath() : string
+    function publicPath(): string
     {
         return AppContainer::get('public_path');
     }
 }
 
-if(!function_exists('encodeString')){
+if (!function_exists('encodeString')) {
 
     /**
      * the given string value makes hashing
@@ -243,10 +242,10 @@ if(!function_exists('encodeString')){
      * @param string $string
      * @return string
      */
-    function encodeString(string $string) : string
+    function encodeString(string $string): string
     {
         /*** @var HashGenerator $hashGenerator */
-        $hashGenerator = AppContainer::use('hashGenerator',function(){
+        $hashGenerator = AppContainer::use('hashGenerator', function () {
             return new HashGenerator();
         });
 
@@ -254,7 +253,7 @@ if(!function_exists('encodeString')){
     }
 }
 
-if(!function_exists('decodeString')){
+if (!function_exists('decodeString')) {
 
     /**
      * the given hash string makes decoding
@@ -262,10 +261,10 @@ if(!function_exists('decodeString')){
      * @param string $hash
      * @return string
      */
-    function decodeString(string $hash) : string
+    function decodeString(string $hash): string
     {
         /*** @var HashGenerator $hashGenerator */
-        $hashGenerator = AppContainer::use('hashGenerator',function(){
+        $hashGenerator = AppContainer::use('hashGenerator', function () {
             return new HashGenerator();
         });
 
@@ -273,7 +272,7 @@ if(!function_exists('decodeString')){
     }
 }
 
-if(!function_exists('makeIfProduction')){
+if (!function_exists('makeIfProduction')) {
 
     /**
      * get publicPath for application
@@ -281,39 +280,39 @@ if(!function_exists('makeIfProduction')){
      * @param $data
      * @return mixed
      */
-    function makeIfProduction($data) : mixed
+    function makeIfProduction($data): mixed
     {
-        return (isProduction()===true) ? $data : null;
+        return (isProduction() === true) ? $data : null;
     }
 }
 
-if(!function_exists('apiUrl')){
+if (!function_exists('apiUrl')) {
 
     /**
      * get api url for application
      *
      * @return string
      */
-    function apiUrl() : string
+    function apiUrl(): string
     {
         return AppContainer::get('apiUrl');
     }
 }
 
-if(!function_exists('timezone')){
+if (!function_exists('timezone')) {
 
     /**
      * get timezone for global gate accessing
      *
      * @return ?string
      */
-    function timezone() : ?string
+    function timezone(): ?string
     {
         return 'America/New_York';
     }
 }
 
-if(!function_exists('authGuard')){
+if (!function_exists('authGuard')) {
 
     /**
      * checks if the user is logged
@@ -323,11 +322,11 @@ if(!function_exists('authGuard')){
      */
     function authGuard(string $prefix = 'login'): string
     {
-        return $prefix.'_'.who();
+        return $prefix . '_' . who();
     }
 }
 
-if(!function_exists('isAuthenticate')){
+if (!function_exists('isAuthenticate')) {
 
     /**
      * checks if the user is logged
@@ -340,7 +339,7 @@ if(!function_exists('isAuthenticate')){
     }
 }
 
-if(!function_exists('page')){
+if (!function_exists('page')) {
 
     /**
      * manipulates to client request with data
@@ -353,7 +352,7 @@ if(!function_exists('page')){
     }
 }
 
-if(!function_exists('cR')){
+if (!function_exists('cR')) {
 
     /**
      * manipulates to client request with data
@@ -364,12 +363,12 @@ if(!function_exists('cR')){
      * @param bool $container
      * @return array
      */
-    function cR(string $client,array $data = [],?string $repositoryName = null,bool $container = false): array
+    function cR(string $client, array $data = [], ?string $repositoryName = null, bool $container = false): array
     {
-        $factory = Factory::client(['client' => $client])->cR($data,$container);
+        $factory = Factory::client(['client' => $client])->cR($data, $container);
 
-        if(!is_null($repositoryName)){
-            $clientNames = explode('.',$client);
+        if (!is_null($repositoryName)) {
+            $clientNames = explode('.', $client);
             return Repository::$repositoryName()->{$clientNames[2]}();
         }
 
@@ -377,7 +376,7 @@ if(!function_exists('cR')){
     }
 }
 
-if(!function_exists('service')){
+if (!function_exists('service')) {
 
     /**
      * service instance
@@ -386,13 +385,13 @@ if(!function_exists('service')){
      */
     function service(): Service
     {
-        return AppContainer::use('appService',function(){
+        return AppContainer::use('appService', function () {
             return new Service();
         });
     }
 }
 
-if(!function_exists('pushMigration')){
+if (!function_exists('pushMigration')) {
 
     /**
      * push migration for application
@@ -402,26 +401,26 @@ if(!function_exists('pushMigration')){
      * @param $model
      * @return void
      */
-    function pushMigration($service,$directory,$model,$routeFile = null): void
+    function pushMigration($service, $directory, $model, $routeFile = null): void
     {
-        if(isLocale()){
+        if (isLocale()) {
             $pusherJsonPath = base_path('pusher.json');
-            $pusherJson = json_decode(File::get($pusherJsonPath),true);
-            $pusherHashing = md5($service.'_'.$directory.'_'.$model);
+            $pusherJson = json_decode(File::get($pusherJsonPath), true);
+            $pusherHashing = md5($service . '_' . $directory . '_' . $model);
 
-            if(!in_array($pusherHashing,$pusherJson)){
+            if (!in_array($pusherHashing, $pusherJson)) {
                 $pusherJson[] = $pusherHashing;
-                putJsonToFile($pusherJsonPath,$pusherJson);
+                putJsonToFile($pusherJsonPath, $pusherJson);
 
-                \git()->commit('migration for '.$model.' has been created');
-                \service()->create($service,$directory,$model,$routeFile);
-                \git()->commit('service for '.$service.' has been created');
+                \git()->commit('migration for ' . $model . ' has been created');
+                \service()->create($service, $directory, $model, $routeFile);
+                \git()->commit('service for ' . $service . ' has been created');
             }
         }
     }
 }
 
-if(!function_exists('putJsonToFile')){
+if (!function_exists('putJsonToFile')) {
 
     /**
      * put json to file
@@ -430,13 +429,13 @@ if(!function_exists('putJsonToFile')){
      * @param array $data
      * @return bool|int
      */
-    function putJsonToFile(string $path,array $data = []): bool|int
+    function putJsonToFile(string $path, array $data = []): bool|int
     {
-        return File::put($path,Collection::make($data)->toJson(JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
+        return File::put($path, Collection::make($data)->toJson(JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
     }
 }
 
-if(!function_exists('git')){
+if (!function_exists('git')) {
 
     /**
      * git instance
@@ -445,13 +444,13 @@ if(!function_exists('git')){
      */
     function git(): Git
     {
-        return AppContainer::use('git',function(){
+        return AppContainer::use('git', function () {
             return new Git();
         });
     }
 }
 
-if(!function_exists('proxyClosure')){
+if (!function_exists('proxyClosure')) {
 
     /**
      * get call closure for application
@@ -460,39 +459,39 @@ if(!function_exists('proxyClosure')){
      * @param callable $callback
      * @return mixed
      */
-    function proxyClosure(mixed $closure,callable $callback) : mixed
+    function proxyClosure(mixed $closure, callable $callback): mixed
     {
-        return call_user_func($callback,($closure instanceof Closure) ? call_user_func($closure) : $closure);
+        return call_user_func($callback, ($closure instanceof Closure) ? call_user_func($closure) : $closure);
     }
 }
 
-if(!function_exists('isLocale')){
+if (!function_exists('isLocale')) {
 
     /**
      * checks if the environment is local
      *
      * @return bool
      */
-    function isLocale() : bool
+    function isLocale(): bool
     {
-        return app()->environment()=='local';
+        return app()->environment() == 'local';
     }
 }
 
-if(!function_exists('isProduction')){
+if (!function_exists('isProduction')) {
 
     /**
      * checks if the environment is production
      *
      * @return bool
      */
-    function isProduction() : bool
+    function isProduction(): bool
     {
-        return app()->environment()=='production';
+        return app()->environment() == 'production';
     }
 }
 
-if(!function_exists('who')){
+if (!function_exists('who')) {
 
     /**
      * tells who is apikey
@@ -505,7 +504,7 @@ if(!function_exists('who')){
     }
 }
 
-if(!function_exists('appLanguageCode')){
+if (!function_exists('appLanguageCode')) {
 
     /**
      * get application language code for application
@@ -514,11 +513,11 @@ if(!function_exists('appLanguageCode')){
      */
     function appLanguageCode(): int
     {
-        return AppContainer::get(Constants::acceptLanguage,2693479080);
+        return AppContainer::get(Constants::acceptLanguage, 2693479080);
     }
 }
 
-if(!function_exists('fullTextSearchTable')){
+if (!function_exists('fullTextSearchTable')) {
 
     /**
      * full text search table for migration
@@ -527,14 +526,14 @@ if(!function_exists('fullTextSearchTable')){
      * @param array $columns
      * @return void
      */
-    function fullTextSearchTable($table,array $columns = []): void
+    function fullTextSearchTable($table, array $columns = []): void
     {
-        $queryString = 'ALTER TABLE '.$table.' ADD FULLTEXT fulltext_index ('.implode(',',$columns).')';
+        $queryString = 'ALTER TABLE ' . $table . ' ADD FULLTEXT fulltext_index (' . implode(',', $columns) . ')';
         DB::statement($queryString);
     }
 }
 
-if(!function_exists('generateHash')){
+if (!function_exists('generateHash')) {
 
     /**
      * generates hash via crc32 method
@@ -543,11 +542,11 @@ if(!function_exists('generateHash')){
      */
     function generateHash(): int
     {
-        return crc32(Client::fingerPrint().'_'.time().'_'.rand(1,999999));
+        return crc32(Client::fingerPrint() . '_' . time() . '_' . rand(1, 999999));
     }
 }
 
-if(!function_exists('inValidCodeException')){
+if (!function_exists('inValidCodeException')) {
 
     /**
      * throws exception for invalid code
@@ -556,16 +555,16 @@ if(!function_exists('inValidCodeException')){
      * @param ?int $value
      * @return object
      */
-    function inValidCodeException(?string $key = null,?int $value = null): object
+    function inValidCodeException(?string $key = null, ?int $value = null): object
     {
-        return Exception::customException(trans('exception.codeException',[
+        return Exception::customException(trans('exception.codeException', [
             'key' => $key,
             'value' => $value
         ]));
     }
 }
 
-if(!function_exists('isThrowableInstance')){
+if (!function_exists('isThrowableInstance')) {
 
     /**
      * @param $error
@@ -577,7 +576,7 @@ if(!function_exists('isThrowableInstance')){
     }
 }
 
-if(!function_exists('booleanChecks')){
+if (!function_exists('booleanChecks')) {
 
     /**
      * @param mixed $data
@@ -585,15 +584,15 @@ if(!function_exists('booleanChecks')){
      */
     function booleanChecks(mixed $data): bool
     {
-        $data = ($data=='1') ? true : $data;
-        $data = ($data=='0') ? false : $data;
-        $data = ($data==1) ? true : $data;
+        $data = ($data == '1') ? true : $data;
+        $data = ($data == '0') ? false : $data;
+        $data = ($data == 1) ? true : $data;
 
-        return ($data==0) ? false : $data;
+        return ($data == 0) ? false : $data;
     }
 }
 
-if(!function_exists('getTableCode')){
+if (!function_exists('getTableCode')) {
 
     /**
      * @param $model
@@ -601,11 +600,11 @@ if(!function_exists('getTableCode')){
      */
     function getTableCode($model): string
     {
-        return Str::snake(getModelName(getModelWithPlural($model))).'_code';
+        return Str::snake(getModelName(getModelWithPlural($model))) . '_code';
     }
 }
 
-if(!function_exists('getTableName')){
+if (!function_exists('getTableName')) {
 
     /**
      * @param $model
@@ -613,13 +612,13 @@ if(!function_exists('getTableName')){
      */
     function getTableName($model): string
     {
-        $model = Constants::modelNamespace.'\\'.$model;
+        $model = Constants::modelNamespace . '\\' . $model;
 
         return (new $model)->getTable();
     }
 }
 
-if(!function_exists('getModelWithPlural')){
+if (!function_exists('getModelWithPlural')) {
 
     /**
      * @param $model
@@ -627,19 +626,19 @@ if(!function_exists('getModelWithPlural')){
      */
     function getModelWithPlural($model): string
     {
-        if(Str::endsWith($model,'s')){
-            $model = substr($model,0,-1);
+        if (Str::endsWith($model, 's')) {
+            $model = substr($model, 0, -1);
         }
 
-        if(Str::endsWith($model,'ie')){
-            $model = str_replace('ie','y',$model);
+        if (Str::endsWith($model, 'ie')) {
+            $model = str_replace('ie', 'y', $model);
         }
 
         return $model;
     }
 }
 
-if(!function_exists('getModelName')){
+if (!function_exists('getModelName')) {
 
     /**
      * @param $model
@@ -651,20 +650,20 @@ if(!function_exists('getModelName')){
     }
 }
 
-if(!function_exists('endpoint')){
+if (!function_exists('endpoint')) {
 
     /**
      * @return string
      */
     function endpoint(): string
     {
-        return AppContainer::use('endpoint',function(){
-            return str_replace('api/','',Route::getCurrentRoute()->uri());
+        return AppContainer::use('endpoint', function () {
+            return str_replace('api/', '', Route::getCurrentRoute()->uri());
         });
     }
 }
 
-if(!function_exists('objectValue')){
+if (!function_exists('objectValue')) {
 
     /**
      * get object value the given data
@@ -674,11 +673,11 @@ if(!function_exists('objectValue')){
      */
     #[Pure] function objectValue($data): object
     {
-        if(is_array($data)){
+        if (is_array($data)) {
             return (object)$data;
         }
 
-        if(is_object($data)){
+        if (is_object($data)) {
             return $data;
         }
 
@@ -686,7 +685,7 @@ if(!function_exists('objectValue')){
     }
 }
 
-if(!function_exists('indexOrdering')){
+if (!function_exists('indexOrdering')) {
 
     /**
      * Sorts the given data value by index.
@@ -695,22 +694,22 @@ if(!function_exists('indexOrdering')){
      * @param array $data
      * @return array
      */
-    function indexOrdering($table,array $data = []): array
+    function indexOrdering($table, array $data = []): array
     {
         $list = [];
         $indexes = DBFacade::indexes($table);
 
-        foreach ($indexes as $index){
-            if(isset($data[$index])){
+        foreach ($indexes as $index) {
+            if (isset($data[$index])) {
                 $list[$index] = $data[$index];
             }
         }
 
-        return array_merge($list,$data);
+        return array_merge($list, $data);
     }
 }
 
-if(!function_exists('isValidIndex')){
+if (!function_exists('isValidIndex')) {
 
     /**
      * Sorts the given data value by index.
@@ -719,10 +718,10 @@ if(!function_exists('isValidIndex')){
      * @param string $column
      * @return bool
      */
-    function isValidIndex(string $table,string $column): bool
+    function isValidIndex(string $table, string $column): bool
     {
         $indexes = DBFacade::indexes($table);
 
-        return in_array($column,$indexes);
+        return in_array($column, $indexes);
     }
 }

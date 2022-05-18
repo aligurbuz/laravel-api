@@ -40,42 +40,42 @@ class FactoryCommand extends Command
      */
     public function handle()
     {
-        $factory = $this->ask('What is factory name?','test');
+        $factory = $this->ask('What is factory name?', 'test');
         $factory = ucfirst($factory);
-        $factoryFile = $this->ask('What is your filename for factory?',$factory);
+        $factoryFile = $this->ask('What is your filename for factory?', $factory);
 
-        $mainNamespace = 'App\Factory\\'.$factory;
-        $mainPath = app_path('Factory').''.DIRECTORY_SEPARATOR.''.ucfirst($factory);
-        $resourcePath = app_path('Factory').''.DIRECTORY_SEPARATOR.''.ucfirst($factory).''.DIRECTORY_SEPARATOR.'Resource';
-        $resourceNamespace = 'App\Factory\\'.$factory.'\Resource';
-        $interfacePath = app_path('Factory').''.DIRECTORY_SEPARATOR.''.ucfirst($factory).''.DIRECTORY_SEPARATOR.'Interfaces';
-        $interfaceNamespace = 'App\Factory\\'.$factory.'\Interfaces';
+        $mainNamespace = 'App\Factory\\' . $factory;
+        $mainPath = app_path('Factory') . '' . DIRECTORY_SEPARATOR . '' . ucfirst($factory);
+        $resourcePath = app_path('Factory') . '' . DIRECTORY_SEPARATOR . '' . ucfirst($factory) . '' . DIRECTORY_SEPARATOR . 'Resource';
+        $resourceNamespace = 'App\Factory\\' . $factory . '\Resource';
+        $interfacePath = app_path('Factory') . '' . DIRECTORY_SEPARATOR . '' . ucfirst($factory) . '' . DIRECTORY_SEPARATOR . 'Interfaces';
+        $interfaceNamespace = 'App\Factory\\' . $factory . '\Interfaces';
 
-        $factoryInterfaceName = $factory.'Interface';
-        $factoryInterfacePath = app_path('Factory').''.DIRECTORY_SEPARATOR.''.ucfirst($factory).''.DIRECTORY_SEPARATOR.'Interfaces'.DIRECTORY_SEPARATOR.''.$factoryInterfaceName.'.php';
-        $factoryInterfaceNamespace = 'App\Factory\\'.$factory.'\Interfaces\\'.$factoryInterfaceName;
+        $factoryInterfaceName = $factory . 'Interface';
+        $factoryInterfacePath = app_path('Factory') . '' . DIRECTORY_SEPARATOR . '' . ucfirst($factory) . '' . DIRECTORY_SEPARATOR . 'Interfaces' . DIRECTORY_SEPARATOR . '' . $factoryInterfaceName . '.php';
+        $factoryInterfaceNamespace = 'App\Factory\\' . $factory . '\Interfaces\\' . $factoryInterfaceName;
 
-        if(!file_exists($mainPath)){
+        if (!file_exists($mainPath)) {
             File::makeDirectory($mainPath);
             File::makeDirectory($resourcePath);
             File::makeDirectory($interfacePath);
-            touch($resourcePath.''.DIRECTORY_SEPARATOR.'resource.html');
+            touch($resourcePath . '' . DIRECTORY_SEPARATOR . 'resource.html');
         }
 
-        $factoryFilePath = $mainPath.''.DIRECTORY_SEPARATOR.''.$factoryFile.'.php';
-        $factoryFileNamespace = $mainNamespace.'\\'.$factoryFile;
-        $factoryManagerName = $factory.'Manager';
-        $factoryManagerPath = $mainPath.''.DIRECTORY_SEPARATOR.''.$factoryManagerName.'.php';
-        $factoryManagerNamespace = $mainNamespace.'\\'.$factoryManagerName;
+        $factoryFilePath = $mainPath . '' . DIRECTORY_SEPARATOR . '' . $factoryFile . '.php';
+        $factoryFileNamespace = $mainNamespace . '\\' . $factoryFile;
+        $factoryManagerName = $factory . 'Manager';
+        $factoryManagerPath = $mainPath . '' . DIRECTORY_SEPARATOR . '' . $factoryManagerName . '.php';
+        $factoryManagerNamespace = $mainNamespace . '\\' . $factoryManagerName;
 
-        if(!file_exists($factoryFilePath)){
+        if (!file_exists($factoryFilePath)) {
             touch($factoryFilePath);
 
             $namespace = new PhpNamespace($mainNamespace);
             $namespace->addUse($factoryInterfaceNamespace);
             $addClass = $namespace->addClass($factoryFile);
-            $addClass->addComment('Class '.$factoryFile);
-            $addClass->addComment('@package '.$mainNamespace);
+            $addClass->addComment('Class ' . $factoryFile);
+            $addClass->addComment('@package ' . $mainNamespace);
             $addClass->setExtends($factoryManagerNamespace);
             $addClass->addImplement($factoryInterfaceNamespace);
             $addClass->addProperty('binds')->setType('array')->setProtected()->setValue([])
@@ -84,21 +84,19 @@ class FactoryCommand extends Command
                 ->addComment('@var array');
 
             $method = $addClass->addMethod('__construct');
-            $method->addComment($factoryFile.' constructor');
+            $method->addComment($factoryFile . ' constructor');
             $method->addComment('');
             $method->addComment('@param array $binds');
-            $method->addParameter('binds',[])->setType('array');
+            $method->addParameter('binds', [])->setType('array');
             $method->setBody('$this->binds = $binds;');
 
-            $content = '<?php '.PHP_EOL.''.PHP_EOL.'declare(strict_types=1);'.PHP_EOL.''.PHP_EOL.''.$namespace;
-            File::put($factoryFilePath,$content);
+            $content = '<?php ' . PHP_EOL . '' . PHP_EOL . 'declare(strict_types=1);' . PHP_EOL . '' . PHP_EOL . '' . $namespace;
+            File::put($factoryFilePath, $content);
         }
 
-        if(!file_exists($factoryManagerPath)){
+        if (!file_exists($factoryManagerPath)) {
             touch($factoryManagerPath);
         }
-
-
 
 
         $namespaceManager = new PhpNamespace($mainNamespace);
@@ -137,16 +135,16 @@ class FactoryCommand extends Command
 $class = Str::camel(class_basename($this));
 return $this->{$class}();');
 
-        $content = '<?php '.PHP_EOL.''.PHP_EOL.'declare(strict_types=1);'.PHP_EOL.''.PHP_EOL.''.$namespaceManager;
-        File::put($factoryManagerPath,$content);
+        $content = '<?php ' . PHP_EOL . '' . PHP_EOL . 'declare(strict_types=1);' . PHP_EOL . '' . PHP_EOL . '' . $namespaceManager;
+        File::put($factoryManagerPath, $content);
 
-        if(!file_exists($factoryInterfacePath)){
+        if (!file_exists($factoryInterfacePath)) {
             touch($factoryInterfacePath);
             $namespaceInterface = new PhpNamespace($interfaceNamespace);
             $addClass = $namespaceInterface->addInterface($factoryInterfaceName);
 
-            $content = '<?php '.PHP_EOL.''.PHP_EOL.'declare(strict_types=1);'.PHP_EOL.''.PHP_EOL.''.$namespaceInterface;
-            File::put($factoryInterfacePath,$content);
+            $content = '<?php ' . PHP_EOL . '' . PHP_EOL . 'declare(strict_types=1);' . PHP_EOL . '' . PHP_EOL . '' . $namespaceInterface;
+            File::put($factoryInterfacePath, $content);
         }
 
         return 0;

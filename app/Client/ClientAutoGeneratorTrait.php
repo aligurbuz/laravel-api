@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Client;
 
-use App\Services\Date;
-use App\Factory\Factory;
 use App\Facades\Authenticate\ApiKey;
 use App\Facades\Authenticate\Authenticate;
+use App\Factory\Factory;
+use App\Services\Date;
 
 /**
  * Trait ClientAutoGeneratorTrait
@@ -56,9 +56,9 @@ trait ClientAutoGeneratorTrait
      */
     public function userCodeAutoGenerator(): mixed
     {
-        if($this->getModelName()!=='User'){
-            return $this->ensureColumnExists('user_code',function(){
-                return $this->getUserCodeForSuperAdmin(function(){
+        if ($this->getModelName() !== 'User') {
+            return $this->ensureColumnExists('user_code', function () {
+                return $this->getUserCodeForSuperAdmin(function () {
                     return Authenticate::code();
                 });
             });
@@ -74,8 +74,8 @@ trait ClientAutoGeneratorTrait
      */
     public function createdByAutoGenerator(): mixed
     {
-        if(request()->method()=='POST'){
-            return $this->ensureColumnExists('created_by',function(){
+        if (request()->method() == 'POST') {
+            return $this->ensureColumnExists('created_by', function () {
                 return Authenticate::code();
             });
         }
@@ -90,8 +90,8 @@ trait ClientAutoGeneratorTrait
      */
     public function updatedByAutoGenerator(): mixed
     {
-        if(request()->method()=='PUT'){
-            return $this->ensureColumnExists('updated_by',function(){
+        if (request()->method() == 'PUT') {
+            return $this->ensureColumnExists('updated_by', function () {
                 return Authenticate::code();
             });
         }
@@ -106,12 +106,11 @@ trait ClientAutoGeneratorTrait
      */
     public function deletedByAutoGenerator(): mixed
     {
-        if(
-            request()->method()=='PUT'
+        if (
+            request()->method() == 'PUT'
             && $this->has('is_deleted')
-            && booleanChecks($this->get('is_deleted')))
-        {
-            return $this->ensureColumnExists('deleted_by',function(){
+            && booleanChecks($this->get('is_deleted'))) {
+            return $this->ensureColumnExists('deleted_by', function () {
                 return Authenticate::code();
             });
         }
@@ -126,12 +125,11 @@ trait ClientAutoGeneratorTrait
      */
     public function deletedAtAutoGenerator(): mixed
     {
-        if(
-            request()->method()=='PUT'
+        if (
+            request()->method() == 'PUT'
             && $this->has('is_deleted')
-            && booleanChecks($this->get('is_deleted')))
-        {
-            return $this->ensureColumnExists('deleted_at',function(){
+            && booleanChecks($this->get('is_deleted'))) {
+            return $this->ensureColumnExists('deleted_at', function () {
                 return Date::now()->toDateTimeString();
             });
         }
@@ -146,11 +144,11 @@ trait ClientAutoGeneratorTrait
      */
     public function clientFileProcessAutoGenerator(): mixed
     {
-        if(count(request()->allFiles())){
+        if (count(request()->allFiles())) {
             $files = Factory::storage(['client' => $this])->put();
 
-            foreach ($files as $key => $value){
-                $this->set($key,$value);
+            foreach ($files as $key => $value) {
+                $this->set($key, $value);
             }
         }
 
@@ -168,16 +166,16 @@ trait ClientAutoGeneratorTrait
         $data = count($data) ? $data : (array)$this->get();
 
 
-        foreach ($data as $key => $value){
-            if(request()->method()=='POST' && getTableCode($this->getModel())==$key){
+        foreach ($data as $key => $value) {
+            if (request()->method() == 'POST' && getTableCode($this->getModel()) == $key) {
                 continue;
             }
 
-            if(is_numeric($key) && is_array($value)){
+            if (is_numeric($key) && is_array($value)) {
                 $this->codeProcessAutoGenerator($value);
             }
 
-            if(preg_match('@(.*?)_code@is',$key)){
+            if (preg_match('@(.*?)_code@is', $key)) {
                 Factory::code([$key => $value])->throwExceptionIfDoesntExist();
             }
         }
@@ -193,7 +191,7 @@ trait ClientAutoGeneratorTrait
      */
     private function getUserCodeForSuperAdmin(callable $callback): mixed
     {
-        if(ApiKey::isSuperAdmin()){
+        if (ApiKey::isSuperAdmin()) {
             return $this->has('user_code') ? $this->get('user_code') : null;
         }
 

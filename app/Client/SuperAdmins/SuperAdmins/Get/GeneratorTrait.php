@@ -1,20 +1,20 @@
-<?php 
+<?php
 
-namespace App\Client\SuperAdmins\SuperAdmins\Get; 
+namespace App\Client\SuperAdmins\SuperAdmins\Get;
 
 trait GeneratorTrait
 {
-	/**
-	 * get auto generator for client
-	 *
-	 * @return array
-	 */
-	protected array $generators = [];
+    /**
+     * get auto generator for client
+     *
+     * @return array
+     */
+    protected array $generators = [];
 
-	/**
-	 * get dont overwrite generator for client
-	 *
-	 * @return array
-	 */
-	protected array $dontOverWriteGenerators = [];
+    /**
+     * get dont overwrite generator for client
+     *
+     * @return array
+     */
+    protected array $dontOverWriteGenerators = [];
 }

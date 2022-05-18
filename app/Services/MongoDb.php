@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Services;
 
-use MongoDB\Driver\Server;
-use MongoDB\Driver\Command;
-use MongoDB\Driver\Manager;
 use MongoDB\Driver\BulkWrite;
+use MongoDB\Driver\Command;
 use MongoDB\Driver\Exception\Exception;
+use MongoDB\Driver\Manager;
+use MongoDB\Driver\Server;
 
 /**
  * Class MongoDb
@@ -51,8 +51,8 @@ class MongoDb
     {
         $self = new self;
 
-        if(is_null(static::$connection)){
-            static::$connection = new Manager('mongodb://'.$self->host.':'.$self->port);
+        if (is_null(static::$connection)) {
+            static::$connection = new Manager('mongodb://' . $self->host . ':' . $self->port);
         }
 
         return new self();
@@ -75,12 +75,12 @@ class MongoDb
      * @param array $data
      * @return object
      */
-    public function write($collection,array $data = []): object
+    public function write($collection, array $data = []): object
     {
         $bulkWriteInstance = (new BulkWrite());
         $bulkWriteInstance->insert($data);
 
-        return static::$connection->executeBulkWrite($collection.'.collection',$bulkWriteInstance);
+        return static::$connection->executeBulkWrite($collection . '.collection', $bulkWriteInstance);
     }
 
     /**

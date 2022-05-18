@@ -40,13 +40,13 @@ class RequestCommand extends Command
     public function handle()
     {
         $argumentName = $this->argument('name');
-        $className = ucfirst($argumentName).'Request';
+        $className = ucfirst($argumentName) . 'Request';
 
         $namespaceDirectory = 'App\Http\Requests';
-        $directory = app_path().''.DIRECTORY_SEPARATOR.'Http'.DIRECTORY_SEPARATOR.'Requests';
+        $directory = app_path() . '' . DIRECTORY_SEPARATOR . 'Http' . DIRECTORY_SEPARATOR . 'Requests';
 
         $namespace = new PhpNamespace($namespaceDirectory);
-        $class = $namespace->addClass($className)->setExtends($namespaceDirectory.'\RequestManager');
+        $class = $namespace->addClass($className)->setExtends($namespaceDirectory . '\RequestManager');
         $class->addMethod('get')->addComment('throws exception for request')->addComment('')->addComment('@return void')
             ->addBody('$this->handle([
     //
@@ -65,9 +65,9 @@ class RequestCommand extends Command
 ]);')
             ->setReturnType('void');
 
-        touch($file = $directory.''.DIRECTORY_SEPARATOR.''.$className.'.php');
-        $content = '<?php '.PHP_EOL.''.PHP_EOL.''.$namespace;
-        File::put($file,$content);
+        touch($file = $directory . '' . DIRECTORY_SEPARATOR . '' . $className . '.php');
+        $content = '<?php ' . PHP_EOL . '' . PHP_EOL . '' . $namespace;
+        File::put($file, $content);
 
         $this->alert('Request created');
 

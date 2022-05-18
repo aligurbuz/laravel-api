@@ -2,15 +2,15 @@
 
 namespace App\Exceptions\Custom;
 
+use App\Constants;
+use App\Exceptions\ExceptionEventTrait;
+use App\Exceptions\ExceptionTrait;
 use Exception;
 use Throwable;
-use App\Constants;
-use App\Exceptions\ExceptionTrait;
-use App\Exceptions\ExceptionEventTrait;
 
 class ApiKeyException extends Exception
 {
-    use ExceptionTrait,ExceptionEventTrait;
+    use ExceptionTrait, ExceptionEventTrait;
 
     /**
      * @var string

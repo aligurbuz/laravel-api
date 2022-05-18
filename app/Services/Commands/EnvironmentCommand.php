@@ -3,8 +3,8 @@
 namespace App\Services\Commands;
 
 use Illuminate\Console\Command;
-use Symfony\Component\Yaml\Yaml;
 use Illuminate\Support\Facades\File;
+use Symfony\Component\Yaml\Yaml;
 
 class EnvironmentCommand extends Command
 {
@@ -46,14 +46,14 @@ class EnvironmentCommand extends Command
         $dockerComposeList = Yaml::parse($dockerCompose);
         $database = $dockerComposeList['services']['mysql']['environment'] ?? [];
 
-        $change = str_replace('APP_ENV=local','APP_ENV='.$name.'',$envFile);
-        $change = str_replace('REPOSITORY_CACHE = false','REPOSITORY_CACHE=true',$change);
+        $change = str_replace('APP_ENV=local', 'APP_ENV=' . $name . '', $envFile);
+        $change = str_replace('REPOSITORY_CACHE = false', 'REPOSITORY_CACHE=true', $change);
 
-        if($name!=='local' && isset($database['MYSQL_ROOT_PASSWORD'])){
-            $change = str_replace('DB_PASSWORD=root','DB_PASSWORD='.$database['MYSQL_ROOT_PASSWORD'],$change);
+        if ($name !== 'local' && isset($database['MYSQL_ROOT_PASSWORD'])) {
+            $change = str_replace('DB_PASSWORD=root', 'DB_PASSWORD=' . $database['MYSQL_ROOT_PASSWORD'], $change);
         }
 
-        File::put('.env',$change);
+        File::put('.env', $change);
 
         $this->warn('environment has been changed');
         return 0;

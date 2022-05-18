@@ -2,10 +2,10 @@
 
 namespace App\Http\Middleware;
 
+use App\Services\Response\Response as ResponseFormatter;
 use Closure;
 use Exception;
 use Illuminate\Http\Request;
-use App\Services\Response\Response as ResponseFormatter;
 
 class Response
 {
@@ -18,12 +18,12 @@ class Response
      *
      * @throws Exception
      */
-    public function handle(Request $request, Closure $next) : mixed
+    public function handle(Request $request, Closure $next): mixed
     {
         $response = $next($request);
-        $content = json_decode($response->getContent(),1);
+        $content = json_decode($response->getContent(), 1);
 
-        if(isset($content['status']) && $content['status']===false){
+        if (isset($content['status']) && $content['status'] === false) {
             return $response;
         }
 

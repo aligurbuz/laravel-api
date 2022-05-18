@@ -2,10 +2,10 @@
 
 namespace App\Http\Middleware;
 
-use Closure;
-use Illuminate\Http\Request;
 use App\Exceptions\Exception;
 use App\Services\AppContainer;
+use Closure;
+use Illuminate\Http\Request;
 
 class ContentType
 {
@@ -15,7 +15,7 @@ class ContentType
      * @var array
      */
     protected array $validContentTypes = [
-        'json'  => 'application/json',
+        'json' => 'application/json',
     ];
 
     /**
@@ -29,13 +29,13 @@ class ContentType
     {
         $contentType = $request->headers->get('content-type');
 
-        if(!in_array($contentType,$this->validContentTypes)){
-           Exception::contentTypeException('',['key' => implode(',',$this->validContentTypes)]);
+        if (!in_array($contentType, $this->validContentTypes)) {
+            Exception::contentTypeException('', ['key' => implode(',', $this->validContentTypes)]);
         }
 
         // when this container value is assigned,
         // we can read the client content-type value from anywhere in the application request.
-        $this->setContainerContentTye(array_search($contentType,$this->validContentTypes));
+        $this->setContainerContentTye(array_search($contentType, $this->validContentTypes));
 
         return $next($request);
     }
@@ -46,9 +46,9 @@ class ContentType
      * @param $contentType
      * @return void
      */
-    private function setContainerContentTye($contentType) : void
+    private function setContainerContentTye($contentType): void
     {
-        AppContainer::set('contentType',$contentType);
-        AppContainer::set('validContentTypes',$this->validContentTypes);
+        AppContainer::set('contentType', $contentType);
+        AppContainer::set('validContentTypes', $this->validContentTypes);
     }
 }

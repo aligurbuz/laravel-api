@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Packages\Client;
 
 use App\Exceptions\Exception;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Contracts\Validation\Validator as ValidatorContract;
+use Illuminate\Support\Facades\Validator;
 
 /**
  * Class ClientBodyProcess
@@ -46,11 +46,11 @@ class ClientParamProcess extends ClientVariableProcess
      *
      * @return void
      */
-    private function checkModelKeyWithoutFilter() : void
+    private function checkModelKeyWithoutFilter(): void
     {
-        if($this->client->requestMethod()=='GET'){
-            foreach ($this->data as $key => $value){
-                if(in_array($key,$this->client->columnsForModel(),true)){
+        if ($this->client->requestMethod() == 'GET') {
+            foreach ($this->data as $key => $value) {
+                if (in_array($key, $this->client->columnsForModel(), true)) {
                     Exception::clientCapsuleException('', ['key' => $key]);
                     return;
                 }
@@ -63,11 +63,11 @@ class ClientParamProcess extends ClientVariableProcess
      *
      * @return void
      */
-    private function paramValidatorValueProcess() : void
+    private function paramValidatorValueProcess(): void
     {
-        foreach ($this->client->getParamValidatorValues() as $paramValidatorValue){
-            if(isset($this->data[$paramValidatorValue]) && is_array($this->data[$paramValidatorValue])){
-                foreach ($this->data[$paramValidatorValue] as $paramKey => $paramValue){
+        foreach ($this->client->getParamValidatorValues() as $paramValidatorValue) {
+            if (isset($this->data[$paramValidatorValue]) && is_array($this->data[$paramValidatorValue])) {
+                foreach ($this->data[$paramValidatorValue] as $paramKey => $paramValue) {
                     $this->data[$paramKey] = $paramValue;
                 }
                 unset($this->data[$paramValidatorValue]);
@@ -80,13 +80,13 @@ class ClientParamProcess extends ClientVariableProcess
      *
      * @return void
      */
-    private function capsuleProcess() : void
+    private function capsuleProcess(): void
     {
         $capsule = $this->client->getCapsule();
 
-        foreach ($this->data as $key => $value){
-            if(!in_array($key,$capsule)){
-                Exception::clientCapsuleException('',['key' => $key]);
+        foreach ($this->data as $key => $value) {
+            if (!in_array($key, $capsule)) {
+                Exception::clientCapsuleException('', ['key' => $key]);
             }
         }
     }
@@ -96,7 +96,7 @@ class ClientParamProcess extends ClientVariableProcess
      *
      * @return void
      */
-    private function make() : void
+    private function make(): void
     {
         $this->valid();
     }
@@ -106,17 +106,17 @@ class ClientParamProcess extends ClientVariableProcess
      *
      * @return void
      */
-    private function valid() : void
+    private function valid(): void
     {
         tap(
-            Validator::make($this->data,array_merge(
+            Validator::make($this->data, array_merge(
                 $this->client->getAutoRule(),
                 $this->client->getRule()
             )),
-            function(ValidatorContract $validator){
+            function (ValidatorContract $validator) {
                 $message = $validator->getMessageBag();
 
-                if(count($message->getMessages())){
+                if (count($message->getMessages())) {
                     Exception::validationException($message->first());
                 }
             });

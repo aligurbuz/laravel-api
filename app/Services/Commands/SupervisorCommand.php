@@ -39,14 +39,14 @@ class SupervisorCommand extends Command
 
         $this->contents = ['laravel-redis-worker' => '[program:laravel-worker]
 process_name=%(program_name)s_%(process_num)02d
-command=php '.$basePath.'/artisan queue:work redis --sleep=3 --tries=3 --max-time=3600
+command=php ' . $basePath . '/artisan queue:work redis --sleep=3 --tries=3 --max-time=3600
 autostart=true
 autorestart=true
 stopasgroup=true
 killasgroup=true
 numprocs=8
 redirect_stderr=true
-stdout_logfile='.$basePath.'/worker.log
+stdout_logfile=' . $basePath . '/worker.log
 stopwaitsecs=3600'];
     }
 
@@ -59,10 +59,10 @@ stopwaitsecs=3600'];
     {
         $supervisorPath = '/etc/supervisor/conf.d/';
 
-        foreach ($this->contents as $file => $content){
-            $supervisorFile = $supervisorPath.''.$file.'.conf';
-            File::put($supervisorFile,$content);
-            $this->warn($supervisorFile.' has been added to supervisor');
+        foreach ($this->contents as $file => $content) {
+            $supervisorFile = $supervisorPath . '' . $file . '.conf';
+            File::put($supervisorFile, $content);
+            $this->warn($supervisorFile . ' has been added to supervisor');
         }
 
         exec('sudo service supervisor start');

@@ -5,7 +5,6 @@ namespace App\Services\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Str;
 
 class Postman extends Command
 {
@@ -40,8 +39,8 @@ class Postman extends Command
      */
     public function handle()
     {
-        $mapJson = json_decode(File::get(app_path('Docs').''.DIRECTORY_SEPARATOR.'map.json'),1);
-        $mockeryData = json_decode(File::get(app_path('Docs').''.DIRECTORY_SEPARATOR.'mockery.json'),1);
+        $mapJson = json_decode(File::get(app_path('Docs') . '' . DIRECTORY_SEPARATOR . 'map.json'), 1);
+        $mockeryData = json_decode(File::get(app_path('Docs') . '' . DIRECTORY_SEPARATOR . 'mockery.json'), 1);
         $documentationConfig = config('documentation');
         $exceptMethods = $documentationConfig['exceptMethods'] ?? [];
         $postmanIgnores = $documentationConfig['ignores'] ?? [];
@@ -56,9 +55,9 @@ class Postman extends Command
         $dirList = [];
         $fileList = ($mapJson['files'] ?? []);
 
-        foreach ($fileList as $key => $maps){
-            $split = explode('/',$maps);
-            if(!in_array($split[9],$postmanIgnores,true)){
+        foreach ($fileList as $key => $maps) {
+            $split = explode('/', $maps);
+            if (!in_array($split[9], $postmanIgnores, true)) {
                 $dirList[$split[9]] = $key;
             }
         }
@@ -66,57 +65,56 @@ class Postman extends Command
         ksort($dirList);
 
 
-        foreach ($dirList as $dirFile => $dirKey){
-            $mapContents = json_decode(File::get($fileList[$dirKey]),1);
+        foreach ($dirList as $dirFile => $dirKey) {
+            $mapContents = json_decode(File::get($fileList[$dirKey]), 1);
             $mapItem = $mapContents['item'] ?? [];
 
-            foreach ($mapItem as $mapItemKey => $mapItemData){
+            foreach ($mapItem as $mapItemKey => $mapItemData) {
 
-                if(isset($mapItemData['item'])){
-                    foreach ($mapItemData['item'] as $mapItemItemKey => $mapItemItemData){
-                        if(isset($mapItemItemData['request']['method'])){
+                if (isset($mapItemData['item'])) {
+                    foreach ($mapItemData['item'] as $mapItemItemKey => $mapItemItemData) {
+                        if (isset($mapItemItemData['request']['method'])) {
                             $mapItemDataMethod = $mapItemItemData['request']['method'];
                             $serviceName = strtolower($mapItemItemData['name']);
                             $serviceExceptMethods = $exceptMethods[$serviceName] ?? [];
 
 
-                            $mockeryName = $mapItemDataMethod.'_'.$mapItemItemData['name'];
-                            if(isset($mockeryData[$mockeryName])){
-                                foreach ($mockeryData[$mockeryName] as $mockType => $mockValue){
-                                    if($mockType=='body'){
-                                        $mapContents['item'][$mapItemKey]['item'][$mapItemItemKey]['request']['body'] = array_merge(($mapItemItemData['request']['body'] ?? []),$mockeryData[$mockeryName]['body']);
+                            $mockeryName = $mapItemDataMethod . '_' . $mapItemItemData['name'];
+                            if (isset($mockeryData[$mockeryName])) {
+                                foreach ($mockeryData[$mockeryName] as $mockType => $mockValue) {
+                                    if ($mockType == 'body') {
+                                        $mapContents['item'][$mapItemKey]['item'][$mapItemItemKey]['request']['body'] = array_merge(($mapItemItemData['request']['body'] ?? []), $mockeryData[$mockeryName]['body']);
                                     }
-                                    if($mockType=='formdata'){
-                                        $mapContents['item'][$mapItemKey]['item'][$mapItemItemKey]['request']['body'] = array_merge(($mapItemItemData['request']['body'] ?? []),$mockeryData[$mockeryName]['formdata']);
+                                    if ($mockType == 'formdata') {
+                                        $mapContents['item'][$mapItemKey]['item'][$mapItemItemKey]['request']['body'] = array_merge(($mapItemItemData['request']['body'] ?? []), $mockeryData[$mockeryName]['formdata']);
                                     }
                                 }
                             }
 
-                            if(in_array($mapItemDataMethod,$serviceExceptMethods,true)){
+                            if (in_array($mapItemDataMethod, $serviceExceptMethods, true)) {
                                 unset($mapContents['item'][$mapItemKey]['item'][$mapItemItemKey]);
                             }
                         }
                     }
 
-                }
-                else{
-                    if(!isset($mapItemData['item']) && isset($mapItemData['request']['method'])){
+                } else {
+                    if (!isset($mapItemData['item']) && isset($mapItemData['request']['method'])) {
                         $mapItemDataMethod = $mapItemData['request']['method'];
-                        $mockeryName = $mapItemDataMethod.'_'.$mapItemData['name'];
-                        if(isset($mockeryData[$mockeryName])){
-                            foreach ($mockeryData[$mockeryName] as $mockType => $mockValue){
-                                if($mockType=='body'){
-                                    $mapContents['item'][$mapItemKey]['request']['body'] = array_merge(($mapItemData['request']['body'] ?? []),$mockeryData[$mockeryName]['body']);
+                        $mockeryName = $mapItemDataMethod . '_' . $mapItemData['name'];
+                        if (isset($mockeryData[$mockeryName])) {
+                            foreach ($mockeryData[$mockeryName] as $mockType => $mockValue) {
+                                if ($mockType == 'body') {
+                                    $mapContents['item'][$mapItemKey]['request']['body'] = array_merge(($mapItemData['request']['body'] ?? []), $mockeryData[$mockeryName]['body']);
                                 }
-                                if($mockType=='formdata'){
-                                    $mapContents['item'][$mapItemKey]['request']['body'] = array_merge(($mapItemData['request']['body'] ?? []),$mockeryData[$mockeryName]['formdata']);
+                                if ($mockType == 'formdata') {
+                                    $mapContents['item'][$mapItemKey]['request']['body'] = array_merge(($mapItemData['request']['body'] ?? []), $mockeryData[$mockeryName]['formdata']);
                                 }
                             }
                         }
                     }
                 }
 
-                if(isset($mapContents['item'][$mapItemKey]['item']) && is_array($mapContents['item'][$mapItemKey]['item'])){
+                if (isset($mapContents['item'][$mapItemKey]['item']) && is_array($mapContents['item'][$mapItemKey]['item'])) {
                     $mapContents['item'][$mapItemKey]['item'] = array_values($mapContents['item'][$mapItemKey]['item']);
                 }
 
@@ -126,9 +124,9 @@ class Postman extends Command
             $list['item'][] = $mapContents;
         }
 
-        $postmanFile = base_path('postman').''.DIRECTORY_SEPARATOR.''.$collection.'.postman_collection.json';
+        $postmanFile = base_path('postman') . '' . DIRECTORY_SEPARATOR . '' . $collection . '.postman_collection.json';
 
-        File::put($postmanFile,Collection::make($list)->toJson(JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
+        File::put($postmanFile, Collection::make($list)->toJson(JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
 
         return 0;
     }
@@ -138,7 +136,7 @@ class Postman extends Command
      * @param string $method
      * @return bool
      */
-    private function isExceptMethod(string $name,string $method) : bool
+    private function isExceptMethod(string $name, string $method): bool
     {
         $name = $this->getExceptMethodName($name);
 
@@ -147,24 +145,24 @@ class Postman extends Command
 
         $list = $exceptMethods['all'] ?? [];
 
-        if(isset($exceptMethods[$name])){
+        if (isset($exceptMethods[$name])) {
             $list = $exceptMethods[$name];
         }
 
-        return (in_array($method,$list,true));
+        return (in_array($method, $list, true));
     }
 
     /**
      * @param string $name
      * @return string
      */
-    private function getExceptMethodName(string $name) : string
+    private function getExceptMethodName(string $name): string
     {
-        $nameExplode = explode('/',$name);
+        $nameExplode = explode('/', $name);
         $name = lcfirst($nameExplode[0]);
 
-        if(isset($nameExplode[1])){
-            $name = $name.'/'.lcfirst($nameExplode[1]);
+        if (isset($nameExplode[1])) {
+            $name = $name . '/' . lcfirst($nameExplode[1]);
         }
 
         return $name;

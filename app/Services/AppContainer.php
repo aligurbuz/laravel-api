@@ -34,27 +34,27 @@ class AppContainer
      */
     public static function set($key, $value, bool $merge = false)
     {
-        if(!$merge && !isset(static::$data[$key])){
+        if (!$merge && !isset(static::$data[$key])) {
             static::$data[$key] = $value;
         }
 
-        if(
+        if (
             $merge
             && static::has($key)
             && is_array(static::get($key))
             && is_array($value)
-            && !in_array(static::getValueHash($value),(static::$values[$key] ?? []))
-        ){
-            $mergeData                = array_merge_recursive(static::get($key),$value);
-            static::$data[$key]       = $mergeData;
-            static::$values[$key][]   = static::getValueHash($value);
+            && !in_array(static::getValueHash($value), (static::$values[$key] ?? []))
+        ) {
+            $mergeData = array_merge_recursive(static::get($key), $value);
+            static::$data[$key] = $mergeData;
+            static::$values[$key][] = static::getValueHash($value);
         }
 
-        if($merge && !static::has($key) && is_array($value)){
+        if ($merge && !static::has($key) && is_array($value)) {
             static::$data[$key] = $value;
         }
 
-        if(isset(static::$data[$key])){
+        if (isset(static::$data[$key])) {
             static::$whereValues[$key] = (debug_backtrace())[0] ?? [];
         }
     }
@@ -66,13 +66,13 @@ class AppContainer
      * @param $value
      * @param bool $merge
      */
-    public static function setWithTerminating($key,$value,bool $merge = false)
+    public static function setWithTerminating($key, $value, bool $merge = false)
     {
-        if(static::has($key)){
+        if (static::has($key)) {
             static::terminate($key);
         }
 
-        static::set($key,$value,$merge);
+        static::set($key, $value, $merge);
     }
 
     /**
@@ -81,7 +81,7 @@ class AppContainer
      * @param array $value
      * @return int
      */
-    public static function getValueHash(array $value = []) : int
+    public static function getValueHash(array $value = []): int
     {
         return crc32(json_encode($value));
     }
@@ -138,7 +138,7 @@ class AppContainer
      */
     public static function terminate($key): void
     {
-        if(isset(static::$data[$key])){
+        if (isset(static::$data[$key])) {
             unset(static::$data[$key]);
         }
     }
@@ -150,10 +150,10 @@ class AppContainer
      * @param callable $callback
      * @return mixed
      */
-    public static function use(string $name,callable $callback) : mixed
+    public static function use(string $name, callable $callback): mixed
     {
-        if(!static::has($name)){
-            static::set($name,call_user_func($callback));
+        if (!static::has($name)) {
+            static::set($name, call_user_func($callback));
         }
 
         return static::get($name);

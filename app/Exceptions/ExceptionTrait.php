@@ -12,10 +12,10 @@ trait ExceptionTrait
      * @param string|null $message
      * @return string
      */
-    public function setMessage(?string $message = null) : string
+    public function setMessage(?string $message = null): string
     {
-        $languageStatement = 'exception.'.$this->langKey;
-        $language = trans($languageStatement,$this->getKeys());
+        $languageStatement = 'exception.' . $this->langKey;
+        $language = trans($languageStatement, $this->getKeys());
 
         return ($language == $languageStatement) ? $this->getMessageForTranslate($message) : $language;
     }
@@ -27,11 +27,11 @@ trait ExceptionTrait
      * @param string $message
      * @return string
      */
-    private function getMessageForTranslate(string $message) : string
+    private function getMessageForTranslate(string $message): string
     {
-        $customMessage = trans('exception.'.$message,$this->getKeys());
+        $customMessage = trans('exception.' . $message, $this->getKeys());
 
-        return ($customMessage=='exception.'.$message) ? $message : $customMessage;
+        return ($customMessage == 'exception.' . $message) ? $message : $customMessage;
     }
 
     /**
@@ -39,11 +39,11 @@ trait ExceptionTrait
      *
      * @return array
      */
-    private function getKeys() : array
+    private function getKeys(): array
     {
         $calledClass = get_called_class();
 
-        if(AppContainer::has($calledClass)){
+        if (AppContainer::has($calledClass)) {
             return AppContainer::get($calledClass);
         }
 

@@ -2,11 +2,11 @@
 
 namespace App\Exceptions;
 
-use Exception;
-use Throwable;
 use App\Factory\Factory;
 use App\Services\Response\Response;
+use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Throwable;
 
 class Handler extends ExceptionHandler
 {
@@ -31,11 +31,11 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $e): object
     {
-        if(!app()->runningInConsole()){
+        if (!app()->runningInConsole()) {
             $this->notifyForInternalServer($e);
         }
 
-        return Response::error($e->getMessage(),(int)$e->getCode(),$e);
+        return Response::error($e->getMessage(), (int)$e->getCode(), $e);
     }
 
     /**
@@ -44,11 +44,11 @@ class Handler extends ExceptionHandler
      * @param Throwable $e
      * @return bool
      */
-    private function isTrueNotifyCondition(Throwable $e) : bool
+    private function isTrueNotifyCondition(Throwable $e): bool
     {
         return $e->getCode() == '0'
-            && app()->environment()!=='local'
-            && class_basename($e)!=='MethodNotAllowedHttpException';
+            && app()->environment() !== 'local'
+            && class_basename($e) !== 'MethodNotAllowedHttpException';
     }
 
     /**
@@ -57,9 +57,9 @@ class Handler extends ExceptionHandler
      * @param Throwable $e
      * @return void
      */
-    private function notifyForInternalServer(Throwable $e) : void
+    private function notifyForInternalServer(Throwable $e): void
     {
-        if($this->isTrueNotifyCondition($e)){
+        if ($this->isTrueNotifyCondition($e)) {
             Factory::notify(['error' => $e])->internalServerError();
         }
     }

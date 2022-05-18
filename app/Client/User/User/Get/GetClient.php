@@ -11,7 +11,7 @@ use App\Client\ClientAutoGeneratorTrait;
  */
 class GetClient extends Client
 {
-    use GeneratorTrait,ClientAutoGeneratorTrait;
+    use GeneratorTrait, ClientAutoGeneratorTrait;
 
     /**
      * get capsule for client

@@ -2,8 +2,8 @@
 
 namespace App\Facades\Authenticate;
 
-use Illuminate\Support\Str;
 use App\Services\AppContainer;
+use Illuminate\Support\Str;
 
 /**
  * Class ApiKey
@@ -21,9 +21,9 @@ class ApiKey
      * @param array $arguments
      * @return bool
      */
-    public static function __callStatic(string $name, array $arguments) : bool
+    public static function __callStatic(string $name, array $arguments): bool
     {
-        $name = Str::camel(substr($name,2));
+        $name = Str::camel(substr($name, 2));
 
         return (static::who() === $name);
     }
@@ -39,7 +39,7 @@ class ApiKey
         $header = $header ?? static::get();
         $containerApiKeys = AppContainer::get('apiKeys');
 
-        return array_search($header,(is_array($containerApiKeys) ? $containerApiKeys : []));
+        return array_search($header, (is_array($containerApiKeys) ? $containerApiKeys : []));
     }
 
     /**

@@ -50,47 +50,47 @@ class RelationCommand extends Command
         $list = [];
         $codes = [];
 
-        $databaseColumns = base_path('database').''.DIRECTORY_SEPARATOR.'columns';
-        $relationsMapFile = $databaseColumns.''.DIRECTORY_SEPARATOR.'relations.json';
-        $relationsCodeFile = $databaseColumns.''.DIRECTORY_SEPARATOR.'relationCodes.json';
+        $databaseColumns = base_path('database') . '' . DIRECTORY_SEPARATOR . 'columns';
+        $relationsMapFile = $databaseColumns . '' . DIRECTORY_SEPARATOR . 'relations.json';
+        $relationsCodeFile = $databaseColumns . '' . DIRECTORY_SEPARATOR . 'relationCodes.json';
         $configGlobalRepository = config('repository.globalScopes');
 
-        foreach ($modelFiles as $modelFile){
-            $modelName = str_replace('.php','',$modelFile->getFilename());
-            $namespace = $modelNamespace.'\\'.$modelName;
+        foreach ($modelFiles as $modelFile) {
+            $modelName = str_replace('.php', '', $modelFile->getFilename());
+            $namespace = $modelNamespace . '\\' . $modelName;
             $namespaceInstance = (new $namespace);
             $table = $namespaceInstance->getTable();
             $entityColumns = Db::columns($table);
             $tableCode = Str::camel(getTableCode($modelName));
 
-            foreach ($entityColumns as $entityColumn){
-                if(Str::endsWith($entityColumn,'_code')){
-                    if(!isset($codes[$entityColumn]) OR !in_array($tableCode,$configGlobalRepository)){
+            foreach ($entityColumns as $entityColumn) {
+                if (Str::endsWith($entityColumn, '_code')) {
+                    if (!isset($codes[$entityColumn]) or !in_array($tableCode, $configGlobalRepository)) {
                         $codes[$entityColumn][] = $modelName;
                     }
                 }
             }
 
-            $queries =  $namespaceInstance->getWithQueries();
+            $queries = $namespaceInstance->getWithQueries();
 
-            if(is_array($queries)){
-                foreach ($queries as $query){
-                    if(isset($query['repository'])){
-                        if(!in_array(ucfirst($query['repository']),($list[$modelName] ?? []))){
+            if (is_array($queries)) {
+                foreach ($queries as $query) {
+                    if (isset($query['repository'])) {
+                        if (!in_array(ucfirst($query['repository']), ($list[$modelName] ?? []))) {
                             $list[$modelName][] = ucfirst($query['repository']);
                         }
 
-                        if(
+                        if (
                             !isset($list[ucfirst($query['repository'])])
-                            || !in_array($modelName,$list[ucfirst($query['repository'])])
-                        ){
-                            if(!in_array($modelName,($list[ucfirst($query['repository'])] ?? []))){
+                            || !in_array($modelName, $list[ucfirst($query['repository'])])
+                        ) {
+                            if (!in_array($modelName, ($list[ucfirst($query['repository'])] ?? []))) {
                                 $list[ucfirst($query['repository'])][] = $modelName;
                             }
                         }
 
 
-                        if(isset($list[ucfirst($query['repository'])]) && !in_array($modelName,$list[ucfirst($query['repository'])])){
+                        if (isset($list[ucfirst($query['repository'])]) && !in_array($modelName, $list[ucfirst($query['repository'])])) {
                             $list[ucfirst($query['repository'])][] = $modelName;
                         }
 
@@ -99,8 +99,8 @@ class RelationCommand extends Command
             }
         }
 
-        File::put($relationsMapFile,Collection::make($list)->toJson(JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
-        File::put($relationsCodeFile,Collection::make($codes)->toJson(JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
+        File::put($relationsMapFile, Collection::make($list)->toJson(JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
+        File::put($relationsCodeFile, Collection::make($codes)->toJson(JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
 
         $this->warn('relation map has been updated');
 

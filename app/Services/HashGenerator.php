@@ -17,14 +17,14 @@ class HashGenerator
      * @param string $string
      * @return string
      */
-    public function encode(string $string) : string
+    public function encode(string $string): string
     {
         $result = '';
 
         for ($i = 0; $i < strlen($string); $i++) {
-            $char    = substr($string, $i, 1);
+            $char = substr($string, $i, 1);
             $keyChar = substr($this->hashKey, ($i % strlen($this->hashKey)) - 1, 1);
-            $char    = chr(ord($char) + ord($keyChar));
+            $char = chr(ord($char) + ord($keyChar));
             $result .= $char;
         }
 
@@ -37,15 +37,15 @@ class HashGenerator
      * @param string $string
      * @return string
      */
-    public function decode(string $string) : string
+    public function decode(string $string): string
     {
         $result = '';
         $string = base64_decode($string);
 
         for ($i = 0; $i < strlen($string); $i++) {
-            $char    = substr($string, $i, 1);
+            $char = substr($string, $i, 1);
             $keyChar = substr($this->hashKey, ($i % strlen($this->hashKey)) - 1, 1);
-            $char    = chr(ord($char) - ord($keyChar));
+            $char = chr(ord($char) - ord($keyChar));
             $result .= $char;
         }
 

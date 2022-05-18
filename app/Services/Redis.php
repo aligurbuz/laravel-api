@@ -40,8 +40,8 @@ class Redis
     {
         $redisAdapter = $adapter ?? 'default';
 
-        if(!isset(static::$adapter[$redisAdapter])){
-            static::$adapter[$redisAdapter] = new Client(config('database.redis.'.$redisAdapter));
+        if (!isset(static::$adapter[$redisAdapter])) {
+            static::$adapter[$redisAdapter] = new Client(config('database.redis.' . $redisAdapter));
         }
 
         return static::$adapter[$redisAdapter];

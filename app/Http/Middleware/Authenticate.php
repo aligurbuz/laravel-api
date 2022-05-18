@@ -2,9 +2,11 @@
 
 namespace App\Http\Middleware;
 
-use Closure;
 use App\Exceptions\Exception;
+use Closure;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
+use Illuminate\Http\Request;
 
 class Authenticate extends Middleware
 {
@@ -24,16 +26,16 @@ class Authenticate extends Middleware
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
-     * @param  string[]  ...$guards
+     * @param Request $request
+     * @param Closure $next
+     * @param string[] ...$guards
      * @return mixed
      *
-     * @throws \Illuminate\Auth\AuthenticationException
+     * @throws AuthenticationException
      */
     public function handle($request, Closure $next, ...$guards)
     {
-        if(config('app.authenticate')===true){
+        if (config('app.authenticate') === true) {
             $this->authenticate($request, $guards);
         }
 

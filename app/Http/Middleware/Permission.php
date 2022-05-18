@@ -2,9 +2,9 @@
 
 namespace App\Http\Middleware;
 
-use Closure;
-use App\Factory\Factory;
 use App\Exceptions\Exception;
+use App\Factory\Factory;
+use Closure;
 use Illuminate\Http\Request;
 
 class Permission
@@ -23,9 +23,9 @@ class Permission
      */
     public function handle(Request $request, Closure $next): mixed
     {
-        if(config('app.permission')===true && in_array(who(),$this->apiKeys,true)){
-            if(!Factory::permission()->checkEndpoint()){
-                return Exception::permissionException('',endpoint());
+        if (config('app.permission') === true && in_array(who(), $this->apiKeys, true)) {
+            if (!Factory::permission()->checkEndpoint()) {
+                return Exception::permissionException('', endpoint());
             }
         }
 

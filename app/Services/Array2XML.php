@@ -2,10 +2,10 @@
 
 namespace App\Services;
 
-use DOMNode;
-use Exception;
 use DOMDocument;
 use DOMImplementation;
+use DOMNode;
+use Exception;
 
 /**
  * Class Array2XML
@@ -61,8 +61,8 @@ class Array2XML
      *
      * @param string $version
      * @param string $encoding
-     * @param bool   $standalone
-     * @param bool   $format_output
+     * @param bool $standalone
+     * @param bool $format_output
      */
     public static function init($version = '1.0', $encoding = 'utf-8', $standalone = false, $format_output = true)
     {
@@ -109,7 +109,7 @@ class Array2XML
             if (array_key_exists('@attributes', $arr) && is_array($arr['@attributes'])) {
                 foreach ($arr['@attributes'] as $key => $value) {
                     if (!self::isValidTagName($key)) {
-                        throw new Exception('[Array2XML] Illegal character in attribute name. attribute: '.$key.' in node: '.$node_name);
+                        throw new Exception('[Array2XML] Illegal character in attribute name. attribute: ' . $key . ' in node: ' . $node_name);
                     }
                     $node->setAttribute($key, self::bool2str($value));
                 }
@@ -136,7 +136,7 @@ class Array2XML
             // recurse to get the node for that key
             foreach ($arr as $key => $value) {
                 if (!self::isValidTagName($key)) {
-                    throw new Exception('[Array2XML] Illegal character in tag name. tag: '.$key.' in node: '.$node_name);
+                    throw new Exception('[Array2XML] Illegal character in tag name. tag: ' . $key . ' in node: ' . $node_name);
                 }
                 if (is_array($value) && is_numeric(key($value))) {
                     // MORE THAN ONE NODE OF ITS KIND;

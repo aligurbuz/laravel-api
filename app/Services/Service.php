@@ -22,7 +22,7 @@ class Service
      */
     public function create($service, $directory, $model, $routeFile = null)
     {
-        Artisan::call('create:crud',[
+        Artisan::call('create:crud', [
             'controller' => $service,
             'dir' => $directory,
             'model' => $model,

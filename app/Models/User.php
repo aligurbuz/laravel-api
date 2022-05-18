@@ -4,7 +4,6 @@ namespace App\Models;
 
 use App\Models\Features\BaseManager;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
@@ -18,7 +17,7 @@ use Laravel\Passport\HasApiTokens;
  */
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable,BaseManager,HasApiTokens;
+    use HasFactory, Notifiable, BaseManager, HasApiTokens;
 
     /**
      * @var array
@@ -58,11 +57,11 @@ class User extends Authenticatable
 
     protected $withQuery = [
         /**'comments' => [
-            'foreignColumn' => 'user_id',
-            'localColumn'   => 'id',
-            'table' => 'user_comments',
-            'description' => 'You can use comments relation belonging to user data.',
-            'repository' => 'userComment',
-        ],**/
+         * 'foreignColumn' => 'user_id',
+         * 'localColumn'   => 'id',
+         * 'table' => 'user_comments',
+         * 'description' => 'You can use comments relation belonging to user data.',
+         * 'repository' => 'userComment',
+         * ],**/
     ];
 }

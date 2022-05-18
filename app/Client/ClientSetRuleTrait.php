@@ -17,7 +17,7 @@ trait ClientSetRuleTrait
      *
      * @return void
      */
-    public function setRuleProcess() : void
+    public function setRuleProcess(): void
     {
         $this->setBooleanValues();
         $this->setEnumValues();
@@ -32,9 +32,9 @@ trait ClientSetRuleTrait
      */
     private function setPasswordRule()
     {
-        if(request()->method()!=='GET'){
-            $this->ensureColumnExists('password',function(){
-                $this->setRule('password','required|min:6|max:18');
+        if (request()->method() !== 'GET') {
+            $this->ensureColumnExists('password', function () {
+                $this->setRule('password', 'required|min:6|max:18');
             });
         }
     }
@@ -44,12 +44,12 @@ trait ClientSetRuleTrait
      *
      * @return void
      */
-    private function setEnumValues() : void
+    private function setEnumValues(): void
     {
         $enumValues = Db::enums($this->getTable());
 
-        foreach ($enumValues as $enumKey => $enumValue){
-            $this->setAutoRule($enumKey,'in:'.$enumValue);
+        foreach ($enumValues as $enumKey => $enumValue) {
+            $this->setAutoRule($enumKey, 'in:' . $enumValue);
         }
     }
 
@@ -58,13 +58,13 @@ trait ClientSetRuleTrait
      *
      * @return void
      */
-    private function setBooleanValues() : void
+    private function setBooleanValues(): void
     {
         //we get boolean values from db entity values.
         $booleanValues = Db::booleanValues($this->getTable());
 
-        foreach ($booleanValues as $booleanValue){
-            $this->setAutoRule($booleanValue,['boolean']);
+        foreach ($booleanValues as $booleanValue) {
+            $this->setAutoRule($booleanValue, ['boolean']);
         }
     }
 }

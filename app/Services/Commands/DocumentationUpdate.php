@@ -3,7 +3,6 @@
 namespace App\Services\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
 
 class DocumentationUpdate extends Command
@@ -39,12 +38,12 @@ class DocumentationUpdate extends Command
      */
     public function handle()
     {
-        $docMap = base_path('app/Docs').'/map.json';
+        $docMap = base_path('app/Docs') . '/map.json';
         $docMapContent = File::get($docMap);
 
-        $docMapContent = str_replace('/var/www/html/app/api',base_path(),$docMapContent);
+        $docMapContent = str_replace('/var/www/html/app/api', base_path(), $docMapContent);
 
-        File::put($docMap,$docMapContent);
+        File::put($docMap, $docMapContent);
 
         return 0;
     }

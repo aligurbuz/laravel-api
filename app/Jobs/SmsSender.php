@@ -28,7 +28,7 @@ class SmsSender implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(string $to,string $message)
+    public function __construct(string $to, string $message)
     {
         $this->to = $to;
         $this->message = $message;

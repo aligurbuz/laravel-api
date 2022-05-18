@@ -2,9 +2,9 @@
 
 namespace App\Services;
 
-use Illuminate\Support\Facades\File;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB as DBFacade;
+use Illuminate\Support\Facades\File;
 
 /**
  * Class Db
@@ -71,7 +71,7 @@ class Db extends Model
     {
         $entities = static::entities($table);
 
-        return array_combine(($entities['columns'] ?? []),($entities['types'] ?? []));
+        return array_combine(($entities['columns'] ?? []), ($entities['types'] ?? []));
     }
 
     /**
@@ -84,7 +84,7 @@ class Db extends Model
     {
         $entities = static::entities($table);
 
-        return array_combine($columns = ($entities['columns'] ?? []),($entities['comments'] ?? $columns));
+        return array_combine($columns = ($entities['columns'] ?? []), ($entities['comments'] ?? $columns));
     }
 
     /**
@@ -97,7 +97,7 @@ class Db extends Model
     {
         $entities = static::entities($table);
 
-        return array_combine($enums = ($entities['enum_columns'] ?? []),($entities['enum_values'] ?? $enums));
+        return array_combine($enums = ($entities['enum_columns'] ?? []), ($entities['enum_values'] ?? $enums));
     }
 
     /**
@@ -110,7 +110,7 @@ class Db extends Model
     {
         $entities = static::entities($table);
 
-        return array_combine(($entities['max_length_columns'] ?? []),($entities['max_length_values'] ?? []));
+        return array_combine(($entities['max_length_columns'] ?? []), ($entities['max_length_values'] ?? []));
     }
 
     /**
@@ -132,16 +132,16 @@ class Db extends Model
      * @param string|null $table
      * @return array
      */
-    public static function entities(string $table = null) : array
+    public static function entities(string $table = null): array
     {
-        if(class_exists($table)){
+        if (class_exists($table)) {
             $table = static::getTableNameFromModel($table);
         }
 
-        $columnPath = base_path('database/columns/'.$table.'.php');
+        $columnPath = base_path('database/columns/' . $table . '.php');
 
-        if(file_exists($columnPath)){
-            if(!isset(static::$paths[$columnPath])){
+        if (file_exists($columnPath)) {
+            if (!isset(static::$paths[$columnPath])) {
                 static::$paths[$columnPath] = File::getRequire($columnPath);
             }
             return static::$paths[$columnPath];
@@ -155,15 +155,15 @@ class Db extends Model
      *
      * @return array
      */
-    public static function relations() : array
+    public static function relations(): array
     {
         $relations = base_path('database/columns/relations.json');
 
-        if(file_exists($relations)){
-            if(!isset(static::$paths[$relations])){
+        if (file_exists($relations)) {
+            if (!isset(static::$paths[$relations])) {
                 static::$paths[$relations] = File::get($relations);
             }
-            return json_decode(static::$paths[$relations],1);
+            return json_decode(static::$paths[$relations], 1);
         }
 
         return [];
@@ -174,15 +174,15 @@ class Db extends Model
      *
      * @return array
      */
-    public static function relationCodes() : array
+    public static function relationCodes(): array
     {
         $relations = base_path('database/columns/relationCodes.json');
 
-        if(file_exists($relations)){
-            if(!isset(static::$paths[$relations])){
+        if (file_exists($relations)) {
+            if (!isset(static::$paths[$relations])) {
                 static::$paths[$relations] = File::get($relations);
             }
-            return json_decode(static::$paths[$relations],1);
+            return json_decode(static::$paths[$relations], 1);
         }
 
         return [];
@@ -196,7 +196,7 @@ class Db extends Model
      */
     public static function getTableNameFromModel($model)
     {
-        if(class_exists($model)){
+        if (class_exists($model)) {
             return (new $model)->getTable();
         }
 
@@ -210,11 +210,11 @@ class Db extends Model
      * @param $column
      * @return bool
      */
-    public static function ensureColumnExists($table,$column) : bool
+    public static function ensureColumnExists($table, $column): bool
     {
         $entities = static::columns($table);
 
-        if(in_array($column,$entities)){
+        if (in_array($column, $entities)) {
             return true;
         }
 
@@ -226,7 +226,7 @@ class Db extends Model
      *
      * @return array
      */
-    public static function config() : array
+    public static function config(): array
     {
         $databaseConfig = config('database');
         $defaultDriver = $databaseConfig['default'];
@@ -242,7 +242,7 @@ class Db extends Model
      */
     public static function transaction(callable $callback): mixed
     {
-        return DBFacade::transaction(function() use($callback){
+        return DBFacade::transaction(function () use ($callback) {
             return call_user_func($callback);
         });
     }

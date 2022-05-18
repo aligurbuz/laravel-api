@@ -50,11 +50,11 @@ class Request
      */
     public function __construct(array $data = [])
     {
-        $this->url              = config('app.apiUrl');
-        $this->data             = $data;
-        $this->apikey           = config('app.apiKey');
-        $this->contentType      = 'application/json';
-        $this->acceptLanguage   = 'en';
+        $this->url = config('app.apiUrl');
+        $this->data = $data;
+        $this->apikey = config('app.apiKey');
+        $this->contentType = 'application/json';
+        $this->acceptLanguage = 'en';
 
         $this->setHeaders();
     }
@@ -65,14 +65,14 @@ class Request
      * @param array $headers
      * @return $this
      */
-    public function setHeaders(array $headers = []) : self
+    public function setHeaders(array $headers = []): self
     {
         $init = [
             //'Apikey:'.$this->apikey,
-            'Content-Type:'.$this->contentType
+            'Content-Type:' . $this->contentType
         ];
 
-        $this->headers = array_merge($headers,$init);
+        $this->headers = array_merge($headers, $init);
 
         return $this;
     }
@@ -83,7 +83,7 @@ class Request
      * @param string $endpoint
      * @return $this
      */
-    public function endpoint(string $endpoint) : self
+    public function endpoint(string $endpoint): self
     {
         $this->endpoint = $endpoint;
 
@@ -95,7 +95,7 @@ class Request
      *
      * @return array
      */
-    public function getResult() : array
+    public function getResult(): array
     {
         return $this->result;
     }
@@ -105,7 +105,7 @@ class Request
      *
      * @return ?string
      */
-    public function errorMessage() : ?string
+    public function errorMessage(): ?string
     {
         return (!$this->result['status']) ? $this->result['errorMessage'] : null;
     }
@@ -116,20 +116,20 @@ class Request
      * @param string|null $fullUrl
      * @return $this
      */
-    public function post(?string $fullUrl = null) : self
+    public function post(?string $fullUrl = null): self
     {
         $ch = curl_init();
-        $url = $fullUrl ?? ($this->url.'/'.$this->endpoint);
-        curl_setopt($ch, CURLOPT_URL,$url);
+        $url = $fullUrl ?? ($this->url . '/' . $this->endpoint);
+        curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS,json_encode($this->data));
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($this->data));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $this->headers);
 
-        $result = curl_exec ($ch);
-        curl_close ($ch);
+        $result = curl_exec($ch);
+        curl_close($ch);
 
-        $this->result = json_decode($result,1);
+        $this->result = json_decode($result, 1);
 
         return $this;
     }
@@ -140,19 +140,19 @@ class Request
      * @param string|null $fullUrl
      * @return $this
      */
-    public function get(?string $fullUrl = null) : self
+    public function get(?string $fullUrl = null): self
     {
         $ch = curl_init();
         $query = http_build_query($this->data);
-        $url = $fullUrl ?? ($this->url.'/'.$this->endpoint.'?'.$query);
-        curl_setopt($ch, CURLOPT_URL,$url);
+        $url = $fullUrl ?? ($this->url . '/' . $this->endpoint . '?' . $query);
+        curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $this->headers);
 
-        $result = curl_exec ($ch);
-        curl_close ($ch);
+        $result = curl_exec($ch);
+        curl_close($ch);
 
-        $this->result = json_decode($result,1);
+        $this->result = json_decode($result, 1);
 
         return $this;
     }

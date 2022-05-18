@@ -2,10 +2,9 @@
 
 namespace App\Client\User\User\Create;
 
-use App\Models\User;
 use App\Client\Client;
-use Illuminate\Support\Facades\Hash;
 use App\Client\ClientAutoGeneratorTrait;
+use App\Models\User;
 
 /**
  * Class GetClient
@@ -13,7 +12,7 @@ use App\Client\ClientAutoGeneratorTrait;
  */
 class CreateClient extends Client
 {
-    use GeneratorTrait,ClientAutoGeneratorTrait;
+    use GeneratorTrait, ClientAutoGeneratorTrait;
 
     /**
      * get capsule for client
@@ -35,8 +34,8 @@ class CreateClient extends Client
      * @var array
      */
     protected array $rule = [
-        'name'      => 'required|max:50',
-        'email'     => 'required',
-        'password'  => 'atLeastUpperLowerNumber'
+        'name' => 'required|max:50',
+        'email' => 'required',
+        'password' => 'atLeastUpperLowerNumber'
     ];
 }

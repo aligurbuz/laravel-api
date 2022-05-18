@@ -13,10 +13,10 @@ class Postman
      *
      * @return array
      */
-    public static function collection() : array
+    public static function collection(): array
     {
-        $postmanJsonFile = base_path('postman').''.DIRECTORY_SEPARATOR.''.config('app.name').'.postman_collection.json';
-        return json_decode(File::get($postmanJsonFile),true);
+        $postmanJsonFile = base_path('postman') . '' . DIRECTORY_SEPARATOR . '' . config('app.name') . '.postman_collection.json';
+        return json_decode(File::get($postmanJsonFile), true);
     }
 
     /**
@@ -24,10 +24,10 @@ class Postman
      *
      * @return array
      */
-    public static function environment() : array
+    public static function environment(): array
     {
-        $headerJsonFile = app_path('Docs').''.DIRECTORY_SEPARATOR.'header.json';
-        return json_decode(File::get($headerJsonFile),true);
+        $headerJsonFile = app_path('Docs') . '' . DIRECTORY_SEPARATOR . 'header.json';
+        return json_decode(File::get($headerJsonFile), true);
     }
 
     /**
@@ -35,7 +35,7 @@ class Postman
      *
      * @return array
      */
-    public static function getCollectionAccordingToIgnore() : array
+    public static function getCollectionAccordingToIgnore(): array
     {
         $ignore = config('documentation.ignores');
         $collection = static::collection();
@@ -43,8 +43,8 @@ class Postman
 
         $list = [];
 
-        foreach ($itemCollection as $key => $item){
-            if(!in_array($item['name'],$ignore)){
+        foreach ($itemCollection as $key => $item) {
+            if (!in_array($item['name'], $ignore)) {
                 $list[$key] = $item;
             }
         }

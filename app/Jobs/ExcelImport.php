@@ -4,7 +4,6 @@ namespace App\Jobs;
 
 use App\Factory\Factory;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
@@ -25,7 +24,7 @@ class ExcelImport implements ShouldQueue
      * @param string $file
      * @param string $model
      */
-    public function __construct(string $file,string $model)
+    public function __construct(string $file, string $model)
     {
         $this->data['file'] = $file;
         $this->data['model'] = $model;

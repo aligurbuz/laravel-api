@@ -26,10 +26,10 @@ class Slack
      * @param string $channel
      * @return Slack
      */
-    public static function channel(string $channel='default'): Slack
+    public static function channel(string $channel = 'default'): Slack
     {
         //we get configuration settings for slack.
-        $config = config('slack.'.$channel);
+        $config = config('slack.' . $channel);
 
         //channel and hook information.
         self::$channel = $config['channel'];
@@ -50,8 +50,8 @@ class Slack
         // for push notification
         // we have to specify the payload value.
         $data = "payload=" . json_encode(array(
-                "channel"       =>  "#".self::$channel,
-                "text"          =>  $message,
+                "channel" => "#" . self::$channel,
+                "text" => $message,
             ));
 
         // We are starting curl for the hook value.

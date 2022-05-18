@@ -11,11 +11,11 @@ class Excel
      *
      * @return void
      */
-    public static function import() : void
+    public static function import(): void
     {
-        $file   = request()->file('excel_file')->store('files');
-        $model  = client('excel_factory');
+        $file = request()->file('excel_file')->store('files');
+        $model = client('excel_factory');
 
-        dispatch(new ExcelImport($file,$model));
+        dispatch(new ExcelImport($file, $model));
     }
 }

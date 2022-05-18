@@ -12,7 +12,7 @@ use App\Models\User;
  */
 class UpdateClient extends Client
 {
-    use GeneratorTrait,ClientAutoGeneratorTrait;
+    use GeneratorTrait, ClientAutoGeneratorTrait;
 
     /**
      * get capsule for client

@@ -42,17 +42,17 @@ class UpdateMigrationCommand extends Command
         $model = ucfirst($this->argument('model'));
         $serviceMapFile = base_path('database/columns/modelService.json');
 
-        $services = json_decode(File::get($serviceMapFile),1);
+        $services = json_decode(File::get($serviceMapFile), 1);
 
-        if(isset($services[$model])){
-            $contents       = $services[$model];
-            $controller     = lcfirst(($contents['controller'] ?? ''));
-            $dir            = lcfirst(($contents['dir'] ?? ''));
+        if (isset($services[$model])) {
+            $contents = $services[$model];
+            $controller = lcfirst(($contents['controller'] ?? ''));
+            $dir = lcfirst(($contents['dir'] ?? ''));
 
             Artisan::call('migrate');
-            Artisan::call('update:column',['model' => $this->argument('model')]);
-            Artisan::call('doc:create',['controller' => $controller,'dir' => $dir,'model' => $this->argument('model')]);
-            Artisan::call('postman:create',['collection' => config('app.name')]);
+            Artisan::call('update:column', ['model' => $this->argument('model')]);
+            Artisan::call('doc:create', ['controller' => $controller, 'dir' => $dir, 'model' => $this->argument('model')]);
+            Artisan::call('postman:create', ['collection' => config('app.name')]);
             Artisan::call('update:relation');
 
             $this->warn('your updating is success for migration');

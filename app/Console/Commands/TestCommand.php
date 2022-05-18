@@ -3,11 +3,8 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Filesystem\FilesystemManager;
 use Illuminate\Support\Facades\File;
-use Nette\PhpGenerator\GlobalFunction;
 use Nette\PhpGenerator\PhpNamespace;
-use Nette\PhpGenerator\PsrPrinter;
 
 class TestCommand extends Command
 {
@@ -43,19 +40,19 @@ class TestCommand extends Command
     public function handle()
     {
         $className = 'Foo';
-        $namespace = new PhpNamespace($namespaceString = 'App\Generator\\'.$className);
+        $namespace = new PhpNamespace($namespaceString = 'App\Generator\\' . $className);
         $class = $namespace->addClass($className);
         $class->addMethod('CarModel')->addComment('aaaa')
             ->addBody('return 1;')->setReturnType('bool');
 
-        $generatorDirectory = app_path().''.DIRECTORY_SEPARATOR.'Generators';
-        if(!file_exists($generatorDirectory)){
+        $generatorDirectory = app_path() . '' . DIRECTORY_SEPARATOR . 'Generators';
+        if (!file_exists($generatorDirectory)) {
             File::makeDirectory($generatorDirectory);
         }
 
-        touch($file = $generatorDirectory.''.DIRECTORY_SEPARATOR.''.$className.'.php');
-        $content = '<?php '.PHP_EOL.''.PHP_EOL.''.$namespace;
-        File::put($file,$content);
+        touch($file = $generatorDirectory . '' . DIRECTORY_SEPARATOR . '' . $className . '.php');
+        $content = '<?php ' . PHP_EOL . '' . PHP_EOL . '' . $namespace;
+        File::put($file, $content);
 
         $this->alert($namespace);
 

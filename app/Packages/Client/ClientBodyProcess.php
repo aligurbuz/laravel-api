@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace App\Packages\Client;
 
+use App\Exceptions\Exception;
 use App\Services\AppContainer;
 use App\Services\Db;
-use App\Exceptions\Exception;
+use Illuminate\Contracts\Validation\Validator as ValidatorContract;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Contracts\Validation\Validator as ValidatorContract;
 use Illuminate\Support\Str;
 use Laravel\Octane\Exceptions\DdException;
 
@@ -46,7 +46,7 @@ class ClientBodyProcess extends ClientVariableProcess
         $this->dataFileHandler();
         $this->booleanValues = Db::booleanValues($this->client->getTable());
 
-        if(count($this->data)=='0'){
+        if (count($this->data) == '0') {
             Exception::clientEmptyException();
         }
 
@@ -58,10 +58,10 @@ class ClientBodyProcess extends ClientVariableProcess
      *
      * @return void
      */
-    public function dataFileHandler() : void
+    public function dataFileHandler(): void
     {
-        foreach (request()->allFiles() as $key => $value){
-            if(in_array($key,$this->client->getCapsule(),true)){
+        foreach (request()->allFiles() as $key => $value) {
+            if (in_array($key, $this->client->getCapsule(), true)) {
                 $this->data[0][$key] = $value;
             }
         }
@@ -72,7 +72,7 @@ class ClientBodyProcess extends ClientVariableProcess
      *
      * @return void
      */
-    private function make() : void
+    private function make(): void
     {
         $this->validator();
     }
@@ -81,13 +81,13 @@ class ClientBodyProcess extends ClientVariableProcess
      * @param array $data
      * @return void
      */
-    private function capsuleProcess(array $data = []) : void
+    private function capsuleProcess(array $data = []): void
     {
         $capsule = $this->client->getCapsule();
 
-        foreach ($data as $key => $value){
-            if(!in_array($key,$capsule)){
-                Exception::clientCapsuleException('',['key' => $key]);
+        foreach ($data as $key => $value) {
+            if (!in_array($key, $capsule)) {
+                Exception::clientCapsuleException('', ['key' => $key]);
             }
         }
     }
@@ -97,35 +97,35 @@ class ClientBodyProcess extends ClientVariableProcess
      *
      * @return void
      */
-    private function validator() : void
+    private function validator(): void
     {
-        foreach ($this->data as $key => $value){
+        foreach ($this->data as $key => $value) {
 
-            if(is_array($value)){
+            if (is_array($value)) {
 
-                if(count($this->data)> $arrayLimiter = $this->client->getArrayLimiter()){
-                    Exception::clientArrayLimiterException('client data must have a maximum of '.$arrayLimiter.' record.');
+                if (count($this->data) > $arrayLimiter = $this->client->getArrayLimiter()) {
+                    Exception::clientArrayLimiterException('client data must have a maximum of ' . $arrayLimiter . ' record.');
                 }
 
                 $this->typeValidator($value);
 
-                AppContainer::setWithTerminating('clientDataStreams',$value);
+                AppContainer::setWithTerminating('clientDataStreams', $value);
 
                 $generatorProcess = array_merge(
                     $defaultGenerator = $this->generatorProcess($value),
-                    $this->autoGeneratorProcess($value,$defaultGenerator)
+                    $this->autoGeneratorProcess($value, $defaultGenerator)
                 );
 
 
-                $generatorProcess = Collection::make($generatorProcess)->filter(function($value, $key){
+                $generatorProcess = Collection::make($generatorProcess)->filter(function ($value, $key) {
                     return $value !== null;
                 })->toArray();
 
-                $this->variableProcess($generatorProcess,false);
+                $this->variableProcess($generatorProcess, false);
                 $value = $this->client->getDataStream();
 
 
-                $this->client->setBodyData($key,$value);
+                $this->client->setBodyData($key, $value);
 
                 $this->capsuleProcess($value);
 
@@ -135,17 +135,16 @@ class ClientBodyProcess extends ClientVariableProcess
                 $this->variableProcess($generatorProcess);
                 $value = $this->client->getDataStream();
 
-                if(count($overWriteStream)){
-                    foreach ($value as $streamKey => $streamValue){
-                        if(isset($overWriteStream[$streamKey]) && (Str::endsWith($streamKey,'_image') || $streamKey=='image')){
+                if (count($overWriteStream)) {
+                    foreach ($value as $streamKey => $streamValue) {
+                        if (isset($overWriteStream[$streamKey]) && (Str::endsWith($streamKey, '_image') || $streamKey == 'image')) {
                             $value[$streamKey] = $overWriteStream[$streamKey];
                         }
                     }
 
-                    $this->client->setBodyData($key,$value);
+                    $this->client->setBodyData($key, $value);
                 }
-            }
-            else{
+            } else {
                 Exception::clientFormatException();
             }
         }
@@ -156,21 +155,20 @@ class ClientBodyProcess extends ClientVariableProcess
     /**
      * @return void
      */
-    private function arrayRuleValidator() : void
+    private function arrayRuleValidator(): void
     {
         $arrayRules = $this->client->getArrayRule();
 
-        foreach ($arrayRules as $field => $values){
+        foreach ($arrayRules as $field => $values) {
             $rules = $values['rules'] ?? [];
 
-            foreach ($this->data as $key => $value){
+            foreach ($this->data as $key => $value) {
                 $arrayFields = $value[$field] ?? [];
-                foreach ($arrayFields as $arrayField){
-                    try{
-                        $this->makeValidator($arrayField,$rules);
-                    }
-                    catch (\Exception $exception){
-                        Exception::customException($exception->getMessage().'('.trans('exception.arrayRuleException',['key' => $field]).')');
+                foreach ($arrayFields as $arrayField) {
+                    try {
+                        $this->makeValidator($arrayField, $rules);
+                    } catch (\Exception $exception) {
+                        Exception::customException($exception->getMessage() . '(' . trans('exception.arrayRuleException', ['key' => $field]) . ')');
                     }
                 }
             }
@@ -186,7 +184,7 @@ class ClientBodyProcess extends ClientVariableProcess
     {
         $table = $this->client->getTable();
 
-        if(!is_null($table)){
+        if (!is_null($table)) {
 
             $list = [];
             $types = Db::types($table);
@@ -194,25 +192,23 @@ class ClientBodyProcess extends ClientVariableProcess
             $customRules = $this->client->getCustomRule();
 
 
-            foreach ($data as $key => $value){
-                if(isset($types[$key])){
+            foreach ($data as $key => $value) {
+                if (isset($types[$key])) {
                     $type = $types[$key];
 
-                    if(isset($customRules[$type])){
+                    if (isset($customRules[$type])) {
                         $list[$key] = $customRules[$type];
-                    }
-                    elseif(isset($autoRules[$key])){
+                    } elseif (isset($autoRules[$key])) {
                         $list[$key] = $autoRules[$key];
                         $types[$key] = $autoRules[$key];
-                    }
-                    else{
+                    } else {
                         $list[$key] = $types[$key];
                     }
 
                 }
             }
 
-            $this->makeValidator($data,$list,$types);
+            $this->makeValidator($data, $list, $types);
         }
     }
 
@@ -223,41 +219,39 @@ class ClientBodyProcess extends ClientVariableProcess
      * @param array $validators
      * @param array $types
      */
-    private function makeValidator(array $data = [],array $validators = [],array $types = [])
+    private function makeValidator(array $data = [], array $validators = [], array $types = [])
     {
         tap(
-            Validator::make($data,$this->clientRuleProcess($validators,$data)),
-            function(ValidatorContract $validator) use($types){
+            Validator::make($data, $this->clientRuleProcess($validators, $data)),
+            function (ValidatorContract $validator) use ($types) {
                 $message = $validator->getMessageBag();
-                static::errorContainer($this->client->getRule(),'validatorRules');
+                static::errorContainer($this->client->getRule(), 'validatorRules');
 
-                if(count($message->getMessages())){
+                if (count($message->getMessages())) {
 
-                    if(count($types)){
+                    if (count($types)) {
                         $key = ($message->keys())[0] ?? null;
-                        static::errorContainer($key,'errorInput');
-                        if(isset($types[$key])){
-                            $typeMessage = trans('validation.'.$key,['attribute' => $key]);
+                        static::errorContainer($key, 'errorInput');
+                        if (isset($types[$key])) {
+                            $typeMessage = trans('validation.' . $key, ['attribute' => $key]);
 
-                            if($typeMessage==='validation.'.$key){
-                                if(is_array($types[$key])){
+                            if ($typeMessage === 'validation.' . $key) {
+                                if (is_array($types[$key])) {
                                     $types[$key] = current($types[$key]);
-                                    static::errorContainer($key,'errorInput');
-                                    if(in_array($key,$this->booleanValues,true)){
-                                        $typeMessage = trans('validation.custom.bool.regex',['attribute' => $key]);
+                                    static::errorContainer($key, 'errorInput');
+                                    if (in_array($key, $this->booleanValues, true)) {
+                                        $typeMessage = trans('validation.custom.bool.regex', ['attribute' => $key]);
+                                    } else {
+                                        $typeMessage = trans('validation.custom.' . $key . '.regex', ['attribute' => $key]);
                                     }
-                                    else{
-                                        $typeMessage = trans('validation.custom.'.$key.'.regex',['attribute' => $key]);
-                                    }
-                                }
-                                else{
-                                    static::errorContainer($types[$key],'errorInput');
-                                    $typeMessage = trans('validation.'.$types[$key],['attribute' => $key]);
-                                    $typeKeyExplode = explode(':',$types[$key]);
-                                    if(current($typeKeyExplode)=='in'){
-                                        $typeMessage = trans('validation.enum',[
+                                } else {
+                                    static::errorContainer($types[$key], 'errorInput');
+                                    $typeMessage = trans('validation.' . $types[$key], ['attribute' => $key]);
+                                    $typeKeyExplode = explode(':', $types[$key]);
+                                    if (current($typeKeyExplode) == 'in') {
+                                        $typeMessage = trans('validation.enum', [
                                             'column' => $key,
-                                            'enum' => str_replace(',',' '.trans('validation.enumSplitter').' ',($typeKeyExplode[1] ?? ''))
+                                            'enum' => str_replace(',', ' ' . trans('validation.enumSplitter') . ' ', ($typeKeyExplode[1] ?? ''))
                                         ]);
                                     }
                                 }
@@ -265,8 +259,8 @@ class ClientBodyProcess extends ClientVariableProcess
                         }
                     }
 
-                    foreach ($message->getMessages() as $inputKey => $inputValue){
-                        static::errorContainer($inputKey,'errorInput');
+                    foreach ($message->getMessages() as $inputKey => $inputValue) {
+                        static::errorContainer($inputKey, 'errorInput');
                     }
 
                     $validationExceptionMessage = $typeMessage ?? $message->first();
@@ -283,7 +277,7 @@ class ClientBodyProcess extends ClientVariableProcess
      * @return array
      * @throws DdException
      */
-    private function clientRuleProcess(array $validator = [],array $data = []) : array
+    private function clientRuleProcess(array $validator = [], array $data = []): array
     {
         $autoRules = $this->client->getAutoRule();
         $rules = count($validator) ? $validator : $this->client->getRule();
@@ -291,31 +285,29 @@ class ClientBodyProcess extends ClientVariableProcess
 
         $list = [];
 
-        foreach ($rules as $key => $rule){
-            $ruleValues = is_string($rule) ? explode('|',$rule) : $rule;
+        foreach ($rules as $key => $rule) {
+            $ruleValues = is_string($rule) ? explode('|', $rule) : $rule;
 
-            foreach ($ruleValues as $ruleValueKey => $ruleValueItem){
-                if(isset($customRules[$ruleValueItem]) && isset($data[$key])){
-                    $regexCustomRule = str_replace('regex:','',$customRules[$ruleValueItem][0]);
-                    if(!preg_match($regexCustomRule,$data[$key])){
-                        Exception::customException(trans('validation.'.$ruleValueItem.'',['attribute' => $key]));
+            foreach ($ruleValues as $ruleValueKey => $ruleValueItem) {
+                if (isset($customRules[$ruleValueItem]) && isset($data[$key])) {
+                    $regexCustomRule = str_replace('regex:', '', $customRules[$ruleValueItem][0]);
+                    if (!preg_match($regexCustomRule, $data[$key])) {
+                        Exception::customException(trans('validation.' . $ruleValueItem . '', ['attribute' => $key]));
                     }
 
                     unset($ruleValues[$ruleValueKey]);
                 }
             }
 
-            $rule = implode('|',$ruleValues);
+            $rule = implode('|', $ruleValues);
 
-            if(isset($autoRules[$key])){
-                if(is_array($autoRules[$key])){
+            if (isset($autoRules[$key])) {
+                if (is_array($autoRules[$key])) {
                     $list[$key] = $autoRules[$key];
+                } else {
+                    $list[$key] = $rule . '|' . $autoRules[$key];
                 }
-                else{
-                    $list[$key] = $rule.'|'.$autoRules[$key];
-                }
-            }
-            else{
+            } else {
                 $list[$key] = $rule;
             }
         }
@@ -331,12 +323,12 @@ class ClientBodyProcess extends ClientVariableProcess
      * @param null|string $key
      * @return void
      */
-    private static function errorContainer(mixed $data, ?string $key) : void
+    private static function errorContainer(mixed $data, ?string $key): void
     {
-        if(AppContainer::has($key)){
+        if (AppContainer::has($key)) {
             AppContainer::terminate('$key');
         }
 
-        AppContainer::set($key,$data);
+        AppContainer::set($key, $data);
     }
 }

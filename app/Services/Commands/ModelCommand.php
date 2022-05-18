@@ -2,7 +2,6 @@
 
 namespace App\Services\Commands;
 
-use App\Models\User;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\File;
@@ -40,24 +39,24 @@ class ModelCommand extends Command
      */
     public function handle()
     {
-        $modelFile = app_path('Models').''.DIRECTORY_SEPARATOR.''.ucfirst($this->argument('model')).'.php';
+        $modelFile = app_path('Models') . '' . DIRECTORY_SEPARATOR . '' . ucfirst($this->argument('model')) . '.php';
 
-        Artisan::call('make:model',['name' => ucfirst($this->argument('model'))]);
+        Artisan::call('make:model', ['name' => ucfirst($this->argument('model'))]);
 
         $modelFileContent = File::get($modelFile);
 
-        $modelFileChange = str_replace('use Illuminate\Database\Eloquent\Model;','use Illuminate\Database\Eloquent\Model;
-use App\Models\Features\BaseManager;',$modelFileContent);
+        $modelFileChange = str_replace('use Illuminate\Database\Eloquent\Model;', 'use Illuminate\Database\Eloquent\Model;
+use App\Models\Features\BaseManager;', $modelFileContent);
 
-        $modelFileChange = str_replace('use HasFactory;','use HasFactory,BaseManager;
+        $modelFileChange = str_replace('use HasFactory;', 'use HasFactory,BaseManager;
 
     protected array $searchable = [];
 
     protected array $withQuery = [];
 
-    protected $hidden = [\'id\'];',$modelFileChange);
+    protected $hidden = [\'id\'];', $modelFileChange);
 
-        File::put($modelFile,$modelFileChange);
+        File::put($modelFile, $modelFileChange);
 
         return 0;
     }

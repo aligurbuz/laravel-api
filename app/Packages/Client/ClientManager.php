@@ -30,7 +30,7 @@ class ClientManager
      *
      * @var array|string[]
      */
-    protected array $methods = ['GET','POST','PUT'];
+    protected array $methods = ['GET', 'POST', 'PUT'];
 
     /**
      * get request method for client
@@ -49,7 +49,7 @@ class ClientManager
      * @param array $data
      * @param null $requestMethod
      */
-    public function __construct(array $data = [],$requestMethod = null)
+    public function __construct(array $data = [], $requestMethod = null)
     {
         $this->requestMethod($requestMethod ?? request()->method());
         $this->setData($data);
@@ -82,7 +82,7 @@ class ClientManager
      * @param $value
      * @return void
      */
-    public function setRegister($key,$value): void
+    public function setRegister($key, $value): void
     {
         $this->register[$key] = $value;
     }
@@ -92,13 +92,13 @@ class ClientManager
      *
      * @return void
      */
-    public function setContainerData() : void
+    public function setContainerData(): void
     {
-        if(AppContainer::has('clientData')){
+        if (AppContainer::has('clientData')) {
             AppContainer::terminate('clientData');
         }
 
-        AppContainer::set('clientData',$this->data);
+        AppContainer::set('clientData', $this->data);
     }
 
 
@@ -110,7 +110,7 @@ class ClientManager
      */
     public function setData(array $data = []): void
     {
-        $this->data = ['params' => $this->getParamValues($data),'body' => $this->getBodyValues($data)];
+        $this->data = ['params' => $this->getParamValues($data), 'body' => $this->getBodyValues($data)];
         $this->setContainerData();
     }
 
@@ -121,9 +121,9 @@ class ClientManager
      * @param array $data
      * @return void
      */
-    public function setBodyData($key,array $data = []): void
+    public function setBodyData($key, array $data = []): void
     {
-        if(isset($this->data['body'][$key])){
+        if (isset($this->data['body'][$key])) {
             $this->data['body'][$key] = $data;
         }
 
@@ -151,7 +151,7 @@ class ClientManager
      */
     public function getBodyValues(array $data = []): array
     {
-        if($this->requestMethod!=='GET'){
+        if ($this->requestMethod !== 'GET') {
             $data = count($data) ? $data : ($this->putRequestResolve() ?? request()->request->all());
             return $this->clientBodyFormat($data);
         }
@@ -164,9 +164,9 @@ class ClientManager
      *
      * @return ?array
      */
-    public function putRequestResolve() : ?array
+    public function putRequestResolve(): ?array
     {
-        if(request()->method()=='PUT'){
+        if (request()->method() == 'PUT') {
             if (
                 preg_match('/multipart\/form-data/', request()->headers->get('Content-Type'))
                 || preg_match('/multipart\/form-data/', request()->headers->get('content-type'))
@@ -192,9 +192,9 @@ class ClientManager
     public function paramModelClientDataIdentifier()
     {
         $defaultQueries = request()->query->all();
-        $modelClientName = $this->getModel().'Client';
+        $modelClientName = $this->getModel() . 'Client';
 
-        if(isset($defaultQueries[$modelClientName])){
+        if (isset($defaultQueries[$modelClientName])) {
             return $defaultQueries[$modelClientName];
         }
 
@@ -218,7 +218,7 @@ class ClientManager
      * @param $value
      * @return void
      */
-    public function putDataStream($key,$value) : void
+    public function putDataStream($key, $value): void
     {
         $this->dataStream[$key] = $value;
     }
@@ -238,13 +238,12 @@ class ClientManager
      *
      * @return void
      */
-    public function handle() : void
+    public function handle(): void
     {
-        if($this->requestMethod=='GET'){
+        if ($this->requestMethod == 'GET') {
             (new ClientParamProcess($this));
-        }
-        else{
-            if(count($this->getRegister())) $this->setData();
+        } else {
+            if (count($this->getRegister())) $this->setData();
             (new ClientBodyProcess($this));
         }
     }
@@ -257,15 +256,15 @@ class ClientManager
      * @param int $key
      * @return array
      */
-    private function hitterValueHandler(array $hitters,array $value,int $key = 0) : array
+    private function hitterValueHandler(array $hitters, array $value, int $key = 0): array
     {
-        if(count($hitters)){
-            foreach ($value as $keyForHit => $valueForHit){
-                if(in_array($keyForHit,$hitters,true)){
-                    $valueHitOperator = substr((string)$valueForHit,0,1);
-                    if($valueHitOperator=='-' OR $valueHitOperator=='+'){
-                        $value[$keyForHit] = substr((string)$valueForHit,1);
-                        AppContainer::set('repositoryHitter.'.$key.'.'.$keyForHit,$valueHitOperator);
+        if (count($hitters)) {
+            foreach ($value as $keyForHit => $valueForHit) {
+                if (in_array($keyForHit, $hitters, true)) {
+                    $valueHitOperator = substr((string)$valueForHit, 0, 1);
+                    if ($valueHitOperator == '-' or $valueHitOperator == '+') {
+                        $value[$keyForHit] = substr((string)$valueForHit, 1);
+                        AppContainer::set('repositoryHitter.' . $key . '.' . $keyForHit, $valueHitOperator);
                     }
                 }
             }
@@ -280,21 +279,21 @@ class ClientManager
      * @param array $data
      * @return array
      */
-    private function clientBodyFormat(array $data = []) : array
+    private function clientBodyFormat(array $data = []): array
     {
         $list = [];
         $multipleDimension = false;
         $repository = $this->repository(true);
         $repositoryInstance = $this->repository();
-        $hitters = $repository=='noModel' ? [] : $repositoryInstance->getHitter();
+        $hitters = $repository == 'noModel' ? [] : $repositoryInstance->getHitter();
 
         $data = !isset($data[0]) ? [$data] : $data;
 
         foreach ($data as $key => $value) {
 
             $valueList = [];
-            foreach ($value as $valueKey => $valueItem){
-                if(!is_null($valueItem)){
+            foreach ($value as $valueKey => $valueItem) {
+                if (!is_null($valueItem)) {
                     $valueList[$valueKey] = $valueItem;
                 }
             }
@@ -302,16 +301,15 @@ class ClientManager
             $value = $valueList;
 
             if (!$multipleDimension) {
-                $value = $value[$repository.'Client'] ?? $value;
-                $value = array_merge($value,$this->getRegister());
-                $list[$key] = $this->hitterValueHandler($hitters,$value,$key);
-            }
-            else{
+                $value = $value[$repository . 'Client'] ?? $value;
+                $value = array_merge($value, $this->getRegister());
+                $list[$key] = $this->hitterValueHandler($hitters, $value, $key);
+            } else {
                 $multipleDimension = true;
             }
         }
 
-        if(count($list)){
+        if (count($list)) {
             return $list;
         }
 
