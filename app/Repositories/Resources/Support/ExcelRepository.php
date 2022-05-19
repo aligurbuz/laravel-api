@@ -11,6 +11,7 @@ use App\Repositories\Resources\Support\Events\Excel\AfterCreate;
 use App\Repositories\Resources\Support\Events\Excel\AfterUpdate;
 use App\Repositories\Resources\Support\Events\Excel\BeforeCreate;
 use App\Repositories\Resources\Support\Events\Excel\BeforeUpdate;
+use App\Repositories\Resources\Support\Promoters\Excel\ExcelPromoterTrait;
 use App\Repositories\Resources\Support\PropertyHandlers\ExcelPropertyHandlerTrait;
 
 class ExcelRepository extends EloquentRepository implements ExcelRepositoryContract
@@ -19,6 +20,7 @@ class ExcelRepository extends EloquentRepository implements ExcelRepositoryContr
     use AfterUpdate;
     use BeforeCreate;
     use BeforeUpdate;
+    use ExcelPromoterTrait;
     use ExcelPropertyHandlerTrait;
 
     /**
@@ -27,15 +29,4 @@ class ExcelRepository extends EloquentRepository implements ExcelRepositoryContr
      * @var string
      */
     protected static string $model = Excel::class;
-
-    /**
-     * get auto ExcelRepository scope method
-     *
-     * @param object|null $builder
-     * @return object
-     */
-    public function excelRepository(?object $builder = null): object
-    {
-        return $this->apply($builder);
-    }
 }

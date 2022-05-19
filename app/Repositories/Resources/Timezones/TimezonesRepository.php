@@ -11,6 +11,7 @@ use App\Repositories\Resources\Timezones\Events\Timezones\AfterCreate;
 use App\Repositories\Resources\Timezones\Events\Timezones\AfterUpdate;
 use App\Repositories\Resources\Timezones\Events\Timezones\BeforeCreate;
 use App\Repositories\Resources\Timezones\Events\Timezones\BeforeUpdate;
+use App\Repositories\Resources\Timezones\Promoters\Timezones\TimezonesPromoterTrait;
 use App\Repositories\Resources\Timezones\PropertyHandlers\TimezonesPropertyHandlerTrait;
 
 class TimezonesRepository extends EloquentRepository implements TimezonesRepositoryContract
@@ -19,6 +20,7 @@ class TimezonesRepository extends EloquentRepository implements TimezonesReposit
     use AfterUpdate;
     use BeforeCreate;
     use BeforeUpdate;
+    use TimezonesPromoterTrait;
     use TimezonesPropertyHandlerTrait;
 
     /**
@@ -27,15 +29,4 @@ class TimezonesRepository extends EloquentRepository implements TimezonesReposit
      * @var string
      */
     protected static string $model = Timezone::class;
-
-    /**
-     * get auto TimezonesRepository scope method
-     *
-     * @param object|null $builder
-     * @return object
-     */
-    public function timezonesRepository(?object $builder = null): object
-    {
-        return $this->apply($builder);
-    }
 }
