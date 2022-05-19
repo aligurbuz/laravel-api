@@ -11,6 +11,7 @@ use App\Repositories\Resources\Gate\Events\Permissions\AfterCreate;
 use App\Repositories\Resources\Gate\Events\Permissions\AfterUpdate;
 use App\Repositories\Resources\Gate\Events\Permissions\BeforeCreate;
 use App\Repositories\Resources\Gate\Events\Permissions\BeforeUpdate;
+use App\Repositories\Resources\Gate\Promoters\Permissions\PermissionsPromoterTrait;
 use App\Repositories\Resources\Gate\PropertyHandlers\PermissionsPropertyHandlerTrait;
 
 class PermissionsRepository extends EloquentRepository implements PermissionsRepositoryContract
@@ -19,6 +20,7 @@ class PermissionsRepository extends EloquentRepository implements PermissionsRep
     use AfterUpdate;
     use BeforeCreate;
     use BeforeUpdate;
+    use PermissionsPromoterTrait;
     use PermissionsPropertyHandlerTrait;
 
     /**
@@ -27,17 +29,6 @@ class PermissionsRepository extends EloquentRepository implements PermissionsRep
      * @var string
      */
     protected static string $model = Permission::class;
-
-    /**
-     * get auto PermissionsRepository scope method
-     *
-     * @param object|null $builder
-     * @return object
-     */
-    public function permissionsRepository(?object $builder = null): object
-    {
-        return $this->apply($builder);
-    }
 
     /**
      * get endpoint criteria for permission repository

@@ -12,6 +12,7 @@ use App\Repositories\Resources\Gate\Events\Roles\AfterCreate;
 use App\Repositories\Resources\Gate\Events\Roles\AfterUpdate;
 use App\Repositories\Resources\Gate\Events\Roles\BeforeCreate;
 use App\Repositories\Resources\Gate\Events\Roles\BeforeUpdate;
+use App\Repositories\Resources\Gate\Promoters\Roles\RolesPromoterTrait;
 use App\Repositories\Resources\Gate\PropertyHandlers\RolesPropertyHandlerTrait;
 
 class RolesRepository extends EloquentRepository implements RolesRepositoryContract
@@ -20,6 +21,7 @@ class RolesRepository extends EloquentRepository implements RolesRepositoryContr
     use AfterUpdate;
     use BeforeCreate;
     use BeforeUpdate;
+    use RolesPromoterTrait;
     use RolesPropertyHandlerTrait;
 
     /**
@@ -28,17 +30,6 @@ class RolesRepository extends EloquentRepository implements RolesRepositoryContr
      * @var string
      */
     protected static string $model = Role::class;
-
-    /**
-     * get auto RolesRepository scope method
-     *
-     * @param object|null $builder
-     * @return object
-     */
-    public function rolesRepository(?object $builder = null): object
-    {
-        return $this->apply($builder);
-    }
 
     /**
      * getUser for role repository
