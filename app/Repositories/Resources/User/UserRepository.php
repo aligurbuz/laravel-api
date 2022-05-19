@@ -11,6 +11,7 @@ use App\Repositories\Resources\User\Events\User\AfterCreate;
 use App\Repositories\Resources\User\Events\User\AfterUpdate;
 use App\Repositories\Resources\User\Events\User\BeforeCreate;
 use App\Repositories\Resources\User\Events\User\BeforeUpdate;
+use App\Repositories\Resources\User\Promoters\User\UserPromoterTrait;
 use App\Repositories\Resources\User\PropertyHandlers\UserPropertyHandlerTrait;
 
 /**
@@ -24,23 +25,13 @@ class UserRepository extends EloquentRepository implements UserRepositoryContrac
     use AfterUpdate;
     use BeforeCreate;
     use BeforeUpdate;
+    use UserPromoterTrait;
     use UserPropertyHandlerTrait;
 
     /**
      * @var string
      */
     protected static string $model = User::class;
-
-    /**
-     * get auto user range method
-     *
-     * @param object|null $builder
-     * @return object
-     */
-    public function userRepository(?object $builder = null): object
-    {
-        return $this->apply($builder);
-    }
 
     /**
      * update data for user model

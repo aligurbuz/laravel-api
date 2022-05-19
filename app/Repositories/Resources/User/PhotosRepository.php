@@ -11,6 +11,7 @@ use App\Repositories\Resources\User\Events\Photos\AfterCreate;
 use App\Repositories\Resources\User\Events\Photos\AfterUpdate;
 use App\Repositories\Resources\User\Events\Photos\BeforeCreate;
 use App\Repositories\Resources\User\Events\Photos\BeforeUpdate;
+use App\Repositories\Resources\User\Promoters\Photos\PhotosPromoterTrait;
 use App\Repositories\Resources\User\PropertyHandlers\PhotosPropertyHandlerTrait;
 
 class PhotosRepository extends EloquentRepository implements PhotosRepositoryContract
@@ -19,6 +20,7 @@ class PhotosRepository extends EloquentRepository implements PhotosRepositoryCon
     use AfterUpdate;
     use BeforeCreate;
     use BeforeUpdate;
+    use PhotosPromoterTrait;
     use PhotosPropertyHandlerTrait;
 
     /**
@@ -27,15 +29,4 @@ class PhotosRepository extends EloquentRepository implements PhotosRepositoryCon
      * @var string
      */
     protected static string $model = UserPhoto::class;
-
-    /**
-     * get auto PhotosRepository scope method
-     *
-     * @param object|null $builder
-     * @return object
-     */
-    public function photosRepository(?object $builder = null): object
-    {
-        return $this->apply($builder);
-    }
 }

@@ -18,7 +18,7 @@ trait RolesPropertyHandlerTrait
      *
      * @var array
      */
-    protected array $localization = ['role_name'];
+    protected array $localization = [];
 
     /**
      * hitter values for repository
