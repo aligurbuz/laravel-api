@@ -427,8 +427,11 @@ class EloquentRepository
      */
     public function instanceModel(): object
     {
-        $model = $this->getModel();
+        // this method will run setHidden for the model,
+        // according to the hidden methods written in the promoter trait classes.
         $this->setClientRepositoryHidden();
+
+        $model = $this->getModel();
         $modelInstance = (new $model);
 
         if (!is_null($connection = $this->getConnection())) {
