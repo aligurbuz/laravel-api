@@ -57,14 +57,15 @@ class RepositoryCommand extends Command
         $modelIndexes = Db::indexes((new $modelNamespace)->getTable());
 
         $namespaceDirectory = 'App\Repositories\Resources\\' . ucfirst($argumentName);
-        $eventsNamespaceDirectory = 'App\Repositories\Resources\\' . ucfirst($argumentName) . '\\Events';
         $eventsRepositoryNamespaceDirectory = 'App\Repositories\Resources\\' . ucfirst($argumentName) . '\\Events\\' . ucfirst($repositoryName);
-        $propertHandlersNamespaceDirectory = 'App\Repositories\Resources\\' . ucfirst($argumentName) . '\\PropertyHandlers';
         $namespaceRepository = 'App\Repositories\Resources\\' . ucfirst($argumentName) . '\\' . $className;
         $namespaceContractDirectory = 'App\Repositories\Resources\\' . ucfirst($argumentName) . '\Contracts';
         $eventsDirectory = app_path() . '' . DIRECTORY_SEPARATOR . 'Repositories' . DIRECTORY_SEPARATOR . 'Resources' . DIRECTORY_SEPARATOR . '' . ucfirst($argumentName) . '' . DIRECTORY_SEPARATOR . 'Events';
         $eventsRepositoryDirectory = app_path() . '' . DIRECTORY_SEPARATOR . 'Repositories' . DIRECTORY_SEPARATOR . 'Resources' . DIRECTORY_SEPARATOR . '' . ucfirst($argumentName) . '' . DIRECTORY_SEPARATOR . 'Events' . DIRECTORY_SEPARATOR . '' . ucfirst($repositoryName);
         $propertyHandlersDirectory = app_path() . '' . DIRECTORY_SEPARATOR . 'Repositories' . DIRECTORY_SEPARATOR . 'Resources' . DIRECTORY_SEPARATOR . '' . ucfirst($argumentName) . '' . DIRECTORY_SEPARATOR . 'PropertyHandlers';
+        $promotersDirectory = app_path() . '' . DIRECTORY_SEPARATOR . 'Repositories' . DIRECTORY_SEPARATOR . 'Resources' . DIRECTORY_SEPARATOR . '' . ucfirst($argumentName) . '' . DIRECTORY_SEPARATOR . 'Promoters';
+        $promotersRepositoryDirectory = app_path() . '' . DIRECTORY_SEPARATOR . 'Repositories' . DIRECTORY_SEPARATOR . 'Resources' . DIRECTORY_SEPARATOR . '' . ucfirst($argumentName) . '' . DIRECTORY_SEPARATOR . 'Promoters'.DIRECTORY_SEPARATOR.''.ucfirst($repositoryName);
+        $promotersRepositoryNamespace = 'App\Repositories\Resources\\' . ucfirst($argumentName) . '\Promoters\\'.ucfirst($repositoryName);
         $propertyHandlersNamespace = 'App\Repositories\Resources\\' . ucfirst($argumentName) . '\PropertyHandlers';
         $directory = app_path() . '' . DIRECTORY_SEPARATOR . 'Repositories' . DIRECTORY_SEPARATOR . 'Resources' . DIRECTORY_SEPARATOR . '' . ucfirst($argumentName);
         $directoryContract = app_path() . '' . DIRECTORY_SEPARATOR . 'Repositories' . DIRECTORY_SEPARATOR . 'Resources' . DIRECTORY_SEPARATOR . '' . ucfirst($argumentName) . '' . DIRECTORY_SEPARATOR . 'Contracts';
@@ -75,6 +76,35 @@ class RepositoryCommand extends Command
 
         if (!file_exists($propertyHandlersDirectory)) {
             File::makeDirectory($propertyHandlersDirectory);
+        }
+
+        if (!file_exists($promotersDirectory)) {
+            File::makeDirectory($promotersDirectory);
+        }
+
+        if (!file_exists($promotersRepositoryDirectory)) {
+            File::makeDirectory($promotersRepositoryDirectory);
+        }
+
+        $promotersRepositoryClass = ucfirst($repositoryName) . 'PromoterTrait';
+        $promoterClassNamespace = $promotersRepositoryNamespace . '\\' . $promotersRepositoryClass;
+
+        if (!file_exists($promotersRepositoryDirectory . '' . DIRECTORY_SEPARATOR . '' . $promotersRepositoryClass . '.php')) {
+            $promoterNamespace = new PhpNamespace($promotersRepositoryNamespace);
+            $traitPromoterNamespace = $promoterNamespace->addTrait($promotersRepositoryClass);
+            $method = $traitPromoterNamespace->addMethod(lcfirst($className));
+            $method->addParameter('builder', null)->setNullable(true)->setType('object');
+            $method->setBody('return $this->apply($builder);')->setReturnType('object');
+            $method->addComment('get auto ' . $className . ' scope method')
+                ->addComment('')
+                ->addComment('@param object|null $builder')
+                //->addComment('@param Builder $builder')
+                ->addComment('@return object');
+
+
+            touch($file = $promotersRepositoryDirectory . '' . DIRECTORY_SEPARATOR . '' . $promotersRepositoryClass . '.php');
+            $content = '<?php ' . PHP_EOL . '' . PHP_EOL . 'declare(strict_types=1);' . PHP_EOL . '' . PHP_EOL . '' . $promoterNamespace;
+            File::put($file, $content);
         }
 
         $propertyHandlerClassName = ucfirst($repositoryName) . 'PropertyHandlerTrait';
@@ -223,26 +253,19 @@ class RepositoryCommand extends Command
         $namespace->addUse($beforeUpdateNamespace = $eventsRepositoryNamespaceDirectory . '\BeforeUpdate');
         $namespace->addUse($contractClassRepositoryName = $namespaceContractDirectory . '\\' . ucfirst($contractClassName));
         $namespace->addUse($propertyHandlerClassNamespace);
+        $namespace->addUse($promoterClassNamespace);
         $namespace->addUse('App\Models\\' . ucfirst($modelName));
         $class = $namespace->addClass($className)->setExtends(EloquentRepository::class)->addImplement($contractClassRepositoryName);
         $class->addTrait($afterCreateNamespace);
         $class->addTrait($afterUpdateNamespace);
         $class->addTrait($beforeCreateNamespace);
         $class->addTrait($beforeUpdateNamespace);
+        $class->addTrait($promoterClassNamespace);
         $class->addTrait($propertyHandlerClassNamespace);
         $class->addProperty('model', new Literal(ucfirst($modelName) . '::class'))->setProtected()->setStatic(true)->setType('string')
             ->addComment('get model name for repository')
             ->addComment('')
             ->addComment('@var string');
-
-        $method = $class->addMethod(lcfirst($className));
-        $method->addParameter('builder', null)->setNullable(true)->setType('object');
-        $method->setBody('return $this->apply($builder);')->setReturnType('object');
-        $method->addComment('get auto ' . $className . ' scope method')
-            ->addComment('')
-            ->addComment('@param object|null $builder')
-            //->addComment('@param Builder $builder')
-            ->addComment('@return object');
 
         /**$afterCreate = $class->addMethod('eventFireAfterCreate');
          * $afterCreate->addParameter('result',[])->setType('array');
