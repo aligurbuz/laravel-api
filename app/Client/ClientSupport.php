@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Client;
 
+use App\Exceptions\Exception;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
@@ -46,6 +47,13 @@ trait ClientSupport
     protected ?string $password = null;
 
     /**
+     * it is is_deleted in the client data
+     *
+     * @var string|bool
+     */
+    protected string|bool $isDeleted = false;
+
+    /**
      * password value sent will be passed through the Hash::make() method.
      *
      * @return string|null
@@ -57,5 +65,19 @@ trait ClientSupport
         }
 
         return null;
+    }
+
+    /**
+     * is_deleted input value for client
+     *
+     * @return bool|null
+     */
+    protected function isDeleted(): ?bool
+    {
+        if (request()->method() == 'POST') {
+            Exception::customException('postRestricted', 'isDeleted');
+        }
+
+        return $this->isDeleted;
     }
 }

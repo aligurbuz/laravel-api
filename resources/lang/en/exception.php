@@ -37,4 +37,5 @@ return [
     'clientActionException'         => 'The specified action value is not valid',
     'crKey'                         => 'in :key key',
     'excelFile'                     => 'The requested factory named (:key) is invalid.',
+    'postRestricted'                => 'The (:key) value cannot be sent for this request.'
 ];
