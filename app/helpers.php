@@ -286,6 +286,42 @@ if (!function_exists('makeIfProduction')) {
     }
 }
 
+if (!function_exists('isPost')) {
+
+    /**
+     * checks if the request is POST
+     *
+     */
+    function isPost(): bool
+    {
+        return request()->method('POST');
+    }
+}
+
+if (!function_exists('isGet')) {
+
+    /**
+     * checks if the request is GET
+     *
+     */
+    function isGet(): bool
+    {
+        return request()->method('GET');
+    }
+}
+
+if (!function_exists('isPut')) {
+
+    /**
+     * checks if the request is PUT
+     *
+     */
+    function isPut(): bool
+    {
+        return request()->method('PUT');
+    }
+}
+
 if (!function_exists('apiUrl')) {
 
     /**
