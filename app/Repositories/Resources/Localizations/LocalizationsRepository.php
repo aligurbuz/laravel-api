@@ -11,6 +11,7 @@ use App\Repositories\Resources\Localizations\Events\Localizations\AfterCreate;
 use App\Repositories\Resources\Localizations\Events\Localizations\AfterUpdate;
 use App\Repositories\Resources\Localizations\Events\Localizations\BeforeCreate;
 use App\Repositories\Resources\Localizations\Events\Localizations\BeforeUpdate;
+use App\Repositories\Resources\Localizations\Promoters\Localizations\LocalizationsPromoterTrait;
 use App\Repositories\Resources\Localizations\PropertyHandlers\LocalizationsPropertyHandlerTrait;
 use Illuminate\Support\Str;
 
@@ -20,6 +21,7 @@ class LocalizationsRepository extends EloquentRepository implements Localization
     use AfterUpdate;
     use BeforeCreate;
     use BeforeUpdate;
+    use LocalizationsPromoterTrait;
     use LocalizationsPropertyHandlerTrait;
 
     /**
@@ -28,17 +30,6 @@ class LocalizationsRepository extends EloquentRepository implements Localization
      * @var string
      */
     protected static string $model = Localization::class;
-
-    /**
-     * get auto LocalizationsRepository scope method
-     *
-     * @param object|null $builder
-     * @return object
-     */
-    public function localizationsRepository(?object $builder = null): object
-    {
-        return $this->apply($builder)->where('language_code', appLanguageCode());
-    }
 
     /**
      * finds data by localized_code column

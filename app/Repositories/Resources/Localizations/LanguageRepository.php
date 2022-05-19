@@ -11,6 +11,7 @@ use App\Repositories\Resources\Localizations\Events\Language\AfterCreate;
 use App\Repositories\Resources\Localizations\Events\Language\AfterUpdate;
 use App\Repositories\Resources\Localizations\Events\Language\BeforeCreate;
 use App\Repositories\Resources\Localizations\Events\Language\BeforeUpdate;
+use App\Repositories\Resources\Localizations\Promoters\Language\LanguagePromoterTrait;
 use App\Repositories\Resources\Localizations\PropertyHandlers\LanguagePropertyHandlerTrait;
 
 class LanguageRepository extends EloquentRepository implements LanguageRepositoryContract
@@ -19,6 +20,7 @@ class LanguageRepository extends EloquentRepository implements LanguageRepositor
     use AfterUpdate;
     use BeforeCreate;
     use BeforeUpdate;
+    use LanguagePromoterTrait;
     use LanguagePropertyHandlerTrait;
 
     /**
@@ -27,16 +29,6 @@ class LanguageRepository extends EloquentRepository implements LanguageRepositor
      * @var string
      */
     protected static string $model = Language::class;
-
-    /**
-     * get auto LanguageRepository scope method
-     * @param object|null $builder
-     * @return object
-     */
-    public function languageRepository(?object $builder = null): object
-    {
-        return $this->apply($builder);
-    }
 
     /**
      * find by name for language repository
