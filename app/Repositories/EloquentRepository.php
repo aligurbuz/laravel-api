@@ -60,6 +60,11 @@ class EloquentRepository
      */
     public function get(): array
     {
+        // when using the repository, we leave a record
+        // in the container so that we can understand the client request.
+        $this->setClientRepositoryRequest();
+
+        //We automatically set localizations to "with".
         $this->setAutoEagerLoadings();
 
         // cache will be made according to your model.
@@ -932,6 +937,16 @@ class EloquentRepository
     public function additionalResourceHandler(array $data = []): array
     {
         return ($this->getAdditionalResource()) ? $this->additionalResource($data, __FUNCTION__) : $data;
+    }
+
+    /**
+     * set client repository request
+     *
+     * @return void
+     */
+    private function setClientRepositoryRequest() : void
+    {
+        AppContainer::setWithTerminating('clientRepositoryRequest',true);
     }
 
     /**
