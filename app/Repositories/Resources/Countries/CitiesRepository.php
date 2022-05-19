@@ -11,6 +11,7 @@ use App\Repositories\Resources\Countries\Events\Cities\AfterCreate;
 use App\Repositories\Resources\Countries\Events\Cities\AfterUpdate;
 use App\Repositories\Resources\Countries\Events\Cities\BeforeCreate;
 use App\Repositories\Resources\Countries\Events\Cities\BeforeUpdate;
+use App\Repositories\Resources\Countries\Promoters\Cities\CitiesPromoterTrait;
 use App\Repositories\Resources\Countries\PropertyHandlers\CitiesPropertyHandlerTrait;
 
 class CitiesRepository extends EloquentRepository implements CitiesRepositoryContract
@@ -19,6 +20,7 @@ class CitiesRepository extends EloquentRepository implements CitiesRepositoryCon
     use AfterUpdate;
     use BeforeCreate;
     use BeforeUpdate;
+    use CitiesPromoterTrait;
     use CitiesPropertyHandlerTrait;
 
     /**
@@ -27,15 +29,4 @@ class CitiesRepository extends EloquentRepository implements CitiesRepositoryCon
      * @var string
      */
     protected static string $model = City::class;
-
-    /**
-     * get auto CitiesRepository scope method
-     *
-     * @param object|null $builder
-     * @return object
-     */
-    public function citiesRepository(?object $builder = null): object
-    {
-        return $this->apply($builder);
-    }
 }
