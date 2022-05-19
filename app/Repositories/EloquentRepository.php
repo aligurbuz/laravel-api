@@ -7,6 +7,7 @@ namespace App\Repositories;
 use App\Constants;
 use App\Exceptions\Exception;
 use App\Exceptions\SqlExceptionManager;
+use App\Facades\Authenticate\ApiKey;
 use App\Repositories\Supporters\CacheRepository;
 use App\Repositories\Supporters\CreateRepository;
 use App\Repositories\Supporters\GlobalScopeManager;
@@ -427,12 +428,34 @@ class EloquentRepository
     public function instanceModel(): object
     {
         $model = $this->getModel();
+        $this->setClientRepositoryHidden();
+        $modelInstance = (new $model);
 
         if (!is_null($connection = $this->getConnection())) {
-            return (new $model)->setConnection($connection);
+            return $modelInstance->setConnection($connection);
         }
 
-        return new $model;
+        return $modelInstance;
+    }
+
+    /**
+     * set client repository hidden values for container
+     *
+     * @return void
+     */
+    private function setClientRepositoryHidden() : void
+    {
+        if(AppContainer::has('clientRepositoryRequest')){
+            $hiddenMethodName = 'set'.ucfirst(ApiKey::who()).'Hidden';
+
+            if(method_exists($this,$hiddenMethodName)){
+                AppContainer::setWithTerminating('setClientRepositoryHidden',$this->{$hiddenMethodName}());
+            }
+
+            elseif(method_exists($this,'setHidden')){
+                AppContainer::setWithTerminating('setClientRepositoryHidden',$this->setHidden());
+            }
+        }
     }
 
     /**

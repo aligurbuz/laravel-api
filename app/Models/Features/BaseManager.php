@@ -7,6 +7,7 @@ namespace App\Models\Features;
 use App\Constants;
 use App\Exceptions\Exception;
 use App\Repositories\Repository;
+use App\Services\AppContainer;
 use App\Services\Db;
 use App\Services\Response\Response;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -66,6 +67,11 @@ trait BaseManager
 
         $this->assignAppends();
         $this->localizationWithQuery['localization']['localColumn'] = getTableCode($this->getModelName());
+
+        if(AppContainer::has('clientRepositoryRequest') && AppContainer::has('setClientRepositoryHidden')){
+            $setClientRepositoryHidden = AppContainer::get('setClientRepositoryHidden',[]);
+            $this->setHidden(array_merge($this->getHidden(), $setClientRepositoryHidden));
+        }
 
         if (in_array('sequence', $this->fillable, true) && request()->method() == 'GET') {
             $this->setHidden(array_merge($this->getHidden(), ['sequence', 'sequence_time']));
