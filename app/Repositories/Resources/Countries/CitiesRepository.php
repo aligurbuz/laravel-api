@@ -6,6 +6,7 @@ namespace App\Repositories\Resources\Countries;
 
 use App\Models\City;
 use App\Repositories\EloquentRepository;
+use App\Repositories\GeneralPromoterTrait;
 use App\Repositories\Resources\Countries\Contracts\CitiesRepositoryContract;
 use App\Repositories\Resources\Countries\Events\Cities\AfterCreate;
 use App\Repositories\Resources\Countries\Events\Cities\AfterUpdate;
@@ -21,6 +22,7 @@ class CitiesRepository extends EloquentRepository implements CitiesRepositoryCon
     use BeforeCreate;
     use BeforeUpdate;
     use CitiesPromoterTrait;
+    use GeneralPromoterTrait;
     use CitiesPropertyHandlerTrait;
 
     /**

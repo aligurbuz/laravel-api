@@ -6,6 +6,7 @@ namespace App\Repositories\Resources\Timezones;
 
 use App\Models\Timezone;
 use App\Repositories\EloquentRepository;
+use App\Repositories\GeneralPromoterTrait;
 use App\Repositories\Resources\Timezones\Contracts\TimezonesRepositoryContract;
 use App\Repositories\Resources\Timezones\Events\Timezones\AfterCreate;
 use App\Repositories\Resources\Timezones\Events\Timezones\AfterUpdate;
@@ -20,6 +21,7 @@ class TimezonesRepository extends EloquentRepository implements TimezonesReposit
     use AfterUpdate;
     use BeforeCreate;
     use BeforeUpdate;
+    use GeneralPromoterTrait;
     use TimezonesPromoterTrait;
     use TimezonesPropertyHandlerTrait;
 

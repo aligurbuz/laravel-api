@@ -6,6 +6,7 @@ namespace App\Repositories\Resources\Countries;
 
 use App\Models\District;
 use App\Repositories\EloquentRepository;
+use App\Repositories\GeneralPromoterTrait;
 use App\Repositories\Resources\Countries\Contracts\DistrictsRepositoryContract;
 use App\Repositories\Resources\Countries\Events\District\AfterCreate;
 use App\Repositories\Resources\Countries\Events\District\AfterUpdate;
@@ -20,6 +21,7 @@ class DistrictsRepository extends EloquentRepository implements DistrictsReposit
     use AfterUpdate;
     use BeforeCreate;
     use BeforeUpdate;
+    use GeneralPromoterTrait;
     use DistrictsPromoterTrait;
     use DistrictPropertyHandlerTrait;
 

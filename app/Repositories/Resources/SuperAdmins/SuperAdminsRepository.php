@@ -7,6 +7,7 @@ namespace App\Repositories\Resources\SuperAdmins;
 use App\Facades\Authenticate\Authenticate;
 use App\Models\SuperAdmin;
 use App\Repositories\EloquentRepository;
+use App\Repositories\GeneralPromoterTrait;
 use App\Repositories\Resources\SuperAdmins\Contracts\SuperAdminsRepositoryContract;
 use App\Repositories\Resources\SuperAdmins\Events\SuperAdmins\AfterCreate;
 use App\Repositories\Resources\SuperAdmins\Events\SuperAdmins\AfterUpdate;
@@ -21,6 +22,7 @@ class SuperAdminsRepository extends EloquentRepository implements SuperAdminsRep
     use AfterUpdate;
     use BeforeCreate;
     use BeforeUpdate;
+    use GeneralPromoterTrait;
     use SuperAdminsPromoterTrait;
     use SuperAdminsPropertyHandlerTrait;
 

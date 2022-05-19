@@ -6,6 +6,7 @@ namespace App\Repositories\Resources\Localizations;
 
 use App\Models\Localization;
 use App\Repositories\EloquentRepository;
+use App\Repositories\GeneralPromoterTrait;
 use App\Repositories\Resources\Localizations\Contracts\LocalizationsRepositoryContract;
 use App\Repositories\Resources\Localizations\Events\Localizations\AfterCreate;
 use App\Repositories\Resources\Localizations\Events\Localizations\AfterUpdate;
@@ -21,6 +22,7 @@ class LocalizationsRepository extends EloquentRepository implements Localization
     use AfterUpdate;
     use BeforeCreate;
     use BeforeUpdate;
+    use GeneralPromoterTrait;
     use LocalizationsPromoterTrait;
     use LocalizationsPropertyHandlerTrait;
 

@@ -6,6 +6,7 @@ namespace App\Repositories\Resources\Countries;
 
 use App\Models\Country;
 use App\Repositories\EloquentRepository;
+use App\Repositories\GeneralPromoterTrait;
 use App\Repositories\Resources\Countries\Contracts\CountriesRepositoryContract;
 use App\Repositories\Resources\Countries\Events\Countries\AfterCreate;
 use App\Repositories\Resources\Countries\Events\Countries\AfterUpdate;
@@ -24,6 +25,7 @@ class CountriesRepository extends EloquentRepository implements CountriesReposit
     use AfterUpdate;
     use BeforeCreate;
     use BeforeUpdate;
+    use GeneralPromoterTrait;
     use CountriesPromoterTrait;
     use CountriesPropertyHandlerTrait;
 

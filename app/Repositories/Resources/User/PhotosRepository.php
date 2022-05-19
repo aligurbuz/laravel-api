@@ -6,6 +6,7 @@ namespace App\Repositories\Resources\User;
 
 use App\Models\UserPhoto;
 use App\Repositories\EloquentRepository;
+use App\Repositories\GeneralPromoterTrait;
 use App\Repositories\Resources\User\Contracts\PhotosRepositoryContract;
 use App\Repositories\Resources\User\Events\Photos\AfterCreate;
 use App\Repositories\Resources\User\Events\Photos\AfterUpdate;
@@ -21,6 +22,7 @@ class PhotosRepository extends EloquentRepository implements PhotosRepositoryCon
     use BeforeCreate;
     use BeforeUpdate;
     use PhotosPromoterTrait;
+    use GeneralPromoterTrait;
     use PhotosPropertyHandlerTrait;
 
     /**

@@ -6,6 +6,7 @@ namespace App\Repositories\Resources\User;
 
 use App\Models\User;
 use App\Repositories\EloquentRepository;
+use App\Repositories\GeneralPromoterTrait;
 use App\Repositories\Resources\User\Contracts\UserRepositoryContract;
 use App\Repositories\Resources\User\Events\User\AfterCreate;
 use App\Repositories\Resources\User\Events\User\AfterUpdate;
@@ -26,6 +27,7 @@ class UserRepository extends EloquentRepository implements UserRepositoryContrac
     use BeforeCreate;
     use BeforeUpdate;
     use UserPromoterTrait;
+    use GeneralPromoterTrait;
     use UserPropertyHandlerTrait;
 
     /**

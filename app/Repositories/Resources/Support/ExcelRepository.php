@@ -6,6 +6,7 @@ namespace App\Repositories\Resources\Support;
 
 use App\Models\Excel;
 use App\Repositories\EloquentRepository;
+use App\Repositories\GeneralPromoterTrait;
 use App\Repositories\Resources\Support\Contracts\ExcelRepositoryContract;
 use App\Repositories\Resources\Support\Events\Excel\AfterCreate;
 use App\Repositories\Resources\Support\Events\Excel\AfterUpdate;
@@ -21,6 +22,7 @@ class ExcelRepository extends EloquentRepository implements ExcelRepositoryContr
     use BeforeCreate;
     use BeforeUpdate;
     use ExcelPromoterTrait;
+    use GeneralPromoterTrait;
     use ExcelPropertyHandlerTrait;
 
     /**

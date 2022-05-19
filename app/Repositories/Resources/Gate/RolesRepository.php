@@ -7,6 +7,7 @@ namespace App\Repositories\Resources\Gate;
 use App\Facades\Authenticate\Authenticate;
 use App\Models\Role;
 use App\Repositories\EloquentRepository;
+use App\Repositories\GeneralPromoterTrait;
 use App\Repositories\Resources\Gate\Contracts\RolesRepositoryContract;
 use App\Repositories\Resources\Gate\Events\Roles\AfterCreate;
 use App\Repositories\Resources\Gate\Events\Roles\AfterUpdate;
@@ -22,6 +23,7 @@ class RolesRepository extends EloquentRepository implements RolesRepositoryContr
     use BeforeCreate;
     use BeforeUpdate;
     use RolesPromoterTrait;
+    use GeneralPromoterTrait;
     use RolesPropertyHandlerTrait;
 
     /**

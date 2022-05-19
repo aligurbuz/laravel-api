@@ -446,17 +446,15 @@ class EloquentRepository
      *
      * @return void
      */
-    private function setClientRepositoryHidden() : void
+    private function setClientRepositoryHidden(): void
     {
-        if(AppContainer::has('clientRepositoryRequest')){
-            $hiddenMethodName = 'set'.ucfirst(ApiKey::who()).'Hidden';
+        if (AppContainer::has('clientRepositoryRequest')) {
+            $hiddenMethodName = 'set' . ucfirst(ApiKey::who()) . 'Hidden';
 
-            if(method_exists($this,$hiddenMethodName)){
-                AppContainer::setWithTerminating('setClientRepositoryHidden',$this->{$hiddenMethodName}());
-            }
-
-            elseif(method_exists($this,'setHidden')){
-                AppContainer::setWithTerminating('setClientRepositoryHidden',$this->setHidden());
+            if (method_exists($this, $hiddenMethodName)) {
+                AppContainer::setWithTerminating('setClientRepositoryHidden', $this->{$hiddenMethodName}());
+            } elseif (method_exists($this, 'setHidden')) {
+                AppContainer::setWithTerminating('setClientRepositoryHidden', $this->setHidden());
             }
         }
     }
@@ -970,9 +968,9 @@ class EloquentRepository
      *
      * @return void
      */
-    private function setClientRepositoryRequest() : void
+    private function setClientRepositoryRequest(): void
     {
-        AppContainer::setWithTerminating('clientRepositoryRequest',true);
+        AppContainer::setWithTerminating('clientRepositoryRequest', true);
     }
 
     /**

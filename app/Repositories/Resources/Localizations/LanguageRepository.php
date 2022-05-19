@@ -6,6 +6,7 @@ namespace App\Repositories\Resources\Localizations;
 
 use App\Models\Language;
 use App\Repositories\EloquentRepository;
+use App\Repositories\GeneralPromoterTrait;
 use App\Repositories\Resources\Localizations\Contracts\LanguageRepositoryContract;
 use App\Repositories\Resources\Localizations\Events\Language\AfterCreate;
 use App\Repositories\Resources\Localizations\Events\Language\AfterUpdate;
@@ -20,6 +21,7 @@ class LanguageRepository extends EloquentRepository implements LanguageRepositor
     use AfterUpdate;
     use BeforeCreate;
     use BeforeUpdate;
+    use GeneralPromoterTrait;
     use LanguagePromoterTrait;
     use LanguagePropertyHandlerTrait;
 

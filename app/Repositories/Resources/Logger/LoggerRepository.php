@@ -6,6 +6,7 @@ namespace App\Repositories\Resources\Logger;
 
 use App\Models\AccessLogger;
 use App\Repositories\EloquentRepository;
+use App\Repositories\GeneralPromoterTrait;
 use App\Repositories\Resources\Logger\Contracts\LoggerRepositoryContract;
 use App\Repositories\Resources\Logger\Events\Logger\AfterCreate;
 use App\Repositories\Resources\Logger\Events\Logger\AfterUpdate;
@@ -25,6 +26,7 @@ class LoggerRepository extends EloquentRepository implements LoggerRepositoryCon
     use BeforeCreate;
     use BeforeUpdate;
     use LoggerPromoterTrait;
+    use GeneralPromoterTrait;
     use LoggerPropertyHandlerTrait;
 
     /**

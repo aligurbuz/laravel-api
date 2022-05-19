@@ -6,6 +6,7 @@ namespace App\Repositories\Resources\Currencies;
 
 use App\Models\Currency;
 use App\Repositories\EloquentRepository;
+use App\Repositories\GeneralPromoterTrait;
 use App\Repositories\Resources\Currencies\Contracts\CurrenciesRepositoryContract;
 use App\Repositories\Resources\Currencies\Events\Currencies\AfterCreate;
 use App\Repositories\Resources\Currencies\Events\Currencies\AfterUpdate;
@@ -20,6 +21,7 @@ class CurrenciesRepository extends EloquentRepository implements CurrenciesRepos
     use AfterUpdate;
     use BeforeCreate;
     use BeforeUpdate;
+    use GeneralPromoterTrait;
     use CurrenciesPromoterTrait;
     use CurrenciesPropertyHandlerTrait;
 

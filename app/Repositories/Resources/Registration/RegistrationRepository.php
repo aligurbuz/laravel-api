@@ -6,6 +6,7 @@ namespace App\Repositories\Resources\Registration;
 
 use App\Models\Registration;
 use App\Repositories\EloquentRepository;
+use App\Repositories\GeneralPromoterTrait;
 use App\Repositories\Resources\Registration\Contracts\RegistrationRepositoryContract;
 use App\Repositories\Resources\Registration\Events\Registration\AfterCreate;
 use App\Repositories\Resources\Registration\Events\Registration\AfterUpdate;
@@ -20,6 +21,7 @@ class RegistrationRepository extends EloquentRepository implements RegistrationR
     use AfterUpdate;
     use BeforeCreate;
     use BeforeUpdate;
+    use GeneralPromoterTrait;
     use RegistrationPromoterTrait;
     use RegistrationPropertyHandlerTrait;
 

@@ -6,6 +6,7 @@ namespace App\Repositories\Resources\Gate;
 
 use App\Models\Permission;
 use App\Repositories\EloquentRepository;
+use App\Repositories\GeneralPromoterTrait;
 use App\Repositories\Resources\Gate\Contracts\PermissionsRepositoryContract;
 use App\Repositories\Resources\Gate\Events\Permissions\AfterCreate;
 use App\Repositories\Resources\Gate\Events\Permissions\AfterUpdate;
@@ -20,6 +21,7 @@ class PermissionsRepository extends EloquentRepository implements PermissionsRep
     use AfterUpdate;
     use BeforeCreate;
     use BeforeUpdate;
+    use GeneralPromoterTrait;
     use PermissionsPromoterTrait;
     use PermissionsPropertyHandlerTrait;
 
