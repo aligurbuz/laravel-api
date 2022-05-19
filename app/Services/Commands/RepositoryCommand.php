@@ -252,6 +252,7 @@ class RepositoryCommand extends Command
         $namespace->addUse($beforeCreateNamespace = $eventsRepositoryNamespaceDirectory . '\BeforeCreate');
         $namespace->addUse($beforeUpdateNamespace = $eventsRepositoryNamespaceDirectory . '\BeforeUpdate');
         $namespace->addUse($contractClassRepositoryName = $namespaceContractDirectory . '\\' . ucfirst($contractClassName));
+        $namespace->addUse($generalPromoterTrait = 'App\Repositories\GeneralPromoterTrait');
         $namespace->addUse($propertyHandlerClassNamespace);
         $namespace->addUse($promoterClassNamespace);
         $namespace->addUse('App\Models\\' . ucfirst($modelName));
@@ -261,6 +262,7 @@ class RepositoryCommand extends Command
         $class->addTrait($beforeCreateNamespace);
         $class->addTrait($beforeUpdateNamespace);
         $class->addTrait($promoterClassNamespace);
+        $class->addTrait($generalPromoterTrait);
         $class->addTrait($propertyHandlerClassNamespace);
         $class->addProperty('model', new Literal(ucfirst($modelName) . '::class'))->setProtected()->setStatic(true)->setType('string')
             ->addComment('get model name for repository')
