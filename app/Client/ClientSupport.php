@@ -30,7 +30,7 @@ trait ClientSupport
      */
     protected function isDefault(): bool|string|int
     {
-        if ($this->isDefault && request()->method() !== 'GET') {
+        if ($this->isDefault && !isGet()) {
             $this->ensureColumnExists($snakeFunction = Str::snake(__FUNCTION__), function () use ($snakeFunction) {
                 $this->repository()->default()->update([[$snakeFunction => '0']], false);
             });
