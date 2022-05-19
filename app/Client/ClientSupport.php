@@ -75,7 +75,7 @@ trait ClientSupport
     protected function isDeleted(): ?bool
     {
         if (request()->method() == 'POST') {
-            Exception::customException('postRestricted', 'isDeleted');
+            Exception::customException('postRestricted', 'is_deleted');
         }
 
         return $this->isDeleted;
