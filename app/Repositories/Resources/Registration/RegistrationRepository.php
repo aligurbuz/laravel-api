@@ -11,6 +11,7 @@ use App\Repositories\Resources\Registration\Events\Registration\AfterCreate;
 use App\Repositories\Resources\Registration\Events\Registration\AfterUpdate;
 use App\Repositories\Resources\Registration\Events\Registration\BeforeCreate;
 use App\Repositories\Resources\Registration\Events\Registration\BeforeUpdate;
+use App\Repositories\Resources\Registration\Promoters\Registration\RegistrationPromoterTrait;
 use App\Repositories\Resources\Registration\PropertyHandlers\RegistrationPropertyHandlerTrait;
 
 class RegistrationRepository extends EloquentRepository implements RegistrationRepositoryContract
@@ -19,6 +20,7 @@ class RegistrationRepository extends EloquentRepository implements RegistrationR
     use AfterUpdate;
     use BeforeCreate;
     use BeforeUpdate;
+    use RegistrationPromoterTrait;
     use RegistrationPropertyHandlerTrait;
 
     /**
@@ -27,15 +29,4 @@ class RegistrationRepository extends EloquentRepository implements RegistrationR
      * @var string
      */
     protected static string $model = Registration::class;
-
-    /**
-     * get auto RegistrationRepository scope method
-     *
-     * @param object|null $builder
-     * @return object
-     */
-    public function registrationRepository(?object $builder = null): object
-    {
-        return $this->apply($builder);
-    }
 }

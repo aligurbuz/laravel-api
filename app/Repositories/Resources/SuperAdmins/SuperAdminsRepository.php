@@ -12,6 +12,7 @@ use App\Repositories\Resources\SuperAdmins\Events\SuperAdmins\AfterCreate;
 use App\Repositories\Resources\SuperAdmins\Events\SuperAdmins\AfterUpdate;
 use App\Repositories\Resources\SuperAdmins\Events\SuperAdmins\BeforeCreate;
 use App\Repositories\Resources\SuperAdmins\Events\SuperAdmins\BeforeUpdate;
+use App\Repositories\Resources\SuperAdmins\Promoters\SuperAdmins\SuperAdminsPromoterTrait;
 use App\Repositories\Resources\SuperAdmins\PropertyHandlers\SuperAdminsPropertyHandlerTrait;
 
 class SuperAdminsRepository extends EloquentRepository implements SuperAdminsRepositoryContract
@@ -20,6 +21,7 @@ class SuperAdminsRepository extends EloquentRepository implements SuperAdminsRep
     use AfterUpdate;
     use BeforeCreate;
     use BeforeUpdate;
+    use SuperAdminsPromoterTrait;
     use SuperAdminsPropertyHandlerTrait;
 
     /**
@@ -28,17 +30,6 @@ class SuperAdminsRepository extends EloquentRepository implements SuperAdminsRep
      * @var string
      */
     protected static string $model = SuperAdmin::class;
-
-    /**
-     * get auto SuperAdminsRepository scope method
-     *
-     * @param object|null $builder
-     * @return object
-     */
-    public function superAdminsRepository(?object $builder = null): object
-    {
-        return $this->apply($builder);
-    }
 
     /**
      * get authenticated user for super admin repository
