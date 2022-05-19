@@ -64,8 +64,8 @@ class RepositoryCommand extends Command
         $eventsRepositoryDirectory = app_path() . '' . DIRECTORY_SEPARATOR . 'Repositories' . DIRECTORY_SEPARATOR . 'Resources' . DIRECTORY_SEPARATOR . '' . ucfirst($argumentName) . '' . DIRECTORY_SEPARATOR . 'Events' . DIRECTORY_SEPARATOR . '' . ucfirst($repositoryName);
         $propertyHandlersDirectory = app_path() . '' . DIRECTORY_SEPARATOR . 'Repositories' . DIRECTORY_SEPARATOR . 'Resources' . DIRECTORY_SEPARATOR . '' . ucfirst($argumentName) . '' . DIRECTORY_SEPARATOR . 'PropertyHandlers';
         $promotersDirectory = app_path() . '' . DIRECTORY_SEPARATOR . 'Repositories' . DIRECTORY_SEPARATOR . 'Resources' . DIRECTORY_SEPARATOR . '' . ucfirst($argumentName) . '' . DIRECTORY_SEPARATOR . 'Promoters';
-        $promotersRepositoryDirectory = app_path() . '' . DIRECTORY_SEPARATOR . 'Repositories' . DIRECTORY_SEPARATOR . 'Resources' . DIRECTORY_SEPARATOR . '' . ucfirst($argumentName) . '' . DIRECTORY_SEPARATOR . 'Promoters'.DIRECTORY_SEPARATOR.''.ucfirst($repositoryName);
-        $promotersRepositoryNamespace = 'App\Repositories\Resources\\' . ucfirst($argumentName) . '\Promoters\\'.ucfirst($repositoryName);
+        $promotersRepositoryDirectory = app_path() . '' . DIRECTORY_SEPARATOR . 'Repositories' . DIRECTORY_SEPARATOR . 'Resources' . DIRECTORY_SEPARATOR . '' . ucfirst($argumentName) . '' . DIRECTORY_SEPARATOR . 'Promoters' . DIRECTORY_SEPARATOR . '' . ucfirst($repositoryName);
+        $promotersRepositoryNamespace = 'App\Repositories\Resources\\' . ucfirst($argumentName) . '\Promoters\\' . ucfirst($repositoryName);
         $propertyHandlersNamespace = 'App\Repositories\Resources\\' . ucfirst($argumentName) . '\PropertyHandlers';
         $directory = app_path() . '' . DIRECTORY_SEPARATOR . 'Repositories' . DIRECTORY_SEPARATOR . 'Resources' . DIRECTORY_SEPARATOR . '' . ucfirst($argumentName);
         $directoryContract = app_path() . '' . DIRECTORY_SEPARATOR . 'Repositories' . DIRECTORY_SEPARATOR . 'Resources' . DIRECTORY_SEPARATOR . '' . ucfirst($argumentName) . '' . DIRECTORY_SEPARATOR . 'Contracts';
