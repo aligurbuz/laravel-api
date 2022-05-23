@@ -1,23 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Services\Request;
 
-class Request
+use Illuminate\Support\Facades\Http;
+
+class Request extends RequestSupport
 {
     /**
      * @var string|null
      */
     protected ?string $acceptLanguage = null;
-
-    /**
-     * @var string|null
-     */
-    protected ?string $apikey = null;
-
-    /**
-     * @var string|null
-     */
-    protected ?string $url = null;
 
     /**
      * @var string|null
@@ -35,24 +29,12 @@ class Request
     protected array $headers = [];
 
     /**
-     * @var string|null
-     */
-    protected ?string $endpoint = null;
-
-    /**
-     * @var array
-     */
-    protected array $result = [];
-
-    /**
      * Request constructor.
      * @param array $data
      */
     public function __construct(array $data = [])
     {
-        $this->url = config('app.apiUrl');
         $this->data = $data;
-        $this->apikey = config('app.apiKey');
         $this->contentType = 'application/json';
         $this->acceptLanguage = 'en';
 
@@ -78,81 +60,14 @@ class Request
     }
 
     /**
-     * Sets the endpoint for the api.
-     *
-     * @param string $endpoint
-     * @return $this
-     */
-    public function endpoint(string $endpoint): self
-    {
-        $this->endpoint = $endpoint;
-
-        return $this;
-    }
-
-    /**
-     * lists results returned from api
-     *
-     * @return array
-     */
-    public function getResult(): array
-    {
-        return $this->result;
-    }
-
-    /**
-     * lists results returned from api
-     *
-     * @return ?string
-     */
-    public function errorMessage(): ?string
-    {
-        return (!$this->result['status']) ? $this->result['errorMessage'] : null;
-    }
-
-    /**
-     * post requesting method to api.
-     *
-     * @param string|null $fullUrl
-     * @return $this
-     */
-    public function post(?string $fullUrl = null): self
-    {
-        $ch = curl_init();
-        $url = $fullUrl ?? ($this->url . '/' . $this->endpoint);
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($this->data));
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $this->headers);
-
-        $result = curl_exec($ch);
-        curl_close($ch);
-
-        $this->result = json_decode($result, 1);
-
-        return $this;
-    }
-
-    /**
      * get requesting method to api.
      *
-     * @param string|null $fullUrl
-     * @return $this
+     * @param string|null $url
+     * @return self
      */
-    public function get(?string $fullUrl = null): self
+    public function get(?string $url = null): self
     {
-        $ch = curl_init();
-        $query = http_build_query($this->data);
-        $url = $fullUrl ?? ($this->url . '/' . $this->endpoint . '?' . $query);
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $this->headers);
-
-        $result = curl_exec($ch);
-        curl_close($ch);
-
-        $this->result = json_decode($result, 1);
+        $this->result = Http::get($url);
 
         return $this;
     }
