@@ -9,9 +9,19 @@ use Illuminate\Http\Client\Response;
 abstract class RequestSupport
 {
     /**
-     * @var Response
+     * @var Response|null
      */
-    protected Response $result;
+    protected ?Response $result = null;
+
+    /**
+     * @var string
+     */
+    protected string $url;
+
+    /**
+     * @var string
+     */
+    protected string $endpoint;
 
     /**
      * get result value for client request
@@ -41,5 +51,51 @@ abstract class RequestSupport
     public function getContent(): array
     {
         return $this->getResult()->json();
+    }
+
+    /**
+     * get endpoint for client request
+     *
+     * @return string
+     */
+    public function getEndpoint() : string
+    {
+        return $this->endpoint;
+    }
+
+    /**
+     * get url for client request
+     *
+     * @return string
+     */
+    public function getUrl() : string
+    {
+        return $this->url;
+    }
+
+    /**
+     * set endpoint for client request
+     *
+     * @param string $endpoint
+     * @return $this
+     */
+    public function endpoint(string $endpoint) : self
+    {
+        $this->endpoint = $endpoint;
+
+        return $this;
+    }
+
+    /**
+     * set url for client request
+     *
+     * @param string $url
+     * @return $this
+     */
+    public function setUrl(string $url) : self
+    {
+        $this->url = $url;
+
+        return $this;
     }
 }

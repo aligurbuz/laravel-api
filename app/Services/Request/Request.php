@@ -67,6 +67,8 @@ class Request extends RequestSupport
      */
     public function get(?string $url = null): self
     {
+        $url = $url ?? $this->getUrl().'/'.$this->getEndpoint();
+
         $this->result = Http::get($url);
 
         return $this;

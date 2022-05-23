@@ -12,6 +12,7 @@ use App\Factory\Collection\Interfaces\CollectionInterface;
 use App\Factory\Date\Interfaces\DateInterface;
 use App\Factory\Email\Interfaces\EmailInterface;
 use App\Factory\Excel\Interfaces\ExcelInterface;
+use App\Factory\Http\Interfaces\HttpInterface;
 use App\Factory\Localization\Interfaces\LocalizationInterface;
 use App\Factory\Logger\Interfaces\LoggerInterface;
 use App\Factory\Money\Interfaces\MoneyInterface;
@@ -46,6 +47,7 @@ use App\Jobs\EmailSender;
  * @method static MoneyInterface money($arguments = null)
  * @method static TaxInterface tax($arguments = null)
  * @method static ExcelInterface excel($arguments = null)
+ * @method static HttpInterface http($arguments = null)
  * @package App\Factory
  */
 class Factory extends FactoryManager
