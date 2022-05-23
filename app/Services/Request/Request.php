@@ -9,24 +9,9 @@ use Illuminate\Support\Facades\Http;
 class Request extends RequestSupport
 {
     /**
-     * @var string|null
-     */
-    protected ?string $acceptLanguage = null;
-
-    /**
-     * @var string|null
-     */
-    protected ?string $contentType = null;
-
-    /**
      * @var array
      */
     protected array $data = [];
-
-    /**
-     * @var array
-     */
-    protected array $headers = [];
 
     /**
      * Request constructor.
@@ -37,26 +22,6 @@ class Request extends RequestSupport
         $this->data = $data;
         $this->contentType = 'application/json';
         $this->acceptLanguage = 'en';
-
-        $this->setHeaders();
-    }
-
-    /**
-     * It registers the header variables to be sent to the API by the user.
-     *
-     * @param array $headers
-     * @return $this
-     */
-    public function setHeaders(array $headers = []): self
-    {
-        $init = [
-            //'Apikey:'.$this->apikey,
-            'Content-Type:' . $this->contentType
-        ];
-
-        $this->headers = array_merge($headers, $init);
-
-        return $this;
     }
 
     /**
@@ -69,7 +34,7 @@ class Request extends RequestSupport
     {
         $url = $url ?? $this->getUrl().'/'.$this->getEndpoint();
 
-        $this->result = Http::get($url);
+        $this->result = Http::withHeaders($this->getHeaders())->get($url);
 
         return $this;
     }

@@ -9,6 +9,21 @@ use Illuminate\Http\Client\Response;
 abstract class RequestSupport
 {
     /**
+     * @var string|null
+     */
+    protected ?string $acceptLanguage = null;
+
+    /**
+     * @var string|null
+     */
+    protected ?string $contentType = null;
+
+    /**
+     * @var array
+     */
+    protected array $headers = [];
+
+    /**
      * @var Response|null
      */
     protected ?Response $result = null;
@@ -64,6 +79,16 @@ abstract class RequestSupport
     }
 
     /**
+     * get headers for client request
+     *
+     * @return array
+     */
+    public function getHeaders() : array
+    {
+        return $this->headers;
+    }
+
+    /**
      * get url for client request
      *
      * @return string
@@ -82,6 +107,23 @@ abstract class RequestSupport
     public function endpoint(string $endpoint) : self
     {
         $this->endpoint = $endpoint;
+
+        return $this;
+    }
+
+    /**
+     * It registers the header variables to be sent to the API by the user.
+     *
+     * @param array $headers
+     * @return $this
+     */
+    public function setHeaders(array $headers = []): self
+    {
+        $init = [
+            'Content-Type' => $this->contentType
+        ];
+
+        $this->headers = array_merge($headers, $init);
 
         return $this;
     }
