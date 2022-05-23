@@ -43,7 +43,7 @@ abstract class RequestSupport
      *
      * @return Response
      */
-    public function getResult() : Response
+    public function getResult(): Response
     {
         return $this->result;
     }
@@ -53,7 +53,7 @@ abstract class RequestSupport
      *
      * @return int
      */
-    public function getStatus() : int
+    public function getStatus(): int
     {
         return $this->getResult()->status();
     }
@@ -73,7 +73,7 @@ abstract class RequestSupport
      *
      * @return string
      */
-    public function getEndpoint() : string
+    public function getEndpoint(): string
     {
         return $this->endpoint;
     }
@@ -83,7 +83,7 @@ abstract class RequestSupport
      *
      * @return array
      */
-    public function getHeaders() : array
+    public function getHeaders(): array
     {
         return $this->headers;
     }
@@ -93,7 +93,7 @@ abstract class RequestSupport
      *
      * @return string
      */
-    public function getUrl() : string
+    public function getUrl(): string
     {
         return $this->url;
     }
@@ -104,7 +104,7 @@ abstract class RequestSupport
      * @param string $endpoint
      * @return $this
      */
-    public function endpoint(string $endpoint) : self
+    public function endpoint(string $endpoint): self
     {
         $this->endpoint = $endpoint;
 
@@ -134,7 +134,7 @@ abstract class RequestSupport
      * @param string $url
      * @return $this
      */
-    public function setUrl(string $url) : self
+    public function setUrl(string $url): self
     {
         $this->url = $url;
 

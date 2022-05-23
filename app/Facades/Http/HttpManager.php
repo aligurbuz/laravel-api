@@ -19,10 +19,11 @@ abstract class HttpManager
      *
      * @return Request
      */
-    public static function request() : Request
+    private static function request(): Request
     {
-        if(is_null(static::$instance)){
-            static::$instance = Factory::http()->local();
+        if (is_null(static::$instance)) {
+            $factoryMethod = lcfirst(class_basename(get_called_class()));
+            static::$instance = Factory::http()->{$factoryMethod}();
         }
 
         return static::$instance;
@@ -34,11 +35,11 @@ abstract class HttpManager
      * @param Request $request
      * @return array
      */
-    public static function dataHandler(Request $request): array
+    private static function dataHandler(Request $request): array
     {
         $content = $request->getContent();
 
-        if(!in_array($request->getStatus(),static::$successStatus,true)){
+        if (!in_array($request->getStatus(), static::$successStatus, true)) {
             Exception::customException(static::getErrorMessage($content));
         }
 
@@ -53,9 +54,18 @@ abstract class HttpManager
     public static function __callStatic(string $name, array $arguments)
     {
         $snakeName = Str::snake($name);
-        $snakeSplit = explode('_',$snakeName);
+        $snakeSplit = explode('_', $snakeName);
         $method = $snakeSplit[0] ?? null;
         $endpoint = $snakeSplit[1] ?? null;
+
+        if (property_exists(new static(), 'methods') && isset(static::$methods[$endpoint])) {
+            $endpoint = static::$methods[$endpoint];
+        }
+
+        if ($method == 'get') {
+            $queryParameters = $arguments[0] ?? [];
+            $endpoint = $endpoint . '?' . http_build_query($queryParameters);
+        }
 
         return static::dataHandler(static::request()->endpoint($endpoint)->{$method}());
     }

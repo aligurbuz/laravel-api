@@ -68,8 +68,8 @@ trait BaseManager
         $this->assignAppends();
         $this->localizationWithQuery['localization']['localColumn'] = getTableCode($this->getModelName());
 
-        if(AppContainer::has('clientRepositoryRequest') && AppContainer::has('setClientRepositoryHidden')){
-            $setClientRepositoryHidden = AppContainer::get('setClientRepositoryHidden',[]);
+        if (AppContainer::has('clientRepositoryRequest') && AppContainer::has('setClientRepositoryHidden')) {
+            $setClientRepositoryHidden = AppContainer::get('setClientRepositoryHidden', []);
             $this->setHidden(array_merge($this->getHidden(), $setClientRepositoryHidden));
         }
 

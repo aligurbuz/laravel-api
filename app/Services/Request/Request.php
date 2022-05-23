@@ -32,7 +32,7 @@ class Request extends RequestSupport
      */
     public function get(?string $url = null): self
     {
-        $url = $url ?? $this->getUrl().'/'.$this->getEndpoint();
+        $url = $url ?? $this->getUrl() . '/' . $this->getEndpoint();
 
         $this->result = Http::withHeaders($this->getHeaders())->get($url);
 

@@ -7,14 +7,19 @@ namespace App\Facades\Http\Local;
 use App\Facades\Http\HttpManager;
 
 /**
- * @method static getUser()
+ * @method static getUser(array $data = [])
  */
 class Local extends HttpManager
 {
     /**
      * @var array|string[]
      */
-    protected static array $successStatus = [200,201];
+    protected static array $successStatus = [200, 201];
+
+    /**
+     * @var array
+     */
+    protected static array $methods = [];
 
     /**
      * get error message for client request
@@ -22,7 +27,7 @@ class Local extends HttpManager
      * @param array $data
      * @return mixed
      */
-    public static function getErrorMessage(array $data = []): mixed
+    protected static function getErrorMessage(array $data = []): mixed
     {
         return $data['errorMessage'] ?? null;
     }
@@ -33,7 +38,7 @@ class Local extends HttpManager
      * @param array $data
      * @return array
      */
-    public static function getResponse(array $data = []): array
+    protected static function getResponse(array $data = []): array
     {
         return $data['resource'] ?? [];
     }
