@@ -78,8 +78,6 @@ abstract class HttpManager
             $endpoint = static::$methods[$endpoint];
         }
 
-        $methodArguments = [];
-
         if($method == 'get') {
             $queryParameters = $arguments[0] ?? [];
             $endpoint = $endpoint . '?' . http_build_query($queryParameters);
@@ -91,7 +89,9 @@ abstract class HttpManager
 
         return static::dataHandler(static::request()
             ->endpoint($endpoint)
-            ->{$method}($methodArguments)
+            ->{$method}(
+                $methodArguments ?? null
+            )
         );
     }
 }
