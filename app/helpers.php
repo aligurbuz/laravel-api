@@ -412,6 +412,23 @@ if (!function_exists('cR')) {
     }
 }
 
+if (!function_exists('findRepositoryFromCr')) {
+
+    /**
+     * find repository name from cr data
+     *
+     * @param string $cr
+     * @return ?string
+     */
+    function findRepositoryFromCr(string $cr): ?string
+    {
+        $crMapsContent = File::get(database_path('columns').''.DIRECTORY_SEPARATOR.'crMaps.json');
+        $crMapsData = json_decode($crMapsContent, true);
+
+        return $crMapsData[$cr]['model'] ?? null;
+    }
+}
+
 if (!function_exists('service')) {
 
     /**

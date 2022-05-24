@@ -25,6 +25,22 @@ class Request extends RequestSupport
     }
 
     /**
+     * post requesting method to api.
+     *
+     * @param array $data
+     * @param string|null $url
+     * @return self
+     */
+    public function post(array $data = [],?string $url = null): self
+    {
+        $url = $url ?? $this->getUrl() . '/' . $this->getEndpoint();
+
+        $this->result = Http::withHeaders($this->getHeaders())->post($url,$data);
+
+        return $this;
+    }
+
+    /**
      * get requesting method to api.
      *
      * @param string|null $url

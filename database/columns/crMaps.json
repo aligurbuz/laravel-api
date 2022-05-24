@@ -34,5 +34,9 @@
     "support.excel.update": {
         "class": "App\\Client\\Support\\Excel\\Update\\UpdateClient",
         "model": "excel"
+    },
+    "currencies.currencies.create": {
+        "class": "App\\Client\\Currencies\\Currencies\\Create\\CreateClient",
+        "model": "currency"
     }
 }

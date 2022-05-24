@@ -15,6 +15,19 @@ abstract class HttpManager
     protected static ?Request $instance = null;
 
     /**
+     * @var array
+     */
+    protected static array $clientRotes = [];
+
+    /**
+     * @var array|string[]
+     */
+    protected static array $httpMethods = [
+        'create' => 'post',
+        'update' => 'put',
+    ];
+
+    /**
      * get local request
      *
      * @return Request
@@ -58,15 +71,26 @@ abstract class HttpManager
         $method = $snakeSplit[0] ?? null;
         $endpoint = $snakeSplit[1] ?? null;
 
-        if (property_exists(new static(), 'methods') && isset(static::$methods[$endpoint])) {
+        $newInstance = new static();
+
+        if (property_exists($newInstance, 'methods') && isset(static::$methods[$endpoint])) {
             $endpoint = static::$methods[$endpoint];
         }
 
-        if ($method == 'get') {
+        $methodArguments = [];
+
+        if($method == 'get') {
             $queryParameters = $arguments[0] ?? [];
             $endpoint = $endpoint . '?' . http_build_query($queryParameters);
         }
+        else{
+            $method = static::$httpMethods[$method];
+            $methodArguments = $arguments[0] ?? [];
+        }
 
-        return static::dataHandler(static::request()->endpoint($endpoint)->{$method}());
+        return static::dataHandler(static::request()
+            ->endpoint($endpoint)
+            ->{$method}($methodArguments)
+        );
     }
 }
