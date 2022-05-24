@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\Services\Request;
 
+use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Http\Client\Response;
+use Illuminate\Support\Facades\Http;
 
 abstract class RequestSupport
 {
@@ -86,6 +88,27 @@ abstract class RequestSupport
     public function getHeaders(): array
     {
         return $this->headers;
+    }
+
+    /**
+     * get http init for client request
+     *
+     * @return PendingRequest
+     */
+    public function getHttp(): PendingRequest
+    {
+        return Http::withHeaders($this->getHeaders());
+    }
+
+    /**
+     * get endpoint full url for client request
+     *
+     * @param string|null $url
+     * @return string
+     */
+    public function getFullUrl(?string $url = null): string
+    {
+        return $url ?? $this->getUrl() . '/' . $this->getEndpoint();
     }
 
     /**

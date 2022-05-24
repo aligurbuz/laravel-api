@@ -25,6 +25,7 @@ abstract class HttpManager
     protected static array $httpMethods = [
         'create' => 'post',
         'update' => 'put',
+        'delete' => 'delete',
     ];
 
     /**

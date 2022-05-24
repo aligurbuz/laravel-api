@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace App\Services\Request;
 
-use Illuminate\Support\Facades\Http;
-
 class Request extends RequestSupport
 {
     /**
@@ -25,6 +23,21 @@ class Request extends RequestSupport
     }
 
     /**
+     * get requesting method to api.
+     *
+     * @param string|null $url
+     * @return self
+     */
+    public function get(?string $url = null): self
+    {
+        $url = $this->getFullUrl($url);
+
+        $this->result = $this->getHttp()->{__FUNCTION__}($url);
+
+        return $this;
+    }
+
+    /**
      * post requesting method to api.
      *
      * @param array $data
@@ -33,24 +46,41 @@ class Request extends RequestSupport
      */
     public function post(array $data = [],?string $url = null): self
     {
-        $url = $url ?? $this->getUrl() . '/' . $this->getEndpoint();
+        $url = $this->getFullUrl($url);
 
-        $this->result = Http::withHeaders($this->getHeaders())->post($url,$data);
+        $this->result = $this->getHttp()->{__FUNCTION__}($url,$data);
 
         return $this;
     }
 
     /**
-     * get requesting method to api.
+     * put requesting method to api.
      *
+     * @param array $data
      * @param string|null $url
      * @return self
      */
-    public function get(?string $url = null): self
+    public function put(array $data = [],?string $url = null): self
     {
-        $url = $url ?? $this->getUrl() . '/' . $this->getEndpoint();
+        $url = $this->getFullUrl($url);
 
-        $this->result = Http::withHeaders($this->getHeaders())->get($url);
+        $this->result = $this->getHttp()->{__FUNCTION__}($url,$data);
+
+        return $this;
+    }
+
+    /**
+     * delete requesting method to api.
+     *
+     * @param array $data
+     * @param string|null $url
+     * @return self
+     */
+    public function delete(array $data = [],?string $url = null): self
+    {
+        $url = $this->getFullUrl($url);
+
+        $this->result = $this->getHttp()->{__FUNCTION__}($url,$data);
 
         return $this;
     }
