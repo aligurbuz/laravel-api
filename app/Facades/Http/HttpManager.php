@@ -15,11 +15,6 @@ abstract class HttpManager
     protected static ?Request $instance = null;
 
     /**
-     * @var array
-     */
-    protected static array $clientRotes = [];
-
-    /**
      * @var array|string[]
      */
     protected static array $httpMethods = [
