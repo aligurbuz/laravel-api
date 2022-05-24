@@ -8,8 +8,6 @@ use App\Facades\Http\HttpManager;
 
 /**
  * @method static getUser(array $data = [])
- * @method static getCurrencies(array $data = [])
- * @method static createCurrencies(array $data = [])
  */
 class Local extends HttpManager
 {
