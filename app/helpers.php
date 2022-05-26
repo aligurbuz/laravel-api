@@ -53,13 +53,20 @@ if (!function_exists('assignQueryParameters')) {
      * Query parameter assignment is made for the get method.
      *
      * @param array $data
+     * @param bool $recursive
      * @return void
      */
-    function assignQueryParameters(array $data = []): void
+    function assignQueryParameters(array $data = [],bool $recursive = true): void
     {
         if (request()->method() == 'GET') {
             $request = request()->query->all();
-            $clientWithAutoKeys = array_replace_recursive($request, $data);
+            if($recursive){
+                $clientWithAutoKeys = array_replace_recursive($request, $data);
+            }
+            else{
+                $clientWithAutoKeys = array_replace($request, $data);
+            }
+
             request()->query->replace([]);
             request()->query->add($clientWithAutoKeys);
         }

@@ -28,7 +28,8 @@ return [
         'groupBy',
         'client_date',
         'client_time',
-        'client_action'
+        'client_action',
+        'hasRecursiveFilter'
     ],
 
     /*

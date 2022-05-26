@@ -261,12 +261,13 @@ trait ScopeManager
      * @param Builder $builder
      * @param string|null $has
      * @param array $filter
+     * @param bool $recursive
      * @return Builder
      */
-    public function scopeHasQuery(Builder $builder, ?string $has = null, array $filter = []): Builder
+    public function scopeHasQuery(Builder $builder, ?string $has = null, array $filter = [],bool $recursive = true): Builder
     {
         if (count($filter)) {
-            assignQueryParameters(['hasFilter' => [$has => $filter]]);
+            assignQueryParameters(['hasFilter' => [$has => $filter]],$recursive);
         }
 
         $request = request()->query->all();
@@ -283,7 +284,7 @@ trait ScopeManager
             foreach ($hasQuery as $has) {
                 if (isset($withQuery[$has], $withQuery[$has]['nested'])) {
                     if (false === $withQuery[$has]['nested']) {
-                        $builder->whereHas($has, function (object $builder) use ($request, $has) {
+                        $builder->whereHas($has, function (object $builder) use ($request, $has,$recursive) {
                             $range = $request['hasRange'][$has] ?? ($request['range'] ?? '');
                             $hasFilter = $request['hasFilter'][$has] ?? [];
 
@@ -294,7 +295,20 @@ trait ScopeManager
 
                             $repository = getModelWithPlural($has);
                             $repositoryMethod = Repository::$repository();
-                            $builder->range($repositoryMethod, (string)$range)->filterQuery($hasFilter);
+
+                            if(isset($request['hasRecursiveFilter'][$has])){
+                                foreach ($request['hasRecursiveFilter'][$has] as $recursiveHas => $recursiveFilter){
+                                    $builder->hasQuery($recursiveHas,$recursiveFilter,false)->range($repositoryMethod, (string)$range)
+                                        ->filterQuery($hasFilter);
+
+                                    break;
+                                }
+                            }
+                            else{
+                                $builder->range($repositoryMethod, (string)$range)
+                                    ->filterQuery($hasFilter);
+                            }
+
                             return $builder;
                         });
                     }
