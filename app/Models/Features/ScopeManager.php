@@ -243,10 +243,15 @@ trait ScopeManager
      */
     public function scopeHasFilterQuery(Builder $builder)
     {
-        $filter = request()->query->get('hasFilter',[]);
+        $query = request()->query;
+        $hasQuery = $query->get('has');
 
-        foreach ($filter as $relation => $data){
-            $this->scopeHasQuery($builder,$relation);
+        if(is_null($hasQuery)){
+            $filter = $query->get('hasFilter',[]);
+
+            foreach ($filter as $relation => $data){
+                $this->scopeHasQuery($builder,$relation);
+            }
         }
     }
 
