@@ -240,6 +240,20 @@ trait ScopeManager
      * get eager loading data for model
      *
      * @param Builder $builder
+     */
+    public function scopeHasFilterQuery(Builder $builder)
+    {
+        $filter = request()->query->get('hasFilter',[]);
+
+        foreach ($filter as $relation => $data){
+            $this->scopeHasQuery($builder,$relation);
+        }
+    }
+
+    /**
+     * get eager loading data for model
+     *
+     * @param Builder $builder
      * @param string|null $has
      * @param array $filter
      * @return Builder

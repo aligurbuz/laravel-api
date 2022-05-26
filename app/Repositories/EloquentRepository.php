@@ -735,6 +735,7 @@ class EloquentRepository
             ->instruction()
             ->doesntHaveQuery()
             ->hasQuery()
+            ->hasFilterQuery()
             ->withQuery()
             ->selectQuery()
             ->orderByQuery()
