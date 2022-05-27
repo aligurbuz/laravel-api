@@ -137,7 +137,6 @@ trait BaseManager
         $relationsAccordingToCode = $relationCodes[$tableCode = getTableCode($modelName)] ?? [];
         $camelCaseTableCode = Str::camel($tableCode);
         $globalScopes = config('repository.globalScopes');
-        $repository = $this->getRepository();
 
         foreach ($relationsAccordingToCode as $modelRelation) {
 
