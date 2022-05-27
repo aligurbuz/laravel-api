@@ -1469,7 +1469,7 @@ wget --no-check-certificate --quiet \
 
                 <tr>
                     <td><code class="language-plaintext highlighter-rouge">403</code></td>
-                    <td>When a request is made to a requesting endpoint, this exception is thrown if the User permissions are insufficient.</td>
+                    <td>When a request is made to an endpoint that requires permission,this exception is thrown if the User permissions are insufficient.</td>
                 </tr>
 
                 <tr>
