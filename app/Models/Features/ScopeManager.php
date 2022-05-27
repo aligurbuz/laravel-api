@@ -282,9 +282,12 @@ trait ScopeManager
             $this->hasValues = $hasQuery;
 
             foreach ($hasQuery as $has) {
+                $hasQueryList = explode(':',$has);
+                $has = current($hasQueryList);
+
                 if (isset($withQuery[$has], $withQuery[$has]['nested'])) {
                     if (false === $withQuery[$has]['nested']) {
-                        $builder->whereHas($has, function (object $builder) use ($request, $has,$recursive) {
+                        $builder->whereHas($has, function (object $builder) use ($request, $has,$recursive,$hasQueryList) {
                             $range = $request['hasRange'][$has] ?? ($request['range'] ?? '');
                             $hasFilter = $request['hasFilter'][$has] ?? [];
 
@@ -295,6 +298,21 @@ trait ScopeManager
 
                             $repository = getModelWithPlural($has);
                             $repositoryMethod = Repository::$repository();
+
+                            if(isset($hasQueryList[2])){
+                                Exception::customException('recursiveHasException');
+                            }
+
+                            if(isset($hasQueryList[1])){
+                                $recursiveHasValue = explode('-',$hasQueryList[1]);
+                                $recursiveHasValueData = $recursiveHasValue[3] ?? ($recursiveHasValue[2] ?? 0);
+                                $recursiveHasValueOperator = isset($recursiveHasValue[3]) ? $recursiveHasValue[2] : '=';
+
+                                $builder->hasQuery(current($recursiveHasValue),isset($recursiveHasValue[1]) ? [
+                                    $recursiveHasValue[1] => [$recursiveHasValueOperator => $recursiveHasValueData]
+                                ] : [],false)->range($repositoryMethod, (string)$range)
+                                    ->filterQuery($hasFilter);
+                            }
 
                             if(isset($request['hasRecursiveFilter'][$has])){
                                 foreach ($request['hasRecursiveFilter'][$has] as $recursiveHas => $recursiveFilter){

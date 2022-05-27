@@ -37,5 +37,6 @@ return [
     'clientActionException'         => 'The specified action value is not valid',
     'crKey'                         => 'in :key key',
     'excelFile'                     => 'The requested factory named (:key) is invalid.',
-    'postRestricted'                => 'The (:key) value cannot be sent for POST method.'
+    'postRestricted'                => 'The (:key) value cannot be sent for POST method.',
+    'recursiveHasException'         => 'A maximum of 2 recursive (has) queries can be used.'
 ];
