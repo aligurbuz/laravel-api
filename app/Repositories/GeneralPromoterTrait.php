@@ -19,18 +19,22 @@ trait GeneralPromoterTrait
     }
 
     /**
-     * set webHidden for repository
+     * set hidden for repository
      *
      * @return string[]
      */
-    public function setWebHidden(): array
+    public function setHidden(): array
     {
-        return [
-            'created_by',
-            'updated_by',
-            'deleted_by',
-            'deleted_at'
-        ];
+        if(!ApiKey::isAdmin()){
+            return [
+                'created_by',
+                'updated_by',
+                'deleted_by',
+                'deleted_at'
+            ];
+        }
+
+        return [];
     }
 
     /**
