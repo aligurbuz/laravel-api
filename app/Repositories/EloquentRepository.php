@@ -983,6 +983,12 @@ class EloquentRepository
     {
         $with = request()->query->get('with', []);
 
+        foreach ($with as $relation => $data){
+            if(in_array($relation,$this->getDeniedEagerLoadings(),true)){
+                Exception::customException(trans('exception.deniedEagerLoadings', ['key' => $relation]));
+            }
+        }
+
         if (property_exists($this, 'localization') && count($this->localization)) {
             request()->query->set('with', array_merge($with, ['localization' => 'values']));
         }

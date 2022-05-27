@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Models\Features;
 
 use App\Constants;
-use App\Exceptions\Exception;
 use App\Repositories\Repository;
 use App\Services\AppContainer;
 use App\Services\Db;
@@ -139,17 +138,6 @@ trait BaseManager
         $camelCaseTableCode = Str::camel($tableCode);
         $globalScopes = config('repository.globalScopes');
         $repository = $this->getRepository();
-        $deniedEagerLoadings = (is_object($repository) && method_exists($repository, 'getDeniedEagerLoadings')) ? $repository->getDeniedEagerLoadings() : [];
-
-        $clientEagerLoadingData = request()->query->get('with', []);
-
-        if (count($deniedEagerLoadings)) {
-            foreach ($deniedEagerLoadings as $deniedEagerLoading) {
-                if (isset($clientEagerLoadingData[$deniedEagerLoading])) {
-                    Exception::customException(trans('exception.deniedEagerLoadings', ['key' => $deniedEagerLoading]));
-                }
-            }
-        }
 
         foreach ($relationsAccordingToCode as $modelRelation) {
 
