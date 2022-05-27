@@ -301,7 +301,7 @@ if (!function_exists('isPost')) {
      */
     function isPost(): bool
     {
-        return request()->method('POST');
+        return request()->method()==='POST';
     }
 }
 
@@ -313,7 +313,7 @@ if (!function_exists('isGet')) {
      */
     function isGet(): bool
     {
-        return request()->method('GET');
+        return request()->method()==='GET';
     }
 }
 
@@ -325,7 +325,7 @@ if (!function_exists('isPut')) {
      */
     function isPut(): bool
     {
-        return request()->method('PUT');
+        return request()->method()==='PUT';
     }
 }
 
