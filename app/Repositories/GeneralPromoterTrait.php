@@ -41,7 +41,8 @@ trait GeneralPromoterTrait
     private function setDeniedEagerLoadingsAccordingToApiKey() : void
     {
         if(ApiKey::isWeb()){
-            $this->setDeniedEagerLoadings('cities');
+            $this->setDeniedEagerLoadings('role');
+            $this->setDeniedEagerLoadings('user');
         }
     }
 }
