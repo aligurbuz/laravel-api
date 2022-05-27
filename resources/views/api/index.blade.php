@@ -234,6 +234,7 @@ wget --no-check-certificate --quiet \
 
                         <p><b>If you need to use a custom (range) value in your relationships, see (withRange Using) section.</b></p>
                     @elseif($list=='hasAndDoesntHave')
+                        <b>Has Using:</b>
                         <p>The (Has) parameter is used to check your top data set according to the existence of your relationships. For example: you may want to list only products having items.
                             In this case, it will be sufficient to add the (has) key to your query parameter and write the relation name to its value.
                         </p>
@@ -251,6 +252,58 @@ wget --no-check-certificate --quiet \
    'baseUrl/products?has=items
 </code></pre></div></div>
 
+                    <p>Or you may want to check the existence of more than one relationship.
+                        In this case, you can write more relationships, provided that there are commas between them.</p>
+
+                        <li>baseUrl/products?has=items,colors</li>
+
+                        <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Api Request</span>
+wget --no-check-certificate --quiet \
+  --method GET \
+  --timeout=0 \
+  --header 'Authorization: Bearer Token' \
+  --header 'Apikey: ApiKey' \
+  --header 'Content-Type: application/json' \
+  --header 'Accept-Language: en' \
+   'baseUrl/products?has=items,colors
+</code></pre></div></div>
+
+                    <b>HasFilter Using:</b>
+
+                    <p>In some cases, you may want to do a separate filtering within a (has) control. In such a case, using the (hasFilter) key, you can use the (has) query as follows.
+                        You can write your query.</p>
+
+                        <li>baseUrl/products?hasFilter[items][filterableColumn][=]=value</li>
+
+                        <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Api Request</span>
+wget --no-check-certificate --quiet \
+  --method GET \
+  --timeout=0 \
+  --header 'Authorization: Bearer Token' \
+  --header 'Apikey: ApiKey' \
+  --header 'Content-Type: application/json' \
+  --header 'Accept-Language: en' \
+   'baseUrl/products?hasFilter[items][filterableColumn][=]=value
+</code></pre></div></div>
+
+                    <p>Or if you are going to check for a single condition. You can send a query like the one below in a shorter way.
+                        <b>What you need to pay attention to in the following query; (:) sign is used after the relation name and (filterableColumn)
+                            The value must be followed by the (-) sign, then the (oparetor) and then the (-) sign.</b> </p>
+
+                        <li>baseUrl/products?has=items:filterableColumn-=-value</li>
+
+                        <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Api Request</span>
+wget --no-check-certificate --quiet \
+  --method GET \
+  --timeout=0 \
+  --header 'Authorization: Bearer Token' \
+  --header 'Apikey: ApiKey' \
+  --header 'Content-Type: application/json' \
+  --header 'Accept-Language: en' \
+   'baseUrl/products?has=items:filterableColumn-=-value
+</code></pre></div></div>
+
+                    <b>DoesntHave Using:</b>
                         <p>In the opposite case; You may want to list products without (item) data.
                             In this case, it will be sufficient to use (doesntHave) instead of (has).
                         </p>
