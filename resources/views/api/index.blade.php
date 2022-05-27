@@ -1462,6 +1462,17 @@ wget --no-check-certificate --quiet \
                 </tr>
 
                 <tr>
+                    <td><code class="language-plaintext highlighter-rouge">401</code></td>
+                    <td>When you make a request to a token requesting endpoint,
+                        If the token is not sent or the token is not valid, the client will get this exception.</td>
+                </tr>
+
+                <tr>
+                    <td><code class="language-plaintext highlighter-rouge">403</code></td>
+                    <td>When a request is made to a requesting endpoint, this exception is thrown if the User permissions are insufficient.</td>
+                </tr>
+
+                <tr>
                     <td><code class="language-plaintext highlighter-rouge">500</code></td>
                     <td>it shows that the response failed on the server side.the client cannot do anything. The error must be fixed by the service provider.</td>
                 </tr>
