@@ -7,6 +7,8 @@ namespace App\Client;
 trait ClientAction
 {
     /**
+     * The "action" prefix must be placed at the end of the camelCase statement.
+     *
      * @return array
      */
     public function withUserRoleAction(): array
