@@ -283,13 +283,22 @@ trait ScopeManager
 
             foreach ($hasQuery as $has) {
                 $hasQueryList = explode(':',$has);
-                $has = current($hasQueryList);
+                $currentHasSplit = explode('-',current($hasQueryList));
+                $has = current($currentHasSplit);
 
                 if (isset($withQuery[$has], $withQuery[$has]['nested'])) {
                     if (false === $withQuery[$has]['nested']) {
-                        $builder->whereHas($has, function (object $builder) use ($request, $has,$recursive,$hasQueryList) {
+                        $builder->whereHas($has, function (object $builder) use ($request, $has,$recursive,$hasQueryList,$currentHasSplit) {
                             $range = $request['hasRange'][$has] ?? ($request['range'] ?? '');
                             $hasFilter = $request['hasFilter'][$has] ?? [];
+
+                            if(count($currentHasSplit)>1){
+                                $currentHasSplitData = $currentHasSplit[3] ?? ($currentHasSplit[2] ?? 0);
+                                $currentHasSplitOperator = isset($currentHasSplit[3]) ? $currentHasSplit[2] : '=';
+                                $hasFilter = [$currentHasSplit[1] => [
+                                    $currentHasSplitOperator => $currentHasSplitData
+                                ]];
+                            }
 
                             if (isset($request['hasFilter']) && count($hasFilter) == '0') {
                                 Exception::customException(trans('exception.hasFilterException', ['key' => $has]));
