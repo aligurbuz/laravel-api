@@ -207,6 +207,22 @@ class EloquentRepository
     }
 
     /**
+     * set array deniedEagerLoadings eager loadings model repository
+     *
+     * @param string $value
+     * @return void
+     */
+    public function setDeniedEagerLoadings(string $value): void
+    {
+        if (
+            property_exists($this, 'deniedEagerLoadings')
+            && is_array($this->deniedEagerLoadings)
+        ) {
+            $this->deniedEagerLoadings[] = $value;
+        }
+    }
+
+    /**
      * get array data model repository
      *
      * @return array
@@ -343,7 +359,7 @@ class EloquentRepository
     }
 
     /**
-     * take latest data for repository
+     * take the latest data for repository
      *
      * @return array
      */
