@@ -406,7 +406,6 @@ class RepositoryCommand extends Command
         $repositoryClass = new Repository();
 
         if (!method_exists($repositoryClass, lcfirst($modelName))) {
-
             $repositoryProvider = app_path('Providers') . '' . DIRECTORY_SEPARATOR . 'RepositoryServiceProvider.php';
             $repositoryProviderContent = File::get($repositoryProvider);
             $putNewContract = str_replace('use Illuminate\Support\ServiceProvider;', 'use Illuminate\Support\ServiceProvider;
@@ -417,7 +416,9 @@ use ' . $namespaceRepository . ';', $repositoryProviderContent);
         //newBind', $putNewContract);
 
             File::put($repositoryProvider, $putNewContract);
+        }
 
+        if (!method_exists($repositoryClass, lcfirst($modelName))) {
 
             $repositoryFile = app_path('Repositories') . '' . DIRECTORY_SEPARATOR . 'Repository.php';
 
