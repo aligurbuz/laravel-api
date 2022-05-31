@@ -405,7 +405,7 @@ class RepositoryCommand extends Command
 
         $repositoryClass = new Repository();
 
-        if (!method_exists($repositoryClass, lcfirst($modelName))) {
+        if (!app()->has(ucfirst($contractClassName))) {
             $repositoryProvider = app_path('Providers') . '' . DIRECTORY_SEPARATOR . 'RepositoryServiceProvider.php';
             $repositoryProviderContent = File::get($repositoryProvider);
             $putNewContract = str_replace('use Illuminate\Support\ServiceProvider;', 'use Illuminate\Support\ServiceProvider;
