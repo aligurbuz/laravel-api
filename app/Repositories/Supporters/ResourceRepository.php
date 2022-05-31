@@ -125,7 +125,7 @@ trait ResourceRepository
     public function addCollectDataToResource(callable $callback): mixed
     {
         $list = [];
-        $collectRequest = request()->query->get('collect');
+        $collectRequest = request()->query('collect');
 
         if (is_string($collectRequest)) {
             $collectArray = explode(',', $collectRequest);

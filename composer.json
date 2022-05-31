@@ -5,7 +5,7 @@
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "require": {
-        "php": "^7.3|^8.0",
+        "php": "^7.3|^8.1",
         "ext-curl": "*",
         "ext-mongodb": "*",
         "ext-rdkafka": "^6.0",
@@ -13,11 +13,10 @@
         "brick/money": "^0.5.3",
         "doctrine/dbal": "^3.1",
         "elasticsearch/elasticsearch": "^7.0",
-        "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "itsgoingd/clockwork": "^5.0",
-        "laravel/framework": "^8.12",
+        "laravel/framework": "^9.0",
         "laravel/octane": "^1.0",
         "laravel/passport": "^10.1",
         "laravel/tinker": "^2.5",
@@ -35,11 +34,11 @@
 
     },
     "require-dev": {
-        "facade/ignition": "^2.5",
+        "spatie/laravel-ignition": "^1.0",
         "fakerphp/faker": "^1.9.1",
         "laravel/sail": "^1.0.1",
         "mockery/mockery": "^1.4.2",
-        "nunomaduro/collision": "^5.0",
+        "nunomaduro/collision": "^6.1",
         "phpunit/phpunit": "^9.3.3"
     },
     "autoload": {

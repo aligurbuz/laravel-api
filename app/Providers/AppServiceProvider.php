@@ -82,7 +82,7 @@ class AppServiceProvider extends ServiceProvider
      */
     private function checkPaginationValue(): void
     {
-        $page = request()->query->get('page', 1);
+        $page = request()->query('page', 1);
 
         if (!is_numeric($page)) {
             Exception::customException(trans('exception.page'));

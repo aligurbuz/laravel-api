@@ -119,7 +119,7 @@ class EloquentRepository
      */
     private function paginationHandler(): int
     {
-        $limit = request()->query->get('limit', $this->pagination);
+        $limit = request()->query('limit', $this->pagination);
 
         if (!is_numeric($limit)) {
             Exception::customException(trans('exception.limitException'));
@@ -997,7 +997,7 @@ class EloquentRepository
      */
     public function setAutoEagerLoadings(): void
     {
-        $with = request()->query->get('with', []);
+        $with = request()->query('with', []);
 
         foreach ($with as $relation => $data){
             if(in_array($relation,$this->getDeniedEagerLoadings(),true)){

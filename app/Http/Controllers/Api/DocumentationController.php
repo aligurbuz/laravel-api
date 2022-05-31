@@ -27,10 +27,10 @@ class DocumentationController extends Controller
         return view('api.index', [
             'postman' => $collection = Postman::getCollectionAccordingToIgnore(),
             'headers' => $headers,
-            'action' => $this->getActionIdFromCollection(request()->query->get('action'), $collection),
+            'action' => $this->getActionIdFromCollection(request()->query('action'), $collection),
             'arrayRules' => config('documentation.arrayRules'),
             'descriptions' => config('documentation.definitions'),
-            'definition' => request()->query->get('definition')
+            'definition' => request()->query('definition')
         ]);
     }
 

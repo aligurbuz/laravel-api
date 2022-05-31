@@ -33,7 +33,7 @@ trait GroupByProcess
      */
     public function groupByProcessHandler(Builder $builder): object
     {
-        $request = request()->query->get('groupBy', []);
+        $request = request()->query('groupBy', []);
 
         if (count($request) && !isset($request['field'])) {
             return Exception::customException(trans('exception.groupByDefaultException'));

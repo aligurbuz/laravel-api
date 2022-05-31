@@ -103,7 +103,7 @@ class Client extends ClientManager
      */
     private function clientActionDataHandler(): array
     {
-        $actionClientData = request()->query->get('client_action');
+        $actionClientData = request()->query('client_action');
         $clientActionMethodName = $actionClientData . 'Action';
 
         if (!is_null($actionClientData)) {
