@@ -35,11 +35,11 @@ class Handler extends ExceptionHandler
             $this->notifyForInternalServer($e);
         }
 
-        return Response::error($e->getMessage(), (int)$e->getCode(), $e);
+        return Response::error($e->getMessage(), $e->getCode(), $e);
     }
 
     /**
-     * checks if the notify condition is valid
+     * checks if to notify condition is valid
      *
      * @param Throwable $e
      * @return bool
