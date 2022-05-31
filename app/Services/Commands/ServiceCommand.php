@@ -45,7 +45,8 @@ class ServiceCommand extends Command
         Artisan::call('create:crud', [
             'controller' => $serviceName,
             'dir' => $serviceDirectoryName,
-            'model' => $modelName
+            'model' => $modelName,
+            'routeFile' => $serviceDirectoryName
         ]);
 
         Artisan::call('update:relation');
