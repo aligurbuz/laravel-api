@@ -150,7 +150,7 @@ trait CacheRepository
      */
     private function checkCacheStatus(): bool
     {
-        return (!property_exists($this,'setCache')) ? config('repository.repositoryCache') : $this->setCache;
+        return (!property_exists($this, 'setCache')) ? config('repository.repositoryCache') : $this->setCache;
     }
 
     /**

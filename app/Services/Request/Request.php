@@ -44,11 +44,11 @@ class Request extends RequestSupport
      * @param string|null $url
      * @return self
      */
-    public function post(array $data = [],?string $url = null): self
+    public function post(array $data = [], ?string $url = null): self
     {
         $url = $this->getFullUrl($url);
 
-        $this->result = $this->getHttp()->{__FUNCTION__}($url,$data);
+        $this->result = $this->getHttp()->{__FUNCTION__}($url, $data);
 
         return $this;
     }
@@ -60,11 +60,11 @@ class Request extends RequestSupport
      * @param string|null $url
      * @return self
      */
-    public function put(array $data = [],?string $url = null): self
+    public function put(array $data = [], ?string $url = null): self
     {
         $url = $this->getFullUrl($url);
 
-        $this->result = $this->getHttp()->{__FUNCTION__}($url,$data);
+        $this->result = $this->getHttp()->{__FUNCTION__}($url, $data);
 
         return $this;
     }
@@ -76,11 +76,11 @@ class Request extends RequestSupport
      * @param string|null $url
      * @return self
      */
-    public function delete(array $data = [],?string $url = null): self
+    public function delete(array $data = [], ?string $url = null): self
     {
         $url = $this->getFullUrl($url);
 
-        $this->result = $this->getHttp()->{__FUNCTION__}($url,$data);
+        $this->result = $this->getHttp()->{__FUNCTION__}($url, $data);
 
         return $this;
     }

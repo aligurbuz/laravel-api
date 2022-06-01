@@ -14,11 +14,11 @@ trait ClientAction
     public function withUserRoleAction(): array
     {
         return [
-          'with' => [
-              'role' => [
-                  'select' => 'role_name'
-              ]
-          ]
+            'with' => [
+                'role' => [
+                    'select' => 'role_name'
+                ]
+            ]
         ];
     }
 }

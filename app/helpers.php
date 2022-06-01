@@ -56,14 +56,13 @@ if (!function_exists('assignQueryParameters')) {
      * @param bool $recursive
      * @return void
      */
-    function assignQueryParameters(array $data = [],bool $recursive = true): void
+    function assignQueryParameters(array $data = [], bool $recursive = true): void
     {
         if (request()->method() == 'GET') {
             $request = request()->query->all();
-            if($recursive){
+            if ($recursive) {
                 $clientWithAutoKeys = array_replace_recursive($request, $data);
-            }
-            else{
+            } else {
                 $clientWithAutoKeys = array_replace($request, $data);
             }
 
@@ -301,7 +300,7 @@ if (!function_exists('isPost')) {
      */
     function isPost(): bool
     {
-        return request()->method()==='POST';
+        return request()->method() === 'POST';
     }
 }
 
@@ -313,7 +312,7 @@ if (!function_exists('isGet')) {
      */
     function isGet(): bool
     {
-        return request()->method()==='GET';
+        return request()->method() === 'GET';
     }
 }
 
@@ -325,7 +324,7 @@ if (!function_exists('isPut')) {
      */
     function isPut(): bool
     {
-        return request()->method()==='PUT';
+        return request()->method() === 'PUT';
     }
 }
 
@@ -429,7 +428,7 @@ if (!function_exists('findRepositoryFromCr')) {
      */
     function findRepositoryFromCr(string $cr): ?string
     {
-        $crMapsContent = File::get(database_path('columns').''.DIRECTORY_SEPARATOR.'crMaps.json');
+        $crMapsContent = File::get(database_path('columns') . '' . DIRECTORY_SEPARATOR . 'crMaps.json');
         $crMapsData = json_decode($crMapsContent, true);
 
         return $crMapsData[$cr]['model'] ?? null;

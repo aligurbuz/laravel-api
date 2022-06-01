@@ -25,7 +25,7 @@ trait GeneralPromoterTrait
      */
     public function setHidden(): array
     {
-        if(!ApiKey::isAdmin()){
+        if (!ApiKey::isAdmin()) {
             return [
                 'created_by',
                 'updated_by',
@@ -42,9 +42,9 @@ trait GeneralPromoterTrait
      *
      * @return void
      */
-    private function setDeniedEagerLoadingsAccordingToApiKey() : void
+    private function setDeniedEagerLoadingsAccordingToApiKey(): void
     {
-        if(ApiKey::isWeb()){
+        if (ApiKey::isWeb()) {
             $this->setDeniedEagerLoadings('role');
             $this->setDeniedEagerLoadings('user');
         }

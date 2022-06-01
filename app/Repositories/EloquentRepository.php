@@ -999,8 +999,8 @@ class EloquentRepository
     {
         $with = request()->query('with', []);
 
-        foreach ($with as $relation => $data){
-            if(in_array($relation,$this->getDeniedEagerLoadings(),true)){
+        foreach ($with as $relation => $data) {
+            if (in_array($relation, $this->getDeniedEagerLoadings(), true)) {
                 Exception::customException(trans('exception.deniedEagerLoadings', ['key' => $relation]));
             }
         }
