@@ -86,6 +86,7 @@ trait CreateRepository
             foreach ($clientData as $clientDataKey => $value) {
 
                 if (method_exists($this, 'eventFireBeforeCreate')) {
+                    AppContainer::setWithTerminating('eventFire',true);
                     $this->eventFireBeforeCreate($value);
                 }
 
@@ -99,6 +100,7 @@ trait CreateRepository
                 }
 
                 if (method_exists($this, 'eventFireAfterCreate')) {
+                    AppContainer::setWithTerminating('eventFire',true);
                     $this->eventFireAfterCreate($arrayResults, $value);
                 }
 
@@ -108,7 +110,13 @@ trait CreateRepository
 
             return $list;
         } catch (Exception $exception) {
-            return $this->sqlException($exception);
+            if(!AppContainer::has('eventFire')){
+                return $this->sqlException($exception);
+            }
+            else{
+                $className = lcfirst(class_basename($exception));
+                return ExceptionFacade::$className($exception->getMessage());
+            }
         }
     }
 }
