@@ -70,9 +70,9 @@ trait ClientSupport
     /**
      * is_deleted input value for client
      *
-     * @return bool|null
+     * @return bool|string
      */
-    protected function isDeleted(): ?bool
+    protected function isDeleted(): string|bool
     {
         if (isPost()) {
             Exception::customException('postRestricted', 'is_deleted');
