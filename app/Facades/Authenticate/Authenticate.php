@@ -2,7 +2,9 @@
 
 namespace App\Facades\Authenticate;
 
+use App\Exceptions\Exception;
 use App\Facades\FacadeManager;
+use App\Repositories\Repository;
 
 class Authenticate extends FacadeManager
 {
@@ -69,5 +71,22 @@ class Authenticate extends FacadeManager
     public static function email(): ?string
     {
         return (new self)->data->email ?? null;
+    }
+
+    /**
+     * checks if the authenticated user is superAdmin
+     *
+     * @param bool $exception
+     * @return bool
+     */
+    public static function isSuper(bool $exception = false): bool
+    {
+        $superUser = Repository::superAdmin()->exists('user_code', static::code());
+
+        if ($exception && !$superUser) {
+            Exception::permissionException(['key' => endpoint()]);
+        }
+
+        return $superUser;
     }
 }
