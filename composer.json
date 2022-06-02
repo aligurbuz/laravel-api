@@ -19,6 +19,7 @@
         "laravel/framework": "^9.0",
         "laravel/octane": "^1.0",
         "laravel/passport": "^10.1",
+        "laravel/sanctum": "^2.15",
         "laravel/tinker": "^2.5",
         "maatwebsite/excel": "^3.1",
         "mateusjunges/laravel-kafka": "^1.7",
@@ -31,7 +32,6 @@
         "spatie/array-to-xml": "^3.0",
         "symfony/yaml": "^6.0",
         "twilio/sdk": "^6.35"
-
     },
     "require-dev": {
         "spatie/laravel-ignition": "^1.0",
