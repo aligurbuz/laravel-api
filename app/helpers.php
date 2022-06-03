@@ -368,6 +368,26 @@ if (!function_exists('authGuard')) {
     }
 }
 
+if (!function_exists('getQueryFilter')) {
+
+    /**
+     * get query filter values for application
+     * @param string|null $key
+     * @return mixed
+     */
+    function getQueryFilter(?string $key = null): mixed
+    {
+        $queryFilter = request()->query('filter',[]);
+
+        if(is_null($key)){
+            return $queryFilter;
+        }
+
+        return $queryFilter[$key] ?? null;
+
+    }
+}
+
 if (!function_exists('isAuthenticate')) {
 
     /**
