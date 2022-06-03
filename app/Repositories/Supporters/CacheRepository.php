@@ -71,7 +71,13 @@ trait CacheRepository
      */
     public function generateCacheKey(?string $model = null): string
     {
-        return $this->specificCacheKey(($model ?? $this->getModelName()));
+        $getModel = ($model ?? $this->getModelName());
+
+        if(method_exists($this,'getCacheKey')){
+            return $this->getCacheKey($getModel);
+        }
+
+        return $this->specificCacheKey($getModel);
     }
 
     /**
