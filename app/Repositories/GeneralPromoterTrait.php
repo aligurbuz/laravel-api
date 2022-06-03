@@ -69,6 +69,6 @@ trait GeneralPromoterTrait
      */
     public function getCacheKey(string $model): string
     {
-        return $model . '_' . ApiKey::who() . '_' . endpoint();
+        return $model . '_' . ApiKey::who();
     }
 }
