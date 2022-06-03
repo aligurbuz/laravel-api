@@ -13,7 +13,7 @@ class EnvironmentCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'environment {name}';
+    protected $signature = 'environment {name} {databaseName?}';
 
     /**
      * The console command description.
@@ -41,6 +41,7 @@ class EnvironmentCommand extends Command
     {
         $envFile = File::get('.env');
         $name = $this->argument('name');
+        $databaseName = $this->argument('databaseName');
 
         $dockerCompose = File::get('docker-compose.yml');
         $dockerComposeList = Yaml::parse($dockerCompose);
@@ -48,6 +49,10 @@ class EnvironmentCommand extends Command
 
         $change = str_replace('APP_ENV=local', 'APP_ENV=' . $name . '', $envFile);
         $change = str_replace('REPOSITORY_CACHE = false', 'REPOSITORY_CACHE=true', $change);
+
+        if(!is_null($databaseName)){
+            $change = str_replace('DB_DATABASE=api', 'DB_DATABASE='.$databaseName, $change);
+        }
 
         if ($name !== 'local' && isset($database['MYSQL_ROOT_PASSWORD'])) {
             $change = str_replace('DB_PASSWORD=root', 'DB_PASSWORD=' . $database['MYSQL_ROOT_PASSWORD'], $change);
