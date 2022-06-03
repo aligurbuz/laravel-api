@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Client;
 
+use App\Facades\Authenticate\ApiKey;
 use App\Services\Db;
 
 /**
@@ -19,6 +20,7 @@ trait ClientSetRuleTrait
      */
     public function setRuleProcess(): void
     {
+        $this->setRanges();
         $this->setBooleanValues();
         $this->setEnumValues();
         $this->setPasswordRule();
@@ -65,6 +67,25 @@ trait ClientSetRuleTrait
 
         foreach ($booleanValues as $booleanValue) {
             $this->setAutoRule($booleanValue, ['boolean']);
+        }
+    }
+
+    /**
+     * set range for web client
+     *
+     * @return void
+     */
+    private function setRanges()
+    {
+        if (!ApiKey::isAdmin()) {
+            $range = request()->query('range');
+            $rangeList = explode(',', $range);
+            if (!in_array('active', $rangeList, true)) {
+                $range = $range . ',active';
+
+                request()->query->remove('range');
+                request()->query->add(['range' => $range]);
+            }
         }
     }
 }
