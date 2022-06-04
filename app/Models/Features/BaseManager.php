@@ -8,7 +8,6 @@ use App\Constants;
 use App\Repositories\Repository;
 use App\Services\AppContainer;
 use App\Services\Db;
-use App\Services\Response\Response;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Str;
 
@@ -64,7 +63,6 @@ trait BaseManager
             }
         }
 
-        $this->assignAppends();
         $this->localizationWithQuery['localization']['localColumn'] = getTableCode($this->getModelName());
 
         if (AppContainer::has('clientRepositoryRequest') && AppContainer::has('setClientRepositoryHidden')) {
@@ -267,32 +265,6 @@ trait BaseManager
     public function localization(): HasOne
     {
         return $this->getRepository()->withLocalization($this);
-    }
-
-    /**
-     * set appends according to client
-     *
-     * @return void
-     */
-    public function assignAppends()
-    {
-        $list = [];
-        $modelAppends = array_merge($this->autoModelAppends, ($this->modelAppends ?? []));
-        Response::formatterSupplement(['appends' => $modelAppends]);
-
-        $clientAppends = (request()->query->all())['append'] ?? null;
-
-        if (!is_null($clientAppends)) {
-            $appendsList = explode(',', $clientAppends);
-
-            foreach ($appendsList as $item) {
-                if (isset($modelAppends[$item])) {
-                    $list[] = $item;
-                }
-            }
-        }
-
-        $this->setAppends($list);
     }
 
     /**
