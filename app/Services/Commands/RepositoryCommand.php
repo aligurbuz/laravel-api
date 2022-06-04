@@ -51,7 +51,14 @@ class RepositoryCommand extends Command
         $repositoryDirectoryName = $this->argument('dir');
         $argumentName = (isset($arguments['dir'])) ? $this->argument('dir') : $this->argument('repository');
         $className = ucfirst($repositoryName) . 'Repository';
-        $contractClassName = ucfirst($repositoryDirectoryName).''.ucfirst($repositoryName) . 'RepositoryContract';
+
+        if($repositoryName==$repositoryDirectoryName){
+            $contractClassName = ucfirst($repositoryName) . 'RepositoryContract';
+        }
+        else{
+            $contractClassName = ucfirst($repositoryDirectoryName).''.ucfirst($repositoryName) . 'RepositoryContract';
+        }
+
 
         $modelNamespace = 'App\Models\\' . ucfirst($modelName);
         $modelColumns = Db::columns((new $modelNamespace)->getTable());
