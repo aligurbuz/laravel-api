@@ -28,4 +28,5 @@ class Constants
     public const responseFormatterSupplement = 'responseFormatterSupplement';
     public const exceptionNotify = 'exceptionNotify';
     public const importsNamespace = 'App\Imports';
+    public const exceptionNamespace = 'Exceptions\Custom';
 }

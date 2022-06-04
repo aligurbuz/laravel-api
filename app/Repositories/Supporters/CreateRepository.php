@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Repositories\Supporters;
 
+use App\Constants;
 use App\Exceptions\Exception as ExceptionFacade;
 use App\Services\AppContainer;
 use Exception;
@@ -86,7 +87,6 @@ trait CreateRepository
             foreach ($clientData as $clientDataKey => $value) {
 
                 if (method_exists($this, 'eventFireBeforeCreate')) {
-                    AppContainer::setWithTerminating('eventFire',true);
                     $this->eventFireBeforeCreate($value);
                 }
 
@@ -100,7 +100,6 @@ trait CreateRepository
                 }
 
                 if (method_exists($this, 'eventFireAfterCreate')) {
-                    AppContainer::setWithTerminating('eventFire',true);
                     $this->eventFireAfterCreate($arrayResults, $value);
                 }
 
@@ -110,13 +109,14 @@ trait CreateRepository
 
             return $list;
         } catch (Exception $exception) {
-            if(!AppContainer::has('eventFire')){
-                return $this->sqlException($exception);
-            }
-            else{
-                $className = lcfirst(class_basename($exception));
+            $className = lcfirst(class_basename($exception));
+            $classNamespace = Constants::exceptionNamespace . '\\' . ucfirst($className);
+
+            if (class_exists($classNamespace)) {
                 return ExceptionFacade::$className($exception->getMessage());
             }
+
+            return $this->sqlException($exception);
         }
     }
 }
