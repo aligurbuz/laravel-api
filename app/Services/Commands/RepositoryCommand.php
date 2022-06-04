@@ -48,9 +48,10 @@ class RepositoryCommand extends Command
         $arguments = $this->arguments();
         $modelName = $arguments['model'];
         $repositoryName = $this->argument('repository');
+        $repositoryDirectoryName = $this->argument('dir');
         $argumentName = (isset($arguments['dir'])) ? $this->argument('dir') : $this->argument('repository');
         $className = ucfirst($repositoryName) . 'Repository';
-        $contractClassName = ucfirst($repositoryName) . 'RepositoryContract';
+        $contractClassName = ucfirst($repositoryDirectoryName).''.ucfirst($repositoryName) . 'RepositoryContract';
 
         $modelNamespace = 'App\Models\\' . ucfirst($modelName);
         $modelColumns = Db::columns((new $modelNamespace)->getTable());
