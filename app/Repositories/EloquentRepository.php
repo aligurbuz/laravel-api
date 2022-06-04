@@ -1005,9 +1005,21 @@ class EloquentRepository
             request()->query->set('with', array_merge($with, ['localization' => 'values']));
         }
 
+        $withList = [];
+        $withDataList = [];
+
         foreach ($this->getAutoEagerLoadings() as $loading) {
-            if (!isset($with[$loading])) {
-                request()->query->set('with', array_merge($with, [$loading => '*']));
+            $withDotSplit = explode('.',$loading);
+            foreach ($withDotSplit as $dotKey => $withData){
+                if($dotKey==0){
+                    $withDataList[] = $withData;
+                    request()->query->set('with', array_merge($with, $withList = [$withData => ['select' => '*']]));
+                }
+                else{
+                    request()->query->set('with', array_merge_recursive($withList, [current($withDataList) => ['with' => [
+                        $withData => ['select' => '*']
+                    ]]]));
+                }
             }
         }
     }
