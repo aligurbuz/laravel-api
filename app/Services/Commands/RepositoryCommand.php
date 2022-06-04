@@ -53,11 +53,13 @@ class RepositoryCommand extends Command
         $className = ucfirst($repositoryName) . 'Repository';
 
         if($repositoryName==$repositoryDirectoryName){
-            $contractClassName = ucfirst($repositoryName) . 'RepositoryContract';
+            $repositoryClassName = ucfirst($repositoryName);
         }
         else{
-            $contractClassName = ucfirst($repositoryDirectoryName).''.ucfirst($repositoryName) . 'RepositoryContract';
+            $repositoryClassName = ucfirst($repositoryDirectoryName).''.ucfirst($repositoryName);
         }
+
+        $contractClassName = $repositoryClassName.'RepositoryContract';
 
 
         $modelNamespace = 'App\Models\\' . ucfirst($modelName);
@@ -418,9 +420,9 @@ class RepositoryCommand extends Command
             $repositoryProviderContent = File::get($repositoryProvider);
             $putNewContract = str_replace('use Illuminate\Support\ServiceProvider;', 'use Illuminate\Support\ServiceProvider;
 use ' . $contractClassRepositoryName . ';
-use ' . $namespaceRepository . ';', $repositoryProviderContent);
+use ' . $namespaceRepository . ' as '.ucfirst($repositoryClassName).'Repository;', $repositoryProviderContent);
 
-            $putNewContract = str_replace('//newBind', '$this->app->bind(' . ucfirst($contractClassName) . '::class,' . ucfirst($className) . '::class);
+            $putNewContract = str_replace('//newBind', '$this->app->bind(' . ucfirst($contractClassName) . '::class,' . ucfirst($repositoryClassName) . 'Repository::class);
         //newBind', $putNewContract);
 
             File::put($repositoryProvider, $putNewContract);
