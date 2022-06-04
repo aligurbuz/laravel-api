@@ -45,7 +45,7 @@ class ControllerCommand extends Command
         $dirVariable = $this->argument('dir') ?? $controllerVariable;
 
         if($controllerVariable==$dirVariable){
-            $contractName = $controllerVariable;
+            $contractName = ucfirst($controllerVariable);
         }
         else{
             $contractName = ucfirst($dirVariable).''.ucfirst($controllerVariable);
