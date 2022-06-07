@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <title>Api Documentation</title>
     <meta name="description" content="Filesystem abstraction library for PHP.">
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
     <script type="text/javascript" async="" src="{{publicPath()}}/api/apiDoc_files/analytics.js"></script><script async="" src="{{publicPath()}}/api/apiDoc_files/js"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -60,8 +61,8 @@ Api Documentation
                 </ul>
 
                 <div style="position:absolute; margin-top: -20px;">
-                <h2 class="tracking-wide mb-0 mt-0 text-xs leading-loose tracking-wide text-indigo-light uppercase">
-                    <a href="doc">Get Started</a></h2>
+                    <h2 class="tracking-wide mb-0 mt-0 text-xs leading-loose tracking-wide text-indigo-light uppercase">
+                        <a href="doc">Get Started</a></h2>
 
                     <h2 class="tracking-wide mb-0 mt-0 text-xs leading-loose tracking-wide text-indigo-light uppercase">
                         <a href="doc?definition=queryParams">Query Parameters</a></h2>
@@ -85,10 +86,10 @@ Api Documentation
 
                     @foreach(($postman['item'] ?? []) as $key => $value )
                         @if($value['name']!=='Global')
-                        <h2 class="tracking-wide mb-0 mt-0 text-xs leading-loose tracking-wide text-indigo-light uppercase">
-                            <a href="doc?action={{$value['name']}}">{{$value['name']}}</a></h2>
+                            <h2 class="tracking-wide mb-0 mt-0 text-xs leading-loose tracking-wide text-indigo-light uppercase">
+                                <a href="doc?action={{$value['name']}}">{{$value['name']}}</a></h2>
                         @endif
-                        <!--<ul class="list-reset mb-6 block pr-6">
+                    <!--<ul class="list-reset mb-6 block pr-6">
                             <li class="block">
                                 <a class="leading-loose block w-full rounded text-md text-indigo-darkest" href="https://flysystem.thephpleague.com/v2/docs/what-is-new/">New In V2</a>
                             </li>
@@ -106,11 +107,11 @@ Api Documentation
                 @if(!is_null(request()->query->get('list')))
 
                     @php
-                    $whiteList = ['dataRelations','dataFiltering','rangeUsing','withRangeUsing','dataGrouping','hasAndDoesntHave','dataPagination','dataSelect','nestedDataRelations','whatDataRelations'];
-                    $list = request()->query->get('list');
-                    if(!in_array($list,$whiteList)){
-                        exit();
-                    }
+                        $whiteList = ['dataRelations','dataFiltering','rangeUsing','withRangeUsing','dataGrouping','hasAndDoesntHave','dataPagination','dataSelect','nestedDataRelations','whatDataRelations'];
+                        $list = request()->query->get('list');
+                        if(!in_array($list,$whiteList)){
+                            exit();
+                        }
 
                     @endphp
                     <h1 class="mb-4">{{ucfirst(str_replace('_',' ',\Illuminate\Support\Str::snake($list)))}} for query parameters.</h1>
@@ -192,7 +193,7 @@ wget --no-check-certificate --quiet \
                         </p>
 
                         <li>baseUrl/products?range=desc</li>
-                    <br>
+                        <br>
 
                         <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Api Response</span>
 wget --no-check-certificate --quiet \
@@ -206,7 +207,7 @@ wget --no-check-certificate --quiet \
 </code></pre></div></div>
 
                         <p>For example (range) specified as (desc). It will sort your dataset from the last record to the oldest record.
-                        Since the (range) values that are already available to you are in the form of (key) and (value),
+                            Since the (range) values that are already available to you are in the form of (key) and (value),
                             the (value) value gives a brief information about that range.
                         </p>
 
@@ -252,8 +253,8 @@ wget --no-check-certificate --quiet \
    'baseUrl/products?has=items
 </code></pre></div></div>
 
-                    <p>Or you may want to check the existence of more than one relationship.
-                        In this case, you can write more relationships, provided that there are commas between them.</p>
+                        <p>Or you may want to check the existence of more than one relationship.
+                            In this case, you can write more relationships, provided that there are commas between them.</p>
 
                         <li>baseUrl/products?has=items,colors</li>
 
@@ -268,10 +269,10 @@ wget --no-check-certificate --quiet \
    'baseUrl/products?has=items,colors
 </code></pre></div></div>
 
-                    <b>HasFilter Using:</b>
+                        <b>HasFilter Using:</b>
 
-                    <p>In some cases, you may want to do a separate filtering within a (has) control. In such a case, using the (hasFilter) key, you can use the (has) query as follows.
-                        You can write your query.</p>
+                        <p>In some cases, you may want to do a separate filtering within a (has) control. In such a case, using the (hasFilter) key, you can use the (has) query as follows.
+                            You can write your query.</p>
 
                         <li>baseUrl/products?hasFilter[items][filterableColumn][=]=value</li>
 
@@ -286,9 +287,9 @@ wget --no-check-certificate --quiet \
    'baseUrl/products?hasFilter[items][filterableColumn][=]=value
 </code></pre></div></div>
 
-                    <p>Or if you are going to check for a single condition. You can send a query like the one below in a shorter way.
-                        <b>What you need to pay attention to in the following query; (:) sign is used after the relation name and (filterableColumn)
-                            The value must be followed by the (-) sign, then the (oparetor) and then the (-) sign.</b> </p>
+                        <p>Or if you are going to check for a single condition. You can send a query like the one below in a shorter way.
+                            <b>What you need to pay attention to in the following query; (:) sign is used after the relation name and (filterableColumn)
+                                The value must be followed by the (-) sign, then the (oparetor) and then the (-) sign.</b> </p>
 
                         <li>baseUrl/products?has=items:filterableColumn-=-value</li>
 
@@ -303,7 +304,7 @@ wget --no-check-certificate --quiet \
    'baseUrl/products?has=items:filterableColumn-=-value
 </code></pre></div></div>
 
-                    <b>DoesntHave Using:</b>
+                        <b>DoesntHave Using:</b>
                         <p>In the opposite case; You may want to list products without (item) data.
                             In this case, it will be sufficient to use (doesntHave) instead of (has).
                         </p>
@@ -338,10 +339,10 @@ wget --no-check-certificate --quiet \
    'baseUrl/products?filter[product_code]=productCode
 </code></pre></div></div>
 
-                    <p>You can use comma separated values for more than one productCode as per the example above.</p>
+                        <p>You can use comma separated values for more than one productCode as per the example above.</p>
 
 
-                    <p><li>baseUrl/products?filter[product_code]=productCode1,productCode2</li></p>
+                        <p><li>baseUrl/products?filter[product_code]=productCode1,productCode2</li></p>
 
 
                         <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Api Request</span>
@@ -355,7 +356,7 @@ wget --no-check-certificate --quiet \
    'baseUrl/products?filter[product_code]=productCode1,productCode2
 </code></pre></div></div>
 
-                    <p>Specifying more than one filter means searching by more than one key value.</p>
+                        <p>Specifying more than one filter means searching by more than one key value.</p>
 
 
                         <p><li>baseUrl/products?filter[product_code]=productCode&filter[status]=1</li></p>
@@ -372,7 +373,7 @@ wget --no-check-certificate --quiet \
    'baseUrl/products?filter[product_code]=productCode&filter[status]=1
 </code></pre></div></div>
 
-                    <b>Note:</b> Not every field can be filtered. Therefore, the fields allowed by the developer will be filtered. In case of unfiltered, you will get 400 response error.
+                        <b>Note:</b> Not every field can be filtered. Therefore, the fields allowed by the developer will be filtered. In case of unfiltered, you will get 400 response error.
 
                     @elseif($list=='dataSelect')
 
@@ -406,9 +407,9 @@ wget --no-check-certificate --quiet \
    'baseUrl/products?select=*
 </code></pre></div></div>
 
-                       <p>The select rule is the same for all relationships (using (with)).</p>
+                        <p>The select rule is the same for all relationships (using (with)).</p>
 
-                    <p><b>Note:</b> It will only apply to HTTP GET requests.</p>
+                        <p><b>Note:</b> It will only apply to HTTP GET requests.</p>
 
 
                     @elseif($list=='whatDataRelations')
@@ -434,7 +435,7 @@ wget --no-check-certificate --quiet \
                             The (hasMany) expression defines whether the relationship is multiple or single.
                         </p>
 
-                    <h2>Learn about how relationships are used.</h2>
+                        <h2>Learn about how relationships are used.</h2>
 
                         <ul>
                             <li><a href="doc?definition=queryParams&list=dataRelations">Data Relations</a></li>
@@ -442,7 +443,7 @@ wget --no-check-certificate --quiet \
                             <li><a href="doc?definition=queryParams&list=hasAndDoesntHave">Data Relations With (Has) And (DoesntHave)</a></li>
                         </ul>
 
-                @elseif($list=='nestedDataRelations')
+                    @elseif($list=='nestedDataRelations')
                         <p>Relationships contain extra data to be included in the response data.Relationships are managed with the (with) parameter.
                             You will understand relationship management by reading the scenario below.
                         </p>
@@ -531,7 +532,7 @@ wget --no-check-certificate --quiet \
 
 
                         Here, asterisk indicates filtering of desired data keys in relation data.If the client wants only the keys she wants for this role data, she can write the keys by separating them with commas instead of *.
-                @elseif($list=='dataRelations')
+                    @elseif($list=='dataRelations')
                         <p>relationships contain extra data to be included in the response data.Relationships are managed with the (with) parameter.
                             You will understand relationship management by reading the scenario below.
                         </p>
@@ -567,8 +568,8 @@ wget --no-check-certificate --quiet \
                         </ul>
 
                         <h2 id="about-flysystem">Definition:</h2>
-                    <p>Data management can be provided with url parameters in HTTP GET requests.It is managed as an array with data relations (with).
-                        Therefore, you can easily use more than one relationship.</p>
+                        <p>Data management can be provided with url parameters in HTTP GET requests.It is managed as an array with data relations (with).
+                            Therefore, you can easily use more than one relationship.</p>
 
                         <h2 id="about-flysystem">Response:</h2>
                         <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">
@@ -614,7 +615,7 @@ wget --no-check-certificate --quiet \
 
                         Here, asterisk indicates filtering of desired data keys in relation data.If the client wants only the keys she wants for this role data, she can write the keys by separating them with commas instead of *.
 
-                    <br><br>
+                        <br><br>
                         <li>baseUrl/users?with[role][select]=role_name</li>
                         <li>baseUrl/users?with[role][select]=role_name,status</li>
 
@@ -628,78 +629,91 @@ wget --no-check-certificate --quiet \
 
 
                 @else
-                <h1 class="mb-4">Query Parameters For Http Get Method.</h1>
-                <h2 id="about-flysystem">Introduce</h2>
-            <p>In HTTP GET requests sent by the client, the response data sent by the API has a flexible structure.
-                This flexible structure will shape the data requested by the client with parameters such as graphQL requests.
-                By reading the instructions shown on the following pages, you will be able to easily get the data you want from the endpoints.</p>
+                    <h1 class="mb-4">Query Parameters For Http Get Method.</h1>
+                    <h2 id="about-flysystem">Introduce</h2>
+                    <p>In HTTP GET requests sent by the client, the response data sent by the API has a flexible structure.
+                        This flexible structure will shape the data requested by the client with parameters such as graphQL requests.
+                        By reading the instructions shown on the following pages, you will be able to easily get the data you want from the endpoints.</p>
 
-                <h2 id="about-flysystem">Pages</h2>
-                <ul>
-                    <li><a href="doc?definition=queryParams&list=dataSelect">Data Selecting</a></li>
-                    <li><a href="doc?definition=queryParams&list=whatDataRelations">What is Data Relations and How to use</a></li>
-                    <li><a href="doc?definition=queryParams&list=dataFiltering">Data Filtering</a></li>
-                    <li><a href="doc?definition=queryParams&list=rangeUsing">Range Using</a></li>
-                    <li><a href="doc?definition=queryParams&list=withRangeUsing">withRange Using</a></li>
-                    <li><a href="doc?definition=queryParams&list=dataPagination">Data Pagination</a></li>
-                </ul>
+                    <h2 id="about-flysystem">Pages</h2>
+                    <ul>
+                        <li><a href="doc?definition=queryParams&list=dataSelect">Data Selecting</a></li>
+                        <li><a href="doc?definition=queryParams&list=whatDataRelations">What is Data Relations and How to use</a></li>
+                        <li><a href="doc?definition=queryParams&list=dataFiltering">Data Filtering</a></li>
+                        <li><a href="doc?definition=queryParams&list=rangeUsing">Range Using</a></li>
+                        <li><a href="doc?definition=queryParams&list=withRangeUsing">withRange Using</a></li>
+                        <li><a href="doc?definition=queryParams&list=dataPagination">Data Pagination</a></li>
+                    </ul>
                 @endif
-        @elseif(!is_null($action))
+                @elseif(!is_null($action))
 
-            <article id="article" role="main" class="max-w-full md:block md:w-10/14">
+                    <article id="article" role="main" class="max-w-full md:block md:w-10/14">
 
-                @if(isset($postman['item'][$action]))
+                        @if(count($postman['item'][$action]['item'])>1)
+                            <select class="endpointselects" name="endpoints" style="border: 1px solid #ccc; height: 40px;">
+                                @foreach($postman['item'][$action]['item'] as $selectItem)
+                                    <option value="layer_{{md5($selectItem['name'])}}">{{$selectItem['name']}}</option>
 
-                    @foreach($postman['item'][$action]['item'] as $key => $value)
+                                @endforeach
+                            </select>
+                            <br><br>
 
-                        @if($value['name'] =='Global')
-                            @php
-                                $endpoint = 'global';
-                                $configDocumentation = config('documentation');
-                            @endphp
+                        @endif
 
-                            <h1 id="about-flysystem">Global Endpoint</h1>
-                            <p>Web pages may want to request multiple API endpoints to receive their content.
-                                In this case, API resources are subject to excessive consumption.For HTTP GET requests to avoid this situation
-                                We have a global endpoint.</p>
+                        @if(isset($postman['item'][$action]))
 
-                            <p>
-                            <h3 id="commonly-used-adapters">POST</h3>
-                            <ul>
-                                <li><strong>Test Environment Base Url</strong> : {{apiUrl()}}</li>
-                                @if(isset($configDocumentation['productionLinks'][$endpoint]['all']))
-                                    @if(isset($configDocumentation['productionLinks'][$endpoint][$method]))
-                                        <li><strong>Production Environment Base Url</strong> : {{$configDocumentation['productionLinks'][$endpoint][$method]}}</li>
-                                    @else
-                                        <li><strong>Production Environment Base Url</strong> : {{$configDocumentation['productionLinks'][$endpoint]['all']}}</li>
-                                    @endif
+                            @foreach($postman['item'][$action]['item'] as $key => $value)
 
-                                @else
-                                    <li><strong>Production Environment Base Url</strong> : {{config('app.productBaseUrl')}}</li>
-                                @endif
+                                <div class="endpointers" id="layer_{{md5($value['name'])}}">
 
-                                <li><strong>Url</strong> : baseUrl/global</li>
-                            </ul>
-                            </p>
+                                    @if($value['name'] =='Global')
+                                        @php
+                                            $endpoint = 'global';
+                                            $configDocumentation = config('documentation');
+                                        @endphp
 
-                            <p>
-                            <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Api Request</span>
+                                        <h1 id="about-flysystem">Global Endpoint</h1>
+                                        <p>Web pages may want to request multiple API endpoints to receive their content.
+                                            In this case, API resources are subject to excessive consumption.For HTTP GET requests to avoid this situation
+                                            We have a global endpoint.</p>
+
+                                        <p>
+                                        <h3 id="commonly-used-adapters">POST</h3>
+                                        <ul>
+                                            <li><strong>Test Environment Base Url</strong> : {{apiUrl()}}</li>
+                                            @if(isset($configDocumentation['productionLinks'][$endpoint]['all']))
+                                                @if(isset($configDocumentation['productionLinks'][$endpoint][$method]))
+                                                    <li><strong>Production Environment Base Url</strong> : {{$configDocumentation['productionLinks'][$endpoint][$method]}}</li>
+                                                @else
+                                                    <li><strong>Production Environment Base Url</strong> : {{$configDocumentation['productionLinks'][$endpoint]['all']}}</li>
+                                                @endif
+
+                                            @else
+                                                <li><strong>Production Environment Base Url</strong> : {{config('app.productBaseUrl')}}</li>
+                                            @endif
+
+                                            <li><strong>Url</strong> : baseUrl/global</li>
+                                        </ul>
+                                        </p>
+
+                                        <p>
+                                        <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Api Request</span>
 {
     "currencies" : {},
     "timezones" : {}
 }
 </code></pre></div></div>
-                            </p>
+                                        </p>
 
-                            <p>
-                                For example, when we make a request as above in body data, it will be as if we made a request to currencies and timezones services at once.
-                                You can request as many services as you want.
-                                <b>After the service name,
-                                    you can use everything described in the query parameters and data relations section in the array.</b>
-                            </p>
+                                        <p>
+                                            For example, when we make a request as above in body data, it will be as if we made a request to currencies and timezones services at once.
+                                            You can request as many services as you want.
+                                            <b>After the service name,
+                                                you can use everything described in the query parameters and data relations section in the array.</b>
+                                        </p>
 
-                            <p>
-                            <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Api Request</span>
+                                        <p>
+                                        <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Api Request</span>
 {
     "currencies" : {
         "filter" :  {
@@ -709,69 +723,69 @@ wget --no-check-certificate --quiet \
     "timezones" : {}
 }
 </code></pre></div></div>
-                            </p>
+                                        </p>
 
 
-                        @endif
-                        @if($value['name'] =='Login')
-                            @php
-                                $endpoint = 'login';
-                                $configDocumentation = config('documentation');
-                            @endphp
-                            <h1 id="about-flysystem">Login</h1>
-                            <p>The login service is the service that gives the authorization token value to the client side.
-                                If the post request without sending the token value to the login endpoint results in a successful response of 200,
-                                the system will issue a token to the user.</p>
+                                    @endif
+                                    @if($value['name'] =='Login')
+                                        @php
+                                            $endpoint = 'login';
+                                            $configDocumentation = config('documentation');
+                                        @endphp
+                                        <h1 id="about-flysystem">Login</h1>
+                                        <p>The login service is the service that gives the authorization token value to the client side.
+                                            If the post request without sending the token value to the login endpoint results in a successful response of 200,
+                                            the system will issue a token to the user.</p>
 
-                            <h3 id="commonly-used-adapters">POST</h3>
-                        <ul>
-                            <li><strong>Test Environment Base Url</strong> : {{apiUrl()}}</li>
-                            @if(isset($configDocumentation['productionLinks'][$endpoint]['all']))
-                                @if(isset($configDocumentation['productionLinks'][$endpoint][$method]))
-                                    <li><strong>Production Environment Base Url</strong> : {{$configDocumentation['productionLinks'][$endpoint][$method]}}</li>
-                                @else
-                                    <li><strong>Production Environment Base Url</strong> : {{$configDocumentation['productionLinks'][$endpoint]['all']}}</li>
-                                @endif
+                                        <h3 id="commonly-used-adapters">POST</h3>
+                                        <ul>
+                                            <li><strong>Test Environment Base Url</strong> : {{apiUrl()}}</li>
+                                            @if(isset($configDocumentation['productionLinks'][$endpoint]['all']))
+                                                @if(isset($configDocumentation['productionLinks'][$endpoint][$method]))
+                                                    <li><strong>Production Environment Base Url</strong> : {{$configDocumentation['productionLinks'][$endpoint][$method]}}</li>
+                                                @else
+                                                    <li><strong>Production Environment Base Url</strong> : {{$configDocumentation['productionLinks'][$endpoint]['all']}}</li>
+                                                @endif
 
-                            @else
-                                <li><strong>Production Environment Base Url</strong> : {{config('app.productBaseUrl')}}</li>
-                            @endif
+                                            @else
+                                                <li><strong>Production Environment Base Url</strong> : {{config('app.productBaseUrl')}}</li>
+                                            @endif
 
-                            <li><strong>Url</strong> : baseUrl/login</li>
-                        </ul>
+                                            <li><strong>Url</strong> : baseUrl/login</li>
+                                        </ul>
 
-                            <p>
-                            <table>
-                                <thead>
-                                <tr>
-                                    <th style="width:200px;">Body Parameters</th>
-                                    <th>Type</th>
-                                    <th>Required</th>
-                                    <th>Description</th>
-                                </tr>
-                                </thead>
-                                <tbody>
+                                        <p>
+                                        <table>
+                                            <thead>
+                                            <tr>
+                                                <th style="width:200px;">Body Parameters</th>
+                                                <th>Type</th>
+                                                <th>Required</th>
+                                                <th>Description</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
 
-                                <tr>
-                                    <td style="width:200px;">email</td>
-                                    <td>string</td>
-                                    <td>true</td>
-                                    <td>email address</td>
-                                </tr>
+                                            <tr>
+                                                <td style="width:200px;">email</td>
+                                                <td>string</td>
+                                                <td>true</td>
+                                                <td>email address</td>
+                                            </tr>
 
-                                <tr>
-                                    <td style="width:200px;">password</td>
-                                    <td>string</td>
-                                    <td>true</td>
-                                    <td>user password</td>
-                                </tr>
+                                            <tr>
+                                                <td style="width:200px;">password</td>
+                                                <td>string</td>
+                                                <td>true</td>
+                                                <td>user password</td>
+                                            </tr>
 
-                                </tbody>
-                            </table>
-                            </p>
+                                            </tbody>
+                                        </table>
+                                        </p>
 
-                            <p>
-                            <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Api Request</span>
+                                        <p>
+                                        <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Api Request</span>
 wget --no-check-certificate --quiet \
   --method POST \
   --timeout=0 \
@@ -785,44 +799,44 @@ wget --no-check-certificate --quiet \
 ]' \
    'http://localhost/api/public/api/login'
 </code></pre></div></div>
-                            </p>
+                                        </p>
 
 
-                        @endif
-
-                            @if($value['name'] =='Login')
-                                <hr>
-                            @endif
-
-                            @if($value['name'] =='Login')
-                                @php
-                                    $endpoint = 'logout';
-                                    $configDocumentation = config('documentation');
-                                @endphp
-                                <h1 id="about-flysystem">Logout</h1>
-                                <p>The logout service is the token terminator service.
-                                    The token can be terminated by sending its value.No body value should be sent.</p>
-
-                                <h3 id="commonly-used-adapters">POST</h3>
-                                <ul>
-                                    <li><strong>Test Environment Base Url</strong> : {{apiUrl()}}</li>
-                                    @if(isset($configDocumentation['productionLinks'][$endpoint]['all']))
-                                        @if(isset($configDocumentation['productionLinks'][$endpoint][$method]))
-                                            <li><strong>Production Environment Base Url</strong> : {{$configDocumentation['productionLinks'][$endpoint][$method]}}</li>
-                                        @else
-                                            <li><strong>Production Environment Base Url</strong> : {{$configDocumentation['productionLinks'][$endpoint]['all']}}</li>
-                                        @endif
-
-                                    @else
-                                        <li><strong>Production Environment Base Url</strong> : {{config('app.productBaseUrl')}}</li>
                                     @endif
 
-                                    <li><strong>Url</strong> : baseUrl/logout</li>
-                                </ul>
+                                    @if($value['name'] =='Login')
+                                        <hr>
+                                    @endif
+
+                                    @if($value['name'] =='Login')
+                                        @php
+                                            $endpoint = 'logout';
+                                            $configDocumentation = config('documentation');
+                                        @endphp
+                                        <h1 id="about-flysystem">Logout</h1>
+                                        <p>The logout service is the token terminator service.
+                                            The token can be terminated by sending its value.No body value should be sent.</p>
+
+                                        <h3 id="commonly-used-adapters">POST</h3>
+                                        <ul>
+                                            <li><strong>Test Environment Base Url</strong> : {{apiUrl()}}</li>
+                                            @if(isset($configDocumentation['productionLinks'][$endpoint]['all']))
+                                                @if(isset($configDocumentation['productionLinks'][$endpoint][$method]))
+                                                    <li><strong>Production Environment Base Url</strong> : {{$configDocumentation['productionLinks'][$endpoint][$method]}}</li>
+                                                @else
+                                                    <li><strong>Production Environment Base Url</strong> : {{$configDocumentation['productionLinks'][$endpoint]['all']}}</li>
+                                                @endif
+
+                                            @else
+                                                <li><strong>Production Environment Base Url</strong> : {{config('app.productBaseUrl')}}</li>
+                                            @endif
+
+                                            <li><strong>Url</strong> : baseUrl/logout</li>
+                                        </ul>
 
 
-                                <p>
-                                <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Api Request</span>
+                                        <p>
+                                        <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Api Request</span>
 wget --no-check-certificate --quiet \
   --method POST \
   --timeout=0 \
@@ -832,62 +846,62 @@ wget --no-check-certificate --quiet \
   ' \
    'http://localhost/api/public/api/logout'
 </code></pre></div></div>
-                                </p>
+                                        </p>
 
 
-                            @endif
-
-                            @if($value['name'] =='Login')
-                                <hr>
-                                @php
-                                    $endpoint = 'verifying';
-                                    $configDocumentation = config('documentation');
-                                @endphp
-                                <h1 id="about-flysystem">Verifying</h1>
-                                <p>When the user registers to the system from (registration) endpoint, that will be passively registered to the system.
-                                    In order to activate the user, a hash is given via mail and the client must post this hash data to the "verifying" endpoint.
-                                </p>
-
-                                <h3 id="commonly-used-adapters">POST</h3>
-                                <ul>
-                                    <li><strong>Test Environment Base Url</strong> : {{apiUrl()}}</li>
-                                    @if(isset($configDocumentation['productionLinks'][$endpoint]['all']))
-                                        @if(isset($configDocumentation['productionLinks'][$endpoint][$method]))
-                                            <li><strong>Production Environment Base Url</strong> : {{$configDocumentation['productionLinks'][$endpoint][$method]}}</li>
-                                        @else
-                                            <li><strong>Production Environment Base Url</strong> : {{$configDocumentation['productionLinks'][$endpoint]['all']}}</li>
-                                        @endif
-
-                                    @else
-                                        <li><strong>Production Environment Base Url</strong> : {{config('app.productBaseUrl')}}</li>
                                     @endif
 
-                                    <li><strong>Url</strong> : baseUrl/verifying</li>
-                                </ul>
+                                    @if($value['name'] =='Login')
+                                        <hr>
+                                        @php
+                                            $endpoint = 'verifying';
+                                            $configDocumentation = config('documentation');
+                                        @endphp
+                                        <h1 id="about-flysystem">Verifying</h1>
+                                        <p>When the user registers to the system from (registration) endpoint, that will be passively registered to the system.
+                                            In order to activate the user, a hash is given via mail and the client must post this hash data to the "verifying" endpoint.
+                                        </p>
 
-                                <table>
-                                    <thead>
-                                    <tr>
-                                        <th style="width:200px;">Body Parameters</th>
-                                        <th>Type</th>
-                                        <th>Required</th>
-                                        <th>Description</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
+                                        <h3 id="commonly-used-adapters">POST</h3>
+                                        <ul>
+                                            <li><strong>Test Environment Base Url</strong> : {{apiUrl()}}</li>
+                                            @if(isset($configDocumentation['productionLinks'][$endpoint]['all']))
+                                                @if(isset($configDocumentation['productionLinks'][$endpoint][$method]))
+                                                    <li><strong>Production Environment Base Url</strong> : {{$configDocumentation['productionLinks'][$endpoint][$method]}}</li>
+                                                @else
+                                                    <li><strong>Production Environment Base Url</strong> : {{$configDocumentation['productionLinks'][$endpoint]['all']}}</li>
+                                                @endif
 
-                                    <tr>
-                                        <td style="width:200px;">hash</td>
-                                        <td>string</td>
-                                        <td>true</td>
-                                        <td>Data that needs to be sent to the endpoint in order to activate the user</td>
-                                    </tr>
+                                            @else
+                                                <li><strong>Production Environment Base Url</strong> : {{config('app.productBaseUrl')}}</li>
+                                            @endif
 
-                                    </tbody>
-                                </table>
+                                            <li><strong>Url</strong> : baseUrl/verifying</li>
+                                        </ul>
 
-                                <p>
-                                <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Api Request</span>
+                                        <table>
+                                            <thead>
+                                            <tr>
+                                                <th style="width:200px;">Body Parameters</th>
+                                                <th>Type</th>
+                                                <th>Required</th>
+                                                <th>Description</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+
+                                            <tr>
+                                                <td style="width:200px;">hash</td>
+                                                <td>string</td>
+                                                <td>true</td>
+                                                <td>Data that needs to be sent to the endpoint in order to activate the user</td>
+                                            </tr>
+
+                                            </tbody>
+                                        </table>
+
+                                        <p>
+                                        <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Api Request</span>
 wget --no-check-certificate --quiet \
   --method POST \
   --timeout=0 \
@@ -900,482 +914,485 @@ wget --no-check-certificate --quiet \
 ]' \
    'http://localhost/api/public/api/verifying'
 </code></pre></div></div>
-                                </p>
+                                        </p>
 
 
-                            @endif
-
-
-
-                    @if(isset($value['item']))
-
-
-                        @foreach($value['item'] as $key => $value)
-                            @php
-                            $method = $value['request']['method'];
-                            $endpoint = str_replace('{{baseUrl}}/','',$value['request']['url']['raw']);
-                            $endpointSplit = explode('/',$endpoint);
-                            $dir = ucfirst($endpointSplit[0]);
-                            $controller = isset($endpointSplit[1]) ? ucfirst($endpointSplit[1]) : $dir;
-                            $modelServiceMapFile = base_path('database/columns/modelService.json');
-                            $modelServiceJson = json_decode(\Illuminate\Support\Facades\File::get($modelServiceMapFile),true);
-                            $model = null;
-                            foreach ($modelServiceJson as $modelName => $items){
-                                if($items['controller']==$controller && $items['dir']==$dir){
-                                    $model = $modelName;
-                                }
-                            }
-
-
-                            $entities = \App\Services\Db::entities(\App\Constants::modelNamespace.'\\'.$model);
-                            $indexes = $entities['indexes'] ?? [];
-                            $comments = \App\Services\Db::comments(\App\Constants::modelNamespace.'\\'.$model);
-                            $booleans = \App\Services\Db::booleanValues(\App\Constants::modelNamespace.'\\'.$model);
-                            $types = \App\Services\Db::types(\App\Constants::modelNamespace.'\\'.$model);
-                            $tableCode = getTableCode($model);
-                            $configDocumentation = config('documentation');
-                            $modelClientJsonData = json_decode(\Illuminate\Support\Facades\File::get(database_path('columns').''.DIRECTORY_SEPARATOR.'modelClients.json'),1);
-                            $clientDataList = $modelClientJsonData[$model] ?? [];
-
-                            if($method=='POST'){
-                                $clientMethodType = 'create';
-                            }
-
-                            if($method=='GET'){
-                                $clientMethodType = 'get';
-                            }
-
-                            if($method=='PUT'){
-                                $clientMethodType = 'update';
-                            }
-
-                            $clientDataInstance = $clientDataList[$clientMethodType] ?? null;
-
-                            @endphp
-
-                                @if(!in_array($value['name'],$listNames))
-                                        @if(isset($configDocumentation['exceptMethods'][$endpoint]) && in_array($method,$configDocumentation['exceptMethods'][$endpoint]))
-                                            @continue
-                                        @endif
-
-                                        <h1 id="about-flysystem">{{$value['name']}}</h1>
-                                        <p>{{$descriptions[$value['name']] ?? ''}}</p>
-                                    @php
-                                    $listNames[] = $value['name'];
-                                    @endphp
                                     @endif
 
 
-                                @if(isset($configDocumentation['exceptMethods'][$endpoint]) && in_array($method,$configDocumentation['exceptMethods'][$endpoint]))
-                                    @continue
-                                @endif
 
-                            @if(isset($configDocumentation['exceptMethods']['all']) && in_array($method,$configDocumentation['exceptMethods']['all']))
-                                @continue
-                                @endif
-
-                                <h3 id="commonly-used-adapters">{{$value['request']['method']}}</h3>
-                                <ul>
-                                    <li><strong>Test Environment Base Url</strong> : {{apiUrl()}}</li>
-
-                                        @if(isset($configDocumentation['productionLinks'][$endpoint]['all']))
-                                            @if(isset($configDocumentation['productionLinks'][$endpoint][$method]))
-                                            <li><strong>Production Environment Base Url</strong> : {{$configDocumentation['productionLinks'][$endpoint][$method]}}</li>
-                                        @else
-                                            <li><strong>Production Environment Base Url</strong> : {{$configDocumentation['productionLinks'][$endpoint]['all']}}</li>
-                                        @endif
-
-                                        @else
-                                            <li><strong>Production Environment Base Url</strong> : {{config('app.productBaseUrl')}}</li>
-                                        @endif
-
-                                    <li><strong>Url</strong> : {{$value['request']['url']['raw']}}</li>
-                                </ul>
+                                    @if(isset($value['item']))
 
 
-                                @if($method=='GET')
+                                        @foreach($value['item'] as $key => $value)
+                                            @php
+                                                $method = $value['request']['method'];
+                                                $endpoint = str_replace('{{baseUrl}}/','',$value['request']['url']['raw']);
+                                                $endpointSplit = explode('/',$endpoint);
+                                                $dir = ucfirst($endpointSplit[0]);
+                                                $controller = isset($endpointSplit[1]) ? ucfirst($endpointSplit[1]) : $dir;
+                                                $modelServiceMapFile = base_path('database/columns/modelService.json');
+                                                $modelServiceJson = json_decode(\Illuminate\Support\Facades\File::get($modelServiceMapFile),true);
+                                                $model = null;
+                                                foreach ($modelServiceJson as $modelName => $items){
+                                                    if($items['controller']==$controller && $items['dir']==$dir){
+                                                        $model = $modelName;
+                                                    }
+                                                }
 
-                                        @php
 
-                                            $getClientClassRule = [];
+                                                $entities = \App\Services\Db::entities(\App\Constants::modelNamespace.'\\'.$model);
+                                                $indexes = $entities['indexes'] ?? [];
+                                                $comments = \App\Services\Db::comments(\App\Constants::modelNamespace.'\\'.$model);
+                                                $booleans = \App\Services\Db::booleanValues(\App\Constants::modelNamespace.'\\'.$model);
+                                                $types = \App\Services\Db::types(\App\Constants::modelNamespace.'\\'.$model);
+                                                $tableCode = getTableCode($model);
+                                                $configDocumentation = config('documentation');
+                                                $modelClientJsonData = json_decode(\Illuminate\Support\Facades\File::get(database_path('columns').''.DIRECTORY_SEPARATOR.'modelClients.json'),1);
+                                                $clientDataList = $modelClientJsonData[$model] ?? [];
 
-                                                if(class_exists($clientDataInstance)){
-                                                     $getClientClass = (new $clientDataInstance());
-                                                     $getClientClassRule = $getClientClass->getRule();
-                                                     $getClientCapsuleComments = $getClientClass->getCapsuleComments();
+                                                if($method=='POST'){
+                                                    $clientMethodType = 'create';
+                                                }
 
+                                                if($method=='GET'){
+                                                    $clientMethodType = 'get';
+                                                }
 
+                                                if($method=='PUT'){
+                                                    $clientMethodType = 'update';
+                                                }
 
-                                        @endphp
+                                                $clientDataInstance = $clientDataList[$clientMethodType] ?? null;
 
-                                    @if(count($getClientClassRule))
-
-                                        <table>
-                                            <thead>
-                                            <tr>
-                                                <th style="width:200px;">Query Parameters</th>
-                                                <th>Rule</th>
-                                                <th>Description</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-
-                                            @foreach($getClientClassRule as $getKey => $getRule)
-                                            <tr>
-                                                <td>{{$getKey}}</td>
-                                                <td>{{$getRule}}</td>
-                                                <td>{{$getClientCapsuleComments[$getKey] ?? 'invalid.client.capsuleComments'}}</td>
-                                            </tr>
-
-                                            @endforeach
-
-                                            </tbody>
-                                        </table>
-
-                                        @else
-                                            <div style="padding:10px; background-color:#aaffaa;;">
-                                                > <b> You can directly (HTTP GET) request this endpoint without a query parameter.</b>
-                                            </div>
-
-                                        @endif
-
-                                        @php
-                                            }
-                                        else{
                                             @endphp
 
-                                        <div style="padding:10px; background-color:#aaffaa;;">
-                                            > <b> You can directly (HTTP GET) request this endpoint without a query parameter.</b>
-                                        </div>
-                                    @php
-                                        }
+                                            @if(!in_array($value['name'],$listNames))
+                                                @if(isset($configDocumentation['exceptMethods'][$endpoint]) && in_array($method,$configDocumentation['exceptMethods'][$endpoint]))
+                                                    @continue
+                                                @endif
 
-
-                                        @endphp
-
-
-                                        <div style="padding:10px; background-color:#eeeeee;">
-                                            > <b> see QUERY PARAMETERS link for response management related to HTTP GET method..</b>
-                                        </div>
-
-                                    <br>
-
-                                    @if(count($indexes))
-                                    <div style="color: #22863a; font-weight: bold;">Filterable Fields :</div>
-                                    <ul>
-
-                                        @php
-                                        $indexWhiteList = [];
-                                        @endphp
-                                        @foreach($indexes as $index)
-                                            @if($index!=='id' && !in_array($index,$indexWhiteList,true))
-                                        <li>{{$index}}</li>
+                                                <h1 id="about-flysystem">{{$value['name']}}</h1>
+                                                <p>{{$descriptions[$value['name']] ?? ''}}</p>
                                                 @php
-                                                $indexWhiteList[] = $index;
+                                                    $listNames[] = $value['name'];
                                                 @endphp
                                             @endif
-                                        @endforeach
-                                    </ul>
-
-                                        @endif
-
-                                    @endif
 
 
-                                @php
-
-                                @endphp
-
-                            @if(isset($value['request']['body']['mode']))
-                                @php
-                                    $raw = $value['request']['body'][$value['request']['body']['mode']];
-
-                                    if($value['request']['body']['mode']=='raw'){
-                                        $raw = json_decode($raw,true);
-                                        //dd($raw);
-                                    }
-                                    else{
-                                        $list = [];
-                                        foreach ($raw as $formData){
-                                            if($formData['type']!=='file'){
-                                                $list[$formData['key']] = $formData['value'];
-                                            }
-                                            else{
-                                                $list[$formData['key']] = 'file';
-                                            }
-
-                                        }
-
-                                        $raw = $list;
-
-                                    }
-
-                                    $isClientCapsuleRequired = [];
-
-                                    if(class_exists($clientDataInstance)){
-                                         $clientClass = (new $clientDataInstance());
-                                    $clientCapsule = $clientClass->getClientCapsule();
-                                    $clientCapsuleDescriptions = $clientClass->getCapsuleDescriptions();
-                                    $clientRule = $clientClass->getRule();
-
-                                    $clientCapsuleList = [];
-
-                                    foreach ($clientCapsule as $capsule){
-                                        if(isset($clientRule[$capsule])){
-                                            $capsuleRule = $clientRule[$capsule];
-                                            $isClientCapsuleRequired = [$capsule => \Illuminate\Support\Str::contains($capsuleRule,'required')];
-                                            $capsuleType = str_replace('required','',$capsuleRule);
-                                            $clientCapsuleList[$capsule]['required'] = $isClientCapsuleRequired[$capsule] ? 'true' : 'false';
-                                        }
-
-                                        $raw[$capsule] = $capsuleType ?? 'string';
-                                        $types[$capsule] = str_replace('|',' ',($capsuleType ?? 'string'));
-
-                                    }
-                                    }
-
-
-                                $repository = \App\Repositories\Repository::$model();
-
-                                if($repository!==false){
-                                    $extraPostQueries = $repository->getAddPostQueries();
-                                    $crMaps = json_decode(\Illuminate\Support\Facades\File::get(database_path('columns').''.DIRECTORY_SEPARATOR.'crMaps.json'),1);
-
-                                    $crColumnList = [];
-
-                                    foreach ($extraPostQueries as $extraClientKey => $crValue){
-                                        $extraClientKey = explode('|',$extraClientKey);
-                                        $crModel = $crMaps[$crValue]['model'] ?? 'none';
-                                        $crModelFile = \App\Constants::modelNamespace.'\\'.ucfirst($crModel);
-                                        if(class_exists($crModelFile)){
-                                            $crModelTable = (new $crModelFile)->getTable();
-                                            $crEntities = \App\Services\Db::entities($crModelTable);
-                                            $crColumns = $crEntities['columns'] ?? [];
-                                            $crBooleanValues = $crEntities['boolean_values'] ?? [];
-                                            $crTypes = $crEntities['types'] ?? [];
-                                            $crComments = $crEntities['comments'] ?? [];
-                                            $crRequireds = $crEntities['required_columns'] ?? [];
-
-                                            foreach ($crColumns as $crColumnKey => $crColumn){
-                                                if(
-                                                    getTableCode($crModel)!==$crColumn
-                                                    and $tableCode!==$crColumn
-                                                    and $crColumn!=='created_by'
-                                                    and $crColumn!=='created_at'
-                                                    and $crColumn!=='deleted_at'
-                                                    and $crColumn!=='deleted_by'
-                                                    and $crColumn!=='id'
-                                                    and $crColumn!=='updated_at'
-                                                    and $crColumn!=='updated_by'
-                                                    ){
-                                                    $crColumnList[$extraClientKey[0]][$crColumnKey] = $crColumn;
-                                                }
-                                            }
-                                        }
-                                    }
-
-
-                                }
-
-                                @endphp
-                                <table>
-                                    <thead>
-                                    <tr>
-                                        <th style="width:200px;">Body Parameters</th>
-                                        <th>Type</th>
-                                        <th>Required</th>
-                                        <th>Description</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-
-                                    @foreach($raw as $field=> $type)
-                                        <tr>
-                                            <td><code class="language-plaintext highlighter-rouge">{{$field}}</code></td>
-                                            @if($field=='is_deleted' || $field=='status')
-                                                <td><code class="language-plaintext highlighter-rouge">boolean</code></td>
-                                            @else
-                                                @if(in_array($field,$booleans,true))
-                                                    <td><code class="language-plaintext highlighter-rouge">boolean</code></td>
-                                                @else
-                                                    <td><code class="language-plaintext highlighter-rouge">{{$types[$field] ?? 'string'}}</code></td>
-                                                @endif
-
+                                            @if(isset($configDocumentation['exceptMethods'][$endpoint]) && in_array($method,$configDocumentation['exceptMethods'][$endpoint]))
+                                                @continue
                                             @endif
 
-                                            @if($method=='PUT')
-
-                                                @if(getTableCode($model)==$field)
-                                                    <td><code class="language-plaintext highlighter-rouge">true</code></td>
-                                                @else
-                                                    <td><code class="language-plaintext highlighter-rouge">false</code></td>
-                                                @endif
-
-                                            @else
-
-                                                @if(isset($entities['required_columns']) && in_array($field,$entities['required_columns'],true))
-                                                    <td><code class="language-plaintext highlighter-rouge">true</code></td>
-                                                @else
-                                                    @if(isset($clientCapsuleList[$field]['required']))
-                                                        <td><code class="language-plaintext highlighter-rouge">{{$clientCapsuleList[$field]['required']}}</code></td>
-                                                    @else
-                                                        <td><code class="language-plaintext highlighter-rouge">false</code></td>
-                                                        @endif
-
-                                                @endif
-
-                                                @endif
-
-
-                                            @if($tableCode==$field)
-                                                <td>Column code</td>
-                                            @else
-                                                @if(isset($clientCapsuleDescriptions[$field]))
-                                                    <td>{{$clientCapsuleDescriptions[$field]}}</td>
-                                                @else
-                                                    <td>{{$comments[$field] ?? ''}}</td>
-                                                    @endif
-
+                                            @if(isset($configDocumentation['exceptMethods']['all']) && in_array($method,$configDocumentation['exceptMethods']['all']))
+                                                @continue
                                             @endif
 
-                                        </tr>
-                                    @endforeach
+                                            <h3 id="commonly-used-adapters">{{$value['request']['method']}}</h3>
+                                            <ul>
+                                                <li><strong>Test Environment Base Url</strong> : {{apiUrl()}}</li>
 
-                                    </tbody>
-                                </table>
-
-                                    @foreach($crColumnList as $cckey => $ccitems)
-
-                                            <h3 style="color: #22863a;">{{ucfirst($cckey)}} Parameters:</h3>
-                                            <p><b>The values of the key named as ({{$cckey}}) in the body parameter are listed below.</b></p>
-
-                                            <table>
-                                                <thead>
-                                                <tr>
-                                                    <th style="width:200px; background-color: #999988;">{{$cckey}} Parameters</th>
-                                                    <th style ="background-color: #999988;">Type</th>
-                                                    <th style ="background-color: #999988;">Required</th>
-                                                    <th style ="background-color: #999988;">Description</th>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-
-                                                @foreach($ccitems as $ccItemKey => $ccItemData)
-                                                <tr>
-                                                    <td><code class="language-plaintext highlighter-rouge">{{$ccItemData}}</code></td>
-
-
-                                                    @if(in_array($ccItemData,$crBooleanValues,true))
-                                                        <td><code class="language-plaintext highlighter-rouge">boolean</code></td>
-
+                                                @if(isset($configDocumentation['productionLinks'][$endpoint]['all']))
+                                                    @if(isset($configDocumentation['productionLinks'][$endpoint][$method]))
+                                                        <li><strong>Production Environment Base Url</strong> : {{$configDocumentation['productionLinks'][$endpoint][$method]}}</li>
                                                     @else
-                                                        <td><code class="language-plaintext highlighter-rouge">{{$crTypes[$ccItemKey] ?? 'string'}}</code></td>
-
+                                                        <li><strong>Production Environment Base Url</strong> : {{$configDocumentation['productionLinks'][$endpoint]['all']}}</li>
                                                     @endif
 
+                                                @else
+                                                    <li><strong>Production Environment Base Url</strong> : {{config('app.productBaseUrl')}}</li>
+                                                @endif
 
-                                                    @if(in_array($ccItemData,$crRequireds,true))
-                                                        <td><code class="language-plaintext highlighter-rouge">true</code></td>
-                                                    @else
-                                                        <td><code class="language-plaintext highlighter-rouge">false</code></td>
-                                                    @endif
-
-                                                    <td><code class="language-plaintext highlighter-rouge">{{$crComments[$ccItemKey] ?? ''}}</code></td>
-
-                                                </tr>
-
-                                                @endforeach
-
-                                                </tbody>
-                                            </table>
-                                        @endforeach
+                                                <li><strong>Url</strong> : {{$value['request']['url']['raw']}}</li>
+                                            </ul>
 
 
-                                @foreach($arrayRules as $endpointName => $items)
-                                    @if($endpoint==$endpointName)
-                                        @foreach($items as $field => $lists)
-                                            @if(isset($raw[$field]))
+                                            @if($method=='GET')
 
-                                                <h3>{{ucfirst($field)}} Body Parameters:</h3>
-                                                    <p><b>The key values to be sent for the {{$field}} parameter are listed below. </b></p>
+                                                @php
+
+                                                    $getClientClassRule = [];
+
+                                                        if(class_exists($clientDataInstance)){
+                                                             $getClientClass = (new $clientDataInstance());
+                                                             $getClientClassRule = $getClientClass->getRule();
+                                                             $getClientCapsuleComments = $getClientClass->getCapsuleComments();
+
+
+
+                                                @endphp
+
+                                                @if(count($getClientClassRule))
+
                                                     <table>
                                                         <thead>
                                                         <tr>
-                                                            <th style="width:200px;">Body Parameters</th>
-                                                            <th>Type</th>
-                                                            <th>Required</th>
+                                                            <th style="width:200px;">Query Parameters</th>
+                                                            <th>Rule</th>
                                                             <th>Description</th>
                                                         </tr>
                                                         </thead>
                                                         <tbody>
 
-                                                        @foreach($lists as $listKey => $listItems)
+                                                        @foreach($getClientClassRule as $getKey => $getRule)
                                                             <tr>
-                                                                <td><code class="language-plaintext highlighter-rouge">{{$listKey}}</code></td>
-                                                                <td><code class="language-plaintext highlighter-rouge">{{$listItems['type'] ?? ''}}</code></td>
-                                                                <td><code class="language-plaintext highlighter-rouge">{{$listItems['required'] ?? ''}}</code></td>
-                                                                <td><code class="language-plaintext highlighter-rouge">{{$listItems['description'] ?? ''}}</code></td>
-
+                                                                <td>{{$getKey}}</td>
+                                                                <td>{{$getRule}}</td>
+                                                                <td>{{$getClientCapsuleComments[$getKey] ?? 'invalid.client.capsuleComments'}}</td>
                                                             </tr>
+
                                                         @endforeach
 
                                                         </tbody>
                                                     </table>
-                                                @endif
-                                            @endforeach
-                                        @endif
-                                    @endforeach
 
-                                @endif
+                                                @else
+                                                    <div style="padding:10px; background-color:#aaffaa;;">
+                                                        > <b> You can directly (HTTP GET) request this endpoint without a query parameter.</b>
+                                                    </div>
+
+                                                @endif
+
+                                                @php
+                                                    }
+                                                else{
+                                                @endphp
+
+                                                <div style="padding:10px; background-color:#aaffaa;;">
+                                                    > <b> You can directly (HTTP GET) request this endpoint without a query parameter.</b>
+                                                </div>
+                                                @php
+                                                    }
+
+
+                                                @endphp
+
+
+                                                <div style="padding:10px; background-color:#eeeeee;">
+                                                    > <b> see QUERY PARAMETERS link for response management related to HTTP GET method..</b>
+                                                </div>
+
+                                                <br>
+
+                                                @if(count($indexes))
+                                                    <div style="color: #22863a; font-weight: bold;">Filterable Fields :</div>
+                                                    <ul>
+
+                                                        @php
+                                                            $indexWhiteList = [];
+                                                        @endphp
+                                                        @foreach($indexes as $index)
+                                                            @if($index!=='id' && !in_array($index,$indexWhiteList,true))
+                                                                <li>{{$index}}</li>
+                                                                @php
+                                                                    $indexWhiteList[] = $index;
+                                                                @endphp
+                                                            @endif
+                                                        @endforeach
+                                                    </ul>
+
+                                                @endif
+
+                                            @endif
+
+
+                                            @php
+
+                                                @endphp
+
+                                            @if(isset($value['request']['body']['mode']))
+                                                @php
+                                                    $raw = $value['request']['body'][$value['request']['body']['mode']];
+
+                                                    if($value['request']['body']['mode']=='raw'){
+                                                        $raw = json_decode($raw,true);
+                                                        //dd($raw);
+                                                    }
+                                                    else{
+                                                        $list = [];
+                                                        foreach ($raw as $formData){
+                                                            if($formData['type']!=='file'){
+                                                                $list[$formData['key']] = $formData['value'];
+                                                            }
+                                                            else{
+                                                                $list[$formData['key']] = 'file';
+                                                            }
+
+                                                        }
+
+                                                        $raw = $list;
+
+                                                    }
+
+                                                    $isClientCapsuleRequired = [];
+
+                                                    if(class_exists($clientDataInstance)){
+                                                         $clientClass = (new $clientDataInstance());
+                                                    $clientCapsule = $clientClass->getClientCapsule();
+                                                    $clientCapsuleDescriptions = $clientClass->getCapsuleDescriptions();
+                                                    $clientRule = $clientClass->getRule();
+
+                                                    $clientCapsuleList = [];
+
+                                                    foreach ($clientCapsule as $capsule){
+                                                        if(isset($clientRule[$capsule])){
+                                                            $capsuleRule = $clientRule[$capsule];
+                                                            $isClientCapsuleRequired = [$capsule => \Illuminate\Support\Str::contains($capsuleRule,'required')];
+                                                            $capsuleType = str_replace('required','',$capsuleRule);
+                                                            $clientCapsuleList[$capsule]['required'] = $isClientCapsuleRequired[$capsule] ? 'true' : 'false';
+                                                        }
+
+                                                        $raw[$capsule] = $capsuleType ?? 'string';
+                                                        $types[$capsule] = str_replace('|',' ',($capsuleType ?? 'string'));
+
+                                                    }
+                                                    }
+
+
+                                                $repository = \App\Repositories\Repository::$model();
+
+                                                if($repository!==false){
+                                                    $extraPostQueries = $repository->getAddPostQueries();
+                                                    $crMaps = json_decode(\Illuminate\Support\Facades\File::get(database_path('columns').''.DIRECTORY_SEPARATOR.'crMaps.json'),1);
+
+                                                    $crColumnList = [];
+
+                                                    foreach ($extraPostQueries as $extraClientKey => $crValue){
+                                                        $extraClientKey = explode('|',$extraClientKey);
+                                                        $crModel = $crMaps[$crValue]['model'] ?? 'none';
+                                                        $crModelFile = \App\Constants::modelNamespace.'\\'.ucfirst($crModel);
+                                                        if(class_exists($crModelFile)){
+                                                            $crModelTable = (new $crModelFile)->getTable();
+                                                            $crEntities = \App\Services\Db::entities($crModelTable);
+                                                            $crColumns = $crEntities['columns'] ?? [];
+                                                            $crBooleanValues = $crEntities['boolean_values'] ?? [];
+                                                            $crTypes = $crEntities['types'] ?? [];
+                                                            $crComments = $crEntities['comments'] ?? [];
+                                                            $crRequireds = $crEntities['required_columns'] ?? [];
+
+                                                            foreach ($crColumns as $crColumnKey => $crColumn){
+                                                                if(
+                                                                    getTableCode($crModel)!==$crColumn
+                                                                    and $tableCode!==$crColumn
+                                                                    and $crColumn!=='created_by'
+                                                                    and $crColumn!=='created_at'
+                                                                    and $crColumn!=='deleted_at'
+                                                                    and $crColumn!=='deleted_by'
+                                                                    and $crColumn!=='id'
+                                                                    and $crColumn!=='updated_at'
+                                                                    and $crColumn!=='updated_by'
+                                                                    ){
+                                                                    $crColumnList[$extraClientKey[0]][$crColumnKey] = $crColumn;
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+
+
+                                                }
+
+                                                @endphp
+                                                <table>
+                                                    <thead>
+                                                    <tr>
+                                                        <th style="width:200px;">Body Parameters</th>
+                                                        <th>Type</th>
+                                                        <th>Required</th>
+                                                        <th>Description</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+
+                                                    @foreach($raw as $field=> $type)
+                                                        <tr>
+                                                            <td><code class="language-plaintext highlighter-rouge">{{$field}}</code></td>
+                                                            @if($field=='is_deleted' || $field=='status')
+                                                                <td><code class="language-plaintext highlighter-rouge">boolean</code></td>
+                                                            @else
+                                                                @if(in_array($field,$booleans,true))
+                                                                    <td><code class="language-plaintext highlighter-rouge">boolean</code></td>
+                                                                @else
+                                                                    <td><code class="language-plaintext highlighter-rouge">{{$types[$field] ?? 'string'}}</code></td>
+                                                                @endif
+
+                                                            @endif
+
+                                                            @if($method=='PUT')
+
+                                                                @if(getTableCode($model)==$field)
+                                                                    <td><code class="language-plaintext highlighter-rouge">true</code></td>
+                                                                @else
+                                                                    <td><code class="language-plaintext highlighter-rouge">false</code></td>
+                                                                @endif
+
+                                                            @else
+
+                                                                @if(isset($entities['required_columns']) && in_array($field,$entities['required_columns'],true))
+                                                                    <td><code class="language-plaintext highlighter-rouge">true</code></td>
+                                                                @else
+                                                                    @if(isset($clientCapsuleList[$field]['required']))
+                                                                        <td><code class="language-plaintext highlighter-rouge">{{$clientCapsuleList[$field]['required']}}</code></td>
+                                                                    @else
+                                                                        <td><code class="language-plaintext highlighter-rouge">false</code></td>
+                                                                    @endif
+
+                                                                @endif
+
+                                                            @endif
+
+
+                                                            @if($tableCode==$field)
+                                                                <td>Column code</td>
+                                                            @else
+                                                                @if(isset($clientCapsuleDescriptions[$field]))
+                                                                    <td>{{$clientCapsuleDescriptions[$field]}}</td>
+                                                                @else
+                                                                    <td>{{$comments[$field] ?? ''}}</td>
+                                                                @endif
+
+                                                            @endif
+
+                                                        </tr>
+                                                    @endforeach
+
+                                                    </tbody>
+                                                </table>
+
+                                                @foreach($crColumnList as $cckey => $ccitems)
+
+                                                    <h3 style="color: #22863a;">{{ucfirst($cckey)}} Parameters:</h3>
+                                                    <p><b>The values of the key named as ({{$cckey}}) in the body parameter are listed below.</b></p>
+
+                                                    <table>
+                                                        <thead>
+                                                        <tr>
+                                                            <th style="width:200px; background-color: #999988;">{{$cckey}} Parameters</th>
+                                                            <th style ="background-color: #999988;">Type</th>
+                                                            <th style ="background-color: #999988;">Required</th>
+                                                            <th style ="background-color: #999988;">Description</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+
+                                                        @foreach($ccitems as $ccItemKey => $ccItemData)
+                                                            <tr>
+                                                                <td><code class="language-plaintext highlighter-rouge">{{$ccItemData}}</code></td>
+
+
+                                                                @if(in_array($ccItemData,$crBooleanValues,true))
+                                                                    <td><code class="language-plaintext highlighter-rouge">boolean</code></td>
+
+                                                                @else
+                                                                    <td><code class="language-plaintext highlighter-rouge">{{$crTypes[$ccItemKey] ?? 'string'}}</code></td>
+
+                                                                @endif
+
+
+                                                                @if(in_array($ccItemData,$crRequireds,true))
+                                                                    <td><code class="language-plaintext highlighter-rouge">true</code></td>
+                                                                @else
+                                                                    <td><code class="language-plaintext highlighter-rouge">false</code></td>
+                                                                @endif
+
+                                                                <td><code class="language-plaintext highlighter-rouge">{{$crComments[$ccItemKey] ?? ''}}</code></td>
+
+                                                            </tr>
+
+                                                        @endforeach
+
+                                                        </tbody>
+                                                    </table>
+                                                @endforeach
+
+
+                                                @foreach($arrayRules as $endpointName => $items)
+                                                    @if($endpoint==$endpointName)
+                                                        @foreach($items as $field => $lists)
+                                                            @if(isset($raw[$field]))
+
+                                                                <h3>{{ucfirst($field)}} Body Parameters:</h3>
+                                                                <p><b>The key values to be sent for the {{$field}} parameter are listed below. </b></p>
+                                                                <table>
+                                                                    <thead>
+                                                                    <tr>
+                                                                        <th style="width:200px;">Body Parameters</th>
+                                                                        <th>Type</th>
+                                                                        <th>Required</th>
+                                                                        <th>Description</th>
+                                                                    </tr>
+                                                                    </thead>
+                                                                    <tbody>
+
+                                                                    @foreach($lists as $listKey => $listItems)
+                                                                        <tr>
+                                                                            <td><code class="language-plaintext highlighter-rouge">{{$listKey}}</code></td>
+                                                                            <td><code class="language-plaintext highlighter-rouge">{{$listItems['type'] ?? ''}}</code></td>
+                                                                            <td><code class="language-plaintext highlighter-rouge">{{$listItems['required'] ?? ''}}</code></td>
+                                                                            <td><code class="language-plaintext highlighter-rouge">{{$listItems['description'] ?? ''}}</code></td>
+
+                                                                        </tr>
+                                                                    @endforeach
+
+                                                                    </tbody>
+                                                                </table>
+                                                            @endif
+                                                        @endforeach
+                                                    @endif
+                                                @endforeach
+
+                                            @endif
+                                        @endforeach
+
+                                    @else
+                                    @endif
+                                    <hr>
+
+                                </div>
                             @endforeach
 
-                        @else
+
                         @endif
-                        <hr>
-                    @endforeach
-
-                @endif
 
 
-            </article>
+                    </article>
 
-            @else
-        <article id="article" role="main" class="max-w-full md:block md:w-10/14">
-            <h1 class="mb-4">Api Request Guidelines.</h1>
-            <h2 id="about-flysystem">Introduce</h2>
-            <p>The roadmap to follow in order to reach our API resource is very simple.Simply follow the instructions below.
-                The request url map is located on the left menu.</p>
+                @else
+                    <article id="article" role="main" class="max-w-full md:block md:w-10/14">
+                        <h1 class="mb-4">Api Request Guidelines.</h1>
+                        <h2 id="about-flysystem">Introduce</h2>
+                        <p>The roadmap to follow in order to reach our API resource is very simple.Simply follow the instructions below.
+                            The request url map is located on the left menu.</p>
 
-            <h3 id="commonly-used-adapters">Postman:</h3>
-            <ul>
-                <li><strong><a href="postman/collection" target="_blank">Postman Collection Data</a></strong></li>
-                <li><strong><a href="postman/environment" target="_blank">Postman Environment Data</a></strong></li>
-            </ul>
+                        <h3 id="commonly-used-adapters">Postman:</h3>
+                        <ul>
+                            <li><strong><a href="postman/collection" target="_blank">Postman Collection Data</a></strong></li>
+                            <li><strong><a href="postman/environment" target="_blank">Postman Environment Data</a></strong></li>
+                        </ul>
 
 
-            <h2 id="getting-started">Api Authenticate</h2>
-            <p>The header keys that must be sent are below.The Authorization value <b>(except for the login service)</b> is required for every request.
-                There is a token key in the response returned when the user logs in. </p>
-            <table>
-                <thead>
-                <tr>
-                    <th style="width:200px;">Header Key</th>
-                    <th>Description</th>
-                </tr>
-                </thead>
-                <tbody>
+                        <h2 id="getting-started">Api Authenticate</h2>
+                        <p>The header keys that must be sent are below.The Authorization value <b>(except for the login service)</b> is required for every request.
+                            There is a token key in the response returned when the user logs in. </p>
+                        <table>
+                            <thead>
+                            <tr>
+                                <th style="width:200px;">Header Key</th>
+                                <th>Description</th>
+                            </tr>
+                            </thead>
+                            <tbody>
 
-                @foreach($headers as $header)
-                    <tr>
-                        <td><code class="language-plaintext highlighter-rouge">{{$header['key']}}</code></td>
-                        <td>{{$header['description']}}</td>
-                    </tr>
-                @endforeach
+                            @foreach($headers as $header)
+                                <tr>
+                                    <td><code class="language-plaintext highlighter-rouge">{{$header['key']}}</code></td>
+                                    <td>{{$header['description']}}</td>
+                                </tr>
+                            @endforeach
 
-                </tbody>
-            </table>
+                            </tbody>
+                        </table>
 
-            <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Default Api Request</span>
+                        <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Default Api Request</span>
 wget --no-check-certificate --quiet \
   --method GET \
   --timeout=0 \
@@ -1387,10 +1404,10 @@ wget --no-check-certificate --quiet \
 </code></pre></div></div>
 
 
-            <h2 id="getting-started">Success Sample Response</h2>
+                        <h2 id="getting-started">Success Sample Response</h2>
 
-            <p>The following is the standard response capsule.This is a successful response.</p>
-            <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Default Any Endpoint Response</span>
+                        <p>The following is the standard response capsule.This is a successful response.</p>
+                        <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Default Any Endpoint Response</span>
 {
     "status": true,
     "code": 200,
@@ -1407,84 +1424,84 @@ wget --no-check-certificate --quiet \
 }
 </code></pre></div></div>
 
-            <h2 id="getting-started">Meta Keys</h2>
+                        <h2 id="getting-started">Meta Keys</h2>
 
-            <table>
-                <thead>
-                <tr>
-                    <th>Key</th>
-                    <th>Type</th>
-                    <th>Description</th>
-                </tr>
-                </thead>
-                <tbody>
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>Key</th>
+                                <th>Type</th>
+                                <th>Description</th>
+                            </tr>
+                            </thead>
+                            <tbody>
 
-                <tr>
-                    <td><code class="language-plaintext highlighter-rouge">status</code></td>
-                    <td>Boolean</td>
-                    <td>tells if the http request was successful.</td>
-                </tr>
+                            <tr>
+                                <td><code class="language-plaintext highlighter-rouge">status</code></td>
+                                <td>Boolean</td>
+                                <td>tells if the http request was successful.</td>
+                            </tr>
 
-                <tr>
-                    <td><code class="language-plaintext highlighter-rouge">code</code></td>
-                    <td>Integer</td>
-                    <td>returns the http code(200,201,400,500)</td>
-                </tr>
+                            <tr>
+                                <td><code class="language-plaintext highlighter-rouge">code</code></td>
+                                <td>Integer</td>
+                                <td>returns the http code(200,201,400,500)</td>
+                            </tr>
 
-                <tr>
-                    <td><code class="language-plaintext highlighter-rouge">resource</code></td>
-                    <td>array</td>
-                    <td>it is the key where the real data is stored for the client.</td>
-                </tr>
+                            <tr>
+                                <td><code class="language-plaintext highlighter-rouge">resource</code></td>
+                                <td>array</td>
+                                <td>it is the key where the real data is stored for the client.</td>
+                            </tr>
 
-                </tbody>
-            </table>
+                            </tbody>
+                        </table>
 
-            <h2 id="getting-started">Http Codes</h2>
+                        <h2 id="getting-started">Http Codes</h2>
 
-            <table>
-                <thead>
-                <tr>
-                    <th>Code</th>
-                    <th>Description</th>
-                </tr>
-                </thead>
-                <tbody>
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>Code</th>
+                                <th>Description</th>
+                            </tr>
+                            </thead>
+                            <tbody>
 
-                <tr>
-                    <td><code class="language-plaintext highlighter-rouge">200</code></td>
-                    <td>it shows that the response was successful.</td>
-                </tr>
+                            <tr>
+                                <td><code class="language-plaintext highlighter-rouge">200</code></td>
+                                <td>it shows that the response was successful.</td>
+                            </tr>
 
-                <tr>
-                    <td><code class="language-plaintext highlighter-rouge">400</code></td>
-                    <td>it shows that the response failed on the client side. the error should be fixed by looking at the ErrorMessage key.</td>
-                </tr>
+                            <tr>
+                                <td><code class="language-plaintext highlighter-rouge">400</code></td>
+                                <td>it shows that the response failed on the client side. the error should be fixed by looking at the ErrorMessage key.</td>
+                            </tr>
 
-                <tr>
-                    <td><code class="language-plaintext highlighter-rouge">401</code></td>
-                    <td>When you make a request to a token requesting endpoint,
-                        If the token is not sent or the token is not valid, the client will get this exception.</td>
-                </tr>
+                            <tr>
+                                <td><code class="language-plaintext highlighter-rouge">401</code></td>
+                                <td>When you make a request to a token requesting endpoint,
+                                    If the token is not sent or the token is not valid, the client will get this exception.</td>
+                            </tr>
 
-                <tr>
-                    <td><code class="language-plaintext highlighter-rouge">403</code></td>
-                    <td>When a request is made to an endpoint that requires permission,this exception is thrown if the User permissions are insufficient.</td>
-                </tr>
+                            <tr>
+                                <td><code class="language-plaintext highlighter-rouge">403</code></td>
+                                <td>When a request is made to an endpoint that requires permission,this exception is thrown if the User permissions are insufficient.</td>
+                            </tr>
 
-                <tr>
-                    <td><code class="language-plaintext highlighter-rouge">500</code></td>
-                    <td>it shows that the response failed on the server side.the client cannot do anything. The error must be fixed by the service provider.</td>
-                </tr>
+                            <tr>
+                                <td><code class="language-plaintext highlighter-rouge">500</code></td>
+                                <td>it shows that the response failed on the server side.the client cannot do anything. The error must be fixed by the service provider.</td>
+                            </tr>
 
-                </tbody>
-            </table>
+                            </tbody>
+                        </table>
 
-            <h2 id="getting-started">Error Sample Response</h2>
+                        <h2 id="getting-started">Error Sample Response</h2>
 
-            <p>As seen in the error response, the status value is returned false.In this case, the errorMessage value will be the key that tells the source of the error for the client.
-                <b>Notice that the errorMessage key is not returned in the resource key.</b></p>
-            <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Default Any Endpoint Response</span>
+                        <p>As seen in the error response, the status value is returned false.In this case, the errorMessage value will be the key that tells the source of the error for the client.
+                            <b>Notice that the errorMessage key is not returned in the resource key.</b></p>
+                        <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Default Any Endpoint Response</span>
 {
     "status": false,
     "code": 400,
@@ -1502,7 +1519,7 @@ wget --no-check-certificate --quiet \
 </code></pre></div></div>
 
 
-        </article>
+                    </article>
 
         @endif
     </div>
@@ -1516,6 +1533,16 @@ wget --no-check-certificate --quiet \
         indexName: 'filesystem_thephpleague',
         inputSelector: '#global-search',
         debug: false
+    });
+</script>
+
+<script>
+    $(document).ready(function(){
+        $("select.endpointselects").change(function(){
+            $("div.endpointers").hide();
+            let val = $(this).val();
+            $("#"+val+"").show();
+        });
     });
 </script>
 
