@@ -35,7 +35,15 @@ trait ScopeManagerTrait
     {
         $range = $data ?? ((request()->query->all())['range'] ?? null);
         $ranges = is_string($range) ? explode(',', $range) : [];
-        $modelRanges = array_merge($object->getRanges(), $this->autoRanges);
+        $getObjectRanges = $object->getRanges();
+        $modelRanges = array_merge($getObjectRanges, $this->autoRanges);
+        $baseObjectName = class_basename($object);
+
+        $objRanges = [];
+
+        foreach ($getObjectRanges as $objRange => $rangeDesc){
+            $objRanges[$baseObjectName][] = $objRange;
+        }
 
         $inLineRanges = [];
 
@@ -46,7 +54,7 @@ trait ScopeManagerTrait
         }
 
         foreach ($ranges as $rangeItem) {
-            if (strlen($rangeItem) > 0 && !method_exists($object, $rangeItem)) {
+            if (strlen($rangeItem) > 0 && isset($objRanges[$baseObjectName][$rangeItem]) && !method_exists($object, $rangeItem)) {
                 Exception::rangeException('', ['key' => $rangeItem]);
             }
         }
