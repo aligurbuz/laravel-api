@@ -97,8 +97,13 @@ trait UpdateRepository
         $queryList = [];
 
         $updateClientData = $this->getClientData($data);
+        $clientNormalData = AppContainer::get('clientBody',[]);
 
         foreach ($updateClientData as $dataKey => $data) {
+            if(isset($clientNormalData[0]) && count($clientNormalData[0])<2){
+                Exception::customException('clientNormalDataException');
+            }
+
             $baseQuery = $this->getBaseQueryForUpdate($data, $id);
             $oldData = $baseQuery->get()->toArray();
 

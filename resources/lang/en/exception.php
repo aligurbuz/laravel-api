@@ -38,5 +38,6 @@ return [
     'crKey'                         => 'in :key key',
     'excelFile'                     => 'The requested factory named (:key) is invalid.',
     'postRestricted'                => 'The (:key) value cannot be sent for POST method.',
-    'recursiveHasException'         => 'A maximum of 2 recursive (has) queries can be used.'
+    'recursiveHasException'         => 'A maximum of 2 recursive (has) queries can be used.',
+    'clientNormalDataException'     => 'Before you can update a data, you have to send at least 2 input keys.',
 ];

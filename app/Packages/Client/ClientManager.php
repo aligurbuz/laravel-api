@@ -153,7 +153,9 @@ class ClientManager
     {
         if ($this->requestMethod !== 'GET') {
             $data = count($data) ? $data : ($this->putRequestResolve() ?? request()->request->all());
-            return $this->clientBodyFormat($data);
+            $clientBodyFormat = $this->clientBodyFormat($data);
+            AppContainer::setWithTerminating('clientBody',$clientBodyFormat);
+            return $clientBodyFormat;
         }
 
         return [];
