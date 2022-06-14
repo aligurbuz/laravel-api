@@ -64,10 +64,6 @@ trait ScopeManager
         foreach (($rangeHandler['ranges'] ?? []) as $data) {
             if (array_key_exists($data, ($rangeHandler['modelRanges'] ?? [])) && method_exists($object, $data)) {
                 $object->$data($builder);
-            } else {
-                if (is_string($data) && strlen($data) > 0) {
-                    return Exception::rangeException('', ['key' => $data]);
-                }
             }
         }
 
