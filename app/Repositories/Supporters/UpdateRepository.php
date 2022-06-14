@@ -84,6 +84,19 @@ trait UpdateRepository
         return $data;
     }
 
+    public function checkColumnsForUpdate(array $data = [])
+    {
+        $list = [];
+
+        foreach ($data as $key => $value){
+            if(in_array($key,$this->getColumns(),true)){
+                $list[$key] = $value;
+            }
+        }
+
+        return $list;
+    }
+
     /**
      * update data for user model
      *
@@ -124,18 +137,29 @@ trait UpdateRepository
             }
 
             try {
-                $update = $baseQuery->update($this->hitterProcess($data, $dataKey));
+                $update = $baseQuery->update(
+                    $this->checkColumnsForUpdate($this->hitterProcess($data, $dataKey))
+                );
 
                 if ($update == '0') {
                     return Exception::updateException('', ['model' => $this->getModelName()]);
                 }
 
                 $this->updateEventDispatcher($oldData, $data);
+                $this->addPostQueryDispatcher($data,$dataKey);
+
             } catch (\Exception $exception) {
                 return $this->sqlException($exception);
             }
 
-            $queryList[] = $result = ($baseQuery->get()->toArray())[0] ?? [];
+            $result =  ($baseQuery->get()->toArray())[0] ?? [];
+
+            if (count($this->addPostQueryResults)) {
+                $queryList[] = array_merge($result, $this->addPostQueryResults[$dataKey]);
+            }
+            else{
+                $queryList[] = $result = ($baseQuery->get()->toArray())[0] ?? [];
+            }
 
             if (method_exists($this, 'eventFireAfterUpdate')) {
                 $this->eventFireAfterUpdate($result, $data);

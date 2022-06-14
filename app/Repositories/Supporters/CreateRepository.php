@@ -20,6 +20,12 @@ trait CreateRepository
      */
     protected array $addPostQueryResults = [];
 
+    protected array $actionDefinitors = [
+        'POST' => 'create',
+        'PUT' => 'update',
+        'GET' => 'get'
+    ];
+
     /**
      * get create event dispatcher for repository
      *
@@ -43,7 +49,15 @@ trait CreateRepository
     public function addPostQueryDispatcher(array $data = [], int $clientDataKey = 0): void
     {
         if (count($this->getAddPostQueries())) {
+            $methodDefine = $this->actionDefinitors[request()->method()];
+
             foreach ($this->getAddPostQueries() as $key => $cr) {
+                $crExplode = explode('.',$cr);
+
+                if(!isset($crExplode[2])){
+                    $cr = $cr.'.'.$methodDefine;
+                }
+
                 $keyExplode = explode('|', $key);
                 $key = $keyExplode[0];
                 $createStatus = !((isset($keyExplode[1]) && $keyExplode[1] == 'false'));
@@ -66,7 +80,7 @@ trait CreateRepository
                         ExceptionFacade::customException($exception->getMessage() . ' (' . trans('exception.crKey', ['key' => $key]) . ')');
                     }
 
-                    $this->addPostQueryResults[$clientDataKey][$key] = $createStatus ? AppContainer::get('crRepositoryInstance')->create() : $data[$key];
+                    $this->addPostQueryResults[$clientDataKey][$key] = $createStatus ? AppContainer::get('crRepositoryInstance')->{$methodDefine}() : $data[$key];
                 }
             }
         }
