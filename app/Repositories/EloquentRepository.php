@@ -266,6 +266,30 @@ class EloquentRepository
     }
 
     /**
+     * @param array $data
+     * @return $this
+     */
+    public function setClientAction(array $data = []) : self
+    {
+        $clientInstance = getClientInstance();
+
+        $request = [];
+
+        foreach ($data as $name){
+            $clientActionName = Str::camel($name).'Action';
+            if(method_exists($clientInstance,$clientActionName)){
+                $request = array_merge_recursive($clientInstance->$clientActionName());
+            }
+        }
+
+        $request = array_merge_recursive(request()->query->all(),$request);
+        request()->query->replace([]);
+        request()->query->add($request);
+
+        return $this;
+    }
+
+    /**
      * update data for repository model
      *
      * @param array $data

@@ -401,6 +401,19 @@ if (!function_exists('isAuthenticate')) {
     }
 }
 
+if (!function_exists('getClientInstance')) {
+
+    /**
+     * get client instance
+     *
+     * @return object
+     */
+    function getClientInstance(): object
+    {
+        return AppContainer::get('clientInstance',new class {});
+    }
+}
+
 if (!function_exists('page')) {
 
     /**

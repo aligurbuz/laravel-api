@@ -57,6 +57,8 @@ class Client extends ClientManager
             $this->capsule();
             $this->addRule();
         }
+
+        AppContainer::setWithTerminating('clientInstance', $this);
     }
 
     /**
