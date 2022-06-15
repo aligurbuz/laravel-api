@@ -1,7 +1,7 @@
 namespace Tests\Feature\__DIR__;
 
 use Tests\TestCase;
-use __TESTMODELNAMESPACE__
+use __TESTMODELNAMESPACE__;
 
 class __CLASS__Test extends TestCase
 {
@@ -13,7 +13,7 @@ class __CLASS__Test extends TestCase
     /**
      * @var string
      */
-    protected string $model = '__TESTMODEL__';
+    protected string $model = __TESTMODEL__::class;
 
     /**
      * A basic test countries.
