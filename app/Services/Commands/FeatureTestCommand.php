@@ -56,6 +56,7 @@ class FeatureTestCommand extends Command
         $textFile = str_replace('__ENDPOINTMETHOD__', str_replace('/', '_', lcfirst($endpoint)), $textFile);
         $textFile = str_replace('__TESTMODEL__',ucfirst(AppContainer::get('testModel')) , $textFile);
         $textFile = str_replace('__TESTMODELNAMESPACE__', AppContainer::get('testModelNamespace'), $textFile);
+        $textFile = str_replace('__TESTREPOSITORY__', AppContainer::get('testModel'), $textFile);
 
         $dirPath = $testFeaturePath . '' . DIRECTORY_SEPARATOR . '' . $dir;
         $classPath = $testFeaturePath . '' . DIRECTORY_SEPARATOR . '' . $dir . '' . DIRECTORY_SEPARATOR . '' . $class . 'Test.php';

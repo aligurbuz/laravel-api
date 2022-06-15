@@ -16,6 +16,11 @@ class __CLASS__Test extends TestCase
     protected string $model = __TESTMODEL__::class;
 
     /**
+     * @var string
+     */
+    protected string $repository = 'TESTREPOSITORY';
+
+    /**
      * A basic test countries.
      *
      * @return void
