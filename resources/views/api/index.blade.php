@@ -1157,7 +1157,17 @@ wget --no-check-certificate --quiet \
 
                                                     $crColumnList = [];
 
+
                                                     foreach ($extraPostQueries as $extraClientKey => $crValue){
+                                                        $crValueSplit = explode('.',$crValue);
+                                                        if(!isset($crValueSplit[2]) && $method=='POST'){
+                                                            $crValue = $crValue.'.create';
+                                                        }
+
+                                                        if(!isset($crValueSplit[2]) && $method=='PUT'){
+                                                            $crValue = $crValue.'.update';
+                                                        }
+
                                                         $extraClientKey = explode('|',$extraClientKey);
                                                         $crModel = $crMaps[$crValue]['model'] ?? 'none';
                                                         $crModelFile = \App\Constants::modelNamespace.'\\'.ucfirst($crModel);
