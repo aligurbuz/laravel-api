@@ -1,6 +1,7 @@
 namespace Tests\Feature\__DIR__;
 
 use Tests\TestCase;
+use __TESTMODELNAMESPACE__
 
 class __CLASS__Test extends TestCase
 {
@@ -8,6 +9,11 @@ class __CLASS__Test extends TestCase
      * @var string
      */
     protected string $endpoint = '__ENDPOINT__';
+
+    /**
+     * @var string
+     */
+    protected string $model = '__TESTMODEL__';
 
     /**
      * A basic test countries.

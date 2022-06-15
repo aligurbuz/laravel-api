@@ -2,6 +2,8 @@
 
 namespace App\Services\Commands;
 
+use App\Constants;
+use App\Services\AppContainer;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\File;
@@ -39,9 +41,14 @@ class ModelCommand extends Command
      */
     public function handle()
     {
-        $modelFile = app_path('Models') . '' . DIRECTORY_SEPARATOR . '' . ucfirst($this->argument('model')) . '.php';
+        $baseModel = $this->argument('model');
+        $baseModelNamespace = Constants::modelNamespace.'\\'.ucfirst($baseModel);
+        AppContainer::setWithTerminating('testModel',$baseModel);
+        AppContainer::setWithTerminating('testModelNamespace',$baseModelNamespace);
 
-        Artisan::call('make:model', ['name' => ucfirst($this->argument('model'))]);
+        $modelFile = app_path('Models') . '' . DIRECTORY_SEPARATOR . '' . ucfirst($baseModel) . '.php';
+
+        Artisan::call('make:model', ['name' => ucfirst($baseModel)]);
 
         $modelFileContent = File::get($modelFile);
 
