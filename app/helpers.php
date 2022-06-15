@@ -504,6 +504,8 @@ if (!function_exists('pushMigration')) {
                 $pusherJson[] = $pusherHashing;
                 putJsonToFile($pusherJsonPath, $pusherJson);
 
+                $routeFile = is_null($routeFile) ? $directory : $routeFile;
+
                 \git()->commit('migration for ' . $model . ' has been created');
                 \service()->create($service, $directory, $model, $routeFile);
                 \git()->commit('service for ' . $service . ' has been created');
