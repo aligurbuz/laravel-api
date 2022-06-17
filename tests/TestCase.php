@@ -13,6 +13,9 @@ use App\Repositories\Repository;
 use Illuminate\Support\Facades\File;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 
+/**
+ * @property $repository
+ */
 abstract class TestCase extends BaseTestCase
 {
     use CreatesApplication,TestHttpSupport;
