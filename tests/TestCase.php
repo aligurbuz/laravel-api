@@ -198,14 +198,31 @@ abstract class TestCase extends BaseTestCase
     {
         $relations = AppContainer::get('testEndpointRelations',[]);
 
+        $repository = $this->repository;
+        $deniedEagerLoadings = Repository::$repository()->getDeniedEagerLoadings();
+
         $list = [];
 
         foreach ($relations as $item){
+            foreach ($deniedEagerLoadings as $deniedEagerLoading){
+                if(
+                    Str::contains($item['using'],'with['.$deniedEagerLoading.']')
+                    || Str::contains($item['using'],'[with]['.$deniedEagerLoading.']')
+                ){
+                    $denied = true;
+                    break;
+                }
+            }
+
+            if(isset($denied)) continue;
+
             $using = $item['using'] ?? '';
             $usingExplode = explode('=',$using);
+
             if(isset($usingExplode[1])){
                 $list[$usingExplode[0]] = $usingExplode[1];
             }
+
         }
 
         return $list;
