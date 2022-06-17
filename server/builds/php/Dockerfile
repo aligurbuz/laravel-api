@@ -29,17 +29,6 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install -j$(nproc) gd
 
-RUN ( \
-                cd /tmp \
-                && mkdir librdkafka \
-                && cd librdkafka \
-                && git clone https://github.com/edenhill/librdkafka.git . \
-                && ./configure \
-                && make \
-                && make install \
-            )
-RUN apt-get install -y librdkafka-dev && pecl install rdkafka
-RUN echo "extension=rdkafka.so" >> /usr/local/etc/php/conf.d/rdkafka.ini
 RUN apt-get install -y cron
 RUN apt-get update && apt-get install -y libpq-dev
 RUN docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql
@@ -50,4 +39,10 @@ RUN docker-php-ext-configure intl && docker-php-ext-install intl
 RUN cd ~
 RUN sudo curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN docker-php-ext-install sockets
+RUN apt-get install -y libgmp-dev re2c libmhash-dev libmcrypt-dev file
+RUN ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/local/include/
+RUN docker-php-ext-configure gmp
+RUN docker-php-ext-install gmp
+RUN echo "extension=gmp.so" >> /usr/local/etc/php/conf.d/gmp.ini
+RUN docker-php-ext-install bcmath
 RUN echo 'cd /var/www/html/app' >> ~/.bashrc
