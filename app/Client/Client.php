@@ -52,7 +52,7 @@ class Client extends ClientManager
     public function __construct(array $data = [], bool $handler = true)
     {
         if ($handler) {
-            parent::__construct($this->setClientAction($data));
+            parent::__construct($data);
             $this->modelRequiredFields();
             $this->capsule();
             $this->addRule();
@@ -79,45 +79,6 @@ class Client extends ClientManager
     public function getCustomRules(): array
     {
         return $this->customRules;
-    }
-
-    /**
-     * set client action for client instance
-     *
-     * @param array $data
-     * @return array
-     */
-    private function setClientAction(array $data = []): array
-    {
-        if (request()->method() == 'GET') {
-            $data = count($data)
-                ? $data
-                : $this->clientActionDataHandler();
-        }
-
-        return $data;
-    }
-
-    /**
-     * get client action data handler for client instance
-     *
-     * @return array
-     */
-    private function clientActionDataHandler(): array
-    {
-        $actionClientData = request()->query('client_action');
-        $clientActionMethodName = $actionClientData . 'Action';
-
-        if (!is_null($actionClientData)) {
-            if (method_exists($this, $clientActionMethodName)) {
-                request()->query->replace([]);
-                request()->query->add($this->{$clientActionMethodName}());
-            } else {
-                return Exception::clientActionException();
-            }
-        }
-
-        return request()->query->all();
     }
 
     /**
