@@ -65,6 +65,9 @@ trait ScopeManager
             if (array_key_exists($data, ($rangeHandler['modelRanges'] ?? [])) && method_exists($object, $data)) {
                 $object->$data($builder);
             }
+            elseif (array_key_exists($data, ($rangeHandler['modelRanges'] ?? [])) && method_exists($object, 'rangeHandler')){
+                $object->rangeHandler($builder,$data);
+            }
         }
 
         return $builder;

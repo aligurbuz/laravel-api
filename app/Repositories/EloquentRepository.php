@@ -266,6 +266,20 @@ class EloquentRepository
     }
 
     /**
+     * get range scope for client
+     *
+     * @param object|null $builder
+     * @param string|null $rangeMethod
+     * @return object
+     */
+    public function rangeHandler(?object $builder = null,?string $rangeMethod = null): object
+    {
+        $this->repository = $this->setClientAction([$rangeMethod])->builder($builder);
+
+        return $this;
+    }
+
+    /**
      * @param array $data
      * @return $this
      */
