@@ -28,4 +28,30 @@ class Sms extends SmsManager implements SmsInterface
     {
         $this->binds = $binds;
     }
+
+    /**
+     * @param string $number
+     * @return SmsInterface
+     */
+    public function to(string $number): SmsInterface
+    {
+        return $this;
+    }
+
+    /**
+     * @param string $message
+     * @return SmsInterface
+     */
+    public function message(string $message): SmsInterface
+    {
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function send(): array
+    {
+        return [];
+    }
 }
