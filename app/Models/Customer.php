@@ -2,17 +2,19 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use App\Models\Features\BaseManager;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 
-class Customer extends Model
+class Customer extends Authenticatable
 {
-    use HasFactory,BaseManager;
+    use HasFactory, Notifiable, BaseManager, HasApiTokens;
 
     protected array $searchable = [];
 
     protected array $withQuery = [];
 
-    protected $hidden = ['id','password'];
+    protected $hidden = ['id', 'password'];
 }

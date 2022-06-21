@@ -2,6 +2,7 @@
 
 return [
     'web' => [
+        'login' => ['POST'],
         'countries/*' => ['GET'],
         'customers' => ['POST'],
         'global' => ['GET','POST'],

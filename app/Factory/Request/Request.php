@@ -51,6 +51,7 @@ class Request extends RequestManager implements RequestInterface
                 ]
             )) {
 
+
             $user = Auth::guard(authGuard())->user();
 
             $data = [];
