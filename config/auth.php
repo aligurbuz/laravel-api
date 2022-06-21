@@ -86,7 +86,7 @@ return [
         ],
         'web' => [
             'driver' => 'eloquent',
-            'model' => App\Models\User::class,
+            'model' => App\Models\Customer::class,
         ],
 
         // 'users' => [
