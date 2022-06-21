@@ -40,14 +40,21 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
-
         'login_admin' => [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'login_web' => [
+            'driver' => 'session',
+            'provider' => 'web',
+        ],
         'check_admin' => [
             'driver' => 'sanctum',
             'provider' => 'users',
+        ],
+        'check_web' => [
+            'driver' => 'sanctum',
+            'provider' => 'web',
         ],
     ],
 
@@ -74,6 +81,10 @@ return [
             'model' => App\Models\User::class,
         ],
         'admin' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\User::class,
+        ],
+        'web' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
