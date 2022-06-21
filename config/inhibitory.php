@@ -4,11 +4,11 @@ return [
     'web' => [
         'login' => ['POST'],
         'countries/*' => ['GET'],
-        'customers' => ['POST'],
+        'customer/profiles' => ['POST'],
         'global' => ['GET','POST'],
         //'timezones' => ['GET'],
     ],
     'authenticateWeb' => [
-        'customers' => ['GET','PUT'],
+        'customer/*' => ['GET','PUT'],
     ]
 ];
