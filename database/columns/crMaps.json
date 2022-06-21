@@ -38,5 +38,17 @@
     "currencies.currencies.create": {
         "class": "App\\Client\\Currencies\\Currencies\\Create\\CreateClient",
         "model": "currency"
+    },
+    "customer.profiles.get": {
+        "class": "App\\Client\\Customer\\Profiles\\Get\\GetClient",
+        "model": "customer"
+    },
+    "customer.profiles.create": {
+        "class": "App\\Client\\Customer\\Profiles\\Create\\CreateClient",
+        "model": "customer"
+    },
+    "customer.profiles.update": {
+        "class": "App\\Client\\Customer\\Profiles\\Update\\UpdateClient",
+        "model": "customer"
     }
 }

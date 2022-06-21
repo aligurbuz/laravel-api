@@ -12,7 +12,8 @@
         "/var/www/html/app/api/app/Docs/Endpoints/Timezones/Timezones.json",
         "/var/www/html/app/api/app/Docs/Endpoints/Global/Global.json",
         "/var/www/html/app/api/app/Docs/Endpoints/Registration/Registration.json",
-        "/var/www/html/app/api/app/Docs/Endpoints/Support/Support.json"
+        "/var/www/html/app/api/app/Docs/Endpoints/Support/Support.json",
+        "/var/www/html/app/api/app/Docs/Endpoints/Customer/Customer.json"
     ],
     "keys": {
         "/var/www/html/app/api/app/Docs/Endpoints/User/User.json": 0,
@@ -25,7 +26,8 @@
         "/var/www/html/app/api/app/Docs/Endpoints/Timezones/Timezones.json": 0,
         "/var/www/html/app/api/app/Docs/Endpoints/Global/Global.json": 0,
         "/var/www/html/app/api/app/Docs/Endpoints/Registration/Registration.json": 0,
-        "/var/www/html/app/api/app/Docs/Endpoints/Support/Support.json": 0
+        "/var/www/html/app/api/app/Docs/Endpoints/Support/Support.json": 0,
+        "/var/www/html/app/api/app/Docs/Endpoints/Customer/Customer.json": 0
     },
     "fingerPrints": {
         "User_User_user": 0,
@@ -42,6 +44,7 @@
         "Timezones_Timezones_timezone": 0,
         "Photos_User_userPhoto": 1,
         "Registration_Registration_registration": 0,
-        "Excel_Support_excel": 0
+        "Excel_Support_excel": 0,
+        "Profiles_Customer_customer": 0
     }
 }

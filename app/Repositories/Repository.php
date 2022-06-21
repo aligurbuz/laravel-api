@@ -19,6 +19,7 @@ use App\Repositories\Resources\Support\Contracts\ExcelRepositoryContract;
 use App\Repositories\Resources\Timezones\Contracts\TimezonesRepositoryContract;
 use App\Repositories\Resources\User\Contracts\PhotosRepositoryContract;
 use App\Repositories\Resources\User\Contracts\UserRepositoryContract;
+use App\Repositories\Resources\Customer\Contracts\CustomerProfilesRepositoryContract;
 
 /**
  * Class Repository
@@ -26,6 +27,16 @@ use App\Repositories\Resources\User\Contracts\UserRepositoryContract;
  */
 class Repository
 {
+    /**
+     * get customer repository instance
+     *
+     * @return CustomerProfilesRepositoryContract
+     */
+    public static function customer() : CustomerProfilesRepositoryContract
+    {
+        return app()->get(CustomerProfilesRepositoryContract::class);
+    }
+    
     /**
      * get excel repository instance
      *

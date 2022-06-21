@@ -19,6 +19,9 @@
     "currency_code": [
         "Currency"
     ],
+    "customer_code": [
+        "Customer"
+    ],
     "district_code": [
         "District"
     ],

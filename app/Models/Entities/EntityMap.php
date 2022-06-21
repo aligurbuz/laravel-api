@@ -6,6 +6,15 @@ class EntityMap
 {
     /**
      * @param object $query
+     * @return Customer
+     */
+    public function customer(object $query) : Customer
+    {
+        return new Customer($query);
+    }
+    
+    /**
+     * @param object $query
      * @return Excel
      */
     public function excel(object $query): Excel

@@ -40,5 +40,10 @@
         "controller": "Excel",
         "dir": "Support",
         "model": "Excel"
+    },
+    "Customer/profiles": {
+        "controller": "Profiles",
+        "dir": "Customer",
+        "model": "Customer"
     }
 }
