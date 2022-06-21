@@ -57,7 +57,7 @@ class Request extends RequestManager implements RequestInterface
             $data['user'] = $user->toArray();
 
             if ($data['user']['status'] == '1' && $data['user']['is_deleted'] == '0') {
-                $data['token'] = $user->createToken(ApiKey::who())->accessToken;
+                $data['token'] = $user->createToken(ApiKey::who())->plainTextToken;
 
                 return $data;
             }

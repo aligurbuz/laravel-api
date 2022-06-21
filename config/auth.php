@@ -46,7 +46,7 @@ return [
             'provider' => 'users',
         ],
         'check_admin' => [
-            'driver' => 'passport',
+            'driver' => 'sanctum',
             'provider' => 'users',
         ],
     ],
