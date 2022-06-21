@@ -8,7 +8,7 @@ return [
      * If there are classes in your repository directory of these string names,
      * these classes will be included in the rule.
      */
-    'globalScopes' => ['userCode'],
+    'globalScopes' => ['userCode','customerCode'],
 
     /**
      * When the repository is started,

@@ -14,6 +14,11 @@ class Authenticate extends FacadeManager
     protected string $facade = 'user';
 
     /**
+     * @var string
+     */
+    protected string $code = 'user_code';
+
+    /**
      * Authenticate constructor.
      */
     public function __construct()
@@ -21,6 +26,9 @@ class Authenticate extends FacadeManager
         parent::__construct();
 
         $this->data = auth()->user();
+
+        $this->code = ApiKey::isWeb() ? 'customer_code' : 'user_code';
+
     }
 
     /**
@@ -30,7 +38,11 @@ class Authenticate extends FacadeManager
      */
     public static function code(): int
     {
-        return (new self)->data->user_code ?? 0;
+        $self = new self();
+
+        $code = $self->code;
+
+        return (new self)->data->{$code} ?? Exception::authenticateException();
     }
 
     /**
