@@ -42,7 +42,7 @@ class Authenticate extends FacadeManager
 
         $code = $self->code;
 
-        return (new self)->data->{$code} ?? Exception::authenticateException();
+        return (new self)->data->{$code} ?? 0;
     }
 
     /**
