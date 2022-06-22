@@ -196,10 +196,10 @@ trait ScopeManager
     {
         $params = count($data) ? ['filter' => $data] : request()->query->all();
         $indexes = Db::indexes($this->getTable());
-        $globalScopes = config('repository.globalScopes');
+        //$globalScopes = config('repository.globalScopes');
 
         if (isset($params['filter'])) {
-            $builder->where(function ($query) use ($params, $indexes,$globalScopes) {
+            $builder->where(function ($query) use ($params, $indexes) {
                 $filtering = indexOrdering($this->getTable(), $params['filter']);
                 foreach ($filtering as $key => $value) {
                     if (!in_array($key, $indexes)) {
