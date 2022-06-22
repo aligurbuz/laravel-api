@@ -202,11 +202,6 @@ trait ScopeManager
             $builder->where(function ($query) use ($params, $indexes,$globalScopes) {
                 $filtering = indexOrdering($this->getTable(), $params['filter']);
                 foreach ($filtering as $key => $value) {
-
-                    if(in_array(Str::camel($key),$globalScopes,true)){
-                        continue;
-                    }
-
                     if (!in_array($key, $indexes)) {
                         Exception::filterException('', ['key' => $key]);
                     }
