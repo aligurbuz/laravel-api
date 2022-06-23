@@ -31,6 +31,7 @@ use App\Services\AppContainer;
  * @method static cacheException($message = null, $keys = [], bool|string $notify = true)
  * @method static permissionException($message = null, $keys = [], bool|string $notify = true)
  * @method static clientActionException($message = null, $keys = [], bool|string $notify = true)
+ * @method static notFoundException($message = null, $keys = [], bool|string $notify = true)
  * @package App\Exceptions
  */
 class Exception

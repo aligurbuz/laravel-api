@@ -15,6 +15,7 @@ class Constants
     public const error500 = 500;
     public const error401 = 401;
     public const error403 = 403;
+    public const error404 = 404;
 
     public const apiPrefix = 'api';
     public const response = 'response';
