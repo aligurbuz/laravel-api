@@ -29,6 +29,28 @@ trait TestHttpSupport
                 $this->getRequest()->assertStatus(400);
             }
         }
+
+        $this->getSingleHttpMethod();
+    }
+
+    protected function getSingleHttpMethod() : void
+    {
+        $request = $this->getRequest();
+        $content = $this->getContentArray($request);
+        $resource = $this->getResourceData($content);
+
+        if(isset($resource[0])){
+            $tableCode = getTableCode($this->getModel());
+            $filter = $this->getRequest([
+                'filter'=>[$tableCode => $resource[0][$tableCode]]
+            ]);
+
+            $filterContent = $this->getContentArray($filter);
+            $filterResource = $this->getResourceData($filterContent);
+
+            $this->assertEquals('1',count($filterResource));
+            $this->assertEquals($resource[0][$tableCode],$filterResource[0][$tableCode]);
+        }
     }
 
     /**
