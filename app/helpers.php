@@ -369,19 +369,6 @@ if (!function_exists('authGuard')) {
     }
 }
 
-if (!function_exists('updateMigration')) {
-
-    /**
-     * @param string|null $model
-     * @return void
-     */
-    function updateMigration(?string $model = null): void
-    {
-        Artisan::call('update:migration',['model' => $model]);
-        Artisan::call('update:migration',['model' => $model]);
-    }
-}
-
 if (!function_exists('getQueryFilter')) {
 
     /**
