@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 use JetBrains\PhpStorm\Pure;
+use Illuminate\Support\Facades\Artisan;
 
 if (!function_exists('entity')) {
 
@@ -365,6 +366,19 @@ if (!function_exists('authGuard')) {
     function authGuard(string $prefix = 'login'): string
     {
         return $prefix . '_' . who();
+    }
+}
+
+if (!function_exists('updateMigration')) {
+
+    /**
+     * @param string|null $model
+     * @return void
+     */
+    function updateMigration(?string $model = null): void
+    {
+        Artisan::call('update:migration',['model' => $model]);
+        Artisan::call('update:migration',['model' => $model]);
     }
 }
 
