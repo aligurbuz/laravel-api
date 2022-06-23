@@ -125,6 +125,7 @@ return [
     'atLeastUpperLowerNumber' => ':attribute must have at least 1 lowercase and 1 uppercase and 1 number',
     'enum' => '(:column) field must be only :enum',
     'enumSplitter' => 'or',
+    'timestamp' => 'The :attribute value does not conform to the date and time format.',
 
     /*
     |--------------------------------------------------------------------------
