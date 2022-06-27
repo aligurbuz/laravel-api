@@ -13,6 +13,8 @@ use Laravel\Sanctum\HasApiTokens;
  * @method $this toArray()
  * @method $this createToken($appName)
  * @method $this token()
+ * @property mixed $status
+ * @property mixed $is_deleted
  * @package App\Models
  */
 class User extends Authenticatable

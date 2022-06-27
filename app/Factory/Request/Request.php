@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace App\Factory\Request;
 
+use App\Exceptions\Exception;
 use App\Exceptions\Exception as ExceptionService;
 use App\Facades\Authenticate\ApiKey;
 use App\Factory\Request\Interfaces\RequestInterface;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 /**
@@ -52,7 +54,16 @@ class Request extends RequestManager implements RequestInterface
             )) {
 
 
+            /*** @var User $user */
             $user = Auth::guard(authGuard())->user();
+
+            if ($user->is_deleted) {
+                Exception::customException('deletedUser');
+            }
+
+            if (!$user->status) {
+                Exception::customException('notActiveUser');
+            }
 
             $data = [];
             $data['user'] = $user->toArray();
