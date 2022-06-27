@@ -116,17 +116,20 @@ if (!function_exists('moneyFormatter')) {
 
     /**
      * get currency string for application
-     *
+     * @param $value
+     * @param bool $floatReturn
+     * @param int $roundType
+     * @return string|float
      */
-    function moneyFormatter($value, bool $floatReturn = true): string|float
+    function moneyFormatter($value, bool $floatReturn = true, int $roundType = PHP_ROUND_HALF_UP): string|float
     {
         $value = (float)$value;
 
         if ($floatReturn) {
-            return (float)number_format($value, 2, '.', '');
+            return round((float)number_format($value, 2, '.', ''),$roundType);
         }
 
-        return number_format($value, 2, '.', ',');
+        return round(number_format($value, 2, '.', ','),$roundType);
     }
 }
 

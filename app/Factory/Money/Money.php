@@ -43,11 +43,12 @@ class Money extends MoneyManager implements MoneyInterface
      *
      * @param float $money1
      * @param float $money2
+     * @param int $roundType
      * @return float
      */
-    public function add(float $money1, float $money2): float
+    public function add(float $money1, float $money2,int $roundType = PHP_ROUND_HALF_ODD): float
     {
-        return moneyFormatter(($money1 + $money2));
+        return moneyFormatter(($money1 + $money2),true,$roundType);
     }
 
     /**
@@ -55,11 +56,12 @@ class Money extends MoneyManager implements MoneyInterface
      *
      * @param float $money1
      * @param float $money2
+     * @param int $roundType
      * @return float
      */
-    public function subtract(float $money1, float $money2): float
+    public function subtract(float $money1, float $money2,int $roundType = PHP_ROUND_HALF_ODD): float
     {
-        return moneyFormatter(($money1 - $money2));
+        return moneyFormatter(($money1 - $money2),true,$roundType);
     }
 
     /**
@@ -67,23 +69,25 @@ class Money extends MoneyManager implements MoneyInterface
      *
      * @param float $money1
      * @param float $money2
+     * @param int $roundType
      * @return float
      */
-    public function multiply(float $money1, float $money2): float
+    public function multiply(float $money1, float $money2,int $roundType = PHP_ROUND_HALF_ODD): float
     {
-        return moneyFormatter(($money1 * $money2));
+        return moneyFormatter(($money1 * $money2),true,$roundType);
     }
 
     /**
-     * Multiplies two float values.
+     * divides two float values.
      *
      * @param float $money1
      * @param float $money2
+     * @param int $roundType
      * @return float
      */
-    public function divide(float $money1, float $money2): float
+    public function divide(float $money1, float $money2, int $roundType = PHP_ROUND_HALF_ODD): float
     {
-        return moneyFormatter(($money1 / $money2));
+        return moneyFormatter(($money1 / $money2),true,$roundType);
     }
 
     /**

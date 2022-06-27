@@ -12,34 +12,38 @@ interface MoneyInterface
     /**
      * @param float $money1
      * @param float $money2
+     * @param int $roundType
      * @return float
      * @see Money::add()
      */
-    public function add(float $money1, float $money2): float;
+    public function add(float $money1, float $money2,int $roundType = PHP_ROUND_HALF_ODD): float;
 
     /**
      * @param float $money1
      * @param float $money2
+     * @param int $roundType
      * @return float
      * @see Money::subtract()
      */
-    public function subtract(float $money1, float $money2): float;
+    public function subtract(float $money1, float $money2,int $roundType = PHP_ROUND_HALF_ODD): float;
 
     /**
      * @param float $money1
      * @param float $money2
+     * @param int $roundType
      * @return float
      * @see Money::multiply()
      */
-    public function multiply(float $money1, float $money2): float;
+    public function multiply(float $money1, float $money2,int $roundType = PHP_ROUND_HALF_ODD): float;
 
     /**
      * @param float $money1
      * @param float $money2
+     * @param int $roundType
      * @return float
      * @see Money::divide()
      */
-    public function divide(float $money1, float $money2): float;
+    public function divide(float $money1, float $money2, int $roundType = PHP_ROUND_HALF_ODD): float;
 
     /**
      * @param float $money

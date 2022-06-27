@@ -7,6 +7,7 @@ namespace App\Http\Controllers\Api\User;
 use App\Client\User\User\Create\CreateClient;
 use App\Client\User\User\Get\GetClient;
 use App\Client\User\User\Update\UpdateClient;
+use App\Factory\Factory;
 use App\Http\Controllers\Api\ApiController;
 use App\Repositories\Resources\User\Contracts\UserRepositoryContract;
 
@@ -27,6 +28,7 @@ class UserController extends ApiController
      */
     public function get(GetClient $client, UserRepositoryContract $userRepository): array
     {
+        dd(Factory::money()->multiply(2.55,3.24));
         $client->handle();
         return $userRepository->get();
     }
