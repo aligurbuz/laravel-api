@@ -199,9 +199,14 @@ trait ScopeManager
         //$globalScopes = config('repository.globalScopes');
 
         if (isset($params['filter'])) {
-            $builder->where(function ($query) use ($params, $indexes) {
+            $builderSql = $builder->toSql();
+            $builder->where(function ($query) use ($params, $indexes,$builderSql) {
                 $filtering = indexOrdering($this->getTable(), $params['filter']);
                 foreach ($filtering as $key => $value) {
+                    if(Str::contains($builderSql,$key)){
+                        continue;
+                    }
+
                     if (!in_array($key, $indexes)) {
                         Exception::filterException('', ['key' => $key]);
                     }
