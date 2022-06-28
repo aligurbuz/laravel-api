@@ -41,5 +41,6 @@ return [
     'recursiveHasException'         => 'A maximum of 2 recursive (has) queries can be used.',
     'clientNormalDataException'     => 'Before you can update a data, you have to send at least 2 input keys.',
     'notActiveUser'                 => 'The membership of the user you are trying to login to has not been activated yet.',
-    'deletedUser'                   => 'Sorry. This user\'s membership has been blocked. Please contact to the system administrator.'
+    'deletedUser'                   => 'Sorry. This user\'s membership has been blocked. Please contact to the system administrator.',
+    'orderByString'                 => 'Sorting format is wrong. Please correct your "orderBy" key.'
 ];

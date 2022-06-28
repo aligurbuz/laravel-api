@@ -34,6 +34,11 @@ trait ScopeManager
     protected array $doesntHaveValues = [];
 
     /**
+     * @var array|string[]
+     */
+    protected array $orderByStrings = ['asc','desc'];
+
+    /**
      * @var string[]
      */
     protected array $operators = ['<', '>', '<=', '>=', '<>', '=', 'or'];
@@ -179,7 +184,13 @@ trait ScopeManager
 
         if (isset($params['orderBy'])) {
             $orderBy = explode(',', $params['orderBy']);
-            return $builder->orderBy($orderBy[0], ($orderBy[1] ?? 'asc'));
+            $this->getRepository()->throwExceptionIfColumnNotExist($orderBy[0],function() use($builder,$orderBy){
+                $orderByString = ($orderBy[1] ?? 'asc');
+                $orderByString = in_array($orderByString,$this->orderByStrings,true)
+                    ? $orderByString : Exception::customException('orderByString');
+
+                return $builder->orderBy($orderBy[0], $orderByString);
+            });
         }
 
         return $builder;
