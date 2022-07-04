@@ -311,7 +311,9 @@ abstract class TestCase extends BaseTestCase
      */
     public function getRedisConnection() : ClientInterface
     {
-        return Redis::client();
+        return AppContainer::use('redisConnection',function(){
+            return Redis::client();
+        });
     }
 
     /**
