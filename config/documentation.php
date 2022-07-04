@@ -39,5 +39,7 @@ return [
                 ]
             ]
         ]
-    ]
+    ],
+
+    'docUrl' => env('docUrl','/var/www/html/app/api')
 ];
