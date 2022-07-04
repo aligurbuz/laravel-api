@@ -1,0 +1,10 @@
+language: php
+install: composer install
+php:
+  - '7.3'
+  - '7.2'
+script:
+  - composer install
+  - copy .env.example .env
+  - php artisan key:generate
+  - sudo chmod -R 777 storage
