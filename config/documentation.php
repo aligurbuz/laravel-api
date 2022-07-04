@@ -41,5 +41,5 @@ return [
         ]
     ],
 
-    'docUrl' => env('docUrl','/var/www/html/app/api')
+    'docUrl' => env('docUrl',base_path())
 ];

@@ -44,12 +44,20 @@ class Postman extends Command
         foreach ($mapJson as $docKey => $docData){
             if($docKey=='files' || $docKey=='keys'){
                 foreach ($docData as $docDataKey => $docDataItem){
-                    if(!is_null($docUrl)){
+                    if(!is_null($docUrl) && $docKey=='files'){
                         $mapJson[$docKey][$docDataKey] = str_replace('/var/www/html/app/api',$docUrl,$docDataItem);
+                    }
+
+                    if(!is_null($docUrl) && $docKey=='keys'){
+                        foreach ($docData as $keyData => $keyItem){
+                            unset($mapJson[$docKey][$keyData]);
+                            $mapJson[$docKey][str_replace('/var/www/html/app/api',$docUrl,$keyData)] = $keyItem;
+                        }
                     }
                 }
             }
         }
+
         $mockeryData = json_decode(File::get(app_path('Docs') . '' . DIRECTORY_SEPARATOR . 'mockery.json'), 1);
         $documentationConfig = config('documentation');
         $exceptMethods = $documentationConfig['exceptMethods'] ?? [];
