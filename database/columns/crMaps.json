@@ -50,5 +50,17 @@
     "customer.profiles.update": {
         "class": "App\\Client\\Customer\\Profiles\\Update\\UpdateClient",
         "model": "customer"
+    },
+    "user.activations.get": {
+        "class": "App\\Client\\User\\Activations\\Get\\GetClient",
+        "model": "userActivation"
+    },
+    "user.activations.create": {
+        "class": "App\\Client\\User\\Activations\\Create\\CreateClient",
+        "model": "userActivation"
+    },
+    "user.activations.update": {
+        "class": "App\\Client\\User\\Activations\\Update\\UpdateClient",
+        "model": "userActivation"
     }
 }

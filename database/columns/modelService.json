@@ -62,5 +62,9 @@
     "Customer": {
         "controller": "Profiles",
         "dir": "Customer"
+    },
+    "UserActivation": {
+        "controller": "Activations",
+        "dir": "User"
     }
 }

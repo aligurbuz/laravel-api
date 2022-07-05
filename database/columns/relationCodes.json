@@ -55,6 +55,7 @@
     ],
     "user_code": [
         "SuperAdmin",
+        "UserActivation",
         "UserPhoto"
     ],
     "table_change_code": [
@@ -62,6 +63,9 @@
     ],
     "timezone_code": [
         "Timezone"
+    ],
+    "user_activation_code": [
+        "UserActivation"
     ],
     "user_photo_code": [
         "UserPhoto"

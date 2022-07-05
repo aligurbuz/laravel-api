@@ -161,10 +161,10 @@
             ]
         },
         {
-            "name": "Photos",
+            "name": "Activations",
             "item": [
                 {
-                    "name": "User/Photos",
+                    "name": "User/Activations",
                     "response": [],
                     "request": {
                         "method": "GET",
@@ -172,33 +172,37 @@
                             {
                                 "key": "Authorization",
                                 "value": "Bearer {{bearerToken}}",
-                                "type": "text"
+                                "type": "text",
+                                "description": "It is the token value received after the user logs in.(must)"
                             },
                             {
                                 "key": "Apikey",
                                 "value": "{{apiKey}}",
-                                "type": "text"
+                                "type": "text",
+                                "description": "It is a hash value given to you by the system provider.(must)"
                             },
                             {
                                 "key": "Content-Type",
                                 "value": "{{contentType}}",
-                                "type": "text"
+                                "type": "text",
+                                "description": "You can specify the return types for the returned response like json or xml.(not must)"
                             },
                             {
                                 "key": "Accept-Language",
                                 "value": "{{acceptLanguage}}",
-                                "type": "text"
+                                "type": "text",
+                                "description": "You can select the language option for the returned string values.(must)"
                             }
                         ],
                         "body": [],
                         "url": {
-                            "raw": "{{baseUrl}}/user/photos",
+                            "raw": "{{baseUrl}}/user/activations",
                             "host": [
                                 "{{baseUrl}}"
                             ],
                             "path": [
                                 "user",
-                                "photos"
+                                "activations"
                             ],
                             "query": [
                                 {
@@ -212,7 +216,7 @@
                     }
                 },
                 {
-                    "name": "User/Photos",
+                    "name": "User/Activations",
                     "response": [],
                     "request": {
                         "method": "POST",
@@ -220,26 +224,30 @@
                             {
                                 "key": "Authorization",
                                 "value": "Bearer {{bearerToken}}",
-                                "type": "text"
+                                "type": "text",
+                                "description": "It is the token value received after the user logs in.(must)"
                             },
                             {
                                 "key": "Apikey",
                                 "value": "{{apiKey}}",
-                                "type": "text"
+                                "type": "text",
+                                "description": "It is a hash value given to you by the system provider.(must)"
                             },
                             {
                                 "key": "Content-Type",
                                 "value": "{{contentType}}",
-                                "type": "text"
+                                "type": "text",
+                                "description": "You can specify the return types for the returned response like json or xml.(not must)"
                             },
                             {
                                 "key": "Accept-Language",
                                 "value": "{{acceptLanguage}}",
-                                "type": "text"
+                                "type": "text",
+                                "description": "You can select the language option for the returned string values.(must)"
                             }
                         ],
                         "body": {
-                            "mode": "formdata",
+                            "mode": "raw",
                             "formdata": [
                                 {
                                     "key": "image_description",
@@ -294,23 +302,24 @@
                                 "raw": {
                                     "language": "json"
                                 }
-                            }
+                            },
+                            "raw": "{\"user_code\":\"integer\",\"options\":\"enum\",\"status\":\"1\",\"is_deleted\":\"0\"}"
                         },
                         "url": {
-                            "raw": "{{baseUrl}}/user/photos",
+                            "raw": "{{baseUrl}}/user/activations",
                             "host": [
                                 "{{baseUrl}}"
                             ],
                             "path": [
                                 "user",
-                                "photos"
+                                "activations"
                             ],
                             "query": []
                         }
                     }
                 },
                 {
-                    "name": "User/Photos",
+                    "name": "User/Activations",
                     "response": [],
                     "request": {
                         "method": "PUT",
@@ -318,27 +327,31 @@
                             {
                                 "key": "Authorization",
                                 "value": "Bearer {{bearerToken}}",
-                                "type": "text"
+                                "type": "text",
+                                "description": "It is the token value received after the user logs in.(must)"
                             },
                             {
                                 "key": "Apikey",
                                 "value": "{{apiKey}}",
-                                "type": "text"
+                                "type": "text",
+                                "description": "It is a hash value given to you by the system provider.(must)"
                             },
                             {
                                 "key": "Content-Type",
                                 "value": "{{contentType}}",
-                                "type": "text"
+                                "type": "text",
+                                "description": "You can specify the return types for the returned response like json or xml.(not must)"
                             },
                             {
                                 "key": "Accept-Language",
                                 "value": "{{acceptLanguage}}",
-                                "type": "text"
+                                "type": "text",
+                                "description": "You can select the language option for the returned string values.(must)"
                             }
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"image_description\":\"string\",\"image_name\":\"string\",\"is_deleted\":\"0\",\"sequence\":\"1\",\"sequence_time\":\"0\",\"status\":\"1\",\"user_code\":\"integer\",\"user_image\":\"image\",\"user_photo_code\":\"0\"}",
+                            "raw": "{\"user_activation_code\":\"integer\",\"user_code\":\"integer\",\"options\":\"enum\",\"status\":\"1\",\"is_deleted\":\"0\"}",
                             "options": {
                                 "raw": {
                                     "language": "json"
@@ -346,13 +359,13 @@
                             }
                         },
                         "url": {
-                            "raw": "{{baseUrl}}/user/photos",
+                            "raw": "{{baseUrl}}/user/activations",
                             "host": [
                                 "{{baseUrl}}"
                             ],
                             "path": [
                                 "user",
-                                "photos"
+                                "activations"
                             ],
                             "query": []
                         }

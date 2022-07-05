@@ -27,5 +27,10 @@
         "get": "App\\Client\\Customer\\Profiles\\Get\\GetClient",
         "create": "App\\Client\\Customer\\Profiles\\Create\\CreateClient",
         "update": "App\\Client\\Customer\\Profiles\\Update\\UpdateClient"
+    },
+    "UserActivation": {
+        "get": "App\\Client\\User\\Activations\\Get\\GetClient",
+        "create": "App\\Client\\User\\Activations\\Create\\CreateClient",
+        "update": "App\\Client\\User\\Activations\\Update\\UpdateClient"
     }
 }

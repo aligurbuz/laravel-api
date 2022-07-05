@@ -33,6 +33,8 @@ use App\Repositories\Resources\User\Contracts\UserRepositoryContract;
 use App\Repositories\Resources\User\PhotosRepository;
 use App\Repositories\Resources\User\UserRepository;
 use Illuminate\Support\ServiceProvider;
+use App\Repositories\Resources\User\Contracts\UserActivationsRepositoryContract;
+use App\Repositories\Resources\User\ActivationsRepository as UserActivationsRepository;
 use App\Repositories\Resources\Customer\Contracts\CustomerProfilesRepositoryContract;
 use App\Repositories\Resources\Customer\ProfilesRepository as CustomerProfilesRepository;
 
@@ -61,6 +63,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(RegistrationRepositoryContract::class, RegistrationRepository::class);
         $this->app->bind(ExcelRepositoryContract::class, ExcelRepository::class);
         $this->app->bind(CustomerProfilesRepositoryContract::class,CustomerProfilesRepository::class);
+        $this->app->bind(UserActivationsRepositoryContract::class,UserActivationsRepository::class);
         //newBind
     }
 
