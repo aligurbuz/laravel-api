@@ -20,12 +20,12 @@ return new class extends Migration
 
             $table->enum('options',['None','Sms','Email'])->comment('User activation values : None or Sms or Email');
 
-            $table->boolean('status')->default(1)->comment('0:active 1:passive');
-            $table->boolean('is_deleted')->default(0)->comment('0:notDeleted 1:deleted');
+            //$table->boolean('status')->default(1)->comment('0:active 1:passive');
+            //$table->boolean('is_deleted')->default(0)->comment('0:notDeleted 1:deleted');
             $table->bigInteger('created_by')->default(0);
             $table->bigInteger('updated_by')->default(0);
-            $table->bigInteger('deleted_by')->default(0);
-            $table->timestamp('deleted_at')->nullable();
+            //$table->bigInteger('deleted_by')->default(0);
+            //$table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });
 
