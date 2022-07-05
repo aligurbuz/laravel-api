@@ -303,7 +303,7 @@
                                     "language": "json"
                                 }
                             },
-                            "raw": "{\"user_code\":\"integer\",\"options\":\"enum\",\"status\":\"1\",\"is_deleted\":\"0\"}"
+                            "raw": "{\"user_code\":\"integer\",\"options\":\"enum\",\"hash\":\"string\"}"
                         },
                         "url": {
                             "raw": "{{baseUrl}}/user/activations",
@@ -351,7 +351,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"user_activation_code\":\"integer\",\"user_code\":\"integer\",\"options\":\"enum\",\"status\":\"1\",\"is_deleted\":\"0\"}",
+                            "raw": "{\"user_activation_code\":\"integer\",\"user_code\":\"integer\",\"options\":\"enum\",\"hash\":\"string\",\"is_deleted\":\"0\",\"status\":\"1\"}",
                             "options": {
                                 "raw": {
                                     "language": "json"

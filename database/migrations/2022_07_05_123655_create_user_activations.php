@@ -19,6 +19,7 @@ return new class extends Migration
             $table->bigInteger('user_code')->unique();
 
             $table->enum('options',['None','Sms','Email'])->comment('User activation values : None or Sms or Email');
+            $table->string('hash')->nullable(true)->comment('one time hashing');
 
             //$table->boolean('status')->default(1)->comment('0:active 1:passive');
             //$table->boolean('is_deleted')->default(0)->comment('0:notDeleted 1:deleted');

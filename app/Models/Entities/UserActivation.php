@@ -9,12 +9,9 @@ namespace App\Models\Entities;
  * @property $this user_activation_code
  * @property $this user_code
  * @property $this options
- * @property $this status
- * @property $this is_deleted
+ * @property $this hash
  * @property $this created_by
  * @property $this updated_by
- * @property $this deleted_by
- * @property $this deleted_at
  * @property $this created_at
  * @property $this updated_at
  */
@@ -84,24 +81,13 @@ class UserActivation
 
 
 	/**
-	 * get status column for database table
+	 * get hash column for database table
 	 *
 	 * @return mixed
 	 */
-	protected static function status(): mixed
+	protected static function hash(): mixed
 	{
-		return self::$query->status;
-	}
-
-
-	/**
-	 * get is_deleted column for database table
-	 *
-	 * @return mixed
-	 */
-	protected static function is_deleted(): mixed
-	{
-		return self::$query->is_deleted;
+		return self::$query->hash;
 	}
 
 
@@ -124,28 +110,6 @@ class UserActivation
 	protected static function updated_by(): mixed
 	{
 		return self::$query->updated_by;
-	}
-
-
-	/**
-	 * get deleted_by column for database table
-	 *
-	 * @return mixed
-	 */
-	protected static function deleted_by(): mixed
-	{
-		return self::$query->deleted_by;
-	}
-
-
-	/**
-	 * get deleted_at column for database table
-	 *
-	 * @return mixed
-	 */
-	protected static function deleted_at(): mixed
-	{
-		return self::$query->deleted_at;
 	}
 
 
