@@ -59,7 +59,7 @@ class Factory extends FactoryManager
      * @var array
      */
     protected static array $adapters = [
-        'Logger' => 'MongoDbLogger',
+        'Logger' => 'DatabaseLogger',
         'Notify' => 'Slack',
         'Cache' => 'Redis',
         'Search' => 'ElasticSearch',
