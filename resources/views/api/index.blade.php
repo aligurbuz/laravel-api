@@ -793,11 +793,11 @@ wget --no-check-certificate --quiet \
   --header 'Content-Type: application/json' \
   --body-data '[
     {
-        "email": "emailAddress",
+        "email": "email",
         "password": "password"
     }
 ]' \
-   'http://localhost/api/public/api/login'
+   '{{apiUrl()}}/login'
 </code></pre></div></div>
                                         </p>
 
@@ -844,7 +844,7 @@ wget --no-check-certificate --quiet \
   --header 'Apikey: Apikey' \
   --header 'Content-Type: application/json' \
   ' \
-   'http://localhost/api/public/api/logout'
+   '{{apiUrl()}}/logout'
 </code></pre></div></div>
                                         </p>
 
@@ -912,7 +912,7 @@ wget --no-check-certificate --quiet \
         "hash": "string"
     }
 ]' \
-   'http://localhost/api/public/api/verifying'
+   '{{apiUrl()}}/verifying'
 </code></pre></div></div>
                                         </p>
 
