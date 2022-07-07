@@ -236,19 +236,21 @@ trait CacheRepository
      */
     public function deleteCache(): void
     {
-        $this->setProperties();
+        if($this->checkCacheStatus()){
+            $this->setProperties();
 
-        $model = $this->getModelName();
-        $cacheKey = $this->cacheKey;
+            $model = $this->getModelName();
+            $cacheKey = $this->cacheKey;
 
-        if ($this->cacheInstance->exists($cacheKey)) {
-            if (!$this->cacheInstance->delete($cacheKey)) {
-                Exception::cacheException();
+            if ($this->cacheInstance->exists($cacheKey)) {
+                if (!$this->cacheInstance->delete($cacheKey)) {
+                    Exception::cacheException();
+                }
             }
-        }
 
-        if ($model !== 'Localization') {
-            $this->deleteRelationCache($model);
+            if ($model !== 'Localization') {
+                $this->deleteRelationCache($model);
+            }
         }
     }
 
