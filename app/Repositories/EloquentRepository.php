@@ -109,7 +109,11 @@ class EloquentRepository
             return $this->graphQl->get()->toArray();
         }
 
-        return $this->graphQl->paginate($pagination ?? $this->paginationHandler())->toArray();
+        $paginateDefinition = (property_exists($this,'simplePaginate') && $this->simplePaginate)
+            ? 'simplePaginate' : 'paginate';
+
+
+        return $this->graphQl->{$paginateDefinition}($pagination ?? $this->paginationHandler())->toArray();
     }
 
     /**
