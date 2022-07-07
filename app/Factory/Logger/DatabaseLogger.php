@@ -36,6 +36,8 @@ class DatabaseLogger extends LoggerManager implements LoggerInterface
      */
     public function create(array $data = []): array|object
     {
+        if(!isAuthenticate()) return [];
+
         try {
             return Repository::logger()->create([$data]);
         } catch (\Exception $e) {
