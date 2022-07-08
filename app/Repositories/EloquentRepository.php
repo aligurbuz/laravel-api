@@ -442,7 +442,7 @@ class EloquentRepository
         AppContainer::setWithTerminating('repository.mirror.builder.'.$this->getModelName(),$mirror);
 
         if(isset($query[0])){
-            AppContainer::setWithTerminating('repository.mirror.query.'.$this->getModelName(),$query[0]);
+            AppContainer::setWithTerminating('repository.mirror.data.'.$this->getModelName(),$query[0]);
         }
 
         return isset($query[0]);
@@ -455,7 +455,7 @@ class EloquentRepository
      * @param string $type
      * @return mixed
      */
-    public function getMirror(?string $mirror = null,string $type = 'builder') : mixed
+    public function getMirror(?string $mirror = null,string $type = 'data') : mixed
     {
         return AppContainer::get('repository.mirror.'.$type.'.'.($mirror ? ucfirst($mirror) : $this->getModelName()));
     }
