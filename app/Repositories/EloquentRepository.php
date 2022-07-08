@@ -436,9 +436,28 @@ class EloquentRepository
      */
     public function exists($field, $value): bool
     {
-        $query = $this->instance()->where($field, $value)->get()->toArray();
+        $mirror = $this->instance()->where($field, $value);
+        $query = $mirror->get()->toArray();
+
+        AppContainer::setWithTerminating('repository.mirror.builder.'.$this->getModelName(),$mirror);
+
+        if(isset($query[0])){
+            AppContainer::setWithTerminating('repository.mirror.query.'.$this->getModelName(),$query[0]);
+        }
 
         return isset($query[0]);
+    }
+
+    /**
+     * get mirror for repository
+     *
+     * @param string|null $mirror
+     * @param string $type
+     * @return mixed
+     */
+    public function getMirror(?string $mirror = null,string $type = 'builder') : mixed
+    {
+        return AppContainer::get('repository.mirror.'.$type.'.'.($mirror ? ucfirst($mirror) : $this->getModelName()));
     }
 
     /**
