@@ -236,6 +236,16 @@ class ClientManager
     }
 
     /**
+     * reset data stream for client
+     *
+     * @return void
+     */
+    public function resetDataStream(): void
+    {
+        $this->dataStream = [];
+    }
+
+    /**
      * handle for client
      *
      * @return void

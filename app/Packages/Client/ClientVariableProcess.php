@@ -22,6 +22,7 @@ class ClientVariableProcess
     protected function variableProcess(array $data = [], bool $callMethod = true): array
     {
         $list = [];
+        $this->client->resetDataStream();
 
         foreach ($data as $key => $value) {
             $camelCaseForKey = Str::camel($key);
