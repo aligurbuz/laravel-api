@@ -897,6 +897,16 @@ class EloquentRepository
     }
 
     /**
+     * get updateOrCreate property values for repository
+     *
+     * @return bool
+     */
+    public function getUpdateOrCreate(): bool
+    {
+        return property_exists($this, 'updateOrCreate') && $this->updateOrCreate;
+    }
+
+    /**
      * set eager loading for repository
      *
      * @param string|null $model

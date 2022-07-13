@@ -84,7 +84,7 @@ trait UpdateRepository
         return $data;
     }
 
-    public function checkColumnsForUpdate(array $data = [])
+    public function checkColumnsForUpdate(array $data = []): array
     {
         $list = [];
 
@@ -134,6 +134,10 @@ trait UpdateRepository
 
             if (!$id && count($create) && isset($data[getTableCode($this->getModel())])) {
                 unset($data[getTableCode($this->getModel())]);
+            }
+
+            if (!isset($oldData[0]) && !count($create) && $this->getUpdateOrCreate()) {
+                return $this->create([$data]);
             }
 
             try {
