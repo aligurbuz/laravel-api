@@ -907,6 +907,16 @@ class EloquentRepository
     }
 
     /**
+     * get updateOrCreate property values for repository
+     *
+     * @return bool
+     */
+    public function getHardDelete(): bool
+    {
+        return property_exists($this, 'hardDelete') && $this->hardDelete;
+    }
+
+    /**
      * set eager loading for repository
      *
      * @param string|null $model

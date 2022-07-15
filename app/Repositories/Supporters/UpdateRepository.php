@@ -141,9 +141,15 @@ trait UpdateRepository
             }
 
             try {
-                $update = $baseQuery->update(
-                    $this->checkColumnsForUpdate($this->hitterProcess($data, $dataKey))
-                );
+
+                if($this->getHardDelete()){
+                    $update = $baseQuery->delete();
+                }
+                else{
+                    $update = $baseQuery->update(
+                        $this->checkColumnsForUpdate($this->hitterProcess($data, $dataKey))
+                    );
+                }
 
                 if ($update == '0') {
                     return Exception::updateException('', ['model' => $this->getModelName()]);
@@ -156,13 +162,18 @@ trait UpdateRepository
                 return $this->sqlException($exception);
             }
 
-            $result =  ($baseQuery->get()->toArray())[0] ?? [];
+            if($this->getHardDelete()){
+                $result =  ($oldData)[0] ?? [];
+            }
+            else{
+                $result =  ($baseQuery->get()->toArray())[0] ?? [];
+            }
 
             if (count($this->addPostQueryResults)) {
                 $queryList[] = array_merge($result, $this->addPostQueryResults[$dataKey]);
             }
             else{
-                $queryList[] = $result = ($baseQuery->get()->toArray())[0] ?? [];
+                $queryList[] = $result;
             }
 
             if (method_exists($this, 'eventFireAfterUpdate')) {
