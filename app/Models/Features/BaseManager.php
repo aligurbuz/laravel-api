@@ -280,7 +280,10 @@ trait BaseManager
 
         if (isset($queries[$name])) {
             $withName = 'with' . Str::ucfirst($name);
-            return $this->getRepository()->{$withName}($this);
+            AppContainer::setWithTerminating('isRelation',true);
+            $relation = $this->getRepository()->{$withName}($this);
+            AppContainer::terminate('isRelation');
+            return $relation;
         }
 
         return parent::__call($name, $args);

@@ -282,6 +282,32 @@ if (!function_exists('decodeString')) {
     }
 }
 
+if (!function_exists('isClientRequest')) {
+
+    /**
+     * get client request for application
+     *
+     * @return bool
+     */
+    function isClientRequest(): bool
+    {
+        return AppContainer::has('clientRepositoryRequest');
+    }
+}
+
+if (!function_exists('isRelation')) {
+
+    /**
+     * get client request for application
+     *
+     * @return bool
+     */
+    function isRelation(): bool
+    {
+        return AppContainer::has('isRelation');
+    }
+}
+
 if (!function_exists('makeIfProduction')) {
 
     /**
