@@ -308,6 +308,21 @@ if (!function_exists('isRelation')) {
     }
 }
 
+if (!function_exists('first')) {
+
+    /**
+     * get repository model first data for application
+     *
+     * @param string $model
+     * @param int $code
+     * @return array
+     */
+    function first(string $model, int $code): array
+    {
+        return Repository::$model()->code($code)->latest();
+    }
+}
+
 if (!function_exists('makeIfProduction')) {
 
     /**
