@@ -314,12 +314,11 @@ if (!function_exists('first')) {
      * get repository model first data for application
      *
      * @param string $model
-     * @param int $code
      * @return array
      */
-    function first(string $model, int $code): array
+    function first(string $model): array
     {
-        return Repository::$model()->code($code)->latest();
+        return Repository::$model()->first();
     }
 }
 
