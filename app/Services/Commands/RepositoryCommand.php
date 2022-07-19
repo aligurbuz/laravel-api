@@ -323,6 +323,9 @@ class RepositoryCommand extends Command
         $class->addMethod('get')->setPublic()->setReturnType('array')
             ->addComment('@return array')->addComment('@see ' . $className . '::get()');
 
+        $class->addMethod('first')->setPublic()->setReturnType('array')
+            ->addComment('@return array')->addComment('@see ' . $className . '::first()');
+
         $class->addMethod('create')->setPublic()->setReturnType('array|object')
             ->addComment('@param array $data')
             ->addComment('@return array|object')->addComment('@see ' . $className . '::create()')->addParameter('data', [])->setType('array');
