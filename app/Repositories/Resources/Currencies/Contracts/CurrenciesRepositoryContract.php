@@ -16,7 +16,7 @@ interface CurrenciesRepositoryContract
      * @param int $code
      * @return array
      */
-    public function first(int $code): array;
+    public function first(): array;
 
     /**
      * @param array $data

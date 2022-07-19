@@ -415,14 +415,13 @@ class EloquentRepository
     /**
      * take the find code data for repository
      *
-     * @param int $code
      * @return array
      */
-    public function first(int $code): array
+    public function first(): array
     {
-        $first = $this->instance()->where($this->getModelCode(),$code)->first();
+        $first = $this->instance()->first();
 
-        return !is_null($first) ? $first : [];
+        return !is_null($first) ? $first->toArray() : [];
     }
 
     /**
