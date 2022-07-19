@@ -302,7 +302,12 @@ trait ScopeManager
                 $currentHasSplit = explode('-', current($hasQueryList));
                 $has = current($currentHasSplit);
 
-                if (isset($withQuery[$has], $withQuery[$has]['nested'])) {
+                if(method_exists($this,$has)){
+                    $builder->whereHas($has,function(object $builder){
+                        return $builder;
+                    });
+                }
+                elseif (isset($withQuery[$has], $withQuery[$has]['nested'])) {
                     if (false === $withQuery[$has]['nested']) {
                         $builder->whereHas($has, function (object $builder) use ($request, $has, $recursive, $hasQueryList, $currentHasSplit) {
                             $range = $request['hasRange'][$has] ?? ($request['range'] ?? '');
@@ -379,7 +384,15 @@ trait ScopeManager
             $this->doesntHaveValues = $doesntHaveQuery;
 
             foreach ($doesntHaveQuery as $doesnt) {
-                if (isset($withQuery[$doesnt], $withQuery[$doesnt]['nested']) && false === $withQuery[$doesnt]['nested']) {
+                if(method_exists($this,$doesnt)){
+                    $builder->whereDoesntHave($doesnt, function (object $builder) use ($params, $doesnt) {
+                        $range = $params['hasRange'][$doesnt] ?? ($params['range'] ?? '');
+                        $repository = getModelWithPlural($doesnt);
+                        $builder->range(Repository::$repository(), (string)$range);
+                        return $builder;
+                    });
+                }
+                elseif (isset($withQuery[$doesnt], $withQuery[$doesnt]['nested']) && false === $withQuery[$doesnt]['nested']) {
                     $builder->whereDoesntHave($doesnt, function (object $builder) use ($params, $doesnt) {
                         $range = $params['hasRange'][$doesnt] ?? ($params['range'] ?? '');
                         $repository = getModelWithPlural($doesnt);
