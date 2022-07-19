@@ -214,7 +214,8 @@ trait ScopeManager
             $builder->where(function ($query) use ($params, $indexes,$builderSql) {
                 $filtering = indexOrdering($this->getTable(), $params['filter']);
                 foreach ($filtering as $key => $value) {
-                    if(Str::contains($builderSql,$key)){
+                    $sqlContains = '`'.$key.'` = ?';
+                    if(Str::contains($builderSql,$sqlContains)){
                         continue;
                     }
 
