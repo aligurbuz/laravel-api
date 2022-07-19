@@ -413,6 +413,19 @@ class EloquentRepository
     }
 
     /**
+     * take the find code data for repository
+     *
+     * @param int $code
+     * @return array
+     */
+    public function first(int $code): array
+    {
+        $first = $this->instance()->where($this->getModelCode(),$code)->first();
+
+        return !is_null($first) ? $first : [];
+    }
+
+    /**
      * it adds to builder not deleted data.
      *
      * @param object|null $builder

@@ -19,6 +19,12 @@ interface LoggerRepositoryContract
     public function all(): array;
 
     /**
+     * @param int $code
+     * @return array
+     */
+    public function first(int $code): array;
+
+    /**
      * @param array $data
      * @return array|object
      * @see LoggerRepository::create()

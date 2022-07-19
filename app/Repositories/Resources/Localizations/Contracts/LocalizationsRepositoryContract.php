@@ -20,6 +20,11 @@ interface LocalizationsRepositoryContract
      */
     function create(array $data = []): array|object;
 
+    /**
+     * @param int $code
+     * @return array
+     */
+    public function first(int $code): array;
 
     /**
      * @param array $data

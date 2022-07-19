@@ -12,6 +12,11 @@ interface CitiesRepositoryContract
      */
     public function get(): array;
 
+    /**
+     * @param int $code
+     * @return array
+     */
+    public function first(int $code): array;
 
     /**
      * @param array $data

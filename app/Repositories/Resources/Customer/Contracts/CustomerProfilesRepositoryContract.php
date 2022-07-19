@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Repositories\Resources\Customer\Contracts;
 
@@ -18,6 +18,11 @@ interface CustomerProfilesRepositoryContract
 	 */
 	public function get(): array;
 
+    /**
+     * @param int $code
+     * @return array
+     */
+    public function first(int $code): array;
 
 	/**
 	 * @param array $data
