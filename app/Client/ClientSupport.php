@@ -7,6 +7,8 @@ namespace App\Client;
 use App\Exceptions\Exception;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
 
 /**
  * Trait ClientSupport
@@ -79,5 +81,24 @@ trait ClientSupport
         }
 
         return $this->isDeleted;
+    }
+
+    /**
+     * get filterMandatory generator for request
+     *
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     */
+    public function filterMandatoryGenerator()
+    {
+        if(app()->runningInConsole()) return null;
+
+        $filter = request()->get('filter');
+
+        if (is_null($filter)) {
+            Exception::customException('filterMandatory');
+        }
+
+        return null;
     }
 }
