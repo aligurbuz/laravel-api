@@ -7,6 +7,7 @@ namespace App\Client;
 use App\Packages\Client\ClientManager;
 use App\Repositories\Repository;
 use App\Services\AppContainer;
+use App\Services\Client as ClientFacade;
 use App\Services\Db;
 use Illuminate\Support\Str;
 
@@ -85,19 +86,17 @@ class Client extends ClientManager
     /**
      * You can specify your methods to run before the client starts in the preHandler property value.
      *
-     * @return array
+     * @return void
      */
-    public function preHandlers(): array
+    public function preHandlers(): void
     {
         if (property_exists($this, 'preHandlers') && is_array($this->preHandlers)) {
             foreach ($this->preHandlers as $preHandler) {
-                if (method_exists($this, $method = 'pre'.ucfirst($preHandler).'Handler')) {
-                    return $this->$method();
+                if (method_exists($this, $method = 'pre' . ucfirst($preHandler) . 'Handler')) {
+                    $this->$method(ClientFacade::data());
                 }
             }
         }
-
-        return [];
     }
 
     /**
