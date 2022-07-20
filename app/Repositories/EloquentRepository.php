@@ -425,6 +425,18 @@ class EloquentRepository
     }
 
     /**
+     * get entity
+     *
+     * @return mixed
+     */
+    public function entity(): mixed
+    {
+        $camelCaseModel = Str::camel($this->getModelName());
+
+        return entity()->{$camelCaseModel}((object)$this->first());
+    }
+
+    /**
      * it adds to builder not deleted data.
      *
      * @param object|null $builder
