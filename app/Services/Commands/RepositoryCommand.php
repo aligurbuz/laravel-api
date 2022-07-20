@@ -100,9 +100,11 @@ class RepositoryCommand extends Command
         $promotersRepositoryClass = ucfirst($repositoryName) . 'PromoterTrait';
         $promoterClassNamespace = $promotersRepositoryNamespace . '\\' . $promotersRepositoryClass;
 
+        $entityBaseName = Constants::entity.'\\'.ucfirst($modelName);
+
         if (!file_exists($promotersRepositoryDirectory . '' . DIRECTORY_SEPARATOR . '' . $promotersRepositoryClass . '.php')) {
             $promoterNamespace = new PhpNamespace($promotersRepositoryNamespace);
-            $promoterNamespace->addUse($entityBaseName = Constants::entity.'\\'.ucfirst($modelName));
+            $promoterNamespace->addUse($entityBaseName);
             $traitPromoterNamespace = $promoterNamespace->addTrait($promotersRepositoryClass);
             $method = $traitPromoterNamespace->addMethod(lcfirst($className));
             $method->addParameter('builder', null)->setNullable(true)->setType('object');
@@ -322,6 +324,7 @@ class RepositoryCommand extends Command
         //add Contracts
         $namespace = new PhpNamespace($namespaceContractDirectory);
         $namespace->addUse($namespaceRepository);
+        $namespace->addUse($entityBaseName);
         $class = $namespace->addInterface($contractClassName);
 
         $modelIndexList = [];
@@ -336,6 +339,9 @@ class RepositoryCommand extends Command
 
         $class->addMethod('first')->setPublic()->setReturnType('array')
             ->addComment('@return array')->addComment('@see ' . $className . '::first()');
+
+        $class->addMethod('entity')->setPublic()->setReturnType($entityBaseName)
+            ->addComment('@return '.ucfirst($modelName))->addComment('@see ' . $className . '::entity()');
 
         $class->addMethod('create')->setPublic()->setReturnType('array|object')
             ->addComment('@param array $data')
