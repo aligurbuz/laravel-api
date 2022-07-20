@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Repositories\Resources\User\Promoters\Photos;
 
+use App\Models\Entities\UserPhoto;
+
 trait PhotosPromoterTrait
 {
     /**
@@ -15,5 +17,15 @@ trait PhotosPromoterTrait
     public function photosRepository(?object $builder = null): object
     {
         return $this->apply($builder);
+    }
+
+    /**
+     * get entity for repository
+     *
+     * @return UserPhoto
+     */
+    public function entity(): UserPhoto
+    {
+        return parent::entity();
     }
 }

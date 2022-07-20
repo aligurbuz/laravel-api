@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Repositories\Resources\Countries\Promoters\Districts;
 
+use App\Models\Entities\District;
+
 trait DistrictsPromoterTrait
 {
     /**
@@ -15,5 +17,15 @@ trait DistrictsPromoterTrait
     public function districtsRepository(?object $builder = null): object
     {
         return $this->apply($builder);
+    }
+
+    /**
+     * get entity for repository
+     *
+     * @return District
+     */
+    public function entity(): District
+    {
+        return parent::entity();
     }
 }

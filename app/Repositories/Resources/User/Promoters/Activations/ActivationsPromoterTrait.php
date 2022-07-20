@@ -1,8 +1,10 @@
-<?php 
+<?php
 
 declare(strict_types=1);
 
 namespace App\Repositories\Resources\User\Promoters\Activations;
+
+use App\Models\Entities\UserActivation;
 
 trait ActivationsPromoterTrait
 {
@@ -16,4 +18,14 @@ trait ActivationsPromoterTrait
 	{
 		return $this->apply($builder);
 	}
+
+    /**
+     * get entity for repository
+     *
+     * @return UserActivation
+     */
+    public function entity(): UserActivation
+    {
+        return parent::entity();
+    }
 }

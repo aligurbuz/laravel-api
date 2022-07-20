@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Repositories\Resources\Gate\Promoters\Roles;
 
+use App\Models\Entities\Role;
+
 trait RolesPromoterTrait
 {
     /**
@@ -15,5 +17,15 @@ trait RolesPromoterTrait
     public function rolesRepository(?object $builder = null): object
     {
         return $this->apply($builder);
+    }
+
+    /**
+     * get entity for repository
+     *
+     * @return Role
+     */
+    public function entity(): Role
+    {
+        return parent::entity();
     }
 }

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Repositories\Resources\Support\Promoters\Excel;
 
+use App\Models\Entities\Excel;
+
 trait ExcelPromoterTrait
 {
     /**
@@ -15,5 +17,15 @@ trait ExcelPromoterTrait
     public function excelRepository(?object $builder = null): object
     {
         return $this->apply($builder);
+    }
+
+    /**
+     * get entity for repository
+     *
+     * @return Excel
+     */
+    public function entity(): Excel
+    {
+        return parent::entity();
     }
 }

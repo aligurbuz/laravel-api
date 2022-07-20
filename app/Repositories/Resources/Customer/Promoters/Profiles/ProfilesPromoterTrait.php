@@ -1,8 +1,10 @@
-<?php 
+<?php
 
 declare(strict_types=1);
 
 namespace App\Repositories\Resources\Customer\Promoters\Profiles;
+
+use App\Models\Entities\Customer;
 
 trait ProfilesPromoterTrait
 {
@@ -16,4 +18,14 @@ trait ProfilesPromoterTrait
 	{
 		return $this->apply($builder);
 	}
+
+    /**
+     * get entity for repository
+     *
+     * @return Customer
+     */
+    public function entity(): Customer
+    {
+        return parent::entity();
+    }
 }

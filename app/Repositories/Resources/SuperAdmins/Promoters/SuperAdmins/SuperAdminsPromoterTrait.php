@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Repositories\Resources\SuperAdmins\Promoters\SuperAdmins;
 
+use App\Models\Entities\SuperAdmin;
+
 trait SuperAdminsPromoterTrait
 {
     /**
@@ -15,5 +17,15 @@ trait SuperAdminsPromoterTrait
     public function superAdminsRepository(?object $builder = null): object
     {
         return $this->apply($builder);
+    }
+
+    /**
+     * get entity for repository
+     *
+     * @return SuperAdmin
+     */
+    public function entity(): SuperAdmin
+    {
+        return parent::entity();
     }
 }
