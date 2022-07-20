@@ -91,7 +91,7 @@ class Client extends ClientManager
     {
         if (property_exists($this, 'preHandlers') && is_array($this->preHandlers)) {
             foreach ($this->preHandlers as $preHandler) {
-                if (method_exists($this, $method = 'pre'.ucfirst($preHandler))) {
+                if (method_exists($this, $method = 'pre'.ucfirst($preHandler).'Handler')) {
                     return $this->$method();
                 }
             }
