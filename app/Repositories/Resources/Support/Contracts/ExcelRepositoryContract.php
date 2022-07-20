@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Resources\Support\Contracts;
 
+use App\Models\Entities\Excel;
 use App\Repositories\Resources\Support\ExcelRepository;
 
 /**
@@ -19,10 +20,14 @@ interface ExcelRepositoryContract
     public function get(): array;
 
     /**
-     * @param int $code
      * @return array
      */
     public function first(): array;
+
+    /**
+     * @return Excel
+     */
+    public function entity() : Excel;
 
     /**
      * @param array $data

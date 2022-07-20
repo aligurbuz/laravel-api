@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Resources\Countries\Contracts;
 
+use App\Models\Entities\District;
 use App\Repositories\Resources\Countries\DistrictsRepository;
 
 interface DistrictsRepositoryContract
@@ -13,10 +14,14 @@ interface DistrictsRepositoryContract
     public function get(): array;
 
     /**
-     * @param int $code
      * @return array
      */
     public function first(): array;
+
+    /**
+     * @return District
+     */
+    public function entity() : District;
 
     /**
      * @param array $data

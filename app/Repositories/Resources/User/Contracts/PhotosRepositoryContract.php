@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Resources\User\Contracts;
 
+use App\Models\Entities\UserPhoto;
 use App\Repositories\Resources\User\PhotosRepository;
 
 interface PhotosRepositoryContract
@@ -13,10 +14,14 @@ interface PhotosRepositoryContract
     public function get(): array;
 
     /**
-     * @param int $code
      * @return array
      */
     public function first(): array;
+
+    /**
+     * @return UserPhoto
+     */
+    public function entity() : UserPhoto;
 
     /**
      * @param array $data

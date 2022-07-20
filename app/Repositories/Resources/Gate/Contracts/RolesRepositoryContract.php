@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Resources\Gate\Contracts;
 
+use App\Models\Entities\Role;
 use App\Repositories\Resources\Gate\RolesRepository;
 
 interface RolesRepositoryContract
@@ -12,7 +13,6 @@ interface RolesRepositoryContract
      */
     public function get(): array;
 
-
     /**
      * @param array $data
      * @return array|object
@@ -21,10 +21,14 @@ interface RolesRepositoryContract
     public function create(array $data = []): array|object;
 
     /**
-     * @param int $code
      * @return array
      */
     public function first(): array;
+
+    /**
+     * @return Role
+     */
+    public function entity() : Role;
 
     /**
      * @param array $data

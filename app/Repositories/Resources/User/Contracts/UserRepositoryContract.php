@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Resources\User\Contracts;
 
+use App\Models\Entities\User;
 use App\Repositories\Resources\User\UserRepository;
 
 interface UserRepositoryContract
@@ -13,10 +14,14 @@ interface UserRepositoryContract
     public function get(): array;
 
     /**
-     * @param int $code
      * @return array
      */
     public function first(): array;
+
+    /**
+     * @return User
+     */
+    public function entity() : User;
 
     /**
      * @return array

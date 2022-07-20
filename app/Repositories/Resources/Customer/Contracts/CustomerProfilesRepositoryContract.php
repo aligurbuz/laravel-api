@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Resources\Customer\Contracts;
 
+use App\Models\Entities\Customer;
 use App\Repositories\Resources\Customer\ProfilesRepository;
 
 /**
@@ -19,10 +20,14 @@ interface CustomerProfilesRepositoryContract
 	public function get(): array;
 
     /**
-     * @param int $code
      * @return array
      */
     public function first(): array;
+
+    /**
+     * @return Customer
+     */
+    public function entity() : Customer;
 
 	/**
 	 * @param array $data

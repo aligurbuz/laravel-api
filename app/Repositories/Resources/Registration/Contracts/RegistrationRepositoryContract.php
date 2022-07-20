@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Resources\Registration\Contracts;
 
+use App\Models\Entities\Registration;
 use App\Repositories\Resources\Registration\RegistrationRepository;
 
 /**
@@ -19,10 +20,14 @@ interface RegistrationRepositoryContract
     public function get(): array;
 
     /**
-     * @param int $code
      * @return array
      */
     public function first(): array;
+
+    /**
+     * @return Registration
+     */
+    public function entity() : Registration;
 
     /**
      * @param array $data

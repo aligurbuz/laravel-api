@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Resources\Countries\Contracts;
 
+use App\Models\Entities\Country;
 use App\Repositories\Resources\Countries\CountriesRepository;
 
 interface CountriesRepositoryContract
@@ -13,10 +14,14 @@ interface CountriesRepositoryContract
     public function get(): array;
 
     /**
-     * @param int $code
      * @return array
      */
     public function first(): array;
+
+    /**
+     * @return Country
+     */
+    public function entity() : Country;
 
     /**
      * @return array

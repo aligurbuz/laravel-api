@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Resources\Countries\Contracts;
 
+use App\Models\Entities\City;
 use App\Repositories\Resources\Countries\CitiesRepository;
 
 interface CitiesRepositoryContract
@@ -13,10 +14,14 @@ interface CitiesRepositoryContract
     public function get(): array;
 
     /**
-     * @param int $code
      * @return array
      */
     public function first(): array;
+
+    /**
+     * @return City
+     */
+    public function entity() : City;
 
     /**
      * @param array $data

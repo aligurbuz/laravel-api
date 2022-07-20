@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Resources\Currencies\Contracts;
 
+use App\Models\Entities\Currency;
 use App\Repositories\Resources\Currencies\CurrenciesRepository;
 
 interface CurrenciesRepositoryContract
@@ -13,10 +14,14 @@ interface CurrenciesRepositoryContract
     public function get(): array;
 
     /**
-     * @param int $code
      * @return array
      */
     public function first(): array;
+
+    /**
+     * @return Currency
+     */
+    public function entity() : Currency;
 
     /**
      * @param array $data

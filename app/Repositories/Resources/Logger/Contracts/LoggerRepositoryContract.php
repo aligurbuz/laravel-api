@@ -19,7 +19,6 @@ interface LoggerRepositoryContract
     public function all(): array;
 
     /**
-     * @param int $code
      * @return array
      */
     public function first(): array;

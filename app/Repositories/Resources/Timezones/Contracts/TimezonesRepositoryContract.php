@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Resources\Timezones\Contracts;
 
+use App\Models\Entities\Timezone;
 use App\Repositories\Resources\Timezones\TimezonesRepository;
 
 interface TimezonesRepositoryContract
@@ -13,10 +14,14 @@ interface TimezonesRepositoryContract
     public function get(): array;
 
     /**
-     * @param int $code
      * @return array
      */
     public function first(): array;
+
+    /**
+     * @return Timezone
+     */
+    public function entity() : Timezone;
 
     /**
      * @param array $data

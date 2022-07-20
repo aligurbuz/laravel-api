@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Resources\Localizations\Contracts;
 
+use App\Models\Entities\Localization;
 use App\Repositories\Resources\Localizations\LocalizationsRepository;
 
 interface LocalizationsRepositoryContract
@@ -21,10 +22,14 @@ interface LocalizationsRepositoryContract
     function create(array $data = []): array|object;
 
     /**
-     * @param int $code
      * @return array
      */
     public function first(): array;
+
+    /**
+     * @return Localization
+     */
+    public function entity() : Localization;
 
     /**
      * @param array $data

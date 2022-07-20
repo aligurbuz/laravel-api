@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Resources\SuperAdmins\Contracts;
 
+use App\Models\Entities\SuperAdmin;
 use App\Repositories\Resources\SuperAdmins\SuperAdminsRepository;
 
 interface SuperAdminsRepositoryContract
@@ -21,10 +22,14 @@ interface SuperAdminsRepositoryContract
     public function create(array $data = []): array|object;
 
     /**
-     * @param int $code
      * @return array
      */
     public function first(): array;
+
+    /**
+     * @return SuperAdmin
+     */
+    public function entity() : SuperAdmin;
 
     /**
      * @param array $data

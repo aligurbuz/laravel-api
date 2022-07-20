@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Resources\Gate\Contracts;
 
+use App\Models\Entities\Permission;
 use App\Repositories\Resources\Gate\PermissionsRepository;
 
 interface PermissionsRepositoryContract
@@ -12,7 +13,6 @@ interface PermissionsRepositoryContract
      */
     public function get(): array;
 
-
     /**
      * @param array $data
      * @return array|object
@@ -21,10 +21,14 @@ interface PermissionsRepositoryContract
     public function create(array $data = []): array|object;
 
     /**
-     * @param int $code
      * @return array
      */
     public function first(): array;
+
+    /**
+     * @return Permission
+     */
+    public function entity() : Permission;
 
     /**
      * @param array $data

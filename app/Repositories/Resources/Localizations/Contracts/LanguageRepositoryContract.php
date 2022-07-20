@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Resources\Localizations\Contracts;
 
+use App\Models\Entities\Language;
 use App\Repositories\Resources\Localizations\LanguageRepository;
 
 interface LanguageRepositoryContract
@@ -21,10 +22,14 @@ interface LanguageRepositoryContract
     function create(array $data = []): array|object;
 
     /**
-     * @param int $code
      * @return array
      */
     public function first(): array;
+
+    /**
+     * @return Language
+     */
+    public function entity() : Language;
 
     /**
      * @param array $data

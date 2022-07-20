@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Resources\User\Contracts;
 
+use App\Models\Entities\UserActivation;
 use App\Repositories\Resources\User\ActivationsRepository;
 
 /**
@@ -18,10 +19,14 @@ interface UserActivationsRepositoryContract
 	public function get(): array;
 
     /**
-     * @param int $code
      * @return array
      */
     public function first(): array;
+
+    /**
+     * @return UserActivation
+     */
+    public function entity() : UserActivation;
 
 	/**
 	 * @param array $data
