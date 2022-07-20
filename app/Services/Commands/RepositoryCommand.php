@@ -2,6 +2,7 @@
 
 namespace App\Services\Commands;
 
+use App\Constants;
 use App\Repositories\EloquentRepository;
 use App\Repositories\Repository;
 use App\Services\Db;
@@ -101,6 +102,7 @@ class RepositoryCommand extends Command
 
         if (!file_exists($promotersRepositoryDirectory . '' . DIRECTORY_SEPARATOR . '' . $promotersRepositoryClass . '.php')) {
             $promoterNamespace = new PhpNamespace($promotersRepositoryNamespace);
+            $promoterNamespace->addUse($entityBaseName = Constants::entity.'\\'.ucfirst($modelName));
             $traitPromoterNamespace = $promoterNamespace->addTrait($promotersRepositoryClass);
             $method = $traitPromoterNamespace->addMethod(lcfirst($className));
             $method->addParameter('builder', null)->setNullable(true)->setType('object');
@@ -110,6 +112,15 @@ class RepositoryCommand extends Command
                 ->addComment('@param object|null $builder')
                 //->addComment('@param Builder $builder')
                 ->addComment('@return object');
+
+
+            $method = $traitPromoterNamespace->addMethod('entity');
+            $method->setBody('return parent::entity();')->setReturnType($entityBaseName);
+            $method->addComment('get entity for repository')
+                ->addComment('')
+                //->addComment('@param object|null $builder')
+                //->addComment('@param Builder $builder')
+                ->addComment('@return '.ucfirst($modelName));
 
 
             touch($file = $promotersRepositoryDirectory . '' . DIRECTORY_SEPARATOR . '' . $promotersRepositoryClass . '.php');

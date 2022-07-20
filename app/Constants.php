@@ -24,6 +24,7 @@ class Constants
     public const debugBackTrace = 'debugBackTrace';
     public const validatorRules = 'validatorRules';
     public const modelNamespace = 'App\Models';
+    public const entity = 'App\Models\Entities';
     public const controllerNamespace = 'App\Http\Controllers';
     public const testFeatureNamespace = 'Tests\Feature';
     public const responseFormatterSupplement = 'responseFormatterSupplement';
