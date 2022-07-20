@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Client;
 
-use App\Exceptions\Exception;
 use App\Packages\Client\ClientManager;
 use App\Repositories\Repository;
 use App\Services\AppContainer;
@@ -54,6 +53,7 @@ class Client extends ClientManager
     {
         if ($handler) {
             parent::__construct($data);
+            $this->preHandlers();
             $this->modelRequiredFields();
             $this->capsule();
             $this->addRule();
@@ -80,6 +80,24 @@ class Client extends ClientManager
     public function getCustomRules(): array
     {
         return $this->customRules;
+    }
+
+    /**
+     * You can specify your methods to run before the client starts in the preHandler property value.
+     *
+     * @return array
+     */
+    public function preHandlers(): array
+    {
+        if (property_exists($this, 'preHandlers') && is_array($this->preHandlers)) {
+            foreach ($this->preHandlers as $preHandler) {
+                if (method_exists($this, $method = 'pre'.ucfirst($preHandler))) {
+                    return $this->$method();
+                }
+            }
+        }
+
+        return [];
     }
 
     /**
