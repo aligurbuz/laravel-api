@@ -330,6 +330,28 @@ class EloquentRepository
     }
 
     /**
+     * easy increase column for repository model
+     *
+     * @param string $column
+     * @return object|array
+     */
+    public function increase(string $column): object|array
+    {
+        return $this->update([[$column => 1]]);
+    }
+
+    /**
+     * easy decrease column for repository model
+     *
+     * @param string $column
+     * @return object|array
+     */
+    public function decrease(string $column): object|array
+    {
+        return $this->update([[$column => '-1']]);
+    }
+
+    /**
      * update data for repository model
      *
      * @param array $updateData
