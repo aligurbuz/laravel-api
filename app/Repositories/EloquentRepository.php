@@ -464,9 +464,11 @@ class EloquentRepository
         $query = $mirror->get()->toArray();
 
         AppContainer::setWithTerminating('repository.mirror.builder.'.$this->getModelName(),$mirror);
+        AppContainer::setWithTerminating('repository.mirror.recursive.builder.'.$this->getModelName().'_'.$value,$mirror);
 
         if(isset($query[0])){
             AppContainer::setWithTerminating('repository.mirror.data.'.$this->getModelName(),$query[0]);
+            AppContainer::setWithTerminating('repository.mirror.recursive.data.'.$this->getModelName().'_'.$value,$query[0]);
         }
 
         return isset($query[0]);
@@ -482,6 +484,19 @@ class EloquentRepository
     public function getMirror(?string $mirror = null,string $type = 'data') : mixed
     {
         return AppContainer::get('repository.mirror.'.$type.'.'.($mirror ? ucfirst($mirror) : $this->getModelName()));
+    }
+
+    /**
+     * get mirror for repository
+     *
+     * @param string|null $mirror
+     * @param mixed $value
+     * @param string $type
+     * @return mixed
+     */
+    public function getRecursiveMirror(?string $mirror = null,mixed $value = null,string $type = 'data') : mixed
+    {
+        return AppContainer::get('repository.mirror.recursive.'.$type.'.'.($mirror ? ucfirst($mirror) : $this->getModelName()).'_'.$value);
     }
 
     /**
