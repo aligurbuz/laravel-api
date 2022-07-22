@@ -320,6 +320,16 @@ class EloquentRepository
     }
 
     /**
+     * easy delete for repository model
+     *
+     * @return object|array
+     */
+    public function delete(): object|array
+    {
+        return $this->notDeleted()->update([['is_deleted' => true]]);
+    }
+
+    /**
      * update data for repository model
      *
      * @param array $updateData
