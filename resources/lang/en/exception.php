@@ -10,7 +10,7 @@ return [
     'clientEmptyException'          => 'You did not send any data.',
     'modelUniqueCreateException'    => 'data named :key is available in our systems.',
     'contentTypeException'          => 'Could not detect content-type in request.Please specify a valid content-type as header in your request.We just supports (:key)',
-    'codeException'                 => 'Invalid :key',
+    'codeException'                 => 'Invalid :key (code=:value)',
     'grandAuthenticateException'    => 'You do not have the necessary permissions for this endpoint.',
     'rangeException'                => 'Range called :key is not valid',
     'selectException'               => 'Select statement called :key is not valid',

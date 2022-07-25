@@ -695,10 +695,10 @@ if (!function_exists('inValidCodeException')) {
      */
     function inValidCodeException(?string $key = null, ?int $value = null): object
     {
-        return Exception::customException(trans('exception.codeException', [
+        return Exception::customException('codeException',[
             'key' => $key,
             'value' => $value
-        ]));
+        ]);
     }
 }
 
