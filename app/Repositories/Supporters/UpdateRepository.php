@@ -112,6 +112,10 @@ trait UpdateRepository
         $updateClientData = $this->getClientData($data);
         $clientNormalData = AppContainer::get('clientBody',[]);
 
+        if(method_exists($this,'beforeUpdate')){
+            $this->beforeUpdate($clientNormalData);
+        }
+
         foreach ($updateClientData as $dataKey => $data) {
             if(isset($clientNormalData[0]) && count($clientNormalData[0])<2){
                 Exception::customException('clientNormalDataException');
@@ -179,6 +183,10 @@ trait UpdateRepository
             if (method_exists($this, 'eventFireAfterUpdate')) {
                 $this->eventFireAfterUpdate($result, $data);
             }
+        }
+
+        if(method_exists($this,'afterUpdate')){
+            $this->afterUpdate($queryList);
         }
 
         return $queryList;

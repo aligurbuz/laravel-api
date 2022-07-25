@@ -98,6 +98,11 @@ trait CreateRepository
         $clientData = $this->getClientData($data);
 
         try {
+
+            if(method_exists($this,'beforeCreate')){
+                $this->beforeCreate($clientData);
+            }
+
             foreach ($clientData as $clientDataKey => $value) {
 
                 if (method_exists($this, 'eventFireBeforeCreate')) {
@@ -119,6 +124,10 @@ trait CreateRepository
 
                 $list[] = $arrayResults;
 
+            }
+
+            if(method_exists($this,'afterCreate')){
+                $this->afterCreate($list);
             }
 
             return $list;
