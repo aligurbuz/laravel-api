@@ -23,9 +23,9 @@ trait UpdateRepository
      * @param bool $id
      * @return object
      */
-    public function getBaseQueryForUpdate(array $data = [], bool $id = true): object
+    public function getBaseQueryForUpdate(array $data = [], bool $id = true,?int $mirror = null): object
     {
-        $modelBuilder = $this->getMirror(Str::camel($this->getModelName()),'builder');
+        $modelBuilder = $this->getRecursiveMirror(Str::camel($this->getModelName()),$mirror,'builder');
 
         if(!is_null($modelBuilder)){
             return $modelBuilder;
@@ -155,7 +155,7 @@ trait UpdateRepository
         }
 
         foreach ($updateClientData as $dataKey => $data) {
-            $baseQuery = $this->getBaseQueryForUpdate($data, $id);
+            $baseQuery = $this->getBaseQueryForUpdate($data, $id,(int)($data[$this->getModelCode()] ?? 0));
             $modelMirror = $this->getRecursiveMirror(Str::camel($this->getModelName()),$data[$this->getModelCode()]);
 
             if(!is_null($modelMirror)){
@@ -192,6 +192,7 @@ trait UpdateRepository
                     $update = $baseQuery->delete();
                 }
                 else{
+
                     $update = $baseQuery->update(
                         $this->checkColumnsForUpdate($this->hitterProcess($data, $dataKey))
                     );
