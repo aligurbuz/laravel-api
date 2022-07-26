@@ -114,7 +114,7 @@ trait UpdateRepository
     {
         return ($this->getHardDelete())
             ? (($oldData)[0] ?? [])
-            : array_replace($oldData,$data);
+            : array_replace_recursive($oldData,$data);
     }
 
     /**
