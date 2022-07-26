@@ -114,7 +114,7 @@ trait UpdateRepository
     {
         return ($this->getHardDelete())
             ? (($oldData)[0] ?? [])
-            : array_replace_recursive($oldData,$data);
+            : array_replace_recursive((($oldData)[0] ?? []),$data);
     }
 
     /**
@@ -156,10 +156,10 @@ trait UpdateRepository
 
         foreach ($updateClientData as $dataKey => $data) {
             $baseQuery = $this->getBaseQueryForUpdate($data, $id);
-            $modelMirror = $this->getMirror(Str::camel($this->getModelName()));
+            $modelMirror = $this->getRecursiveMirror(Str::camel($this->getModelName()),$data[$this->getModelCode()]);
 
             if(!is_null($modelMirror)){
-                $oldData = $modelMirror;
+                $oldData = [$modelMirror];
             }
             else{
                 $oldData = $baseQuery->get()->toArray();
@@ -184,6 +184,7 @@ trait UpdateRepository
             if (!isset($oldData[0]) && !count($create) && $this->getUpdateOrCreate()) {
                 return $this->create([$data]);
             }
+
 
             try {
 
