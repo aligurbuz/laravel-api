@@ -25,6 +25,12 @@ trait UpdateRepository
      */
     public function getBaseQueryForUpdate(array $data = [], bool $id = true): object
     {
+        $modelBuilder = $this->getMirror(Str::camel($this->getModelName()),'builder');
+
+        if(!is_null($modelBuilder)){
+            return $modelBuilder;
+        }
+
         return $this->instance()->where(function (Builder $builder) use ($data, $id) {
             $modelCode = Str::snake($this->getModelName()) . '_code';
             if (isset($data[$modelCode]) && $id === true) {
@@ -98,6 +104,34 @@ trait UpdateRepository
     }
 
     /**
+     * get hard delete operation
+     *
+     * @param array $oldData
+     * @param $data
+     * @return mixed
+     */
+    private function hardDeleteOperation(array $oldData,$data): mixed
+    {
+        return ($this->getHardDelete())
+            ? (($oldData)[0] ?? [])
+            : array_replace($oldData,$data);
+    }
+
+    /**
+     * get post query merging operation
+     *
+     * @param array $result
+     * @param $dataKey
+     * @return array
+     */
+    private function addPostQueryMerging(array $result,$dataKey): array
+    {
+        return (count($this->addPostQueryResults))
+            ? array_merge($result, $this->addPostQueryResults[$dataKey])
+            : $result;
+    }
+
+    /**
      * update data for user model
      *
      * @param array $data
@@ -116,13 +150,20 @@ trait UpdateRepository
             $this->beforeUpdate($clientNormalData);
         }
 
-        foreach ($updateClientData as $dataKey => $data) {
-            if(isset($clientNormalData[0]) && count($clientNormalData[0])<2){
-                Exception::customException('clientNormalDataException');
-            }
+        if(isset($clientNormalData[0]) && count($clientNormalData[0])<2){
+            Exception::customException('clientNormalDataException');
+        }
 
+        foreach ($updateClientData as $dataKey => $data) {
             $baseQuery = $this->getBaseQueryForUpdate($data, $id);
-            $oldData = $baseQuery->get()->toArray();
+            $modelMirror = $this->getMirror(Str::camel($this->getModelName()));
+
+            if(!is_null($modelMirror)){
+                $oldData = $modelMirror;
+            }
+            else{
+                $oldData = $baseQuery->get()->toArray();
+            }
 
             if (method_exists($this, 'eventFireBeforeUpdate')) {
                 $this->eventFireBeforeUpdate($data, ($oldData[0] ?? []));
@@ -166,19 +207,9 @@ trait UpdateRepository
                 return $this->sqlException($exception);
             }
 
-            if($this->getHardDelete()){
-                $result =  ($oldData)[0] ?? [];
-            }
-            else{
-                $result =  ($baseQuery->get()->toArray())[0] ?? [];
-            }
-
-            if (count($this->addPostQueryResults)) {
-                $queryList[] = array_merge($result, $this->addPostQueryResults[$dataKey]);
-            }
-            else{
-                $queryList[] = $result;
-            }
+            //general operations
+            $result = $this->hardDeleteOperation($oldData,$data);
+            $queryList[] = $this->addPostQueryMerging($result,$dataKey);
 
             if (method_exists($this, 'eventFireAfterUpdate')) {
                 $this->eventFireAfterUpdate($result, $data);
