@@ -6,6 +6,7 @@ namespace App\Services;
 
 use App\Facades\Authenticate\ApiKey;
 use App\Facades\Authenticate\Authenticate;
+use App\Repositories\Repository;
 
 /**
  * Class Client
@@ -75,5 +76,28 @@ class Client
         }
 
         return $contentType ?? $default;
+    }
+
+    /**
+     * get client mirror for client service
+     *
+     * @param string $model
+     * @return array
+     */
+    public static function mirror(string $model) : array
+    {
+        $list = [];
+
+        $repository = Repository::$model();
+
+        foreach (static::data() as $key => $value){
+            $mirror = $repository->getRecursiveMirror($model,$value[$repository->getModelCode()]);
+
+            if(!is_null($mirror)){
+                $list[$key] = array_replace_recursive($value,$mirror);
+            }
+        }
+
+        return $list;
     }
 }
