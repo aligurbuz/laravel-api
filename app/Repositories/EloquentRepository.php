@@ -109,7 +109,7 @@ class EloquentRepository
             return $this->graphQl->get()->toArray();
         }
 
-        $paginateDefinition = (property_exists($this,'simplePaginate') && $this->simplePaginate)
+        $paginateDefinition = (property_exists($this, 'simplePaginate') && $this->simplePaginate)
             ? 'simplePaginate' : 'paginate';
 
 
@@ -276,7 +276,7 @@ class EloquentRepository
      * @param string|null $rangeMethod
      * @return object
      */
-    public function rangeHandler(?object $builder = null,?string $rangeMethod = null): object
+    public function rangeHandler(?object $builder = null, ?string $rangeMethod = null): object
     {
         $this->repository = $this->setClientAction([$rangeMethod])->builder($builder);
 
@@ -287,20 +287,20 @@ class EloquentRepository
      * @param array $data
      * @return $this
      */
-    public function setClientAction(array $data = []) : self
+    public function setClientAction(array $data = []): self
     {
         $clientInstance = getClientInstance();
 
         $request = [];
 
-        foreach ($data as $name){
-            $clientActionName = Str::camel($name).'Action';
-            if(method_exists($clientInstance,$clientActionName)){
+        foreach ($data as $name) {
+            $clientActionName = Str::camel($name) . 'Action';
+            if (method_exists($clientInstance, $clientActionName)) {
                 $request = array_merge_recursive($clientInstance->$clientActionName());
             }
         }
 
-        $request = array_merge_recursive(request()->query->all(),$request);
+        $request = array_merge_recursive(request()->query->all(), $request);
         request()->query->replace([]);
         request()->query->add($request);
 
@@ -483,12 +483,12 @@ class EloquentRepository
         $mirror = $this->instance()->where($field, $value);
         $query = $mirror->get()->toArray();
 
-        AppContainer::setWithTerminating('repository.mirror.builder.'.$this->getModelName(),$mirror);
-        AppContainer::setWithTerminating('repository.mirror.recursive.builder.'.$this->getModelName().'_'.$value,$mirror);
+        AppContainer::setWithTerminating('repository.mirror.builder.' . $this->getModelName(), $mirror);
+        AppContainer::setWithTerminating('repository.mirror.recursive.builder.' . $this->getModelName() . '_' . $value, $mirror);
 
-        if(isset($query[0])){
-            AppContainer::setWithTerminating('repository.mirror.data.'.$this->getModelName(),$query[0]);
-            AppContainer::setWithTerminating('repository.mirror.recursive.data.'.$this->getModelName().'_'.$value,$query[0]);
+        if (isset($query[0])) {
+            AppContainer::setWithTerminating('repository.mirror.data.' . $this->getModelName(), $query[0]);
+            AppContainer::setWithTerminating('repository.mirror.recursive.data.' . $this->getModelName() . '_' . $value, $query[0]);
         }
 
         return isset($query[0]);
@@ -501,9 +501,9 @@ class EloquentRepository
      * @param string $type
      * @return mixed
      */
-    public function getMirror(?string $mirror = null,string $type = 'data') : mixed
+    public function getMirror(?string $mirror = null, string $type = 'data'): mixed
     {
-        return AppContainer::get('repository.mirror.'.$type.'.'.($mirror ? ucfirst($mirror) : $this->getModelName()));
+        return AppContainer::get('repository.mirror.' . $type . '.' . ($mirror ? ucfirst($mirror) : $this->getModelName()));
     }
 
     /**
@@ -514,9 +514,9 @@ class EloquentRepository
      * @param string $type
      * @return mixed
      */
-    public function getRecursiveMirror(?string $mirror = null,mixed $value = null,string $type = 'data') : mixed
+    public function getRecursiveMirror(?string $mirror = null, mixed $value = null, string $type = 'data'): mixed
     {
-        return AppContainer::get('repository.mirror.recursive.'.$type.'.'.($mirror ? ucfirst($mirror) : $this->getModelName()).'_'.$value);
+        return AppContainer::get('repository.mirror.recursive.' . $type . '.' . ($mirror ? ucfirst($mirror) : $this->getModelName()) . '_' . $value);
     }
 
     /**
@@ -665,9 +665,10 @@ class EloquentRepository
      * get repository results for model
      *
      * @param bool $afterLoadingRepository
+     * @param bool $instance
      * @return array
      */
-    public function getRepository(bool $afterLoadingRepository = true): array
+    public function getRepository(bool $afterLoadingRepository = true, bool $instance = false): array
     {
         if (is_null($this->repository)) {
             $this->repository = $this->instance();
@@ -679,9 +680,40 @@ class EloquentRepository
 
         $this->setEndpointQueries($this->repository);
 
+        if ($instance) {
+            return [$this->repository];
+        }
+
+        return $this->resourceRepository();
+    }
+
+    /**
+     * resource repository for eloquent model
+     *
+     * @return array
+     */
+    public function resourceRepository(): array
+    {
         return $this->additionalResourceHandler(
             $this->baseResource($this->repository->get()->toArray())
         );
+    }
+
+    /**
+     * take cache for eloquent model
+     *
+     * @param bool $afterLoadingRepository
+     * @return array
+     */
+    public function memory(bool $afterLoadingRepository = true): array
+    {
+        $this->getRepository($afterLoadingRepository, true);
+
+        $sql = $this->repository->toFullSql();
+
+        return getCache(md5($sql), function () {
+            return $this->resourceRepository();
+        });
     }
 
     /**
@@ -1162,13 +1194,12 @@ class EloquentRepository
         $withDataList = [];
 
         foreach ($this->getAutoEagerLoadings() as $loading) {
-            $withDotSplit = explode('.',$loading);
-            foreach ($withDotSplit as $dotKey => $withData){
-                if($dotKey==0){
+            $withDotSplit = explode('.', $loading);
+            foreach ($withDotSplit as $dotKey => $withData) {
+                if ($dotKey == 0) {
                     $withDataList[] = $withData;
                     request()->query->set('with', array_merge($with, $withList = [$withData => ['select' => '*']]));
-                }
-                else{
+                } else {
                     request()->query->set('with', array_merge_recursive($withList, [current($withDataList) => ['with' => [
                         $withData => ['select' => '*']
                     ]]]));
@@ -1189,7 +1220,7 @@ class EloquentRepository
                 Exception::customException(trans('exception.deniedEagerLoadings', ['key' => $relation]));
             }
 
-            if(isset($data['with'])){
+            if (isset($data['with'])) {
                 $this->detectDeniedEagerLoadings($data['with']);
             }
         }
@@ -1238,8 +1269,8 @@ class EloquentRepository
         }
 
         if (in_array($name, $this->getModelWithValues(), true)) {
-            if(isset($args[0]) && is_string($args[0])){
-                if(request()->method()==$args[0]){
+            if (isset($args[0]) && is_string($args[0])) {
+                if (request()->method() == $args[0]) {
                     $this->withBindings[$name] = (function ($query) {
                     });
                     $this->with();
