@@ -11,6 +11,7 @@ use App\Services\Client;
 use App\Services\Db as DBFacade;
 use App\Services\Git;
 use App\Services\HashGenerator;
+use App\Services\Redis;
 use App\Services\Request\Request as HttpRequest;
 use App\Services\Service;
 use Illuminate\Support\Collection;
@@ -19,7 +20,6 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 use JetBrains\PhpStorm\Pure;
-use Illuminate\Support\Facades\Artisan;
 
 if (!function_exists('entity')) {
 
@@ -126,10 +126,10 @@ if (!function_exists('moneyFormatter')) {
         $value = (float)$value;
 
         if ($floatReturn) {
-            return round((float)number_format($value, 2, '.', ''),$roundType);
+            return round((float)number_format($value, 2, '.', ''), $roundType);
         }
 
-        return round(number_format($value, 2, '.', ','),$roundType);
+        return round(number_format($value, 2, '.', ','), $roundType);
     }
 }
 
@@ -421,9 +421,9 @@ if (!function_exists('getQueryFilter')) {
      */
     function getQueryFilter(?string $key = null): mixed
     {
-        $queryFilter = request()->query('filter',[]);
+        $queryFilter = request()->query('filter', []);
 
-        if(is_null($key)){
+        if (is_null($key)) {
             return $queryFilter;
         }
 
@@ -454,7 +454,8 @@ if (!function_exists('getClientInstance')) {
      */
     function getClientInstance(): object
     {
-        return AppContainer::get('clientInstance',new class {});
+        return AppContainer::get('clientInstance', new class {
+        });
     }
 }
 
@@ -695,10 +696,34 @@ if (!function_exists('inValidCodeException')) {
      */
     function inValidCodeException(?string $key = null, ?int $value = null): object
     {
-        return Exception::customException('codeException',[
+        return Exception::customException('codeException', [
             'key' => $key,
             'value' => $value
         ]);
+    }
+}
+
+if (!function_exists('getCache')) {
+
+    /**
+     * get cache redis data
+     *
+     * @param string $hash
+     * @param callable $callback
+     * @return mixed
+     */
+    function getCache(string $hash, callable $callback): mixed
+    {
+        $redisConnection = Redis::client();
+
+        if ($redisConnection->exists($hash)) {
+            return json_decode($redisConnection->get($hash), true);
+        }
+
+        $callback = call_user_func($callback);
+        $redisConnection->set($hash, json_encode($callback));
+
+        return $callback;
     }
 }
 
