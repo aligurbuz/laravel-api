@@ -160,6 +160,16 @@ trait CacheRepository
     }
 
     /**
+     * get checkCacheMemoryStatus for repository
+     *
+     * @return bool
+     */
+    private function checkCacheMemoryStatus(): bool
+    {
+        return config('repository.repositoryMemoryCache');
+    }
+
+    /**
      * set property value for cache repository
      *
      * @return void
@@ -236,7 +246,7 @@ trait CacheRepository
      */
     public function deleteCache(): void
     {
-        if($this->checkCacheStatus()){
+        if($this->checkCacheStatus() || $this->checkCacheMemoryStatus()){
             $this->setProperties();
 
             $model = $this->getModelName();

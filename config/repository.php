@@ -28,4 +28,10 @@ return [
      * If its value is set to false, no cache data will be created for your repository transactions.
      */
     'repositoryCache' => env('REPOSITORY_CACHE',false),
+
+    /**
+     * This setting is responsible for caching your repository internal links.(eloquent repository memory method)
+     * If its value is set to false, no cache data will be created for your repository transactions.
+     */
+    'repositoryMemoryCache' => env('REPOSITORY_MEMORY_CACHE',false),
 ];

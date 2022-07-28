@@ -709,6 +709,10 @@ class EloquentRepository
     {
         $this->getRepository($afterLoadingRepository, true);
 
+        if(!$this->checkCacheMemoryStatus()){
+            return $this->resourceRepository();
+        }
+
         $sql = $this->repository->toFullSql();
 
         return getCache($this->generateCacheKey($this->getModelName()),md5($sql), function () {
