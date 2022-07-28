@@ -3,8 +3,11 @@
 use App\Constants;
 use App\Exceptions\Exception;
 use App\Facades\Authenticate\ApiKey;
+use App\Facades\Authenticate\Authenticate;
+use App\Facades\Restaurant\Restaurant as RestaurantFacade;
 use App\Factory\Factory;
 use App\Models\Entities\EntityMap;
+use App\Models\Entities\Restaurant as RestaurantEntity;
 use App\Repositories\Repository;
 use App\Services\AppContainer;
 use App\Services\Client;
@@ -20,6 +23,115 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 use JetBrains\PhpStorm\Pure;
+
+if (!function_exists('restaurantCode')) {
+
+    /**
+     * get restaurant_code for global gate accessing
+     *
+     * @return int
+     */
+    function restaurantCode(): int
+    {
+        return AppContainer::use('restaurantCode', function () {
+            return Factory::app()->restaurantCode();
+        });
+    }
+}
+
+if (!function_exists('getCache')) {
+
+    /**
+     * get cache redis data
+     *
+     * @param string $model
+     * @param string $hash
+     * @param callable $callback
+     * @return mixed
+     */
+    function getCache(string $model,string $hash, callable $callback): mixed
+    {
+        $redisConnection = Redis::client();
+
+        if ($redisConnection->hexists($model,$hash)) {
+            return json_decode($redisConnection->hget($model,$hash), true);
+        }
+
+        $callback = call_user_func($callback);
+        $redisConnection->hset($model,$hash, json_encode($callback));
+        $redisConnection->expire($model, 300);
+
+        return $callback;
+    }
+}
+
+if (!function_exists('getCache')) {
+
+    /**
+     * get cache key
+     *
+     * @return string
+     */
+    function getCacheKey(): string
+    {
+        return restaurantCode() . '_' . menuTypeCode() . '_' . Authenticate::code();
+    }
+}
+
+if (!function_exists('timezone')) {
+
+    /**
+     * get restaurant timezone for global gate accessing
+     *
+     * @return ?string
+     */
+    function timezone(): ?string
+    {
+        return RestaurantFacade::timezone()->timezone;
+    }
+}
+
+if (!function_exists('currency')) {
+
+    /**
+     * get restaurant timezone for global gate accessing
+     *
+     * @param float $data
+     * @return ?string
+     */
+    function currency(float $data = 0): ?string
+    {
+        return RestaurantFacade::currency()->symbol . '' . $data;
+    }
+}
+
+if (!function_exists('restaurant')) {
+
+    /**
+     * get restaurant entity for global gate accessing
+     *
+     * @return RestaurantEntity
+     */
+    function restaurant(): RestaurantEntity
+    {
+        return RestaurantFacade::entity();
+    }
+}
+
+if (!function_exists('menuTypeCode')) {
+
+    /**
+     * get menu_type_code for global gate accessing
+     *
+     * @return int
+     */
+    function menuTypeCode(): int
+    {
+        return AppContainer::use('menuTypeCode', function () {
+            return Factory::app()->menuTypeCode();
+        });
+    }
+}
 
 if (!function_exists('entity')) {
 
@@ -165,7 +277,7 @@ if (!function_exists('tax')) {
      */
     function tax(): string
     {
-        return '8.875';
+        return RestaurantFacade::entity()->tax_percentage;
     }
 }
 
@@ -182,6 +294,47 @@ if (!function_exists('checkBool')) {
         $value = $value == '1' ? true : $value;
 
         return $value == 1 ? true : $value;
+    }
+}
+
+if (!function_exists('first')) {
+
+    /**
+     * get repository model first data for application
+     *
+     * @param string $model
+     * @param int $code
+     * @return array
+     */
+    function first(string $model, int $code): array
+    {
+        return Repository::$model()->code($code)->latest();
+    }
+}
+
+if (!function_exists('isClientRequest')) {
+
+    /**
+     * get client request for application
+     *
+     * @return bool
+     */
+    function isClientRequest(): bool
+    {
+        return AppContainer::has('clientRepositoryRequest');
+    }
+}
+
+if (!function_exists('isRelation')) {
+
+    /**
+     * get client request for application
+     *
+     * @return bool
+     */
+    function isRelation(): bool
+    {
+        return AppContainer::has('isRelation');
     }
 }
 
@@ -279,46 +432,6 @@ if (!function_exists('decodeString')) {
         });
 
         return $hashGenerator->decode($hash);
-    }
-}
-
-if (!function_exists('isClientRequest')) {
-
-    /**
-     * get client request for application
-     *
-     * @return bool
-     */
-    function isClientRequest(): bool
-    {
-        return AppContainer::has('clientRepositoryRequest');
-    }
-}
-
-if (!function_exists('isRelation')) {
-
-    /**
-     * get client request for application
-     *
-     * @return bool
-     */
-    function isRelation(): bool
-    {
-        return AppContainer::has('isRelation');
-    }
-}
-
-if (!function_exists('first')) {
-
-    /**
-     * get repository model first data for application
-     *
-     * @param string $model
-     * @return array
-     */
-    function first(string $model): array
-    {
-        return Repository::$model()->first();
     }
 }
 
@@ -700,30 +813,6 @@ if (!function_exists('inValidCodeException')) {
             'key' => $key,
             'value' => $value
         ]);
-    }
-}
-
-if (!function_exists('getCache')) {
-
-    /**
-     * get cache redis data
-     *
-     * @param string $hash
-     * @param callable $callback
-     * @return mixed
-     */
-    function getCache(string $hash, callable $callback): mixed
-    {
-        $redisConnection = Redis::client();
-
-        if ($redisConnection->exists($hash)) {
-            return json_decode($redisConnection->get($hash), true);
-        }
-
-        $callback = call_user_func($callback);
-        $redisConnection->set($hash, json_encode($callback));
-
-        return $callback;
     }
 }
 
