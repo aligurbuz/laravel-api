@@ -711,7 +711,7 @@ class EloquentRepository
 
         $sql = $this->repository->toFullSql();
 
-        return getCache($this->getModelName(),md5($sql), function () {
+        return getCache($this->generateCacheKey($this->getModelName()),md5($sql), function () {
             return $this->resourceRepository();
         });
     }
