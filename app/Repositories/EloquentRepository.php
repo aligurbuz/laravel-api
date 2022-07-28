@@ -457,18 +457,6 @@ class EloquentRepository
     }
 
     /**
-     * get entity
-     *
-     * @return mixed
-     */
-    public function entity(): mixed
-    {
-        $camelCaseModel = Str::camel($this->getModelName());
-
-        return entity()->{$camelCaseModel}((object)$this->first());
-    }
-
-    /**
      * it adds to builder not deleted data.
      *
      * @param object|null $builder
@@ -530,6 +518,19 @@ class EloquentRepository
     {
         return AppContainer::get('repository.mirror.recursive.'.$type.'.'.($mirror ? ucfirst($mirror) : $this->getModelName()).'_'.$value);
     }
+
+    /**
+     * get entity
+     *
+     * @return mixed
+     */
+    public function entity(): mixed
+    {
+        $camelCaseModel = Str::camel($this->getModelName());
+
+        return entity()->{$camelCaseModel}((object)$this->first());
+    }
+
 
     /**
      * @param object $builder
@@ -1237,6 +1238,16 @@ class EloquentRepository
         }
 
         if (in_array($name, $this->getModelWithValues(), true)) {
+            if(isset($args[0]) && is_string($args[0])){
+                if(request()->method()==$args[0]){
+                    $this->withBindings[$name] = (function ($query) {
+                    });
+                    $this->with();
+                }
+
+                return $this;
+            }
+
             $this->withBindings[$name] = ($args[0] ?? function ($query) {
                 });
             $this->with();
