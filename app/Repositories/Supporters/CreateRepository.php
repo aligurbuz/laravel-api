@@ -99,13 +99,13 @@ trait CreateRepository
 
         try {
 
-            if(method_exists($this,'beforeCreate')){
+            if($this->getEventStatus() && method_exists($this,'beforeCreate')){
                 $this->beforeCreate($clientData);
             }
 
             foreach ($clientData as $clientDataKey => $value) {
 
-                if (method_exists($this, 'eventFireBeforeCreate')) {
+                if ($this->getEventStatus() && method_exists($this, 'eventFireBeforeCreate')) {
                     $this->eventFireBeforeCreate($value);
                 }
 
@@ -118,7 +118,7 @@ trait CreateRepository
                     $arrayResults = array_merge($arrayResults, $this->addPostQueryResults[$clientDataKey]);
                 }
 
-                if (method_exists($this, 'eventFireAfterCreate')) {
+                if ($this->getEventStatus() && method_exists($this, 'eventFireAfterCreate')) {
                     $this->eventFireAfterCreate($arrayResults, $value);
                 }
 

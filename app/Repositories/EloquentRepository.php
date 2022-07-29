@@ -55,6 +55,11 @@ class EloquentRepository
     protected array $withBindings = [];
 
     /**
+     * @var bool
+     */
+    protected bool $eventStatus = true;
+
+    /**
      * get data for user model
      *
      * @return array
@@ -322,11 +327,35 @@ class EloquentRepository
     /**
      * easy delete for repository model
      *
+     * @param array $data
      * @return object|array
      */
-    public function delete(): object|array
+    public function delete(array $data = []): object|array
     {
-        return $this->notDeleted()->update([['is_deleted' => true]]);
+        return $this->notDeleted()->update([array_merge($data,['is_deleted' => true])]);
+    }
+
+    /**
+     * set event status for eloquent repository model
+     *
+     * @param bool $status
+     * @return object
+     */
+    public function setEventStatus(bool $status = true) : object
+    {
+        $this->eventStatus = $status;
+
+        return $this;
+    }
+
+    /**
+     * get event status for eloquent repository model
+     *
+     * @return bool
+     */
+    public function getEventStatus() : bool
+    {
+        return $this->eventStatus;
     }
 
     /**

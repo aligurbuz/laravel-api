@@ -147,7 +147,7 @@ trait UpdateRepository
         $updateClientData = $this->getClientData($data);
         $clientNormalData = AppContainer::get('clientBody',[]);
 
-        if(method_exists($this,'beforeUpdate')){
+        if($this->getEventStatus() && method_exists($this,'beforeUpdate')){
             $this->beforeUpdate($clientNormalData);
         }
 
@@ -169,7 +169,7 @@ trait UpdateRepository
                 $oldData = $baseQuery->get()->toArray();
             }
 
-            if (method_exists($this, 'eventFireBeforeUpdate')) {
+            if ($this->getEventStatus() && method_exists($this, 'eventFireBeforeUpdate')) {
                 $this->eventFireBeforeUpdate($data, ($oldData[0] ?? []));
             }
 
@@ -217,12 +217,12 @@ trait UpdateRepository
             $result = $this->hardDeleteOperation($oldData,$data);
             $queryList[] = $this->addPostQueryMerging($result,$dataKey);
 
-            if (method_exists($this, 'eventFireAfterUpdate')) {
+            if ($this->getEventStatus() && method_exists($this, 'eventFireAfterUpdate')) {
                 $this->eventFireAfterUpdate($result, $data);
             }
         }
 
-        if(method_exists($this,'afterUpdate')){
+        if($this->getEventStatus() && method_exists($this,'afterUpdate')){
             $this->afterUpdate($queryList);
         }
 
