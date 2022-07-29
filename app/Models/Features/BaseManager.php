@@ -74,6 +74,10 @@ trait BaseManager
             $this->setHidden(array_merge($this->getHidden(), ['sequence', 'sequence_time']));
         }
 
+        if(request()->method()=='PUT'){
+            $this->with = [];
+        }
+
         if ($withQueryConstructor) {
             $this->withQueryConstructor();
         }
