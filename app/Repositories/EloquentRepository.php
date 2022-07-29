@@ -8,6 +8,7 @@ use App\Constants;
 use App\Exceptions\Exception;
 use App\Exceptions\SqlExceptionManager;
 use App\Facades\Authenticate\ApiKey;
+use App\Facades\Authenticate\Authenticate;
 use App\Repositories\Supporters\CacheRepository;
 use App\Repositories\Supporters\CreateRepository;
 use App\Repositories\Supporters\GlobalScopeManager;
@@ -16,6 +17,7 @@ use App\Repositories\Supporters\ResourceRepository;
 use App\Repositories\Supporters\UpdateRepository;
 use App\Services\AppContainer;
 use App\Services\Client;
+use App\Services\Date;
 use App\Services\Db;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
@@ -332,7 +334,16 @@ class EloquentRepository
      */
     public function delete(array $data = []): object|array
     {
-        return $this->notDeleted()->update([array_merge($data,['is_deleted' => true])]);
+        return $this->notDeleted()->update(
+            [
+                array_merge($data,
+                    [
+                        'is_deleted' => true,
+                        'deleted_by' => Authenticate::code(),
+                        'deleted_at' => Date::now()->toDateTimeString()
+                    ]
+                )
+            ]);
     }
 
     /**
