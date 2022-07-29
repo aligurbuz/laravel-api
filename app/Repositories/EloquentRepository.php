@@ -339,9 +339,9 @@ class EloquentRepository
      * set event status for eloquent repository model
      *
      * @param bool $status
-     * @return object
+     * @return EloquentRepository
      */
-    public function setEventStatus(bool $status = true) : object
+    public function setEventStatus(bool $status = true) : EloquentRepository
     {
         $this->eventStatus = $status;
 
