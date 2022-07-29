@@ -870,6 +870,20 @@ if (!function_exists('getTableName')) {
     }
 }
 
+if (!function_exists('getModelFromTableCode')) {
+
+    /**
+     * @param $code
+     * @return string
+     */
+    function getModelFromTableCode($code): string
+    {
+        $code = str_replace('_code','',$code);
+
+        return ucfirst(Str::camel($code));
+    }
+}
+
 if (!function_exists('getModelWithPlural')) {
 
     /**
