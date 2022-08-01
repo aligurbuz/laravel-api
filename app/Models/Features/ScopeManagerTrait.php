@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Models\Features;
 
 use App\Exceptions\Exception;
+use App\Services\AppContainer;
 use App\Services\Response\Response;
 
 /**
@@ -39,6 +40,14 @@ trait ScopeManagerTrait
         $modelRanges = array_merge($getObjectRanges, $this->autoRanges);
         $baseObjectName = class_basename($object);
 
+        if(!AppContainer::has('autoRanges')){
+            AppContainer::set('autoRanges',$this->autoRanges);
+            $responseModelRanges = array_merge($getObjectRanges, $this->autoRanges);
+        }
+        else{
+            $responseModelRanges = array_merge($getObjectRanges);
+        }
+
         $objRanges = [];
 
         foreach ($getObjectRanges as $objRange => $rangeDesc){
@@ -60,7 +69,7 @@ trait ScopeManagerTrait
         }
 
         //We record the instruction value in the response data to inform the user.
-        Response::formatterSupplement(['ranges' => $modelRanges], true);
+        Response::formatterSupplement(['ranges' => $responseModelRanges], true);
 
         return ['ranges' => $inLineRanges, 'modelRanges' => $modelRanges];
     }
