@@ -61,6 +61,10 @@ trait BaseManager
             if ($dbType == 'array') {
                 $this->casts[$dbTypeColumn] = 'array';
             }
+
+            if($dbType=='image' || $dbType=='file'){
+                $this->casts[$dbTypeColumn] = 'string';
+            }
         }
 
         $this->localizationWithQuery['localization']['localColumn'] = getTableCode($this->getModelName());
