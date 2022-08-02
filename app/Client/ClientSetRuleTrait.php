@@ -81,7 +81,12 @@ trait ClientSetRuleTrait
             $range = request()->query('range','');
             $rangeList = explode(',', $range);
             if (!in_array('active', $rangeList, true)) {
-                $range = $range . ',active';
+                if(strlen($range)>0){
+                    $range = $range . ',active';
+                }
+                else{
+                    $range = 'active';
+                }
 
                 request()->query->remove('range');
                 request()->query->add(['range' => $range]);
