@@ -32,6 +32,7 @@ class Client extends ClientManager
     protected array $customRules = [
         'double' => ['regex:/^[0-9]+(\\.[0-9]+)?$/i'],
         'timestamp' => ['date_format:Y-m-d H:i:s'],
+        'time' => ['date_format:H:i'],
         'atLeastUpperLowerNumber' => ['regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/']
     ];
 
