@@ -55,6 +55,10 @@ class Exception
         // the notification will be thrown with the exception.(etc..slack)
         AppContainer::set(Constants::exceptionNotify, $arguments[2] ?? null);
 
+        if(isset($arguments[1]['errorInput'])){
+            AppContainer::setWithTerminating('errorInput',$arguments[1]['errorInput']);
+        }
+
         if (isset($arguments[0])) {
             static::setKeyForContainer($namespace, ($arguments[1] ?? (is_array($arguments[0]) ? $arguments[0] : [])));
             throw new $namespace((is_array($arguments[0]) ? '' : $arguments[0]));
