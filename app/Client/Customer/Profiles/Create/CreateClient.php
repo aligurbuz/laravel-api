@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Client\Customer\Profiles\Create;
 
@@ -16,7 +16,7 @@ class CreateClient extends Client
 	 *
 	 * @var array
 	 */
-	protected array $capsule = [];
+	protected array $capsule = ['customer_genders','customer_ages'];
 
 	/**
 	 * get model entity validation
@@ -30,5 +30,8 @@ class CreateClient extends Client
 	 *
 	 * @var array
 	 */
-	protected array $rule = [];
+	protected array $rule = [
+        'customer_genders' => 'array',
+        'customer_ages' => 'array',
+    ];
 }
