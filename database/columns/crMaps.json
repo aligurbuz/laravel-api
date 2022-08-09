@@ -74,5 +74,17 @@
     "customer.genders.update": {
         "class": "App\\Client\\Customer\\Genders\\Update\\UpdateClient",
         "model": "customerGender"
+    },
+    "customer.ages.get": {
+        "class": "App\\Client\\Customer\\Ages\\Get\\GetClient",
+        "model": "customerAge"
+    },
+    "customer.ages.create": {
+        "class": "App\\Client\\Customer\\Ages\\Create\\CreateClient",
+        "model": "customerAge"
+    },
+    "customer.ages.update": {
+        "class": "App\\Client\\Customer\\Ages\\Update\\UpdateClient",
+        "model": "customerAge"
     }
 }

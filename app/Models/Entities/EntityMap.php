@@ -6,6 +6,15 @@ class EntityMap
 {
     /**
      * @param object $query
+     * @return CustomerAge
+     */
+    public function customerAge(object $query) : CustomerAge
+    {
+        return new CustomerAge($query);
+    }
+    
+    /**
+     * @param object $query
      * @return CustomerGender
      */
     public function customerGender(object $query) : CustomerGender

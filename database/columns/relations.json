@@ -19,6 +19,7 @@
         "Country",
         "Currency",
         "Customer",
+        "CustomerAge",
         "CustomerGender",
         "District",
         "Excel",
@@ -38,10 +39,15 @@
         "Localization"
     ],
     "Customer": [
+        "CustomerGender",
         "Localization",
-        "CustomerGender"
+        "CustomerAge"
     ],
     "CustomerGender": [
+        "Customer",
+        "Localization"
+    ],
+    "CustomerAge": [
         "Customer",
         "Localization"
     ],

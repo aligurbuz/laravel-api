@@ -21,7 +21,11 @@
     ],
     "customer_code": [
         "Customer",
+        "CustomerAge",
         "CustomerGender"
+    ],
+    "customer_age_code": [
+        "CustomerAge"
     ],
     "customer_gender_code": [
         "CustomerGender"

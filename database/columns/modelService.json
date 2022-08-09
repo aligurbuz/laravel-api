@@ -70,5 +70,9 @@
     "CustomerGender": {
         "controller": "Genders",
         "dir": "Customer"
+    },
+    "CustomerAge": {
+        "controller": "Ages",
+        "dir": "Customer"
     }
 }

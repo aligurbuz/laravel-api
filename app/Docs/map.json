@@ -27,7 +27,7 @@
         "/var/www/html/app/api/app/Docs/Endpoints/Global/Global.json": 0,
         "/var/www/html/app/api/app/Docs/Endpoints/Registration/Registration.json": 0,
         "/var/www/html/app/api/app/Docs/Endpoints/Support/Support.json": 0,
-        "/var/www/html/app/api/app/Docs/Endpoints/Customer/Customer.json": 1
+        "/var/www/html/app/api/app/Docs/Endpoints/Customer/Customer.json": 2
     },
     "fingerPrints": {
         "User_User_user": 0,
@@ -47,6 +47,7 @@
         "Excel_Support_excel": 0,
         "Profiles_Customer_customer": 0,
         "Activations_User_userActivation": 1,
-        "Genders_Customer_customerGender": 1
+        "Genders_Customer_customerGender": 1,
+        "Ages_Customer_customerAge": 2
     }
 }

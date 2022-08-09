@@ -55,5 +55,10 @@
         "controller": "Genders",
         "dir": "Customer",
         "model": "CustomerGender"
+    },
+    "Customer/ages": {
+        "controller": "Ages",
+        "dir": "Customer",
+        "model": "CustomerAge"
     }
 }

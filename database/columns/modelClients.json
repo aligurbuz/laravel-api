@@ -37,5 +37,10 @@
         "get": "App\\Client\\Customer\\Genders\\Get\\GetClient",
         "create": "App\\Client\\Customer\\Genders\\Create\\CreateClient",
         "update": "App\\Client\\Customer\\Genders\\Update\\UpdateClient"
+    },
+    "CustomerAge": {
+        "get": "App\\Client\\Customer\\Ages\\Get\\GetClient",
+        "create": "App\\Client\\Customer\\Ages\\Create\\CreateClient",
+        "update": "App\\Client\\Customer\\Ages\\Update\\UpdateClient"
     }
 }
