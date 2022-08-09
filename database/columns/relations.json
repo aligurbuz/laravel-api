@@ -19,6 +19,7 @@
         "Country",
         "Currency",
         "Customer",
+        "CustomerGender",
         "District",
         "Excel",
         "Language",
@@ -37,6 +38,11 @@
         "Localization"
     ],
     "Customer": [
+        "Localization",
+        "CustomerGender"
+    ],
+    "CustomerGender": [
+        "Customer",
         "Localization"
     ],
     "Excel": [
@@ -61,10 +67,10 @@
     ],
     "User": [
         "SuperAdmin",
-        "Role",
-        "Localization",
         "UserActivation",
-        "UserPhoto"
+        "UserPhoto",
+        "Role",
+        "Localization"
     ],
     "TableChange": [
         "Localization"

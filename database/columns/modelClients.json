@@ -32,5 +32,10 @@
         "get": "App\\Client\\User\\Activations\\Get\\GetClient",
         "create": "App\\Client\\User\\Activations\\Create\\CreateClient",
         "update": "App\\Client\\User\\Activations\\Update\\UpdateClient"
+    },
+    "CustomerGender": {
+        "get": "App\\Client\\Customer\\Genders\\Get\\GetClient",
+        "create": "App\\Client\\Customer\\Genders\\Create\\CreateClient",
+        "update": "App\\Client\\Customer\\Genders\\Update\\UpdateClient"
     }
 }

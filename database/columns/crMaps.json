@@ -62,5 +62,17 @@
     "user.activations.update": {
         "class": "App\\Client\\User\\Activations\\Update\\UpdateClient",
         "model": "userActivation"
+    },
+    "customer.genders.get": {
+        "class": "App\\Client\\Customer\\Genders\\Get\\GetClient",
+        "model": "customerGender"
+    },
+    "customer.genders.create": {
+        "class": "App\\Client\\Customer\\Genders\\Create\\CreateClient",
+        "model": "customerGender"
+    },
+    "customer.genders.update": {
+        "class": "App\\Client\\Customer\\Genders\\Update\\UpdateClient",
+        "model": "customerGender"
     }
 }

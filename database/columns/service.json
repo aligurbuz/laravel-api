@@ -50,5 +50,10 @@
         "controller": "Activations",
         "dir": "User",
         "model": "UserActivation"
+    },
+    "Customer/genders": {
+        "controller": "Genders",
+        "dir": "Customer",
+        "model": "CustomerGender"
     }
 }

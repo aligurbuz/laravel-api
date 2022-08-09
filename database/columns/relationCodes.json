@@ -20,7 +20,11 @@
         "Currency"
     ],
     "customer_code": [
-        "Customer"
+        "Customer",
+        "CustomerGender"
+    ],
+    "customer_gender_code": [
+        "CustomerGender"
     ],
     "district_code": [
         "District"

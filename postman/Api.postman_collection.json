@@ -783,7 +783,6 @@
             "name": "Currencies"
         },
         {
-            "name": "Customer",
             "item": [
                 {
                     "name": "Profiles",
@@ -947,8 +946,172 @@
                             }
                         }
                     ]
+                },
+                {
+                    "name": "Genders",
+                    "item": [
+                        {
+                            "name": "Customer/Genders",
+                            "response": [],
+                            "request": {
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Authorization",
+                                        "value": "Bearer {{bearerToken}}",
+                                        "type": "text",
+                                        "description": "It is the token value received after the user logs in.(must)"
+                                    },
+                                    {
+                                        "key": "Apikey",
+                                        "value": "{{apiKey}}",
+                                        "type": "text",
+                                        "description": "It is a hash value given to you by the system provider.(must)"
+                                    },
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "{{contentType}}",
+                                        "type": "text",
+                                        "description": "You can specify the return types for the returned response like json or xml.(not must)"
+                                    },
+                                    {
+                                        "key": "Accept-Language",
+                                        "value": "{{acceptLanguage}}",
+                                        "type": "text",
+                                        "description": "You can select the language option for the returned string values.(must)"
+                                    }
+                                ],
+                                "body": [],
+                                "url": {
+                                    "raw": "{{baseUrl}}/customer/genders",
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "path": [
+                                        "customer",
+                                        "genders"
+                                    ],
+                                    "query": [
+                                        {
+                                            "key": "range",
+                                            "value": "desc",
+                                            "description": "",
+                                            "disabled": true
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "name": "Customer/Genders",
+                            "response": [],
+                            "request": {
+                                "method": "POST",
+                                "header": [
+                                    {
+                                        "key": "Authorization",
+                                        "value": "Bearer {{bearerToken}}",
+                                        "type": "text",
+                                        "description": "It is the token value received after the user logs in.(must)"
+                                    },
+                                    {
+                                        "key": "Apikey",
+                                        "value": "{{apiKey}}",
+                                        "type": "text",
+                                        "description": "It is a hash value given to you by the system provider.(must)"
+                                    },
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "{{contentType}}",
+                                        "type": "text",
+                                        "description": "You can specify the return types for the returned response like json or xml.(not must)"
+                                    },
+                                    {
+                                        "key": "Accept-Language",
+                                        "value": "{{acceptLanguage}}",
+                                        "type": "text",
+                                        "description": "You can select the language option for the returned string values.(must)"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\"customer_code\":\"integer\",\"gender\":\"enum\"}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "{{baseUrl}}/customer/genders",
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "path": [
+                                        "customer",
+                                        "genders"
+                                    ],
+                                    "query": []
+                                }
+                            }
+                        },
+                        {
+                            "name": "Customer/Genders",
+                            "response": [],
+                            "request": {
+                                "method": "PUT",
+                                "header": [
+                                    {
+                                        "key": "Authorization",
+                                        "value": "Bearer {{bearerToken}}",
+                                        "type": "text",
+                                        "description": "It is the token value received after the user logs in.(must)"
+                                    },
+                                    {
+                                        "key": "Apikey",
+                                        "value": "{{apiKey}}",
+                                        "type": "text",
+                                        "description": "It is a hash value given to you by the system provider.(must)"
+                                    },
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "{{contentType}}",
+                                        "type": "text",
+                                        "description": "You can specify the return types for the returned response like json or xml.(not must)"
+                                    },
+                                    {
+                                        "key": "Accept-Language",
+                                        "value": "{{acceptLanguage}}",
+                                        "type": "text",
+                                        "description": "You can select the language option for the returned string values.(must)"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\"customer_code\":\"integer\",\"customer_gender_code\":\"0\",\"gender\":\"enum\",\"is_deleted\":\"0\",\"status\":\"1\"}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "{{baseUrl}}/customer/genders",
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "path": [
+                                        "customer",
+                                        "genders"
+                                    ],
+                                    "query": []
+                                }
+                            }
+                        }
+                    ]
                 }
-            ]
+            ],
+            "name": "Customer"
         },
         {
             "name": "Global",
