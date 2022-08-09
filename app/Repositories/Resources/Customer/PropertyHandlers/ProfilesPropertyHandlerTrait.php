@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 declare(strict_types=1);
 
@@ -67,5 +67,8 @@ trait ProfilesPropertyHandlerTrait
 	 *
 	 * @var array
 	 */
-	protected array $addPostQueries = [];
+	protected array $addPostQueries = [
+        'customer_genders' => 'customer.genders',
+        'customer_ages' => 'customer.ages',
+    ];
 }
