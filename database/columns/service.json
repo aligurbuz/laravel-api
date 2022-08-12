@@ -60,5 +60,10 @@
         "controller": "Ages",
         "dir": "Customer",
         "model": "CustomerAge"
+    },
+    "Customer/images": {
+        "controller": "Images",
+        "dir": "Customer",
+        "model": "CustomerImage"
     }
 }

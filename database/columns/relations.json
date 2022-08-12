@@ -21,6 +21,7 @@
         "Customer",
         "CustomerAge",
         "CustomerGender",
+        "CustomerImage",
         "District",
         "Excel",
         "Language",
@@ -39,15 +40,20 @@
         "Localization"
     ],
     "Customer": [
+        "CustomerAge",
         "CustomerGender",
         "Localization",
-        "CustomerAge"
+        "CustomerImage"
+    ],
+    "CustomerAge": [
+        "Customer",
+        "Localization"
     ],
     "CustomerGender": [
         "Customer",
         "Localization"
     ],
-    "CustomerAge": [
+    "CustomerImage": [
         "Customer",
         "Localization"
     ],

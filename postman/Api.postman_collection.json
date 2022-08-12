@@ -1272,6 +1272,194 @@
                             }
                         }
                     ]
+                },
+                {
+                    "name": "Images",
+                    "item": [
+                        {
+                            "name": "Customer/Images",
+                            "response": [],
+                            "request": {
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Authorization",
+                                        "value": "Bearer {{bearerToken}}",
+                                        "type": "text",
+                                        "description": "It is the token value received after the user logs in.(must)"
+                                    },
+                                    {
+                                        "key": "Apikey",
+                                        "value": "{{apiKey}}",
+                                        "type": "text",
+                                        "description": "It is a hash value given to you by the system provider.(must)"
+                                    },
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "{{contentType}}",
+                                        "type": "text",
+                                        "description": "You can specify the return types for the returned response like json or xml.(not must)"
+                                    },
+                                    {
+                                        "key": "Accept-Language",
+                                        "value": "{{acceptLanguage}}",
+                                        "type": "text",
+                                        "description": "You can select the language option for the returned string values.(must)"
+                                    }
+                                ],
+                                "body": [],
+                                "url": {
+                                    "raw": "{{baseUrl}}/customer/images",
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "path": [
+                                        "customer",
+                                        "images"
+                                    ],
+                                    "query": [
+                                        {
+                                            "key": "range",
+                                            "value": "desc",
+                                            "description": "",
+                                            "disabled": true
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "name": "Customer/Images",
+                            "response": [],
+                            "request": {
+                                "method": "POST",
+                                "header": [
+                                    {
+                                        "key": "Authorization",
+                                        "value": "Bearer {{bearerToken}}",
+                                        "type": "text",
+                                        "description": "It is the token value received after the user logs in.(must)"
+                                    },
+                                    {
+                                        "key": "Apikey",
+                                        "value": "{{apiKey}}",
+                                        "type": "text",
+                                        "description": "It is a hash value given to you by the system provider.(must)"
+                                    },
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "{{contentType}}",
+                                        "type": "text",
+                                        "description": "You can specify the return types for the returned response like json or xml.(not must)"
+                                    },
+                                    {
+                                        "key": "Accept-Language",
+                                        "value": "{{acceptLanguage}}",
+                                        "type": "text",
+                                        "description": "You can select the language option for the returned string values.(must)"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "formdata",
+                                    "formdata": [
+                                        {
+                                            "key": "customer_code",
+                                            "description": "",
+                                            "value": "integer",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "key": "image",
+                                            "description": "",
+                                            "type": "file",
+                                            "src": []
+                                        },
+                                        {
+                                            "key": "status",
+                                            "description": "",
+                                            "value": "1",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "key": "is_deleted",
+                                            "description": "",
+                                            "value": "0",
+                                            "type": "text"
+                                        }
+                                    ],
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "{{baseUrl}}/customer/images",
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "path": [
+                                        "customer",
+                                        "images"
+                                    ],
+                                    "query": []
+                                }
+                            }
+                        },
+                        {
+                            "name": "Customer/Images",
+                            "response": [],
+                            "request": {
+                                "method": "PUT",
+                                "header": [
+                                    {
+                                        "key": "Authorization",
+                                        "value": "Bearer {{bearerToken}}",
+                                        "type": "text",
+                                        "description": "It is the token value received after the user logs in.(must)"
+                                    },
+                                    {
+                                        "key": "Apikey",
+                                        "value": "{{apiKey}}",
+                                        "type": "text",
+                                        "description": "It is a hash value given to you by the system provider.(must)"
+                                    },
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "{{contentType}}",
+                                        "type": "text",
+                                        "description": "You can specify the return types for the returned response like json or xml.(not must)"
+                                    },
+                                    {
+                                        "key": "Accept-Language",
+                                        "value": "{{acceptLanguage}}",
+                                        "type": "text",
+                                        "description": "You can select the language option for the returned string values.(must)"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\"customer_image_code\":\"0\",\"customer_code\":\"integer\",\"image\":\"image\",\"status\":\"1\",\"is_deleted\":\"0\"}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "{{baseUrl}}/customer/images",
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "path": [
+                                        "customer",
+                                        "images"
+                                    ],
+                                    "query": []
+                                }
+                            }
+                        }
+                    ]
                 }
             ],
             "name": "Customer"

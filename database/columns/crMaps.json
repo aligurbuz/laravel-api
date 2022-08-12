@@ -86,5 +86,17 @@
     "customer.ages.update": {
         "class": "App\\Client\\Customer\\Ages\\Update\\UpdateClient",
         "model": "customerAge"
+    },
+    "customer.images.get": {
+        "class": "App\\Client\\Customer\\Images\\Get\\GetClient",
+        "model": "customerImage"
+    },
+    "customer.images.create": {
+        "class": "App\\Client\\Customer\\Images\\Create\\CreateClient",
+        "model": "customerImage"
+    },
+    "customer.images.update": {
+        "class": "App\\Client\\Customer\\Images\\Update\\UpdateClient",
+        "model": "customerImage"
     }
 }

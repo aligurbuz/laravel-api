@@ -74,5 +74,9 @@
     "CustomerAge": {
         "controller": "Ages",
         "dir": "Customer"
+    },
+    "CustomerImage": {
+        "controller": "Images",
+        "dir": "Customer"
     }
 }

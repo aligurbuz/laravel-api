@@ -22,13 +22,17 @@
     "customer_code": [
         "Customer",
         "CustomerAge",
-        "CustomerGender"
+        "CustomerGender",
+        "CustomerImage"
     ],
     "customer_age_code": [
         "CustomerAge"
     ],
     "customer_gender_code": [
         "CustomerGender"
+    ],
+    "customer_image_code": [
+        "CustomerImage"
     ],
     "district_code": [
         "District"
