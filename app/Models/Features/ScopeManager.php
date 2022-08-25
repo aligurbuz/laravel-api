@@ -55,6 +55,17 @@ trait ScopeManager
     }
 
     /**
+     * get notDeleted scope for model
+     *
+     * @param Builder $builder
+     * @return Builder
+     */
+    public function scopeNotDeleted(Builder $builder): object
+    {
+        return $builder->where('is_deleted', false);
+    }
+
+    /**
      * get client scope data for model
      *
      * @param Builder $builder
@@ -338,22 +349,43 @@ trait ScopeManager
                                 $recursiveHasValueData = $recursiveHasValue[3] ?? ($recursiveHasValue[2] ?? 0);
                                 $recursiveHasValueOperator = isset($recursiveHasValue[3]) ? $recursiveHasValue[2] : '=';
 
-                                $builder->hasQuery(current($recursiveHasValue), isset($recursiveHasValue[1]) ? [
-                                    $recursiveHasValue[1] => [$recursiveHasValueOperator => $recursiveHasValueData]
-                                ] : [], false)->range($repositoryMethod, (string)$range)
-                                    ->filterQuery($hasFilter);
+                                if(count($hasFilter)){
+                                    $builder->hasQuery(current($recursiveHasValue), isset($recursiveHasValue[1]) ? [
+                                        $recursiveHasValue[1] => [$recursiveHasValueOperator => $recursiveHasValueData]
+                                    ] : [], false)->range($repositoryMethod, (string)$range)
+                                        ->filterQuery($hasFilter);
+                                }
+                                else{
+                                    $builder->hasQuery(current($recursiveHasValue), isset($recursiveHasValue[1]) ? [
+                                        $recursiveHasValue[1] => [$recursiveHasValueOperator => $recursiveHasValueData]
+                                    ] : [], false)->range($repositoryMethod, (string)$range);
+                                }
+
+
                             }
 
                             if (isset($request['hasRecursiveFilter'][$has])) {
                                 foreach ($request['hasRecursiveFilter'][$has] as $recursiveHas => $recursiveFilter) {
-                                    $builder->hasQuery($recursiveHas, $recursiveFilter, false)->range($repositoryMethod, (string)$range)
-                                        ->filterQuery($hasFilter);
+                                    if(count($hasFilter)){
+                                        $builder->hasQuery($recursiveHas, $recursiveFilter, false)->range($repositoryMethod, (string)$range)
+                                            ->filterQuery($hasFilter);
+                                    }
+                                    else{
+                                        $builder->hasQuery($recursiveHas, $recursiveFilter, false)->range($repositoryMethod, (string)$range);
+                                    }
+
 
                                     break;
                                 }
                             } else {
-                                $builder->range($repositoryMethod, (string)$range)
-                                    ->filterQuery($hasFilter);
+
+                                if(count($hasFilter)){
+                                    $builder->range($repositoryMethod, (string)$range)
+                                        ->filterQuery($hasFilter);
+                                }
+                                else{
+                                    $builder->range($repositoryMethod, (string)$range);
+                                }
                             }
 
                             return $builder;
