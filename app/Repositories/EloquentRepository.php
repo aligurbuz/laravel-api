@@ -25,6 +25,7 @@ use Throwable;
 
 /**
  * Class EloquentRepository
+ * @property $limit
  * @package App\Repositories
  */
 class EloquentRepository
@@ -136,7 +137,12 @@ class EloquentRepository
             Exception::customException(trans('exception.limitException'));
         }
 
-        $this->setPagination((int)$limit);
+        if($this->isAvailableSpecificPaginationLimit()){
+            $this->pagination = $this->limit;
+        }
+        else{
+            $this->setPagination((int)$limit);
+        }
 
         return $this->pagination;
     }
@@ -154,6 +160,16 @@ class EloquentRepository
         } else {
             Exception::customException(trans('exception.limitExceedException'));
         }
+    }
+
+    /**
+     * is available specific pagination limit
+     *
+     * @return bool
+     */
+    public function isAvailableSpecificPaginationLimit() : bool
+    {
+        return (property_exists($this,'limit') && is_numeric($this->limit));
     }
 
     /**
