@@ -78,6 +78,14 @@ trait BaseManager
             $this->setHidden(array_merge($this->getHidden(), ['sequence', 'sequence_time']));
         }
 
+        if(property_exists($this,'lazyLoadAppends')){
+            foreach ($this->lazyLoadAppends as $lazyLoadAppend){
+                if(in_array(Str::camel($lazyLoadAppend),getRanges(),true)){
+                    $this->appends[] = $lazyLoadAppend;
+                }
+            }
+        }
+
         if ($withQueryConstructor) {
             $this->withQueryConstructor();
         }
