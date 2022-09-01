@@ -67,6 +67,7 @@ abstract class HttpManager
         $method = $snakeSplit[0] ?? null;
         $endpoint = $snakeSplit[1] ?? null;
 
+
         $newInstance = new static();
 
         if (property_exists($newInstance, 'methods') && isset(static::$methods[$endpoint])) {
@@ -81,10 +82,15 @@ abstract class HttpManager
             $methodArguments = $arguments[0] ?? [];
         }
 
+        if(isset($methodArguments['routeParameters'])){
+            $endpoint = $endpoint.'/'.$methodArguments['routeParameters'];
+            unset($methodArguments['routeParameters']);
+        }
+
         return static::dataHandler(static::request()
             ->endpoint($endpoint)
             ->{$method}(
-                $methodArguments ?? null
+                $methodArguments ?? []
             )
         );
     }

@@ -50,4 +50,15 @@ class Http extends HttpManager implements HttpInterface
             ]
         )->setUrl('http://172.10.0.13/api/public/api');
     }
+
+    /**
+     * get socket client request
+     *
+     * @return Request
+     */
+    public function socket(): Request
+    {
+        return $this->request->setHeaders([]
+        )->setUrl('http://172.20.0.2:3000');
+    }
 }
