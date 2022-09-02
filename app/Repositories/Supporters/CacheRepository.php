@@ -179,15 +179,17 @@ trait CacheRepository
         $this->rangeContainer($this);
         $this->relationContainer($this->getModelWithQueries());
 
-        $requestQuery = request()->query;
+        $requestQuery = request()->query->all();
 
         foreach ($this->exceptClientData as $exceptClientData) {
-            $requestQuery->remove($exceptClientData);
+            if(isset($requestQuery[$exceptClientData])){
+                unset($requestQuery[$exceptClientData]);
+            }
         }
 
         $this->cacheKey = $this->generateCacheKey();
         $this->cacheInstance = Factory::cache(['adapter' => 'redis', 'connection' => config('repository.repositoryCacheConnection')]);
-        $this->cacheTag = $this->cacheTag ?? Client::fingerPrint(request()->query->all());
+        $this->cacheTag = $this->cacheTag ?? Client::fingerPrint($requestQuery);
     }
 
     /**
