@@ -32,6 +32,16 @@ class Authenticate extends FacadeManager
     }
 
     /**
+     * get data for authenticate
+     *
+     * @return array
+     */
+    public static function data() : array
+    {
+        return [(new self)->data->toArray()];
+    }
+
+    /**
      * get id value for user data
      *
      * @return int
