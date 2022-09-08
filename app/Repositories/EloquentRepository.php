@@ -1307,6 +1307,19 @@ class EloquentRepository
     }
 
     /**
+     * get,create,put operations are blocked for the specified apiKey values.
+     *
+     * @param array $apiKeys
+     * @return void
+     */
+    public function apiKeyRestrictions(array $apiKeys = []): void
+    {
+        if (in_array(ApiKey::who(), $apiKeys, true)) {
+            Exception::customException('apiKeyRestrictions', ['key' => ApiKey::who()]);
+        }
+    }
+
+    /**
      * get __call method for eloquent repository
      *
      * @param string $name
