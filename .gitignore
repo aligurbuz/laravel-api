@@ -17,3 +17,4 @@ worker.log
 server/volumes/elasticsearch/*
 server/volumes/mongo/*
 server/volumes/mysql/*
+public/images
