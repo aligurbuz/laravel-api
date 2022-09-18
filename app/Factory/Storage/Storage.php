@@ -4,7 +4,8 @@ namespace App\Factory\Storage;
 
 use App\Factory\Storage\Interfaces\StorageInterface;
 use Exception;
-use Illuminate\Support\Facades\Storage as LaravelStorage;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Str;
 
 /**
  * Class Storage
@@ -51,9 +52,11 @@ class Storage extends StorageManager implements StorageInterface
 
         foreach (($this->binds['files'] ?? []) as $input => $data) {
             $this->client->ensureColumnExists($input, function () use ($input, $data, &$list) {
-                $filePath = $this->client->getModelName() . '/' . $data->getClientOriginalName();
-                LaravelStorage::disk('local')->put($filePath, 'contents');
-                $list[$input] = $filePath;
+                /*** @var $data UploadedFile */
+                $model = Str::snake($this->client->getModelName());
+                $filePath = 'images/'.$model;
+                $data->move(public_path($filePath),$data->getClientOriginalName());
+                $list[$input] = $model.'/'.$data->getClientOriginalName();
             });
         }
 
