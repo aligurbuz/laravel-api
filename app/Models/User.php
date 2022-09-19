@@ -15,6 +15,7 @@ use Laravel\Sanctum\HasApiTokens;
  * @method $this token()
  * @property mixed $status
  * @property mixed $is_deleted
+ * @property mixed $user_code
  * @package App\Models
  */
 class User extends Authenticatable

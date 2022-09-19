@@ -6,6 +6,7 @@ namespace App\Factory\Request;
 
 use App\Exceptions\Exception;
 use App\Exceptions\Exception as ExceptionService;
+use App\Facades\Authenticate\Activation;
 use App\Facades\Authenticate\ApiKey;
 use App\Factory\Request\Interfaces\RequestInterface;
 use App\Models\User;
@@ -67,6 +68,13 @@ class Request extends RequestManager implements RequestInterface
 
             $data = [];
             $data['user'] = $user->toArray();
+
+            $activationData = Activation::get($user->user_code);
+
+            if (isset($activationData['options']) && $activationData['options'] !== 'None') {
+                $activationHandle = Activation::handle($activationData, (array)$data['user']);
+                if (count($activationHandle)) return $activationHandle;
+            }
 
             if ($data['user']['status'] == '1' && $data['user']['is_deleted'] == '0') {
                 $data['token'] = $user->createToken(ApiKey::who())->plainTextToken;

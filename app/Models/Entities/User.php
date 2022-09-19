@@ -10,11 +10,12 @@ namespace App\Models\Entities;
  * @property $this role_code
  * @property $this name
  * @property $this email
+ * @property $this phone
  * @property $this email_verified_at
- * @property $this password
- * @property $this remember_token
  * @property $this status
  * @property $this is_deleted
+ * @property $this password
+ * @property $this remember_token
  * @property $this created_at
  * @property $this updated_at
  * @property $this username
@@ -96,6 +97,17 @@ class User
 
 
     /**
+     * get phone column for database table
+     *
+     * @return mixed
+     */
+    protected static function phone(): mixed
+    {
+        return self::$query->phone;
+    }
+
+
+    /**
      * get email_verified_at column for database table
      *
      * @return mixed
@@ -103,28 +115,6 @@ class User
     protected static function email_verified_at(): mixed
     {
         return self::$query->email_verified_at;
-    }
-
-
-    /**
-     * get password column for database table
-     *
-     * @return mixed
-     */
-    protected static function password(): mixed
-    {
-        return self::$query->password;
-    }
-
-
-    /**
-     * get remember_token column for database table
-     *
-     * @return mixed
-     */
-    protected static function remember_token(): mixed
-    {
-        return self::$query->remember_token;
     }
 
 
@@ -147,6 +137,28 @@ class User
     protected static function is_deleted(): mixed
     {
         return self::$query->is_deleted;
+    }
+
+
+    /**
+     * get password column for database table
+     *
+     * @return mixed
+     */
+    protected static function password(): mixed
+    {
+        return self::$query->password;
+    }
+
+
+    /**
+     * get remember_token column for database table
+     *
+     * @return mixed
+     */
+    protected static function remember_token(): mixed
+    {
+        return self::$query->remember_token;
     }
 
 

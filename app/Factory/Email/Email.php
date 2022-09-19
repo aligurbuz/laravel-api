@@ -6,6 +6,7 @@ namespace App\Factory\Email;
 
 use App\Factory\Email\Interfaces\EmailInterface;
 use App\Mail\OrderShipped;
+use App\Mail\VerifyEmailForUser;
 
 /**
  * Class Email
@@ -44,7 +45,7 @@ class Email extends EmailManager implements EmailInterface
      */
     public function order(): void
     {
-        $this->queue(($this->mailer)(new OrderShipped()));
+        //$this->queue(($this->mailer)(new OrderShipped()));
     }
 
     /**

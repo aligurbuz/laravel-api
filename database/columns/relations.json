@@ -42,8 +42,8 @@
     "Customer": [
         "CustomerAge",
         "CustomerGender",
-        "Localization",
-        "CustomerImage"
+        "CustomerImage",
+        "Localization"
     ],
     "CustomerAge": [
         "Customer",

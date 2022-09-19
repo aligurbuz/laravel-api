@@ -8,16 +8,16 @@ use App\Models\Entities\UserActivation;
 
 trait ActivationsPromoterTrait
 {
-	/**
-	 * get auto ActivationsRepository scope method
-	 *
-	 * @param object|null $builder
-	 * @return object
-	 */
-	public function activationsRepository(?object $builder = null): object
-	{
-		return $this->apply($builder);
-	}
+    /**
+     * get auto ActivationsRepository scope method
+     *
+     * @param object|null $builder
+     * @return object
+     */
+    public function activationsRepository(?object $builder = null): object
+    {
+        return $this->apply($builder, false);
+    }
 
     /**
      * get entity for repository

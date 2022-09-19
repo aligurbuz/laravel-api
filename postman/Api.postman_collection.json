@@ -2217,7 +2217,7 @@
                                 ],
                                 "body": {
                                     "mode": "raw",
-                                    "raw": "{\"role_code\":\"0\",\"name\":\"string\",\"email\":\"string\",\"email_verified_at\":\"timestamp\",\"password\":\"\",\"remember_token\":\"string\",\"username\":\"string\"}",
+                                    "raw": "{\"role_code\":\"0\",\"name\":\"string\",\"email\":\"string\",\"phone\":\"string\",\"email_verified_at\":\"timestamp\",\"status\":\"0\",\"is_deleted\":\"0\",\"password\":\"string\",\"remember_token\":\"string\",\"username\":\"string\"}",
                                     "options": {
                                         "raw": {
                                             "language": "json"
@@ -2269,7 +2269,7 @@
                                 ],
                                 "body": {
                                     "mode": "raw",
-                                    "raw": "{\"user_code\":\"integer\",\"role_code\":\"0\",\"name\":\"string\",\"email\":\"string\",\"email_verified_at\":\"timestamp\",\"password\":\"\",\"remember_token\":\"string\",\"username\":\"string\",\"is_deleted\":\"0\",\"status\":\"1\"}",
+                                    "raw": "{\"user_code\":\"integer\",\"role_code\":\"0\",\"name\":\"string\",\"email\":\"string\",\"phone\":\"string\",\"email_verified_at\":\"timestamp\",\"status\":\"1\",\"is_deleted\":\"0\",\"password\":\"string\",\"remember_token\":\"string\",\"username\":\"string\"}",
                                     "options": {
                                         "raw": {
                                             "language": "json"

@@ -44,5 +44,6 @@ return [
     'deletedUser'                   => 'Sorry. This user\'s membership has been blocked. Please contact to the system administrator.',
     'orderByString'                 => 'Sorting format is wrong. Please correct your "orderBy" key.',
     'filterMandatory'               => 'You can only display one data. So use filter.',
-    'apiKeyRestrictions'            => 'This endpoint request cannot be performed for apiKey detected as (:key).'
+    'apiKeyRestrictions'            => 'This endpoint request cannot be performed for apiKey detected as (:key).',
+    'invalidActivationCode'         => 'Activation code is invalid'
 ];

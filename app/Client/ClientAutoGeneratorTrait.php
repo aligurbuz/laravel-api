@@ -191,10 +191,13 @@ trait ClientAutoGeneratorTrait
 
             if (preg_match('@(.*?)_code@is', $key)) {
                 $model = getModelFromTableCode($key);
-                $mirror = $this->repository()->getRecursiveMirror($model,$value);
 
-                if(is_null($mirror)){
-                    Factory::code([$key => $value])->throwExceptionIfDoesntExist();
+                if (is_object($this->repository()) && method_exists($this->repository(), 'getRecursiveMirror')) {
+                    $mirror = $this->repository()->getRecursiveMirror($model, $value);
+
+                    if (is_null($mirror)) {
+                        Factory::code([$key => $value])->throwExceptionIfDoesntExist();
+                    }
                 }
             }
         }
