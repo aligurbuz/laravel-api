@@ -12,16 +12,16 @@ class LogoutController extends ApiController
     /**
      * It will terminate the current token information.
      *
-     * @return bool|object
+     * @return array
      */
-    public function logout(): bool|object
+    public function logout(): array
     {
-        $logout = auth()->user()->token()->revoke();
+        $logout = auth()->user()->tokens()->delete();
 
         if (!$logout) {
-            return Exception::loginException();
+            Exception::loginException();
         }
 
-        return true;
+        return ['logout' => 'success'];
     }
 }
