@@ -10,5 +10,6 @@ return [
     ],
     'authenticateWeb' => [
         'customer/*' => ['GET','PUT'],
+        'logout' => ['POST'],
     ]
 ];
