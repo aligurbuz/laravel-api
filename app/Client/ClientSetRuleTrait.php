@@ -32,7 +32,7 @@ trait ClientSetRuleTrait
      *
      * @return void
      */
-    private function setRanges()
+    private function setRanges(): void
     {
         if (!ApiKey::isAdmin()) {
             $range = request()->query('range', '');
@@ -84,7 +84,7 @@ trait ClientSetRuleTrait
      *
      * @return void
      */
-    private function setPasswordRule()
+    private function setPasswordRule(): void
     {
         if (request()->method() !== 'GET') {
             $this->ensureColumnExists('password', function () {
