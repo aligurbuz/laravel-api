@@ -49,16 +49,10 @@ class Date
     }
 
     /**
-     * get now method for carbon
-     *
      * @return Carbon
      */
     public static function now(): Carbon
     {
-        if(app()->runningInConsole()){
-            return Carbon::now();
-        }
-
         return Carbon::now(static::getTimezone());
     }
 
