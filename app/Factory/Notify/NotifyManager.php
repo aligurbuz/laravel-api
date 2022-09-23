@@ -13,17 +13,6 @@ use App\Factory\Notify\Resource\Slack500Formatter\Slack500Formatter;
 abstract class NotifyManager
 {
     /**
-     * checks if the resource is valid for factory
-     *
-     * @param ?string $resource
-     * @return bool
-     */
-    public function isValidResource(?string $resource): bool
-    {
-        return isset($this->binds['resource'][$resource]);
-    }
-
-    /**
      * is valid resource html instance for factory
      *
      * @param callable $callback
@@ -42,5 +31,16 @@ abstract class NotifyManager
         }
 
         return null;
+    }
+
+    /**
+     * checks if the resource is valid for factory
+     *
+     * @param ?string $resource
+     * @return bool
+     */
+    public function isValidResource(?string $resource): bool
+    {
+        return isset($this->binds['resource'][$resource]);
     }
 }

@@ -17,6 +17,101 @@ use Illuminate\Support\Str;
 trait UpdateRepository
 {
     /**
+     * update data for user model
+     *
+     * @param array $data
+     * @param bool $id
+     * @param array $create
+     * @return array|object
+     */
+    public function updateHandler(array $data = [], bool $id = true, array $create = []): array|object
+    {
+        $queryList = [];
+
+        $updateClientData = $this->getClientData($data);
+        $clientNormalData = AppContainer::get('clientBody', []);
+
+        if ($this->getEventStatus() && method_exists($this, 'beforeUpdate')) {
+            $this->beforeUpdate($clientNormalData);
+        }
+
+        if (isset($clientNormalData[0]) && count($clientNormalData[0]) < 2) {
+            Exception::customException('clientNormalDataException');
+        }
+
+        foreach ($updateClientData as $dataKey => $data) {
+            $baseQuery = $this->getBaseQueryForUpdate($data, $id, (int)($data[$this->getModelCode()] ?? 0));
+            $modelMirror = null;
+            if (isset($data[$this->getModelCode()])) {
+                $modelMirror = $this->getRecursiveMirror(Str::camel($this->getModelName()), $data[$this->getModelCode()]);
+            }
+
+            if (!is_null($modelMirror)) {
+                $oldData = [$modelMirror];
+            } else {
+                $oldData = $baseQuery->get()->toArray();
+            }
+
+            if ($this->getEventStatus() && method_exists($this, 'eventFireBeforeUpdate')) {
+                $this->eventFireBeforeUpdate($data, ($oldData[0] ?? []));
+            }
+
+            if (
+                !isset($oldData[0])
+                && $id === false
+                && count($create)
+            ) {
+                return $this->create($create);
+            }
+
+            if (!$id && count($create) && isset($data[getTableCode($this->getModel())])) {
+                unset($data[getTableCode($this->getModel())]);
+            }
+
+            if (!isset($oldData[0]) && !count($create) && $this->getUpdateOrCreate()) {
+                return $this->create([$data]);
+            }
+
+
+            try {
+
+                if ($this->getHardDelete()) {
+                    $update = $baseQuery->delete();
+                } else {
+
+                    $update = $baseQuery->update(
+                        $this->checkColumnsForUpdate($this->hitterProcess($data, $dataKey))
+                    );
+                }
+
+                if ($update == '0') {
+                    return Exception::updateException('', ['model' => $this->getModelName()]);
+                }
+
+                $this->updateEventDispatcher($oldData, $data);
+                $this->addPostQueryDispatcher($data, $dataKey);
+
+            } catch (\Exception $exception) {
+                return $this->sqlException($exception);
+            }
+
+            //general operations
+            $result = $this->hardDeleteOperation($oldData, $data);
+            $queryList[] = $this->addPostQueryMerging($result, $dataKey);
+
+            if ($this->getEventStatus() && method_exists($this, 'eventFireAfterUpdate')) {
+                $this->eventFireAfterUpdate($result, $data);
+            }
+        }
+
+        if ($this->getEventStatus() && method_exists($this, 'afterUpdate')) {
+            $this->afterUpdate($queryList);
+        }
+
+        return $queryList;
+    }
+
+    /**
      * get base query for update model
      *
      * @param array $data
@@ -24,11 +119,11 @@ trait UpdateRepository
      * @param int|null $mirror
      * @return object
      */
-    public function getBaseQueryForUpdate(array $data = [], bool $id = true,?int $mirror = null): object
+    public function getBaseQueryForUpdate(array $data = [], bool $id = true, ?int $mirror = null): object
     {
-        $modelBuilder = $this->getRecursiveMirror(Str::camel($this->getModelName()),$mirror,'builder');
+        $modelBuilder = $this->getRecursiveMirror(Str::camel($this->getModelName()), $mirror, 'builder');
 
-        if(!is_null($modelBuilder)){
+        if (!is_null($modelBuilder)) {
             return $modelBuilder;
         }
 
@@ -40,28 +135,17 @@ trait UpdateRepository
         });
     }
 
-    /**
-     * get update event dispatcher for repository
-     *
-     * @param array $oldData
-     * @param array $newData
-     */
-    public function updateEventDispatcher(array $oldData = [], array $newData = []): void
+    public function checkColumnsForUpdate(array $data = []): array
     {
-        $this->createTableChanges(($oldData[0] ?? []), $newData);
-        $this->updateLocalization($newData);
-        $this->deleteCache();
-    }
+        $list = [];
 
-    /**
-     * create table changes for model
-     *
-     * @param array $oldData
-     * @param array $newData
-     */
-    public function createTableChanges(array $oldData = [], array $newData = []): void
-    {
-        //
+        foreach ($data as $key => $value) {
+            if (in_array($key, $this->getColumns(), true)) {
+                $list[$key] = $value;
+            }
+        }
+
+        return $list;
     }
 
     /**
@@ -91,17 +175,28 @@ trait UpdateRepository
         return $data;
     }
 
-    public function checkColumnsForUpdate(array $data = []): array
+    /**
+     * get update event dispatcher for repository
+     *
+     * @param array $oldData
+     * @param array $newData
+     */
+    public function updateEventDispatcher(array $oldData = [], array $newData = []): void
     {
-        $list = [];
+        $this->createTableChanges(($oldData[0] ?? []), $newData);
+        $this->updateLocalization($newData);
+        $this->deleteCache();
+    }
 
-        foreach ($data as $key => $value){
-            if(in_array($key,$this->getColumns(),true)){
-                $list[$key] = $value;
-            }
-        }
-
-        return $list;
+    /**
+     * create table changes for model
+     *
+     * @param array $oldData
+     * @param array $newData
+     */
+    public function createTableChanges(array $oldData = [], array $newData = []): void
+    {
+        //
     }
 
     /**
@@ -111,11 +206,11 @@ trait UpdateRepository
      * @param $data
      * @return mixed
      */
-    private function hardDeleteOperation(array $oldData,$data): mixed
+    private function hardDeleteOperation(array $oldData, $data): mixed
     {
         return ($this->getHardDelete())
             ? (($oldData)[0] ?? [])
-            : array_replace_recursive((($oldData)[0] ?? []),$data);
+            : array_replace_recursive((($oldData)[0] ?? []), $data);
     }
 
     /**
@@ -125,107 +220,10 @@ trait UpdateRepository
      * @param $dataKey
      * @return array
      */
-    private function addPostQueryMerging(array $result,$dataKey): array
+    private function addPostQueryMerging(array $result, $dataKey): array
     {
         return (count($this->addPostQueryResults))
             ? array_merge($result, $this->addPostQueryResults[$dataKey])
             : $result;
-    }
-
-    /**
-     * update data for user model
-     *
-     * @param array $data
-     * @param bool $id
-     * @param array $create
-     * @return array|object
-     */
-    public function updateHandler(array $data = [], bool $id = true, array $create = []): array|object
-    {
-        $queryList = [];
-
-        $updateClientData = $this->getClientData($data);
-        $clientNormalData = AppContainer::get('clientBody',[]);
-
-        if($this->getEventStatus() && method_exists($this,'beforeUpdate')){
-            $this->beforeUpdate($clientNormalData);
-        }
-
-        if(isset($clientNormalData[0]) && count($clientNormalData[0])<2){
-            Exception::customException('clientNormalDataException');
-        }
-
-        foreach ($updateClientData as $dataKey => $data) {
-            $baseQuery = $this->getBaseQueryForUpdate($data, $id,(int)($data[$this->getModelCode()] ?? 0));
-            $modelMirror = null;
-            if(isset($data[$this->getModelCode()])){
-                $modelMirror = $this->getRecursiveMirror(Str::camel($this->getModelName()),$data[$this->getModelCode()]);
-            }
-
-            if(!is_null($modelMirror)){
-                $oldData = [$modelMirror];
-            }
-            else{
-                $oldData = $baseQuery->get()->toArray();
-            }
-
-            if ($this->getEventStatus() && method_exists($this, 'eventFireBeforeUpdate')) {
-                $this->eventFireBeforeUpdate($data, ($oldData[0] ?? []));
-            }
-
-            if (
-                !isset($oldData[0])
-                && $id === false
-                && count($create)
-            ) {
-                return $this->create($create);
-            }
-
-            if (!$id && count($create) && isset($data[getTableCode($this->getModel())])) {
-                unset($data[getTableCode($this->getModel())]);
-            }
-
-            if (!isset($oldData[0]) && !count($create) && $this->getUpdateOrCreate()) {
-                return $this->create([$data]);
-            }
-
-
-            try {
-
-                if($this->getHardDelete()){
-                    $update = $baseQuery->delete();
-                }
-                else{
-
-                    $update = $baseQuery->update(
-                        $this->checkColumnsForUpdate($this->hitterProcess($data, $dataKey))
-                    );
-                }
-
-                if ($update == '0') {
-                    return Exception::updateException('', ['model' => $this->getModelName()]);
-                }
-
-                $this->updateEventDispatcher($oldData, $data);
-                $this->addPostQueryDispatcher($data,$dataKey);
-
-            } catch (\Exception $exception) {
-                return $this->sqlException($exception);
-            }
-
-            //general operations
-            $result = $this->hardDeleteOperation($oldData,$data);
-            $queryList[] = $this->addPostQueryMerging($result,$dataKey);
-
-            if ($this->getEventStatus() && method_exists($this, 'eventFireAfterUpdate')) {
-                $this->eventFireAfterUpdate($result, $data);
-            }
-        }
-
-        if($this->getEventStatus() && method_exists($this,'afterUpdate')){
-            $this->afterUpdate($queryList);
-        }
-
-        return $queryList;
     }
 }

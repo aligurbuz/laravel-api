@@ -40,17 +40,16 @@ trait ScopeManagerTrait
         $modelRanges = array_merge($getObjectRanges, $this->autoRanges);
         $baseObjectName = class_basename($object);
 
-        if(!AppContainer::has('autoRanges')){
-            AppContainer::set('autoRanges',$this->autoRanges);
+        if (!AppContainer::has('autoRanges')) {
+            AppContainer::set('autoRanges', $this->autoRanges);
             $responseModelRanges = array_merge($getObjectRanges, $this->autoRanges);
-        }
-        else{
+        } else {
             $responseModelRanges = array_merge($getObjectRanges);
         }
 
         $objRanges = [];
 
-        foreach ($getObjectRanges as $objRange => $rangeDesc){
+        foreach ($getObjectRanges as $objRange => $rangeDesc) {
             $objRanges[$baseObjectName][] = $objRange;
         }
 

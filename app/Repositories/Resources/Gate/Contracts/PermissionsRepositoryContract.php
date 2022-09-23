@@ -28,7 +28,7 @@ interface PermissionsRepositoryContract
     /**
      * @return Permission
      */
-    public function entity() : Permission;
+    public function entity(): Permission;
 
     /**
      * @param array $data

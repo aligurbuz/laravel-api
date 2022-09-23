@@ -36,30 +36,6 @@ class Client
     }
 
     /**
-     * get client data
-     *
-     * @return array
-     */
-    public static function data(): array
-    {
-        if (AppContainer::has('clientData')) {
-            $clientData = AppContainer::get('clientData');
-
-            if (request()->method() === 'GET') {
-                return $clientData['params'] ?? [];
-            }
-
-            return $clientData['body'] ?? [];
-        }
-
-        if (request()->method() === 'GET') {
-            return request()->query->all();
-        }
-
-        return request()->request->all();
-    }
-
-    /**
      * get content type for client
      *
      * @param bool $format
@@ -84,20 +60,44 @@ class Client
      * @param string $model
      * @return array
      */
-    public static function mirror(string $model) : array
+    public static function mirror(string $model): array
     {
         $list = [];
 
         $repository = Repository::$model();
 
-        foreach (static::data() as $key => $value){
-            $mirror = $repository->getRecursiveMirror($model,$value[$repository->getModelCode()]);
+        foreach (static::data() as $key => $value) {
+            $mirror = $repository->getRecursiveMirror($model, $value[$repository->getModelCode()]);
 
-            if(!is_null($mirror)){
-                $list[$key] = array_replace_recursive($value,$mirror);
+            if (!is_null($mirror)) {
+                $list[$key] = array_replace_recursive($value, $mirror);
             }
         }
 
         return $list;
+    }
+
+    /**
+     * get client data
+     *
+     * @return array
+     */
+    public static function data(): array
+    {
+        if (AppContainer::has('clientData')) {
+            $clientData = AppContainer::get('clientData');
+
+            if (request()->method() === 'GET') {
+                return $clientData['params'] ?? [];
+            }
+
+            return $clientData['body'] ?? [];
+        }
+
+        if (request()->method() === 'GET') {
+            return request()->query->all();
+        }
+
+        return request()->request->all();
     }
 }

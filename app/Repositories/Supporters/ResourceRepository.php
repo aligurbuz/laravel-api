@@ -25,31 +25,6 @@ trait ResourceRepository
     protected string $resourceMethod = 'handle';
 
     /**
-     * get resource for model
-     *
-     * @return string
-     */
-    public function getResource(): string
-    {
-        //base class property for repository
-        if (AppContainer::has('resourcePropagationRepository')) {
-            $resourcePropagationRepository = AppContainer::get('resourcePropagationRepository');
-            $className = class_basename($resourcePropagationRepository);
-            $currentNamespace = get_class($resourcePropagationRepository);
-        } else {
-            $className = class_basename(get_called_class());
-            $currentNamespace = get_called_class();
-        }
-
-        AppContainer::terminate('resourcePropagationRepository');
-
-        //get directory name for repository model
-        $dir = str_replace('\\' . $className, '', $currentNamespace);
-
-        return $dir . '\Resource\\' . str_replace('Repository', '', $className) . 'Resource';
-    }
-
-    /**
      * get current namespace for repository
      *
      * @return string
@@ -81,39 +56,6 @@ trait ResourceRepository
 
             return $result;
         });
-    }
-
-    /**
-     * get base resource for repository
-     *
-     * @param array $data
-     * @return array
-     */
-    public function baseResource(array $data = []): array
-    {
-        return $this->addCollectDataToResource(function (array $collect = []) use ($data) {
-            $result = array_merge($collect, $data);
-            return $this->resourcePropagation($result);
-        });
-    }
-
-    /**
-     * get localization process for repository
-     *
-     * @param array $data
-     * @param string $methodName
-     * @return array
-     */
-    public function additionalResource(array $data, string $methodName): array
-    {
-        $this->resourceMethod = $methodName;
-        if (isset($data['data'])) {
-            $data['data'] = $this->resourcePropagation(($data['data'] ?? []), null, false);
-        } else {
-            $data = $this->resourcePropagation($data, null, false);
-        }
-
-        return $data;
     }
 
     /**
@@ -178,11 +120,11 @@ trait ResourceRepository
                     foreach ($itemRelations as $withKey => $withData) {
                         if (isset($withData['localization'])) {
                             $item[$withValueSnake][$withKey] = ($this->resourcePropagation(
-                                    [$withData],
-                                    $this->findRepositoryByModel(getModelWithPlural($withValue)),
-                                    true,
-                                    true
-                                )[0]) ?? [];
+                                [$withData],
+                                $this->findRepositoryByModel(getModelWithPlural($withValue)),
+                                true,
+                                true
+                            )[0]) ?? [];
                         }
 
                         if (is_array($withData)) {
@@ -193,11 +135,11 @@ trait ResourceRepository
                                         foreach ($item[$withValueSnake][$withKey][$withDataKey] as $recursiveKey => $recursiveVal) {
                                             if (isset($recursiveVal['localization'])) {
                                                 $item[$withValueSnake][$withKey][$withDataKey][$recursiveKey] = ($this->resourcePropagation(
-                                                        [$recursiveVal],
-                                                        $this->findRepositoryByModel($withDataModel),
-                                                        true,
-                                                        true
-                                                    )[0]) ?? [];
+                                                    [$recursiveVal],
+                                                    $this->findRepositoryByModel($withDataModel),
+                                                    true,
+                                                    true
+                                                )[0]) ?? [];
                                             }
                                         }
                                     }
@@ -241,6 +183,64 @@ trait ResourceRepository
         }
 
         return (!isset(static::$resourceInstance[$resource])) ? $data : call_user_func($callback, static::$resourceInstance[$resource]);
+    }
+
+    /**
+     * get resource for model
+     *
+     * @return string
+     */
+    public function getResource(): string
+    {
+        //base class property for repository
+        if (AppContainer::has('resourcePropagationRepository')) {
+            $resourcePropagationRepository = AppContainer::get('resourcePropagationRepository');
+            $className = class_basename($resourcePropagationRepository);
+            $currentNamespace = get_class($resourcePropagationRepository);
+        } else {
+            $className = class_basename(get_called_class());
+            $currentNamespace = get_called_class();
+        }
+
+        AppContainer::terminate('resourcePropagationRepository');
+
+        //get directory name for repository model
+        $dir = str_replace('\\' . $className, '', $currentNamespace);
+
+        return $dir . '\Resource\\' . str_replace('Repository', '', $className) . 'Resource';
+    }
+
+    /**
+     * get base resource for repository
+     *
+     * @param array $data
+     * @return array
+     */
+    public function baseResource(array $data = []): array
+    {
+        return $this->addCollectDataToResource(function (array $collect = []) use ($data) {
+            $result = array_merge($collect, $data);
+            return $this->resourcePropagation($result);
+        });
+    }
+
+    /**
+     * get localization process for repository
+     *
+     * @param array $data
+     * @param string $methodName
+     * @return array
+     */
+    public function additionalResource(array $data, string $methodName): array
+    {
+        $this->resourceMethod = $methodName;
+        if (isset($data['data'])) {
+            $data['data'] = $this->resourcePropagation(($data['data'] ?? []), null, false);
+        } else {
+            $data = $this->resourcePropagation($data, null, false);
+        }
+
+        return $data;
     }
 
 

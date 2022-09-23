@@ -57,6 +57,20 @@ class Array2XML
     }
 
     /**
+     * Get the root XML node, if there isn't one, create it.
+     *
+     * @return DomDocument|null
+     */
+    private static function getXMLRoot(): ?DOMDocument
+    {
+        if (empty(self::$xml)) {
+            self::init();
+        }
+
+        return self::$xml;
+    }
+
+    /**
      * Initialize the root XML node [optional].
      *
      * @param string $version
@@ -70,22 +84,6 @@ class Array2XML
         self::$xml->xmlStandalone = $standalone;
         self::$xml->formatOutput = $format_output;
         self::$encoding = $encoding;
-    }
-
-    /**
-     * Get string representation of boolean value.
-     *
-     * @param mixed $v
-     *
-     * @return mixed
-     */
-    private static function bool2str(mixed $v): mixed
-    {
-        //convert boolean to text value.
-        $v = $v === true ? 'true' : $v;
-        $v = $v === false ? 'false' : $v;
-
-        return $v;
     }
 
     /**
@@ -163,20 +161,6 @@ class Array2XML
     }
 
     /**
-     * Get the root XML node, if there isn't one, create it.
-     *
-     * @return DomDocument|null
-     */
-    private static function getXMLRoot(): ?DOMDocument
-    {
-        if (empty(self::$xml)) {
-            self::init();
-        }
-
-        return self::$xml;
-    }
-
-    /**
      * Check if the tag name or attribute name contains illegal characters
      * Ref: http://www.w3.org/TR/xml/#sec-common-syn.
      *
@@ -189,5 +173,21 @@ class Array2XML
         $pattern = '/^[a-z_]+[a-z0-9\:\-\.\_]*[^:]*$/i';
 
         return preg_match($pattern, $tag, $matches) && $matches[0] == $tag;
+    }
+
+    /**
+     * Get string representation of boolean value.
+     *
+     * @param mixed $v
+     *
+     * @return mixed
+     */
+    private static function bool2str(mixed $v): mixed
+    {
+        //convert boolean to text value.
+        $v = $v === true ? 'true' : $v;
+        $v = $v === false ? 'false' : $v;
+
+        return $v;
     }
 }

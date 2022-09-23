@@ -44,11 +44,10 @@ class ControllerCommand extends Command
         $controllerName = ucfirst($controllerVariable) . 'Controller';
         $dirVariable = $this->argument('dir') ?? $controllerVariable;
 
-        if($controllerVariable==$dirVariable){
+        if ($controllerVariable == $dirVariable) {
             $contractName = ucfirst($controllerVariable);
-        }
-        else{
-            $contractName = ucfirst($dirVariable).''.ucfirst($controllerVariable);
+        } else {
+            $contractName = ucfirst($dirVariable) . '' . ucfirst($controllerVariable);
         }
 
         $controllerPath = app_path() . '' . DIRECTORY_SEPARATOR . 'Http' . DIRECTORY_SEPARATOR . 'Controllers' . DIRECTORY_SEPARATOR . 'Api';

@@ -21,7 +21,7 @@ interface PhotosRepositoryContract
     /**
      * @return UserPhoto
      */
-    public function entity() : UserPhoto;
+    public function entity(): UserPhoto;
 
     /**
      * @param array $data

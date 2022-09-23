@@ -37,6 +37,40 @@ class AccessLogger
     }
 
     /**
+     * is route logger
+     *
+     * @return bool
+     */
+    private function isRouteLogger(): bool
+    {
+        $controller = Route::getCurrentRoute()->getAction('controller');
+        $controllerSplit = explode('@', $controller);
+
+        if (isset($controllerSplit[0]) && $controllerSplit[0] == 'App\Http\Controllers\Logger\LoggerController') {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * get response 500 different
+     *
+     * @param array $responseContent
+     * @return array
+     */
+    private function response500Different(array $responseContent = []): array
+    {
+        if (isset($responseContent['code']) && $responseContent['code'] == 500) {
+            $responseContent['file'] = AppContainer::get('500fileForLog');
+            $responseContent['line'] = AppContainer::get('500lineForLog');
+            $responseContent['errorMessage'] = AppContainer::get('500messageForLog');
+        }
+
+        return $responseContent;
+    }
+
+    /**
      * create data to logger table
      *
      * @param $request
@@ -60,40 +94,6 @@ class AccessLogger
             'exception_trace' => json_encode($this->containerDebugBackTrace()),
             'response' => json_encode($responseContent)
         ]);
-    }
-
-    /**
-     * get response 500 different
-     *
-     * @param array $responseContent
-     * @return array
-     */
-    private function response500Different(array $responseContent = []): array
-    {
-        if (isset($responseContent['code']) && $responseContent['code'] == 500) {
-            $responseContent['file'] = AppContainer::get('500fileForLog');
-            $responseContent['line'] = AppContainer::get('500lineForLog');
-            $responseContent['errorMessage'] = AppContainer::get('500messageForLog');
-        }
-
-        return $responseContent;
-    }
-
-    /**
-     * is route logger
-     *
-     * @return bool
-     */
-    private function isRouteLogger(): bool
-    {
-        $controller = Route::getCurrentRoute()->getAction('controller');
-        $controllerSplit = explode('@', $controller);
-
-        if (isset($controllerSplit[0]) && $controllerSplit[0] == 'App\Http\Controllers\Logger\LoggerController') {
-            return true;
-        }
-
-        return false;
     }
 
     /**

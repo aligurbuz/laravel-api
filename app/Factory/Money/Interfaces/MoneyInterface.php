@@ -16,7 +16,7 @@ interface MoneyInterface
      * @return float
      * @see Money::add()
      */
-    public function add(float $money1, float $money2,int $roundType = PHP_ROUND_HALF_EVEN): float;
+    public function add(float $money1, float $money2, int $roundType = PHP_ROUND_HALF_EVEN): float;
 
     /**
      * @param float $money1
@@ -25,7 +25,7 @@ interface MoneyInterface
      * @return float
      * @see Money::subtract()
      */
-    public function subtract(float $money1, float $money2,int $roundType = PHP_ROUND_HALF_EVEN): float;
+    public function subtract(float $money1, float $money2, int $roundType = PHP_ROUND_HALF_EVEN): float;
 
     /**
      * @param float $money1
@@ -34,7 +34,7 @@ interface MoneyInterface
      * @return float
      * @see Money::multiply()
      */
-    public function multiply(float $money1, float $money2,int $roundType = PHP_ROUND_HALF_EVEN): float;
+    public function multiply(float $money1, float $money2, int $roundType = PHP_ROUND_HALF_EVEN): float;
 
     /**
      * @param float $money1

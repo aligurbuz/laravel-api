@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace App\Factory\Email;
 
 use App\Factory\Email\Interfaces\EmailInterface;
-use App\Mail\OrderShipped;
-use App\Mail\VerifyEmailForUser;
 
 /**
  * Class Email
@@ -35,7 +33,7 @@ class Email extends EmailManager implements EmailInterface
     {
         $this->binds = $binds;
         $this->mailer = $this->binds['mailer'] ?? new class {
-            };
+        };
     }
 
     /**

@@ -29,7 +29,7 @@ interface SuperAdminsRepositoryContract
     /**
      * @return SuperAdmin
      */
-    public function entity() : SuperAdmin;
+    public function entity(): SuperAdmin;
 
     /**
      * @param array $data

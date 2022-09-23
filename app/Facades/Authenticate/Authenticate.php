@@ -36,23 +36,9 @@ class Authenticate extends FacadeManager
      *
      * @return array
      */
-    public static function data() : array
+    public static function data(): array
     {
         return [(new self)->data->toArray()];
-    }
-
-    /**
-     * get id value for user data
-     *
-     * @return int
-     */
-    public static function code(): int
-    {
-        $self = new self();
-
-        $code = $self->code;
-
-        return (new self)->data->{$code} ?? 0;
     }
 
     /**
@@ -110,5 +96,19 @@ class Authenticate extends FacadeManager
         }
 
         return $superUser;
+    }
+
+    /**
+     * get id value for user data
+     *
+     * @return int
+     */
+    public static function code(): int
+    {
+        $self = new self();
+
+        $code = $self->code;
+
+        return (new self)->data->{$code} ?? 0;
     }
 }

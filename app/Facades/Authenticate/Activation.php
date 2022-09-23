@@ -19,13 +19,13 @@ class Activation
      */
     public static function handle(array $activationData = [], array $user = []): array
     {
-        $activationHandler = static::smsHandler($activationData,$user);
+        $activationHandler = static::smsHandler($activationData, $user);
 
-        if(!count($activationHandler)){
-            $activationHandler = static::emailHandler($activationData,$user);
+        if (!count($activationHandler)) {
+            $activationHandler = static::emailHandler($activationData, $user);
         }
 
-        if(!count($activationHandler)){
+        if (!count($activationHandler)) {
             Repository::userActivation()->userCode($user['user_code'])->update([['hash' => time()]]);
         }
 
@@ -37,12 +37,12 @@ class Activation
      * @param array $user
      * @return array
      */
-    protected static function smsHandler(array $activationData = [], array $user = []) : array
+    protected static function smsHandler(array $activationData = [], array $user = []): array
     {
         if ($activationData['options'] == 'Sms') {
             static::throwExceptionIfActivationCodeNotValid($activationData);
 
-            if(static::isNullActivationCode()){
+            if (static::isNullActivationCode()) {
                 Sms::to($user['phone'])
                     ->message('User activation code:' . $activationData['hash'])->send();
 
@@ -58,16 +58,37 @@ class Activation
 
     /**
      * @param array $activationData
+     * @return array
+     */
+    protected static function throwExceptionIfActivationCodeNotValid(array $activationData = []): array
+    {
+        if (!static::isNullActivationCode() && client('activation_code') !== $activationData['hash']) {
+            Exception::customException('invalidActivationCode');
+        }
+
+        return [];
+    }
+
+    /**
+     * @return bool
+     */
+    protected static function isNullActivationCode(): bool
+    {
+        return is_null(client('activation_code'));
+    }
+
+    /**
+     * @param array $activationData
      * @param array $user
      * @return array
      */
-    protected static function emailHandler(array $activationData = [], array $user = []) : array
+    protected static function emailHandler(array $activationData = [], array $user = []): array
     {
         if ($activationData['options'] == 'Email') {
             static::throwExceptionIfActivationCodeNotValid($activationData);
 
-            if(static::isNullActivationCode()){
-                Factory::email()->verifyingEmailForUser($user['email'],$activationData['hash']);
+            if (static::isNullActivationCode()) {
+                Factory::email()->verifyingEmailForUser($user['email'], $activationData['hash']);
 
                 return [
                     'activation_type' => 'Email',
@@ -97,26 +118,5 @@ class Activation
 
             return $userActivation;
         });
-    }
-
-    /**
-     * @param array $activationData
-     * @return array
-     */
-    protected static function throwExceptionIfActivationCodeNotValid(array $activationData = []): array
-    {
-        if(!static::isNullActivationCode() && client('activation_code') !== $activationData['hash']){
-            Exception::customException('invalidActivationCode');
-        }
-
-        return [];
-    }
-
-    /**
-     * @return bool
-     */
-    protected static function isNullActivationCode() : bool
-    {
-        return is_null(client('activation_code'));
     }
 }

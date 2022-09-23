@@ -24,38 +24,6 @@ abstract class HttpManager
     ];
 
     /**
-     * get local request
-     *
-     * @return Request
-     */
-    private static function request(): Request
-    {
-        if (is_null(static::$instance)) {
-            $factoryMethod = lcfirst(class_basename(get_called_class()));
-            static::$instance = Factory::http()->{$factoryMethod}();
-        }
-
-        return static::$instance;
-    }
-
-    /**
-     * get data response for client local request
-     *
-     * @param Request $request
-     * @return array
-     */
-    private static function dataHandler(Request $request): array
-    {
-        $content = $request->getContent();
-
-        if (!in_array($request->getStatus(), static::$successStatus, true)) {
-            Exception::customException(static::getErrorMessage($content));
-        }
-
-        return static::getResponse($content);
-    }
-
-    /**
      * @param string $name
      * @param array $arguments
      * @return array
@@ -82,8 +50,8 @@ abstract class HttpManager
             $methodArguments = $arguments[0] ?? [];
         }
 
-        if(isset($methodArguments['routeParameters'])){
-            $endpoint = $endpoint.'/'.$methodArguments['routeParameters'];
+        if (isset($methodArguments['routeParameters'])) {
+            $endpoint = $endpoint . '/' . $methodArguments['routeParameters'];
             unset($methodArguments['routeParameters']);
         }
 
@@ -93,5 +61,37 @@ abstract class HttpManager
                 $methodArguments ?? []
             )
         );
+    }
+
+    /**
+     * get data response for client local request
+     *
+     * @param Request $request
+     * @return array
+     */
+    private static function dataHandler(Request $request): array
+    {
+        $content = $request->getContent();
+
+        if (!in_array($request->getStatus(), static::$successStatus, true)) {
+            Exception::customException(static::getErrorMessage($content));
+        }
+
+        return static::getResponse($content);
+    }
+
+    /**
+     * get local request
+     *
+     * @return Request
+     */
+    private static function request(): Request
+    {
+        if (is_null(static::$instance)) {
+            $factoryMethod = lcfirst(class_basename(get_called_class()));
+            static::$instance = Factory::http()->{$factoryMethod}();
+        }
+
+        return static::$instance;
     }
 }

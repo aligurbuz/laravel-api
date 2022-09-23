@@ -27,6 +27,67 @@ trait CreateRepository
     ];
 
     /**
+     * create data for user model
+     *
+     * @param array $data
+     * @return array|object
+     */
+    public function createHandler(array $data = []): array|object
+    {
+        $list = [];
+        $clientData = $this->getClientData($data);
+
+        try {
+
+            if ($this->getEventStatus() && method_exists($this, 'beforeCreate')) {
+                $this->beforeCreate($clientData);
+            }
+
+            foreach ($clientData as $clientDataKey => $value) {
+
+                if ($this->getEventStatus() && method_exists($this, 'eventFireBeforeCreate')) {
+                    $eventFireBeforeCreate = $this->eventFireBeforeCreate($value);
+
+                    if (is_array($eventFireBeforeCreate)) {
+                        $value = $eventFireBeforeCreate;
+                    }
+                }
+
+                $result = $this->createModel($value);
+                $arrayResults = $result->toArray();
+
+                $this->createEventDispatcher($value, $clientDataKey);
+
+                if (count($this->addPostQueryResults)) {
+                    $arrayResults = array_merge($arrayResults, $this->addPostQueryResults[$clientDataKey]);
+                }
+
+                if ($this->getEventStatus() && method_exists($this, 'eventFireAfterCreate')) {
+                    $this->eventFireAfterCreate($arrayResults, $value);
+                }
+
+                $list[] = $arrayResults;
+
+            }
+
+            if (method_exists($this, 'afterCreate')) {
+                $this->afterCreate($list);
+            }
+
+            return $list;
+        } catch (Exception $exception) {
+            $className = lcfirst(class_basename($exception));
+            $classNamespace = Constants::exceptionNamespace . '\\' . ucfirst($className);
+
+            if (class_exists($classNamespace)) {
+                return ExceptionFacade::$className($exception->getMessage());
+            }
+
+            return $this->sqlException($exception);
+        }
+    }
+
+    /**
      * get create event dispatcher for repository
      *
      * @param array $data
@@ -52,10 +113,10 @@ trait CreateRepository
             $methodDefine = $this->actionDefinitors[request()->method()];
 
             foreach ($this->getAddPostQueries() as $key => $cr) {
-                $crExplode = explode('.',$cr);
+                $crExplode = explode('.', $cr);
 
-                if(!isset($crExplode[2])){
-                    $cr = $cr.'.'.$methodDefine;
+                if (!isset($crExplode[2])) {
+                    $cr = $cr . '.' . $methodDefine;
                 }
 
                 $keyExplode = explode('|', $key);
@@ -83,67 +144,6 @@ trait CreateRepository
                     $this->addPostQueryResults[$clientDataKey][$key] = $createStatus ? AppContainer::get('crRepositoryInstance')->{$methodDefine}() : $data[$key];
                 }
             }
-        }
-    }
-
-    /**
-     * create data for user model
-     *
-     * @param array $data
-     * @return array|object
-     */
-    public function createHandler(array $data = []): array|object
-    {
-        $list = [];
-        $clientData = $this->getClientData($data);
-
-        try {
-
-            if($this->getEventStatus() && method_exists($this,'beforeCreate')){
-                $this->beforeCreate($clientData);
-            }
-
-            foreach ($clientData as $clientDataKey => $value) {
-
-                if ($this->getEventStatus() && method_exists($this, 'eventFireBeforeCreate')) {
-                    $eventFireBeforeCreate = $this->eventFireBeforeCreate($value);
-
-                    if(is_array($eventFireBeforeCreate)){
-                        $value = $eventFireBeforeCreate;
-                    }
-                }
-
-                $result = $this->createModel($value);
-                $arrayResults = $result->toArray();
-
-                $this->createEventDispatcher($value, $clientDataKey);
-
-                if (count($this->addPostQueryResults)) {
-                    $arrayResults = array_merge($arrayResults, $this->addPostQueryResults[$clientDataKey]);
-                }
-
-                if ($this->getEventStatus() && method_exists($this, 'eventFireAfterCreate')) {
-                    $this->eventFireAfterCreate($arrayResults, $value);
-                }
-
-                $list[] = $arrayResults;
-
-            }
-
-            if(method_exists($this,'afterCreate')){
-                $this->afterCreate($list);
-            }
-
-            return $list;
-        } catch (Exception $exception) {
-            $className = lcfirst(class_basename($exception));
-            $classNamespace = Constants::exceptionNamespace . '\\' . ucfirst($className);
-
-            if (class_exists($classNamespace)) {
-                return ExceptionFacade::$className($exception->getMessage());
-            }
-
-            return $this->sqlException($exception);
         }
     }
 }

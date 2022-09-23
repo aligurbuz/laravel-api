@@ -9,19 +9,6 @@ use Illuminate\Support\Str;
 abstract class RequestManager
 {
     /**
-     * get resource for bind
-     *
-     * @param string $resource
-     * @return object
-     */
-    public function resource(string $resource): object
-    {
-        return $this->binds['resource'][$resource] ?? new class {
-            };
-    }
-
-
-    /**
      * calling magic method for resource
      *
      * @param string $resource
@@ -31,7 +18,6 @@ abstract class RequestManager
     {
         return $this->resource($resource)->get();
     }
-
 
     /**
      * get method for gate factory
@@ -46,5 +32,17 @@ abstract class RequestManager
 
         $class = Str::camel(class_basename($this));
         return $this->{$class}();
+    }
+
+    /**
+     * get resource for bind
+     *
+     * @param string $resource
+     * @return object
+     */
+    public function resource(string $resource): object
+    {
+        return $this->binds['resource'][$resource] ?? new class {
+        };
     }
 }

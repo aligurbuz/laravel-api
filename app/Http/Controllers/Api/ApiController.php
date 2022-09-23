@@ -48,6 +48,26 @@ class ApiController extends BaseController
     }
 
     /**
+     * get middlewares for request
+     *
+     * @return array
+     */
+    private function getMiddlewares(): array
+    {
+        if (ApiKey::isSuperAdmin()) {
+            $this->middlewares[] = 'superAdmin';
+        }
+
+        if (property_exists($this, 'authenticate') && !$this->authenticate) {
+            if (!isExistAuthorization()) {
+                return $this->middlewares;
+            }
+        }
+
+        return array_merge(['auth:' . authGuard('check')], $this->middlewares);
+    }
+
+    /**
      * get except middleware process
      *
      * @param $middleware
@@ -79,25 +99,5 @@ class ApiController extends BaseController
         }
 
         return call_user_func($callback);
-    }
-
-    /**
-     * get middlewares for request
-     *
-     * @return array
-     */
-    private function getMiddlewares(): array
-    {
-        if (ApiKey::isSuperAdmin()) {
-            $this->middlewares[] = 'superAdmin';
-        }
-
-        if (property_exists($this, 'authenticate') && !$this->authenticate) {
-            if (!isExistAuthorization()) {
-                return $this->middlewares;
-            }
-        }
-
-        return array_merge(['auth:' . authGuard('check')], $this->middlewares);
     }
 }

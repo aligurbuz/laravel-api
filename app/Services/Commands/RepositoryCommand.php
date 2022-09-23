@@ -53,14 +53,13 @@ class RepositoryCommand extends Command
         $argumentName = (isset($arguments['dir'])) ? $this->argument('dir') : $this->argument('repository');
         $className = ucfirst($repositoryName) . 'Repository';
 
-        if($repositoryName==$repositoryDirectoryName){
+        if ($repositoryName == $repositoryDirectoryName) {
             $repositoryClassName = ucfirst($repositoryName);
-        }
-        else{
-            $repositoryClassName = ucfirst($repositoryDirectoryName).''.ucfirst($repositoryName);
+        } else {
+            $repositoryClassName = ucfirst($repositoryDirectoryName) . '' . ucfirst($repositoryName);
         }
 
-        $contractClassName = $repositoryClassName.'RepositoryContract';
+        $contractClassName = $repositoryClassName . 'RepositoryContract';
 
 
         $modelNamespace = 'App\Models\\' . ucfirst($modelName);
@@ -100,7 +99,7 @@ class RepositoryCommand extends Command
         $promotersRepositoryClass = ucfirst($repositoryName) . 'PromoterTrait';
         $promoterClassNamespace = $promotersRepositoryNamespace . '\\' . $promotersRepositoryClass;
 
-        $entityBaseName = Constants::entity.'\\'.ucfirst($modelName);
+        $entityBaseName = Constants::entity . '\\' . ucfirst($modelName);
 
         if (!file_exists($promotersRepositoryDirectory . '' . DIRECTORY_SEPARATOR . '' . $promotersRepositoryClass . '.php')) {
             $promoterNamespace = new PhpNamespace($promotersRepositoryNamespace);
@@ -122,7 +121,7 @@ class RepositoryCommand extends Command
                 ->addComment('')
                 //->addComment('@param object|null $builder')
                 //->addComment('@param Builder $builder')
-                ->addComment('@return '.ucfirst($modelName));
+                ->addComment('@return ' . ucfirst($modelName));
 
 
             touch($file = $promotersRepositoryDirectory . '' . DIRECTORY_SEPARATOR . '' . $promotersRepositoryClass . '.php');
@@ -341,7 +340,7 @@ class RepositoryCommand extends Command
             ->addComment('@return array')->addComment('@see ' . $className . '::first()');
 
         $class->addMethod('entity')->setPublic()->setReturnType($entityBaseName)
-            ->addComment('@return '.ucfirst($modelName))->addComment('@see ' . $className . '::entity()');
+            ->addComment('@return ' . ucfirst($modelName))->addComment('@see ' . $className . '::entity()');
 
         $class->addMethod('create')->setPublic()->setReturnType('array|object')
             ->addComment('@param array $data')
@@ -440,7 +439,7 @@ class RepositoryCommand extends Command
             $repositoryProviderContent = File::get($repositoryProvider);
             $putNewContract = str_replace('use Illuminate\Support\ServiceProvider;', 'use Illuminate\Support\ServiceProvider;
 use ' . $contractClassRepositoryName . ';
-use ' . $namespaceRepository . ' as '.ucfirst($repositoryClassName).'Repository;', $repositoryProviderContent);
+use ' . $namespaceRepository . ' as ' . ucfirst($repositoryClassName) . 'Repository;', $repositoryProviderContent);
 
             $putNewContract = str_replace('//newBind', '$this->app->bind(' . ucfirst($contractClassName) . '::class,' . ucfirst($repositoryClassName) . 'Repository::class);
         //newBind', $putNewContract);

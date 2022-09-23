@@ -8,6 +8,10 @@ use App\Repositories\Resources\Countries\Contracts\CitiesRepositoryContract;
 use App\Repositories\Resources\Countries\Contracts\CountriesRepositoryContract;
 use App\Repositories\Resources\Countries\Contracts\DistrictsRepositoryContract;
 use App\Repositories\Resources\Currencies\Contracts\CurrenciesRepositoryContract;
+use App\Repositories\Resources\Customer\Contracts\CustomerAgesRepositoryContract;
+use App\Repositories\Resources\Customer\Contracts\CustomerGendersRepositoryContract;
+use App\Repositories\Resources\Customer\Contracts\CustomerImagesRepositoryContract;
+use App\Repositories\Resources\Customer\Contracts\CustomerProfilesRepositoryContract;
 use App\Repositories\Resources\Gate\Contracts\PermissionsRepositoryContract;
 use App\Repositories\Resources\Gate\Contracts\RolesRepositoryContract;
 use App\Repositories\Resources\Localizations\Contracts\LanguageRepositoryContract;
@@ -18,12 +22,8 @@ use App\Repositories\Resources\SuperAdmins\Contracts\SuperAdminsRepositoryContra
 use App\Repositories\Resources\Support\Contracts\ExcelRepositoryContract;
 use App\Repositories\Resources\Timezones\Contracts\TimezonesRepositoryContract;
 use App\Repositories\Resources\User\Contracts\PhotosRepositoryContract;
-use App\Repositories\Resources\User\Contracts\UserRepositoryContract;
-use App\Repositories\Resources\Customer\Contracts\CustomerImagesRepositoryContract;
-use App\Repositories\Resources\Customer\Contracts\CustomerAgesRepositoryContract;
-use App\Repositories\Resources\Customer\Contracts\CustomerGendersRepositoryContract;
 use App\Repositories\Resources\User\Contracts\UserActivationsRepositoryContract;
-use App\Repositories\Resources\Customer\Contracts\CustomerProfilesRepositoryContract;
+use App\Repositories\Resources\User\Contracts\UserRepositoryContract;
 
 /**
  * Class Repository
@@ -36,51 +36,51 @@ class Repository
      *
      * @return CustomerImagesRepositoryContract
      */
-    public static function customerImage() : CustomerImagesRepositoryContract
+    public static function customerImage(): CustomerImagesRepositoryContract
     {
         return app()->get(CustomerImagesRepositoryContract::class);
     }
-    
+
     /**
      * get customerAge repository instance
      *
      * @return CustomerAgesRepositoryContract
      */
-    public static function customerAge() : CustomerAgesRepositoryContract
+    public static function customerAge(): CustomerAgesRepositoryContract
     {
         return app()->get(CustomerAgesRepositoryContract::class);
     }
-    
+
     /**
      * get customerGender repository instance
      *
      * @return CustomerGendersRepositoryContract
      */
-    public static function customerGender() : CustomerGendersRepositoryContract
+    public static function customerGender(): CustomerGendersRepositoryContract
     {
         return app()->get(CustomerGendersRepositoryContract::class);
     }
-    
+
     /**
      * get userActivation repository instance
      *
      * @return UserActivationsRepositoryContract
      */
-    public static function userActivation() : UserActivationsRepositoryContract
+    public static function userActivation(): UserActivationsRepositoryContract
     {
         return app()->get(UserActivationsRepositoryContract::class);
     }
-    
+
     /**
      * get customer repository instance
      *
      * @return CustomerProfilesRepositoryContract
      */
-    public static function customer() : CustomerProfilesRepositoryContract
+    public static function customer(): CustomerProfilesRepositoryContract
     {
         return app()->get(CustomerProfilesRepositoryContract::class);
     }
-    
+
     /**
      * get excel repository instance
      *

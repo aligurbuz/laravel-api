@@ -8,47 +8,47 @@ class EntityMap
      * @param object $query
      * @return CustomerImage
      */
-    public function customerImage(object $query) : CustomerImage
+    public function customerImage(object $query): CustomerImage
     {
         return new CustomerImage($query);
     }
-    
+
     /**
      * @param object $query
      * @return CustomerAge
      */
-    public function customerAge(object $query) : CustomerAge
+    public function customerAge(object $query): CustomerAge
     {
         return new CustomerAge($query);
     }
-    
+
     /**
      * @param object $query
      * @return CustomerGender
      */
-    public function customerGender(object $query) : CustomerGender
+    public function customerGender(object $query): CustomerGender
     {
         return new CustomerGender($query);
     }
-    
+
     /**
      * @param object $query
      * @return UserActivation
      */
-    public function userActivation(object $query) : UserActivation
+    public function userActivation(object $query): UserActivation
     {
         return new UserActivation($query);
     }
-    
+
     /**
      * @param object $query
      * @return Customer
      */
-    public function customer(object $query) : Customer
+    public function customer(object $query): Customer
     {
         return new Customer($query);
     }
-    
+
     /**
      * @param object $query
      * @return Excel

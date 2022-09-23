@@ -26,6 +26,46 @@ class AppContainer
     protected static array $whereValues = [];
 
     /**
+     * set with terminating for container data
+     *
+     * @param $key
+     * @param $value
+     * @param bool $merge
+     */
+    public static function setWithTerminating($key, $value, bool $merge = false)
+    {
+        if (static::has($key)) {
+            static::terminate($key);
+        }
+
+        static::set($key, $value, $merge);
+    }
+
+    /**
+     * get availability of the key for app factory
+     *
+     * @param $key
+     * @return bool
+     */
+    public static function has($key): bool
+    {
+        return isset(static::$data[$key]);
+    }
+
+    /**
+     * delete the key for app factory
+     *
+     * @param $key
+     * @return void
+     */
+    public static function terminate($key): void
+    {
+        if (isset(static::$data[$key])) {
+            unset(static::$data[$key]);
+        }
+    }
+
+    /**
      * set key and value for app factory
      *
      * @param $key
@@ -60,19 +100,15 @@ class AppContainer
     }
 
     /**
-     * set with terminating for container data
+     * get key for app factory
      *
      * @param $key
-     * @param $value
-     * @param bool $merge
+     * @param mixed|null $default
+     * @return mixed
      */
-    public static function setWithTerminating($key, $value, bool $merge = false)
+    public static function get($key, mixed $default = null): mixed
     {
-        if (static::has($key)) {
-            static::terminate($key);
-        }
-
-        static::set($key, $value, $merge);
+        return static::$data[$key] ?? $default;
     }
 
     /**
@@ -84,18 +120,6 @@ class AppContainer
     public static function getValueHash(array $value = []): int
     {
         return crc32(json_encode($value));
-    }
-
-    /**
-     * get key for app factory
-     *
-     * @param $key
-     * @param mixed|null $default
-     * @return mixed
-     */
-    public static function get($key, mixed $default = null): mixed
-    {
-        return static::$data[$key] ?? $default;
     }
 
     /**
@@ -117,30 +141,6 @@ class AppContainer
     public static function all(): array
     {
         return static::$data;
-    }
-
-    /**
-     * get availability of the key for app factory
-     *
-     * @param $key
-     * @return bool
-     */
-    public static function has($key): bool
-    {
-        return isset(static::$data[$key]);
-    }
-
-    /**
-     * delete the key for app factory
-     *
-     * @param $key
-     * @return void
-     */
-    public static function terminate($key): void
-    {
-        if (isset(static::$data[$key])) {
-            unset(static::$data[$key]);
-        }
     }
 
     /**

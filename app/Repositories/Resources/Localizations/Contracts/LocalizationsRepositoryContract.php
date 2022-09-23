@@ -29,7 +29,7 @@ interface LocalizationsRepositoryContract
     /**
      * @return Localization
      */
-    public function entity() : Localization;
+    public function entity(): Localization;
 
     /**
      * @param array $data

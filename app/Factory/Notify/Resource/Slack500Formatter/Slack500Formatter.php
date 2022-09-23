@@ -35,7 +35,7 @@ class Slack500Formatter
         $this->binds = $binds;
 
         if (isThrowableInstance(($this->binds['error'] ?? new class {
-            }))) {
+        }))) {
             $this->slack500Formatter($this->binds['error']);
         }
     }

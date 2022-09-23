@@ -64,6 +64,31 @@ class AppServiceProvider extends ServiceProvider
     }
 
     /**
+     * set macro full to sql for builder query
+     *
+     * @return void
+     */
+    private function fullToSql()
+    {
+        Builder::macro('toFullSql', function () {
+            /*** @var Builder $this */
+            $sql = str_replace(['%', '?'], ['%%', '%s'], $this->toSql());
+
+            $handledBindings = array_map(function ($binding) {
+                if (is_numeric($binding)) {
+                    return $binding;
+                }
+
+                $value = str_replace(['\\', "'"], ['\\\\', "\'"], $binding);
+
+                return "'{$value}'";
+            }, $this->getConnection()->prepareBindings($this->getBindings()));
+
+            return vsprintf($sql, $handledBindings);
+        });
+    }
+
+    /**
      * Bootstrap any application services.
      *
      * @return void
@@ -89,30 +114,5 @@ class AppServiceProvider extends ServiceProvider
         }
 
         AppContainer::set('page', (int)$page);
-    }
-
-    /**
-     * set macro full to sql for builder query
-     *
-     * @return void
-     */
-    private function fullToSql()
-    {
-        Builder::macro('toFullSql', function () {
-            /*** @var Builder $this */
-            $sql = str_replace(['%', '?'], ['%%', '%s'], $this->toSql());
-
-            $handledBindings = array_map(function ($binding) {
-                if (is_numeric($binding)) {
-                    return $binding;
-                }
-
-                $value = str_replace(['\\', "'"], ['\\\\', "\'"], $binding);
-
-                return "'{$value}'";
-            }, $this->getConnection()->prepareBindings($this->getBindings()));
-
-            return vsprintf($sql, $handledBindings);
-        });
     }
 }

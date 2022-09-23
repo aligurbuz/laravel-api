@@ -18,6 +18,20 @@ use Throwable;
 abstract class ResponseSupport
 {
     /**
+     * set formatter supplement for response
+     *
+     * @param array $data
+     * @param bool $merge
+     * @return void
+     */
+    public static function formatterSupplement(array $data = [], bool $merge = false): void
+    {
+        if (isProduction() === false && request()->method() == 'GET') {
+            AppContainer::set(Constants::responseFormatterSupplement, $data, $merge);
+        }
+    }
+
+    /**
      * @param array $data
      * @param int $code
      * @return object
@@ -27,6 +41,20 @@ abstract class ResponseSupport
     protected static function response(array $data = [], int $code = 200): object
     {
         return static::formatter($data, $code);
+    }
+
+    /**
+     * @param array $data
+     * @param int $code
+     * @return object
+     *
+     * @throws Exception
+     */
+    protected static function formatter(array $data = [], int $code = 200): object
+    {
+        AppContainer::set(Constants::response, $data);
+
+        return response()->json($data, $code);
     }
 
     /**
@@ -93,17 +121,22 @@ abstract class ResponseSupport
     }
 
     /**
-     * get exception message for response data
+     * get extra static exception supplement
      *
-     * @param null $message
-     * @param int $code
-     * @return string
+     * @return array
      */
-    protected static function getExceptionMessageForEnvironment($message = null, int $code = 200): string
+    #[ArrayShape(['request' => "array", 'debugBackTrace' => "array|mixed"])]
+    protected static function getExtraStaticExceptionSupplement(): array
     {
-        return (app()->environment() == 'local' || $code !== 500)
-            ? (($code === 404) ? 'Not Found Endpoint' : $message)
-            : trans('exception.500error');
+        return [
+            'request' => [
+                request()->method() => static::getRequest(),
+                'queryParams' => request()->query->all()
+            ],
+            'debugBackTrace' => AppContainer::has(Constants::debugBackTrace)
+                ? AppContainer::get(Constants::debugBackTrace)
+                : debug_backtrace()
+        ];
     }
 
     /**
@@ -127,22 +160,17 @@ abstract class ResponseSupport
     }
 
     /**
-     * get extra static exception supplement
+     * get exception message for response data
      *
-     * @return array
+     * @param null $message
+     * @param int $code
+     * @return string
      */
-    #[ArrayShape(['request' => "array", 'debugBackTrace' => "array|mixed"])]
-    protected static function getExtraStaticExceptionSupplement(): array
+    protected static function getExceptionMessageForEnvironment($message = null, int $code = 200): string
     {
-        return [
-            'request' => [
-                request()->method() => static::getRequest(),
-                'queryParams' => request()->query->all()
-            ],
-            'debugBackTrace' => AppContainer::has(Constants::debugBackTrace)
-                ? AppContainer::get(Constants::debugBackTrace)
-                : debug_backtrace()
-        ];
+        return (app()->environment() == 'local' || $code !== 500)
+            ? (($code === 404) ? 'Not Found Endpoint' : $message)
+            : trans('exception.500error');
     }
 
     /**
@@ -190,33 +218,5 @@ abstract class ResponseSupport
     protected static function rules(): mixed
     {
         return AppContainer::get(Constants::validatorRules);
-    }
-
-    /**
-     * @param array $data
-     * @param int $code
-     * @return object
-     *
-     * @throws Exception
-     */
-    protected static function formatter(array $data = [], int $code = 200): object
-    {
-        AppContainer::set(Constants::response, $data);
-
-        return response()->json($data, $code);
-    }
-
-    /**
-     * set formatter supplement for response
-     *
-     * @param array $data
-     * @param bool $merge
-     * @return void
-     */
-    public static function formatterSupplement(array $data = [], bool $merge = false): void
-    {
-        if (isProduction() === false && request()->method() == 'GET') {
-            AppContainer::set(Constants::responseFormatterSupplement, $data, $merge);
-        }
     }
 }

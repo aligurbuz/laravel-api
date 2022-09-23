@@ -39,19 +39,6 @@ class Handler extends ExceptionHandler
     }
 
     /**
-     * checks if to notify condition is valid
-     *
-     * @param Throwable $e
-     * @return bool
-     */
-    private function isTrueNotifyCondition(Throwable $e): bool
-    {
-        return $e->getCode() == '0'
-            && app()->environment() !== 'local'
-            && class_basename($e) !== 'MethodNotAllowedHttpException';
-    }
-
-    /**
      * notify for 500 internal server
      *
      * @param Throwable $e
@@ -62,6 +49,19 @@ class Handler extends ExceptionHandler
         if ($this->isTrueNotifyCondition($e)) {
             Factory::notify(['error' => $e])->internalServerError();
         }
+    }
+
+    /**
+     * checks if to notify condition is valid
+     *
+     * @param Throwable $e
+     * @return bool
+     */
+    private function isTrueNotifyCondition(Throwable $e): bool
+    {
+        return $e->getCode() == '0'
+            && app()->environment() !== 'local'
+            && class_basename($e) !== 'MethodNotAllowedHttpException';
     }
 
 }

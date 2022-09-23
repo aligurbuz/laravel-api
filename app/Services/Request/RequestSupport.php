@@ -41,16 +41,6 @@ abstract class RequestSupport
     protected string $endpoint;
 
     /**
-     * get result value for client request
-     *
-     * @return Response
-     */
-    public function getResult(): Response
-    {
-        return $this->result;
-    }
-
-    /**
      * get Status value for client request
      *
      * @return int
@@ -58,6 +48,16 @@ abstract class RequestSupport
     public function getStatus(): int
     {
         return $this->getResult()->status();
+    }
+
+    /**
+     * get result value for client request
+     *
+     * @return Response
+     */
+    public function getResult(): Response
+    {
+        return $this->result;
     }
 
     /**
@@ -71,13 +71,13 @@ abstract class RequestSupport
     }
 
     /**
-     * get endpoint for client request
+     * get http init for client request
      *
-     * @return string
+     * @return PendingRequest
      */
-    public function getEndpoint(): string
+    public function getHttp(): PendingRequest
     {
-        return $this->endpoint;
+        return Http::withHeaders($this->getHeaders());
     }
 
     /**
@@ -91,13 +91,20 @@ abstract class RequestSupport
     }
 
     /**
-     * get http init for client request
+     * It registers the header variables to be sent to the API by the user.
      *
-     * @return PendingRequest
+     * @param array $headers
+     * @return $this
      */
-    public function getHttp(): PendingRequest
+    public function setHeaders(array $headers = []): self
     {
-        return Http::withHeaders($this->getHeaders());
+        $init = [
+            'Content-Type' => $this->contentType
+        ];
+
+        $this->headers = array_merge($headers, $init);
+
+        return $this;
     }
 
     /**
@@ -122,36 +129,6 @@ abstract class RequestSupport
     }
 
     /**
-     * set endpoint for client request
-     *
-     * @param string $endpoint
-     * @return $this
-     */
-    public function endpoint(string $endpoint): self
-    {
-        $this->endpoint = $endpoint;
-
-        return $this;
-    }
-
-    /**
-     * It registers the header variables to be sent to the API by the user.
-     *
-     * @param array $headers
-     * @return $this
-     */
-    public function setHeaders(array $headers = []): self
-    {
-        $init = [
-            'Content-Type' => $this->contentType
-        ];
-
-        $this->headers = array_merge($headers, $init);
-
-        return $this;
-    }
-
-    /**
      * set url for client request
      *
      * @param string $url
@@ -160,6 +137,29 @@ abstract class RequestSupport
     public function setUrl(string $url): self
     {
         $this->url = $url;
+
+        return $this;
+    }
+
+    /**
+     * get endpoint for client request
+     *
+     * @return string
+     */
+    public function getEndpoint(): string
+    {
+        return $this->endpoint;
+    }
+
+    /**
+     * set endpoint for client request
+     *
+     * @param string $endpoint
+     * @return $this
+     */
+    public function endpoint(string $endpoint): self
+    {
+        $this->endpoint = $endpoint;
 
         return $this;
     }

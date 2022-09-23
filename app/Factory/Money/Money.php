@@ -46,9 +46,9 @@ class Money extends MoneyManager implements MoneyInterface
      * @param int $roundType
      * @return float
      */
-    public function add(float $money1, float $money2,int $roundType = PHP_ROUND_HALF_EVEN): float
+    public function add(float $money1, float $money2, int $roundType = PHP_ROUND_HALF_EVEN): float
     {
-        return moneyFormatter(($money1 + $money2),true,$roundType);
+        return moneyFormatter(($money1 + $money2), true, $roundType);
     }
 
     /**
@@ -59,9 +59,9 @@ class Money extends MoneyManager implements MoneyInterface
      * @param int $roundType
      * @return float
      */
-    public function subtract(float $money1, float $money2,int $roundType = PHP_ROUND_HALF_EVEN): float
+    public function subtract(float $money1, float $money2, int $roundType = PHP_ROUND_HALF_EVEN): float
     {
-        return moneyFormatter(($money1 - $money2),true,$roundType);
+        return moneyFormatter(($money1 - $money2), true, $roundType);
     }
 
     /**
@@ -72,9 +72,9 @@ class Money extends MoneyManager implements MoneyInterface
      * @param int $roundType
      * @return float
      */
-    public function multiply(float $money1, float $money2,int $roundType = PHP_ROUND_HALF_EVEN): float
+    public function multiply(float $money1, float $money2, int $roundType = PHP_ROUND_HALF_EVEN): float
     {
-        return moneyFormatter(($money1 * $money2),true,$roundType);
+        return moneyFormatter(($money1 * $money2), true, $roundType);
     }
 
     /**
@@ -87,7 +87,7 @@ class Money extends MoneyManager implements MoneyInterface
      */
     public function divide(float $money1, float $money2, int $roundType = PHP_ROUND_HALF_EVEN): float
     {
-        return moneyFormatter(($money1 / $money2),true,$roundType);
+        return moneyFormatter(($money1 / $money2), true, $roundType);
     }
 
     /**

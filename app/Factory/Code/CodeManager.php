@@ -14,20 +14,20 @@ use Illuminate\Support\Str;
 abstract class CodeManager
 {
     /**
-     * get code identifier for factory
+     * checks if the repository is valid
      *
-     * @return array
+     * @param callable $callback
+     * @return mixed
      */
-    public function getCodeIdentifier(): array
+    public function isValidRepository(callable $callback): mixed
     {
-        $list = [];
+        $repository = Repository::{$this->getRepositoryName()}();
 
-        foreach ($this->binds as $codeName => $value) {
-            $list['codeName'] = Str::snake($codeName);
-            $list['value'] = intval($value);
+        if (false !== $repository) {
+            return call_user_func($callback, $repository);
         }
 
-        return $list;
+        return null;
     }
 
     /**
@@ -47,19 +47,19 @@ abstract class CodeManager
     }
 
     /**
-     * checks if the repository is valid
+     * get code identifier for factory
      *
-     * @param callable $callback
-     * @return mixed
+     * @return array
      */
-    public function isValidRepository(callable $callback): mixed
+    public function getCodeIdentifier(): array
     {
-        $repository = Repository::{$this->getRepositoryName()}();
+        $list = [];
 
-        if (false !== $repository) {
-            return call_user_func($callback, $repository);
+        foreach ($this->binds as $codeName => $value) {
+            $list['codeName'] = Str::snake($codeName);
+            $list['value'] = intval($value);
         }
 
-        return null;
+        return $list;
     }
 }

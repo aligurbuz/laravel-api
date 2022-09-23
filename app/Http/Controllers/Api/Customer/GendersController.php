@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 declare(strict_types=1);
 
@@ -12,48 +12,48 @@ use App\Repositories\Resources\Customer\Contracts\CustomerGendersRepositoryContr
 
 class GendersController extends ApiController
 {
-	/**
-	 * get genders data
-	 *
-	 * @param GetClient $client
-	 * @param CustomerGendersRepositoryContract $gendersRepository
-	 * @return array
-	 */
-	public function get(GetClient $client, CustomerGendersRepositoryContract $gendersRepository): array
-	{
-		$client->handle();
-		return $gendersRepository->get();
-	}
+    /**
+     * get genders data
+     *
+     * @param GetClient $client
+     * @param CustomerGendersRepositoryContract $gendersRepository
+     * @return array
+     */
+    public function get(GetClient $client, CustomerGendersRepositoryContract $gendersRepository): array
+    {
+        $client->handle();
+        return $gendersRepository->get();
+    }
 
 
-	/**
-	 * create genders data
-	 *
-	 * @param CreateClient $client
-	 * @param CustomerGendersRepositoryContract $gendersRepository
-	 * @return array|object
-	 */
-	public function create(CreateClient $client, CustomerGendersRepositoryContract $gendersRepository): array|object
-	{
-		return $this->transaction(function() use($client,$gendersRepository) {
-		    $client->handle();
-		    return $gendersRepository->create();
-		});
-	}
+    /**
+     * create genders data
+     *
+     * @param CreateClient $client
+     * @param CustomerGendersRepositoryContract $gendersRepository
+     * @return array|object
+     */
+    public function create(CreateClient $client, CustomerGendersRepositoryContract $gendersRepository): array|object
+    {
+        return $this->transaction(function () use ($client, $gendersRepository) {
+            $client->handle();
+            return $gendersRepository->create();
+        });
+    }
 
 
-	/**
-	 * update genders data
-	 *
-	 * @param UpdateClient $client
-	 * @param CustomerGendersRepositoryContract $gendersRepository
-	 * @return array|object
-	 */
-	public function update(UpdateClient $client, CustomerGendersRepositoryContract $gendersRepository): array|object
-	{
-		return $this->transaction(function() use($client,$gendersRepository) {
-		    $client->handle();
-		    return $gendersRepository->update();
-		});
-	}
+    /**
+     * update genders data
+     *
+     * @param UpdateClient $client
+     * @param CustomerGendersRepositoryContract $gendersRepository
+     * @return array|object
+     */
+    public function update(UpdateClient $client, CustomerGendersRepositoryContract $gendersRepository): array|object
+    {
+        return $this->transaction(function () use ($client, $gendersRepository) {
+            $client->handle();
+            return $gendersRepository->update();
+        });
+    }
 }

@@ -21,7 +21,7 @@ interface CitiesRepositoryContract
     /**
      * @return City
      */
-    public function entity() : City;
+    public function entity(): City;
 
     /**
      * @param array $data

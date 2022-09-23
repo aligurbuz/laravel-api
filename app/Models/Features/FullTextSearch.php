@@ -13,6 +13,22 @@ use Illuminate\Database\Eloquent\Builder;
 trait FullTextSearch
 {
     /**
+     * Scope a query that matches a full text search of term.
+     *
+     * @param Builder $query
+     * @param string $term
+     * @return Builder
+     */
+    public function scopeSearch(Builder $query, string $term): Builder
+    {
+        $columns = implode(',', $this->searchable);
+
+        $query->whereRaw("MATCH ({$columns}) AGAINST (? IN BOOLEAN MODE)", $this->fullTextWildcards($term));
+
+        return $query;
+    }
+
+    /**
      * Replaces spaces with full text search wildcards
      *
      * @param string $term
@@ -37,21 +53,5 @@ trait FullTextSearch
         }
 
         return implode(' ', $words);
-    }
-
-    /**
-     * Scope a query that matches a full text search of term.
-     *
-     * @param Builder $query
-     * @param string $term
-     * @return Builder
-     */
-    public function scopeSearch(Builder $query, string $term): Builder
-    {
-        $columns = implode(',', $this->searchable);
-
-        $query->whereRaw("MATCH ({$columns}) AGAINST (? IN BOOLEAN MODE)", $this->fullTextWildcards($term));
-
-        return $query;
     }
 }

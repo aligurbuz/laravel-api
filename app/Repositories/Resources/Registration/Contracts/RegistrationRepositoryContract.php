@@ -27,7 +27,7 @@ interface RegistrationRepositoryContract
     /**
      * @return Registration
      */
-    public function entity() : Registration;
+    public function entity(): Registration;
 
     /**
      * @param array $data

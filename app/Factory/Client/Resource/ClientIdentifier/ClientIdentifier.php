@@ -56,16 +56,6 @@ class ClientIdentifier
     }
 
     /**
-     * get request method for resource factory
-     *
-     * @return string
-     */
-    public function getRequestMethod(): string
-    {
-        return $this->requestMethod;
-    }
-
-    /**
      * @return string[]
      */
     private function clientPartitions(): array
@@ -78,6 +68,21 @@ class ClientIdentifier
         }
 
         return $this->setClientPartitions();
+    }
+
+    /**
+     * get client map for resource factory
+     *
+     * @return array
+     */
+    private function client(): array
+    {
+        return array_map(
+            function ($value) {
+                return Str::ucfirst($value);
+            }
+            , explode('.', $this->client)
+        );
     }
 
     /**
@@ -98,21 +103,6 @@ class ClientIdentifier
     }
 
     /**
-     * get client map for resource factory
-     *
-     * @return array
-     */
-    private function client(): array
-    {
-        return array_map(
-            function ($value) {
-                return Str::ucfirst($value);
-            }
-            , explode('.', $this->client)
-        );
-    }
-
-    /**
      * set request method for resource factory
      *
      * @param $method
@@ -124,5 +114,15 @@ class ClientIdentifier
         if ($method == 'Update') $this->requestMethod = 'PUT';
 
         return $method;
+    }
+
+    /**
+     * get request method for resource factory
+     *
+     * @return string
+     */
+    public function getRequestMethod(): string
+    {
+        return $this->requestMethod;
     }
 }

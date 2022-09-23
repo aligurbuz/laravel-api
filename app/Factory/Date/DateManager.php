@@ -13,6 +13,6 @@ abstract class DateManager
     public function getResource(string $resource): object
     {
         return $this->binds['resource'][$resource] ?? new class {
-            };
+        };
     }
 }

@@ -21,7 +21,7 @@ interface DistrictsRepositoryContract
     /**
      * @return District
      */
-    public function entity() : District;
+    public function entity(): District;
 
     /**
      * @param array $data

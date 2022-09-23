@@ -15,11 +15,6 @@ use Throwable;
 class SqlExceptionManager
 {
     /**
-     * @var ?string
-     */
-    private static ?string $table;
-
-    /**
      * get codes for sql
      *
      * @var array
@@ -29,6 +24,10 @@ class SqlExceptionManager
             '23000' => 'uniqueErrorMessage'
         ]
     ];
+    /**
+     * @var ?string
+     */
+    private static ?string $table;
 
     /**
      * sql exception process maker

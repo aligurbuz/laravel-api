@@ -43,13 +43,13 @@ class Tax extends TaxManager implements TaxInterface
     }
 
     /**
-     * get tax rate for tax factory
+     * get total from tax factory
      *
      * @return float
      */
-    public function getTax(): float
+    public function getTotal(): float
     {
-        return $this->tax;
+        return moneyFormatter($this->getMoney() + $this->getTax());
     }
 
     /**
@@ -63,12 +63,12 @@ class Tax extends TaxManager implements TaxInterface
     }
 
     /**
-     * get total from tax factory
+     * get tax rate for tax factory
      *
      * @return float
      */
-    public function getTotal(): float
+    public function getTax(): float
     {
-        return moneyFormatter($this->getMoney() + $this->getTax());
+        return $this->tax;
     }
 }

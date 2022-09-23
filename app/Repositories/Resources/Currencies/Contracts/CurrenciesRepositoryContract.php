@@ -21,7 +21,7 @@ interface CurrenciesRepositoryContract
     /**
      * @return Currency
      */
-    public function entity() : Currency;
+    public function entity(): Currency;
 
     /**
      * @param array $data

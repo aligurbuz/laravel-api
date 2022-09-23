@@ -34,7 +34,7 @@ class Storage extends StorageManager implements StorageInterface
     {
         $this->binds = $binds;
         $this->client = $this->binds['client'] ?? new class {
-            };
+        };
 
         if (!method_exists($this->client, 'ensureColumnExists')) {
             throw new Exception('client bind is invalid');
@@ -54,9 +54,9 @@ class Storage extends StorageManager implements StorageInterface
             $this->client->ensureColumnExists($input, function () use ($input, $data, &$list) {
                 /*** @var $data UploadedFile */
                 $model = Str::snake($this->client->getModelName());
-                $filePath = 'images/'.$model;
-                $data->move(public_path($filePath),$data->getClientOriginalName());
-                $list[$input] = $model.'/'.$data->getClientOriginalName();
+                $filePath = 'images/' . $model;
+                $data->move(public_path($filePath), $data->getClientOriginalName());
+                $list[$input] = $model . '/' . $data->getClientOriginalName();
             });
         }
 

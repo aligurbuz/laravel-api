@@ -29,7 +29,7 @@ interface LanguageRepositoryContract
     /**
      * @return Language
      */
-    public function entity() : Language;
+    public function entity(): Language;
 
     /**
      * @param array $data

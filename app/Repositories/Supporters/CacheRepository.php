@@ -53,34 +53,6 @@ trait CacheRepository
     protected mixed $cacheTag = null;
 
     /**
-     * generate specific cache key for repository
-     *
-     * @param string $model
-     * @return string
-     */
-    public function specificCacheKey(string $model): string
-    {
-        return $model;
-    }
-
-    /**
-     * it generates the hashed key for cache
-     *
-     * @param string|null $model
-     * @return string
-     */
-    public function generateCacheKey(?string $model = null): string
-    {
-        $getModel = ($model ?? $this->getModelName());
-
-        if(method_exists($this,'getCacheKey')){
-            return $this->getCacheKey($getModel);
-        }
-
-        return $this->specificCacheKey($getModel);
-    }
-
-    /**
      * make cache model data for repository
      *
      * @param callable $callback
@@ -93,40 +65,6 @@ trait CacheRepository
         return $this->cacheCondition($callback, function () use ($callback) {
             return $this->proxyUsing ? $this->proxy($callback) : call_user_func($callback);
         });
-    }
-
-    /**
-     * make cache model data for repository
-     *
-     * @param callable $callback
-     * @return array
-     */
-    public function useCache(callable $callback): array
-    {
-        $this->proxyUsing = false;
-
-        if ((page() > 1)
-            || (
-                property_exists($this, 'cache')
-                && is_bool($this->cache)
-                && !$this->cache)
-        ) {
-            return call_user_func($callback);
-        }
-
-        return $this->cacheCondition($callback, function () use ($callback) {
-            return $this->proxyUsing ? $this->proxy($callback) : call_user_func($callback);
-        });
-    }
-
-    /**
-     * set cache tag for repository model
-     *
-     * @param mixed $tag
-     */
-    public function setCacheTag(mixed $tag): void
-    {
-        $this->cacheTag = $tag;
     }
 
     /**
@@ -160,16 +98,6 @@ trait CacheRepository
     }
 
     /**
-     * get checkCacheMemoryStatus for repository
-     *
-     * @return bool
-     */
-    private function checkCacheMemoryStatus(): bool
-    {
-        return config('repository.repositoryMemoryCache');
-    }
-
-    /**
      * set property value for cache repository
      *
      * @return void
@@ -182,7 +110,7 @@ trait CacheRepository
         $requestQuery = request()->query->all();
 
         foreach ($this->exceptClientData as $exceptClientData) {
-            if(isset($requestQuery[$exceptClientData])){
+            if (isset($requestQuery[$exceptClientData])) {
                 unset($requestQuery[$exceptClientData]);
             }
         }
@@ -190,6 +118,34 @@ trait CacheRepository
         $this->cacheKey = $this->generateCacheKey();
         $this->cacheInstance = Factory::cache(['adapter' => 'redis', 'connection' => config('repository.repositoryCacheConnection')]);
         $this->cacheTag = $this->cacheTag ?? Client::fingerPrint($requestQuery);
+    }
+
+    /**
+     * it generates the hashed key for cache
+     *
+     * @param string|null $model
+     * @return string
+     */
+    public function generateCacheKey(?string $model = null): string
+    {
+        $getModel = ($model ?? $this->getModelName());
+
+        if (method_exists($this, 'getCacheKey')) {
+            return $this->getCacheKey($getModel);
+        }
+
+        return $this->specificCacheKey($getModel);
+    }
+
+    /**
+     * generate specific cache key for repository
+     *
+     * @param string $model
+     * @return string
+     */
+    public function specificCacheKey(string $model): string
+    {
+        return $model;
     }
 
     /**
@@ -242,13 +198,47 @@ trait CacheRepository
     }
 
     /**
+     * make cache model data for repository
+     *
+     * @param callable $callback
+     * @return array
+     */
+    public function useCache(callable $callback): array
+    {
+        $this->proxyUsing = false;
+
+        if ((page() > 1)
+            || (
+                property_exists($this, 'cache')
+                && is_bool($this->cache)
+                && !$this->cache)
+        ) {
+            return call_user_func($callback);
+        }
+
+        return $this->cacheCondition($callback, function () use ($callback) {
+            return $this->proxyUsing ? $this->proxy($callback) : call_user_func($callback);
+        });
+    }
+
+    /**
+     * set cache tag for repository model
+     *
+     * @param mixed $tag
+     */
+    public function setCacheTag(mixed $tag): void
+    {
+        $this->cacheTag = $tag;
+    }
+
+    /**
      * delete cache for model
      *
      * @return void
      */
     public function deleteCache(): void
     {
-        if($this->checkCacheStatus() || $this->checkCacheMemoryStatus()){
+        if ($this->checkCacheStatus() || $this->checkCacheMemoryStatus()) {
             $this->setProperties();
 
             $model = $this->getModelName();
@@ -264,6 +254,16 @@ trait CacheRepository
                 $this->deleteRelationCache($model);
             }
         }
+    }
+
+    /**
+     * get checkCacheMemoryStatus for repository
+     *
+     * @return bool
+     */
+    private function checkCacheMemoryStatus(): bool
+    {
+        return config('repository.repositoryMemoryCache');
     }
 
     /**

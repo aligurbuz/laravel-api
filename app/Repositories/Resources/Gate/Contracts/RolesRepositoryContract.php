@@ -28,7 +28,7 @@ interface RolesRepositoryContract
     /**
      * @return Role
      */
-    public function entity() : Role;
+    public function entity(): Role;
 
     /**
      * @param array $data

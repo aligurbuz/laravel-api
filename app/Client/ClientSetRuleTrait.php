@@ -28,30 +28,25 @@ trait ClientSetRuleTrait
     }
 
     /**
-     * set password rule for client
+     * set range for web client
      *
      * @return void
      */
-    private function setPasswordRule()
+    private function setRanges()
     {
-        if (request()->method() !== 'GET') {
-            $this->ensureColumnExists('password', function () {
-                $this->setRule('password', 'min:6|max:18');
-            });
-        }
-    }
+        if (!ApiKey::isAdmin()) {
+            $range = request()->query('range', '');
+            $rangeList = explode(',', $range);
+            if (!in_array('active', $rangeList, true)) {
+                if (strlen($range) > 0) {
+                    $range = $range . ',active';
+                } else {
+                    $range = 'active';
+                }
 
-    /**
-     * sets autoRule client to enum values
-     *
-     * @return void
-     */
-    private function setEnumValues(): void
-    {
-        $enumValues = Db::enums($this->getTable());
-
-        foreach ($enumValues as $enumKey => $enumValue) {
-            $this->setAutoRule($enumKey, 'in:' . $enumValue);
+                request()->query->remove('range');
+                request()->query->add(['range' => $range]);
+            }
         }
     }
 
@@ -71,26 +66,30 @@ trait ClientSetRuleTrait
     }
 
     /**
-     * set range for web client
+     * sets autoRule client to enum values
      *
      * @return void
      */
-    private function setRanges()
+    private function setEnumValues(): void
     {
-        if (!ApiKey::isAdmin()) {
-            $range = request()->query('range','');
-            $rangeList = explode(',', $range);
-            if (!in_array('active', $rangeList, true)) {
-                if(strlen($range)>0){
-                    $range = $range . ',active';
-                }
-                else{
-                    $range = 'active';
-                }
+        $enumValues = Db::enums($this->getTable());
 
-                request()->query->remove('range');
-                request()->query->add(['range' => $range]);
-            }
+        foreach ($enumValues as $enumKey => $enumValue) {
+            $this->setAutoRule($enumKey, 'in:' . $enumValue);
+        }
+    }
+
+    /**
+     * set password rule for client
+     *
+     * @return void
+     */
+    private function setPasswordRule()
+    {
+        if (request()->method() !== 'GET') {
+            $this->ensureColumnExists('password', function () {
+                $this->setRule('password', 'min:6|max:18');
+            });
         }
     }
 }

@@ -43,16 +43,6 @@ class ApiKey
     }
 
     /**
-     * get keys for apiKeys
-     *
-     * @return array
-     */
-    public static function keys() : array
-    {
-        return array_keys(AppContainer::get('apiKeys'));
-    }
-
-    /**
      * get header client api key
      *
      * @return string|null
@@ -60,5 +50,15 @@ class ApiKey
     public static function get(): ?string
     {
         return request()->headers->get(config('app.apikeyString'));
+    }
+
+    /**
+     * get keys for apiKeys
+     *
+     * @return array
+     */
+    public static function keys(): array
+    {
+        return array_keys(AppContainer::get('apiKeys'));
     }
 }

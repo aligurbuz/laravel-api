@@ -22,6 +22,37 @@ trait ClientSupport
      * @var bool|null
      */
     protected bool|string|int $isDefault;
+    /**
+     * it is password in the client data
+     *
+     * @var string|null
+     */
+    protected ?string $password = null;
+    /**
+     * it is is_deleted in the client data
+     *
+     * @var string|bool
+     */
+    protected string|bool $isDeleted = false;
+
+    /**
+     * get filterMandatory generator for request
+     *
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     */
+    public function filterMandatoryGenerator()
+    {
+        if (app()->runningInConsole()) return null;
+
+        $filter = request()->get('filter');
+
+        if (is_null($filter)) {
+            Exception::customException('filterMandatory');
+        }
+
+        return null;
+    }
 
     /**
      * when the is_default value is sent as 1,
@@ -40,20 +71,6 @@ trait ClientSupport
 
         return $this->isDefault;
     }
-
-    /**
-     * it is password in the client data
-     *
-     * @var string|null
-     */
-    protected ?string $password = null;
-
-    /**
-     * it is is_deleted in the client data
-     *
-     * @var string|bool
-     */
-    protected string|bool $isDeleted = false;
 
     /**
      * password value sent will be passed through the Hash::make() method.
@@ -81,24 +98,5 @@ trait ClientSupport
         }
 
         return $this->isDeleted;
-    }
-
-    /**
-     * get filterMandatory generator for request
-     *
-     * @throws ContainerExceptionInterface
-     * @throws NotFoundExceptionInterface
-     */
-    public function filterMandatoryGenerator()
-    {
-        if(app()->runningInConsole()) return null;
-
-        $filter = request()->get('filter');
-
-        if (is_null($filter)) {
-            Exception::customException('filterMandatory');
-        }
-
-        return null;
     }
 }

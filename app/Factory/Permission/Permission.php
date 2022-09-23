@@ -31,16 +31,6 @@ class Permission extends PermissionManager implements PermissionInterface
     }
 
     /**
-     * get all permission for factory
-     *
-     * @return array
-     */
-    public function get(): array
-    {
-        return Repository::permission()->all();
-    }
-
-    /**
      * checks if the permission is valid for route
      *
      * @return bool
@@ -69,5 +59,15 @@ class Permission extends PermissionManager implements PermissionInterface
         }
 
         return $list;
+    }
+
+    /**
+     * get all permission for factory
+     *
+     * @return array
+     */
+    public function get(): array
+    {
+        return Repository::permission()->all();
     }
 }

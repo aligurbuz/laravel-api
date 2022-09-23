@@ -27,6 +27,18 @@ abstract class ClientManager
     }
 
     /**
+     * checks if the clientIdentifier resource is valid
+     *
+     * @return bool
+     */
+    private function isValidClientIdentifierResource(): bool
+    {
+        return isset($this->binds['resource']['clientIdentifier'])
+            && $this->binds['resource']['clientIdentifier'] instanceof ClientIdentifier
+            && method_exists($this->binds['resource']['clientIdentifier'], 'clientNamespace');
+    }
+
+    /**
      * client handler for resource factory
      *
      * @param object $clientIdentifier
@@ -52,17 +64,5 @@ abstract class ClientManager
         }
 
         return [];
-    }
-
-    /**
-     * checks if the clientIdentifier resource is valid
-     *
-     * @return bool
-     */
-    private function isValidClientIdentifierResource(): bool
-    {
-        return isset($this->binds['resource']['clientIdentifier'])
-            && $this->binds['resource']['clientIdentifier'] instanceof ClientIdentifier
-            && method_exists($this->binds['resource']['clientIdentifier'], 'clientNamespace');
     }
 }

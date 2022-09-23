@@ -14,26 +14,23 @@ use App\Repositories\Repository;
 class Localization extends LocalizationManager implements LocalizationInterface
 {
     /**
+     * @var array|null
+     */
+    protected static ?array $repository = null;
+    /**
      * binds property variable
      *
      * @var array
      */
     protected array $binds = [];
-
     /**
      * @var int
      */
     protected int $code = 0;
-
     /**
      * @var mixed
      */
     protected mixed $default;
-
-    /**
-     * @var array|null
-     */
-    protected static ?array $repository = null;
 
     /**
      * Localization constructor
@@ -49,6 +46,18 @@ class Localization extends LocalizationManager implements LocalizationInterface
     }
 
     /**
+     * get localization data value for factory
+     *
+     * @return object
+     */
+    public function getValues(): object
+    {
+        $data = $this->get();
+
+        return objectValue(($data[0]['values'] ?? $this->default));
+    }
+
+    /**
      * get localization data for factory
      *
      * @return array
@@ -60,17 +69,5 @@ class Localization extends LocalizationManager implements LocalizationInterface
         }
 
         return static::$repository[$this->code];
-    }
-
-    /**
-     * get localization data value for factory
-     *
-     * @return object
-     */
-    public function getValues(): object
-    {
-        $data = $this->get();
-
-        return objectValue(($data[0]['values'] ?? $this->default));
     }
 }

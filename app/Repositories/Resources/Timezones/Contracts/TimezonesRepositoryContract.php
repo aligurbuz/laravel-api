@@ -21,7 +21,7 @@ interface TimezonesRepositoryContract
     /**
      * @return Timezone
      */
-    public function entity() : Timezone;
+    public function entity(): Timezone;
 
     /**
      * @param array $data

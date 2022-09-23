@@ -12,48 +12,48 @@ use App\Repositories\Resources\Customer\Contracts\CustomerProfilesRepositoryCont
 
 class ProfilesController extends ApiController
 {
-	/**
-	 * get profiles data
-	 *
-	 * @param GetClient $client
-	 * @param CustomerProfilesRepositoryContract $profilesRepository
-	 * @return array
-	 */
-	public function get(GetClient $client, CustomerProfilesRepositoryContract $profilesRepository): array
-	{
-		$client->handle();
-		return $profilesRepository->get();
-	}
+    /**
+     * get profiles data
+     *
+     * @param GetClient $client
+     * @param CustomerProfilesRepositoryContract $profilesRepository
+     * @return array
+     */
+    public function get(GetClient $client, CustomerProfilesRepositoryContract $profilesRepository): array
+    {
+        $client->handle();
+        return $profilesRepository->get();
+    }
 
 
-	/**
-	 * create profiles data
-	 *
-	 * @param CreateClient $client
-	 * @param CustomerProfilesRepositoryContract $profilesRepository
-	 * @return array|object
-	 */
-	public function create(CreateClient $client, CustomerProfilesRepositoryContract $profilesRepository): array|object
-	{
-		return $this->transaction(function() use($client,$profilesRepository) {
-		    $client->handle();
-		    return $profilesRepository->create();
-		});
-	}
+    /**
+     * create profiles data
+     *
+     * @param CreateClient $client
+     * @param CustomerProfilesRepositoryContract $profilesRepository
+     * @return array|object
+     */
+    public function create(CreateClient $client, CustomerProfilesRepositoryContract $profilesRepository): array|object
+    {
+        return $this->transaction(function () use ($client, $profilesRepository) {
+            $client->handle();
+            return $profilesRepository->create();
+        });
+    }
 
 
-	/**
-	 * update profiles data
-	 *
-	 * @param UpdateClient $client
-	 * @param CustomerProfilesRepositoryContract $profilesRepository
-	 * @return array|object
-	 */
-	public function update(UpdateClient $client, CustomerProfilesRepositoryContract $profilesRepository): array|object
-	{
-		return $this->transaction(function() use($client,$profilesRepository) {
-		    $client->handle();
-		    return $profilesRepository->update();
-		});
-	}
+    /**
+     * update profiles data
+     *
+     * @param UpdateClient $client
+     * @param CustomerProfilesRepositoryContract $profilesRepository
+     * @return array|object
+     */
+    public function update(UpdateClient $client, CustomerProfilesRepositoryContract $profilesRepository): array|object
+    {
+        return $this->transaction(function () use ($client, $profilesRepository) {
+            $client->handle();
+            return $profilesRepository->update();
+        });
+    }
 }

@@ -36,7 +36,7 @@ trait ScopeManager
     /**
      * @var array|string[]
      */
-    protected array $orderByStrings = ['asc','desc'];
+    protected array $orderByStrings = ['asc', 'desc'];
 
     /**
      * @var string[]
@@ -80,9 +80,8 @@ trait ScopeManager
         foreach (($rangeHandler['ranges'] ?? []) as $data) {
             if (array_key_exists($data, ($rangeHandler['modelRanges'] ?? [])) && method_exists($object, $data)) {
                 $object->$data($builder);
-            }
-            elseif (array_key_exists($data, ($rangeHandler['modelRanges'] ?? [])) && method_exists($object, 'rangeHandler')){
-                $object->rangeHandler($builder,$data);
+            } elseif (array_key_exists($data, ($rangeHandler['modelRanges'] ?? [])) && method_exists($object, 'rangeHandler')) {
+                $object->rangeHandler($builder, $data);
             }
         }
 
@@ -183,6 +182,29 @@ trait ScopeManager
     }
 
     /**
+     * check select column for db
+     *
+     * @param array $select
+     * @param null|string $table
+     * @return array
+     */
+    private function checkSelectColumn(array $select = [], ?string $table = null): array
+    {
+        $tableName = $table ?? $this->getTable();
+
+        $columns = Db::columns(Str::snake($tableName));
+
+        foreach ($select as $item) {
+            if (!in_array($item, $columns)) {
+                Exception::selectException('', ['key' => $item]);
+                return [];
+            }
+        }
+
+        return $select;
+    }
+
+    /**
      * get active data for model
      *
      * @param Builder $builder
@@ -195,9 +217,9 @@ trait ScopeManager
 
         if (isset($params['orderBy'])) {
             $orderBy = explode(',', $params['orderBy']);
-            $this->getRepository()->throwExceptionIfColumnNotExist($orderBy[0],function() use($builder,$orderBy){
+            $this->getRepository()->throwExceptionIfColumnNotExist($orderBy[0], function () use ($builder, $orderBy) {
                 $orderByString = ($orderBy[1] ?? 'asc');
-                $orderByString = in_array($orderByString,$this->orderByStrings,true)
+                $orderByString = in_array($orderByString, $this->orderByStrings, true)
                     ? $orderByString : Exception::customException('orderByString');
 
                 return $builder->orderBy($orderBy[0], $orderByString);
@@ -222,15 +244,15 @@ trait ScopeManager
 
         if (isset($params['filter'])) {
             $builderSql = $builder->toSql();
-            $builder->where(function ($query) use ($params, $indexes,$builderSql) {
+            $builder->where(function ($query) use ($params, $indexes, $builderSql) {
                 $filtering = indexOrdering($this->getTable(), $params['filter']);
                 foreach ($filtering as $key => $value) {
                     if (!in_array($key, $indexes)) {
                         Exception::filterException('', ['key' => $key]);
                     }
 
-                    $sqlContains = '`'.$key.'` = ?';
-                    if(Str::contains($builderSql,$sqlContains)){
+                    $sqlContains = '`' . $key . '` = ?';
+                    if (Str::contains($builderSql, $sqlContains)) {
                         continue;
                     }
 
@@ -313,12 +335,11 @@ trait ScopeManager
                 $currentHasSplit = explode('-', current($hasQueryList));
                 $has = current($currentHasSplit);
 
-                if(method_exists($this,$has)){
-                    $builder->whereHas($has,function(object $builder){
+                if (method_exists($this, $has)) {
+                    $builder->whereHas($has, function (object $builder) {
                         return $builder;
                     });
-                }
-                elseif (isset($withQuery[$has], $withQuery[$has]['nested'])) {
+                } elseif (isset($withQuery[$has], $withQuery[$has]['nested'])) {
                     if (false === $withQuery[$has]['nested']) {
                         $builder->whereHas($has, function (object $builder) use ($request, $has, $recursive, $hasQueryList, $currentHasSplit) {
                             $range = $request['hasRange'][$has] ?? ($request['range'] ?? '');
@@ -349,13 +370,12 @@ trait ScopeManager
                                 $recursiveHasValueData = $recursiveHasValue[3] ?? ($recursiveHasValue[2] ?? 0);
                                 $recursiveHasValueOperator = isset($recursiveHasValue[3]) ? $recursiveHasValue[2] : '=';
 
-                                if(count($hasFilter)){
+                                if (count($hasFilter)) {
                                     $builder->hasQuery(current($recursiveHasValue), isset($recursiveHasValue[1]) ? [
                                         $recursiveHasValue[1] => [$recursiveHasValueOperator => $recursiveHasValueData]
                                     ] : [], false)->range($repositoryMethod, (string)$range)
                                         ->filterQuery($hasFilter);
-                                }
-                                else{
+                                } else {
                                     $builder->hasQuery(current($recursiveHasValue), isset($recursiveHasValue[1]) ? [
                                         $recursiveHasValue[1] => [$recursiveHasValueOperator => $recursiveHasValueData]
                                     ] : [], false)->range($repositoryMethod, (string)$range);
@@ -366,11 +386,10 @@ trait ScopeManager
 
                             if (isset($request['hasRecursiveFilter'][$has])) {
                                 foreach ($request['hasRecursiveFilter'][$has] as $recursiveHas => $recursiveFilter) {
-                                    if(count($hasFilter)){
+                                    if (count($hasFilter)) {
                                         $builder->hasQuery($recursiveHas, $recursiveFilter, false)->range($repositoryMethod, (string)$range)
                                             ->filterQuery($hasFilter);
-                                    }
-                                    else{
+                                    } else {
                                         $builder->hasQuery($recursiveHas, $recursiveFilter, false)->range($repositoryMethod, (string)$range);
                                     }
 
@@ -379,11 +398,10 @@ trait ScopeManager
                                 }
                             } else {
 
-                                if(count($hasFilter)){
+                                if (count($hasFilter)) {
                                     $builder->range($repositoryMethod, (string)$range)
                                         ->filterQuery($hasFilter);
-                                }
-                                else{
+                                } else {
                                     $builder->range($repositoryMethod, (string)$range);
                                 }
                             }
@@ -416,15 +434,14 @@ trait ScopeManager
             $this->doesntHaveValues = $doesntHaveQuery;
 
             foreach ($doesntHaveQuery as $doesnt) {
-                if(method_exists($this,$doesnt)){
+                if (method_exists($this, $doesnt)) {
                     $builder->whereDoesntHave($doesnt, function (object $builder) use ($params, $doesnt) {
                         $range = $params['hasRange'][$doesnt] ?? ($params['range'] ?? '');
                         $repository = getModelWithPlural($doesnt);
                         $builder->range(Repository::$repository(), (string)$range);
                         return $builder;
                     });
-                }
-                elseif (isset($withQuery[$doesnt], $withQuery[$doesnt]['nested']) && false === $withQuery[$doesnt]['nested']) {
+                } elseif (isset($withQuery[$doesnt], $withQuery[$doesnt]['nested']) && false === $withQuery[$doesnt]['nested']) {
                     $builder->whereDoesntHave($doesnt, function (object $builder) use ($params, $doesnt) {
                         $range = $params['hasRange'][$doesnt] ?? ($params['range'] ?? '');
                         $repository = getModelWithPlural($doesnt);
@@ -438,7 +455,6 @@ trait ScopeManager
         return $builder;
     }
 
-
     /**
      * get eager loading data for model
      *
@@ -449,28 +465,5 @@ trait ScopeManager
     public function scopeWithQuery(Builder $builder, array $with = []): object
     {
         return $this->withProcessHandler($builder, $with);
-    }
-
-    /**
-     * check select column for db
-     *
-     * @param array $select
-     * @param null|string $table
-     * @return array
-     */
-    private function checkSelectColumn(array $select = [], ?string $table = null): array
-    {
-        $tableName = $table ?? $this->getTable();
-
-        $columns = Db::columns(Str::snake($tableName));
-
-        foreach ($select as $item) {
-            if (!in_array($item, $columns)) {
-                Exception::selectException('', ['key' => $item]);
-                return [];
-            }
-        }
-
-        return $select;
     }
 }

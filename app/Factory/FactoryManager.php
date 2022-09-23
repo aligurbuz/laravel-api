@@ -49,6 +49,16 @@ class FactoryManager extends FactoryResourceManager
     }
 
     /**
+     * binds to classes as parameters.
+     *
+     * @return void
+     */
+    public static function bindings(): void
+    {
+        //
+    }
+
+    /**
      * It loads the factory magic method parameters to the properties.
      *
      * @param string $name
@@ -60,6 +70,21 @@ class FactoryManager extends FactoryResourceManager
         $name = static::$name = ucfirst($name);
 
         static::$arguments = isset(static::$binds[$name]) ? array_merge($arguments, static::$binds[$name]) : $arguments;
+    }
+
+    /**
+     * set adapter name for factory model
+     *
+     * @param null|callable $callback
+     * @return mixed
+     */
+    private static function setAdapterName(callable $callback = null): mixed
+    {
+        if (isset(static::$adapters[static::$name], static::$arguments['adapter'])) {
+            static::$adapters[static::$name] = static::$arguments['adapter'];
+        }
+
+        return call_user_func($callback);
     }
 
     /**
@@ -93,21 +118,6 @@ class FactoryManager extends FactoryResourceManager
     }
 
     /**
-     * set adapter name for factory model
-     *
-     * @param null|callable $callback
-     * @return mixed
-     */
-    private static function setAdapterName(callable $callback = null): mixed
-    {
-        if (isset(static::$adapters[static::$name], static::$arguments['adapter'])) {
-            static::$adapters[static::$name] = static::$arguments['adapter'];
-        }
-
-        return call_user_func($callback);
-    }
-
-    /**
      * Binds to the constructor method of factory classes.
      *
      * @param string $name
@@ -117,15 +127,5 @@ class FactoryManager extends FactoryResourceManager
     public static function bind(string $name, array $bind = []): void
     {
         static::$binds[$name] = $bind;
-    }
-
-    /**
-     * binds to classes as parameters.
-     *
-     * @return void
-     */
-    public static function bindings(): void
-    {
-        //
     }
 }

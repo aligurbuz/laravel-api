@@ -42,9 +42,9 @@ class ModelCommand extends Command
     public function handle()
     {
         $baseModel = $this->argument('model');
-        $baseModelNamespace = Constants::modelNamespace.'\\'.ucfirst($baseModel);
-        AppContainer::setWithTerminating('testModel',$baseModel);
-        AppContainer::setWithTerminating('testModelNamespace',$baseModelNamespace);
+        $baseModelNamespace = Constants::modelNamespace . '\\' . ucfirst($baseModel);
+        AppContainer::setWithTerminating('testModel', $baseModel);
+        AppContainer::setWithTerminating('testModelNamespace', $baseModelNamespace);
 
         $modelFile = app_path('Models') . '' . DIRECTORY_SEPARATOR . '' . ucfirst($baseModel) . '.php';
 

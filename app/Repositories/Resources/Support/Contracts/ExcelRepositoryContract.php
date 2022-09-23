@@ -27,7 +27,7 @@ interface ExcelRepositoryContract
     /**
      * @return Excel
      */
-    public function entity() : Excel;
+    public function entity(): Excel;
 
     /**
      * @param array $data

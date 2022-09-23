@@ -55,8 +55,8 @@ class Exception
         // the notification will be thrown with the exception.(etc..slack)
         AppContainer::set(Constants::exceptionNotify, $arguments[2] ?? null);
 
-        if(isset($arguments[1]['errorInput'])){
-            AppContainer::setWithTerminating('errorInput',$arguments[1]['errorInput']);
+        if (isset($arguments[1]['errorInput'])) {
+            AppContainer::setWithTerminating('errorInput', $arguments[1]['errorInput']);
         }
 
         if (isset($arguments[0])) {

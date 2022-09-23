@@ -41,17 +41,17 @@ class Postman extends Command
     {
         $mapJson = json_decode(File::get(app_path('Docs') . '' . DIRECTORY_SEPARATOR . 'map.json'), 1);
         $docUrl = config('documentation.docUrl');
-        foreach ($mapJson as $docKey => $docData){
-            if($docKey=='files' || $docKey=='keys'){
-                foreach ($docData as $docDataKey => $docDataItem){
-                    if(!is_null($docUrl) && $docKey=='files'){
-                        $mapJson[$docKey][$docDataKey] = str_replace('/var/www/html/app/api',$docUrl,$docDataItem);
+        foreach ($mapJson as $docKey => $docData) {
+            if ($docKey == 'files' || $docKey == 'keys') {
+                foreach ($docData as $docDataKey => $docDataItem) {
+                    if (!is_null($docUrl) && $docKey == 'files') {
+                        $mapJson[$docKey][$docDataKey] = str_replace('/var/www/html/app/api', $docUrl, $docDataItem);
                     }
 
-                    if(!is_null($docUrl) && $docKey=='keys'){
-                        foreach ($docData as $keyData => $keyItem){
+                    if (!is_null($docUrl) && $docKey == 'keys') {
+                        foreach ($docData as $keyData => $keyItem) {
                             unset($mapJson[$docKey][$keyData]);
-                            $mapJson[$docKey][str_replace('/var/www/html/app/api',$docUrl,$keyData)] = $keyItem;
+                            $mapJson[$docKey][str_replace('/var/www/html/app/api', $docUrl, $keyData)] = $keyItem;
                         }
                     }
                 }

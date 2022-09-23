@@ -65,6 +65,155 @@ class Client extends ClientManager
     }
 
     /**
+     * You can specify your methods to run before the client starts in the preHandler property value.
+     *
+     * @return void
+     */
+    public function preHandlers(): void
+    {
+        if (property_exists($this, 'preHandlers') && is_array($this->preHandlers)) {
+            foreach ($this->preHandlers as $preHandler) {
+                if (method_exists($this, $method = 'pre' . ucfirst($preHandler) . 'Handler')) {
+                    $this->$method(ClientFacade::data());
+                }
+            }
+        }
+    }
+
+    /**
+     * get model required fields
+     *
+     * @return void
+     */
+    public function modelRequiredFields(): void
+    {
+        $maxLength = Db::columnMaxLength($this->getTable());
+
+        if (request()->method() === 'POST') {
+            $entities = Db::entities($this->getTable());
+            $requiredColumns = $entities['required_columns'] ?? [];
+
+            foreach ($requiredColumns as $requiredColumn) {
+                (isset($maxLength[$requiredColumn]))
+                    ? $this->setRule($requiredColumn, 'required|max:' . $maxLength[$requiredColumn])
+                    : $this->setRule($requiredColumn, 'required');
+            }
+        }
+
+        if (request()->method() !== 'GET') {
+            foreach ($maxLength as $maxLengthColumn => $maxLengthValue) {
+                $this->setRule($maxLengthColumn, 'max:' . $maxLengthValue, false);
+            }
+        }
+    }
+
+    /**
+     * get capsule
+     *
+     * @return null|string
+     */
+    public function getTable(): null|string
+    {
+        $model = $this->getModel();
+
+        if (class_exists($model)) {
+            return (new $model)->getTable();
+        }
+
+        return null;
+    }
+
+    /**
+     * get capsule
+     *
+     * @return string
+     */
+    public function getModel(): string
+    {
+        return $this->model[0] ?? 'no-model';
+    }
+
+    /**
+     * get rule for client
+     *
+     * @param $key
+     * @param $value
+     * @param bool $isset
+     * @return void
+     */
+    public function setRule($key, $value, bool $isset = true): void
+    {
+        if ($isset && isset($this->rule[$key])) {
+            $this->rule[$key] = $value . '|' . $this->rule[$key];
+        } elseif (!isset($this->rule[$key])) {
+            $this->rule[$key] = $value;
+        }
+    }
+
+    /**
+     * get capsule data
+     *
+     * @return void
+     */
+    public function capsule(): void
+    {
+        if (
+            property_exists($this, 'model')
+            && is_array($this->model)
+            && isset($this->model[0])
+        ) {
+            AppContainer::setWithTerminating('clientCapsule', (is_array($this->capsule) ? $this->capsule : []));
+            $this->capsule = array_merge($this->columnsForModel(), $this->capsule);
+
+            if ($this->requestMethod == 'GET') {
+                $this->capsule = array_merge($this->capsule, config('app.allowedClientKeys'));
+
+                if (count($this->repository()->getCollects())) {
+                    $this->capsule = array_merge($this->capsule, ['collect']);
+                }
+            }
+        }
+    }
+
+    /**
+     * get columns for model
+     *
+     * @return array
+     */
+    public function columnsForModel(): array
+    {
+        return Db::columns($this->getTable());
+    }
+
+    /**
+     * get repository for client class model
+     *
+     * @param bool $justName
+     * @return mixed
+     */
+    public function repository(bool $justName = false): mixed
+    {
+        $camelCaseModelName = Str::camel($this->getModelName());
+
+        if ($justName) return $camelCaseModelName;
+
+        return Repository::$camelCaseModelName();
+    }
+
+    /**
+     * get capsule
+     *
+     * @return string
+     */
+    public function getModelName(): string
+    {
+        $model = $this->getModel();
+        $modelSplit = explode('\\', $model);
+
+        return end($modelSplit);
+    }
+
+    /**
      * add rule for client
      *
      * @return void
@@ -82,37 +231,6 @@ class Client extends ClientManager
     public function getCustomRules(): array
     {
         return $this->customRules;
-    }
-
-    /**
-     * You can specify your methods to run before the client starts in the preHandler property value.
-     *
-     * @return void
-     */
-    public function preHandlers(): void
-    {
-        if (property_exists($this, 'preHandlers') && is_array($this->preHandlers)) {
-            foreach ($this->preHandlers as $preHandler) {
-                if (method_exists($this, $method = 'pre' . ucfirst($preHandler) . 'Handler')) {
-                    $this->$method(ClientFacade::data());
-                }
-            }
-        }
-    }
-
-    /**
-     * get repository for client class model
-     *
-     * @param bool $justName
-     * @return mixed
-     */
-    public function repository(bool $justName = false): mixed
-    {
-        $camelCaseModelName = Str::camel($this->getModelName());
-
-        if ($justName) return $camelCaseModelName;
-
-        return Repository::$camelCaseModelName();
     }
 
     /**
@@ -143,23 +261,6 @@ class Client extends ClientManager
     public function getCapsuleComments(): array
     {
         return property_exists($this, 'capsuleComments') ? $this->capsuleComments : [];
-    }
-
-    /**
-     * get rule for client
-     *
-     * @param $key
-     * @param $value
-     * @param bool $isset
-     * @return void
-     */
-    public function setRule($key, $value, bool $isset = true): void
-    {
-        if ($isset && isset($this->rule[$key])) {
-            $this->rule[$key] = $value . '|' . $this->rule[$key];
-        } elseif (!isset($this->rule[$key])) {
-            $this->rule[$key] = $value;
-        }
     }
 
     /**
@@ -296,70 +397,6 @@ class Client extends ClientManager
     }
 
     /**
-     * get capsule
-     *
-     * @return string
-     */
-    public function getModel(): string
-    {
-        return $this->model[0] ?? 'no-model';
-    }
-
-    /**
-     * get capsule
-     *
-     * @return string
-     */
-    public function getModelName(): string
-    {
-        $model = $this->getModel();
-        $modelSplit = explode('\\', $model);
-
-        return end($modelSplit);
-    }
-
-    /**
-     * get capsule
-     *
-     * @return null|string
-     */
-    public function getTable(): null|string
-    {
-        $model = $this->getModel();
-
-        if (class_exists($model)) {
-            return (new $model)->getTable();
-        }
-
-        return null;
-    }
-
-    /**
-     * get capsule data
-     *
-     * @return void
-     */
-    public function capsule(): void
-    {
-        if (
-            property_exists($this, 'model')
-            && is_array($this->model)
-            && isset($this->model[0])
-        ) {
-            AppContainer::setWithTerminating('clientCapsule', (is_array($this->capsule) ? $this->capsule : []));
-            $this->capsule = array_merge($this->columnsForModel(), $this->capsule);
-
-            if ($this->requestMethod == 'GET') {
-                $this->capsule = array_merge($this->capsule, config('app.allowedClientKeys'));
-
-                if (count($this->repository()->getCollects())) {
-                    $this->capsule = array_merge($this->capsule, ['collect']);
-                }
-            }
-        }
-    }
-
-    /**
      * get client capsule descriptions for standard client data
      *
      * @return array
@@ -381,13 +418,26 @@ class Client extends ClientManager
     }
 
     /**
-     * get columns for model
+     * set input for client
+     *
+     * @param null|string $key
+     * @return mixed
+     */
+    public function get(?string $key = null): mixed
+    {
+        $streamData = $this->getClientDataStreams();
+
+        return $streamData[$key] ?? $streamData;
+    }
+
+    /**
+     * get client data stream for client
      *
      * @return array
      */
-    public function columnsForModel(): array
+    public function getClientDataStreams(): array
     {
-        return Db::columns($this->getTable());
+        return AppContainer::get('clientDataStreams', []);
     }
 
     /**
@@ -430,29 +480,6 @@ class Client extends ClientManager
     }
 
     /**
-     * set input for client
-     *
-     * @param null|string $key
-     * @return mixed
-     */
-    public function get(?string $key = null): mixed
-    {
-        $streamData = $this->getClientDataStreams();
-
-        return $streamData[$key] ?? $streamData;
-    }
-
-    /**
-     * get client data stream for client
-     *
-     * @return array
-     */
-    public function getClientDataStreams(): array
-    {
-        return AppContainer::get('clientDataStreams', []);
-    }
-
-    /**
      * check if the key is valid for client
      *
      * @param null|string $key
@@ -463,32 +490,5 @@ class Client extends ClientManager
         $streamData = $this->getClientDataStreams();
 
         return (isset($streamData[$key]));
-    }
-
-    /**
-     * get model required fields
-     *
-     * @return void
-     */
-    public function modelRequiredFields(): void
-    {
-        $maxLength = Db::columnMaxLength($this->getTable());
-
-        if (request()->method() === 'POST') {
-            $entities = Db::entities($this->getTable());
-            $requiredColumns = $entities['required_columns'] ?? [];
-
-            foreach ($requiredColumns as $requiredColumn) {
-                (isset($maxLength[$requiredColumn]))
-                    ? $this->setRule($requiredColumn, 'required|max:' . $maxLength[$requiredColumn])
-                    : $this->setRule($requiredColumn, 'required');
-            }
-        }
-
-        if (request()->method() !== 'GET') {
-            foreach ($maxLength as $maxLengthColumn => $maxLengthValue) {
-                $this->setRule($maxLengthColumn, 'max:' . $maxLengthValue, false);
-            }
-        }
     }
 }

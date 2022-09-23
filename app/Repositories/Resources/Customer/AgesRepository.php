@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 declare(strict_types=1);
 
@@ -17,18 +17,18 @@ use App\Repositories\Resources\Customer\PropertyHandlers\AgesPropertyHandlerTrai
 
 class AgesRepository extends EloquentRepository implements CustomerAgesRepositoryContract
 {
-	use AfterCreate;
-	use AfterUpdate;
-	use BeforeCreate;
-	use BeforeUpdate;
-	use AgesPromoterTrait;
-	use GeneralPromoterTrait;
-	use AgesPropertyHandlerTrait;
+    use AfterCreate;
+    use AfterUpdate;
+    use BeforeCreate;
+    use BeforeUpdate;
+    use AgesPromoterTrait;
+    use GeneralPromoterTrait;
+    use AgesPropertyHandlerTrait;
 
-	/**
-	 * get model name for repository
-	 *
-	 * @var string
-	 */
-	protected static string $model = CustomerAge::class;
+    /**
+     * get model name for repository
+     *
+     * @var string
+     */
+    protected static string $model = CustomerAge::class;
 }

@@ -20,6 +20,19 @@ trait GeneralPromoterTrait
     }
 
     /**
+     * set denied eager loadings according to apiKey
+     *
+     * @return void
+     */
+    private function setDeniedEagerLoadingsAccordingToApiKey(): void
+    {
+        if (ApiKey::isWeb()) {
+            $this->setDeniedEagerLoadings('role');
+            $this->setDeniedEagerLoadings('user');
+        }
+    }
+
+    /**
      * set hidden for repository
      *
      * @return string[]
@@ -36,19 +49,6 @@ trait GeneralPromoterTrait
         }
 
         return [];
-    }
-
-    /**
-     * set denied eager loadings according to apiKey
-     *
-     * @return void
-     */
-    private function setDeniedEagerLoadingsAccordingToApiKey(): void
-    {
-        if (ApiKey::isWeb()) {
-            $this->setDeniedEagerLoadings('role');
-            $this->setDeniedEagerLoadings('user');
-        }
     }
 
     /**

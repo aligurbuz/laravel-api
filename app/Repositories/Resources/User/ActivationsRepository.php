@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 declare(strict_types=1);
 
@@ -17,18 +17,18 @@ use App\Repositories\Resources\User\PropertyHandlers\ActivationsPropertyHandlerT
 
 class ActivationsRepository extends EloquentRepository implements UserActivationsRepositoryContract
 {
-	use AfterCreate;
-	use AfterUpdate;
-	use BeforeCreate;
-	use BeforeUpdate;
-	use ActivationsPromoterTrait;
-	use GeneralPromoterTrait;
-	use ActivationsPropertyHandlerTrait;
+    use AfterCreate;
+    use AfterUpdate;
+    use BeforeCreate;
+    use BeforeUpdate;
+    use ActivationsPromoterTrait;
+    use GeneralPromoterTrait;
+    use ActivationsPropertyHandlerTrait;
 
-	/**
-	 * get model name for repository
-	 *
-	 * @var string
-	 */
-	protected static string $model = UserActivation::class;
+    /**
+     * get model name for repository
+     *
+     * @var string
+     */
+    protected static string $model = UserActivation::class;
 }

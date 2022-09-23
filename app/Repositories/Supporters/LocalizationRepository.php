@@ -15,23 +15,6 @@ use Illuminate\Support\Str;
 trait LocalizationRepository
 {
     /**
-     * get localization data
-     *
-     * @param object|null $repository
-     * @return array
-     */
-    public function getLocalizations(?object $repository = null): array
-    {
-        $repository = $repository ?? $this;
-
-        if (property_exists($repository, 'localization') && count($repository->localization)) {
-            return $repository->localization;
-        }
-
-        return [];
-    }
-
-    /**
      * get with localization relation for repository
      *
      * @param object $modelInstance
@@ -76,6 +59,23 @@ trait LocalizationRepository
     }
 
     /**
+     * get localization data
+     *
+     * @param object|null $repository
+     * @return array
+     */
+    public function getLocalizations(?object $repository = null): array
+    {
+        $repository = $repository ?? $this;
+
+        if (property_exists($repository, 'localization') && count($repository->localization)) {
+            return $repository->localization;
+        }
+
+        return [];
+    }
+
+    /**
      * update localization data
      *
      * @param array $data
@@ -99,7 +99,7 @@ trait LocalizationRepository
                 $repository = $localization->getRepository(false);
                 $values = $repository[0]['values'][0] ?? [];
 
-                if(count($values)){
+                if (count($values)) {
                     $newData = [
                         [
                             'localization_code' => ($repository[0]['localization_code'] ?? 0),

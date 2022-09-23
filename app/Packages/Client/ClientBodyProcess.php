@@ -78,21 +78,6 @@ class ClientBodyProcess extends ClientVariableProcess
     }
 
     /**
-     * @param array $data
-     * @return void
-     */
-    private function capsuleProcess(array $data = []): void
-    {
-        $capsule = $this->client->getCapsule();
-
-        foreach ($data as $key => $value) {
-            if (!in_array($key, $capsule)) {
-                Exception::clientCapsuleException('', ['key' => $key]);
-            }
-        }
-    }
-
-    /**
      * make process valid for client
      *
      * @return void
@@ -121,7 +106,7 @@ class ClientBodyProcess extends ClientVariableProcess
                     return $value !== null;
                 })->toArray();
 
-                $this->variableProcess(array_replace($generatorProcess,$this->client->getDataStream()), false);
+                $this->variableProcess(array_replace($generatorProcess, $this->client->getDataStream()), false);
                 $value = $this->client->getDataStream();
 
 
@@ -150,29 +135,6 @@ class ClientBodyProcess extends ClientVariableProcess
         }
 
         $this->arrayRuleValidator();
-    }
-
-    /**
-     * @return void
-     */
-    private function arrayRuleValidator(): void
-    {
-        $arrayRules = $this->client->getArrayRule();
-
-        foreach ($arrayRules as $field => $values) {
-            $rules = $values['rules'] ?? [];
-
-            foreach ($this->data as $key => $value) {
-                $arrayFields = $value[$field] ?? [];
-                foreach ($arrayFields as $arrayField) {
-                    try {
-                        $this->makeValidator($arrayField, $rules);
-                    } catch (\Exception $exception) {
-                        Exception::customException($exception->getMessage() . '(' . trans('exception.arrayRuleException', ['key' => $field]) . ')');
-                    }
-                }
-            }
-        }
     }
 
     /**
@@ -330,5 +292,43 @@ class ClientBodyProcess extends ClientVariableProcess
         }
 
         AppContainer::set($key, $data);
+    }
+
+    /**
+     * @param array $data
+     * @return void
+     */
+    private function capsuleProcess(array $data = []): void
+    {
+        $capsule = $this->client->getCapsule();
+
+        foreach ($data as $key => $value) {
+            if (!in_array($key, $capsule)) {
+                Exception::clientCapsuleException('', ['key' => $key]);
+            }
+        }
+    }
+
+    /**
+     * @return void
+     */
+    private function arrayRuleValidator(): void
+    {
+        $arrayRules = $this->client->getArrayRule();
+
+        foreach ($arrayRules as $field => $values) {
+            $rules = $values['rules'] ?? [];
+
+            foreach ($this->data as $key => $value) {
+                $arrayFields = $value[$field] ?? [];
+                foreach ($arrayFields as $arrayField) {
+                    try {
+                        $this->makeValidator($arrayField, $rules);
+                    } catch (\Exception $exception) {
+                        Exception::customException($exception->getMessage() . '(' . trans('exception.arrayRuleException', ['key' => $field]) . ')');
+                    }
+                }
+            }
+        }
     }
 }

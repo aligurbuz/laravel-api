@@ -21,7 +21,7 @@ interface UserRepositoryContract
     /**
      * @return User
      */
-    public function entity() : User;
+    public function entity(): User;
 
     /**
      * @return array

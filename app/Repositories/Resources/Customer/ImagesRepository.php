@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 declare(strict_types=1);
 
@@ -17,18 +17,18 @@ use App\Repositories\Resources\Customer\PropertyHandlers\ImagesPropertyHandlerTr
 
 class ImagesRepository extends EloquentRepository implements CustomerImagesRepositoryContract
 {
-	use AfterCreate;
-	use AfterUpdate;
-	use BeforeCreate;
-	use BeforeUpdate;
-	use ImagesPromoterTrait;
-	use GeneralPromoterTrait;
-	use ImagesPropertyHandlerTrait;
+    use AfterCreate;
+    use AfterUpdate;
+    use BeforeCreate;
+    use BeforeUpdate;
+    use ImagesPromoterTrait;
+    use GeneralPromoterTrait;
+    use ImagesPropertyHandlerTrait;
 
-	/**
-	 * get model name for repository
-	 *
-	 * @var string
-	 */
-	protected static string $model = CustomerImage::class;
+    /**
+     * get model name for repository
+     *
+     * @var string
+     */
+    protected static string $model = CustomerImage::class;
 }

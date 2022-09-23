@@ -21,7 +21,7 @@ interface CountriesRepositoryContract
     /**
      * @return Country
      */
-    public function entity() : Country;
+    public function entity(): Country;
 
     /**
      * @return array

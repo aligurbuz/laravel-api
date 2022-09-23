@@ -34,7 +34,7 @@ class AwsS3 extends StorageManager implements StorageInterface
     {
         $this->binds = $binds;
         $this->client = $this->binds['client'] ?? new class {
-            };
+        };
 
         if (!method_exists($this->client, 'ensureColumnExists')) {
             throw new Exception('client bind is invalid');

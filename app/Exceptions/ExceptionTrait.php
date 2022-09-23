@@ -21,20 +21,6 @@ trait ExceptionTrait
     }
 
     /**
-     * If the custom message is in the exception,
-     * it will be replaced with this message.
-     *
-     * @param string $message
-     * @return string
-     */
-    private function getMessageForTranslate(string $message): string
-    {
-        $customMessage = trans('exception.' . $message, $this->getKeys());
-
-        return ($customMessage == 'exception.' . $message) ? $message : $customMessage;
-    }
-
-    /**
      * get keys for container
      *
      * @return array
@@ -48,5 +34,19 @@ trait ExceptionTrait
         }
 
         return [];
+    }
+
+    /**
+     * If the custom message is in the exception,
+     * it will be replaced with this message.
+     *
+     * @param string $message
+     * @return string
+     */
+    private function getMessageForTranslate(string $message): string
+    {
+        $customMessage = trans('exception.' . $message, $this->getKeys());
+
+        return ($customMessage == 'exception.' . $message) ? $message : $customMessage;
     }
 }

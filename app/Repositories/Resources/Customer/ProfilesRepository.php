@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 declare(strict_types=1);
 
@@ -17,18 +17,18 @@ use App\Repositories\Resources\Customer\PropertyHandlers\ProfilesPropertyHandler
 
 class ProfilesRepository extends EloquentRepository implements CustomerProfilesRepositoryContract
 {
-	use AfterCreate;
-	use AfterUpdate;
-	use BeforeCreate;
-	use BeforeUpdate;
-	use ProfilesPromoterTrait;
-	use GeneralPromoterTrait;
-	use ProfilesPropertyHandlerTrait;
+    use AfterCreate;
+    use AfterUpdate;
+    use BeforeCreate;
+    use BeforeUpdate;
+    use ProfilesPromoterTrait;
+    use GeneralPromoterTrait;
+    use ProfilesPropertyHandlerTrait;
 
-	/**
-	 * get model name for repository
-	 *
-	 * @var string
-	 */
-	protected static string $model = Customer::class;
+    /**
+     * get model name for repository
+     *
+     * @var string
+     */
+    protected static string $model = Customer::class;
 }

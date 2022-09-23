@@ -10,6 +10,14 @@ use App\Repositories\Resources\Countries\CountriesRepository;
 use App\Repositories\Resources\Countries\DistrictsRepository;
 use App\Repositories\Resources\Currencies\Contracts\CurrenciesRepositoryContract;
 use App\Repositories\Resources\Currencies\CurrenciesRepository;
+use App\Repositories\Resources\Customer\AgesRepository as CustomerAgesRepository;
+use App\Repositories\Resources\Customer\Contracts\CustomerAgesRepositoryContract;
+use App\Repositories\Resources\Customer\Contracts\CustomerGendersRepositoryContract;
+use App\Repositories\Resources\Customer\Contracts\CustomerImagesRepositoryContract;
+use App\Repositories\Resources\Customer\Contracts\CustomerProfilesRepositoryContract;
+use App\Repositories\Resources\Customer\GendersRepository as CustomerGendersRepository;
+use App\Repositories\Resources\Customer\ImagesRepository as CustomerImagesRepository;
+use App\Repositories\Resources\Customer\ProfilesRepository as CustomerProfilesRepository;
 use App\Repositories\Resources\Gate\Contracts\PermissionsRepositoryContract;
 use App\Repositories\Resources\Gate\Contracts\RolesRepositoryContract;
 use App\Repositories\Resources\Gate\PermissionsRepository;
@@ -28,21 +36,13 @@ use App\Repositories\Resources\Support\Contracts\ExcelRepositoryContract;
 use App\Repositories\Resources\Support\ExcelRepository;
 use App\Repositories\Resources\Timezones\Contracts\TimezonesRepositoryContract;
 use App\Repositories\Resources\Timezones\TimezonesRepository;
+use App\Repositories\Resources\User\ActivationsRepository as UserActivationsRepository;
 use App\Repositories\Resources\User\Contracts\PhotosRepositoryContract;
+use App\Repositories\Resources\User\Contracts\UserActivationsRepositoryContract;
 use App\Repositories\Resources\User\Contracts\UserRepositoryContract;
 use App\Repositories\Resources\User\PhotosRepository;
 use App\Repositories\Resources\User\UserRepository;
 use Illuminate\Support\ServiceProvider;
-use App\Repositories\Resources\Customer\Contracts\CustomerImagesRepositoryContract;
-use App\Repositories\Resources\Customer\ImagesRepository as CustomerImagesRepository;
-use App\Repositories\Resources\Customer\Contracts\CustomerAgesRepositoryContract;
-use App\Repositories\Resources\Customer\AgesRepository as CustomerAgesRepository;
-use App\Repositories\Resources\Customer\Contracts\CustomerGendersRepositoryContract;
-use App\Repositories\Resources\Customer\GendersRepository as CustomerGendersRepository;
-use App\Repositories\Resources\User\Contracts\UserActivationsRepositoryContract;
-use App\Repositories\Resources\User\ActivationsRepository as UserActivationsRepository;
-use App\Repositories\Resources\Customer\Contracts\CustomerProfilesRepositoryContract;
-use App\Repositories\Resources\Customer\ProfilesRepository as CustomerProfilesRepository;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -68,11 +68,11 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(PhotosRepositoryContract::class, PhotosRepository::class);
         $this->app->bind(RegistrationRepositoryContract::class, RegistrationRepository::class);
         $this->app->bind(ExcelRepositoryContract::class, ExcelRepository::class);
-        $this->app->bind(CustomerProfilesRepositoryContract::class,CustomerProfilesRepository::class);
-        $this->app->bind(UserActivationsRepositoryContract::class,UserActivationsRepository::class);
-        $this->app->bind(CustomerGendersRepositoryContract::class,CustomerGendersRepository::class);
-        $this->app->bind(CustomerAgesRepositoryContract::class,CustomerAgesRepository::class);
-        $this->app->bind(CustomerImagesRepositoryContract::class,CustomerImagesRepository::class);
+        $this->app->bind(CustomerProfilesRepositoryContract::class, CustomerProfilesRepository::class);
+        $this->app->bind(UserActivationsRepositoryContract::class, UserActivationsRepository::class);
+        $this->app->bind(CustomerGendersRepositoryContract::class, CustomerGendersRepository::class);
+        $this->app->bind(CustomerAgesRepositoryContract::class, CustomerAgesRepository::class);
+        $this->app->bind(CustomerImagesRepositoryContract::class, CustomerImagesRepository::class);
         //newBind
     }
 
