@@ -69,6 +69,7 @@ class Pdf extends PdfManager implements PdfInterface
     private function loadHTML(string $view, array $viewData = []) : mixed
     {
         $pdf = App::make('dompdf.wrapper');
+
         return $pdf->loadHTML(view('pdf.' . $view, $viewData)->render());
     }
 }
