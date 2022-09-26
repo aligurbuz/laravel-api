@@ -24,11 +24,11 @@ use App\Http\Controllers\DoodleController;
 
 if (!function_exists('dod')) {
     /**
-     * @return DoodleController
+     * @return mixed
      */
-    function dod() : DoodleController
+    function dod() : mixed
     {
-        return (new DoodleController());
+        return (new DoodleController())->handle();
     }
 }
 
@@ -219,18 +219,6 @@ if (!function_exists('currency')) {
     function currency(): string
     {
         return 'USD';
-    }
-}
-
-if (!function_exists('tax')) {
-
-    /**
-     * get tax string for application
-     *
-     */
-    function tax(): string
-    {
-        return RestaurantFacade::entity()->tax_percentage;
     }
 }
 

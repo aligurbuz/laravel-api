@@ -16,7 +16,7 @@ class DoodleController extends Controller
     /**
      * @return mixed
      */
-    public function test() : mixed
+    public function handle() : mixed
     {
         return 'hello world';
     }
