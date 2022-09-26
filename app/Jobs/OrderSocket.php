@@ -2,7 +2,7 @@
 
 namespace App\Jobs;
 
-use App\Facades\Http\Socket\Socket as RequestSocket;
+use App\Factory\Factory;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -41,9 +41,11 @@ class OrderSocket implements ShouldQueue
      */
     public function handle(): void
     {
-        RequestSocket::createOrder(array_merge(
-            $this->data,
-            ['routeParameters' => $this->hash]
-        ));
+        Factory::socket()->order(
+            array_merge(
+                $this->data,
+                ['routeParameters' => $this->hash]
+            )
+        );
     }
 }

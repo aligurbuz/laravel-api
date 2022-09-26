@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 namespace App\Factory\Socket;
 
+use App\Facades\Http\Socket\Socket as RequestSocket;
 use App\Factory\Socket\Interfaces\SocketInterface;
-use App\Jobs\OrderSocket;
-use Illuminate\Foundation\Bus\PendingClosureDispatch;
-use Illuminate\Foundation\Bus\PendingDispatch;
 
 /**
  * Class Socket
@@ -34,12 +32,10 @@ class Socket extends SocketManager implements SocketInterface
     }
 
     /**
-     * @param mixed $hash
      * @param array $data
-     * @return PendingClosureDispatch|PendingDispatch
      */
-    public function order(mixed $hash, array $data = []): PendingDispatch|PendingClosureDispatch
+    public function order(array $data = [])
     {
-        return dispatch(new OrderSocket($hash, $data));
+        return RequestSocket::createOrder($data);
     }
 }
