@@ -7,6 +7,9 @@ use App\Jobs\OrderSocket;
 class Socket
 {
     /**
+     * It was made for you to send
+     * the order data to the socket channel when the order is created.
+     *
      * @param mixed $hash
      * @param array $data
      * @return void
