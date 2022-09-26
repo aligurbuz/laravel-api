@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Factory\Socket;
 
 use App\Factory\Socket\Interfaces\SocketInterface;
-use App\Jobs\Socket as JobSocket;
+use App\Jobs\OrderSocket;
 use Illuminate\Foundation\Bus\PendingClosureDispatch;
 use Illuminate\Foundation\Bus\PendingDispatch;
 
@@ -40,6 +40,6 @@ class Socket extends SocketManager implements SocketInterface
      */
     public function order(mixed $hash, array $data = []): PendingDispatch|PendingClosureDispatch
     {
-        return dispatch(new JobSocket($hash, $data));
+        return dispatch(new OrderSocket($hash, $data));
     }
 }
