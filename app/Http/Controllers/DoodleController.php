@@ -2,15 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\Exception;
+
 class DoodleController extends Controller
 {
-    /**
-     * @return bool[]
-     */
-    public function test() : array
+    public function __construct()
     {
-        return [
-            'work' => true
-        ];
+        if(!isLocale()){
+            Exception::customException('doodle exception');
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function test() : mixed
+    {
+        return 'hello world';
     }
 }

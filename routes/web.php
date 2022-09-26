@@ -4,6 +4,7 @@ use App\Services\Postman;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DeploymentController;
 use App\Http\Controllers\Api\DocumentationController;
+use App\Http\Controllers\DoodleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +16,8 @@ use App\Http\Controllers\Api\DocumentationController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('test',[DoodleController::class,'test']);
 
 Route::get('/doc', [DocumentationController::class,'index']);
 Route::post('/deployment/{key}', [DeploymentController::class,'handle']);
