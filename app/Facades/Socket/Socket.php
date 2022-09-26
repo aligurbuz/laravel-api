@@ -14,8 +14,8 @@ class Socket
      * @param array $data
      * @return void
      */
-    public static function order(mixed $hash,array $data = []): void
+    public static function order(mixed $hash, array $data = []): void
     {
-        dispatch(new JobSocket(__FUNCTION__,$hash,$data));
+        dispatch(new JobSocket(__FUNCTION__, $hash, $data));
     }
 }
