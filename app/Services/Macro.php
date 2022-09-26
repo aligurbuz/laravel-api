@@ -10,11 +10,16 @@ class Macro
     protected static array $macros = [];
 
     /**
+     * @var string
+     */
+    protected string $string;
+
+    /**
      * @param string $string
      */
     public function __construct(string $string)
     {
-        //
+        $this->string = $string;
     }
 
     /**
