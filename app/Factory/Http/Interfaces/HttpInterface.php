@@ -14,4 +14,10 @@ interface HttpInterface
      * @see Http::local()
      */
     public function local(): Request;
+
+    /**
+     * @return Request
+     * @see Http::socket()
+     */
+    public function socket(): Request;
 }

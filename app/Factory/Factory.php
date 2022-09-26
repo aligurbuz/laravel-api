@@ -24,6 +24,7 @@ use App\Factory\Request\Interfaces\RequestInterface;
 use App\Factory\Role\Interfaces\RoleInterface;
 use App\Factory\Search\Interfaces\SearchInterface;
 use App\Factory\Sms\Interfaces\SmsInterface;
+use App\Factory\Socket\Interfaces\SocketInterface;
 use App\Factory\Storage\Interfaces\StorageInterface;
 use App\Factory\Tax\Interfaces\TaxInterface;
 use App\Jobs\EmailSender;
@@ -52,6 +53,7 @@ use App\Jobs\EmailSender;
  * @method static HttpInterface http($arguments = null)
  * @method static PaymentInterface payment($arguments = null)
  * @method static PdfInterface pdf($arguments = null)
+ * @method static SocketInterface socket($arguments = null)
  * @package App\Factory
  */
 class Factory extends FactoryManager

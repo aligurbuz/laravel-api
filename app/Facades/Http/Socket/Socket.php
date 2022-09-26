@@ -40,6 +40,6 @@ class Socket extends HttpManager
      */
     protected static function getResponse(array $data = []): array
     {
-        return $data['resource'] ?? [];
+        return $data;
     }
 }

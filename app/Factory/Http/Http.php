@@ -58,7 +58,10 @@ class Http extends HttpManager implements HttpInterface
      */
     public function socket(): Request
     {
+        $socketAdapter = config('socket.adapter');
+        $socketConnection = config('socket.connection.'.$socketAdapter);
+
         return $this->request->setHeaders([]
-        )->setUrl('http://172.20.0.2:3000');
+        )->setUrl($socketConnection['socketUrl']);
     }
 }
