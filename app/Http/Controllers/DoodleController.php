@@ -8,7 +8,7 @@ class DoodleController extends Controller
 {
     public function __construct()
     {
-        if(!isLocale()){
+        if (!isLocale()) {
             Exception::customException('doodle exception');
         }
     }
@@ -16,7 +16,7 @@ class DoodleController extends Controller
     /**
      * @return mixed
      */
-    public function handle() : mixed
+    public function handle(): mixed
     {
         return 'hello world';
     }

@@ -18,6 +18,7 @@ use App\Factory\Logger\Interfaces\LoggerInterface;
 use App\Factory\Money\Interfaces\MoneyInterface;
 use App\Factory\Notify\Interfaces\NotifyInterface;
 use App\Factory\Payment\Interfaces\PaymentInterface;
+use App\Factory\Pdf\Interfaces\PdfInterface;
 use App\Factory\Permission\Interfaces\PermissionInterface;
 use App\Factory\Request\Interfaces\RequestInterface;
 use App\Factory\Role\Interfaces\RoleInterface;
@@ -50,6 +51,7 @@ use App\Jobs\EmailSender;
  * @method static ExcelInterface excel($arguments = null)
  * @method static HttpInterface http($arguments = null)
  * @method static PaymentInterface payment($arguments = null)
+ * @method static PdfInterface pdf($arguments = null)
  * @package App\Factory
  */
 class Factory extends FactoryManager
