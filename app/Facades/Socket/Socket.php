@@ -2,7 +2,7 @@
 
 namespace App\Facades\Socket;
 
-use App\Jobs\OrderSocket;
+use App\Jobs\Socket as JobSocket;
 
 class Socket
 {
@@ -16,6 +16,6 @@ class Socket
      */
     public static function order(mixed $hash,array $data = []): void
     {
-        dispatch(new OrderSocket($hash,$data));
+        dispatch(new JobSocket(__FUNCTION__,$hash,$data));
     }
 }

@@ -9,9 +9,14 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
-class OrderSocket implements ShouldQueue
+class Socket implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+
+    /**
+     * @var string
+     */
+    protected string $channel;
 
     /**
      * @var mixed
@@ -28,8 +33,9 @@ class OrderSocket implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(mixed $hash, array $data = [])
+    public function __construct(string $channel,mixed $hash, array $data = [])
     {
+        $this->channel = $channel;
         $this->hash = $hash;
         $this->data = $data;
     }
@@ -41,7 +47,9 @@ class OrderSocket implements ShouldQueue
      */
     public function handle(): void
     {
-        Factory::socket()->order(
+        $channel = $this->channel;
+
+        Factory::socket()->$channel(
             array_merge(
                 $this->data,
                 ['routeParameters' => $this->hash]
