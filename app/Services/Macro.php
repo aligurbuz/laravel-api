@@ -27,9 +27,9 @@ class Macro
      * @param array $arguments
      * @return null
      */
-    public function __call(string $name , array $arguments = [])
+    public function __call(string $name, array $arguments = [])
     {
-        if(isset(self::$macros[$name]) && is_callable(self::$macros[$name])){
+        if (isset(self::$macros[$name]) && is_callable(self::$macros[$name])) {
             /*** @var object $closure */
             $closure = self::$macros[$name];
             return $closure->call($this);
@@ -43,7 +43,7 @@ class Macro
      * @param callable $callback
      * @return void
      */
-    public static function set(string $method, callable $callback) : void
+    public static function set(string $method, callable $callback): void
     {
         static::$macros[$method] = $callback;
     }
