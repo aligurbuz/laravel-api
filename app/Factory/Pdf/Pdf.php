@@ -40,9 +40,35 @@ class Pdf extends PdfManager implements PdfInterface
      */
     public function download(string $view, array $viewData = []): mixed
     {
-        $pdf = App::make('dompdf.wrapper');
-        $pdf->loadHTML(view('pdf.' . $view, $viewData)->render());
+        $pdf = $this->loadHTML($view,$viewData);
 
         return $pdf->download();
+    }
+
+    /**
+     * pdf stream for factory
+     *
+     * @param string $view
+     * @param array $viewData
+     * @return mixed
+     */
+    public function stream(string $view, array $viewData = []): mixed
+    {
+        $pdf = $this->loadHTML($view,$viewData);
+
+        return $pdf->stream();
+    }
+
+    /**
+     * pdf load html for factory
+     *
+     * @param string $view
+     * @param array $viewData
+     * @return mixed
+     */
+    private function loadHTML(string $view, array $viewData = []) : mixed
+    {
+        $pdf = App::make('dompdf.wrapper');
+        return $pdf->loadHTML(view('pdf.' . $view, $viewData)->render());
     }
 }

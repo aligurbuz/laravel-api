@@ -15,4 +15,12 @@ interface PdfInterface
      * @see Pdf::download()
      */
     public function download(string $view, array $viewData = []): mixed;
+
+    /**
+     * @param string $view
+     * @param array $viewData
+     * @return mixed
+     * @see Pdf::stream()
+     */
+    public function stream(string $view, array $viewData = []): mixed;
 }
