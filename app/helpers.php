@@ -20,6 +20,17 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 use JetBrains\PhpStorm\Pure;
+use App\Http\Controllers\DoodleController;
+
+if (!function_exists('dod')) {
+    /**
+     * @return DoodleController
+     */
+    function dod() : DoodleController
+    {
+        return (new DoodleController());
+    }
+}
 
 if (!function_exists('getRanges')) {
 

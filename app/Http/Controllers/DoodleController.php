@@ -4,8 +4,13 @@ namespace App\Http\Controllers;
 
 class DoodleController extends Controller
 {
-    public function test()
+    /**
+     * @return bool[]
+     */
+    public function test() : array
     {
-        //do doodle
+        return [
+            'work' => true
+        ];
     }
 }
