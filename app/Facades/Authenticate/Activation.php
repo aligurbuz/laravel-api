@@ -3,8 +3,8 @@
 namespace App\Facades\Authenticate;
 
 use App\Exceptions\Exception;
+use App\Facades\Email\Email;
 use App\Facades\Sms\Sms;
-use App\Factory\Factory;
 use App\Repositories\Repository;
 use App\Services\AppContainer;
 
@@ -88,7 +88,7 @@ class Activation
             static::throwExceptionIfActivationCodeNotValid($activationData);
 
             if (static::isNullActivationCode()) {
-                Factory::email()->verifyingEmailForUser($user['email'], $activationData['hash']);
+                Email::userActivation($user['email'], $activationData['hash']);
 
                 return [
                     'activation_type' => 'Email',
