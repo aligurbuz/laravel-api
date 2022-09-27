@@ -11,25 +11,18 @@ class VerifyEmailForUser extends Mailable
     use Queueable, SerializesModels;
 
     /**
-     * @var string
+     * @var array
      */
-    protected string $mail;
-
-    /**
-     * @var string
-     */
-    protected string $hash;
+    protected array $data = [];
 
     /**
      * Create a new message instance.
      *
-     * @param string $mail
-     * @param string $hash
+     * @param array $data
      */
-    public function __construct(string $mail, string $hash)
+    public function __construct(array $data = [])
     {
-        $this->mail = $mail;
-        $this->hash = $hash;
+        $this->data = $data;
     }
 
     /**
@@ -40,11 +33,7 @@ class VerifyEmailForUser extends Mailable
     public function build()
     {
         return $this
-            ->from('verifiedMailAddress', 'name')
-            ->to([$this->mail])
-            ->view('mail.verify-email', [
-                'hash' => $this->hash
-            ])
-            ->subject('test message');
+            ->view('mail.user-verifying-email')
+            ->subject('User Verifying Email');
     }
 }

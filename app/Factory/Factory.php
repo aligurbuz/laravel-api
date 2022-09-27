@@ -10,7 +10,6 @@ use App\Factory\Client\Interfaces\ClientInterface;
 use App\Factory\Code\Interfaces\CodeInterface;
 use App\Factory\Collection\Interfaces\CollectionInterface;
 use App\Factory\Date\Interfaces\DateInterface;
-use App\Factory\Email\Interfaces\EmailInterface;
 use App\Factory\Excel\Interfaces\ExcelInterface;
 use App\Factory\Http\Interfaces\HttpInterface;
 use App\Factory\Localization\Interfaces\LocalizationInterface;
@@ -27,7 +26,6 @@ use App\Factory\Sms\Interfaces\SmsInterface;
 use App\Factory\Socket\Interfaces\SocketInterface;
 use App\Factory\Storage\Interfaces\StorageInterface;
 use App\Factory\Tax\Interfaces\TaxInterface;
-use App\Jobs\EmailSender;
 
 /**
  * Class Factory
@@ -43,7 +41,6 @@ use App\Jobs\EmailSender;
  * @method static PermissionInterface permission($arguments = null)
  * @method static SearchInterface search($arguments = null)
  * @method static DateInterface date($arguments = null)
- * @method static EmailInterface email($arguments = null)
  * @method static ApiKeyInterface apiKey($arguments = null)
  * @method static RequestInterface request($arguments = null)
  * @method static SmsInterface sms($arguments = null)
@@ -80,6 +77,5 @@ class Factory extends FactoryManager
     public static function bindings(): void
     {
         static::bind('Storage', ['files' => request()->allFiles()]);
-        static::bind('Email', ['mailer' => new EmailSender()]);
     }
 }

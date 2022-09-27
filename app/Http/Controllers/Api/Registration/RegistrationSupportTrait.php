@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Api\Registration;
 
-use App\Factory\Factory;
+use App\Facades\Email\Email;
 
 trait RegistrationSupportTrait
 {
@@ -21,7 +21,7 @@ trait RegistrationSupportTrait
         $userEmail = $registration[0]['user'][0]['email'];
         $verifyEmailHash = encodeString((string)$registration[0]['registration_code']);
 
-        Factory::email()->verifyingEmailForUser($userEmail, $verifyEmailHash);
+        Email::verifyingEmail($userEmail, $verifyEmailHash);
 
         return $registration;
     }
