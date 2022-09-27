@@ -149,7 +149,7 @@ class EloquentRepository
      *
      * @param array $with
      */
-    public function detectDeniedEagerLoadings(array $with = [])
+    public function detectDeniedEagerLoadings(array $with = []): void
     {
         foreach ($with as $relation => $data) {
             if (in_array($relation, $this->getDeniedEagerLoadings(), true)) {
