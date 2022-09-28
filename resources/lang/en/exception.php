@@ -45,5 +45,6 @@ return [
     'orderByString'                 => 'Sorting format is wrong. Please correct your "orderBy" key.',
     'filterMandatory'               => 'You can only display one data. So use filter.',
     'apiKeyRestrictions'            => 'This endpoint request cannot be performed for apiKey detected as (:key).',
-    'invalidActivationCode'         => 'Activation code is invalid'
+    'invalidActivationCode'         => 'Activation code is invalid',
+    'filterMandatoryKey'            => 'The (:key) key must be in the filter.'
 ];
