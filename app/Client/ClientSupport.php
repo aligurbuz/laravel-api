@@ -38,17 +38,23 @@ trait ClientSupport
     /**
      * get filterMandatory generator for request
      *
+     * @param string|null $key
+     * @return null
      * @throws ContainerExceptionInterface
      * @throws NotFoundExceptionInterface
      */
-    public function filterMandatoryGenerator()
+    public function filterMandatoryGenerator(?string $key = null)
     {
-        if (app()->runningInConsole()) return null;
+        if(app()->runningInConsole()) return null;
 
         $filter = request()->get('filter');
 
         if (is_null($filter)) {
             Exception::customException('filterMandatory');
+        }
+
+        if(!is_null($key) && !isset($filter[$key])){
+            Exception::customException('filterMandatoryKey', ['key' => $key]);
         }
 
         return null;
