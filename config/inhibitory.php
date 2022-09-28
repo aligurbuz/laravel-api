@@ -9,7 +9,7 @@ return [
         //'timezones' => ['GET'],
     ],
     'authenticateWeb' => [
-        'customer/*' => ['GET','PUT'],
+        'customer/profiles' => ['GET','PUT'],
         'logout' => ['POST'],
     ]
 ];
