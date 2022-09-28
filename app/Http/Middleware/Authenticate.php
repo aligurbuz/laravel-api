@@ -26,6 +26,12 @@ class Authenticate extends Middleware
             $this->authenticate($request, $guards);
         }
 
+        $user = auth()->user();
+
+        if(!$user->status || $user->is_deleted){
+            Exception::authenticateException();
+        }
+
         return $next($request);
     }
 
