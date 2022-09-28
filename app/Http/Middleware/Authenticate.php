@@ -28,8 +28,12 @@ class Authenticate extends Middleware
 
         $user = auth()->user();
 
-        if(!$user->status || $user->is_deleted){
-            Exception::authenticateException();
+        if($user->is_deleted){
+            Exception::customException('deletedUser');
+        }
+
+        if(!$user->status){
+            Exception::customException('notActiveUser');
         }
 
         return $next($request);
