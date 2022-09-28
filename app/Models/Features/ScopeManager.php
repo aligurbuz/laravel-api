@@ -248,7 +248,9 @@ trait ScopeManager
                 $filtering = indexOrdering($this->getTable(), $params['filter']);
                 foreach ($filtering as $key => $value) {
                     if (!in_array($key, $indexes)) {
-                        Exception::filterException('', ['key' => $key]);
+                        if(!property_exists($this,'filterException') || $this->filterException){
+                            Exception::filterException('', ['key' => $key]);
+                        }
                     }
 
                     $sqlContains = '`' . $key . '` = ?';
