@@ -35,7 +35,7 @@ trait UpdateRepository
             $this->beforeUpdate($clientNormalData);
         }
 
-        if (isset($clientNormalData[0]) && count($clientNormalData[0]) < 2) {
+        if (!count($data) && isset($clientNormalData[0]) && count($clientNormalData[0]) < 2) {
             Exception::customException('clientNormalDataException');
         }
 
