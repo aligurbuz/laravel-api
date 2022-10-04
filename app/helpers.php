@@ -32,6 +32,20 @@ if (!function_exists('dod')) {
     }
 }
 
+if (!function_exists('cryptArray')) {
+
+    /**
+     * get crypt array data
+     *
+     * @param array $data
+     * @return string
+     */
+    function cryptArray(array $data = []): string
+    {
+        return sha1(md5(json_encode($data)));
+    }
+}
+
 if (!function_exists('getRanges')) {
 
     /**
