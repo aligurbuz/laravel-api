@@ -3,7 +3,8 @@
 namespace App\Services\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Str;
 
 class DocumentationUpdate extends Command
 {
@@ -12,7 +13,7 @@ class DocumentationUpdate extends Command
      *
      * @var string
      */
-    protected $signature = 'doc:update';
+    protected $signature = 'doc:update {service}';
 
     /**
      * The console command description.
@@ -38,12 +39,16 @@ class DocumentationUpdate extends Command
      */
     public function handle()
     {
-        $docMap = base_path('app/Docs') . '/map.json';
-        $docMapContent = File::get($docMap);
+        $service = $this->argument('service');
+        $serviceJson = getServiceJson();
 
-        $docMapContent = str_replace('/var/www/html/app/api', base_path(), $docMapContent);
+        foreach ($serviceJson as $key => $data) {
+            if (Str::startsWith($key, Str::ucfirst($service))) {
+                Artisan::call('doc:create', ['controller' => lcfirst($data['controller']), 'dir' => lcfirst($data['dir']), 'model' => lcfirst($data['model'])]);
+            }
+        }
 
-        File::put($docMap, $docMapContent);
+        Artisan::call('postman:create');
 
         return 0;
     }
