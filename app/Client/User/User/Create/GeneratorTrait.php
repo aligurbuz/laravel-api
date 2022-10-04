@@ -2,6 +2,7 @@
 
 namespace App\Client\User\User\Create;
 
+use App\Facades\Role\Role;
 use App\Factory\Factory;
 
 trait GeneratorTrait
@@ -37,7 +38,7 @@ trait GeneratorTrait
      */
     public function roleCodeGenerator(): int
     {
-        return Factory::role()->createAdministrator()[0]['role_code'];
+        return (Role::createAdministrator())[0]['role_code'];
     }
 
     /**

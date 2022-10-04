@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Facades\Role;
 
+use App\Factory\Factory;
 use App\Repositories\Repository;
 use App\Services\AppContainer;
 
@@ -14,9 +15,9 @@ class Role
      *
      * @return array
      */
-    public static function get() : array
+    public static function get(): array
     {
-        $userRole = AppContainer::use('role',function(){
+        $userRole = AppContainer::use('role', function () {
             return Repository::user()->role()->memory();
         });
 
@@ -28,10 +29,27 @@ class Role
      *
      * @return bool
      */
-    public static function isAdmin() : bool
+    public static function isAdmin(): bool
     {
         $isAdminValue = (static::get())['is_administrator'];
 
         return checkBool($isAdminValue);
+    }
+
+    /**
+     * creates role for factory
+     *
+     * @return array
+     */
+    public static function createAdministrator(): array
+    {
+        $clientRequest = cR('gate.roles.create', [[
+            'role_app_code' => time(),
+            'role_name' => 'Administrator',
+            'is_administrator' => 1,
+            'roles' => Factory::permission()->roleFormatter()
+        ]]);
+
+        return Repository::role()->create([$clientRequest]);
     }
 }
