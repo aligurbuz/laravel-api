@@ -799,22 +799,24 @@ class EloquentRepository
      * easy increase column for repository model
      *
      * @param string $column
+     * @param int|null $count
      * @return object|array
      */
-    public function increase(string $column): object|array
+    public function increase(string $column, ?int $count = null): object|array
     {
-        return $this->update([[$column => 1]]);
+        return $this->update([[$column => ($count ?? 1)]]);
     }
 
     /**
      * easy decrease column for repository model
      *
      * @param string $column
+     * @param int|null $count
      * @return object|array
      */
-    public function decrease(string $column): object|array
+    public function decrease(string $column, ?int $count = null): object|array
     {
-        return $this->update([[$column => '-1']]);
+        return $this->update([[$column => ($count ?? '-1')]]);
     }
 
     /**
