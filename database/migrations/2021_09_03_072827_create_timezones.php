@@ -36,7 +36,7 @@ class CreateTimezones extends Migration
         $timezones = [
             [
                 'id' => 1,
-                'timezone_code' => crc32(config('app.name').'_timezone1'),
+                'timezone_code' => defaultTimezoneCode(),
                 'timezone' => 'America/New_York',
                 'created_at' => Date::now()->toDateTimeString(),
                 'updated_at' => Date::now()->toDateTimeString(),

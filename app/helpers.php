@@ -100,6 +100,19 @@ if (!function_exists('timezone')) {
     }
 }
 
+if (!function_exists('defaultTimezoneCode')) {
+
+    /**
+     * get default timezone code for global gate accessing
+     *
+     * @return int
+     */
+    function defaultTimezoneCode(): int
+    {
+        return crc32('timezone1');
+    }
+}
+
 if (!function_exists('entity')) {
 
     /**
