@@ -40,6 +40,35 @@ class Date
     }
 
     /**
+     * Lists all dates between two dates.
+     *
+     * @param string $startDate
+     * @param string $endDate
+     * @param bool $include
+     * @return array
+     */
+    public static function findDaysBetweenDates(string $startDate, string $endDate, bool $include = true): array
+    {
+        $firstDate = $startDate;
+        $startDate = static::createFormat($startDate, 'Y-m-d');
+        $endDate = static::createFormat($endDate, 'Y-m-d');
+
+        $list = [];
+        if($include) $list[] = $firstDate;
+
+        while (true) {
+            $startDate = $startDate->addDay();
+            $list[] = $startDate->toDateString();
+
+            if ($startDate == $endDate) break;
+        }
+
+        if(!$include) array_pop($list);
+
+        return $list;
+    }
+
+    /**
      * get day of week (as numeric) for carbon
      *
      * @param string|null $date
