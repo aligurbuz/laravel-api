@@ -14,9 +14,9 @@ use DateTimeZone;
 class Date
 {
     /**
-     * @var string
+     * @var ?string
      */
-    protected static string $timezone = 'America/New_York';
+    protected static ?string $timezone = null;
 
     /**
      * Date constructor.
