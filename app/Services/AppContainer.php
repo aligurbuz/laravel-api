@@ -95,7 +95,7 @@ class AppContainer
         }
 
         if (isset(static::$data[$key])) {
-            static::$whereValues[$key] = (debug_backtrace())[0] ?? [];
+            static::$whereValues[$key] = (debug_backtrace())[1] ?? [];
         }
     }
 
