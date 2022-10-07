@@ -92,7 +92,7 @@ trait ClientAutoGeneratorTrait
     public function customerCodeAutoGenerator(): mixed
     {
         return $this->ensureColumnExists('customer_code', function () {
-            return Authenticate::code();
+            return customerCode();
         });
     }
 

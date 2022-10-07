@@ -32,6 +32,26 @@ if (!function_exists('dod')) {
     }
 }
 
+if (!function_exists('customerCode')) {
+
+    /**
+     * get restaurant_code for global gate accessing
+     *
+     * @param int|null $customerCode
+     * @return int
+     */
+    function customerCode(?int $customerCode = null): int
+    {
+        if(!is_null($customerCode)){
+            AppContainer::setWithTerminating('customerCode',$customerCode);
+        }
+
+        return AppContainer::use('customerCode', function () {
+            return Factory::app()->customerCode();
+        });
+    }
+}
+
 if (!function_exists('cryptArray')) {
 
     /**

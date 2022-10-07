@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Factory;
 
 use App\Factory\ApiKey\Interfaces\ApiKeyInterface;
+use App\Factory\App\Interfaces\AppInterface;
 use App\Factory\Cache\Interfaces\CacheInterface;
 use App\Factory\Client\Interfaces\ClientInterface;
 use App\Factory\Code\Interfaces\CodeInterface;
@@ -51,6 +52,7 @@ use App\Factory\Tax\Interfaces\TaxInterface;
  * @method static PaymentInterface payment($arguments = null)
  * @method static PdfInterface pdf($arguments = null)
  * @method static SocketInterface socket($arguments = null)
+ * @method static AppInterface app($arguments = null)
  * @package App\Factory
  */
 class Factory extends FactoryManager
