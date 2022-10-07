@@ -1,0 +1,42 @@
+<?php
+
+namespace App\Facades\Customer;
+
+use App\Repositories\Repository;
+use App\Services\AppContainer;
+
+class Customer
+{
+    /**
+     * get customer data for facade
+     *
+     * @return array
+     */
+    public static function get() : array
+    {
+        return AppContainer::use('customer',function(){
+            return Repository::customer()->memory();
+        });
+    }
+
+    /**
+     * get customer code for customer facade
+     *
+     * @return ?int
+     */
+    public static function code(): ?int
+    {
+        return (static::get())[0]['customer_code'] ?? null;
+    }
+
+    /**
+     * set customer code for customer facade
+     *
+     * @param int $customerCode
+     * @return int
+     */
+    public static function setCode(int $customerCode): int
+    {
+        return customerCode($customerCode);
+    }
+}
