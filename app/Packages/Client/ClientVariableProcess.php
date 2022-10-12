@@ -48,9 +48,9 @@ class ClientVariableProcess
      * @param array $data
      * @return array
      */
-    protected function generatorProcess(array $data = []): array
+    protected function generatorProcess(): array
     {
-        $clientData = $data;
+        $data = [];
 
         $dontOverWriteGenerators = $this->client->dontOverWriteGenerators();
 
@@ -107,6 +107,7 @@ class ClientVariableProcess
                 unset($data[$dataKey]);
             }
         }
+
 
         return $data;
     }

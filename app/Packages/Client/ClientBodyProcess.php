@@ -97,7 +97,7 @@ class ClientBodyProcess extends ClientVariableProcess
                 AppContainer::setWithTerminating('clientDataStreams', $value);
 
                 $generatorProcess = array_merge(
-                    $defaultGenerator = $this->generatorProcess($value),
+                    $defaultGenerator = $this->generatorProcess(),
                     $this->autoGeneratorProcess($value, $defaultGenerator)
                 );
 
