@@ -20,6 +20,7 @@
         "Currency",
         "Customer",
         "CustomerAge",
+        "CustomerContact",
         "CustomerGender",
         "CustomerImage",
         "District",
@@ -43,7 +44,8 @@
         "CustomerAge",
         "CustomerGender",
         "CustomerImage",
-        "Localization"
+        "Localization",
+        "CustomerContact"
     ],
     "CustomerAge": [
         "Customer",
@@ -54,6 +56,10 @@
         "Localization"
     ],
     "CustomerImage": [
+        "Customer",
+        "Localization"
+    ],
+    "CustomerContact": [
         "Customer",
         "Localization"
     ],

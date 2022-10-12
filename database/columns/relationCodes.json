@@ -14,7 +14,8 @@
         "Country"
     ],
     "phone_code": [
-        "Country"
+        "Country",
+        "CustomerContact"
     ],
     "currency_code": [
         "Currency"
@@ -22,11 +23,15 @@
     "customer_code": [
         "Customer",
         "CustomerAge",
+        "CustomerContact",
         "CustomerGender",
         "CustomerImage"
     ],
     "customer_age_code": [
         "CustomerAge"
+    ],
+    "customer_contact_code": [
+        "CustomerContact"
     ],
     "customer_gender_code": [
         "CustomerGender"

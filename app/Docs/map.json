@@ -27,7 +27,7 @@
         "/var/www/html/app/api/app/Docs/Endpoints/Global/Global.json": 0,
         "/var/www/html/app/api/app/Docs/Endpoints/Registration/Registration.json": 0,
         "/var/www/html/app/api/app/Docs/Endpoints/Support/Support.json": 0,
-        "/var/www/html/app/api/app/Docs/Endpoints/Customer/Customer.json": 3
+        "/var/www/html/app/api/app/Docs/Endpoints/Customer/Customer.json": 4
     },
     "fingerPrints": {
         "User_User_user": 0,
@@ -49,6 +49,7 @@
         "Activations_User_userActivation": 1,
         "Genders_Customer_customerGender": 1,
         "Ages_Customer_customerAge": 2,
-        "Images_Customer_customerImage": 3
+        "Images_Customer_customerImage": 3,
+        "Contacts_Customer_customerContact": 4
     }
 }

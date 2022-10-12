@@ -6,6 +6,15 @@ class EntityMap
 {
     /**
      * @param object $query
+     * @return CustomerContact
+     */
+    public function customerContact(object $query) : CustomerContact
+    {
+        return new CustomerContact($query);
+    }
+    
+    /**
+     * @param object $query
      * @return CustomerImage
      */
     public function customerImage(object $query): CustomerImage

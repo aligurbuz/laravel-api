@@ -78,5 +78,9 @@
     "CustomerImage": {
         "controller": "Images",
         "dir": "Customer"
+    },
+    "CustomerContact": {
+        "controller": "Contacts",
+        "dir": "Customer"
     }
 }

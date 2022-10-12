@@ -98,5 +98,17 @@
     "customer.images.update": {
         "class": "App\\Client\\Customer\\Images\\Update\\UpdateClient",
         "model": "customerImage"
+    },
+    "customer.contacts.get": {
+        "class": "App\\Client\\Customer\\Contacts\\Get\\GetClient",
+        "model": "customerContact"
+    },
+    "customer.contacts.create": {
+        "class": "App\\Client\\Customer\\Contacts\\Create\\CreateClient",
+        "model": "customerContact"
+    },
+    "customer.contacts.update": {
+        "class": "App\\Client\\Customer\\Contacts\\Update\\UpdateClient",
+        "model": "customerContact"
     }
 }

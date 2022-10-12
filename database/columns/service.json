@@ -65,5 +65,10 @@
         "controller": "Images",
         "dir": "Customer",
         "model": "CustomerImage"
+    },
+    "Customer/contacts": {
+        "controller": "Contacts",
+        "dir": "Customer",
+        "model": "CustomerContact"
     }
 }

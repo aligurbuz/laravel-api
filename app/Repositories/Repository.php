@@ -24,6 +24,7 @@ use App\Repositories\Resources\Timezones\Contracts\TimezonesRepositoryContract;
 use App\Repositories\Resources\User\Contracts\PhotosRepositoryContract;
 use App\Repositories\Resources\User\Contracts\UserActivationsRepositoryContract;
 use App\Repositories\Resources\User\Contracts\UserRepositoryContract;
+use App\Repositories\Resources\Customer\Contracts\CustomerContactsRepositoryContract;
 
 /**
  * Class Repository
@@ -31,6 +32,16 @@ use App\Repositories\Resources\User\Contracts\UserRepositoryContract;
  */
 class Repository
 {
+    /**
+     * get customerContact repository instance
+     *
+     * @return CustomerContactsRepositoryContract
+     */
+    public static function customerContact() : CustomerContactsRepositoryContract
+    {
+        return app()->get(CustomerContactsRepositoryContract::class);
+    }
+    
     /**
      * get customerImage repository instance
      *

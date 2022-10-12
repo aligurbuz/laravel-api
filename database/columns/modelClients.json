@@ -47,5 +47,10 @@
         "get": "App\\Client\\Customer\\Images\\Get\\GetClient",
         "create": "App\\Client\\Customer\\Images\\Create\\CreateClient",
         "update": "App\\Client\\Customer\\Images\\Update\\UpdateClient"
+    },
+    "CustomerContact": {
+        "get": "App\\Client\\Customer\\Contacts\\Get\\GetClient",
+        "create": "App\\Client\\Customer\\Contacts\\Create\\CreateClient",
+        "update": "App\\Client\\Customer\\Contacts\\Update\\UpdateClient"
     }
 }
