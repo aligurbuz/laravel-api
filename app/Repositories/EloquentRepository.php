@@ -112,6 +112,26 @@ class EloquentRepository
     }
 
     /**
+     * It detects whether the request sent to the repository class is from the client.
+     *
+     * @return bool
+     */
+    public function isClient(): bool
+    {
+        return isClientRequest() || AppContainer::has('clientInstance');
+    }
+
+    /**
+     * get customer code for repository
+     *
+     * @return int
+     */
+    public function customerCode() : int
+    {
+        return $this->isClient() ? (int)client('customer_code') : customerCode();
+    }
+
+    /**
      * set auto eager loadings for repository
      *
      * @return void

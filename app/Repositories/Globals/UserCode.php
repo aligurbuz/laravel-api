@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Repositories\Globals;
 
 use App\Facades\Authenticate\Authenticate;
+use App\Repositories\EloquentRepository;
 use Illuminate\Database\Eloquent\Builder;
 
 /**
@@ -19,12 +20,19 @@ class UserCode
     protected mixed $builder;
 
     /**
+     * @var EloquentRepository
+     */
+    protected EloquentRepository $eloquentRepository;
+
+    /**
      * UserId constructor.
      * @param $builder
+     * @param EloquentRepository $eloquentRepository
      */
-    public function __construct($builder)
+    public function __construct($builder, EloquentRepository $eloquentRepository)
     {
         $this->builder = $builder;
+        $this->eloquentRepository = $eloquentRepository;
     }
 
     /**
