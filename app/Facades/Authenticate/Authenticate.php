@@ -82,6 +82,16 @@ class Authenticate extends FacadeManager
     }
 
     /**
+     * get email value for user data
+     *
+     * @return ?string
+     */
+    public static function phone(): ?string
+    {
+        return (new self)->data->phone ?? null;
+    }
+
+    /**
      * checks if the authenticated user is superAdmin
      *
      * @param bool $exception
