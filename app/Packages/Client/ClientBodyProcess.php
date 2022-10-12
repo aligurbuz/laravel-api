@@ -106,7 +106,7 @@ class ClientBodyProcess extends ClientVariableProcess
                     return $value !== null;
                 })->toArray();
 
-                $this->variableProcess(array_replace($generatorProcess, $this->client->getDataStream()), false);
+                $this->variableProcess($generatorProcess = array_replace($generatorProcess, $this->client->getDataStream()), false);
                 $value = $this->client->getDataStream();
 
 

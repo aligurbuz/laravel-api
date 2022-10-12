@@ -7,6 +7,7 @@ namespace App\Client;
 use App\Facades\Authenticate\ApiKey;
 use App\Facades\Authenticate\Authenticate;
 use App\Factory\Factory;
+use App\Services\AppContainer;
 use App\Services\Date;
 
 /**
@@ -32,6 +33,7 @@ trait ClientAutoGeneratorTrait
         'deleted_at',
         'clientFileProcess',
         'codeProcess',
+        'isDefaultFirstRegister',
     ];
 
     /**
@@ -49,6 +51,7 @@ trait ClientAutoGeneratorTrait
         'deleted_at',
         'clientFileProcess',
         'codeProcess',
+        'isDefaultFirstRegister',
     ];
 
     /**
@@ -216,6 +219,25 @@ trait ClientAutoGeneratorTrait
                 }
             }
         }
+
+        return null;
+    }
+
+    /**
+     * The first records with the is_default key will set is_default to true.
+     *
+     * @return null
+     */
+    public function isDefaultFirstRegisterAutoGenerator()
+    {
+        $this->ensureColumnExists('is_default', function () {
+            $customerData = $this->repository()->getRepository();
+
+            if (!count($customerData)) {
+                AppContainer::setWithTerminating('noIsDefaultUpdate',true);
+                $this->set('is_default', true);
+            }
+        });
 
         return null;
     }

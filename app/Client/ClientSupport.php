@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Client;
 
 use App\Exceptions\Exception;
+use App\Services\AppContainer;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Psr\Container\ContainerExceptionInterface;
@@ -71,7 +72,9 @@ trait ClientSupport
     {
         if ($this->isDefault && !isGet()) {
             $this->ensureColumnExists($snakeFunction = Str::snake(__FUNCTION__), function () use ($snakeFunction) {
-                $this->repository()->default()->update([[$snakeFunction => '0']], false);
+                if(!AppContainer::has('noIsDefaultUpdate')){
+                    $this->repository()->default()->update([[$snakeFunction => '0']], false);
+                }
             });
         }
 
