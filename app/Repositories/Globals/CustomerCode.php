@@ -34,7 +34,13 @@ class CustomerCode
      */
     public function handle(): object
     {
-        return $this->builder;
+        $builder = $this->builder;
+
+        if (!isGet()) {
+            return $builder->where('customer_code', client('customer_code'));
+        }
+
+        return $builder;
     }
 
     /**
