@@ -12,9 +12,9 @@ class Customer
      *
      * @return array
      */
-    public static function get() : array
+    public static function get(): array
     {
-        return AppContainer::use('customer',function(){
+        return AppContainer::use('customer', function () {
             return Repository::customer()->memory();
         });
     }
@@ -38,5 +38,15 @@ class Customer
     public static function setCode(int $customerCode): int
     {
         return customerCode($customerCode);
+    }
+
+    /**
+     * get customer contact instance for facade
+     *
+     * @return Contact
+     */
+    public static function contact(): Contact
+    {
+        return new Contact();
     }
 }
