@@ -42,17 +42,7 @@ class CustomerCode
      */
     public function handle(): object
     {
-        $builder = $this->builder;
-
-        if (!isGet()) {
-            $customerCode = $this->eloquentRepository->customerCode();
-
-            if($customerCode>0){
-                return $builder->where('customer_code', $customerCode);
-            }
-        }
-
-        return $builder;
+        return $this->builder;
     }
 
     /**
