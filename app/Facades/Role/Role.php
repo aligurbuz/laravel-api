@@ -31,7 +31,7 @@ class Role
      */
     public static function isAdmin(): bool
     {
-        $isAdminValue = (static::get())['is_administrator'];
+        $isAdminValue = (static::get())['is_administrator'] ?? false;
 
         return checkBool($isAdminValue);
     }
