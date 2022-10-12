@@ -45,7 +45,11 @@ class CustomerCode
         $builder = $this->builder;
 
         if (!isGet()) {
-            return $builder->where('customer_code', $this->eloquentRepository->customerCode());
+            $customerCode = $this->eloquentRepository->customerCode();
+
+            if($customerCode>0){
+                return $builder->where('customer_code', $customerCode);
+            }
         }
 
         return $builder;
