@@ -309,7 +309,7 @@ if (!function_exists('isClientRequest')) {
      */
     function isClientRequest(): bool
     {
-        return AppContainer::has('clientRepositoryRequest');
+        return AppContainer::has('clientRepositoryRequest') || AppContainer::has('clientInstance');
     }
 }
 

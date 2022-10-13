@@ -118,7 +118,7 @@ class EloquentRepository
      */
     public function isClient(): bool
     {
-        return isClientRequest() || AppContainer::has('clientInstance');
+        return isClientRequest();
     }
 
     /**
