@@ -48,9 +48,9 @@ class ClientVariableProcess
      * @param array $data
      * @return array
      */
-    protected function generatorProcess(): array
+    protected function generatorProcess(array $data = []): array
     {
-        $data = [];
+        $clientData = $data;
 
         $dontOverWriteGenerators = $this->client->dontOverWriteGenerators();
 
@@ -100,14 +100,14 @@ class ClientVariableProcess
             }
         }
 
+
         foreach ($data as $dataKey => $dataValue) {
-            if (isset($defaultGenerator[$dataKey])) {
+            if (isset($defaultGenerator[$dataKey]) && !in_array($dataKey,$dontOverWriteAutoGenerators,true)) {
                 $data[$dataKey] = $defaultGenerator[$dataKey];
             } elseif (array_key_exists($dataKey, $defaultGenerator) && is_null($defaultGenerator[$dataKey])) {
                 unset($data[$dataKey]);
             }
         }
-
 
         return $data;
     }

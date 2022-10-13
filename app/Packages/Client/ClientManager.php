@@ -56,19 +56,6 @@ class ClientManager
     }
 
     /**
-     * set request method for client
-     *
-     * @param null $method
-     * @return string
-     */
-    public function requestMethod($method = null): string
-    {
-        $this->requestMethod = $method ?? request()->method();
-
-        return $this->requestMethod;
-    }
-
-    /**
      * get data for client
      *
      * @return array
@@ -77,6 +64,43 @@ class ClientManager
     {
         return $this->data;
     }
+
+    /**
+     * get data for client
+     *
+     * @return array
+     */
+    public function getRegister(): array
+    {
+        return $this->register;
+    }
+
+    /**
+     * get data for client
+     *
+     * @param $key
+     * @param $value
+     * @return void
+     */
+    public function setRegister($key, $value): void
+    {
+        $this->register[$key] = $value;
+    }
+
+    /**
+     * set container data
+     *
+     * @return void
+     */
+    public function setContainerData(): void
+    {
+        if (AppContainer::has('clientData')) {
+            AppContainer::terminate('clientData');
+        }
+
+        AppContainer::set('clientData', $this->data);
+    }
+
 
     /**
      * set data for client
@@ -107,17 +131,16 @@ class ClientManager
     }
 
     /**
-     * set container data
+     * set request method for client
      *
-     * @return void
+     * @param null $method
+     * @return string
      */
-    public function setContainerData(): void
+    public function requestMethod($method = null): string
     {
-        if (AppContainer::has('clientData')) {
-            AppContainer::terminate('clientData');
-        }
+        $this->requestMethod = $method ?? request()->method();
 
-        AppContainer::set('clientData', $this->data);
+        return $this->requestMethod;
     }
 
     /**
@@ -131,7 +154,7 @@ class ClientManager
         if ($this->requestMethod !== 'GET') {
             $data = count($data) ? $data : ($this->putRequestResolve() ?? request()->request->all());
             $clientBodyFormat = $this->clientBodyFormat($data);
-            AppContainer::setWithTerminating('clientBody', $clientBodyFormat);
+            AppContainer::setWithTerminating('clientBody',$clientBodyFormat);
             return $clientBodyFormat;
         }
 
@@ -181,6 +204,16 @@ class ClientManager
     }
 
     /**
+     * set data stream for client
+     *
+     * @param array $data
+     */
+    public function setDataStream(array $data = [])
+    {
+        $this->dataStream = $data;
+    }
+
+    /**
      * put data stream for client
      *
      * @param $key
@@ -193,26 +226,6 @@ class ClientManager
     }
 
     /**
-     * set data stream for client
-     *
-     * @return mixed
-     */
-    public function getDataStream(): mixed
-    {
-        return $this->dataStream ?? [];
-    }
-
-    /**
-     * set data stream for client
-     *
-     * @param array $data
-     */
-    public function setDataStream(array $data = [])
-    {
-        $this->dataStream = $data;
-    }
-
-    /**
      * reset data stream for client
      *
      * @return void
@@ -220,6 +233,16 @@ class ClientManager
     public function resetDataStream(): void
     {
         $this->dataStream = [];
+    }
+
+    /**
+     * set data stream for client
+     *
+     * @return mixed
+     */
+    public function getDataStream(): mixed
+    {
+        return $this->dataStream ?? [];
     }
 
     /**
@@ -235,28 +258,6 @@ class ClientManager
             if (count($this->getRegister())) $this->setData();
             (new ClientBodyProcess($this));
         }
-    }
-
-    /**
-     * get data for client
-     *
-     * @return array
-     */
-    public function getRegister(): array
-    {
-        return $this->register;
-    }
-
-    /**
-     * get data for client
-     *
-     * @param $key
-     * @param $value
-     * @return void
-     */
-    public function setRegister($key, $value): void
-    {
-        $this->register[$key] = $value;
     }
 
     /**
