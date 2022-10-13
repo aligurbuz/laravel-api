@@ -12,7 +12,7 @@ class Doodle extends Command
      *
      * @var string
      */
-    protected $signature = 'doodle {method}';
+    protected $signature = 'dod';
 
     /**
      * The console command description.
@@ -28,8 +28,6 @@ class Doodle extends Command
      */
     public function handle()
     {
-        $method = $this->argument('method');
-
-        return (new DoodleController())->$method();
+        return (new DoodleController())->handle();
     }
 }
