@@ -20,6 +20,11 @@ class CardConnect extends PaymentManager implements PaymentInterface
     protected array $binds = [];
 
     /**
+     * @var array
+     */
+    protected array $order = [];
+
+    /**
      * CardConnect constructor
      *
      * @param array $binds
@@ -27,5 +32,24 @@ class CardConnect extends PaymentManager implements PaymentInterface
     public function __construct(array $binds = [])
     {
         $this->binds = $binds;
+        $this->order = $this->binds['order'] ?? [];
+    }
+
+    /**
+     * @param array $payLoad
+     * @return array
+     */
+    public function createWithCard(array $payLoad = []) : array
+    {
+        return [$payLoad];
+    }
+
+    /**
+     * @param array $payLoad
+     * @return array
+     */
+    public function createWithSavedCard(array $payLoad = []) : array
+    {
+        return [$payLoad];
     }
 }
