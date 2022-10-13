@@ -131,7 +131,7 @@ class ClientBodyProcess extends ClientVariableProcess
                 $this->makeValidator($value);
 
                 $overWriteStream = $this->client->getDataStream();
-                //$this->variableProcess($generatorProcess);
+                $this->variableProcess($generatorProcess);
                 $value = $this->client->getDataStream();
 
                 if (count($overWriteStream)) {
