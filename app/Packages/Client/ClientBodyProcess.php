@@ -120,7 +120,7 @@ class ClientBodyProcess extends ClientVariableProcess
                     return $value !== null;
                 })->toArray();
 
-                $this->variableProcess(array_replace($generatorProcess,$this->client->getDataStream()), false);
+                $this->variableProcess($generatorProcess, false);
                 $value = $this->client->getDataStream();
 
 
@@ -131,7 +131,7 @@ class ClientBodyProcess extends ClientVariableProcess
                 $this->makeValidator($value);
 
                 $overWriteStream = $this->client->getDataStream();
-                $this->variableProcess($generatorProcess);
+                //$this->variableProcess($generatorProcess);
                 $value = $this->client->getDataStream();
 
                 if (count($overWriteStream)) {
