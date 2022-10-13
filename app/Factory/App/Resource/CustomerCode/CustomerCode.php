@@ -35,6 +35,12 @@ class CustomerCode extends AppManager
      */
     protected function customerCode(): int
     {
-        return Authenticate::code();
+        $customerCode = Authenticate::code();
+
+        if($customerCode==0){
+            return generateHash();
+        }
+
+        return $customerCode;
     }
 }
