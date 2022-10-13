@@ -11,8 +11,6 @@ class DoodleController extends Controller
         if (!isLocale()) {
             Exception::customException('doodle exception');
         }
-
-        dd(customerCode());
     }
 
     /**
