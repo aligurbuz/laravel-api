@@ -159,7 +159,6 @@ class Client extends ClientManager
     {
         if (
             property_exists($this, 'model')
-            && is_array($this->model)
             && isset($this->model[0])
         ) {
             AppContainer::setWithTerminating('clientCapsule', (is_array($this->capsule) ? $this->capsule : []));
@@ -218,7 +217,7 @@ class Client extends ClientManager
      *
      * @return void
      */
-    public function addRule()
+    public function addRule(): void
     {
         $this->setRuleProcess();
     }
