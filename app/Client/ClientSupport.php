@@ -108,4 +108,21 @@ trait ClientSupport
 
         return $this->isDeleted;
     }
+
+    /**
+     * it is order_count in the client data
+     *
+     * @var string|int
+     */
+    protected string|int $orderCount;
+
+    /**
+     * This key should not be sent by the client.
+     *
+     * @return bool|string|int
+     */
+    protected function orderCount(): bool|string|int
+    {
+        return Exception::customException(httpMethod().'Restricted',__FUNCTION__);
+    }
 }

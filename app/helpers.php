@@ -23,12 +23,24 @@ use JetBrains\PhpStorm\Pure;
 use App\Http\Controllers\DoodleController;
 
 if (!function_exists('dod')) {
+
     /**
      * @return mixed
      */
     function dod() : mixed
     {
         return (new DoodleController())->handle();
+    }
+}
+
+if (!function_exists('httpMethod')) {
+
+    /**
+     * @return string
+     */
+    function httpMethod() : string
+    {
+        return strtolower(request()->method());
     }
 }
 
