@@ -53,11 +53,11 @@ class ClientCommand extends Command
 
         $dirPath = app_path('Client') . '' . DIRECTORY_SEPARATOR . '' . $clientDir;
         $namePath = app_path('Client') . '' . DIRECTORY_SEPARATOR . '' . $clientDir . '' . DIRECTORY_SEPARATOR . '' . $clientName;
+        $clientNamespace = 'App\Client\\' . $clientDir . '\\' . $clientName;
         $methodPath = app_path('Client') . '' . DIRECTORY_SEPARATOR . '' . $clientDir . '' . DIRECTORY_SEPARATOR . '' . $clientName . '' . DIRECTORY_SEPARATOR . '' . $method;
         $namespace = 'App\Client\\' . $clientDir . '\\' . $clientName . '\\' . $method;
         $className = $method . 'Client';
         $fileClass = app_path('Client') . '' . DIRECTORY_SEPARATOR . '' . $clientDir . '' . DIRECTORY_SEPARATOR . '' . $clientName . '' . DIRECTORY_SEPARATOR . '' . $method . '' . DIRECTORY_SEPARATOR . '' . $className;
-
 
         if (!file_exists($dirPath)) {
             File::makeDirectory($dirPath);
@@ -87,6 +87,15 @@ class ClientCommand extends Command
 
         File::put($modelClientJsonFile, Collection::make($modelClientJsonToArray)->toJson(JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
 
+        $clientMainGenerator = new PhpNamespace($clientNamespace);
+        $clientMain = $clientMainGenerator->addTrait($clientMainFile = $clientName.'MainSupport');
+        $clientSupportNamespace = $clientNamespace.'\\'.$clientMainFile;
+
+        if (!file_exists($clientFile = $namePath.''.DIRECTORY_SEPARATOR.''.$clientMainFile.'.php')) {
+            touch($clientFile);
+            $content = '<?php ' . PHP_EOL . '' . PHP_EOL . 'namespace ' . $clientNamespace . '; ' . PHP_EOL . '' . PHP_EOL . '' . $clientMain;
+            File::put($clientFile, $content);
+        }
 
         $generator = new PhpNamespace($namespace);
         $generator = $generator->addTrait($traitName = 'GeneratorTrait');
@@ -154,10 +163,12 @@ class ClientCommand extends Command
 
         $generatorClass = new PhpNamespace($namespace);
         $generatorClass->addUse(Client::class);
+        $generatorClass->addUse($clientSupportNamespace);
         $generatorClass->addUse(ClientAutoGeneratorTrait::class);
         $generatorClass->addUse($model);
         $classGenerator = $generatorClass->addClass($className)->setExtends(Client::class);
         $classGenerator->addTrait($namespace . '\\' . $traitName);
+        $classGenerator->addTrait($clientSupportNamespace);
         $classGenerator->addTrait(ClientAutoGeneratorTrait::class);
 
         $classGenerator->addProperty('capsule', [])->setType('array')->setProtected()
