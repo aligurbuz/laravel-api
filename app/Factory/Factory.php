@@ -21,7 +21,6 @@ use App\Factory\Payment\Interfaces\PaymentInterface;
 use App\Factory\Pdf\Interfaces\PdfInterface;
 use App\Factory\Permission\Interfaces\PermissionInterface;
 use App\Factory\Request\Interfaces\RequestInterface;
-use App\Factory\Role\Interfaces\RoleInterface;
 use App\Factory\Search\Interfaces\SearchInterface;
 use App\Factory\Sms\Interfaces\SmsInterface;
 use App\Factory\Socket\Interfaces\SocketInterface;
@@ -38,7 +37,6 @@ use App\Factory\Tax\Interfaces\TaxInterface;
  * @method static LocalizationInterface localization($arguments = null)
  * @method static CollectionInterface collection($arguments = null)
  * @method static ClientInterface client($arguments = null)
- * @method static RoleInterface role($arguments = null)
  * @method static PermissionInterface permission($arguments = null)
  * @method static SearchInterface search($arguments = null)
  * @method static DateInterface date($arguments = null)
