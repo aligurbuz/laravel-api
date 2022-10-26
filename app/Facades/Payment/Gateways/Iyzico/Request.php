@@ -33,6 +33,7 @@ class Request
         $this->setPaymentChannel();
         $this->setPaymentGroup();
         $this->setPrice();
+        $this->setBasketId(time());
     }
 
     /**

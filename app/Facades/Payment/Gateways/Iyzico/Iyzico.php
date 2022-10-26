@@ -31,4 +31,14 @@ class Iyzico extends GatewayManager
     {
         return new Request($this->options());
     }
+
+    /**
+     * PaymentCard data for facade
+     *
+     * @return PaymentCard
+     */
+    public function paymentCard() : PaymentCard
+    {
+        return new PaymentCard();
+    }
 }
