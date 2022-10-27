@@ -12,7 +12,7 @@ class Address
     protected IyzicoAddress $address;
 
     /**
-     * iyzico buyer constructor
+     * iyzico address constructor
      */
     public function __construct()
     {
