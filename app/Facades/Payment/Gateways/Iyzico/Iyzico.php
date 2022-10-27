@@ -27,7 +27,7 @@ class Iyzico extends GatewayManager
      *
      * @return Request
      */
-    public static function request() : Request
+    public static function request(): Request
     {
         return new Request((new self())->options());
     }
@@ -37,7 +37,7 @@ class Iyzico extends GatewayManager
      *
      * @return PaymentCard
      */
-    public static function paymentCard() : PaymentCard
+    public static function paymentCard(): PaymentCard
     {
         return new PaymentCard();
     }
@@ -47,8 +47,18 @@ class Iyzico extends GatewayManager
      *
      * @return Buyer
      */
-    public static function buyer() : Buyer
+    public static function buyer(): Buyer
     {
         return new Buyer();
+    }
+
+    /**
+     * Address data for facade
+     *
+     * @return Address
+     */
+    public static function address(): Address
+    {
+        return new Address();
     }
 }

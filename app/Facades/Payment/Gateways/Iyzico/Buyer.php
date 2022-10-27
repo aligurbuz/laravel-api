@@ -25,7 +25,7 @@ class Buyer
      * @param string $id
      * @return void
      */
-    public function setId(string $id) : void
+    public function setId(string $id): void
     {
         $this->buyer->setId($id);
     }
@@ -36,7 +36,7 @@ class Buyer
      * @param string $name
      * @return void
      */
-    public function setName(string $name) : void
+    public function setName(string $name): void
     {
         $this->buyer->setName($name);
     }
@@ -47,7 +47,7 @@ class Buyer
      * @param string $surname
      * @return void
      */
-    public function setSurname(string $surname) : void
+    public function setSurname(string $surname): void
     {
         $this->buyer->setName($surname);
     }
@@ -58,7 +58,7 @@ class Buyer
      * @param string $gsmNumber
      * @return void
      */
-    public function setGsmNumber(string $gsmNumber) : void
+    public function setGsmNumber(string $gsmNumber): void
     {
         $this->buyer->setGsmNumber($gsmNumber);
     }
@@ -69,7 +69,7 @@ class Buyer
      * @param string $email
      * @return void
      */
-    public function setEmail(string $email) : void
+    public function setEmail(string $email): void
     {
         $this->buyer->setEmail($email);
     }
@@ -80,7 +80,7 @@ class Buyer
      * @param string $identityNumber
      * @return void
      */
-    public function setIdentityNumber(string $identityNumber) : void
+    public function setIdentityNumber(string $identityNumber): void
     {
         $this->buyer->setIdentityNumber($identityNumber);
     }
@@ -91,7 +91,7 @@ class Buyer
      * @param string $lastLoginDate
      * @return void
      */
-    public function setLastLoginDate(string $lastLoginDate) : void
+    public function setLastLoginDate(string $lastLoginDate): void
     {
         $this->buyer->setLastLoginDate($lastLoginDate);
     }
@@ -102,7 +102,7 @@ class Buyer
      * @param string $registrationDate
      * @return void
      */
-    public function setRegistrationDate(string $registrationDate) : void
+    public function setRegistrationDate(string $registrationDate): void
     {
         $this->buyer->setRegistrationDate($registrationDate);
     }
@@ -113,7 +113,7 @@ class Buyer
      * @param string $registrationAddress
      * @return void
      */
-    public function setRegistrationAddress(string $registrationAddress) : void
+    public function setRegistrationAddress(string $registrationAddress): void
     {
         $this->buyer->setRegistrationAddress($registrationAddress);
     }
@@ -124,7 +124,7 @@ class Buyer
      * @param string $ip
      * @return void
      */
-    public function setIp(string $ip) : void
+    public function setIp(string $ip): void
     {
         $this->buyer->setIp($ip);
     }
@@ -135,7 +135,7 @@ class Buyer
      * @param string $city
      * @return void
      */
-    public function setCity(string $city) : void
+    public function setCity(string $city): void
     {
         $this->buyer->setCity($city);
     }
@@ -146,7 +146,7 @@ class Buyer
      * @param string $country
      * @return void
      */
-    public function setCountry(string $country) : void
+    public function setCountry(string $country): void
     {
         $this->buyer->setCountry($country);
     }
@@ -157,7 +157,7 @@ class Buyer
      * @param string $zipCode
      * @return void
      */
-    public function setZipCode(string $zipCode) : void
+    public function setZipCode(string $zipCode): void
     {
         $this->buyer->setZipCode($zipCode);
     }
