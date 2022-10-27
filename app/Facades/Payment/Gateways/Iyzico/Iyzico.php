@@ -61,4 +61,14 @@ class Iyzico extends GatewayManager
     {
         return new Address();
     }
+
+    /**
+     * BasketItem data for facade
+     *
+     * @return BasketItem
+     */
+    public static function basketItem(): BasketItem
+    {
+        return new BasketItem();
+    }
 }
