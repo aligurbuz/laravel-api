@@ -2,6 +2,7 @@
 
 namespace App\Facades\Payment\Gateways\Iyzico;
 
+use App\Exceptions\Exception;
 use Iyzipay\Model\Address;
 use Iyzipay\Model\Buyer;
 use Iyzipay\Model\Payment;
@@ -210,12 +211,28 @@ class Request
     }
 
     /**
+     * get create payment request instance for facade
+     *
+     * @return CreatePaymentRequest
+     */
+    public function getRequest() : CreatePaymentRequest
+    {
+        return $this->request;
+    }
+
+    /**
      * set payment create for facade
      *
-     * @return Payment
+     * @return array
      */
-    public function create(): Payment
+    public function create(): array
     {
-        return Payment::create($this->request, $this->options);
+        $paymentRequest = Payment::create($this->request, $this->options);
+
+        if($paymentRequest->getStatus()!=='success'){
+            Exception::customException($paymentRequest->getErrorMessage());
+        }
+
+        return json_decode(Payment::create($this->request, $this->options)->getRawResult(),1);
     }
 }

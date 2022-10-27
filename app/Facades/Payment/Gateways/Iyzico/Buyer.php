@@ -23,142 +23,178 @@ class Buyer
      * set id iyzico buyer for facade
      *
      * @param string $id
-     * @return void
+     * @return $this
      */
-    public function setId(string $id): void
+    public function setId(string $id): self
     {
         $this->buyer->setId($id);
+
+        return $this;
     }
 
     /**
      * set name iyzico buyer for facade
      *
      * @param string $name
-     * @return void
+     * @return $this
      */
-    public function setName(string $name): void
+    public function setName(string $name): self
     {
         $this->buyer->setName($name);
+
+        return $this;
     }
 
     /**
      * set surname iyzico buyer for facade
      *
      * @param string $surname
-     * @return void
+     * @return $this
      */
-    public function setSurname(string $surname): void
+    public function setSurname(string $surname): self
     {
-        $this->buyer->setName($surname);
+        $this->buyer->setSurname($surname);
+
+        return $this;
     }
 
     /**
      * set gsm number iyzico buyer for facade
      *
      * @param string $gsmNumber
-     * @return void
+     * @return $this
      */
-    public function setGsmNumber(string $gsmNumber): void
+    public function setGsmNumber(string $gsmNumber): self
     {
         $this->buyer->setGsmNumber($gsmNumber);
+
+        return $this;
     }
 
     /**
      * set email iyzico buyer for facade
      *
      * @param string $email
-     * @return void
+     * @return $this
      */
-    public function setEmail(string $email): void
+    public function setEmail(string $email): self
     {
         $this->buyer->setEmail($email);
+
+        return $this;
     }
 
     /**
      * set identity number iyzico buyer for facade
      *
      * @param string $identityNumber
-     * @return void
+     * @return $this
      */
-    public function setIdentityNumber(string $identityNumber): void
+    public function setIdentityNumber(string $identityNumber): self
     {
         $this->buyer->setIdentityNumber($identityNumber);
+
+        return $this;
     }
 
     /**
      * set last login date iyzico buyer for facade
      *
      * @param string $lastLoginDate
-     * @return void
+     * @return $this
      */
-    public function setLastLoginDate(string $lastLoginDate): void
+    public function setLastLoginDate(string $lastLoginDate): self
     {
         $this->buyer->setLastLoginDate($lastLoginDate);
+
+        return $this;
     }
 
     /**
      * set registration date iyzico buyer for facade
      *
      * @param string $registrationDate
-     * @return void
+     * @return $this
      */
-    public function setRegistrationDate(string $registrationDate): void
+    public function setRegistrationDate(string $registrationDate): self
     {
         $this->buyer->setRegistrationDate($registrationDate);
+
+        return $this;
     }
 
     /**
      * set registration address iyzico buyer for facade
      *
      * @param string $registrationAddress
-     * @return void
+     * @return $this
      */
-    public function setRegistrationAddress(string $registrationAddress): void
+    public function setRegistrationAddress(string $registrationAddress): self
     {
         $this->buyer->setRegistrationAddress($registrationAddress);
+
+        return $this;
     }
 
     /**
      * set ip address iyzico buyer for facade
      *
      * @param string $ip
-     * @return void
+     * @return $this
      */
-    public function setIp(string $ip): void
+    public function setIp(string $ip): self
     {
         $this->buyer->setIp($ip);
+
+        return $this;
     }
 
     /**
      * set city iyzico buyer for facade
      *
      * @param string $city
-     * @return void
+     * @return $this
      */
-    public function setCity(string $city): void
+    public function setCity(string $city): self
     {
         $this->buyer->setCity($city);
+
+        return $this;
     }
 
     /**
      * set country iyzico buyer for facade
      *
      * @param string $country
-     * @return void
+     * @return $this
      */
-    public function setCountry(string $country): void
+    public function setCountry(string $country): self
     {
         $this->buyer->setCountry($country);
+
+        return $this;
     }
 
     /**
      * set $zipCode iyzico buyer for facade
      *
      * @param string $zipCode
-     * @return void
+     * @return $this
      */
-    public function setZipCode(string $zipCode): void
+    public function setZipCode(string $zipCode): self
     {
         $this->buyer->setZipCode($zipCode);
+
+        return $this;
+    }
+
+    /**
+     * get buyer instance for facade
+     *
+     * @return IyzicoBuyer
+     */
+    public function getBuyer() : IyzicoBuyer
+    {
+        return $this->buyer;
     }
 }

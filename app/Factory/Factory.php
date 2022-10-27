@@ -69,6 +69,7 @@ class Factory extends FactoryManager
         'Cache' => 'Redis',
         'Search' => 'ElasticSearch',
         'Sms' => 'Twilio',
+        'Payment' => 'Iyzico',
     ];
 
     /**
