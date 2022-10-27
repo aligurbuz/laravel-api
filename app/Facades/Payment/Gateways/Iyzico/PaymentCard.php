@@ -6,8 +6,14 @@ use Iyzipay\Model\PaymentCard as IyzicoPaymentCard;
 
 class PaymentCard
 {
+    /**
+     * @var IyzicoPaymentCard
+     */
     protected IyzicoPaymentCard $paymentCard;
 
+    /**
+     * iyzico payment constructor
+     */
     public function __construct()
     {
         $this->paymentCard = new IyzicoPaymentCard();
