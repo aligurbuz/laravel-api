@@ -11,20 +11,18 @@ use App\Factory\Payment\Stripe;
 interface PaymentInterface
 {
     /**
-     * @param array $payLoad
      * @return array
      * @see CardConnect::createWithCard()
      * @see Payment::createWithCard()
      * @see Stripe::createWithCard()
      */
-    public function createWithCard(array $payLoad = []): array;
+    public function createWithCard(): array;
 
     /**
-     * @param array $payLoad
      * @return array
      * @see CardConnect::createWithCard()
      * @see Payment::createWithCard()
      * @see Stripe::createWithCard()
      */
-    public function createWithSavedCard(array $payLoad = []) : array;
+    public function createWithSavedCard() : array;
 }

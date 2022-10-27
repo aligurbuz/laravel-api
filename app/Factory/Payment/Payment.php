@@ -36,20 +36,18 @@ class Payment extends PaymentManager implements PaymentInterface
     }
 
     /**
-     * @param array $payLoad
      * @return array
      */
-    public function createWithCard(array $payLoad = []) : array
+    public function createWithCard() : array
     {
-        return [$payLoad];
+        return [];
     }
 
     /**
-     * @param array $payLoad
      * @return array
      */
-    public function createWithSavedCard(array $payLoad = []) : array
+    public function createWithSavedCard() : array
     {
-        return [$payLoad];
+        return [];
     }
 }
