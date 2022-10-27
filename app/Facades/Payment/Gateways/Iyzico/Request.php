@@ -2,7 +2,10 @@
 
 namespace App\Facades\Payment\Gateways\Iyzico;
 
+use Iyzipay\Model\Address;
+use Iyzipay\Model\Buyer;
 use Iyzipay\Model\Payment;
+use Iyzipay\Model\PaymentCard;
 use Iyzipay\Options;
 use Iyzipay\Request\CreatePaymentRequest;
 
@@ -137,6 +140,71 @@ class Request
     public function setPaymentGroup(string $paymentGroup = 'PRODUCT'): self
     {
         $this->request->{__FUNCTION__}($paymentGroup);
+
+        return $this;
+    }
+
+    /**
+     * set payment card instance for facade
+     *
+     * @param PaymentCard $paymentCard
+     * @return $this
+     */
+    public function setPaymentCard(PaymentCard $paymentCard): self
+    {
+        $this->request->setPaymentCard($paymentCard);
+
+        return $this;
+    }
+
+    /**
+     * set buyer instance for facade
+     *
+     * @param Buyer $buyer
+     * @return $this
+     */
+    public function setBuyer(Buyer $buyer): self
+    {
+        $this->request->setBuyer($buyer);
+
+        return $this;
+    }
+
+    /**
+     * set address instance for facade
+     *
+     * @param Address $address
+     * @return $this
+     */
+    public function setShippingAddress(Address $address): self
+    {
+        $this->request->setShippingAddress($address);
+
+        return $this;
+    }
+
+    /**
+     * set billingAddress instance for facade
+     *
+     * @param Address $billingAddress
+     * @return $this
+     */
+    public function setBillingAddress(Address $billingAddress): self
+    {
+        $this->request->setBillingAddress($billingAddress);
+
+        return $this;
+    }
+
+    /**
+     * set basketItem arrays for facade
+     *
+     * @param array $basketItems
+     * @return $this
+     */
+    public function setBasketItems(array $basketItems): self
+    {
+        $this->request->setBasketItems($basketItems);
 
         return $this;
     }
