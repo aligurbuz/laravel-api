@@ -29,7 +29,8 @@ return [
         'client_date',
         'client_time',
         'client_action',
-        'hasRecursiveFilter'
+        'hasRecursiveFilter',
+        'search'
     ],
 
     /*
