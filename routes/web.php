@@ -1,10 +1,12 @@
 <?php
 
+use App\Http\Controllers\Api\DocumentationController;
+use App\Http\Controllers\DeploymentController;
+use App\Http\Controllers\DoodleController;
+use App\Http\Controllers\Web\Admin\Auth\LoginController;
+use App\Http\Controllers\Web\Admin\Dashboard\HomeController;
 use App\Services\Postman;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\DeploymentController;
-use App\Http\Controllers\Api\DocumentationController;
-use App\Http\Controllers\DoodleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,15 +19,18 @@ use App\Http\Controllers\DoodleController;
 |
 */
 
-Route::get('test',[DoodleController::class,'handle']);
+Route::get('test', [DoodleController::class, 'handle']);
 
-Route::get('/doc', [DocumentationController::class,'index']);
-Route::post('/deployment/{key}', [DeploymentController::class,'handle']);
+Route::get('/doc', [DocumentationController::class, 'index']);
+Route::post('/deployment/{key}', [DeploymentController::class, 'handle']);
 
-Route::get('/postman/collection',function(){
+Route::get('/postman/collection', function () {
     return response()->json(Postman::collection());
 });
 
-Route::get('/postman/environment',function(){
+Route::get('/postman/environment', function () {
     return response()->json(Postman::environment());
 });
+
+Route::match(['get', 'post'], 'login', [LoginController::class, 'index'])->name('login');
+Route::get('home', [HomeController::class, 'index'])->name('home');
