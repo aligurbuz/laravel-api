@@ -3,26 +3,6 @@
         "controller": "User",
         "dir": "User"
     },
-    "UserPhoto": {
-        "controller": "Photos",
-        "dir": "User"
-    },
-    "Country": {
-        "controller": "Countries",
-        "dir": "Countries"
-    },
-    "City": {
-        "controller": "Cities",
-        "dir": "Countries"
-    },
-    "District": {
-        "controller": "Districts",
-        "dir": "Countries"
-    },
-    "Currency": {
-        "controller": "Currencies",
-        "dir": "Currencies"
-    },
     "Permission": {
         "controller": "Permissions",
         "dir": "Gate"
@@ -38,49 +18,5 @@
     "Localization": {
         "controller": "Localizations",
         "dir": "Localizations"
-    },
-    "TableChange": {
-        "controller": "TableChanges",
-        "dir": "Mix"
-    },
-    "SuperAdmin": {
-        "controller": "SuperAdmins",
-        "dir": "SuperAdmins"
-    },
-    "Timezone": {
-        "controller": "Timezones",
-        "dir": "Timezones"
-    },
-    "Registration": {
-        "controller": "Registration",
-        "dir": "Registration"
-    },
-    "Excel": {
-        "controller": "Excel",
-        "dir": "Support"
-    },
-    "Customer": {
-        "controller": "Profiles",
-        "dir": "Customer"
-    },
-    "UserActivation": {
-        "controller": "Activations",
-        "dir": "User"
-    },
-    "CustomerGender": {
-        "controller": "Genders",
-        "dir": "Customer"
-    },
-    "CustomerAge": {
-        "controller": "Ages",
-        "dir": "Customer"
-    },
-    "CustomerImage": {
-        "controller": "Images",
-        "dir": "Customer"
-    },
-    "CustomerContact": {
-        "controller": "Contacts",
-        "dir": "Customer"
     }
 }

@@ -2,49 +2,6 @@
     "response_code": [
         "AccessLogger"
     ],
-    "city_code": [
-        "City",
-        "District"
-    ],
-    "country_code": [
-        "City",
-        "Country"
-    ],
-    "num_code": [
-        "Country"
-    ],
-    "phone_code": [
-        "Country",
-        "CustomerContact"
-    ],
-    "currency_code": [
-        "Currency"
-    ],
-    "customer_code": [
-        "Customer",
-        "CustomerAge",
-        "CustomerContact",
-        "CustomerGender",
-        "CustomerImage"
-    ],
-    "customer_age_code": [
-        "CustomerAge"
-    ],
-    "customer_contact_code": [
-        "CustomerContact"
-    ],
-    "customer_gender_code": [
-        "CustomerGender"
-    ],
-    "customer_image_code": [
-        "CustomerImage"
-    ],
-    "district_code": [
-        "District"
-    ],
-    "excel_code": [
-        "Excel"
-    ],
     "language_code": [
         "Language",
         "Localization"
@@ -58,33 +15,12 @@
     "permission_code": [
         "Permission"
     ],
-    "registration_code": [
-        "Registration"
-    ],
     "role_code": [
         "Role"
-    ],
-    "role_app_code": [
-        "Role"
-    ],
-    "super_admin_code": [
-        "SuperAdmin"
     ],
     "user_code": [
         "SuperAdmin",
         "UserActivation",
-        "UserPhoto"
-    ],
-    "table_change_code": [
-        "TableChange"
-    ],
-    "timezone_code": [
-        "Timezone"
-    ],
-    "user_activation_code": [
-        "UserActivation"
-    ],
-    "user_photo_code": [
         "UserPhoto"
     ]
 }

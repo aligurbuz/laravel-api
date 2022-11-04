@@ -9,48 +9,5 @@
         "create": "App\\Client\\Auth\\Verifying\\Create\\CreateClient",
         "update": "App\\Client\\User\\User\\Update\\UpdateClient",
         "post": "App\\Client\\Auth\\Verifying\\Post\\PostClient"
-    },
-    "Timezone": {
-        "get": "App\\Client\\Timezones\\Timezones\\Get\\GetClient",
-        "create": "App\\Client\\Timezones\\Timezones\\Create\\CreateClient",
-        "update": "App\\Client\\Timezones\\Timezones\\Update\\UpdateClient"
-    },
-    "": {
-        "post": "App\\Client\\Auth\\Verifying\\Post\\PostClient"
-    },
-    "Excel": {
-        "get": "App\\Client\\Support\\Excel\\Get\\GetClient",
-        "create": "App\\Client\\Support\\Excel\\Create\\CreateClient",
-        "update": "App\\Client\\Support\\Excel\\Update\\UpdateClient"
-    },
-    "Customer": {
-        "get": "App\\Client\\Customer\\Profiles\\Get\\GetClient",
-        "create": "App\\Client\\Customer\\Profiles\\Create\\CreateClient",
-        "update": "App\\Client\\Customer\\Profiles\\Update\\UpdateClient"
-    },
-    "UserActivation": {
-        "get": "App\\Client\\User\\Activations\\Get\\GetClient",
-        "create": "App\\Client\\User\\Activations\\Create\\CreateClient",
-        "update": "App\\Client\\User\\Activations\\Update\\UpdateClient"
-    },
-    "CustomerGender": {
-        "get": "App\\Client\\Customer\\Genders\\Get\\GetClient",
-        "create": "App\\Client\\Customer\\Genders\\Create\\CreateClient",
-        "update": "App\\Client\\Customer\\Genders\\Update\\UpdateClient"
-    },
-    "CustomerAge": {
-        "get": "App\\Client\\Customer\\Ages\\Get\\GetClient",
-        "create": "App\\Client\\Customer\\Ages\\Create\\CreateClient",
-        "update": "App\\Client\\Customer\\Ages\\Update\\UpdateClient"
-    },
-    "CustomerImage": {
-        "get": "App\\Client\\Customer\\Images\\Get\\GetClient",
-        "create": "App\\Client\\Customer\\Images\\Create\\CreateClient",
-        "update": "App\\Client\\Customer\\Images\\Update\\UpdateClient"
-    },
-    "CustomerContact": {
-        "get": "App\\Client\\Customer\\Contacts\\Get\\GetClient",
-        "create": "App\\Client\\Customer\\Contacts\\Create\\CreateClient",
-        "update": "App\\Client\\Customer\\Contacts\\Update\\UpdateClient"
     }
 }

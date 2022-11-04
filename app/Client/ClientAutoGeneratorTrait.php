@@ -22,9 +22,7 @@ trait ClientAutoGeneratorTrait
      * @var array
      */
     protected array $autoGenerators = [
-        'sequence_time',
         'user_code',
-        'customer_code',
         'created_by',
         'updated_by',
         'deleted_by',
@@ -40,9 +38,7 @@ trait ClientAutoGeneratorTrait
      * @var array
      */
     protected array $dontOverWriteAutoGenerators = [
-        'sequence_time',
         'user_code',
-        'customer_code',
         'created_by',
         'updated_by',
         'deleted_by',
@@ -83,18 +79,6 @@ trait ClientAutoGeneratorTrait
         }
 
         return call_user_func($callback);
-    }
-
-    /**
-     * get user_id generator for client
-     *
-     * @return mixed
-     */
-    public function customerCodeAutoGenerator(): mixed
-    {
-        return $this->ensureColumnExists('customer_code', function () {
-            return customerCode();
-        });
     }
 
     /**

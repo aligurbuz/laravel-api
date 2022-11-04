@@ -1,19 +1,4 @@
 {
-    "City": [
-        "District",
-        "Country",
-        "Localization"
-    ],
-    "District": [
-        "City",
-        "Country",
-        "Localization"
-    ],
-    "Country": [
-        "City",
-        "District",
-        "Localization"
-    ],
     "Localization": [
         "City",
         "Country",
@@ -37,71 +22,21 @@
         "UserActivation",
         "UserPhoto"
     ],
-    "Currency": [
-        "Localization"
-    ],
-    "Customer": [
-        "CustomerAge",
-        "CustomerGender",
-        "CustomerImage",
-        "Localization",
-        "CustomerContact"
-    ],
-    "CustomerAge": [
-        "Customer",
-        "Localization"
-    ],
-    "CustomerGender": [
-        "Customer",
-        "Localization"
-    ],
-    "CustomerImage": [
-        "Customer",
-        "Localization"
-    ],
-    "CustomerContact": [
-        "Customer",
-        "Localization"
-    ],
-    "Excel": [
-        "Localization"
-    ],
     "Language": [
         "Localization"
     ],
     "Permission": [
         "Localization"
     ],
-    "Registration": [
-        "Localization"
-    ],
     "Role": [
         "Localization",
         "User"
-    ],
-    "SuperAdmin": [
-        "User",
-        "Localization"
     ],
     "User": [
         "SuperAdmin",
         "UserActivation",
         "UserPhoto",
         "Role",
-        "Localization"
-    ],
-    "TableChange": [
-        "Localization"
-    ],
-    "Timezone": [
-        "Localization"
-    ],
-    "UserActivation": [
-        "User",
-        "Localization"
-    ],
-    "UserPhoto": [
-        "User",
         "Localization"
     ]
 }

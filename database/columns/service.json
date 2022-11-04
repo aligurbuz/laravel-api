@@ -1,74 +1,10 @@
 {
-    "Currencies": {
-        "controller": "Currencies",
-        "dir": "Currencies"
-    },
     "Localizations/language": {
         "controller": "Language",
         "dir": "Localizations"
     },
-    "Timezones": {
-        "controller": "Timezones",
-        "dir": "Timezones"
-    },
     "User": {
         "controller": "User",
         "dir": "User"
-    },
-    "Countries": {
-        "controller": "Countries",
-        "dir": "Countries"
-    },
-    "Countries/cities": {
-        "controller": "Cities",
-        "dir": "Countries"
-    },
-    "Countries/districts": {
-        "controller": "Districts",
-        "dir": "Countries"
-    },
-    "User/photos": {
-        "controller": "Photos",
-        "dir": "User"
-    },
-    "Registration/registration": {
-        "controller": "Registration",
-        "dir": "Registration",
-        "model": "Registration"
-    },
-    "Support/excel": {
-        "controller": "Excel",
-        "dir": "Support",
-        "model": "Excel"
-    },
-    "Customer/profiles": {
-        "controller": "Profiles",
-        "dir": "Customer",
-        "model": "Customer"
-    },
-    "User/activations": {
-        "controller": "Activations",
-        "dir": "User",
-        "model": "UserActivation"
-    },
-    "Customer/genders": {
-        "controller": "Genders",
-        "dir": "Customer",
-        "model": "CustomerGender"
-    },
-    "Customer/ages": {
-        "controller": "Ages",
-        "dir": "Customer",
-        "model": "CustomerAge"
-    },
-    "Customer/images": {
-        "controller": "Images",
-        "dir": "Customer",
-        "model": "CustomerImage"
-    },
-    "Customer/contacts": {
-        "controller": "Contacts",
-        "dir": "Customer",
-        "model": "CustomerContact"
     }
 }
