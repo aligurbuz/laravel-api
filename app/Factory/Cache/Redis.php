@@ -37,6 +37,16 @@ class Redis extends CacheManager implements CacheInterface
     }
 
     /**
+     * get instance for cache factory
+     *
+     * @return ClientInterface
+     */
+    public function getInstance(): object
+    {
+        return RedisInstance::client(($this->binds['connection'] ?? 'default'));
+    }
+
+    /**
      * set redis key value for cache factory
      *
      * @param string $key
@@ -46,16 +56,6 @@ class Redis extends CacheManager implements CacheInterface
     public function set(string $key, mixed $value): void
     {
         $this->getInstance()->set($key, $value);
-    }
-
-    /**
-     * get instance for cache factory
-     *
-     * @return ClientInterface
-     */
-    public function getInstance(): object
-    {
-        return RedisInstance::client(($this->binds['connection'] ?? 'default'));
     }
 
     /**
@@ -130,22 +130,22 @@ class Redis extends CacheManager implements CacheInterface
      * checks if the key is valid for cache repository
      *
      * @param string $key
-     * @param mixed $field
      * @return bool
      */
-    public function hexists(string $key, mixed $field): bool
+    public function exists(string $key): bool
     {
-        return !(($this->getInstance()->hexists($key, $field) === 0));
+        return !(($this->getInstance()->exists($key) === 0));
     }
 
     /**
      * checks if the key is valid for cache repository
      *
      * @param string $key
+     * @param mixed $field
      * @return bool
      */
-    public function exists(string $key): bool
+    public function hexists(string $key, mixed $field): bool
     {
-        return !(($this->getInstance()->exists($key) === 0));
+        return !(($this->getInstance()->hexists($key, $field) === 0));
     }
 }

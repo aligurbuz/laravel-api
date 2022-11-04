@@ -16,8 +16,6 @@ use App\Repositories\Resources\User\Contracts\UserRepositoryContract;
  */
 class UserController extends ApiController
 {
-    use UserSupport;
-
     /**
      * get users data
      *

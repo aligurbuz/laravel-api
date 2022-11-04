@@ -10,7 +10,6 @@ use App\Http\Middleware\Permission;
 use App\Http\Middleware\PreventRequestsDuringMaintenance;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Middleware\Response;
-use App\Http\Middleware\SuperAdmin;
 use App\Http\Middleware\TrimStrings;
 use App\Http\Middleware\TrustProxies;
 use App\Http\Middleware\VerifyCsrfToken;
@@ -92,7 +91,6 @@ class Kernel extends HttpKernel
         'response' => Response::class,
         //'contentType' => ContentType::class,
         'acceptLanguage' => AcceptLanguage::class,
-        'superAdmin' => SuperAdmin::class,
         'permission' => Permission::class,
     ];
 }
