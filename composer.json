@@ -7,11 +7,7 @@
     "require": {
         "php": "^7.3|^8.1",
         "ext-curl": "*",
-        "aws/aws-sdk-php": "^3.208",
-        "barryvdh/laravel-dompdf": "^2.0",
-        "brick/money": "^0.5.3",
         "doctrine/dbal": "^3.1",
-        "elasticsearch/elasticsearch": "^7.0",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "itsgoingd/clockwork": "^5.0",
@@ -20,15 +16,11 @@
         "laravel/passport": "^10.1",
         "laravel/sanctum": "^2.15",
         "laravel/tinker": "^2.5",
-        "maatwebsite/excel": "^3.1",
-        "moneyphp/money": "^3.3",
         "nette/php-generator": "^3.5",
         "phpmailer/phpmailer": "^6.5",
         "predis/predis": "^1.1",
-        "pusher/pusher-php-server": "^7.0",
         "spatie/array-to-xml": "^3.0",
-        "symfony/yaml": "^6.0",
-        "twilio/sdk": "^6.35"
+        "symfony/yaml": "^6.0"
     },
     "require-dev": {
         "spatie/laravel-ignition": "^1.0",
