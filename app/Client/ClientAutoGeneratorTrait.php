@@ -16,8 +16,6 @@ use App\Services\Date;
  */
 trait ClientAutoGeneratorTrait
 {
-    use SequenceTimeGenerator;
-
     /**
      * get auto generator for client
      *
