@@ -44,11 +44,13 @@ class Role
      */
     public static function getRolesExceptAdmin(array $select = []) : array
     {
-        $rolesExceptAdmin = Repository::role()
-            ->select((count($select) ? $select : ['*']))->getRepository();
+        (count($select)) ? $select[] = 'is_administrator' : $select[] = '*';
+
+        $rolesExceptAdmin = Repository::role()->select($select)->getRepository();
 
         return array_values(
-            collect($rolesExceptAdmin)->where('is_administrator',0)->all()
+            collect($rolesExceptAdmin)
+                ->where('is_administrator',0)->all()
         );
     }
 
