@@ -5,6 +5,7 @@ use App\Exceptions\Exception;
 use App\Facades\Authenticate\ApiKey;
 use App\Factory\Factory;
 use App\Models\Entities\EntityMap;
+use App\Repositories\EloquentRepository;
 use App\Repositories\Repository;
 use App\Services\AppContainer;
 use App\Services\Client;
@@ -446,6 +447,21 @@ if (!function_exists('makeIfProduction')) {
     function makeIfProduction($data): mixed
     {
         return (isProduction() === true) ? $data : null;
+    }
+}
+
+if (!function_exists('memory')) {
+
+    /**
+     * get publicPath for application
+     *
+     * @param object $eloquentRepository
+     * @param bool $afterLoadingRepository
+     * @return array
+     */
+    function memory(object $eloquentRepository, bool $afterLoadingRepository = true): array
+    {
+        return $eloquentRepository->memory($afterLoadingRepository);
     }
 }
 

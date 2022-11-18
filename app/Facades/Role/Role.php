@@ -11,17 +11,6 @@ use App\Services\AppContainer;
 class Role
 {
     /**
-     * repository cache for data
-     *
-     * @param object $repository
-     * @return array
-     */
-    private static function memory(object $repository) : array
-    {
-        return $repository->memory();
-    }
-
-    /**
      * get role data information for facade
      *
      * @return array
@@ -29,7 +18,7 @@ class Role
     public static function get(): array
     {
         $userRole = AppContainer::use('role', function () {
-            return static::memory(Repository::user()->role());
+            return memory(Repository::user()->role());
         });
 
         return $userRole[0]['role'][0] ?? [];
@@ -64,7 +53,7 @@ class Role
     {
         (count($select)) ? $select[] = 'is_administrator' : $select[] = '*';
 
-        $rolesExceptAdmin = static::memory(Repository::role()->select($select));
+        $rolesExceptAdmin = memory(Repository::role()->select($select));
 
         return array_values(
             collect($rolesExceptAdmin)
