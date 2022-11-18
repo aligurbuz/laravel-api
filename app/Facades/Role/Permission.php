@@ -15,9 +15,9 @@ class Permission
     /**
      * set constructor via endpoint
      *
-     * @param string $endpoint
+     * @param string|null $endpoint
      */
-    public function __construct(string $endpoint)
+    public function __construct(?string $endpoint = null)
     {
         $this->endpoint = $endpoint;
     }
@@ -29,9 +29,15 @@ class Permission
      */
     public function get(): array
     {
-        $role = Role::get();
+        $data = Role::get();
 
-        return $role['roles'] ?? [];
+        $role = $data['roles'] ?? [];
+
+        if (!is_null($this->endpoint)) {
+            return $role[$this->code()] ?? [];
+        }
+
+        return $role;
     }
 
     /**
@@ -44,8 +50,8 @@ class Permission
     {
         $permissions = $this->get();
 
-        if (is_int($code = $this->code()) && isset($permissions[$code][$http])) {
-            return checkBool($permissions[$code][$http]);
+        if (isset($permissions[$http])) {
+            return checkBool($permissions[$http]);
         }
 
         return false;
@@ -58,7 +64,7 @@ class Permission
      */
     public function code(): ?int
     {
-        return AppContainer::use('permissionCode',function(){
+        return AppContainer::use('permissionCode', function () {
             $endpointPermission = Repository::permission()
                 ->endpoint($this->endpoint)->select(['permission_code'])->getRepository();
 

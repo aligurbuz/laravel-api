@@ -81,10 +81,10 @@ class Role
     /**
      * get permission instance for role facade
      *
-     * @param string $endpoint
+     * @param string|null $endpoint
      * @return Permission
      */
-    public static function permission(string $endpoint) : Permission
+    public static function permission(?string $endpoint = null): Permission
     {
         return new Permission($endpoint);
     }
