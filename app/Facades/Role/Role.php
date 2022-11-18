@@ -37,6 +37,22 @@ class Role
     }
 
     /**
+     * get roles except admin for role facade
+     *
+     * @param array $select
+     * @return array
+     */
+    public static function getRolesExceptAdmin(array $select = []) : array
+    {
+        $rolesExceptAdmin = Repository::role()
+            ->select((count($select) ? $select : ['*']))->getRepository();
+
+        return array_values(
+            collect($rolesExceptAdmin)->where('is_administrator',0)->all()
+        );
+    }
+
+    /**
      * creates role for factory
      *
      * @return array
