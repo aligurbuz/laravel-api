@@ -77,4 +77,15 @@ class Role
 
         return Repository::role()->create([$clientRequest]);
     }
+
+    /**
+     * get permission instance for role facade
+     *
+     * @param string $endpoint
+     * @return Permission
+     */
+    public static function permission(string $endpoint) : Permission
+    {
+        return new Permission($endpoint);
+    }
 }
