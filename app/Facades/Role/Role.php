@@ -11,7 +11,7 @@ use App\Services\AppContainer;
 class Role
 {
     /**
-     * get role data for facade
+     * get role data information for facade
      *
      * @return array
      */
