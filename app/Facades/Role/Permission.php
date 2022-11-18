@@ -44,8 +44,8 @@ class Permission
     {
         $permissions = $this->get();
 
-        if (isset($permissions[$this->code()][$http])) {
-            return checkBool($permissions[$this->code()][$http]);
+        if (is_int($code = $this->code()) && isset($permissions[$code][$http])) {
+            return checkBool($permissions[$code][$http]);
         }
 
         return false;
