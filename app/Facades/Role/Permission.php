@@ -3,6 +3,7 @@
 namespace App\Facades\Role;
 
 use App\Repositories\Repository;
+use App\Services\AppContainer;
 
 class Permission
 {
@@ -43,8 +44,8 @@ class Permission
     {
         $permissions = $this->get();
 
-        if (isset($permissions[$this->getPermissionCode()][$http])) {
-            return checkBool($permissions[$this->getPermissionCode()][$http]);
+        if (isset($permissions[$this->code()][$http])) {
+            return checkBool($permissions[$this->code()][$http]);
         }
 
         return false;
@@ -55,11 +56,13 @@ class Permission
      *
      * @return int|null
      */
-    public function getPermissionCode(): ?int
+    public function code(): ?int
     {
-        $endpointPermission = Repository::permission()
-            ->endpoint($this->endpoint)->select(['permission_code'])->getRepository();
+        return AppContainer::use('permissionCode',function(){
+            $endpointPermission = Repository::permission()
+                ->endpoint($this->endpoint)->select(['permission_code'])->getRepository();
 
-        return $endpointPermission[0]['permission_code'] ?? null;
+            return $endpointPermission[0]['permission_code'] ?? null;
+        });
     }
 }
