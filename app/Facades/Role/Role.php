@@ -36,7 +36,7 @@ class Role
 
         $isAdmin = checkBool($isAdminValue);
 
-        if($isAdmin && is_callable($callback)){
+        if ($isAdmin && is_callable($callback)) {
             return call_user_func($callback);
         }
 
@@ -49,7 +49,7 @@ class Role
      * @param array $select
      * @return array
      */
-    public static function getRolesExceptAdmin(array $select = []) : array
+    public static function getRolesExceptAdmin(array $select = []): array
     {
         (count($select)) ? $select[] = 'is_administrator' : $select[] = '*';
 
@@ -57,7 +57,7 @@ class Role
 
         return array_values(
             collect($rolesExceptAdmin)
-                ->where('is_administrator',0)->all()
+                ->where('is_administrator', 0)->all()
         );
     }
 
