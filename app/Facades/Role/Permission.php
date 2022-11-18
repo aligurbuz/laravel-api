@@ -64,7 +64,7 @@ class Permission
      */
     public function code(): ?int
     {
-        return AppContainer::use('permissionCode', function () {
+        return AppContainer::use('permissionCode_'.$this->endpoint, function () {
             $endpointPermission = Repository::permission()
                 ->endpoint($this->endpoint)->select(['permission_code'])->getRepository();
 
