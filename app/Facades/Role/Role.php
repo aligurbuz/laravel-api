@@ -38,13 +38,20 @@ class Role
     /**
      * checks if the user is isAdmin for facade
      *
+     * @param callable|null $callback
      * @return bool
      */
-    public static function isAdmin(): bool
+    public static function isAdmin(?callable $callback = null): bool
     {
         $isAdminValue = (static::get())['is_administrator'] ?? false;
 
-        return checkBool($isAdminValue);
+        $isAdmin = checkBool($isAdminValue);
+
+        if($isAdmin && is_callable($callback)){
+            return call_user_func($callback);
+        }
+
+        return $isAdmin;
     }
 
     /**
