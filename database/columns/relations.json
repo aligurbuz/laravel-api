@@ -28,6 +28,7 @@
         "Language",
         "Localization",
         "Permission",
+        "Product",
         "Registration",
         "Role",
         "SuperAdmin",
@@ -42,12 +43,16 @@
     ],
     "Customer": [
         "CustomerAge",
+        "CustomerContact",
         "CustomerGender",
         "CustomerImage",
-        "Localization",
-        "CustomerContact"
+        "Localization"
     ],
     "CustomerAge": [
+        "Customer",
+        "Localization"
+    ],
+    "CustomerContact": [
         "Customer",
         "Localization"
     ],
@@ -59,10 +64,6 @@
         "Customer",
         "Localization"
     ],
-    "CustomerContact": [
-        "Customer",
-        "Localization"
-    ],
     "Excel": [
         "Localization"
     ],
@@ -70,6 +71,9 @@
         "Localization"
     ],
     "Permission": [
+        "Localization"
+    ],
+    "Product": [
         "Localization"
     ],
     "Registration": [

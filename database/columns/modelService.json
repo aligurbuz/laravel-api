@@ -82,5 +82,9 @@
     "CustomerContact": {
         "controller": "Contacts",
         "dir": "Customer"
+    },
+    "Product": {
+        "controller": "Products",
+        "dir": "Store"
     }
 }
