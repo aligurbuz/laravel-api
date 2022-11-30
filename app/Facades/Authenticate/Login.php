@@ -1,49 +1,22 @@
 <?php
 
-declare(strict_types=1);
-
-namespace App\Factory\Request;
+namespace App\Facades\Authenticate;
 
 use App\Exceptions\Exception;
 use App\Exceptions\Exception as ExceptionService;
-use App\Facades\Authenticate\Activation;
-use App\Facades\Authenticate\ApiKey;
-use App\Factory\Request\Interfaces\RequestInterface;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
-/**
- * Class Request
- * @package App\Factory\Request
- */
-class Request extends RequestManager implements RequestInterface
+class Login
 {
     /**
-     * binds property variable
-     *
-     * @var array
-     */
-    protected array $binds = [];
-
-
-    /**
-     * Request constructor
-     *
-     * @param array $binds
-     */
-    public function __construct(array $binds = [])
-    {
-        $this->binds = $binds;
-    }
-
-    /**
-     * the login request it is made
+     * the login request for facade
      *
      * @param string|null $email
      * @param string|null $password
      * @return array
      */
-    public function login(?string $email = null, ?string $password = null): array
+    public static function make(?string $email = null, ?string $password = null): array
     {
         $authGuard = Auth::guard(authGuard());
 
