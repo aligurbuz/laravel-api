@@ -20,7 +20,8 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->bigInteger('user_code')->unique()->index();
             $table->string('name');
-            $table->string('email')->unique();
+            $table->string('username')->unique()->comment('user name');
+            $table->string('email')->unique()->comment('user email');
             $table->timestamp('email_verified_at')->nullable();
             $table->boolean('status')->default(0)->comment('status:1 - active,status:0 passive');
             $table->boolean('is_deleted')->default(0)->comment('is_deleted:0 - undeleted,is_deleted:1 deleted');
@@ -35,6 +36,7 @@ class CreateUsersTable extends Migration
           [
               'id' => 1,
               'user_code' => crc32(config('app.name').'_1user'),
+              'username' => 'username',
               'name' => 'userTest',
               'email' => 'test@gmail.com',
               'password' => Hash::make(123456),
