@@ -39,21 +39,15 @@ class Request extends RequestManager implements RequestInterface
     /**
      * the login request it is made
      *
-     * @param string $email
-     * @param string $password
+     * @param string|null $email
+     * @param string|null $password
      * @return array
      */
-    public function login(string $email, string $password): array
+    public function login(?string $email = null, ?string $password = null): array
     {
         $authGuard = Auth::guard(authGuard());
 
-        if (
-            $authGuard->attempt(
-                ['email' => $email,
-                    'password' => $password
-                ]
-            )) {
-
+        if ($authGuard->attempt(['email' => $email, 'password' => $password])) {
 
             /*** @var User $user */
             $user = Auth::guard(authGuard())->user();
@@ -73,10 +67,12 @@ class Request extends RequestManager implements RequestInterface
 
             if (isset($activationData['options']) && $activationData['options'] !== 'None') {
                 $activationHandle = Activation::handle($activationData, (array)$data['user']);
-                if (count($activationHandle)) return $activationHandle;
+                if (count($activationHandle)) {
+                    return $activationHandle;
+                }
             }
 
-            if ($data['user']['status'] == '1' && $data['user']['is_deleted'] == '0') {
+            if ($data['user']['status'] && !$data['user']['is_deleted']) {
                 $data['token'] = $user->createToken(ApiKey::who())->plainTextToken;
 
                 return $data;
