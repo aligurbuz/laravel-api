@@ -15,7 +15,12 @@ class CreateClient extends Client
      *
      * @var array
      */
-    protected array $capsule = ['email', 'password', 'activation_code'];
+    protected array $capsule = [
+        'email',
+        'username',
+        'password',
+        'activation_code'
+    ];
 
     /**
      * get model entity validation
@@ -30,7 +35,8 @@ class CreateClient extends Client
      * @var array
      */
     protected array $rule = [
-        'email' => 'required',
+        'email' => 'required_without:username',
+        'username' => 'required_without:email',
         'password' => 'required'
     ];
 

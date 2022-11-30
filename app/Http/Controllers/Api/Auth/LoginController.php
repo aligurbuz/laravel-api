@@ -25,8 +25,7 @@ class LoginController extends ApiController
     public function login(CreateClient $client): array
     {
         $client->handle();
-        $clientData = client();
 
-        return Login::make($clientData['email'], $clientData['password']);
+        return Login::make();
     }
 }
