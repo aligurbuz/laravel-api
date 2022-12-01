@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Api\Auth;
 
 use App\Client\Auth\Login\Create\CreateClient;
-use App\Factory\Factory;
+use App\Facades\Authenticate\Login;
 use App\Http\Controllers\Api\ApiController;
 use Exception;
 
@@ -25,8 +25,7 @@ class LoginController extends ApiController
     public function login(CreateClient $client): array
     {
         $client->handle();
-        $clientData = client();
 
-        return Factory::request()->login($clientData['email'], $clientData['password']);
+        return Login::make();
     }
 }

@@ -26,7 +26,7 @@ class UserFactory extends Factory
         $email = $this->faker->unique()->safeEmail;
         return [
             'user_code' => crc32($email),
-            'role_code' => '2963074553',
+            'role_code' => crc32('firstRoleCode'),
             'name' => $this->faker->name,
             'email' => $email,
             'email_verified_at' => now(),

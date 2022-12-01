@@ -17,7 +17,7 @@ class Role
      */
     public static function get(): array
     {
-        $userRole = AppContainer::use('role', function () {
+        $userRole = AppContainer::use('role', static function () {
             return memory(Repository::user()->role());
         });
 
@@ -37,7 +37,7 @@ class Role
         $isAdmin = checkBool($isAdminValue);
 
         if ($isAdmin && is_callable($callback)) {
-            return call_user_func($callback);
+            return $callback();
         }
 
         return $isAdmin;
