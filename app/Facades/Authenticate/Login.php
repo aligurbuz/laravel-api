@@ -29,8 +29,8 @@ class Login
             // two-factory system : sms or email checking
             return static::makeActivation($user, callback: static function () use ($user) {
                 $data = [];
-                $data['user'] = $user->toArray();
-                $data['token'] = $user->createToken(ApiKey::who())->plainTextToken;
+                $data['user'] = $user;
+                $user['token'] = $user->createToken(ApiKey::who())->plainTextToken;
 
                 return $data;
             });
