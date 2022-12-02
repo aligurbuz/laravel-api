@@ -81,6 +81,11 @@ class Login
      */
     private static function attempt(?string $email, ?string $password, callable $callback): mixed
     {
+        // Note the authGuard helper method here.
+        // this value can be obtained literally with the config/auth.php settings.
+        // Every client that makes a request to the API comes with an apiKey key.
+        // so this key is very important to authenticate.
+        // @see App\Http\Controllers\Api\ApiController@getMiddlewares()
         $authGuard = Auth::guard(authGuard());
 
         if ($authGuard->attempt(static::attemptCredentials($email, $password))) {
