@@ -26,12 +26,8 @@ class Login
             // if the user validates with the two-factor system,
             // we check it here with the makeActivation method.
             // two-factory system : sms or email checking
-            return static::makeTwoFactor($user, callback: static function () use ($user) {
-                $data = [];
-                $data['user'] = $user;
-                $data['auth']['token'] = $user->createToken(ApiKey::who())->plainTextToken;
-
-                return $data;
+            return static::makeTwoFactor($user, callback: static function () {
+                return Authenticate::createToken();
             });
         });
     }

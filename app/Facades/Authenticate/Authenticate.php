@@ -5,6 +5,8 @@ namespace App\Facades\Authenticate;
 use App\Exceptions\Exception;
 use App\Facades\FacadeManager;
 use App\Repositories\Repository;
+use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Contracts\Auth\StatefulGuard;
 use Illuminate\Support\Facades\Auth;
 
 class Authenticate extends FacadeManager
@@ -35,9 +37,9 @@ class Authenticate extends FacadeManager
     /**
      * get authenticate guard for facade
      *
-     * @return object
+     * @return Guard|StatefulGuard
      */
-    public static function guard() : object
+    public static function guard() : Guard|StatefulGuard
     {
         // Note the authGuard helper method here.
         // this value can be obtained literally with the config/auth.php settings.
@@ -45,6 +47,22 @@ class Authenticate extends FacadeManager
         // so this key is very important to authenticate.
         // @see App\Http\Controllers\Api\ApiController@getMiddlewares()
         return Auth::guard(authGuard());
+    }
+
+    /**
+     * get authenticate user token for facade
+     *
+     * @return array
+     */
+    public static function createToken() : array
+    {
+        $user = static::guard()->user();
+
+        $data = [];
+        $data['user'] = $user;
+        $data['auth']['token'] = $user->createToken(ApiKey::who())->plainTextToken;
+
+        return $data;
     }
 
     /**
