@@ -2,8 +2,6 @@
 
 namespace App\Facades\Authenticate;
 
-use App\Exceptions\Exception;
-use App\Exceptions\Exception as ExceptionService;
 use App\Facades\Authenticate\User as UserFacade;
 
 class Login
@@ -17,7 +15,7 @@ class Login
      */
     public static function make(?string $email = null, ?string $password = null): array
     {
-        return static::attempt($email, $password, static function (object $user) {
+        return Authenticate::attempt($email, $password, static function (object $user) {
 
             // this code looks at the user's status and is_deleted fields.
             // It will throw an exception if the status field value is 0 or the is_deleted field is 1.
@@ -30,33 +28,6 @@ class Login
                 return Authenticate::createToken();
             });
         });
-    }
-
-    /**
-     * this method will provide laravel login directly.
-     * If you don't want to make MakeActivation, you can use this method directly.
-     *
-     * @param string|null $email
-     * @param string|null $password
-     * @param callable $callback
-     * @return mixed
-     */
-    public static function attempt(?string $email, ?string $password, callable $callback): mixed
-    {
-        // Note the authGuard helper method here.
-        // this value can be obtained literally with the config/auth.php settings.
-        // Every client that makes a request to the API comes with an apiKey key.
-        // so this key is very important to authenticate.
-        // @see App\Http\Controllers\Api\ApiController@getMiddlewares()
-        $authGuard = Authenticate::guard();
-
-        if ($authGuard->attempt(Authenticate::credentials($email, $password))) {
-            return $callback($authGuard->user());
-        }
-
-        // if the system cannot authenticate the user,
-        // it will throw an exception directly.
-        return ExceptionService::loginException();
     }
 
     /**
