@@ -38,6 +38,33 @@ class Login
     }
 
     /**
+     * this method will provide laravel login directly.
+     * If you don't want to make MakeActivation, you can use this method directly.
+     *
+     * @param string|null $email
+     * @param string|null $password
+     * @param callable $callback
+     * @return mixed
+     */
+    public static function attempt(?string $email, ?string $password, callable $callback): mixed
+    {
+        // Note the authGuard helper method here.
+        // this value can be obtained literally with the config/auth.php settings.
+        // Every client that makes a request to the API comes with an apiKey key.
+        // so this key is very important to authenticate.
+        // @see App\Http\Controllers\Api\ApiController@getMiddlewares()
+        $authGuard = Auth::guard(authGuard());
+
+        if ($authGuard->attempt(static::attemptCredentials($email, $password))) {
+            return $callback($authGuard->user());
+        }
+
+        // if the system cannot authenticate the user,
+        // it will throw an exception directly.
+        return ExceptionService::loginException();
+    }
+
+    /**
      * check user active for facade
      *
      * @param User $user
@@ -71,30 +98,6 @@ class Login
         }
 
         return $callback();
-    }
-
-    /**
-     * @param string|null $email
-     * @param string|null $password
-     * @param callable $callback
-     * @return mixed
-     */
-    public static function attempt(?string $email, ?string $password, callable $callback): mixed
-    {
-        // Note the authGuard helper method here.
-        // this value can be obtained literally with the config/auth.php settings.
-        // Every client that makes a request to the API comes with an apiKey key.
-        // so this key is very important to authenticate.
-        // @see App\Http\Controllers\Api\ApiController@getMiddlewares()
-        $authGuard = Auth::guard(authGuard());
-
-        if ($authGuard->attempt(static::attemptCredentials($email, $password))) {
-            return $callback($authGuard->user());
-        }
-
-        // if the system cannot authenticate the user,
-        // it will throw an exception directly.
-        return ExceptionService::loginException();
     }
 
     /**
