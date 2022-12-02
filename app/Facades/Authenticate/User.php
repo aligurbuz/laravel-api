@@ -3,7 +3,6 @@
 namespace App\Facades\Authenticate;
 
 use App\Exceptions\Exception;
-use App\Models\User as UserModel;
 
 class User
 {
@@ -15,6 +14,7 @@ class User
      */
     public static function isActive(): void
     {
+        /*** @var object $user */
         $user = Authenticate::guard()->user();
 
         if ($user->is_deleted) {
