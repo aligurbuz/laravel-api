@@ -26,7 +26,7 @@ class Login
             // if the user validates with the two-factor system,
             // we check it here with the makeActivation method.
             // two-factory system : sms or email checking
-            return static::makeTwoFactor($user, callback: static function () {
+            return static::twoFactor($user, callback: static function () {
                 return Authenticate::createToken();
             });
         });
@@ -64,7 +64,7 @@ class Login
      * @param callable $callback
      * @return array
      */
-    private static function makeTwoFactor(object $user, callable $callback): array
+    private static function twoFactor(object $user, callable $callback): array
     {
         $activationData = Activation::get(Authenticate::code());
 
