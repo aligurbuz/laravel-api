@@ -70,6 +70,7 @@ class Login
 
         if (isset($activationData['options']) && $activationData['options'] !== 'None') {
             $activationHandle = Activation::handle($activationData, (array)$user->toArray());
+
             if (count($activationHandle)) {
                 return $activationHandle;
             }
