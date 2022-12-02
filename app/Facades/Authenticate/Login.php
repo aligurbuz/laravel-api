@@ -6,7 +6,6 @@ use App\Exceptions\Exception;
 use App\Exceptions\Exception as ExceptionService;
 use App\Models\User;
 use App\Facades\Authenticate\User as UserFacade;
-use Illuminate\Support\Facades\Auth;
 
 class Login
 {
@@ -23,7 +22,7 @@ class Login
 
             // this code looks at the user's status and is_deleted fields.
             // It will throw an exception if the status field value is 0 or the is_deleted field is 1.
-            UserFacade::isActive($user);
+            UserFacade::isActive();
 
             // if the user validates with the two-factor system,
             // we check it here with the makeActivation method.
@@ -31,7 +30,7 @@ class Login
             return static::makeTwoFactor($user, callback: static function () use ($user) {
                 $data = [];
                 $data['user'] = $user;
-                $user['token'] = $user->createToken(ApiKey::who())->plainTextToken;
+                $data['auth']['token'] = $user->createToken(ApiKey::who())->plainTextToken;
 
                 return $data;
             });
@@ -54,7 +53,7 @@ class Login
         // Every client that makes a request to the API comes with an apiKey key.
         // so this key is very important to authenticate.
         // @see App\Http\Controllers\Api\ApiController@getMiddlewares()
-        $authGuard = Auth::guard(authGuard());
+        $authGuard = Authenticate::guard();
 
         if ($authGuard->attempt(static::attemptCredentials($email, $password))) {
             return $callback($authGuard->user());

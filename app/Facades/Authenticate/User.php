@@ -11,11 +11,12 @@ class User
      * this code looks at the user's status and is_deleted fields.
      * It will throw an exception if the status field value is 0 or the is_deleted field is 1.
      *
-     * @param UserModel $user
      * @return void
      */
-    public static function isActive(UserModel $user): void
+    public static function isActive(): void
     {
+        $user = Authenticate::guard()->user();
+
         if ($user->is_deleted) {
             Exception::customException('deletedUser');
         }

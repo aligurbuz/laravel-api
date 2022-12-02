@@ -5,6 +5,7 @@ namespace App\Facades\Authenticate;
 use App\Exceptions\Exception;
 use App\Facades\FacadeManager;
 use App\Repositories\Repository;
+use Illuminate\Support\Facades\Auth;
 
 class Authenticate extends FacadeManager
 {
@@ -29,6 +30,21 @@ class Authenticate extends FacadeManager
 
         $this->code = ApiKey::isWeb() ? 'customer_code' : 'user_code';
 
+    }
+
+    /**
+     * get authenticate guard for facade
+     *
+     * @return object
+     */
+    public static function guard() : object
+    {
+        // Note the authGuard helper method here.
+        // this value can be obtained literally with the config/auth.php settings.
+        // Every client that makes a request to the API comes with an apiKey key.
+        // so this key is very important to authenticate.
+        // @see App\Http\Controllers\Api\ApiController@getMiddlewares()
+        return Auth::guard(authGuard());
     }
 
     /**
