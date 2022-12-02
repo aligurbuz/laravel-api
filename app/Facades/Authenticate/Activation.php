@@ -11,12 +11,15 @@ use App\Services\AppContainer;
 class Activation
 {
     /**
-     * @param object $user
+     * two-factor system for activation facade
+     *
      * @param callable $callback
      * @return array
      */
-    public static function twoFactor(object $user, callable $callback): array
+    public static function twoFactor(callable $callback): array
     {
+        $user = Authenticate::guard()->user();
+
         $activationData = static::get(Authenticate::code());
 
         if (isset($activationData['options']) && $activationData['options'] !== 'None') {

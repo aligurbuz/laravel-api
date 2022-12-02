@@ -11,14 +11,14 @@ class Login
      * @param string|null $password
      * @return array
      */
-    public static function make(?string $email = null, ?string $password = null): array
+    public static function withTwoFactor(?string $email = null, ?string $password = null): array
     {
-        return Authenticate::attempt($email, $password, static function (object $user) {
+        return Authenticate::attempt($email, $password, static function () {
 
             // if the user validates with the two-factor system,
             // we check it here with the makeActivation method.
             // two-factory system : sms or email checking
-            return Activation::twoFactor($user, callback: static function () {
+            return Activation::twoFactor(callback: static function () {
                 return Authenticate::createToken();
             });
         });
