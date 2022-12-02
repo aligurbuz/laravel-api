@@ -11,6 +11,26 @@ use App\Services\AppContainer;
 class Activation
 {
     /**
+     * @param object $user
+     * @param callable $callback
+     * @return array
+     */
+    public static function twoFactor(object $user, callable $callback): array
+    {
+        $activationData = static::get(Authenticate::code());
+
+        if (isset($activationData['options']) && $activationData['options'] !== 'None') {
+            $activationHandle = static::handle($activationData, (array)$user->toArray());
+
+            if (count($activationHandle)) {
+                return $activationHandle;
+            }
+        }
+
+        return $callback();
+    }
+
+    /**
      * handle for auth activation
      *
      * @param array $activationData

@@ -18,29 +18,23 @@ class Login
             // if the user validates with the two-factor system,
             // we check it here with the makeActivation method.
             // two-factory system : sms or email checking
-            return static::twoFactor($user, callback: static function () {
+            return Activation::twoFactor($user, callback: static function () {
                 return Authenticate::createToken();
             });
         });
     }
 
     /**
-     * @param object $user
-     * @param callable $callback
+     * the direct login request without two-factor for facade
+     *
+     * @param string|null $email
+     * @param string|null $password
      * @return array
      */
-    private static function twoFactor(object $user, callable $callback): array
+    public static function attempt(?string $email = null, ?string $password = null): array
     {
-        $activationData = Activation::get(Authenticate::code());
-
-        if (isset($activationData['options']) && $activationData['options'] !== 'None') {
-            $activationHandle = Activation::handle($activationData, (array)$user->toArray());
-
-            if (count($activationHandle)) {
-                return $activationHandle;
-            }
-        }
-
-        return $callback();
+        return Authenticate::attempt($email, $password, static function () {
+            return Authenticate::createToken();
+        });
     }
 }
