@@ -4,7 +4,6 @@ namespace App\Facades\Authenticate;
 
 use App\Exceptions\Exception;
 use App\Exceptions\Exception as ExceptionService;
-use App\Models\User;
 use App\Facades\Authenticate\User as UserFacade;
 
 class Login
@@ -18,7 +17,7 @@ class Login
      */
     public static function make(?string $email = null, ?string $password = null): array
     {
-        return static::attempt($email, $password, static function (User $user) {
+        return static::attempt($email, $password, static function (object $user) {
 
             // this code looks at the user's status and is_deleted fields.
             // It will throw an exception if the status field value is 0 or the is_deleted field is 1.
@@ -65,13 +64,13 @@ class Login
     }
 
     /**
-     * @param User $user
+     * @param object $user
      * @param callable $callback
      * @return array
      */
-    private static function makeTwoFactor(User $user, callable $callback): array
+    private static function makeTwoFactor(object $user, callable $callback): array
     {
-        $activationData = Activation::get($user->user_code);
+        $activationData = Activation::get(Authenticate::code());
 
         if (isset($activationData['options']) && $activationData['options'] !== 'None') {
             $activationHandle = Activation::handle($activationData, (array)$user->toArray());
