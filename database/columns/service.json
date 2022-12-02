@@ -70,10 +70,5 @@
         "controller": "Contacts",
         "dir": "Customer",
         "model": "CustomerContact"
-    },
-    "Store/products": {
-        "controller": "Products",
-        "dir": "Store",
-        "model": "Product"
     }
 }

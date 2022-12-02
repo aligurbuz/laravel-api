@@ -52,10 +52,5 @@
         "get": "App\\Client\\Customer\\Contacts\\Get\\GetClient",
         "create": "App\\Client\\Customer\\Contacts\\Create\\CreateClient",
         "update": "App\\Client\\Customer\\Contacts\\Update\\UpdateClient"
-    },
-    "Product": {
-        "get": "App\\Client\\Store\\Products\\Get\\GetClient",
-        "create": "App\\Client\\Store\\Products\\Create\\CreateClient",
-        "update": "App\\Client\\Store\\Products\\Update\\UpdateClient"
     }
 }
