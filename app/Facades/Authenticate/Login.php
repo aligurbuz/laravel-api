@@ -50,7 +50,7 @@ class Login
         // @see App\Http\Controllers\Api\ApiController@getMiddlewares()
         $authGuard = Authenticate::guard();
 
-        if ($authGuard->attempt(static::attemptCredentials($email, $password))) {
+        if ($authGuard->attempt(Authenticate::credentials($email, $password))) {
             return $callback($authGuard->user());
         }
 
@@ -76,29 +76,5 @@ class Login
         }
 
         return $callback();
-    }
-
-    /**
-     * get attempt credentials for facade
-     *
-     * @param string|null $email
-     * @param string|null $password
-     * @return array
-     */
-    private static function attemptCredentials(?string $email = null, ?string $password = null): array
-    {
-        $clientData = client();
-
-        if (isset($clientData['username'])) {
-            return [
-                'username' => $clientData['username'],
-                'password' => $password ?? $clientData['password']
-            ];
-        }
-
-        return [
-            'email' => $email ?? $clientData['email'],
-            'password' => $password ?? $clientData['password']
-        ];
     }
 }

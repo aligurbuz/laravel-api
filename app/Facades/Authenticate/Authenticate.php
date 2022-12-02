@@ -155,4 +155,28 @@ class Authenticate extends FacadeManager
 
         return (new self)->data->{$code} ?? 0;
     }
+
+    /**
+     * get attempt credentials for facade
+     *
+     * @param string|null $email
+     * @param string|null $password
+     * @return array
+     */
+    public static function credentials(?string $email = null, ?string $password = null): array
+    {
+        $clientData = client();
+
+        if (isset($clientData['username'])) {
+            return [
+                'username' => $clientData['username'],
+                'password' => $password ?? $clientData['password']
+            ];
+        }
+
+        return [
+            'email' => $email ?? $clientData['email'],
+            'password' => $password ?? $clientData['password']
+        ];
+    }
 }
