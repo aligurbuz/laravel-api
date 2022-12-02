@@ -114,7 +114,7 @@ class Authenticate extends FacadeManager
      *
      * @return int
      */
-    public static function role_code(): int
+    public static function roleCode(): int
     {
         return (new self)->data->role_code ?? 0;
     }

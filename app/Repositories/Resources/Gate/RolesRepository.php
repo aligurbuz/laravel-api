@@ -40,6 +40,6 @@ class RolesRepository extends EloquentRepository implements RolesRepositoryContr
      */
     public function user(): object
     {
-        return $this->code(Authenticate::role_code());
+        return $this->code(Authenticate::roleCode());
     }
 }
