@@ -79,7 +79,7 @@ class Login
      * @param callable $callback
      * @return mixed
      */
-    private static function attempt(?string $email, ?string $password, callable $callback): mixed
+    public static function attempt(?string $email, ?string $password, callable $callback): mixed
     {
         // Note the authGuard helper method here.
         // this value can be obtained literally with the config/auth.php settings.
