@@ -26,6 +26,6 @@ class LoginController extends ApiController
     {
         $client->handle();
 
-        return Login::withTwoFactor();
+        return Login::attemptWithTwoFactor();
     }
 }
