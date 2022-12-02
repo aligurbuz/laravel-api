@@ -349,9 +349,9 @@ abstract class TestCase extends BaseTestCase
 
 
             $response->assertStatus(200);
-            $this->assertArrayHasKey('token',$content['resource'][0]['data'][0]);
+            $this->assertArrayHasKey('token',$content['resource'][0]['data'][0]['auth']);
             $this->assertArrayHasKey('user',$content['resource'][0]['data'][0]);
-            $redis->set(static::$unitTestToken,$content['resource'][0]['data'][0]['token']);
+            $redis->set(static::$unitTestToken,$content['resource'][0]['data'][0]['auth']['token']);
             $redis->expire(static::$unitTestToken,3600);
         }
         else{
