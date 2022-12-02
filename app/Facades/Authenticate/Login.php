@@ -29,7 +29,7 @@ class Login
         return Authenticate::attempt($email, $password, static function () {
 
             // if the user validates with the two-factor system,
-            // we check it here with the makeActivation method.
+            // we check it here with the Activation@twoFactor method.
             // two-factory system : sms or email checking
             return Activation::twoFactor(callback: static function () {
                 return Authenticate::createToken();
