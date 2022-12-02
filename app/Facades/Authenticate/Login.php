@@ -33,8 +33,7 @@ class Login
      */
     public static function attempt(?string $email = null, ?string $password = null): array
     {
-        return Authenticate::attempt($email, $password, static function () {
-            return Authenticate::createToken();
-        });
+        // this method overrides the two-authentication system.
+        return Authenticate::attempt($email, $password);
     }
 }

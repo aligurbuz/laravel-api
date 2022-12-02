@@ -71,10 +71,10 @@ class Authenticate extends FacadeManager
      *
      * @param string|null $email
      * @param string|null $password
-     * @param callable $callback
+     * @param callable|null $callback
      * @return mixed
      */
-    public static function attempt(?string $email, ?string $password, callable $callback): mixed
+    public static function attempt(?string $email, ?string $password, ?callable $callback = null): mixed
     {
         // Note the authGuard helper method here.
         // this value can be obtained literally with the config/auth.php settings.
@@ -89,7 +89,9 @@ class Authenticate extends FacadeManager
             // It will throw an exception if the status field value is 0 or the is_deleted field is 1.
             User::isActive();
 
-            return $callback($authGuard->user());
+            // if a callback method is sent to the attempt method, this callback is executed.
+            // if callback is not sent, token is created directly and returned with user data.
+            return is_callable($callback) ? $callback($authGuard->user()) : static::createToken();
         }
 
         // if the system cannot authenticate the user,
