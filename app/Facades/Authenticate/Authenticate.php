@@ -83,7 +83,7 @@ class Authenticate extends FacadeManager
         // @see App\Http\Controllers\Api\ApiController@getMiddlewares()
         $authGuard = Authenticate::guard();
 
-        if ($authGuard->attempt(Authenticate::credentials($email, $password))) {
+        if ($authGuard->attempt(static::credentials($email, $password))) {
 
             // this code looks at the user's status and is_deleted fields.
             // It will throw an exception if the status field value is 0 or the is_deleted field is 1.
