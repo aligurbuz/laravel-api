@@ -62,9 +62,9 @@ class Exception
         if (isset($arguments[0])) {
             static::setKeyForContainer($namespace, ($arguments[1] ?? (is_array($arguments[0]) ? $arguments[0] : [])));
             throw new $namespace((is_array($arguments[0]) ? '' : $arguments[0]));
-        } else {
-            throw new $namespace();
         }
+
+        throw new $namespace();
     }
 
     /**

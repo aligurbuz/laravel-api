@@ -40,7 +40,7 @@ class Sms
      */
     public function __call(string $name, array $arguments)
     {
-        $method = ($name == 'send') ? 'sendSms' : 'set' . ucfirst($name);
+        $method = ($name === 'send') ? 'sendSms' : 'set' . ucfirst($name);
 
         return $this->$method(($arguments[0] ?? ''));
     }

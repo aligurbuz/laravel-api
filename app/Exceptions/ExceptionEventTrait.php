@@ -36,7 +36,7 @@ trait ExceptionEventTrait
         $exceptionNotify = AppContainer::get(Constants::exceptionNotify);
 
         if ($exceptionNotify === true || is_string($exceptionNotify)) {
-            call_user_func($callback, (is_string($exceptionNotify) ? $exceptionNotify : $this->getNotifyChannel()));
+            $callback((is_string($exceptionNotify) ? $exceptionNotify : $this->getNotifyChannel()));
         }
     }
 

@@ -18,6 +18,7 @@ class Activation
      */
     public static function twoFactor(callable $callback): array
     {
+        /*** @var object $user */
         $user = Authenticate::guard()->user();
 
         $activationData = static::get(Authenticate::code());
@@ -62,7 +63,7 @@ class Activation
      */
     protected static function smsHandler(array $activationData = [], array $user = []): array
     {
-        if ($activationData['options'] == 'Sms') {
+        if ($activationData['options'] === 'Sms') {
             static::throwExceptionIfActivationCodeNotValid($activationData);
 
             if (static::isNullActivationCode()) {
@@ -107,7 +108,7 @@ class Activation
      */
     protected static function emailHandler(array $activationData = [], array $user = []): array
     {
-        if ($activationData['options'] == 'Email') {
+        if ($activationData['options'] === 'Email') {
             static::throwExceptionIfActivationCodeNotValid($activationData);
 
             if (static::isNullActivationCode()) {
@@ -131,11 +132,11 @@ class Activation
      */
     public static function get(int $userCode): array
     {
-        return AppContainer::use('userActivation_' . $userCode, function () use ($userCode) {
+        return AppContainer::use('userActivation_' . $userCode, static function () use ($userCode) {
             $userActivation = Repository::userActivation()->userCode($userCode)->latest();
 
             if (count($userActivation) && static::isNullActivationCode()) {
-                $userUpdateActivation = Repository::userActivation()->userCode($userCode)->update([['hash' => rand(10000, 999999)]]);
+                $userUpdateActivation = Repository::userActivation()->userCode($userCode)->update([['hash' => random_int(10000, 999999)]]);
                 return $userUpdateActivation[0] ?? [];
             }
 
