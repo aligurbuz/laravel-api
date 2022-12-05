@@ -15,7 +15,7 @@ class Email
      * @param string $hash
      * @return void
      */
-    public static function userActivation(string $email,string $hash): void
+    public static function userActivation(string $email, string $hash): void
     {
         dispatch(Mail::to($email)->send(new UserActivation([
             'hash' => $hash
@@ -29,10 +29,10 @@ class Email
      * @param string $hash
      * @return void
      */
-    public static function verifyingEmail(string $email,string $hash): void
+    public static function verifyingEmail(string $email, string $hash): void
     {
         /**dispatch(Mail::to($email)->send(new VerifyEmailForUser([
-            'hash' => $hash
-        ])));**/
+         * 'hash' => $hash
+         * ])));**/
     }
 }
