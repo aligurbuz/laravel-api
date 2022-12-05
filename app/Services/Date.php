@@ -40,6 +40,22 @@ class Date
     }
 
     /**
+     * Determines how many seconds are between two dates.
+     *
+     * @param string $startDate
+     * @param string $finishDate
+     * @param string $format
+     * @return float|int
+     */
+    public static function diffInSeconds(string $startDate, string $finishDate, string $format = 'Y-m-d H:i:s'): float|int
+    {
+        $startDate = static::createFormat($startDate,$format);
+        $finishDate = static::createFormat($finishDate,$format);
+
+        return $finishDate->diffInSeconds($startDate);
+    }
+
+    /**
      * Lists all dates between two dates.
      *
      * @param string $startDate
