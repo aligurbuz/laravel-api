@@ -7,38 +7,38 @@ use Exception;
 
 trait GeneratorTrait
 {
-	/**
-	 * get auto generator for client
-	 *
-	 * @return array
-	 */
-	protected array $generators = [
+    /**
+     * get auto generator for client
+     *
+     * @return array
+     */
+    protected array $generators = [
         'password_change_code',
         'hash',
         'client_time'
     ];
 
-	/**
-	 * get dont overwrite generator for client
-	 *
-	 * @return array
-	 */
-	protected array $dontOverWriteGenerators = [
+    /**
+     * get dont overwrite generator for client
+     *
+     * @return array
+     */
+    protected array $dontOverWriteGenerators = [
         'password_change_code',
         'hash',
         'client_time'
     ];
 
 
-	/**
-	 * generates password change_code for client
-	 *
-	 * @return int
-	 */
-	public function passwordChangeCodeGenerator(): int
-	{
-		return generateHash();
-	}
+    /**
+     * generates password change_code for client
+     *
+     * @return int
+     */
+    public function passwordChangeCodeGenerator(): int
+    {
+        return generateHash();
+    }
 
     /**
      * generates password token for client
@@ -48,7 +48,7 @@ trait GeneratorTrait
      */
     public function hashGenerator(): int
     {
-        return random_int(100000,999999);
+        return random_int(100000, 999999);
     }
 
     /**
