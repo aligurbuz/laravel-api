@@ -17,10 +17,10 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('password_change_code')->default(0)->unique();
 
-            $table->bigInteger('user_code')->comment('user code');
+            $table->string('email')->comment('user email');
 
             $table->string('hash')->nullable()->comment('one-time code to be used for password reset');
-            $table->dateTime('invalid_time')->nullable()->comment('represents the current time for password change');
+            $table->dateTime('client_time')->nullable()->comment('represents the current time for password change');
 
             //$table->integer('sequence_time')->default(0);
             //$table->integer('sequence')->default(1);
@@ -34,10 +34,10 @@ return new class extends Migration
             $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
 
-            $table->index(['user_code','is_deleted']);
+            $table->index(['email','is_deleted']);
         });
 
-        pushMigration('password','auth','passwordChange');
+        pushMigration('changes','password','passwordChange');
     }
 
     /**
