@@ -15,6 +15,7 @@ return [
         "Countries/Cities"      => "It contains the data serving the cities connected to the countries.Cities are strictly associated with country_code.So be careful with your (country_code) value when saving a city.",
         "Countries/Districts"   => "It contains the data serving the districts connected to the cities.Districts are strictly associated with city_code.So be careful with your (city_code) value when saving a district.",
         "Support/Excel"         => 'It is the endpoint that allows you to import your Excel files into the specified tables.Your post requests are queued and your due files will be saved in the relevant tables through the queue.',
+        "Password/Changes"      => 'This endpoint will send a one-time code via email or sms when the user forgets their login information.You can update your password with this code. There is a code execution time. Expired code will be unavailable.',
 
     ],
     'exceptMethods' => [
@@ -22,6 +23,7 @@ return [
         //'countries/districts' => ['GET','PUT','POST'],
         'registration' => ['GET','PUT'],
         'support/excel' => ['GET','PUT'],
+        'password/changes' => ['GET','PUT'],
     ],
     "ignores" => [
         "SuperAdmins",
