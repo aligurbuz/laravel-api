@@ -14,5 +14,8 @@ class PasswordChange extends Model
 
     protected array $withQuery = [];
 
-    protected $hidden = ['id'];
+    protected $hidden = [
+        'id',
+        'hash'
+    ];
 }

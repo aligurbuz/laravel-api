@@ -47,5 +47,6 @@ return [
     'filterMandatory'               => 'You can only display one data. So use filter.',
     'apiKeyRestrictions'            => 'This endpoint request cannot be performed for apiKey detected as (:key).',
     'invalidActivationCode'         => 'Activation code is invalid',
-    'filterMandatoryKey'            => 'The (:key) key must be in the filter.'
+    'filterMandatoryKey'            => 'The (:key) key must be in the filter.',
+    'invalid_email'                 => 'Email address is not valid'
 ];

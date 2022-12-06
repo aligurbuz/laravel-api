@@ -5,9 +5,7 @@ namespace App\Facades\Authenticate;
 use App\Exceptions\Exception;
 use App\Facades\FacadeManager;
 use App\Repositories\Repository;
-use Illuminate\Contracts\Auth\Guard;
-use Illuminate\Contracts\Auth\StatefulGuard;
-use Illuminate\Support\Facades\Auth;
+use App\Facades\Authenticate\Guard as GuardFacade;
 
 class Authenticate extends FacadeManager
 {
@@ -35,28 +33,13 @@ class Authenticate extends FacadeManager
     }
 
     /**
-     * get authenticate guard for facade
-     *
-     * @return Guard|StatefulGuard
-     */
-    public static function guard() : Guard|StatefulGuard
-    {
-        // Note the authGuard helper method here.
-        // this value can be obtained literally with the config/auth.php settings.
-        // Every client that makes a request to the API comes with an apiKey key.
-        // so this key is very important to authenticate.
-        // @see App\Http\Controllers\Api\ApiController@getMiddlewares()
-        return Auth::guard(authGuard());
-    }
-
-    /**
      * get authenticate user token for facade
      *
      * @return array
      */
-    public static function createToken() : array
+    public static function createToken(): array
     {
-        $user = static::guard()->user();
+        $user = GuardFacade::get()->user();
 
         $data = [];
         $data['user'] = $user;
@@ -81,7 +64,7 @@ class Authenticate extends FacadeManager
         // Every client that makes a request to the API comes with an apiKey key.
         // so this key is very important to authenticate.
         // @see App\Http\Controllers\Api\ApiController@getMiddlewares()
-        $authGuard = Authenticate::guard();
+        $authGuard = GuardFacade::get();
 
         if ($authGuard->attempt(static::credentials($email, $password))) {
 
@@ -174,6 +157,31 @@ class Authenticate extends FacadeManager
         }
 
         return $superUser;
+    }
+
+    /**
+     * get auth guard model name
+     *
+     * @return string
+     */
+    public static function model(): string
+    {
+        return lcfirst(
+            class_basename(config('auth.providers.' . ApiKey::who() . '.model'))
+        );
+    }
+
+    /**
+     * get repository object authenticate
+     *
+     * @param bool $instance
+     * @return object
+     */
+    public static function repository(bool $instance = true): object
+    {
+        $model = static::model();
+
+        return Repository::$model()->instance($instance);
     }
 
     /**

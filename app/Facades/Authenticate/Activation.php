@@ -19,7 +19,7 @@ class Activation
     public static function twoFactor(callable $callback): array
     {
         /*** @var object $user */
-        $user = Authenticate::guard()->user();
+        $user = Guard::get()->user();
 
         $activationData = static::get(Authenticate::code());
 

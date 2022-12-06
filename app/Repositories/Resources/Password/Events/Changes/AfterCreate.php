@@ -1,8 +1,10 @@
-<?php 
+<?php
 
 declare(strict_types=1);
 
 namespace App\Repositories\Resources\Password\Events\Changes;
+
+use App\Facades\Authenticate\User;
 
 trait AfterCreate
 {
@@ -15,6 +17,6 @@ trait AfterCreate
 	 */
 	public function eventFireAfterCreate(array $result = [], array $clientData = []): void
 	{
-		//
+
 	}
 }
