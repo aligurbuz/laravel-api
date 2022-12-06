@@ -12,7 +12,7 @@ class User
      */
     public static function get(): object
     {
-        return AppContainer::use('user', function () {
+        return AppContainer::use('user', static function () {
             return Guard::get()->user();
         });
     }
