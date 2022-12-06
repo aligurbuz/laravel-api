@@ -52,5 +52,10 @@
         "get": "App\\Client\\Customer\\Contacts\\Get\\GetClient",
         "create": "App\\Client\\Customer\\Contacts\\Create\\CreateClient",
         "update": "App\\Client\\Customer\\Contacts\\Update\\UpdateClient"
+    },
+    "PasswordChange": {
+        "get": "App\\Client\\Password\\Changes\\Get\\GetClient",
+        "create": "App\\Client\\Password\\Changes\\Create\\CreateClient",
+        "update": "App\\Client\\Password\\Changes\\Update\\UpdateClient"
     }
 }

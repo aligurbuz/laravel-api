@@ -27,6 +27,7 @@
         "Excel",
         "Language",
         "Localization",
+        "PasswordChange",
         "Permission",
         "Registration",
         "Role",
@@ -67,6 +68,9 @@
         "Localization"
     ],
     "Language": [
+        "Localization"
+    ],
+    "PasswordChange": [
         "Localization"
     ],
     "Permission": [

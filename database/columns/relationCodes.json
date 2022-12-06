@@ -55,6 +55,9 @@
     "localized_code": [
         "Localization"
     ],
+    "password_change_code": [
+        "PasswordChange"
+    ],
     "permission_code": [
         "Permission"
     ],

@@ -110,5 +110,17 @@
     "customer.contacts.update": {
         "class": "App\\Client\\Customer\\Contacts\\Update\\UpdateClient",
         "model": "customerContact"
+    },
+    "password.changes.get": {
+        "class": "App\\Client\\Password\\Changes\\Get\\GetClient",
+        "model": "passwordChange"
+    },
+    "password.changes.create": {
+        "class": "App\\Client\\Password\\Changes\\Create\\CreateClient",
+        "model": "passwordChange"
+    },
+    "password.changes.update": {
+        "class": "App\\Client\\Password\\Changes\\Update\\UpdateClient",
+        "model": "passwordChange"
     }
 }

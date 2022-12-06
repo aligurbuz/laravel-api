@@ -82,5 +82,9 @@
     "CustomerContact": {
         "controller": "Contacts",
         "dir": "Customer"
+    },
+    "PasswordChange": {
+        "controller": "Changes",
+        "dir": "Password"
     }
 }

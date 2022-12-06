@@ -1989,6 +1989,174 @@
             "name": "Localizations"
         },
         {
+            "name": "Password",
+            "item": [
+                {
+                    "name": "Changes",
+                    "item": [
+                        {
+                            "name": "Password/Changes",
+                            "response": [],
+                            "request": {
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Authorization",
+                                        "value": "Bearer {{bearerToken}}",
+                                        "type": "text",
+                                        "description": "It is the token value received after the user logs in.(must)"
+                                    },
+                                    {
+                                        "key": "Apikey",
+                                        "value": "{{apiKey}}",
+                                        "type": "text",
+                                        "description": "It is a hash value given to you by the system provider.(must)"
+                                    },
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "{{contentType}}",
+                                        "type": "text",
+                                        "description": "You can specify the return types for the returned response like json or xml.(not must)"
+                                    },
+                                    {
+                                        "key": "Accept-Language",
+                                        "value": "{{acceptLanguage}}",
+                                        "type": "text",
+                                        "description": "You can select the language option for the returned string values.(must)"
+                                    }
+                                ],
+                                "body": [],
+                                "url": {
+                                    "raw": "{{baseUrl}}/password/changes",
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "path": [
+                                        "password",
+                                        "changes"
+                                    ],
+                                    "query": [
+                                        {
+                                            "key": "range",
+                                            "value": "desc",
+                                            "description": "",
+                                            "disabled": true
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "name": "Password/Changes",
+                            "response": [],
+                            "request": {
+                                "method": "POST",
+                                "header": [
+                                    {
+                                        "key": "Authorization",
+                                        "value": "Bearer {{bearerToken}}",
+                                        "type": "text",
+                                        "description": "It is the token value received after the user logs in.(must)"
+                                    },
+                                    {
+                                        "key": "Apikey",
+                                        "value": "{{apiKey}}",
+                                        "type": "text",
+                                        "description": "It is a hash value given to you by the system provider.(must)"
+                                    },
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "{{contentType}}",
+                                        "type": "text",
+                                        "description": "You can specify the return types for the returned response like json or xml.(not must)"
+                                    },
+                                    {
+                                        "key": "Accept-Language",
+                                        "value": "{{acceptLanguage}}",
+                                        "type": "text",
+                                        "description": "You can select the language option for the returned string values.(must)"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\"email\":\"string\",\"hash\":\"NULL\",\"client_time\":\"NULL\",\"is_deleted\":\"0\"}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "{{baseUrl}}/password/changes",
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "path": [
+                                        "password",
+                                        "changes"
+                                    ],
+                                    "query": []
+                                }
+                            }
+                        },
+                        {
+                            "name": "Password/Changes",
+                            "response": [],
+                            "request": {
+                                "method": "PUT",
+                                "header": [
+                                    {
+                                        "key": "Authorization",
+                                        "value": "Bearer {{bearerToken}}",
+                                        "type": "text",
+                                        "description": "It is the token value received after the user logs in.(must)"
+                                    },
+                                    {
+                                        "key": "Apikey",
+                                        "value": "{{apiKey}}",
+                                        "type": "text",
+                                        "description": "It is a hash value given to you by the system provider.(must)"
+                                    },
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "{{contentType}}",
+                                        "type": "text",
+                                        "description": "You can specify the return types for the returned response like json or xml.(not must)"
+                                    },
+                                    {
+                                        "key": "Accept-Language",
+                                        "value": "{{acceptLanguage}}",
+                                        "type": "text",
+                                        "description": "You can select the language option for the returned string values.(must)"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\"password_change_code\":\"0\",\"email\":\"string\",\"hash\":\"NULL\",\"client_time\":\"NULL\",\"is_deleted\":\"0\",\"status\":\"1\"}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "{{baseUrl}}/password/changes",
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "path": [
+                                        "password",
+                                        "changes"
+                                    ],
+                                    "query": []
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
             "name": "Registration",
             "item": [
                 {

@@ -43,6 +43,8 @@ use App\Repositories\Resources\User\Contracts\UserRepositoryContract;
 use App\Repositories\Resources\User\PhotosRepository;
 use App\Repositories\Resources\User\UserRepository;
 use Illuminate\Support\ServiceProvider;
+use App\Repositories\Resources\Password\Contracts\PasswordChangesRepositoryContract;
+use App\Repositories\Resources\Password\ChangesRepository as PasswordChangesRepository;
 use App\Repositories\Resources\Customer\Contracts\CustomerContactsRepositoryContract;
 use App\Repositories\Resources\Customer\ContactsRepository as CustomerContactsRepository;
 
@@ -77,6 +79,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(CustomerImagesRepositoryContract::class, CustomerImagesRepository::class);
         $this->app->bind(CustomerContactsRepositoryContract::class,CustomerContactsRepository::class);
 
+        $this->app->bind(PasswordChangesRepositoryContract::class,PasswordChangesRepository::class);
         //newBind
     }
 

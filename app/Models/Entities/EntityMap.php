@@ -6,6 +6,15 @@ class EntityMap
 {
     /**
      * @param object $query
+     * @return PasswordChange
+     */
+    public function passwordChange(object $query) : PasswordChange
+    {
+        return new PasswordChange($query);
+    }
+    
+    /**
+     * @param object $query
      * @return CustomerContact
      */
     public function customerContact(object $query) : CustomerContact
