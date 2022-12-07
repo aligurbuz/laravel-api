@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Repositories\Resources\Password\Contracts;
 
@@ -18,6 +18,20 @@ interface PasswordChangesRepositoryContract
 	 * @see ChangesRepository::get()
 	 */
 	public function get(): array;
+
+    /**
+     * @param string $hash
+     * @return void
+     * @see ChangesRepository::smsNotification()
+     */
+	public function smsNotification(string $hash): void;
+
+    /**
+     * @param string $hash
+     * @return void
+     * @see ChangesRepository::emailNotification()
+     */
+	public function emailNotification(string $hash): void;
 
 
 	/**
