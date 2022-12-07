@@ -53,7 +53,7 @@ class CustomerCode
      */
     public function web($column): object
     {
-        return $this->builder->where($column, Authenticate::code());
+        return $this->builder->where($column, customerCode());
     }
 }
 
