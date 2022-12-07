@@ -7,9 +7,6 @@ use App\Services\AppContainer;
 
 class User
 {
-    const DELETED_USER = 'deletedUser';
-    const NOT_ACTIVE_USER = 'notActiveUser';
-
     /**
      * @return mixed
      */
@@ -31,11 +28,13 @@ class User
         /*** @var object $user */
         $user = static::get();
 
-        //
-        !$user->is_deleted || Exception::customException(self::DELETED_USER);
+        if ($user->is_deleted) {
+            Exception::customException('deletedUser');
+        }
 
-        //
-        $user->status || Exception::customException(self::NOT_ACTIVE_USER);
+        if (!$user->status) {
+            Exception::customException('notActiveUser');
+        }
     }
 
     /**
@@ -58,8 +57,9 @@ class User
     {
         $phone = Phone::get();
 
-        //
-        (null!==$phone && $exception) || Exception::customException('invalid_phone');
+        if (is_null($phone) && $exception) {
+            Exception::customException('invalid_phone');
+        }
 
         return $phone;
     }
