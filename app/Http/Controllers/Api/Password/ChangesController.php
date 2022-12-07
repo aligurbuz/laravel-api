@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 declare(strict_types=1);
 
@@ -12,6 +12,11 @@ use App\Repositories\Resources\Password\Contracts\PasswordChangesRepositoryContr
 
 class ChangesController extends ApiController
 {
+    /**
+     * @var bool
+     */
+    protected bool $authenticate = false;
+
 	/**
 	 * get changes data
 	 *
