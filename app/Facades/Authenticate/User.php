@@ -48,6 +48,16 @@ class User
     }
 
     /**
+     * get user email
+     *
+     * @return string|null
+     */
+    public static function email(): ?string
+    {
+        return static::get()?->email;
+    }
+
+    /**
      * get user phone
      *
      * @param bool $exception
