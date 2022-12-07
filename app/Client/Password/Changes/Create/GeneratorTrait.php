@@ -43,12 +43,12 @@ trait GeneratorTrait
     /**
      * generates password token for client
      *
-     * @return int
+     * @return string
      * @throws Exception
      */
-    public function hashGenerator(): int
+    public function hashGenerator(): string
     {
-        return random_int(100000, 999999);
+        return (string)random_int(100000, 999999);
     }
 
     /**
