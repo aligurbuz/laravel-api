@@ -28,17 +28,19 @@ class Contact
     {
         $collect = collect(static::get())->where('is_default',true)->all();
 
-        return current($collect);
+        return count($collect) ? current($collect) : [];
     }
 
     /**
      * get default customer phone data for facade
      *
-     * @return string
+     * @return string|null
      */
-    public function phone() : string
+    public function phone() : ?string
     {
         $default = $this->isDefault();
+
+        if(!count($default)) return null;
 
         return $default['phone_code'].''.$default['phone'];
     }

@@ -36,15 +36,24 @@ class Guard
     }
 
     /**
+     * get model code for guard facade
+     *
+     * @return string
+     */
+    public static function code() : string
+    {
+        return static::repository()->getModelCode();
+    }
+
+    /**
      * get repository object authenticate
      *
-     * @param bool $instance
      * @return object
      */
-    public static function repository(bool $instance = true) : object
+    public static function repository() : object
     {
         $model = static::model();
 
-        return Repository::$model()->instance($instance);
+        return Repository::$model();
     }
 }

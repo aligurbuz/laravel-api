@@ -48,5 +48,6 @@ return [
     'apiKeyRestrictions'            => 'This endpoint request cannot be performed for apiKey detected as (:key).',
     'invalidActivationCode'         => 'Activation code is invalid',
     'filterMandatoryKey'            => 'The (:key) key must be in the filter.',
-    'invalid_email'                 => 'Email address is not valid'
+    'invalid_email'                 => 'Email address is not valid',
+    'invalid_phone'                 => 'Phone number is not valid',
 ];

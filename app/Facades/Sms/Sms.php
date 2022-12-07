@@ -2,6 +2,7 @@
 
 namespace App\Facades\Sms;
 
+use App\Exceptions\Exception;
 use App\Jobs\SmsSender;
 
 /**

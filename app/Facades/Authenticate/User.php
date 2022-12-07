@@ -38,13 +38,28 @@ class User
     }
 
     /**
-     * get user phone
+     * get user code
      *
      * @return string|null
      */
-    public static function phone() : ?string
+    public static function code(): ?string
     {
-        return static::get()?->phone;
+        return static::get()?->{Guard::code()};
+    }
+
+    /**
+     * get user phone
+     *
+     * @param bool $exception
+     * @return string|null
+     */
+    public static function phone(bool $exception = false): ?string
+    {
+        $phone = Phone::get();
+
+        (null!==$phone && $exception) || Exception::customException('invalid_phone');
+
+        return $phone;
     }
 
     /**
@@ -56,7 +71,7 @@ class User
      */
     public static function withEmail(string $email, bool $auth = true): array
     {
-        $user = Guard::repository($auth)->where('email', $email)->active()->get();
+        $user = Guard::repository($auth)->instance($auth)->where('email', $email)->active()->get();
 
         if (!count($user)) {
             Exception::customException('invalid_email');
