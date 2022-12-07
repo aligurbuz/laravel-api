@@ -71,7 +71,7 @@ class User
      */
     public static function withEmail(string $email, bool $auth = true): array
     {
-        $user = Guard::repository($auth)->instance($auth)->where('email', $email)->active()->get();
+        $user = Guard::repository()->instance($auth)->where('email', $email)->active()->get();
 
         if (!count($user)) {
             Exception::customException('invalid_email');
