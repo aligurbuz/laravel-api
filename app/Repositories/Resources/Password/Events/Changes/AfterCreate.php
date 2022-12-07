@@ -15,8 +15,11 @@ trait AfterCreate
 	 */
 	public function eventFireAfterCreate(array $result = [], array $clientData = []): void
 	{
+        //this specifies which path to use for notification
         $notificationAdapter = $this->notificationAdapter;
 
+        // after checking the method to be run
+        // in the main repository for notificationAdapter, we run it.
         if(method_exists($this,$notificationAdapter)){
             $this->{$this->notificationAdapter}((string)$clientData['hash']);
         }
