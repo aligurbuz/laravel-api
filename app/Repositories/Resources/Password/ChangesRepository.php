@@ -53,7 +53,7 @@ class ChangesRepository extends EloquentRepository implements PasswordChangesRep
         // @see $this->eventFireBeforeCreate()
         $userPhone = User::phone(true);
 
-        Sms::to($userPhone)->message('Activation Code: ' . $hash)->send();
+        Sms::to($userPhone)->message('Password Reset Code: ' . $hash)->send();
     }
 
     /**
