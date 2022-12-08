@@ -49,29 +49,19 @@ class ChangesRepository extends EloquentRepository implements PasswordChangesRep
     protected int $expirationTime = 180;
 
     /**
-     * We are checking the date for the get operation. so we will process the main function.
-     *
-     * @return array
-     */
-    public function get(): array
-    {
-        return $this->isExpire(parent::get());
-    }
-
-    /**
      * We check the timeout for client_time.
      *
      * @param array $result
-     * @return array
+     * @return bool
      */
-    public function isExpire(array $result = []) : array
+    public function isExpire(array $result = []) : bool
     {
         //If the password change time has passed, it will not return any results.
-        if (isset($result[0]['client_time']) && Date::isExpireAsSecond($result[0]['client_time'], $this->expirationTime)) {
-            return [];
+        if (isset($result['client_time']) && Date::isExpireAsSecond($result['client_time'], $this->expirationTime)) {
+            return true;
         }
 
-        return $result;
+        return false;
     }
 
     /**

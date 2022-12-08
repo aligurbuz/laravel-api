@@ -77,4 +77,16 @@ class Exception
     {
         AppContainer::set($exceptionName, is_string($data) ? ['key' => $data] : $data, true);
     }
+
+    /**
+     * @param bool $condition
+     * @param $exceptionKey
+     * @return void
+     */
+    public static function ifTrue(bool $condition,$exceptionKey): void
+    {
+        if($condition){
+            static::customException($exceptionKey);
+        }
+    }
 }

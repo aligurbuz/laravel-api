@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Client\Password\Changes\Update;
 
@@ -18,7 +18,10 @@ class UpdateClient extends Client
 	 *
 	 * @var array
 	 */
-	protected array $capsule = [];
+	protected array $capsule = [
+        'email',
+        'password'
+    ];
 
 	/**
 	 * get model entity validation
@@ -32,5 +35,9 @@ class UpdateClient extends Client
 	 *
 	 * @var array
 	 */
-	protected array $rule = ['password_change_code' => 'required|integer'];
+	protected array $rule = [
+        'password_change_code' => 'required|integer',
+        'email' => 'required',
+        'password' => 'required'
+    ];
 }

@@ -21,10 +21,10 @@ interface PasswordChangesRepositoryContract
 
     /**
      * @param array $result
-     * @return array
+     * @return bool
      * @see ChangesRepository::isExpire()
      */
-    public function isExpire(array $result = []) : array;
+    public function isExpire(array $result = []) : bool;
 
     /**
      * @param string $hash

@@ -50,4 +50,5 @@ return [
     'filterMandatoryKey'            => 'The (:key) key must be in the filter.',
     'invalid_email'                 => 'Email address is not valid',
     'invalid_phone'                 => 'Phone number is not valid',
+    'password_reset_expire'         =>  'The password change request has timed out. Please try again.',
 ];
