@@ -66,6 +66,11 @@ abstract class ResponseSupport
     protected static function getResourceData(array $data = []): array
     {
         $resource = isset($data[0]) ? $data : [$data];
+
+        if(!count($resource[0])){
+            return [['data' => []]];
+        }
+
         return isset($resource[0]['data']) ? $resource : [['data' => $resource]];
     }
 

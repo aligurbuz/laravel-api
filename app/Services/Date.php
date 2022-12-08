@@ -44,13 +44,12 @@ class Date
      *
      * @param string $startDate
      * @param string $finishDate
-     * @param string $format
      * @return float|int
      */
-    public static function diffInSeconds(string $startDate, string $finishDate, string $format = 'Y-m-d H:i:s'): float|int
+    public static function diffInSeconds(string $startDate, string $finishDate): float|int
     {
-        $startDate = static::createFormat($startDate, $format);
-        $finishDate = static::createFormat($finishDate, $format);
+        $startDate = static::createFormat($startDate);
+        $finishDate = static::createFormat($finishDate);
 
         return $finishDate->diffInSeconds($startDate);
     }
