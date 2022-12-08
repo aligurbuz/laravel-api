@@ -20,6 +20,13 @@ interface PasswordChangesRepositoryContract
 	public function get(): array;
 
     /**
+     * @param array $result
+     * @return array
+     * @see ChangesRepository::isExpire()
+     */
+    public function isExpire(array $result = []) : array;
+
+    /**
      * @param string $hash
      * @return void
      * @see ChangesRepository::smsNotification()
