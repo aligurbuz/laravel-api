@@ -34,7 +34,7 @@ return new class extends Migration
             $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
 
-            $table->index(['email','hash']);
+            $table->unique(['email','hash']);
         });
 
         pushMigration('changes','password','passwordChange');
