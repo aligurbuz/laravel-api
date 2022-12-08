@@ -57,11 +57,10 @@ class ChangesRepository extends EloquentRepository implements PasswordChangesRep
     public function isExpire(array $result = []) : bool
     {
         //If the password change time has passed, it will not return any results.
-        if (isset($result['client_time']) && Date::isExpireAsSecond($result['client_time'], $this->expirationTime)) {
-            return true;
-        }
-
-        return false;
+        return (
+            isset($result['client_time'])
+            && Date::isExpireAsSecond($result['client_time'], $this->expirationTime)
+        );
     }
 
     /**
