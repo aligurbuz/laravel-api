@@ -17,6 +17,7 @@ use App\Repositories\Resources\Password\Events\Changes\BeforeCreate;
 use App\Repositories\Resources\Password\Events\Changes\BeforeUpdate;
 use App\Repositories\Resources\Password\Promoters\Changes\ChangesPromoterTrait;
 use App\Repositories\Resources\Password\PropertyHandlers\ChangesPropertyHandlerTrait;
+use App\Services\Date;
 
 class ChangesRepository extends EloquentRepository implements PasswordChangesRepositoryContract
 {
@@ -39,6 +40,30 @@ class ChangesRepository extends EloquentRepository implements PasswordChangesRep
      * @var string
      */
     public string $notificationAdapter = 'smsNotification';
+
+    /**
+     * type: second
+     *
+     * @var int
+     */
+    protected int $expirationTime = 180;
+
+    /**
+     * We are checking the date for the get operation. so we will process the main function.
+     *
+     * @return array
+     */
+    public function get(): array
+    {
+        $result = parent::get();
+
+        //If the password change time has passed, it will not return any results.
+        if(Date::isExpireAsSecond($result[0]['client_time'],$this->expirationTime)){
+            return [];
+        }
+
+        return $result;
+    }
 
     /**
      * When a request is made to the password/changes endpoint,

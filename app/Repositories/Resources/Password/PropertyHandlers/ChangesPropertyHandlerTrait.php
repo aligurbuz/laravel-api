@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 declare(strict_types=1);
 
@@ -12,6 +12,11 @@ trait ChangesPropertyHandlerTrait
 	 * @var array
 	 */
 	protected array $ranges = [];
+
+    /**
+     * @var bool
+     */
+    protected bool $paginator = false;
 
 	/**
 	 * localization values for repository

@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Client\Password\Changes\Get;
 
@@ -32,5 +32,8 @@ class GetClient extends Client
 	 *
 	 * @var array
 	 */
-	protected array $rule = [];
+	protected array $rule = [
+        'email' => 'required',
+        'hash' => 'required'
+    ];
 }

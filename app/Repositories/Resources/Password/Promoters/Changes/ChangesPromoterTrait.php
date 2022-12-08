@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 declare(strict_types=1);
 
@@ -16,7 +16,7 @@ trait ChangesPromoterTrait
 	 */
 	public function changesRepository(?object $builder = null): object
 	{
-		return $this->apply($builder);
+		return $this->apply($builder)->notDeleted();
 	}
 
 

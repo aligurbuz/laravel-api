@@ -49,10 +49,24 @@ class Date
      */
     public static function diffInSeconds(string $startDate, string $finishDate, string $format = 'Y-m-d H:i:s'): float|int
     {
-        $startDate = static::createFormat($startDate,$format);
-        $finishDate = static::createFormat($finishDate,$format);
+        $startDate = static::createFormat($startDate, $format);
+        $finishDate = static::createFormat($finishDate, $format);
 
         return $finishDate->diffInSeconds($startDate);
+    }
+
+    /**
+     * checks the given time according to the criteria value within the current time.
+     *
+     * @param string $time
+     * @param int $criteria
+     * @return bool
+     */
+    public static function isExpireAsSecond(string $time, int $criteria = 180) : bool
+    {
+        $diffInSeconds = static::diffInSeconds($time,static::now()->toDateTimeString());
+
+        return ($diffInSeconds>$criteria);
     }
 
     /**
@@ -70,7 +84,7 @@ class Date
         $endDate = static::createFormat($endDate, 'Y-m-d');
 
         $list = [];
-        if($include) $list[] = $firstDate;
+        if ($include) $list[] = $firstDate;
 
         while (true) {
             $startDate = $startDate->addDay();
@@ -79,7 +93,7 @@ class Date
             if ($startDate == $endDate) break;
         }
 
-        if(!$include) array_pop($list);
+        if (!$include) array_pop($list);
 
         return $list;
     }

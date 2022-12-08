@@ -1,6 +1,8 @@
-<?php 
+<?php
 
-namespace App\Client\Password\Changes\Get; 
+namespace App\Client\Password\Changes\Get;
+
+use App\Exceptions\Exception;
 
 trait GeneratorTrait
 {
