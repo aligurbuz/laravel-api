@@ -19,7 +19,7 @@ return new class extends Migration
 
             $table->string('email')->comment('user email');
 
-            $table->string('hash')->nullable()->comment('one-time code to be used for password reset');
+            $table->string('hash')->comment('one-time code to be used for password reset');
             $table->dateTime('client_time')->nullable()->comment('represents the current time for password change');
 
             //$table->integer('sequence_time')->default(0);
@@ -34,7 +34,7 @@ return new class extends Migration
             $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
 
-            $table->index(['email','is_deleted']);
+            $table->index(['email','hash']);
         });
 
         pushMigration('changes','password','passwordChange');
