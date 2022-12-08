@@ -58,7 +58,7 @@ class ChangesRepository extends EloquentRepository implements PasswordChangesRep
         $result = parent::get();
 
         //If the password change time has passed, it will not return any results.
-        if(Date::isExpireAsSecond($result[0]['client_time'],$this->expirationTime)){
+        if (Date::isExpireAsSecond($result[0]['client_time'], $this->expirationTime)) {
             return [];
         }
 
