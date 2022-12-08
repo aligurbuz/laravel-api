@@ -7,5 +7,5 @@ Route::prefix('password')->group(function(){
 
     Route::get('/changes', [ChangesController::class,'get']);
     Route::post('/changes', [ChangesController::class,'create']);
-    Route::put('/changes', [ChangesController::class,'update']);
+    //Route::put('/changes', [ChangesController::class,'update']);
 });
