@@ -19,7 +19,6 @@ class UpdateClient extends Client
 	 * @var array
 	 */
 	protected array $capsule = [
-        'hash',
         'password'
     ];
 

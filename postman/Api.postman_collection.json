@@ -1989,7 +1989,6 @@
             "name": "Localizations"
         },
         {
-            "name": "Password",
             "item": [
                 {
                     "name": "Changes",
@@ -2079,7 +2078,7 @@
                                 ],
                                 "body": {
                                     "mode": "raw",
-                                    "raw": "{\"email\":\"string\",\"hash\":\"NULL\",\"client_time\":\"NULL\",\"is_deleted\":\"0\"}",
+                                    "raw": "{\"email\":\"string\",\"hash\":\"string\",\"client_time\":\"NULL\",\"is_deleted\":\"0\"}",
                                     "options": {
                                         "raw": {
                                             "language": "json"
@@ -2132,7 +2131,7 @@
                                 ],
                                 "body": {
                                     "mode": "raw",
-                                    "raw": "{\"password_change_code\":\"0\",\"email\":\"string\",\"hash\":\"NULL\",\"client_time\":\"NULL\",\"is_deleted\":\"0\",\"status\":\"1\"}",
+                                    "raw": "{\"password_change_code\":\"0\",\"email\":\"string\",\"hash\":\"string\",\"client_time\":\"NULL\",\"is_deleted\":\"0\",\"status\":\"1\"}",
                                     "options": {
                                         "raw": {
                                             "language": "json"
@@ -2154,7 +2153,8 @@
                         }
                     ]
                 }
-            ]
+            ],
+            "name": "Password"
         },
         {
             "name": "Registration",

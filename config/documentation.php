@@ -21,7 +21,8 @@ return [
 
     'attentions' => [
         "Password/Changes@GET" => 'You can check whether the hash value is correct by doing an email and hash filter to this service. If the data key is empty in the returned response, it means that the hash or email is incorrect. The service will not throw an exception. ',
-        "Password/Changes@POST" => 'This service is the method to be used for sms or email. Use this method first. The generated code will be sent to the client.'
+        "Password/Changes@POST" => 'This service is the method to be used for sms or email. Use this method first. The generated code will be sent to the client.',
+        "Password/Changes@PUT" => 'After obtaining the hash value, the user is now entitled to change her password. It is sufficient to send email, hash and password values to the PUT method. '
     ],
     'exceptMethods' => [
         //'all' => ['GET','PUT'],
