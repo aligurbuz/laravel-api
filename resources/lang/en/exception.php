@@ -51,4 +51,5 @@ return [
     'invalid_email'                 => 'Email address is not valid',
     'invalid_phone'                 => 'Phone number is not valid',
     'password_reset_expire'         =>  'The password change request has timed out. Please try again.',
+    'invalid_hash'                  =>  'Hash value is not valid',
 ];
