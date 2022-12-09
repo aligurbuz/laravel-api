@@ -19,7 +19,7 @@ class UpdateClient extends Client
 	 * @var array
 	 */
 	protected array $capsule = [
-        'email',
+        'hash',
         'password'
     ];
 
@@ -37,7 +37,7 @@ class UpdateClient extends Client
 	 */
 	protected array $rule = [
         'password_change_code' => 'required|integer',
-        'email' => 'required',
+        'hash' => 'required',
         'password' => 'required'
     ];
 }

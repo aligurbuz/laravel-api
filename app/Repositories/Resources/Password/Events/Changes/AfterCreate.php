@@ -11,9 +11,9 @@ trait AfterCreate
 	 *
 	 * @param array $result
 	 * @param array $clientData
-	 * @return void
+	 * @return array
 	 */
-	public function eventFireAfterCreate(array $result = [], array $clientData = []): void
+	public function eventFireAfterCreate(array $result = [], array $clientData = []): array
 	{
         //this specifies which path to use for notification
         $notificationAdapter = $this->notificationAdapter;
@@ -23,5 +23,10 @@ trait AfterCreate
         if(method_exists($this,$notificationAdapter)){
             $this->{$this->notificationAdapter}($clientData['hash']);
         }
+
+        // We need to hide the hash value from the user.
+        unset($result['hash']);
+
+        return $result;
 	}
 }
