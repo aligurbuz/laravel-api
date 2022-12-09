@@ -988,8 +988,9 @@ wget --no-check-certificate --quiet \
                                                 @continue
                                             @endif
 
-                                            <h3 id="commonly-used-adapters">{{$value['request']['method']}}</h3>
+                                                <h3 id="commonly-used-adapters">{{$value['request']['method']}}  </h3>
                                             <ul>
+
                                                 <li><strong>Test Environment Base Url</strong> : {{apiUrl()}}</li>
 
                                                 @if(isset($configDocumentation['productionLinks'][$endpoint]['all']))
@@ -1005,6 +1006,12 @@ wget --no-check-certificate --quiet \
 
                                                 <li><strong>Url</strong> : {{$value['request']['url']['raw']}}</li>
                                             </ul>
+
+                                            @if(!is_null(config('documentation.attentions.'.$value['name'].'@'.$value['request']['method'].'')))
+                                                    <span style="color: #22863a; font-weight: bold;"> !!! Attention !!! : </span> <span style="text-decoration: underline;"> {{config('documentation.attentions.'.$value['name'].'@'.$value['request']['method'].'')}}</span>
+                                            <br><br>
+
+                                                @endif
 
 
                                             @if($method=='GET')
@@ -1202,6 +1209,7 @@ wget --no-check-certificate --quiet \
                                                 }
 
                                                 @endphp
+
                                                 <table>
                                                     <thead>
                                                     <tr>

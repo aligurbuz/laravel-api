@@ -37,7 +37,8 @@ class UpdateClient extends Client
 	 */
 	protected array $rule = [
         'password_change_code' => 'required|integer',
-        'hash' => 'required',
-        'password' => 'required'
+        'email' => 'string|required',
+        'hash' => 'string|required',
+        'password' => 'string|required'
     ];
 }

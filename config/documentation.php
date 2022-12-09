@@ -15,15 +15,19 @@ return [
         "Countries/Cities"      => "It contains the data serving the cities connected to the countries.Cities are strictly associated with country_code.So be careful with your (country_code) value when saving a city.",
         "Countries/Districts"   => "It contains the data serving the districts connected to the cities.Districts are strictly associated with city_code.So be careful with your (city_code) value when saving a district.",
         "Support/Excel"         => 'It is the endpoint that allows you to import your Excel files into the specified tables.Your post requests are queued and your due files will be saved in the relevant tables through the queue.',
-        "Password/Changes"      => 'This endpoint will send a one-time code via email or sms when the user forgets their login information.You can update your password with this code. There is a code execution time. Expired code will be unavailable.',
+        "Password/Changes"      => 'This endpoint will send a one-time code via email or sms when the user forgets their login information.You can update your password with this code. There is a code execution time. Expired code will be unavailable. (Note: First, the POST method must be request. Sms or email will be sent via this http method. The password can be changed by sending the incoming code via PUT method) ',
 
+    ],
+
+    'attentions' => [
+        "Password/Changes@GET" => 'You can check whether the hash value is correct by doing an email and hash filter to this service. If the data key is empty in the returned response, it means that the hash or email is incorrect. The service will not throw an exception. ',
+        "Password/Changes@POST" => 'This service is the method to be used for sms or email. Use this method first. The generated code will be sent to the client.'
     ],
     'exceptMethods' => [
         //'all' => ['GET','PUT'],
         //'countries/districts' => ['GET','PUT','POST'],
         'registration' => ['GET','PUT'],
         'support/excel' => ['GET','PUT'],
-        'password/changes' => ['GET','PUT'],
     ],
     "ignores" => [
         "SuperAdmins",
