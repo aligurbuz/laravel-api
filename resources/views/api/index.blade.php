@@ -1238,7 +1238,7 @@ wget --no-check-certificate --quiet \
                                                             @if($method=='PUT')
 
                                                                 @if(getTableCode($model)==$field)
-                                                                    <td><code class="language-plaintext highlighter-rouge">true</code></td>
+                                                                    <td style="background-color: #ddffdd;"><code class="language-plaintext highlighter-rouge">true</code></td>
                                                                 @else
                                                                     @if(isset($clientRule[$field]))
                                                                         @php
