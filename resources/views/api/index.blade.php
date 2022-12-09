@@ -1259,7 +1259,12 @@ wget --no-check-certificate --quiet \
                                                                     <td style="background-color: #ddffdd;"><code class="language-plaintext highlighter-rouge">true</code></td>
                                                                 @else
                                                                     @if(isset($clientCapsuleList[$field]['required']))
-                                                                        <td style="background-color: #ddffdd;"><code class="language-plaintext highlighter-rouge">{{$clientCapsuleList[$field]['required']}}</code></td>
+                                                                        @if($clientCapsuleList[$field]['required']===true)
+                                                                            <td style="background-color: #ddffdd;"><code class="language-plaintext highlighter-rouge">{{$clientCapsuleList[$field]['required']}}</code></td>
+                                                                        @else
+                                                                            <td><code class="language-plaintext highlighter-rouge">{{$clientCapsuleList[$field]['required']}}</code></td>
+                                                                            @endif
+
                                                                     @else
                                                                         <td><code class="language-plaintext highlighter-rouge">false</code></td>
                                                                     @endif

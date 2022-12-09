@@ -22,6 +22,10 @@ class UpdateClient extends Client
         'password'
     ];
 
+    public array $capsuleDescriptions = [
+        'password' => 'Password value to be changed'
+    ];
+
 	/**
 	 * get model entity validation
 	 *
