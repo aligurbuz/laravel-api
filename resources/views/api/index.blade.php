@@ -1240,7 +1240,17 @@ wget --no-check-certificate --quiet \
                                                                 @if(getTableCode($model)==$field)
                                                                     <td><code class="language-plaintext highlighter-rouge">true</code></td>
                                                                 @else
-                                                                    <td><code class="language-plaintext highlighter-rouge">false</code></td>
+                                                                    @if(isset($clientRule[$field]))
+                                                                        @php
+
+                                                                        $crequired = \Illuminate\Support\Str::contains($clientRule[$field],'required') ? 'true' : 'false';
+
+                                                                        @endphp
+                                                                        <td style="background-color: #ddffdd;"><code class="language-plaintext highlighter-rouge">{{$crequired}}</code></td>
+                                                                    @else
+                                                                        <td><code class="language-plaintext highlighter-rouge">false</code></td>
+                                                                        @endif
+
                                                                 @endif
 
                                                             @else
