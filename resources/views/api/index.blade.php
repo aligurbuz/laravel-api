@@ -1256,10 +1256,10 @@ wget --no-check-certificate --quiet \
                                                             @else
 
                                                                 @if(isset($entities['required_columns']) && in_array($field,$entities['required_columns'],true))
-                                                                    <td><code class="language-plaintext highlighter-rouge">true</code></td>
+                                                                    <td style="background-color: #ddffdd;"><code class="language-plaintext highlighter-rouge">true</code></td>
                                                                 @else
                                                                     @if(isset($clientCapsuleList[$field]['required']))
-                                                                        <td><code class="language-plaintext highlighter-rouge">{{$clientCapsuleList[$field]['required']}}</code></td>
+                                                                        <td style="background-color: #ddffdd;"><code class="language-plaintext highlighter-rouge">{{$clientCapsuleList[$field]['required']}}</code></td>
                                                                     @else
                                                                         <td><code class="language-plaintext highlighter-rouge">false</code></td>
                                                                     @endif
