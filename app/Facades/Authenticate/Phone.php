@@ -13,7 +13,7 @@ class Phone
      */
     public static function get() : ?string
     {
-        return static::guardDetector(function(){
+        return static::guardDetector(static function(){
             return User::get()?->phone;
         });
     }
