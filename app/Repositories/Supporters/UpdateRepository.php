@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Repositories\Supporters;
 
 use App\Exceptions\Exception;
+use App\Repositories\Repository;
 use App\Services\AppContainer;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\DB;
@@ -186,6 +187,36 @@ trait UpdateRepository
         $this->createTableChanges(($oldData[0] ?? []), $newData);
         $this->updateLocalization($newData);
         $this->deleteCache();
+        $this->updateCountableHandler($oldData[0], $newData, 'decrease');
+    }
+
+    /**
+     * auto countable model repository handler
+     *
+     * @param array $oldData
+     * @param array $newData
+     * @return void
+     */
+    public function updateCountableHandler(array $oldData = [], array $newData = []): void
+    {
+        if (count($this->getCountable())) {
+            foreach ($this->getCountable() as $field => $repository) {
+                $countableRepository = Repository::$repository();
+                $countableModelCode = $countableRepository->getModelCode();
+                $repositoryUpdateQuery = $countableRepository->where($countableModelCode, $oldData[$countableModelCode]);
+
+                if(isset($newData[$countableModelCode]) && $oldData[$countableModelCode]!==$newData[$countableModelCode]){
+                    $repositoryUpdateQuery->decrease($field);
+                    Repository::$repository()->where($countableModelCode,$newData[$countableModelCode])->increase($field);
+                }
+                elseif ((isset($newData['status']) && !$newData['status']) || (isset($newData['is_deleted']) && $newData['is_deleted'])){
+                    $repositoryUpdateQuery->decrease($field);
+                }
+                elseif ((isset($newData['status']) && $newData['status']===true)){
+                    $repositoryUpdateQuery->increase($field);
+                }
+            }
+        }
     }
 
     /**

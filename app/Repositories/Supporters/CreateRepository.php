@@ -6,6 +6,7 @@ namespace App\Repositories\Supporters;
 
 use App\Constants;
 use App\Exceptions\Exception as ExceptionFacade;
+use App\Repositories\Repository;
 use App\Services\AppContainer;
 use Exception;
 
@@ -66,10 +67,9 @@ trait CreateRepository
                     $eventFireAfterCreate = $this->eventFireAfterCreate($arrayResults, $value);
                 }
 
-                if(isset($eventFireAfterCreate) && is_array($eventFireAfterCreate)){
+                if (isset($eventFireAfterCreate) && is_array($eventFireAfterCreate)) {
                     $list[] = $eventFireAfterCreate;
-                }
-                else{
+                } else {
                     $list[] = $arrayResults;
                 }
 
@@ -103,6 +103,27 @@ trait CreateRepository
         $this->createLocalization($data);
         $this->deleteCache();
         $this->addPostQueryDispatcher($data, $clientDataKey);
+        $this->countableHandler($data);
+    }
+
+    /**
+     * auto countable model repository handler
+     *
+     * @param array $data
+     * @return void
+     */
+    public function countableHandler(array $data = []): void
+    {
+        if (count($this->getCountable())) {
+            foreach ($this->getCountable() as $field => $repository) {
+                $countableRepository = Repository::$repository();
+                $countableModelCode = $countableRepository->getModelCode();
+
+                if (isset($data[$countableModelCode])) {
+                    $countableRepository->where($countableModelCode, $data[$countableModelCode])->increase($field);
+                }
+            }
+        }
     }
 
     /**

@@ -214,6 +214,20 @@ class EloquentRepository
     }
 
     /**
+     * get countable values for repository
+     *
+     * @return array
+     */
+    public function getCountable(): array
+    {
+        if (property_exists($this, 'countable') && is_array($this->countable)) {
+            return $this->countable;
+        }
+
+        return [];
+    }
+
+    /**
      * get trait handler for repository
      *
      * @param array $data
