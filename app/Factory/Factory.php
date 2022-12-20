@@ -20,7 +20,6 @@ use App\Factory\Notify\Interfaces\NotifyInterface;
 use App\Factory\Payment\Interfaces\PaymentInterface;
 use App\Factory\Pdf\Interfaces\PdfInterface;
 use App\Factory\Permission\Interfaces\PermissionInterface;
-use App\Factory\Request\Interfaces\RequestInterface;
 use App\Factory\Search\Interfaces\SearchInterface;
 use App\Factory\Sms\Interfaces\SmsInterface;
 use App\Factory\Socket\Interfaces\SocketInterface;
@@ -41,7 +40,6 @@ use App\Factory\Tax\Interfaces\TaxInterface;
  * @method static SearchInterface search($arguments = null)
  * @method static DateInterface date($arguments = null)
  * @method static ApiKeyInterface apiKey($arguments = null)
- * @method static RequestInterface request($arguments = null)
  * @method static SmsInterface sms($arguments = null)
  * @method static MoneyInterface money($arguments = null)
  * @method static TaxInterface tax($arguments = null)
@@ -76,6 +74,6 @@ class Factory extends FactoryManager
      */
     public static function bindings(): void
     {
-        static::bind('Storage', ['files' => request()->allFiles()]);
+        static::bind('Storage', ['files' => request()?->allFiles()]);
     }
 }
