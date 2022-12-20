@@ -25,7 +25,7 @@ class ApiKeyManager
         $apiKeys = $this->apiKeys();
         $header = $this->getHeaderKey($request);
 
-        if (!in_array($header, $apiKeys)) {
+        if (!in_array($header, $apiKeys, true)) {
             return Exception::apiKeyException();
         }
 
