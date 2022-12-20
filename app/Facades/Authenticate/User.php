@@ -81,7 +81,7 @@ class User
      * @param bool $auth
      * @return array
      */
-    public static function withEmail(string $email, bool $auth = true): array
+    public static function setContainer(string $email, bool $auth = true): array
     {
         $user = Guard::repository()->instance($auth)->where('email', $email)->active()->get();
 

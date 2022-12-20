@@ -21,6 +21,6 @@ trait BeforeCreate
         // The withEmail method changes the container value.
         // so watch out for eventFireAfterCreate method.
         // here, the user facade class will be read with this container.
-        User::withEmail($clientData['email'], false);
+        User::setContainer($clientData['email'], false);
     }
 }
