@@ -83,13 +83,13 @@ class User
      */
     public static function setContainer(string $email, bool $auth = true): array
     {
-        $user = Guard::repository()->instance($auth)->where('email', $email)->active()->get();
+        $user = Guard::repository()->instance($auth)->where('email', $email)->active()->first();
 
-        if (!count($user)) {
+        if (is_null($user)) {
             Exception::customException('invalid_email');
         }
 
-        AppContainer::setWithTerminating('user', $user[0]);
+        AppContainer::setWithTerminating('user', $user);
 
         return $user->toArray();
     }
