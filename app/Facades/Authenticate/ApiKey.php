@@ -39,7 +39,7 @@ class ApiKey
         $header = $header ?? static::get();
         $containerApiKeys = AppContainer::get('apiKeys');
 
-        return array_search($header, (is_array($containerApiKeys) ? $containerApiKeys : []));
+        return array_search($header, (is_array($containerApiKeys) ? $containerApiKeys : []), true);
     }
 
     /**
