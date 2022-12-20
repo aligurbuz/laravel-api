@@ -29,6 +29,16 @@ class ApiKey
     }
 
     /**
+     * get all keys for facade
+     *
+     * @return array
+     */
+    public static function all() : array
+    {
+        return AppContainer::get('apiKeys') ?? [];
+    }
+
+    /**
      * get client according to apikey
      *
      * @param null $header
@@ -36,10 +46,10 @@ class ApiKey
      */
     public static function who($header = null): bool|int|string
     {
-        $header = $header ?? static::get();
-        $containerApiKeys = AppContainer::get('apiKeys');
+        $header = $header ?? static::getHeader();
+        $containerApiKeys = static::all();
 
-        return array_search($header, (is_array($containerApiKeys) ? $containerApiKeys : []), true);
+        return array_search($header, $containerApiKeys, true);
     }
 
     /**
@@ -47,7 +57,7 @@ class ApiKey
      *
      * @return string|null
      */
-    public static function get(): ?string
+    public static function getHeader(): ?string
     {
         return request()->headers->get(config('app.apikeyString'));
     }
@@ -59,6 +69,6 @@ class ApiKey
      */
     public static function keys(): array
     {
-        return array_keys(AppContainer::get('apiKeys'));
+        return array_keys(static::all());
     }
 }
