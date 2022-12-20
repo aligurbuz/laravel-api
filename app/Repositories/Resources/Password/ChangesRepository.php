@@ -66,6 +66,7 @@ class ChangesRepository extends EloquentRepository implements PasswordChangesRep
     /**
      * When a request is made to the password/changes endpoint,
      * it sends an SMS to the user's phone with a use code.
+     * @see $this->eventFireAfterCreate()
      *
      * @param string $hash
      * @return void
@@ -82,6 +83,7 @@ class ChangesRepository extends EloquentRepository implements PasswordChangesRep
     /**
      * When a request is made to the password/changes endpoint,
      * it sends an email to the user's email with a use code.
+     * @see $this->eventFireAfterCreate()
      *
      * @param string $hash
      * @return void
