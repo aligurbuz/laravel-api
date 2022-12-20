@@ -14,7 +14,7 @@ class Contact
      */
     public function get(): array
     {
-        return AppContainer::use('customerContact', function () {
+        return AppContainer::use('customerContact', static function () {
             return Repository::customerContact()->getRepository();
         });
     }
@@ -26,7 +26,7 @@ class Contact
      */
     public function isDefault() : array
     {
-        $collect = collect(static::get())->where('is_default',true)->all();
+        $collect = collect($this->get())->where('is_default',true)->all();
 
         return count($collect) ? current($collect) : [];
     }
@@ -40,7 +40,9 @@ class Contact
     {
         $default = $this->isDefault();
 
-        if(!count($default)) return null;
+        if(!count($default)) {
+            return null;
+        }
 
         return $default['phone_code'].''.$default['phone'];
     }

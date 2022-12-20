@@ -14,7 +14,7 @@ class Customer
      */
     public static function get(): array
     {
-        return AppContainer::use('customer', function () {
+        return AppContainer::use('customer', static function () {
             return Repository::customer()->getRepository();
         });
     }
