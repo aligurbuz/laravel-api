@@ -61,11 +61,11 @@ class Date
      * @param int $criteria
      * @return bool
      */
-    public static function isExpireAsSecond(string $time, int $criteria = 180) : bool
+    public static function isExpireAsSecond(string $time, int $criteria = 180): bool
     {
-        $diffInSeconds = static::diffInSeconds($time,static::now()->toDateTimeString());
+        $diffInSeconds = static::diffInSeconds($time, static::now()->toDateTimeString());
 
-        return ($diffInSeconds>$criteria);
+        return ($diffInSeconds > $criteria);
     }
 
     /**
@@ -101,6 +101,18 @@ class Date
         }
 
         return $list;
+    }
+
+    /**
+     * @param int $after
+     * @param Carbon|null $day
+     * @return Carbon
+     */
+    public static function after(int $after = 1, Carbon $day = null): Carbon
+    {
+        $day = $day ?: static::now();
+
+        return static::createFormat($day->addDays($after)->toDateTimeString());
     }
 
     /**
@@ -140,6 +152,16 @@ class Date
     public static function now(): Carbon
     {
         return Carbon::now(static::getTimezone());
+    }
+
+    /**
+     * get tomorrow date
+     *
+     * @return Carbon
+     */
+    public static function tomorrow(): Carbon
+    {
+        return static::now()->addDays();
     }
 
     /**
