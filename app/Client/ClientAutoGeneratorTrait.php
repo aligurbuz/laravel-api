@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Client;
 
+use App\Exceptions\Exception;
 use App\Facades\Authenticate\ApiKey;
 use App\Facades\Authenticate\Authenticate;
 use App\Factory\Factory;
@@ -34,6 +35,7 @@ trait ClientAutoGeneratorTrait
         'clientFileProcess',
         'codeProcess',
         'isDefaultFirstRegister',
+        'stopRepositoryHitter',
     ];
 
     /**
@@ -52,6 +54,7 @@ trait ClientAutoGeneratorTrait
         'clientFileProcess',
         'codeProcess',
         'isDefaultFirstRegister',
+        'stopRepositoryHitter',
     ];
 
     /**
@@ -234,11 +237,27 @@ trait ClientAutoGeneratorTrait
             $customerData = $this->repository()->getRepository();
 
             if (!count($customerData)) {
-                AppContainer::setWithTerminating('noIsDefaultUpdate',true);
+                AppContainer::setWithTerminating('noIsDefaultUpdate', true);
                 $this->set('is_default', true);
             }
         });
 
         return null;
+    }
+
+    /**
+     * stopper repository hitter for client side
+     *
+     * @return void
+     */
+    public function stopRepositoryHitterAutoGenerator() : void
+    {
+        if (!isGet()) {
+            foreach ($this->repository()->getHitter() as $hitter) {
+                if ($this->has($hitter)) {
+                    Exception::customException('hitter', ['key' => $hitter, 'method' => httpMethod()]);
+                }
+            }
+        }
     }
 }
