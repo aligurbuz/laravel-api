@@ -83,16 +83,22 @@ class Date
         $endDate = static::createFormat($endDate, 'Y-m-d');
 
         $list = [];
-        if ($include) $list[] = $firstDate;
+        if ($include) {
+            $list[] = $firstDate;
+        }
 
         while (true) {
             $startDate = $startDate->addDay();
             $list[] = $startDate->toDateString();
 
-            if ($startDate == $endDate) break;
+            if ($startDate == $endDate) {
+                break;
+            }
         }
 
-        if (!$include) array_pop($list);
+        if (!$include) {
+            array_pop($list);
+        }
 
         return $list;
     }
