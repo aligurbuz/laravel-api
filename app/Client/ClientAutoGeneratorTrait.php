@@ -252,7 +252,7 @@ trait ClientAutoGeneratorTrait
      */
     public function stopRepositoryHitterAutoGenerator() : void
     {
-        if (!isGet()) {
+        if (!isGet() && isRepository($this->repository())) {
             foreach ($this->repository()->getHitter() as $hitter) {
                 if ($this->has($hitter)) {
                     Exception::customException('hitter', ['key' => $hitter, 'method' => httpMethod()]);

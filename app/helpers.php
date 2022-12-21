@@ -465,6 +465,18 @@ if (!function_exists('memory')) {
     }
 }
 
+if (!function_exists('isRepository')) {
+
+    /**
+     * checks if the repository is valid
+     *
+     */
+    function isRepository($repository): bool
+    {
+        return $repository instanceof EloquentRepository;
+    }
+}
+
 if (!function_exists('isPost')) {
 
     /**
