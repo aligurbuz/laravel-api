@@ -87,7 +87,7 @@ trait ClientAutoGeneratorTrait
             return $this->has('user_code') ? $this->get('user_code') : null;
         }
 
-        return call_user_func($callback);
+        return $callback();
     }
 
     /**
@@ -109,7 +109,7 @@ trait ClientAutoGeneratorTrait
      */
     public function createdByAutoGenerator(): mixed
     {
-        if (request()->method() == 'POST') {
+        if (httpMethod() === 'POST') {
             return $this->ensureColumnExists('created_by', function () {
                 return Authenticate::code();
             });
@@ -125,7 +125,7 @@ trait ClientAutoGeneratorTrait
      */
     public function updatedByAutoGenerator(): mixed
     {
-        if (request()->method() == 'PUT') {
+        if (httpMethod() === 'PUT') {
             return $this->ensureColumnExists('updated_by', function () {
                 return Authenticate::code();
             });
@@ -142,7 +142,7 @@ trait ClientAutoGeneratorTrait
     public function deletedByAutoGenerator(): mixed
     {
         if (
-            request()->method() == 'PUT'
+            httpMethod() === 'PUT'
             && $this->has('is_deleted')
             && booleanChecks($this->get('is_deleted'))) {
             return $this->ensureColumnExists('deleted_by', function () {
@@ -161,7 +161,7 @@ trait ClientAutoGeneratorTrait
     public function deletedAtAutoGenerator(): mixed
     {
         if (
-            request()->method() == 'PUT'
+            httpMethod() === 'PUT'
             && $this->has('is_deleted')
             && booleanChecks($this->get('is_deleted'))) {
             return $this->ensureColumnExists('deleted_at', function () {
@@ -175,9 +175,9 @@ trait ClientAutoGeneratorTrait
     /**
      * file process for client
      *
-     * @return mixed
+     * @return void
      */
-    public function clientFileProcessAutoGenerator(): mixed
+    public function clientFileProcessAutoGenerator(): void
     {
         if (count(request()->allFiles())) {
             $files = Factory::storage(['client' => $this])->put();
@@ -186,23 +186,20 @@ trait ClientAutoGeneratorTrait
                 $this->set($key, $value);
             }
         }
-
-        return null;
     }
 
     /**
      * code process for client
      *
      * @param array $data
-     * @return mixed
+     * @return void
      */
-    public function codeProcessAutoGenerator(array $data = []): mixed
+    public function codeProcessAutoGenerator(array $data = []): void
     {
         $data = count($data) ? $data : (array)$this->get();
 
-
         foreach ($data as $key => $value) {
-            if (request()->method() == 'POST' && getTableCode($this->getModel()) == $key) {
+            if (httpMethod() === 'POST' && getTableCode($this->getModel()) === $key) {
                 continue;
             }
 
@@ -222,16 +219,14 @@ trait ClientAutoGeneratorTrait
                 }
             }
         }
-
-        return null;
     }
 
     /**
      * The first records with the is_default key will set is_default to true.
      *
-     * @return null
+     * @return void
      */
-    public function isDefaultFirstRegisterAutoGenerator()
+    public function isDefaultFirstRegisterAutoGenerator(): void
     {
         $this->ensureColumnExists('is_default', function () {
             $customerData = $this->repository()->getRepository();
@@ -241,8 +236,6 @@ trait ClientAutoGeneratorTrait
                 $this->set('is_default', true);
             }
         });
-
-        return null;
     }
 
     /**
@@ -250,7 +243,7 @@ trait ClientAutoGeneratorTrait
      *
      * @return void
      */
-    public function stopRepositoryHitterAutoGenerator() : void
+    public function stopRepositoryHitterAutoGenerator(): void
     {
         if (!isGet() && isRepository($this->repository())) {
             foreach ($this->repository()->getHitter() as $hitter) {
