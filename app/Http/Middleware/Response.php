@@ -21,7 +21,7 @@ class Response
     public function handle(Request $request, Closure $next): mixed
     {
         $response = $next($request);
-        $content = json_decode($response->getContent(), 1);
+        $content = json_decode($response->getContent(), 1, 512, JSON_THROW_ON_ERROR);
 
         if (isset($content['status']) && $content['status'] === false) {
             return $response;
@@ -32,7 +32,7 @@ class Response
             200,
             (
                 (isset($content['data']) && is_array($content['data']) && count($content['data']))
-                || !isset($content['data']) && count($content)
+                || (!isset($content['data']) && count($content))
             )
         );
     }
