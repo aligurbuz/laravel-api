@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Exceptions\Exception;
+use App\Models\User;
 use Closure;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
@@ -20,12 +21,13 @@ class Authenticate extends Middleware
      *
      * @throws AuthenticationException
      */
-    public function handle($request, Closure $next, ...$guards)
+    public function handle($request, Closure $next, ...$guards): mixed
     {
         if (config('app.authenticate') === true) {
             $this->authenticate($request, $guards);
         }
 
+        /*** @var User $user */
         $user = auth()->user();
 
         if($user->is_deleted){
