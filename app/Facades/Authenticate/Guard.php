@@ -3,24 +3,39 @@
 namespace App\Facades\Authenticate;
 
 use App\Repositories\Repository;
-use Illuminate\Contracts\Auth\StatefulGuard;
 use Illuminate\Support\Facades\Auth;
 
 class Guard
 {
     /**
+     * @var string
+     */
+    protected static string $prefix = 'login';
+
+    /**
      * get authenticate guard for facade
      *
-     * @return Guard|StatefulGuard
+     * @return object
      */
-    public static function get() : Guard|StatefulGuard
+    public static function get(): object
     {
         // Note the authGuard helper method here.
         // this value can be obtained literally with the config/auth.php settings.
         // Every client that makes a request to the API comes with an apiKey key.
         // so this key is very important to authenticate.
         // @see App\Http\Controllers\Api\ApiController@getMiddlewares()
-        return Auth::guard(authGuard());
+        return Auth::guard(authGuard(static::$prefix));
+    }
+
+    /**
+     * set prefix for guard facade
+     *
+     * @param string $prefix
+     * @return void
+     */
+    public static function prefix(string $prefix): void
+    {
+        static::$prefix = $prefix;
     }
 
     /**
@@ -28,10 +43,10 @@ class Guard
      *
      * @return string
      */
-    public static function model() : string
+    public static function model(): string
     {
         return lcfirst(
-            class_basename(config('auth.providers.'.ApiKey::who().'.model'))
+            class_basename(config('auth.providers.' . ApiKey::who() . '.model'))
         );
     }
 
@@ -40,7 +55,7 @@ class Guard
      *
      * @return string
      */
-    public static function code() : string
+    public static function code(): string
     {
         return static::repository()->getModelCode();
     }
@@ -50,7 +65,7 @@ class Guard
      *
      * @return object
      */
-    public static function repository() : object
+    public static function repository(): object
     {
         $model = static::model();
 

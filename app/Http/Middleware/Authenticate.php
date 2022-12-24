@@ -3,7 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Exceptions\Exception;
-use App\Models\User;
+use App\Facades\Authenticate\User;
 use Closure;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
@@ -27,16 +27,9 @@ class Authenticate extends Middleware
             $this->authenticate($request, $guards);
         }
 
-        /*** @var User $user */
-        $user = auth()->user();
-
-        if($user->is_deleted){
-            Exception::customException('deletedUser');
-        }
-
-        if(!$user->status){
-            Exception::customException('notActiveUser');
-        }
+        // this code looks at the user's status and is_deleted fields.
+        // It will throw an exception if the status field value is 0 or the is_deleted field is 1.
+        User::isActive();
 
         return $next($request);
     }

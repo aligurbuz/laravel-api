@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Exceptions\Exception;
 use App\Facades\Authenticate\ApiKey;
+use App\Facades\Authenticate\Guard;
 use App\Factory\Factory;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -58,11 +59,11 @@ class ApiController extends BaseController
             $this->middlewares[] = 'superAdmin';
         }
 
-        if (property_exists($this, 'authenticate') && !$this->authenticate) {
-            if (!isExistAuthorization()) {
-                return $this->middlewares;
-            }
+        if (property_exists($this, 'authenticate') && !$this->authenticate && !isExistAuthorization()) {
+            return $this->middlewares;
         }
+
+        Guard::prefix('check');
 
         return array_merge(['auth:' . authGuard('check')], $this->middlewares);
     }
