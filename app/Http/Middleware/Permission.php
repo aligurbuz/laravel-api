@@ -3,7 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Exceptions\Exception;
-use App\Factory\Factory;
+use App\Facades\Permission\Permission as PermissionFacade;
 use Closure;
 use Illuminate\Http\Request;
 
@@ -40,7 +40,7 @@ class Permission
         return (
             config('app.permission') === true
             && in_array(who(), $this->apiKeys, true)
-            && !Factory::permission()->checkEndpoint()
+            && !PermissionFacade::handle()
         );
     }
 }
