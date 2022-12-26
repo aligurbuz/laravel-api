@@ -42,14 +42,12 @@ abstract class PermissionManager
      * @param $arguments
      * @return bool
      */
-    public static function __callStatic($name, $arguments): bool
+    public function __call($name, $arguments): bool
     {
-        $permissionInstance = new static;
-
-        if (method_exists($permissionInstance, $name)) {
-            return $permissionInstance->$name();
+        if (method_exists($this, $name)) {
+            return $this->$name();
         }
 
-        return $permissionInstance->handle();
+        return $this->handle();
     }
 }

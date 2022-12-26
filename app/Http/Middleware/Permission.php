@@ -40,9 +40,9 @@ class Permission
         $endpoint = endpoint(true);
 
         return (
-            config('app.permission') === true
+            true === config('app.permission')
             && in_array(who(), $this->apiKeys, true)
-            && !PermissionFacade::$endpoint()
+            && !(new PermissionFacade())->$endpoint()
         );
     }
 }
