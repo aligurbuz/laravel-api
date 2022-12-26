@@ -37,10 +37,12 @@ class Permission
      */
     private function permissionCondition() : bool
     {
+        $endpoint = endpoint(true);
+
         return (
             config('app.permission') === true
             && in_array(who(), $this->apiKeys, true)
-            && !PermissionFacade::handle()
+            && !PermissionFacade::$endpoint()
         );
     }
 }

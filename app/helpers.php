@@ -947,13 +947,20 @@ if (!function_exists('getModelName')) {
 if (!function_exists('endpoint')) {
 
     /**
+     * @param bool $camelCase
      * @return string
      */
-    function endpoint(): string
+    function endpoint(bool $camelCase = false): string
     {
-        return AppContainer::use('endpoint', function () {
+        $endpoint = AppContainer::use('endpoint', function () {
             return str_replace('api/', '', Route::getCurrentRoute()->uri());
         });
+
+        if($camelCase){
+            return Str::camel(str_replace('/','_',$endpoint));
+        }
+
+        return $endpoint;
     }
 }
 
