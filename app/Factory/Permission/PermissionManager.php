@@ -19,10 +19,10 @@ abstract class PermissionManager
             $roles = $role[0]['roles'];
             $permissionCode = $permission[0]['permission_code'];
 
-            if (isset($roles[$permissionCode], $roles[$permissionCode][request()->method()])) {
+            if (isset($roles[$permissionCode][request()->method()])) {
                 $method = $roles[$permissionCode][request()->method()];
 
-                if ($method == '0') {
+                if ($method === '0') {
                     return false;
                 }
             }
