@@ -31,4 +31,5 @@ class Constants
     public const exceptionNotify = 'exceptionNotify';
     public const importsNamespace = 'App\Imports';
     public const exceptionNamespace = 'Exceptions\Custom';
+    public const addScopeToEnd = 'addScopeToEnd';
 }

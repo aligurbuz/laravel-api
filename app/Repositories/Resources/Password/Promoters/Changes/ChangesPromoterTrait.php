@@ -16,7 +16,7 @@ trait ChangesPromoterTrait
 	 */
 	public function changesRepository(?object $builder = null): object
 	{
-		return $this->apply($builder)->notDeleted();
+		return $this->apply($builder)->addToEnd(['notDeleted']);
 	}
 
 

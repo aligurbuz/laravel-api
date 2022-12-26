@@ -272,6 +272,14 @@ class EloquentRepository
             ->groupByQuery()
             ->search();
 
+        // if the AddToEnd scope method is used,
+        // the container scope will be appended to the end of the query.
+        if(is_array($addToEnds = AppContainer::get(Constants::addScopeToEnd))){
+            foreach ($addToEnds as $addToEnd){
+                $this->graphQl->$addToEnd();
+            }
+        }
+
         return $this;
     }
 

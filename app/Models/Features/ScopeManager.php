@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace App\Models\Features;
 
+use App\Constants;
 use App\Exceptions\Exception;
 use App\Repositories\Repository;
+use App\Services\AppContainer;
 use App\Services\Db;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
@@ -63,6 +65,20 @@ trait ScopeManager
     public function scopeNotDeleted(Builder $builder): object
     {
         return $builder->where('is_deleted', false);
+    }
+
+    /**
+     * get notDeleted scope for model
+     *
+     * @param Builder $builder
+     * @param array $scope
+     * @return Builder
+     */
+    public function scopeAddToEnd(Builder $builder, array $scope = []): object
+    {
+        AppContainer::setWithTerminating(Constants::addScopeToEnd, $scope);
+
+        return $builder;
     }
 
     /**
@@ -248,7 +264,7 @@ trait ScopeManager
                 $filtering = indexOrdering($this->getTable(), $params['filter']);
                 foreach ($filtering as $key => $value) {
                     if (!in_array($key, $indexes)) {
-                        if(!property_exists($this,'filterException') || $this->filterException){
+                        if (!property_exists($this, 'filterException') || $this->filterException) {
                             Exception::filterException('', ['key' => $key]);
                         }
                     }
