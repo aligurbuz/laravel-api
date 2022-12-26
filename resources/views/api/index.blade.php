@@ -948,6 +948,7 @@ wget --no-check-certificate --quiet \
                                                 $types = \App\Services\Db::types(\App\Constants::modelNamespace.'\\'.$model);
                                                 $tableCode = getTableCode($model);
                                                 $configDocumentation = config('documentation');
+                                                $exceptMethodKeys = $configDocumentation['exceptMethodKeys'][$endpoint][$method] ?? [];
                                                 $modelClientJsonData = json_decode(\Illuminate\Support\Facades\File::get(database_path('columns').''.DIRECTORY_SEPARATOR.'modelClients.json'),1);
                                                 $clientDataList = $modelClientJsonData[$model] ?? [];
 
@@ -1131,6 +1132,23 @@ wget --no-check-certificate --quiet \
 
                                                     }
 
+                                                    if(count($exceptMethodKeys)){
+                                                        foreach ($exceptMethodKeys as $exceptMethodKey){
+                                                            if(isset($raw[$exceptMethodKey])){
+                                                                unset($raw[$exceptMethodKey]);
+                                                            }
+                                                        }
+                                                    }
+
+                                                    if($method=='POST' && isset($raw['is_deleted'])){
+                                                        unset($raw['is_deleted']);
+                                                    }
+
+                                                    if($method=='POST' && isset($raw['status'])){
+                                                        unset($raw['status']);
+                                                    }
+
+
                                                     $isClientCapsuleRequired = [];
 
                                                     if(class_exists($clientDataInstance)){
@@ -1198,6 +1216,7 @@ wget --no-check-certificate --quiet \
                                                                     and $crColumn!=='id'
                                                                     and $crColumn!=='updated_at'
                                                                     and $crColumn!=='updated_by'
+
                                                                     ){
                                                                     $crColumnList[$extraClientKey[0]][$crColumnKey] = $crColumn;
                                                                 }

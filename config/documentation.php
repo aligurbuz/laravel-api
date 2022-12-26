@@ -30,6 +30,11 @@ return [
         'registration' => ['GET','PUT'],
         'support/excel' => ['GET','PUT'],
     ],
+    'exceptMethodKeys' => [
+        'password/changes' => [
+            'POST' => ['hash','client_time']
+        ]
+    ],
     "ignores" => [
         "SuperAdmins",
         "Mix",
