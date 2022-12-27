@@ -70,7 +70,7 @@ class Authenticate extends FacadeManager
 
             // this code looks at the user's status and is_deleted fields.
             // It will throw an exception if the status field value is 0 or the is_deleted field is 1.
-            User::isActive();
+            User::throwExceptionIfNotActive();
 
             // if a callback method is sent to the attempt method, this callback is executed.
             // if callback is not sent, token is created directly and returned with user data.

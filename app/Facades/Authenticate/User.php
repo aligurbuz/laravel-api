@@ -23,7 +23,7 @@ class User
      *
      * @return void
      */
-    public static function isActive(): void
+    public static function throwExceptionIfNotActive(): void
     {
         /*** @var object $user */
         $user = static::get();
