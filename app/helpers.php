@@ -322,7 +322,7 @@ if (!function_exists('isClientRequest')) {
      */
     function isClientRequest(): bool
     {
-        return AppContainer::has('clientRepositoryRequest') || AppContainer::has('clientInstance');
+        return AppContainer::has(Constants::clientRepositoryRequest) || AppContainer::has('clientInstance');
     }
 }
 
