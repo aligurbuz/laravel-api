@@ -108,7 +108,7 @@ class EloquentRepository
      */
     private function setClientRepositoryRequest(): void
     {
-        AppContainer::setWithTerminating('clientRepositoryRequest', true);
+        AppContainer::setWithTerminating(Constants::clientRepositoryRequest, true);
     }
 
     /**

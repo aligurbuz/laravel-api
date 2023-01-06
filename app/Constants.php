@@ -32,4 +32,5 @@ class Constants
     public const importsNamespace = 'App\Imports';
     public const exceptionNamespace = 'Exceptions\Custom';
     public const addScopeToEnd = 'addScopeToEnd';
+    public const clientRepositoryRequest = 'clientRepositoryRequest';
 }
