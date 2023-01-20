@@ -677,6 +677,18 @@ class EloquentRepository
     }
 
     /**
+     * update data for repository model
+     *
+     * @param array $data
+     * @param bool $id
+     * @return array|object
+     */
+    public function update(array $data = [], bool $id = true): array|object
+    {
+        return $this->updateHandler($data, $id);
+    }
+
+    /**
      * get client data for create repository model
      *
      * @param array $data
@@ -755,17 +767,7 @@ class EloquentRepository
             ]);
     }
 
-    /**
-     * update data for repository model
-     *
-     * @param array $data
-     * @param bool $id
-     * @return array|object
-     */
-    public function update(array $data = [], bool $id = true): array|object
-    {
-        return $this->updateHandler($data, $id);
-    }
+
 
     /**
      * it adds to builder not deleted data.
