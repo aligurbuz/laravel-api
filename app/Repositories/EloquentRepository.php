@@ -697,7 +697,21 @@ class EloquentRepository
      */
     public function getClientData(array $data = []): array
     {
-        return count($data) ? $data : Client::data();
+        return count($data) ? $data : $this->setClientData();
+    }
+
+    /**
+     * set client data for repository
+     *
+     * @return array
+     */
+    public function setClientData() : array
+    {
+        // when using the repository, we leave a record
+        // in the container so that we can understand the client request.
+        $this->setClientRepositoryRequest();
+
+        return Client::data();
     }
 
     /**
