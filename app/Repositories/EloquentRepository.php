@@ -126,7 +126,7 @@ class EloquentRepository
      *
      * @return int
      */
-    public function customerCode() : int
+    public function customerCode(): int
     {
         return $this->isClient() ? (int)client('customer_code') : customerCode();
     }
@@ -274,8 +274,8 @@ class EloquentRepository
 
         // if the AddToEnd scope method is used,
         // the container scope will be appended to the end of the query.
-        if(is_array($addToEnds = AppContainer::get(Constants::addScopeToEnd))){
-            foreach ($addToEnds as $addToEnd){
+        if (is_array($addToEnds = AppContainer::get(Constants::addScopeToEnd))) {
+            foreach ($addToEnds as $addToEnd) {
                 $this->graphQl->$addToEnd();
             }
         }
@@ -669,11 +669,12 @@ class EloquentRepository
      * create data for repository model
      *
      * @param array $data
+     * @param bool $event
      * @return array|object
      */
-    public function create(array $data = []): array|object
+    public function create(array $data = [], bool $event = true): array|object
     {
-        return $this->createHandler($data);
+        return $this->setEventStatus($event)->createHandler($data);
     }
 
     /**
@@ -766,7 +767,6 @@ class EloquentRepository
                 )
             ]);
     }
-
 
 
     /**
