@@ -13,13 +13,6 @@ use App\Factory\Calculator\Interfaces\CalculatorInterface;
  */
 class Calculator extends CalculatorManager implements CalculatorInterface
 {
-	/**
-	 * binds property variable
-	 *
-	 * @var array
-	 */
-	protected array $binds = [];
-
     /**
      * @var array
      */
@@ -28,16 +21,6 @@ class Calculator extends CalculatorManager implements CalculatorInterface
             'instance1' => 'namespace',
         ]
     ];
-
-	/**
-	 * Calculator constructor
-	 *
-	 * @param array $binds
-	 */
-	public function __construct(array $binds = [])
-	{
-		$this->binds = $binds;
-	}
 
     /**
      * @return float

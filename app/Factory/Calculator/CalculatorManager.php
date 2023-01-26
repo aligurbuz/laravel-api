@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 declare(strict_types=1);
 
@@ -8,6 +8,23 @@ use Illuminate\Support\Str;
 
 abstract class CalculatorManager
 {
+    /**
+     * binds property variable
+     *
+     * @var array
+     */
+    protected array $binds = [];
+
+    /**
+     * Calculator constructor
+     *
+     * @param array $binds
+     */
+    public function __construct(array $binds = [])
+    {
+        $this->binds = $binds;
+    }
+
 	/**
 	 * get resource for bind
 	 *
