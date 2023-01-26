@@ -8,6 +8,7 @@ use App\Factory\Calculator\Interfaces\CalculatorInterface;
 
 /**
  * Class Calculator
+ * @property $cardInstance1
  * @package App\Factory\Calculator
  */
 class Calculator extends CalculatorManager implements CalculatorInterface
@@ -43,6 +44,6 @@ class Calculator extends CalculatorManager implements CalculatorInterface
      */
     public function card() : float
     {
-        return ($this->calculatorInstances['instance1']/100);
+        return ($this->cardInstance1/100);
     }
 }
