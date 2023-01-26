@@ -10,7 +10,7 @@ interface CalculatorInterface
 {
     /**
      * @return float
-     * @see Calculator::card()
+     * @see Calculator::cart()
      */
-    public function card() : float;
+    public function cart() : float;
 }

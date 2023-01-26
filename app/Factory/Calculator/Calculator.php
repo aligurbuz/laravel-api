@@ -8,7 +8,7 @@ use App\Factory\Calculator\Interfaces\CalculatorInterface;
 
 /**
  * Class Calculator
- * @property $cardInstance1
+ * @property $cartInstance1
  * @package App\Factory\Calculator
  */
 class Calculator extends CalculatorManager implements CalculatorInterface
@@ -24,7 +24,7 @@ class Calculator extends CalculatorManager implements CalculatorInterface
      * @var array
      */
     protected array $calculatorInstances = [
-        'card' => [
+        'cart' => [
             'instance1' => 'namespace',
         ]
     ];
@@ -42,8 +42,8 @@ class Calculator extends CalculatorManager implements CalculatorInterface
     /**
      * @return float
      */
-    public function card() : float
+    public function cart() : float
     {
-        return ($this->cardInstance1/100);
+        return ($this->cartInstance1/100);
     }
 }
