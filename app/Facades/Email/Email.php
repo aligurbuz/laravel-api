@@ -3,7 +3,6 @@
 namespace App\Facades\Email;
 
 use App\Mail\UserActivation;
-use App\Mail\VerifyEmailForUser;
 use Illuminate\Support\Facades\Mail;
 
 class Email
