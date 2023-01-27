@@ -42,16 +42,16 @@ abstract class HttpManager
             $endpoint = static::$methods[$endpoint];
         }
 
-        if ($method == 'get') {
+        if ($method === 'get') {
             $queryParameters = $arguments[0] ?? [];
-            $endpoint = $endpoint . '?' . http_build_query($queryParameters);
+            $endpoint .= '?' . http_build_query($queryParameters);
         } else {
             $method = static::$httpMethods[$method];
             $methodArguments = $arguments[0] ?? [];
         }
 
         if (isset($methodArguments['routeParameters'])) {
-            $endpoint = $endpoint . '/' . $methodArguments['routeParameters'];
+            $endpoint .= '/' . $methodArguments['routeParameters'];
             unset($methodArguments['routeParameters']);
         }
 
@@ -88,7 +88,7 @@ abstract class HttpManager
     private static function request(): Request
     {
         if (is_null(static::$instance)) {
-            $factoryMethod = lcfirst(class_basename(get_called_class()));
+            $factoryMethod = lcfirst(class_basename(static::class));
             static::$instance = Factory::http()->{$factoryMethod}();
         }
 
