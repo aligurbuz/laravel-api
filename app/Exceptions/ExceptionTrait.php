@@ -17,7 +17,7 @@ trait ExceptionTrait
         $languageStatement = 'exception.' . $this->langKey;
         $language = trans($languageStatement, $this->getKeys());
 
-        return ($language == $languageStatement) ? $this->getMessageForTranslate($message) : $language;
+        return ($language === $languageStatement) ? $this->getMessageForTranslate($message) : $language;
     }
 
     /**
@@ -27,7 +27,7 @@ trait ExceptionTrait
      */
     private function getKeys(): array
     {
-        $calledClass = get_called_class();
+        $calledClass = static::class;
 
         if (AppContainer::has($calledClass)) {
             return AppContainer::get($calledClass);
@@ -47,6 +47,6 @@ trait ExceptionTrait
     {
         $customMessage = trans('exception.' . $message, $this->getKeys());
 
-        return ($customMessage == 'exception.' . $message) ? $message : $customMessage;
+        return ($customMessage === 'exception.' . $message) ? $message : $customMessage;
     }
 }
