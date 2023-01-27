@@ -28,6 +28,6 @@ class Doodle extends Command
      */
     public function handle()
     {
-        return (new DoodleController())->handle();
+        $this->info((new DoodleController())->handle());
     }
 }
