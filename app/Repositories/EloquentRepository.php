@@ -26,6 +26,7 @@ use Throwable;
 /**
  * Class EloquentRepository
  * @property $limit
+ * @property bool $paginator
  * @package App\Repositories
  */
 class EloquentRepository
@@ -369,6 +370,15 @@ class EloquentRepository
 
 
         return $this->graphQl->{$paginateDefinition}($pagination ?? $this->paginationHandler())->toArray();
+    }
+
+    /**
+     * @param bool $value
+     * @return void
+     */
+    public function setPaginator(bool $value = true): void
+    {
+        $this->paginator = $value;
     }
 
     /**
