@@ -43,8 +43,6 @@ class UserCode
      */
     public function handle($column): object
     {
-        $this->eloquentRepository->setPaginator(false);
-
         return $this->builder->where($column, Authenticate::code());
     }
 }
