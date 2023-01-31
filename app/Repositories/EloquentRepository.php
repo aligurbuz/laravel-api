@@ -697,6 +697,8 @@ class EloquentRepository
      */
     public function getClientData(array $data = []): array
     {
+        AppContainer::terminate(Constants::clientRepositoryRequest);
+
         return count($data) ? $data : $this->setClientData();
     }
 
