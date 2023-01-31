@@ -373,6 +373,8 @@ class EloquentRepository
     }
 
     /**
+     * set paginator property value for eloquent repository
+     *
      * @param bool $value
      * @return void
      */
