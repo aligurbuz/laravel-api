@@ -68,9 +68,9 @@ trait CreateRepository
                 }
 
                 if (isset($eventFireAfterCreate) && is_array($eventFireAfterCreate)) {
-                    $list[] = $eventFireAfterCreate;
+                    $list[] = $this->resourceHandled($eventFireAfterCreate);
                 } else {
-                    $list[] = $arrayResults;
+                    $list[] = $this->resourceHandled($arrayResults);
                 }
 
             }

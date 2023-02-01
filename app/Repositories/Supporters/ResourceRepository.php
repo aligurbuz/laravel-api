@@ -161,13 +161,24 @@ trait ResourceRepository
                 }
             }
 
-            $list[$key] = $this->resourceHandler($item, function (object $resource) use ($item) {
-                $item = $this->getItemAttributes($resource, $item);
-                return (method_exists($resource, $this->resourceMethod)) ? $resource->{$this->resourceMethod}($item) : $item;
-            });
+            $list[$key] = $this->resourceHandled($item);
         }
 
         return $list;
+    }
+
+    /**
+     * get resource handled for resource repository
+     *
+     * @param array $item
+     * @return array
+     */
+    public function resourceHandled(array $item = []): array
+    {
+        return $this->resourceHandler($item, function (object $resource) use ($item) {
+            $item = $this->getItemAttributes($resource, $item);
+            return (method_exists($resource, $this->resourceMethod)) ? $resource->{$this->resourceMethod}($item) : $item;
+        });
     }
 
     /**
