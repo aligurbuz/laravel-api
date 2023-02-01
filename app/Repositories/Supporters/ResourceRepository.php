@@ -158,9 +158,7 @@ trait ResourceRepository
             }
 
             $list[$key] = $this->resourceHandler($item, function (object $resource) use ($item) {
-
                 $item = $this->getItemAttributes($resource, $item);
-
                 return (method_exists($resource, $this->resourceMethod)) ? $resource->{$this->resourceMethod}($item) : $item;
             });
         }
