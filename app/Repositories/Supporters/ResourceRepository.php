@@ -159,7 +159,7 @@ trait ResourceRepository
 
             $list[$key] = $this->resourceHandler($item, function (object $resource) use ($item) {
 
-                $item = $this->getItem($resource, $item);
+                $item = $this->getItemAttributes($resource, $item);
 
                 return (method_exists($resource, $this->resourceMethod)) ? $resource->{$this->resourceMethod}($item) : $item;
             });
@@ -246,7 +246,14 @@ trait ResourceRepository
         return $data;
     }
 
-    function getItem(object $resource, mixed $item): mixed
+    /**
+     * get item attributes for resource repository
+     *
+     * @param object $resource
+     * @param mixed $item
+     * @return mixed
+     */
+    public function getItemAttributes(object $resource, mixed $item): mixed
     {
         if (property_exists($resource, 'attributes') && is_array($resource->attributes)) {
             foreach ($resource->attributes as $attribute) {
