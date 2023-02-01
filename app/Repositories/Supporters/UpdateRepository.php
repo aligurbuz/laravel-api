@@ -97,7 +97,7 @@ trait UpdateRepository
             }
 
             //general operations
-            $result = $this->hardDeleteOperation($oldData, $data);
+            $result = $this->resourceHandled($this->hardDeleteOperation($oldData, $data));
             $queryList[] = $this->addPostQueryMerging($result, $dataKey);
 
             if ($this->getEventStatus() && method_exists($this, 'eventFireAfterUpdate')) {
