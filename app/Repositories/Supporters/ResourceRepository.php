@@ -54,6 +54,10 @@ trait ResourceRepository
                 $result['data'] = $this->resourcePropagation($result['data']);
             }
 
+            if(method_exists($this,'appends')){
+                return array_merge($result,$this->appends());
+            }
+
             return $result;
         });
     }

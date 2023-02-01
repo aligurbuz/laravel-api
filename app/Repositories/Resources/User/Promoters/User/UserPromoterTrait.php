@@ -28,4 +28,14 @@ trait UserPromoterTrait
     {
         return parent::entity();
     }
+
+    /**
+     * Appends to the end of the returned data.
+     *
+     * @return bool[]
+     */
+    public function appends() : array
+    {
+        return [];
+    }
 }
