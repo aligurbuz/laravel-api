@@ -123,6 +123,14 @@ class RepositoryCommand extends Command
                 //->addComment('@param Builder $builder')
                 ->addComment('@return ' . ucfirst($modelName));
 
+            $method = $traitPromoterNamespace->addMethod('appends');
+            $method->setBody('return [];')->setReturnType('array');
+            $method->addComment('Appends to the end of the returned data.')
+                ->addComment('')
+                //->addComment('@param object|null $builder')
+                //->addComment('@param Builder $builder')
+                ->addComment('@return array');
+
 
             touch($file = $promotersRepositoryDirectory . '' . DIRECTORY_SEPARATOR . '' . $promotersRepositoryClass . '.php');
             $content = '<?php ' . PHP_EOL . '' . PHP_EOL . 'declare(strict_types=1);' . PHP_EOL . '' . PHP_EOL . '' . $promoterNamespace;
