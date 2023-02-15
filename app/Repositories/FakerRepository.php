@@ -9,6 +9,25 @@ use Illuminate\Support\Facades\Hash;
 trait FakerRepository
 {
     /**
+     * generate random letter for faker facade
+     *
+     * @param int $count
+     * @return string
+     */
+    public function letter(int $count = 1) : string
+    {
+        $faker = faker();
+
+        $letters = [];
+
+        for($i=1; $i<=$count; $i++){
+            $letters[] = $faker->randomLetter;
+        }
+
+        return implode('',$letters);
+    }
+
+    /**
      * generate big integer for faker repository
      *
      * @return int

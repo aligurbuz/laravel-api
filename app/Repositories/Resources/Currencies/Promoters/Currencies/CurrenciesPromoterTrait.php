@@ -9,6 +9,11 @@ use App\Models\Entities\Currency;
 trait CurrenciesPromoterTrait
 {
     /**
+     * @var array|string[]
+     */
+    protected array $fakers = ['name' => 'currencyName'];
+
+    /**
      * get auto CurrenciesRepository scope method
      *
      * @param object|null $builder
@@ -37,5 +42,15 @@ trait CurrenciesPromoterTrait
     public function symbolFaker() : string
     {
         return faker()->currencyCode;
+    }
+
+    /**
+     * get symbol faker for repository
+     *
+     * @return string
+     */
+    public function currencyNameFaker() : string
+    {
+        return $this->letter(3);
     }
 }

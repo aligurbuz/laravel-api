@@ -812,12 +812,23 @@ class EloquentRepository
     }
 
     /**
+     * get fakers for eloquent repository
+     *
+     * @return array
+     */
+    public function getFakers() : array
+    {
+        return (property_exists($this,'fakers') && is_array($this->fakers)) ? $this->fakers : [];
+    }
+
+    /**
      * get dummy data for eloquent repository
      *
      * @return array
      */
     public function dummy() : array
     {
+        $fakers = $this->getFakers();
         $columns = $this->getRequiredColumns();
 
         $dummies = [];
@@ -827,7 +838,7 @@ class EloquentRepository
                 $dummies[$column] = $this->bigIntegerFaker();
             }
             else{
-                $methodFaker = Str::camel($column).'Faker';
+                $methodFaker = isset($fakers[$column]) ? $fakers[$column].'Faker' : Str::camel($column).'Faker';
                 $dummies[$column] = $this->$methodFaker();
             }
         }
