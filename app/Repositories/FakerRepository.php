@@ -36,7 +36,7 @@ trait FakerRepository
      */
     public static function bigIntegerFaker(): int
     {
-        return crc32(Client::fingerPrint() . '_' . time() . '_' . random_int(1, 999999));
+        return generateHash();
     }
 
     /**
