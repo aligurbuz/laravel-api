@@ -9,6 +9,8 @@ use App\Facades\Authenticate\Authenticate;
 
 trait GeneralPromoterTrait
 {
+    use FakerRepository;
+
     /**
      * generalPromoterTrait constructor
      */
