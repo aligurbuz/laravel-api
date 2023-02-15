@@ -2,6 +2,9 @@
 
 namespace App\Facades\Faker;
 
+use App\Services\Client;
+use Exception;
+
 class Faker
 {
     /**
@@ -21,5 +24,17 @@ class Faker
         }
 
         return implode('',$letters);
+    }
+
+    /**
+     * generate big integer for faker facade
+     *
+     * @return int
+     *
+     * @throws Exception
+     */
+    public static function bigInteger() : int
+    {
+        return crc32(Client::fingerPrint() . '_' . time() . '_' . random_int(1, 999999));
     }
 }

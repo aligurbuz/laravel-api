@@ -3,6 +3,7 @@
 use App\Constants;
 use App\Exceptions\Exception;
 use App\Facades\Authenticate\ApiKey;
+use App\Facades\Faker\Faker;
 use App\Factory\Factory;
 use App\Models\Entities\EntityMap;
 use App\Repositories\EloquentRepository;
@@ -834,7 +835,7 @@ if (!function_exists('generateHash')) {
      */
     function generateHash(): int
     {
-        return crc32(Client::fingerPrint() . '_' . time() . '_' . rand(1, 999999));
+        return Faker::bigInteger();
     }
 }
 
