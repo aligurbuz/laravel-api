@@ -2,7 +2,6 @@
 
 namespace App\Repositories;
 
-use App\Services\Client;
 use Exception;
 use Illuminate\Support\Facades\Hash;
 
@@ -14,17 +13,17 @@ trait FakerRepository
      * @param int $count
      * @return string
      */
-    public function letter(int $count = 1) : string
+    public function letter(int $count = 1): string
     {
         $faker = faker();
 
         $letters = [];
 
-        for($i=1; $i<=$count; $i++){
+        for ($i = 1; $i <= $count; $i++) {
             $letters[] = $faker->randomLetter;
         }
 
-        return implode('',$letters);
+        return implode('', $letters);
     }
 
     /**
@@ -111,7 +110,7 @@ trait FakerRepository
      */
     public function floatFaker(int $max = 9999): float
     {
-        return faker()->randomFloat(2,1,$max);
+        return faker()->randomFloat(2, 1, $max);
     }
 
     /**
