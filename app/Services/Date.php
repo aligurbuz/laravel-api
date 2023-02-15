@@ -167,11 +167,14 @@ class Date
     /**
      * get tomorrow date
      *
+     * @param string $format
+     * @param string $startDate
+     * @param string $endDate
      * @return string
      */
-    public static function fake(string $startDate = 'now', string $endDate = '1 year'): string
+    public static function fake(string $format = 'Y-m-d', string $startDate = 'now', string $endDate = '1 year'): string
     {
-        return faker()->dateTimeBetween($startDate, $endDate, static::getTimezone())->format('Y-m-d');
+        return faker()->dateTimeBetween($startDate, $endDate, static::getTimezone())->format($format);
     }
 
     /**
