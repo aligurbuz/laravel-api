@@ -15,6 +15,7 @@ use App\Services\HashGenerator;
 use App\Services\Redis;
 use App\Services\Request\Request as HttpRequest;
 use App\Services\Service;
+use Faker\Generator;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
@@ -42,6 +43,17 @@ if (!function_exists('httpMethod')) {
     function httpMethod() : string
     {
         return strtolower(request()->method());
+    }
+}
+
+if (!function_exists('faker')) {
+
+    /**
+     * @return Generator
+     */
+    function faker() : Generator
+    {
+        return \Faker\Factory::create();
     }
 }
 

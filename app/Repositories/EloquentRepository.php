@@ -810,6 +810,16 @@ class EloquentRepository
     }
 
     /**
+     * get dummy data for eloquent repository
+     *
+     * @return array
+     */
+    public function dummy() : array
+    {
+        return [];
+    }
+
+    /**
      * get code instance for repository
      *
      * @param int $code
@@ -1415,6 +1425,26 @@ class EloquentRepository
     public function getIndexes(): array
     {
         return Db::indexes($this->getTable());
+    }
+
+    /**
+     * get required columns for model
+     *
+     * @return array
+     */
+    public function getRequiredColumns(): array
+    {
+        return Db::requiredColumns($this->getTable());
+    }
+
+    /**
+     * get column types for model
+     *
+     * @return array
+     */
+    public function getColumnTypes(): array
+    {
+        return Db::types($this->getTable());
     }
 
     /**
