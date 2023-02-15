@@ -27,6 +27,8 @@ use Throwable;
  * Class EloquentRepository
  * @property $limit
  * @package App\Repositories
+ * @method bigIntegerFaker()
+ * @method bigInteger()
  */
 class EloquentRepository
 {
@@ -816,7 +818,21 @@ class EloquentRepository
      */
     public function dummy() : array
     {
-        return [];
+        $columns = $this->getRequiredColumns();
+
+        $dummies = [];
+
+        foreach ($columns as $column){
+            if($column===$this->getModelCode()){
+                $dummies[$column] = $this->bigIntegerFaker();
+            }
+            else{
+                $methodFaker = Str::camel($column).'Faker';
+                $dummies[$column] = $this->$methodFaker();
+            }
+        }
+
+        return $dummies;
     }
 
     /**

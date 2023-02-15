@@ -28,4 +28,14 @@ trait CurrenciesPromoterTrait
     {
         return parent::entity();
     }
+
+    /**
+     * get symbol faker for repository
+     *
+     * @return string
+     */
+    public function symbolFaker() : string
+    {
+        return faker()->currencyCode;
+    }
 }

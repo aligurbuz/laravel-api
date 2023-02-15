@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Services\Client;
 use Exception;
+use Illuminate\Support\Facades\Hash;
 
 trait FakerRepository
 {
@@ -14,7 +15,7 @@ trait FakerRepository
      *
      * @throws Exception
      */
-    public static function bigInteger(): int
+    public static function bigIntegerFaker(): int
     {
         return crc32(Client::fingerPrint() . '_' . time() . '_' . random_int(1, 999999));
     }
@@ -70,7 +71,7 @@ trait FakerRepository
      */
     public function passwordFaker(int $min = 6, int $max = 20): string
     {
-        return faker()->password($min, $max);
+        return Hash::make(faker()->password($min, $max));
     }
 
     /**
@@ -92,5 +93,15 @@ trait FakerRepository
     public function floatFaker(int $max = 9999): float
     {
         return faker()->randomFloat(2,1,$max);
+    }
+
+    /**
+     * generate email for faker repository
+     *
+     * @return string
+     */
+    public function emailFaker(): string
+    {
+        return faker()->email;
     }
 }
