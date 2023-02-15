@@ -2,8 +2,23 @@
 
 namespace App\Repositories;
 
+use App\Services\Client;
+use Exception;
+
 trait FakerRepository
 {
+    /**
+     * generate big integer for faker repository
+     *
+     * @return int
+     *
+     * @throws Exception
+     */
+    public static function bigInteger(): int
+    {
+        return crc32(Client::fingerPrint() . '_' . time() . '_' . random_int(1, 999999));
+    }
+
     /**
      * generate uuid string for faker repository
      *
