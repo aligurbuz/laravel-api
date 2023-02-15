@@ -165,6 +165,16 @@ class Date
     }
 
     /**
+     * get tomorrow date
+     *
+     * @return string
+     */
+    public static function fake(string $startDate = 'now', string $endDate = '1 year'): string
+    {
+        return faker()->dateTimeBetween($startDate, $endDate, static::getTimezone())->format('Y-m-d');
+    }
+
+    /**
      * get timezone for carbon
      *
      * @return string|null
