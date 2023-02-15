@@ -13,17 +13,17 @@ class Faker
      * @param int $count
      * @return string
      */
-    public static function letter(int $count = 1) : string
+    public static function letter(int $count = 1): string
     {
         $faker = faker();
 
         $letters = [];
 
-        for($i=1; $i<=$count; $i++){
+        for ($i = 1; $i <= $count; $i++) {
             $letters[] = $faker->randomLetter;
         }
 
-        return implode('',$letters);
+        return implode('', $letters);
     }
 
     /**
@@ -33,7 +33,7 @@ class Faker
      *
      * @throws Exception
      */
-    public static function bigInteger() : int
+    public static function bigInteger(): int
     {
         return crc32(Client::fingerPrint() . '_' . time() . '_' . random_int(1, 999999));
     }
@@ -43,7 +43,7 @@ class Faker
      *
      * @return string
      */
-    public static function uuid() : string
+    public static function uuid(): string
     {
         return faker()->uuid;
     }
@@ -53,9 +53,20 @@ class Faker
      *
      * @return string
      */
-    public static function username() : string
+    public static function username(): string
     {
         return faker()->userName;
+    }
+
+    /**
+     * generate name for faker facade
+     *
+     * @param string|null $gender
+     * @return string
+     */
+    public static function name(?string $gender = null): string
+    {
+        return faker()->name($gender);
     }
 
     /**
@@ -64,8 +75,41 @@ class Faker
      * @param int $number
      * @return int
      */
-    public static function digitNumber(int $number = 6) : int
+    public static function digitNumber(int $number = 6): int
     {
         return faker()->randomNumber($number);
+    }
+
+    /**
+     * generate password for faker facade
+     *
+     * @param int $min
+     * @param int $max
+     * @return string
+     */
+    public static function password(int $min = 6, int $max = 20): string
+    {
+        return faker()->password($min, $max);
+    }
+
+    /**
+     * generate boolean value for faker facade
+     *
+     * @return bool
+     */
+    public static function boolean(): bool
+    {
+        return faker()->boolean;
+    }
+
+    /**
+     * generate decimal value for faker facade
+     *
+     * @param int $max
+     * @return float
+     */
+    public static function float(int $max = 9999): float
+    {
+        return faker()->randomFloat(2,1,$max);
     }
 }
