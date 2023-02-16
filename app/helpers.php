@@ -810,6 +810,19 @@ if (!function_exists('appLanguageCode')) {
     }
 }
 
+if (!function_exists('lang')) {
+
+    /**
+     * get application language for application
+     *
+     * @return string
+     */
+    function lang(): string
+    {
+        return request()->header(Constants::headerLangKey, config('app.locale'));
+    }
+}
+
 if (!function_exists('fullTextSearchTable')) {
 
     /**

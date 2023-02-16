@@ -21,6 +21,7 @@ class Constants
     public const response = 'response';
     public const errorInput = 'errorInput';
     public const acceptLanguage = 'acceptLanguage';
+    public const headerLangKey = 'accept-language';
     public const debugBackTrace = 'debugBackTrace';
     public const validatorRules = 'validatorRules';
     public const modelNamespace = 'App\Models';

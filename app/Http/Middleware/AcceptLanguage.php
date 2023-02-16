@@ -29,7 +29,7 @@ class AcceptLanguage
         $acceptLanguage = $this->checkAcceptLanguage($request);
 
         // it checks the existence of the repository class according
-        // to the accept-language value and makes an sql query and returns code value
+        // to the accept-language value and makes a sql query and returns code value
         $repositoryCode = $this->checkRepositoryCode($acceptLanguage);
 
         //we assign the language_code value as the application container value.
@@ -46,7 +46,7 @@ class AcceptLanguage
      */
     private function checkAcceptLanguage(Request $request): ?string
     {
-        $acceptLanguage = $request->headers->get('accept-language');
+        $acceptLanguage = $request->headers->get(Constants::headerLangKey);
 
         if (is_null($acceptLanguage)) {
             return Exception::customException(trans('exception.acceptLanguageNotIn'));
@@ -65,10 +65,6 @@ class AcceptLanguage
     {
         $repository = Repository::language()->name($acceptLanguage)->getRepository();
 
-        if (!isset($repository[0]['language_code'])) {
-            return Exception::customException(trans('exception.acceptLanguageNotValid'));
-        }
-
-        return $repository[0]['language_code'];
+        return $repository[0]['language_code'] ?? Exception::customException(trans('exception.acceptLanguageNotValid'));
     }
 }
