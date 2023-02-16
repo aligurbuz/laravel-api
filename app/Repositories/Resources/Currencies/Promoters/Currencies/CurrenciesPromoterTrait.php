@@ -51,6 +51,6 @@ trait CurrenciesPromoterTrait
      */
     public function currencyNameFaker() : string
     {
-        return $this->letter(3);
+        return $this->letterFaker(3);
     }
 }

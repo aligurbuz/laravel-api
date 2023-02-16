@@ -13,7 +13,7 @@ trait FakerRepository
      * @param int $count
      * @return string
      */
-    public function letter(int $count = 1): string
+    public function letterFaker(int $count = 1) : string
     {
         $faker = faker();
 
