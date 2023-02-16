@@ -819,7 +819,9 @@ if (!function_exists('lang')) {
      */
     function lang(): string
     {
-        return request()->header(Constants::headerLangKey, config('app.locale'));
+        return AppContainer::use('language',static function(){
+            return request()->header(Constants::headerLangKey, config('app.locale'));
+        });
     }
 }
 
