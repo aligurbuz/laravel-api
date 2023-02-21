@@ -44,6 +44,12 @@ abstract class PermissionManager
      */
     public function __call($name, $arguments): bool
     {
+        $withMethod = httpMethod() .ucfirst($name);
+
+        if (method_exists($this, $withMethod)) {
+            return $this->$withMethod();
+        }
+
         if (method_exists($this, $name)) {
             return $this->$name();
         }
