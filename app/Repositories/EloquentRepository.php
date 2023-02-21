@@ -313,7 +313,7 @@ class EloquentRepository
      */
     private function setClientRepositoryHidden(): void
     {
-        if (AppContainer::has('clientRepositoryRequest')) {
+        if (AppContainer::has('clientRepositoryRequest') && !app()->runningInConsole()) {
             $hiddenMethodName = 'set' . ucfirst(ApiKey::who()) . 'Hidden';
 
             if (method_exists($this, $hiddenMethodName)) {
