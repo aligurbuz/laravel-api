@@ -2,6 +2,7 @@
 
 namespace App\Client\Password\Changes\Create;
 
+use App\Facades\Faker\Faker;
 use App\Services\Date;
 use Exception;
 
@@ -48,7 +49,7 @@ trait GeneratorTrait
      */
     public function hashGenerator(): string
     {
-        return (string)random_int(100000, 999999);
+        return (string)Faker::digitNumber();
     }
 
     /**
