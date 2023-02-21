@@ -830,6 +830,11 @@ class EloquentRepository
     {
         $fakers = $this->getFakers();
         $columns = $this->getRequiredColumns();
+
+        if(!in_array($this->getModelCode(),$columns, true)){
+            $columns[] = $this->getModelCode();
+        }
+
         $types = $this->getColumnTypes();
 
         $dummies = [];
