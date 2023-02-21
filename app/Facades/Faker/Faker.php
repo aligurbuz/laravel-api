@@ -122,4 +122,24 @@ class Faker
     {
         return faker()->email;
     }
+
+    /**
+     * generate string value for faker repository
+     *
+     * @return string
+     */
+    public static function stringFaker(): string
+    {
+        return faker()->name;
+    }
+
+    /**
+     * generate integer value for faker repository
+     *
+     * @return string
+     */
+    public static function integerFaker(): string
+    {
+        return faker()->numerify;
+    }
 }

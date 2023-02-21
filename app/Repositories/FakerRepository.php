@@ -124,12 +124,22 @@ trait FakerRepository
     }
 
     /**
-     * generate email for faker repository
+     * generate string value for faker repository
      *
      * @return string
      */
     public function stringFaker(): string
     {
         return faker()->name;
+    }
+
+    /**
+     * generate integer value for faker repository
+     *
+     * @return string
+     */
+    public function integerFaker(): string
+    {
+        return faker()->numerify;
     }
 }
