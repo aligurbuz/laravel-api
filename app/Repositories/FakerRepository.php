@@ -122,4 +122,14 @@ trait FakerRepository
     {
         return faker()->email;
     }
+
+    /**
+     * generate email for faker repository
+     *
+     * @return string
+     */
+    public function stringFaker(): string
+    {
+        return faker()->name;
+    }
 }

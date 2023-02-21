@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Repositories\Resources\Password\Promoters\Changes;
 
+use App\Facades\Faker\Faker;
 use App\Models\Entities\PasswordChange;
 
 trait ChangesPromoterTrait
@@ -29,4 +30,14 @@ trait ChangesPromoterTrait
 	{
 		return parent::entity();
 	}
+
+    /**
+     * get hash faker for repository
+     *
+     * @return string
+     */
+    public function hashFaker() : string
+    {
+        return (string) Faker::digitNumber();
+    }
 }

@@ -830,6 +830,7 @@ class EloquentRepository
     {
         $fakers = $this->getFakers();
         $columns = $this->getRequiredColumns();
+        $types = $this->getColumnTypes();
 
         $dummies = [];
 
@@ -839,7 +840,17 @@ class EloquentRepository
             }
             else{
                 $methodFaker = isset($fakers[$column]) ? $fakers[$column].'Faker' : Str::camel($column).'Faker';
-                $dummies[$column] = $this->$methodFaker();
+
+                if(method_exists($this,$methodFaker)){
+                    $dummies[$column] = $this->$methodFaker();
+                }
+                else{
+                    $columnType = $types[$column].'Faker';
+
+                    if(method_exists($this,$columnType)){
+                        $dummies[$column] = $this->$columnType();
+                    }
+                }
             }
         }
 

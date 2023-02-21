@@ -12,7 +12,7 @@ try {
                     'status' => true
                 ]
             ]
-        ]
+        ],
     ];
 } catch (Exception $e) {
 }
