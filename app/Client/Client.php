@@ -256,6 +256,30 @@ class Client extends ClientManager
     }
 
     /**
+     * get required values for client
+     *
+     * @return array
+     */
+    public function getRequireds() : array
+    {
+        $rules = $this->getAllRule();
+
+        $list = [];
+
+        foreach ($rules as $key => $rule){
+            if(is_string($rule) && Str::contains($rule,'required')){
+                $list[] = $key;
+            }
+
+            if(is_array($rule) && in_array('required',$rule,true)){
+                $list[] = $key;
+            }
+        }
+
+        return $list;
+    }
+
+    /**
      * get array rule for client
      *
      * @return array
