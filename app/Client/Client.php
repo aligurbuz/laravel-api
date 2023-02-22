@@ -83,13 +83,14 @@ class Client extends ClientManager
     /**
      * get model required fields
      *
+     * @param bool $withoutMethod
      * @return void
      */
-    public function modelRequiredFields(): void
+    public function modelRequiredFields(bool $withoutMethod = false): void
     {
         $maxLength = Db::columnMaxLength($this->getTable());
 
-        if (request()->method() === 'POST') {
+        if ($withoutMethod===true || request()->method() === 'POST') {
             $entities = Db::entities($this->getTable());
             $requiredColumns = $entities['required_columns'] ?? [];
 
@@ -239,6 +240,18 @@ class Client extends ClientManager
      */
     public function getRule(): array
     {
+        return $this->rule;
+    }
+
+    /**
+     * get all rule for client
+     *
+     * @return array
+     */
+    public function getAllRule(): array
+    {
+        $this->modelRequiredFields(true);
+
         return $this->rule;
     }
 
