@@ -1499,4 +1499,15 @@ class EloquentRepository
     {
         return $this->instanceModel()->getWithValues();
     }
+
+    /**
+     * @param string|null $method
+     * @return array|object
+     */
+    public function client(?string $method = null): object|array
+    {
+        $method = $method ?? httpMethod();
+
+        return Client::object($this->getModelName(),Client::$methods[$method]);
+    }
 }

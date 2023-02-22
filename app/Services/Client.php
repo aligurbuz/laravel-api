@@ -7,6 +7,7 @@ namespace App\Services;
 use App\Facades\Authenticate\ApiKey;
 use App\Facades\Authenticate\Authenticate;
 use App\Repositories\Repository;
+use Illuminate\Support\Facades\File;
 
 /**
  * Class Client
@@ -14,6 +15,15 @@ use App\Repositories\Repository;
  */
 class Client
 {
+    /**
+     * @var array|string[]
+     */
+    public static array $methods = [
+        'get' => 'get',
+        'post' => 'create',
+        'put' => 'update',
+    ];
+
     /**
      * get client fingerprint for request
      *
@@ -99,5 +109,27 @@ class Client
         }
 
         return request()->request->all();
+    }
+
+    /**
+     * get client namespace for client
+     *
+     * @param string|null $model
+     * @param string|null $method
+     * @return array|object
+     */
+    public static function object(?string $model = null , ?string $method = null) : array|object
+    {
+        $modelClients = database_path('columns') .DIRECTORY_SEPARATOR.'modelClients.json';
+
+        $content = json_decode(File::get($modelClients), true);
+
+        $content = $content[ucfirst($model)] ?? $content;
+
+        if(!is_null($method) && $content[$method]){
+            return new $content[$method]();
+        }
+
+        return $content;
     }
 }
