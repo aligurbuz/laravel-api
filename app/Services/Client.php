@@ -126,7 +126,7 @@ class Client
 
         $content = $content[ucfirst($model)] ?? $content;
 
-        if(!is_null($method) && $content[$method]){
+        if(!is_null($method) && isset($content[$method])){
             return new $content[$method]();
         }
 
