@@ -16,7 +16,7 @@ class CreateClient extends Client
      *
      * @var array
      */
-    protected array $capsule = [];
+    protected array $capsule = ['user'];
 
     /**
      * get model entity validation
@@ -30,5 +30,7 @@ class CreateClient extends Client
      *
      * @var array
      */
-    protected array $rule = [];
+    protected array $rule = [
+        'user' => 'required|array'
+    ];
 }
