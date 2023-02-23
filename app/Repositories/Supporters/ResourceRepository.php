@@ -81,6 +81,9 @@ trait ResourceRepository
                         unset($value[$source]);
                         $result['data'][$key][$relationData] = [$value];
                     }
+                    else{
+                        Exception::customException('notSource', ['key' => $key]);
+                    }
                 }
             }
         }
