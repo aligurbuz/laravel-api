@@ -30,7 +30,8 @@ return [
         'client_time',
         'client_action',
         'hasRecursiveFilter',
-        'search'
+        'search',
+        'source',
     ],
 
     /*

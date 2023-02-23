@@ -58,8 +58,34 @@ trait ResourceRepository
                 return array_merge($result,$this->appends());
             }
 
-            return $result;
+            return $this->source($result);
         });
+    }
+
+    /**
+     * get source value for eloquent repository
+     *
+     * @param array $result
+     * @return array
+     */
+    public function source(array $result = []) : array
+    {
+        if(request()->query->has('source')){
+            $source = request()->query->get('source');
+            $relationData = $this->getTable();
+
+            if(isset($result['data'])){
+                foreach ($result['data'] as $key => $value){
+                    if(isset($value[$source][0])){
+                        $result['data'][$key] = $value[$source][0];
+                        unset($value[$source]);
+                        $result['data'][$key][$relationData] = [$value];
+                    }
+                }
+            }
+        }
+
+        return $result;
     }
 
     /**
