@@ -109,7 +109,7 @@ trait ClientAutoGeneratorTrait
      */
     public function createdByAutoGenerator(): mixed
     {
-        if (httpMethod() === 'POST') {
+        if (httpMethod() === 'post') {
             return $this->ensureColumnExists('created_by', function () {
                 return Authenticate::code();
             });
@@ -125,7 +125,7 @@ trait ClientAutoGeneratorTrait
      */
     public function updatedByAutoGenerator(): mixed
     {
-        if (httpMethod() === 'PUT') {
+        if (httpMethod() === 'put') {
             return $this->ensureColumnExists('updated_by', function () {
                 return Authenticate::code();
             });
@@ -142,7 +142,7 @@ trait ClientAutoGeneratorTrait
     public function deletedByAutoGenerator(): mixed
     {
         if (
-            httpMethod() === 'PUT'
+            httpMethod() === 'put'
             && $this->has('is_deleted')
             && booleanChecks($this->get('is_deleted'))) {
             return $this->ensureColumnExists('deleted_by', function () {
@@ -161,7 +161,7 @@ trait ClientAutoGeneratorTrait
     public function deletedAtAutoGenerator(): mixed
     {
         if (
-            httpMethod() === 'PUT'
+            httpMethod() === 'put'
             && $this->has('is_deleted')
             && booleanChecks($this->get('is_deleted'))) {
             return $this->ensureColumnExists('deleted_at', function () {
@@ -199,7 +199,7 @@ trait ClientAutoGeneratorTrait
         $data = count($data) ? $data : (array)$this->get();
 
         foreach ($data as $key => $value) {
-            if (httpMethod() === 'POST' && getTableCode($this->getModel()) === $key) {
+            if (httpMethod() === 'post' && getTableCode($this->getModel()) === $key) {
                 continue;
             }
 
