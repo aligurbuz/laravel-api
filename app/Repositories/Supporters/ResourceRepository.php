@@ -55,7 +55,7 @@ trait ResourceRepository
             }
 
             if(method_exists($this,'appends')){
-                return array_merge($result,$this->appends());
+                return $this->source(array_merge($result,$this->appends()));
             }
 
             return $this->source($result);
