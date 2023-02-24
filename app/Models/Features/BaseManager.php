@@ -58,11 +58,11 @@ trait BaseManager
         }
 
         foreach (Db::types($this->getTable()) as $dbTypeColumn => $dbType) {
-            if ($dbType == 'array') {
+            if ($dbType === 'array') {
                 $this->casts[$dbTypeColumn] = 'array';
             }
 
-            if ($dbType == 'image' || $dbType == 'file') {
+            if ($dbType === 'image' || $dbType === 'file') {
                 $this->casts[$dbTypeColumn] = 'string';
             }
         }
@@ -74,7 +74,7 @@ trait BaseManager
             $this->setHidden(array_merge($this->getHidden(), $setClientRepositoryHidden));
         }
 
-        if (in_array('sequence', $this->fillable, true) && request()->method() == 'GET') {
+        if (in_array('sequence', $this->fillable, true) && request()->method() === 'GET') {
             $this->setHidden(array_merge($this->getHidden(), ['sequence', 'sequence_time']));
         }
 
@@ -166,9 +166,7 @@ trait BaseManager
         $modelName = $model ?? $this->getModelName();
         $relationCodes = Db::relationCodes();
         $currentModelName = ucfirst($modelName);
-        $relationsAccordingToCode = $relationCodes[$tableCode = getTableCode($modelName)] ?? [];
-        //$camelCaseTableCode = Str::camel($tableCode);
-        //$globalScopes = config('repository.globalScopes');
+        $relationsAccordingToCode = $relationCodes[getTableCode($modelName)] ?? [];
 
         foreach ($relationsAccordingToCode as $modelRelation) {
 
@@ -214,9 +212,9 @@ trait BaseManager
     {
         if (Str::endsWith($model, 'y')) {
             return substr(Str::camel($model), 0, -1) . 'ies';
-        } else {
-            return Str::camel($model) . 's';
         }
+
+        return Str::camel($model) . 's';
     }
 
     /**
