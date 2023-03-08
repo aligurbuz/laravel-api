@@ -335,6 +335,19 @@ class EloquentRepository
     }
 
     /**
+     * set model namespace for repository
+     *
+     * @param string $model
+     * @return EloquentRepository
+     */
+    public function setModel(string $model) : EloquentRepository
+    {
+        static::$model = Constants::modelNamespace.'\\'.ucfirst($model);
+
+        return $this;
+    }
+
+    /**
      * get model connection for repository
      *
      * @return string|null
