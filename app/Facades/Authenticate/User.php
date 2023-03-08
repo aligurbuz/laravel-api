@@ -3,6 +3,7 @@
 namespace App\Facades\Authenticate;
 
 use App\Exceptions\Exception;
+use App\Facades\Role\Role;
 use App\Services\AppContainer;
 
 class User
@@ -55,6 +56,16 @@ class User
     public static function email(): ?string
     {
         return static::get()?->email;
+    }
+
+    /**
+     * if the checks admin role of user for facade
+     *
+     * @return bool
+     */
+    public static function isAdmin() : bool
+    {
+        return Role::isAdmin();
     }
 
     /**
