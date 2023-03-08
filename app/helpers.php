@@ -3,7 +3,6 @@
 use App\Constants;
 use App\Exceptions\Exception;
 use App\Facades\Authenticate\ApiKey;
-use App\Facades\Faker\Faker;
 use App\Factory\Factory;
 use App\Models\Entities\EntityMap;
 use App\Repositories\EloquentRepository;
@@ -24,13 +23,14 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 use JetBrains\PhpStorm\Pure;
 use App\Http\Controllers\DoodleController;
+use App\Services\Response\Response as ResponseService;
 
 if (!function_exists('dod')) {
 
     /**
      * @return mixed
      */
-    function dod() : mixed
+    function dod(): mixed
     {
         return (new DoodleController())->handle();
     }
@@ -41,7 +41,7 @@ if (!function_exists('httpMethod')) {
     /**
      * @return string
      */
-    function httpMethod() : string
+    function httpMethod(): string
     {
         return strtolower(request()->method());
     }
@@ -52,7 +52,7 @@ if (!function_exists('faker')) {
     /**
      * @return Generator
      */
-    function faker() : Generator
+    function faker(): Generator
     {
         return \Faker\Factory::create();
     }
@@ -68,8 +68,8 @@ if (!function_exists('customerCode')) {
      */
     function customerCode(?int $customerCode = null): int
     {
-        if(!is_null($customerCode)){
-            AppContainer::setWithTerminating('customerCode',$customerCode);
+        if (!is_null($customerCode)) {
+            AppContainer::setWithTerminating('customerCode', $customerCode);
         }
 
         return AppContainer::use('customerCode', function () {
@@ -129,9 +129,11 @@ if (!function_exists('attribute')) {
      *
      * @return array
      */
-    function attribute(string $key , callable $callback): mixed
+    function clientAttribute(string $key, callable $callback): mixed
     {
-        $attribute = inArray('getAttributes',$key,$callback);
+        ResponseService::formatterSupplement(['attributes' => [$key]], true);
+
+        $attribute = inArray('getAttributes', $key, $callback);
 
         return !$attribute ? null : $attribute;
     }
@@ -151,7 +153,7 @@ if (!function_exists('inArray')) {
     {
         $data = is_string($list) ? $list() : $list;
 
-        if(in_array($key,$data,true)){
+        if (in_array($key, $data, true)) {
             return $callback();
         }
 
@@ -871,7 +873,7 @@ if (!function_exists('lang')) {
      */
     function lang(): string
     {
-        return AppContainer::use('language',static function(){
+        return AppContainer::use('language', static function () {
             return request()->header(Constants::headerLangKey, config('app.locale'));
         });
     }
@@ -1036,8 +1038,8 @@ if (!function_exists('endpoint')) {
             return str_replace('api/', '', Route::getCurrentRoute()->uri());
         });
 
-        if($camelCase){
-            return Str::camel(str_replace('/','_',$endpoint));
+        if ($camelCase) {
+            return Str::camel(str_replace('/', '_', $endpoint));
         }
 
         return $endpoint;
