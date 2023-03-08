@@ -112,6 +112,18 @@ class Client
     }
 
     /**
+     * client attribute for client service
+     *
+     * @param string $key
+     * @param callable $callback
+     * @return array|mixed
+     */
+    public static function attribute(string $key, callable $callback): mixed
+    {
+        return clientAttribute($key,$callback);
+    }
+
+    /**
      * get client namespace for client
      *
      * @param string|null $model
