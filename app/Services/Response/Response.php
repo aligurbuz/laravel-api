@@ -76,7 +76,7 @@ class Response extends ResponseSupport
         $trace = (isThrowableInstance($exception)) ? $exception : debug_backtrace();
         $classBaseName = class_basename($trace);
 
-        if ($classBaseName == 'NotFoundHttpException') {
+        if ($classBaseName === 'NotFoundHttpException') {
             $code = 404;
         }
 
