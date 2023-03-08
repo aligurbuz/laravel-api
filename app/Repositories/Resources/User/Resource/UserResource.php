@@ -11,6 +11,11 @@ namespace App\Repositories\Resources\User\Resource;
 class UserResource
 {
     /**
+     * @var array|string[]
+     */
+    public array $attributes = [];
+
+    /**
      * handle process for repository resource
      *
      * @param array $data

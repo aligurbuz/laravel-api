@@ -107,6 +107,58 @@ if (!function_exists('getRanges')) {
     }
 }
 
+if (!function_exists('getAttributes')) {
+
+    /**
+     * get cache key
+     *
+     * @return array
+     */
+    function getAttributes(): array
+    {
+        $attributes = request()->query->get('attributes', '');
+
+        return explode(',', $attributes);
+    }
+}
+
+if (!function_exists('attribute')) {
+
+    /**
+     * get cache key
+     *
+     * @return array
+     */
+    function attribute(string $key , callable $callback): mixed
+    {
+        $attribute = inArray('getAttributes',$key,$callback);
+
+        return !$attribute ? null : $attribute;
+    }
+}
+
+if (!function_exists('inArray')) {
+
+    /**
+     * get cache key
+     *
+     * @param string|array $list
+     * @param string $key
+     * @param callable $callback
+     * @return array
+     */
+    function inArray(string|array $list, string $key, callable $callback): mixed
+    {
+        $data = is_string($list) ? $list() : $list;
+
+        if(in_array($key,$data,true)){
+            return $callback();
+        }
+
+        return false;
+    }
+}
+
 if (!function_exists('getCache')) {
 
     /**

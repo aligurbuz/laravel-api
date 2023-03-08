@@ -32,6 +32,7 @@ return [
         'hasRecursiveFilter',
         'search',
         'source',
+        'attributes'
     ],
 
     /*
