@@ -37,7 +37,7 @@ class Role
         $isAdmin = checkBool($isAdminValue);
 
         if ($isAdmin && is_callable($callback)) {
-            return $callback();
+            return $callback($isAdmin);
         }
 
         return $isAdmin;
@@ -53,7 +53,7 @@ class Role
     {
         (count($select)) ? $select[] = 'is_administrator' : $select[] = '*';
 
-        $rolesExceptAdmin = memory(Repository::role()->select($select));
+        $rolesExceptAdmin = Repository::role()->select($select)->getRepository();
 
         return array_values(
             collect($rolesExceptAdmin)
