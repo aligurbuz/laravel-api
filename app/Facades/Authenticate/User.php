@@ -78,12 +78,11 @@ class User
      * Checks the validity of the email for the user.
      *
      * @param string $email
-     * @param bool $auth
      * @return array
      */
-    public static function setContainer(string $email, bool $auth = true): array
+    public static function setContainer(string $email): array
     {
-        $user = Guard::repository()->instance($auth)->where('email', $email)->active()->first();
+        $user = Guard::repository()->instance(false)->where('email', $email)->active()->first();
 
         if (is_null($user)) {
             Exception::customException('invalid_email');
