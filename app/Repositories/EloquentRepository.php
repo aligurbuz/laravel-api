@@ -350,10 +350,15 @@ class EloquentRepository
      * set model namespace for repository
      *
      * @param string $model
+     * @param bool $source
      * @return EloquentRepository
      */
-    public function setModel(string $model) : EloquentRepository
+    public function setModel(string $model, bool $source = false) : EloquentRepository
     {
+        if($source){
+            $this->withSource();
+        }
+
         static::$model = Constants::modelNamespace.'\\'.ucfirst($model);
 
         return $this;

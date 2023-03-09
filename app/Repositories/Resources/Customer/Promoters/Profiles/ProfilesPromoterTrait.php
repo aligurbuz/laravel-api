@@ -42,7 +42,7 @@ trait ProfilesPromoterTrait
     {
         Client::setFilter('gender', __FUNCTION__);
 
-        $this->repository = $this->setModel('customerGender')->withSource()->builder($builder);
+        $this->repository = $this->setModel('customerGender', true)->builder($builder);
 
         return $this;
     }
@@ -57,7 +57,7 @@ trait ProfilesPromoterTrait
     {
         Client::setFilter('gender', __FUNCTION__);
 
-        $this->repository = $this->setModel('customerGender')->withSource()->builder($builder);
+        $this->repository = $this->setModel('customerGender', true)->builder($builder);
 
         return $this;
     }
