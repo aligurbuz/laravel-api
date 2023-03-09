@@ -261,7 +261,10 @@ class EloquentRepository
      */
     public function graphQl(): EloquentRepository
     {
-        $this->graphQl = ($this->instanceModel())->repository($this)
+        $instanceModel = $this->instanceModel();
+        $defaultModel = $this->getModel();
+
+        $this->graphQl = ($instanceModel)->repository($this)
             ->filterQuery()
             ->range($this)
             ->instruction()
@@ -273,6 +276,12 @@ class EloquentRepository
             ->orderByQuery()
             ->groupByQuery()
             ->search();
+
+        // if the model has been changed,
+        // we have to refresh the graphQl data.
+        if($this->getModel() !== $defaultModel){
+            $this->get();
+        }
 
         // if the AddToEnd scope method is used,
         // the container scope will be appended to the end of the query.
