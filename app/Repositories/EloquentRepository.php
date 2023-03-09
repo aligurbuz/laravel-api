@@ -263,6 +263,7 @@ class EloquentRepository
     {
         $instanceModel = $this->instanceModel();
         $defaultModel = $this->getModel();
+        $defaultModelName = $this->getModelName();
 
         $this->graphQl = ($instanceModel)->repository($this)
             ->filterQuery()
@@ -280,7 +281,9 @@ class EloquentRepository
         // if the model has been changed,
         // we have to refresh the graphQl data.
         if($this->getModel() !== $defaultModel){
+            $this->getClientConvertForChangedModel(Str::camel($defaultModelName));
             $this->get();
+
         }
 
         // if the AddToEnd scope method is used,
@@ -354,6 +357,51 @@ class EloquentRepository
         static::$model = Constants::modelNamespace.'\\'.ucfirst($model);
 
         return $this;
+    }
+
+    /**
+     * set container source request for repository
+     *
+     * @return EloquentRepository
+     */
+    public function withSource() : EloquentRepository
+    {
+        AppContainer::setWithTerminating('repositorySource',true);
+
+        return $this;
+    }
+
+    /**
+     * get container source request for repository
+     *
+     * @return string
+     */
+    public function hasContainerSource() : bool
+    {
+        return AppContainer::has('repositorySource');
+    }
+
+    /**
+     * @param string $defaultModel
+     * @return void
+     */
+    public function getClientConvertForChangedModel(string $defaultModel) : void
+    {
+        $request = request()->query;
+        $queries = $request->all();
+
+        if(isset($queries['with'][Str::camel($this->getTable())])){
+            unset($queries['with'][Str::camel($this->getTable())]);
+        }
+
+        $queries['with'][$defaultModel]['select'] = $queries['select'] ?? '*';
+
+        if($this->hasContainerSource()){
+            $queries['source'] = $defaultModel;
+            $queries['has'] = $defaultModel;
+        }
+
+        $request->replace($queries);
     }
 
     /**

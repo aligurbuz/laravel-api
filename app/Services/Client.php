@@ -8,6 +8,7 @@ use App\Facades\Authenticate\ApiKey;
 use App\Facades\Authenticate\Authenticate;
 use App\Repositories\Repository;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 
 /**
  * Class Client
@@ -120,7 +121,42 @@ class Client
      */
     public static function attribute(string $key, callable $callback): mixed
     {
-        return clientAttribute($key,$callback);
+        return clientAttribute($key, $callback);
+    }
+
+    /**
+     * set filter for client data
+     *
+     * @param string $key
+     * @param string $value
+     * @return void
+     */
+    public static function setFilter(string $key, string $value) : void
+    {
+        $request = request()->query;
+        $queries = $request->all();
+
+        $queries['filter'][$key] = $value;
+
+        $request->replace($queries);
+    }
+
+    /**
+     * set source for client data
+     *
+     * @param string $key
+     * @return void
+     */
+    public static function setSource(string $key) : void
+    {
+        $request = request()->query;
+        $queries = $request->all();
+        $key = Str::camel($key);
+
+        $queries['source'] = $key;
+        $queries['has'] = $key;
+
+        $request->replace($queries);
     }
 
     /**
@@ -130,15 +166,15 @@ class Client
      * @param string|null $method
      * @return array|object
      */
-    public static function object(?string $model = null , ?string $method = null) : array|object
+    public static function object(?string $model = null, ?string $method = null): array|object
     {
-        $modelClients = database_path('columns') .DIRECTORY_SEPARATOR.'modelClients.json';
+        $modelClients = database_path('columns') . DIRECTORY_SEPARATOR . 'modelClients.json';
 
         $content = json_decode(File::get($modelClients), true);
 
         $content = $content[ucfirst($model)] ?? $content;
 
-        if(!is_null($method) && isset($content[$method])){
+        if (!is_null($method) && isset($content[$method])) {
             return new $content[$method]();
         }
 

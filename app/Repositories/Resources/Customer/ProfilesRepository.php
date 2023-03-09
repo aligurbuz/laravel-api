@@ -31,4 +31,6 @@ class ProfilesRepository extends EloquentRepository implements CustomerProfilesR
      * @var string
      */
     protected static string $model = Customer::class;
+
+
 }

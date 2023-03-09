@@ -11,7 +11,10 @@ trait ProfilesPropertyHandlerTrait
      *
      * @var array
      */
-    protected array $ranges = [];
+    protected array $ranges = [
+        'male' => 'gets only male customers.',
+        'female' => 'gets only female customers.',
+    ];
 
     /**
      * localization values for repository
