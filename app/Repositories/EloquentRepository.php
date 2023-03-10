@@ -397,10 +397,19 @@ class EloquentRepository
         $client = Client::data();
 
         if(isset($queries['with'][Str::camel($this->getTable())])){
-            unset($queries['with'][Str::camel($this->getTable())]);
+            unset($queries['with'][Str::camel($this->getTable())], $client['with'][Str::camel($this->getTable())]);
         }
 
         $queries['with'][$defaultModel]['select'] = $queries['select'] ?? '*';
+
+        if(isset($client['with'])){
+            $queries['with'][$defaultModel]['with'] = $client['with'];
+            foreach ($client['with'] as $clientWithKey => $clientWith){
+                if(isset($queries['with'][$clientWithKey])){
+                    unset($queries['with'][$clientWithKey]);
+                }
+            }
+        }
 
         if(isset($client['filter'])){
             $queries['hasFilter'][$defaultModel] = $client['filter'];
