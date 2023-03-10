@@ -422,7 +422,12 @@ class EloquentRepository
 
         if($this->hasContainerSource()){
             $queries['source'] = $defaultModel;
-            $queries['has'] = $defaultModel;
+            if(isset($queries['has'])){
+                $queries['has'] = $defaultModel.':'.$queries['has'];
+            }
+            else{
+                $queries['has'] = $defaultModel;
+            }
         }
 
         $request->replace($queries);
