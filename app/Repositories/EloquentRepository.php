@@ -282,8 +282,8 @@ class EloquentRepository
         // we have to refresh the graphQl data.
         if($this->getModel() !== $defaultModel){
             $this->getClientConvertForChangedModel(Str::camel($defaultModelName));
-            $this->get();
-
+            $this->setAutoEagerLoadings();
+            $this->graphQl();
         }
 
         // if the AddToEnd scope method is used,
@@ -384,53 +384,6 @@ class EloquentRepository
     public function hasContainerSource() : bool
     {
         return AppContainer::has('repositorySource');
-    }
-
-    /**
-     * @param string $defaultModel
-     * @return void
-     */
-    public function getClientConvertForChangedModel(string $defaultModel) : void
-    {
-        $request = request()->query;
-        $queries = $request->all();
-        $client = Client::data();
-
-        if(isset($queries['with'][Str::camel($this->getTable())])){
-            unset($queries['with'][Str::camel($this->getTable())], $client['with'][Str::camel($this->getTable())]);
-        }
-
-        $queries['with'][$defaultModel]['select'] = $queries['select'] ?? '*';
-
-        if(isset($client['with'])){
-            $queries['with'][$defaultModel]['with'] = $client['with'];
-            foreach ($client['with'] as $clientWithKey => $clientWith){
-                if(isset($queries['with'][$clientWithKey])){
-                    unset($queries['with'][$clientWithKey]);
-                }
-            }
-        }
-
-        if(isset($client['filter'])){
-            $queries['hasFilter'][$defaultModel] = $client['filter'];
-            foreach ($client['filter'] as $clientKey => $clientFilter){
-                if(isset($queries['filter'][$clientKey])){
-                    unset($queries['filter'][$clientKey]);
-                }
-            }
-        }
-
-        if($this->hasContainerSource()){
-            $queries['source'] = $defaultModel;
-            if(isset($queries['has'])){
-                $queries['has'] = $defaultModel.':'.$queries['has'];
-            }
-            else{
-                $queries['has'] = $defaultModel;
-            }
-        }
-
-        $request->replace($queries);
     }
 
     /**
@@ -1608,5 +1561,52 @@ class EloquentRepository
         $method = $method ?? httpMethod();
 
         return Client::object($this->getModelName(),Client::$methods[$method]);
+    }
+
+    /**
+     * @param string $defaultModel
+     * @return void
+     */
+    public function getClientConvertForChangedModel(string $defaultModel) : void
+    {
+        $request = request()->query;
+        $queries = $request->all();
+        $client = Client::data();
+
+        if(isset($queries['with'][Str::camel($this->getTable())])){
+            unset($queries['with'][Str::camel($this->getTable())], $client['with'][Str::camel($this->getTable())]);
+        }
+
+        $queries['with'][$defaultModel]['select'] = $queries['select'] ?? '*';
+
+        if(isset($client['with'])){
+            $queries['with'][$defaultModel]['with'] = $client['with'];
+            foreach ($client['with'] as $clientWithKey => $clientWith){
+                if(isset($queries['with'][$clientWithKey])){
+                    unset($queries['with'][$clientWithKey]);
+                }
+            }
+        }
+
+        if(isset($client['filter'])){
+            $queries['hasFilter'][$defaultModel] = $client['filter'];
+            foreach ($client['filter'] as $clientKey => $clientFilter){
+                if(isset($queries['filter'][$clientKey])){
+                    unset($queries['filter'][$clientKey]);
+                }
+            }
+        }
+
+        if($this->hasContainerSource()){
+            $queries['source'] = $defaultModel;
+            if(isset($queries['has'])){
+                $queries['has'] = $defaultModel.':'.$queries['has'];
+            }
+            else{
+                $queries['has'] = $defaultModel;
+            }
+        }
+
+        $request->replace($queries);
     }
 }
