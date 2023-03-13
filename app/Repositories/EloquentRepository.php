@@ -17,6 +17,7 @@ use App\Repositories\Supporters\ResourceRepository;
 use App\Repositories\Supporters\UpdateRepository;
 use App\Services\AppContainer;
 use App\Services\Client;
+use App\Services\Supporter\ClientConverter;
 use App\Services\Date;
 use App\Services\Db;
 use Illuminate\Database\Eloquent\Builder;
@@ -1564,49 +1565,13 @@ class EloquentRepository
     }
 
     /**
+     * get client convert for changed model for repository
+     *
      * @param string $defaultModel
      * @return void
      */
     public function getClientConvertForChangedModel(string $defaultModel) : void
     {
-        $request = request()->query;
-        $queries = $request->all();
-        $client = Client::data();
-
-        if(isset($queries['with'][Str::camel($this->getTable())])){
-            unset($queries['with'][Str::camel($this->getTable())], $client['with'][Str::camel($this->getTable())]);
-        }
-
-        $queries['with'][$defaultModel]['select'] = $queries['select'] ?? '*';
-
-        if(isset($client['with'])){
-            $queries['with'][$defaultModel]['with'] = $client['with'];
-            foreach ($client['with'] as $clientWithKey => $clientWith){
-                if(isset($queries['with'][$clientWithKey])){
-                    unset($queries['with'][$clientWithKey]);
-                }
-            }
-        }
-
-        if(isset($client['filter'])){
-            $queries['hasFilter'][$defaultModel] = $client['filter'];
-            foreach ($client['filter'] as $clientKey => $clientFilter){
-                if(isset($queries['filter'][$clientKey])){
-                    unset($queries['filter'][$clientKey]);
-                }
-            }
-        }
-
-        if($this->hasContainerSource()){
-            $queries['source'] = $defaultModel;
-            if(isset($queries['has'])){
-                $queries['has'] = $defaultModel.':'.$queries['has'];
-            }
-            else{
-                $queries['has'] = $defaultModel;
-            }
-        }
-
-        $request->replace($queries);
+        (new ClientConverter($this))->getClientConvertForChangedModel($defaultModel);
     }
 }
