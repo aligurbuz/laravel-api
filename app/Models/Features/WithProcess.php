@@ -159,6 +159,10 @@ trait WithProcess
                 $query->hasQuery($params['with'][$with]['has']);
             }
 
+            if(isset($params['with'][$with]['doesntHave'])){
+                $query->hasQuery($params['with'][$with]['doesntHave']);
+            }
+
             if (isset($params['with'][$with]['with'])) {
                 $query->withQuery($params['with'][$with]['with']);
             }
