@@ -1446,14 +1446,14 @@ class EloquentRepository
             $queries = (method_exists($modelInstance, 'getWithQueries')) ? $modelInstance->getWithQueries() : [];
             $list = $queries[$withKey] ?? [];
 
-            $getLocalizations = $this->findRepositoryByModel($model)->getLocalizations();
-
+            $repository = $this->findRepositoryByModel($model);
+            $getLocalizations = $repository->getLocalizations();
 
             return $modelInstance->hasMany(
                 $modelNamespace,
                 ($list['foreignColumn'] ?? null),
                 ($list['localColumn'] ?? null)
-            )->with((count($getLocalizations) ? 'localization' : []));
+            )->loadRepository($this)->with((count($getLocalizations) ? 'localization' : []));
         });
     }
 

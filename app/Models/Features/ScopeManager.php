@@ -68,6 +68,20 @@ trait ScopeManager
     }
 
     /**
+     * @param Builder $builder
+     * @param object|null $repository
+     * @return object
+     */
+    public function scopeLoadRepository(Builder $builder, ?object $repository = null): object
+    {
+        if(method_exists($repository,$this->getTable())){
+            return $repository->{$this->getTable()}($builder);
+        }
+
+        return $builder;
+    }
+
+    /**
      * get notDeleted scope for model
      *
      * @param Builder $builder
