@@ -155,18 +155,11 @@ trait WithProcess
                 $filter = (array)$params['with'][$with]['filter'];
             }
 
+            if(isset($params['with'][$with]['has'])){
+                $query->hasQuery($params['with'][$with]['has']);
+            }
+
             if (isset($params['with'][$with]['with'])) {
-
-                foreach ($params['with'][$with]['with'] as $nestedKey => $nestedWith) {
-                    if (in_array($nestedKey, (array)$this->hasValues, true)) {
-                        $query->hasQuery($nestedKey);
-                    }
-
-                    if (in_array($nestedKey, (array)$this->doesntHaveValues, true)) {
-                        $query->doesntHaveQuery($nestedKey);
-                    }
-                }
-
                 $query->withQuery($params['with'][$with]['with']);
             }
 
