@@ -40,6 +40,7 @@ class EloquentRepository
      * @var array
      */
     protected static array $storages = [];
+
     /**
      * @var object|null
      */
