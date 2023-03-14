@@ -84,6 +84,7 @@ class ClientConverter
                 }
             }
         }
+
         return array($queries, $client);
     }
 
@@ -105,6 +106,7 @@ class ClientConverter
                 }
             }
         }
+
         return $queries;
     }
 
@@ -125,6 +127,7 @@ class ClientConverter
                 $queries['has'] = $defaultModel;
             }
         }
+
         return $queries;
     }
 
@@ -143,6 +146,7 @@ class ClientConverter
                 $client['with'][Str::camel($this->eloquentRepository->getTable())]
             );
         }
+
         return array($queries, $client);
     }
 }
