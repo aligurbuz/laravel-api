@@ -27,6 +27,7 @@ use Throwable;
 /**
  * Class EloquentRepository
  * @property $limit
+ * @property bool $paginator
  * @package App\Repositories
  * @method bigIntegerFaker()
  * @method bigInteger()
@@ -155,7 +156,7 @@ class EloquentRepository
         foreach ($this->getAutoEagerLoadings() as $loading) {
             $withDotSplit = explode('.', $loading);
             foreach ($withDotSplit as $dotKey => $withData) {
-                if ($dotKey == 0) {
+                if ($dotKey === 0) {
                     $withDataList[] = $withData;
                     request()->query->set('with', array_merge($with, $withList = [$withData => ['select' => '*']]));
                 } else {
@@ -380,7 +381,7 @@ class EloquentRepository
     /**
      * get container source request for repository
      *
-     * @return string
+     * @return bool
      */
     public function hasContainerSource() : bool
     {
@@ -573,7 +574,7 @@ class EloquentRepository
     public function cache(mixed $tag, callable $callback): array
     {
         $this->setCacheTag($tag);
-        $this->repository = call_user_func($callback, $this);
+        $this->repository = $callback($this);
 
         return $this->useCache(function () {
             return $this->getRepository();
@@ -646,7 +647,7 @@ class EloquentRepository
     public function ensureColumnExists($column, $builder, callable $callback): ?object
     {
         if (Db::ensureColumnExists($this->getModel(), $column)) {
-            return call_user_func($callback);
+            return $callback();
         }
 
         return $builder;
@@ -1015,7 +1016,7 @@ class EloquentRepository
      */
     public function proxy(mixed $callback, string $method = 'pagination'): mixed
     {
-        return proxyClosure($callback, function (EloquentRepository $repository) use ($method) {
+        return proxyClosure($callback, static function (EloquentRepository $repository) use ($method) {
             return $repository->$method();
         });
     }
@@ -1266,7 +1267,7 @@ class EloquentRepository
             return Exception::customException($column . ' column name is not valid');
         }
 
-        return call_user_func($callback);
+        return $callback();
     }
 
     /**
@@ -1277,7 +1278,7 @@ class EloquentRepository
      */
     public function sqlException(Throwable $throwable): mixed
     {
-        return SqlExceptionManager::make($throwable, $this->getTable(), function () use ($throwable) {
+        return SqlExceptionManager::make($throwable, $this->getTable(), static function () use ($throwable) {
             return Exception::modelCreateException(
                 is_null($throwable->getPrevious()) ? $throwable->getMessage() : $throwable->getPrevious()->getMessage()
             );
@@ -1411,8 +1412,8 @@ class EloquentRepository
 
         if (in_array($name, $this->getModelWithValues(), true)) {
             if (isset($args[0]) && is_string($args[0])) {
-                if (request()->method() == $args[0]) {
-                    $this->withBindings[$name] = (function ($query) {
+                if (request()->method() === $args[0]) {
+                    $this->withBindings[$name] = (static function ($query) {
                     });
                     $this->with();
                 }
@@ -1420,7 +1421,7 @@ class EloquentRepository
                 return $this;
             }
 
-            $this->withBindings[$name] = ($args[0] ?? function ($query) {
+            $this->withBindings[$name] = ($args[0] ?? static function ($query) {
             });
             $this->with();
         }
@@ -1474,7 +1475,7 @@ class EloquentRepository
         );
 
         return $repository->$repositoryName($repository->globalScope(
-            call_user_func($callback)
+            $callback()
         ));
     }
 
