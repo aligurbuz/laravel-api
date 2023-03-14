@@ -285,7 +285,7 @@ class EloquentRepository
         // if the model has been changed,
         // we have to refresh the graphQl data.
         if ($this->getModel() !== $defaultModel) {
-            $this->getClientConvertForChangedModel(Str::camel($defaultModelName));
+            $this->oppositeModelClientConverter(Str::camel($defaultModelName));
             $this->setAutoEagerLoadings();
             $this->graphQl();
         }
@@ -1542,7 +1542,7 @@ class EloquentRepository
      * @param string $defaultModel
      * @return void
      */
-    public function getClientConvertForChangedModel(string $defaultModel): void
+    public function oppositeModelClientConverter(string $defaultModel): void
     {
         new OppositeModelClientConverter($this, $defaultModel);
     }
