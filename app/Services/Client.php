@@ -142,6 +142,23 @@ class Client
     }
 
     /**
+     * set filter for client data
+     *
+     * @param string $key
+     * @param string $orderByCriteria
+     * @return void
+     */
+    public static function setOrderBy(string $key, string $orderByCriteria = 'asc') : void
+    {
+        $request = request()->query;
+        $queries = $request->all();
+
+        $queries['orderBy'] = $key.','.$orderByCriteria;
+
+        $request->replace($queries);
+    }
+
+    /**
      * set source for client data
      *
      * @param string $key
