@@ -15,7 +15,7 @@ use Illuminate\Support\Str;
 trait ResourceRepository
 {
     /**
-     * @var object|null
+     * @var array
      */
     protected static array $resourceInstance = [];
 
@@ -31,7 +31,7 @@ trait ResourceRepository
      */
     public function getCurrentNamespace(): string
     {
-        return get_called_class();
+        return static::class;
     }
 
     /**
@@ -42,7 +42,7 @@ trait ResourceRepository
      */
     public function resource(callable $callback): array
     {
-        $call = call_user_func($callback);
+        $call = $callback();
 
         return $this->addCollectDataToResource(function (array $collect = []) use ($call) {
             $result = array_merge($collect, $call->pagination());
@@ -116,7 +116,7 @@ trait ResourceRepository
             }
         }
 
-        return call_user_func($callback, $list);
+        return $callback($list);
     }
 
     /**
@@ -162,7 +162,8 @@ trait ResourceRepository
 
                         if (is_array($withData)) {
                             foreach ($withData as $withDataKey => $withDatum) {
-                                if (is_array($withDatum) && count($withDatum) && isset($withData[$withDataKey . '_code'])) {
+                                $withDataKeyPrefix = $withDataKey . '_code';
+                                if (isset($withData[$withDataKeyPrefix]) && is_array($withDatum) && count($withDatum)) {
                                     $withDataModel = Str::camel($withDataKey);
                                     if (isset($item[$withValueSnake][$withKey][$withDataKey]) && is_array($item[$withValueSnake][$withKey][$withDataKey])) {
                                         foreach ($item[$withValueSnake][$withKey][$withDataKey] as $recursiveKey => $recursiveVal) {
@@ -221,13 +222,11 @@ trait ResourceRepository
     {
         $resource = $this->getResource();
 
-        if (class_exists($resource)) {
-            if (!isset(static::$resourceInstance[$resource])) {
-                static::$resourceInstance[$resource] = new $resource;
-            }
+        if (class_exists($resource) && !isset(static::$resourceInstance[$resource])) {
+            static::$resourceInstance[$resource] = new $resource;
         }
 
-        return (!isset(static::$resourceInstance[$resource])) ? $data : call_user_func($callback, static::$resourceInstance[$resource]);
+        return (!isset(static::$resourceInstance[$resource])) ? $data : $callback(static::$resourceInstance[$resource]);
     }
 
     /**
@@ -243,8 +242,8 @@ trait ResourceRepository
             $className = class_basename($resourcePropagationRepository);
             $currentNamespace = get_class($resourcePropagationRepository);
         } else {
-            $className = class_basename(get_called_class());
-            $currentNamespace = get_called_class();
+            $className = class_basename(static::class);
+            $currentNamespace = static::class;
         }
 
         AppContainer::terminate('resourcePropagationRepository');
