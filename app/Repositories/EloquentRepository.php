@@ -528,7 +528,7 @@ class EloquentRepository
      * @param int $limit
      * @return object
      */
-    public function limit(int $limit): object
+    public function limitation(int $limit): object
     {
         $this->repository = $this->instance()->limit($limit);
 
@@ -987,10 +987,10 @@ class EloquentRepository
      * easy decrease column for repository model
      *
      * @param string $column
-     * @param int|null $count
+     * @param string|null $count
      * @return object|array
      */
-    public function decrease(string $column, ?int $count = null): object|array
+    public function decrease(string $column, ?string $count = null): object|array
     {
         return $this->update([[$column => ($count ?? '-1')]]);
     }
