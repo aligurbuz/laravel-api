@@ -13,12 +13,12 @@ use App\Repositories\Supporters\CacheRepository;
 use App\Repositories\Supporters\CreateRepository;
 use App\Repositories\Supporters\GlobalScopeManager;
 use App\Repositories\Supporters\Helpers\Dummy;
+use App\Repositories\Supporters\Helpers\OppositeModelClientConverter;
 use App\Repositories\Supporters\LocalizationRepository;
 use App\Repositories\Supporters\ResourceRepository;
 use App\Repositories\Supporters\UpdateRepository;
 use App\Services\AppContainer;
 use App\Services\Client;
-use App\Services\Supporter\ClientConverter;
 use App\Services\Date;
 use App\Services\Db;
 use Illuminate\Database\Eloquent\Builder;
@@ -1544,6 +1544,6 @@ class EloquentRepository
      */
     public function getClientConvertForChangedModel(string $defaultModel) : void
     {
-        (new ClientConverter($this))->getClientConvertForChangedModel($defaultModel);
+        (new OppositeModelClientConverter($this))->getClientConvertForChangedModel($defaultModel);
     }
 }

@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Services\Supporter;
+namespace App\Repositories\Supporters\Helpers;
 
 use App\Repositories\EloquentRepository;
 use App\Services\Client;
 use Illuminate\Support\Str;
 
-class ClientConverter
+class OppositeModelClientConverter
 {
     /**
      * @var EloquentRepository
