@@ -284,7 +284,7 @@ class EloquentRepository
 
         // if the model has been changed,
         // we have to refresh the graphQl data.
-        if($this->getModel() !== $defaultModel){
+        if ($this->getModel() !== $defaultModel) {
             $this->getClientConvertForChangedModel(Str::camel($defaultModelName));
             $this->setAutoEagerLoadings();
             $this->graphQl();
@@ -357,13 +357,13 @@ class EloquentRepository
      * @param bool $source
      * @return EloquentRepository
      */
-    public function setModel(string $model, bool $source = false) : EloquentRepository
+    public function setModel(string $model, bool $source = false): EloquentRepository
     {
-        if($source){
+        if ($source) {
             $this->withSource();
         }
 
-        static::$model = Constants::modelNamespace.'\\'.ucfirst($model);
+        static::$model = Constants::modelNamespace . '\\' . ucfirst($model);
 
         return $this;
     }
@@ -373,9 +373,9 @@ class EloquentRepository
      *
      * @return EloquentRepository
      */
-    public function withSource() : EloquentRepository
+    public function withSource(): EloquentRepository
     {
-        AppContainer::setWithTerminating('repositorySource',true);
+        AppContainer::setWithTerminating('repositorySource', true);
 
         return $this;
     }
@@ -385,7 +385,7 @@ class EloquentRepository
      *
      * @return bool
      */
-    public function hasContainerSource() : bool
+    public function hasContainerSource(): bool
     {
         return AppContainer::has('repositorySource');
     }
@@ -774,7 +774,7 @@ class EloquentRepository
      *
      * @return array
      */
-    public function setClientData() : array
+    public function setClientData(): array
     {
         // when using the repository, we leave a record
         // in the container so that we can understand the client request.
@@ -872,9 +872,9 @@ class EloquentRepository
      *
      * @return array
      */
-    public function getFakers() : array
+    public function getFakers(): array
     {
-        return (property_exists($this,'fakers') && is_array($this->fakers)) ? $this->fakers : [];
+        return (property_exists($this, 'fakers') && is_array($this->fakers)) ? $this->fakers : [];
     }
 
     /**
@@ -882,7 +882,7 @@ class EloquentRepository
      *
      * @return array
      */
-    public function dummy() : array
+    public function dummy(): array
     {
         return (new Dummy($this))->dummy();
     }
@@ -1533,7 +1533,7 @@ class EloquentRepository
     {
         $method = $method ?? httpMethod();
 
-        return Client::object($this->getModelName(),Client::$methods[$method]);
+        return Client::object($this->getModelName(), Client::$methods[$method]);
     }
 
     /**
@@ -1542,8 +1542,8 @@ class EloquentRepository
      * @param string $defaultModel
      * @return void
      */
-    public function getClientConvertForChangedModel(string $defaultModel) : void
+    public function getClientConvertForChangedModel(string $defaultModel): void
     {
-        (new OppositeModelClientConverter($this))->getClientConvertForChangedModel($defaultModel);
+        new OppositeModelClientConverter($this, $defaultModel);
     }
 }

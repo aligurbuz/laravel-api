@@ -15,10 +15,12 @@ class OppositeModelClientConverter
 
     /**
      * @param EloquentRepository $eloquentRepository
+     * @param string $defaultModel
      */
-    public function __construct(EloquentRepository $eloquentRepository)
+    public function __construct(EloquentRepository $eloquentRepository, string $defaultModel)
     {
         $this->eloquentRepository = $eloquentRepository;
+        $this->handle($defaultModel);
     }
 
     /**
@@ -27,7 +29,7 @@ class OppositeModelClientConverter
      * @param string $defaultModel
      * @return void
      */
-    public function getClientConvertForChangedModel(string $defaultModel): void
+    private function handle(string $defaultModel): void
     {
         [$request, $queries, $client] = $this->client();
 
