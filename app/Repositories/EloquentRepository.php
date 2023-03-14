@@ -12,6 +12,7 @@ use App\Facades\Authenticate\Authenticate;
 use App\Repositories\Supporters\CacheRepository;
 use App\Repositories\Supporters\CreateRepository;
 use App\Repositories\Supporters\GlobalScopeManager;
+use App\Repositories\Supporters\Helpers\Dummy;
 use App\Repositories\Supporters\LocalizationRepository;
 use App\Repositories\Supporters\ResourceRepository;
 use App\Repositories\Supporters\UpdateRepository;
@@ -883,38 +884,7 @@ class EloquentRepository
      */
     public function dummy() : array
     {
-        $fakers = $this->getFakers();
-        $columns = $this->getRequiredColumns();
-
-        if(!in_array($this->getModelCode(),$columns, true)){
-            $columns[] = $this->getModelCode();
-        }
-
-        $types = $this->getColumnTypes();
-
-        $dummies = [];
-
-        foreach ($columns as $column){
-            if($column===$this->getModelCode()){
-                $dummies[$column] = $this->bigIntegerFaker();
-            }
-            else{
-                $methodFaker = isset($fakers[$column]) ? $fakers[$column].'Faker' : Str::camel($column).'Faker';
-
-                if(method_exists($this,$methodFaker)){
-                    $dummies[$column] = $this->$methodFaker();
-                }
-                else{
-                    $columnType = $types[$column].'Faker';
-
-                    if(method_exists($this,$columnType)){
-                        $dummies[$column] = $this->$columnType();
-                    }
-                }
-            }
-        }
-
-        return $dummies;
+        return (new Dummy($this))->dummy();
     }
 
     /**
