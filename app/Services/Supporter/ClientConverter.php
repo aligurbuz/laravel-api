@@ -67,12 +67,12 @@ class ClientConverter
     /**
      * we change the values to be made in relation according to the "source" method.
      *
-     * @param mixed $queries
+     * @param array $queries
      * @param string $defaultModel
-     * @param mixed $client
+     * @param array $client
      * @return array
      */
-    private function withClient(mixed $queries, string $defaultModel, mixed $client): array
+    private function withClient(array $queries, string $defaultModel, array $client): array
     {
         $queries['with'][$defaultModel]['select'] = $queries['select'] ?? '*';
 
@@ -91,12 +91,12 @@ class ClientConverter
     /**
      * we change the values to be made in filtering according to the "source" method.
      *
-     * @param mixed $client
-     * @param mixed $queries
+     * @param array $client
+     * @param array $queries
      * @param string $defaultModel
-     * @return mixed
+     * @return array
      */
-    private function filterClient(mixed $client, mixed $queries, string $defaultModel): mixed
+    private function filterClient(array $client, array $queries, string $defaultModel): array
     {
         if (isset($client['filter'])) {
             $queries['hasFilter'][$defaultModel] = $client['filter'];
@@ -114,10 +114,10 @@ class ClientConverter
      * we change the values according to the "source" method.
      *
      * @param string $defaultModel
-     * @param mixed $queries
-     * @return mixed
+     * @param array $queries
+     * @return array
      */
-    private function hasContainerSource(string $defaultModel, mixed $queries): mixed
+    private function hasContainerSource(string $defaultModel, array $queries): array
     {
         if ($this->eloquentRepository->hasContainerSource()) {
             $queries['source'] = $defaultModel;
@@ -134,11 +134,11 @@ class ClientConverter
     /**
      * since reverse modeling is done, if this reverse model is requested, we unset this value.
      *
-     * @param mixed $queries
-     * @param mixed $client
+     * @param array $queries
+     * @param array $client
      * @return array
      */
-    private function unsetWithQuery(mixed $queries, mixed $client): array
+    private function unsetWithQuery(array $queries, array $client): array
     {
         if (isset($queries['with'][Str::camel($this->eloquentRepository->getTable())])) {
             unset(
