@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\Exception;
-use App\Repositories\Repository;
 
 class DoodleController extends Controller
 {
@@ -19,7 +18,6 @@ class DoodleController extends Controller
      */
     public function handle(): mixed
     {
-        dd(Repository::customer()->dummy());
         return 'hello world';
     }
 }
