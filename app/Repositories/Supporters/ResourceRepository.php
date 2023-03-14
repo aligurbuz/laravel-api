@@ -50,7 +50,7 @@ trait ResourceRepository
                 unset($result['links']);
             }
 
-            if (isset($result['data'])) {
+            if (isset($result['data']) && !request()->query->has('source')) {
                 $result['data'] = $this->resourcePropagation($result['data']);
             }
 
@@ -86,6 +86,10 @@ trait ResourceRepository
                     }
                 }
             }
+        }
+
+        if (isset($result['data'])) {
+            $result['data'] = $this->resourcePropagation($result['data']);
         }
 
         return $result;
