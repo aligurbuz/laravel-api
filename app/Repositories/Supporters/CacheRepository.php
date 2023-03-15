@@ -63,7 +63,7 @@ trait CacheRepository
         $this->proxyUsing = true;
 
         return $this->cacheCondition($callback, function () use ($callback) {
-            return $this->proxyUsing ? $this->proxy($callback) : call_user_func($callback);
+            return $this->proxyUsing ? $this->proxy($callback) : $callback();
         });
     }
 
@@ -84,7 +84,7 @@ trait CacheRepository
             });
         }
 
-        return call_user_func($returnCallback);
+        return $returnCallback();
     }
 
     /**
@@ -174,7 +174,7 @@ trait CacheRepository
     private function setCacheRepository(callable $data, callable $callback): Closure
     {
         return function () use ($data, $callback) {
-            $callData = call_user_func($data);
+            $callData = $data();
             $proxy = $proxyCallback = $this->proxyUsing ? $this->proxy($callData) : $callData;
 
             if (
@@ -193,7 +193,7 @@ trait CacheRepository
                 $this->cacheInstance->expire($this->cacheKey, $this->cacheExpire);
             }
 
-            return call_user_func($callback, $proxy);
+            return $callback($proxy);
         };
     }
 
@@ -207,17 +207,17 @@ trait CacheRepository
     {
         $this->proxyUsing = false;
 
-        if ((page() > 1)
-            || (
+        if ((
                 property_exists($this, 'cache')
                 && is_bool($this->cache)
                 && !$this->cache)
+            || (page() > 1)
         ) {
-            return call_user_func($callback);
+            return $callback();
         }
 
         return $this->cacheCondition($callback, function () use ($callback) {
-            return $this->proxyUsing ? $this->proxy($callback) : call_user_func($callback);
+            return $this->proxyUsing ? $this->proxy($callback) : $callback();
         });
     }
 
@@ -244,10 +244,8 @@ trait CacheRepository
             $model = $this->getModelName();
             $cacheKey = $this->cacheKey;
 
-            if ($this->cacheInstance->exists($cacheKey)) {
-                if (!$this->cacheInstance->delete($cacheKey)) {
-                    Exception::cacheException();
-                }
+            if ($this->cacheInstance->exists($cacheKey) && !$this->cacheInstance->delete($cacheKey)) {
+                Exception::cacheException();
             }
 
             if ($model !== 'Localization') {
@@ -272,7 +270,7 @@ trait CacheRepository
      * @param string $model
      * @param bool $recursive
      */
-    private function deleteRelationCache(string $model, bool $recursive = true)
+    private function deleteRelationCache(string $model, bool $recursive = true): void
     {
         $relations = Db::relations();
 
@@ -295,16 +293,12 @@ trait CacheRepository
                 if (!in_array($camelCaseTableCode, $globalScopes, true)) {
                     $relationHash = $this->generateCacheKey($relation);
 
-                    if ($this->cacheInstance->exists($relationHash)) {
-                        if (!$this->cacheInstance->delete($relationHash)) {
-                            Exception::cacheException();
-                        }
+                    if ($this->cacheInstance->exists($relationHash) && !$this->cacheInstance->delete($relationHash)) {
+                        Exception::cacheException();
                     }
 
-                    if ($recursive && isset($relations[$relation])) {
-                        if ($relation !== 'Localization') {
-                            $this->deleteRelationCache($relation, false);
-                        }
+                    if ($recursive && isset($relations[$relation]) && $relation !== 'Localization') {
+                        $this->deleteRelationCache($relation, false);
                     }
                 }
             }
