@@ -54,7 +54,7 @@ class ChangesRepository extends EloquentRepository implements PasswordChangesRep
      * @param array $result
      * @return bool
      */
-    public function isExpire(array $result = []) : bool
+    public function isExpire(array $result = []): bool
     {
         //If the password change time has passed, it will not return any results.
         return (
@@ -66,26 +66,26 @@ class ChangesRepository extends EloquentRepository implements PasswordChangesRep
     /**
      * When a request is made to the password/changes endpoint,
      * it sends an SMS to the user's phone with a use code.
-     * @see self::eventFireAfterCreate()
-     *
      * @param string $hash
      * @return void
+     * @see self::eventFireAfterCreate()
+     *
      */
     public function smsNotification(string $hash): void
     {
         // user container value changed in eventFireBeforeCreate method
         $userPhone = User::phone(true);
 
-        Sms::to($userPhone)->message('Password Reset Code: ' . $hash)->send();
+        Sms::passwordChange($userPhone, $hash);
     }
 
     /**
      * When a request is made to the password/changes endpoint,
      * it sends an email to the user's email with a use code.
-     * @see self::eventFireAfterCreate()
-     *
      * @param string $hash
      * @return void
+     * @see self::eventFireAfterCreate()
+     *
      */
     public function emailNotification(string $hash): void
     {

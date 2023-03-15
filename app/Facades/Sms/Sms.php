@@ -2,80 +2,36 @@
 
 namespace App\Facades\Sms;
 
-use App\Jobs\SmsSender;
-
 /**
  * @method static $this to(string $to)
  * @method $this message(string $message)
  * @method void send()
  */
-class Sms
+class Sms extends SmsManager
 {
     /**
-     * @var string|null
-     */
-    protected ?string $to = null;
-
-    /**
-     * @var string|null
-     */
-    protected ?string $message = null;
-
-    /**
-     * @param string $name
-     * @param array $arguments
-     * @return mixed
-     */
-    public static function __callStatic(string $name, array $arguments)
-    {
-        $method = 'set' . ucfirst($name);
-
-        return (new self())->$method($arguments[0]);
-    }
-
-    /**
-     * @param string $name
-     * @param array $arguments
-     * @return mixed
-     */
-    public function __call(string $name, array $arguments)
-    {
-        $method = ($name === 'send') ? 'sendSms' : 'set' . ucfirst($name);
-
-        return $this->$method(($arguments[0] ?? ''));
-    }
-
-    /**
-     * "to" number for sms
+     * When a request is made to the password/changes endpoint,
+     * it sends an SMS to the user's phone with a use code.
      *
-     * @param string $to
-     * @return $this
-     */
-    protected function setTo(string $to): self
-    {
-        $this->to = $to;
-
-        return $this;
-    }
-
-    /**
-     * "message" string for sms
-     *
-     * @param string $message
-     * @return $this
-     */
-    protected function setMessage(string $message): self
-    {
-        $this->message = $message;
-
-        return $this;
-    }
-
-    /**
+     * @param string $userPhone
+     * @param string $hash
      * @return void
      */
-    protected function sendSms(): void
+    public static function passwordChange(string $userPhone, string $hash): void
     {
-        dispatch(new SmsSender($this->to, $this->message));
+        static::to($userPhone)->message('Password Reset Code: ' . $hash)->send();
+    }
+
+    /**
+     * if there is activation at the user login;
+     * If the value is sms this will work. see Facades/Authenticate/Activation class
+     *
+     * @param string $phone
+     * @param string $hash
+     * @return void
+     */
+    public static function userActivation(string $phone, string $hash): void
+    {
+        static::to($phone)->message('User activation code:' . $hash)->send();
     }
 }
