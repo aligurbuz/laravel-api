@@ -76,6 +76,8 @@ class ChangesRepository extends EloquentRepository implements PasswordChangesRep
         // user container value changed in eventFireBeforeCreate method
         $userPhone = User::phone(true);
 
+        // we send the hash value to
+        // the phone number of the user for password change.
         Sms::passwordChange($userPhone, $hash);
     }
 
@@ -89,6 +91,8 @@ class ChangesRepository extends EloquentRepository implements PasswordChangesRep
      */
     public function emailNotification(string $hash): void
     {
+        // we send the hash value to
+        // the email address of the user for password change.
         Email::passwordReset(User::email(), $hash);
     }
 }
