@@ -47,6 +47,9 @@ class Activation
 
         if (!count($activationHandler)) {
             $activationHandler = static::emailHandler($activationData, $user);
+        }
+
+        if (!count($activationHandler)) {
             Repository::userActivation()->userCode($user['user_code'])->update([['hash' => time()]]);
         }
 
