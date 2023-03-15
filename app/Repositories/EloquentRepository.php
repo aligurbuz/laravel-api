@@ -28,7 +28,6 @@ use Throwable;
 /**
  * Class EloquentRepository
  * @property $limit
- * @property bool $paginator
  * @package App\Repositories
  * @method bigIntegerFaker()
  * @method bigInteger()
