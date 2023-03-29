@@ -39,6 +39,33 @@ class User
     }
 
     /**
+     * get user role for facade
+     *
+     * @return ?object
+     */
+    public static function role() : ?object
+    {
+        return static::get()->role()?->first();
+    }
+
+    /**
+     * set admin role in to container for facade
+     *
+     * @return void
+     */
+    public static function registerContainerIsAdmin() : void
+    {
+        AppContainer::setWithTerminating('isAdmin', false);
+
+        $role = static::role();
+
+        if(!is_null($role)){
+            $isAdmin = checkBool($role->is_administrator);
+            AppContainer::setWithTerminating('isAdmin', $isAdmin);
+        }
+    }
+
+    /**
      * get user code
      *
      * @return string|null

@@ -98,6 +98,8 @@ class AppServiceProvider extends ServiceProvider
         AppContainer::set('apiUrl', request()->getSchemeAndHttpHost() . '' . request()->getBaseUrl() . '' . DIRECTORY_SEPARATOR . 'api');
         AppContainer::set('public_path', request()->getSchemeAndHttpHost() . '' . request()->getBasePath());
         $this->checkPaginationValue();
+
+        AppContainer::setWithTerminating('isAdmin', false);
     }
 
     /**

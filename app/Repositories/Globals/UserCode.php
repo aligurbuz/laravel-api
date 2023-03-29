@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Repositories\Globals;
 
 use App\Facades\Authenticate\Authenticate;
+use App\Facades\Role\Role;
 use App\Repositories\EloquentRepository;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -43,6 +44,10 @@ class UserCode
      */
     public function handle($column): object
     {
+        if(Role::isAdmin()){
+            return $this->builder;
+        }
+
         return $this->builder->where($column, Authenticate::code());
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use App\Exceptions\Exception;
 use App\Facades\Authenticate\User;
+use App\Services\AppContainer;
 use Closure;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
@@ -31,6 +32,8 @@ class Authenticate extends Middleware
         // It will throw an exception if the status field value is 0 or the is_deleted field is 1.
         User::throwExceptionIfNotActive();
 
+        $this->registerContainerIsAdmin();
+
         return $next($request);
     }
 
@@ -44,6 +47,18 @@ class Authenticate extends Middleware
     {
         if (!$request->expectsJson()) {
             Exception::authenticateException();
+        }
+    }
+
+    /**
+     * set isAdmin for user
+     *
+     * @return void
+     */
+    private function registerContainerIsAdmin(): void
+    {
+        if (endpoint() === 'user') {
+            User::registerContainerIsAdmin();
         }
     }
 }
