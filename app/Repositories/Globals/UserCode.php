@@ -8,6 +8,7 @@ use App\Facades\Authenticate\Authenticate;
 use App\Facades\Role\Role;
 use App\Repositories\EloquentRepository;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\App;
 
 /**
  * Class UserId
@@ -44,7 +45,13 @@ class UserCode
      */
     public function handle($column): object
     {
-        if(Role::isAdmin()){
+        /**
+         * !!Pay attention here!!!
+         * Role::isAdmin method here should not work in console
+         * otherwise your system will go in to an infinite loop.
+         * if the user is admin, that must see all users.
+         */
+        if(!App::runningInConsole() && Role::isAdmin()) {
             return $this->builder;
         }
 
