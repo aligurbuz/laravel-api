@@ -19,6 +19,7 @@ use App\Repositories\Resources\User\PropertyHandlers\UserPropertyHandlerTrait;
  * Class UserRepository
  * @package App\Repositories\Resources\User
  * @method $this role()
+ * @method accessible()
  */
 class UserRepository extends EloquentRepository implements UserRepositoryContract
 {

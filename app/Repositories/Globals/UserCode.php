@@ -51,7 +51,7 @@ class UserCode
          * otherwise your system will go in to an infinite loop.
          * if the user is admin, that must see all users.
          */
-        if(!App::runningInConsole() && Role::isAdmin()) {
+        if($this->eloquentRepository->accessible()) {
             return $this->builder;
         }
 
