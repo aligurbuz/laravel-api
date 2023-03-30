@@ -41,9 +41,9 @@ class UpdateClient extends Client
     ];
 
     /**
-     * @var int
+     * @var string|int
      */
-    protected int $userCode;
+    protected string|int $userCode;
 
     /**
      * @var int
@@ -93,7 +93,7 @@ class UpdateClient extends Client
         $isDeleted = parent::isDeleted();
 
         // we will not allow user to delete self.
-        if($isDeleted && $this->userCode === Authenticate::code()){
+        if($isDeleted && (int)$this->userCode === Authenticate::code()){
             Exception::customException('AdminUserOwnDeleting');
         }
 
