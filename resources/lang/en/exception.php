@@ -54,4 +54,5 @@ return [
     'invalid_hash'                  =>  'Hash value is not valid',
     'hitter'                        =>  'The key named (:key) cannot be sent for http (:method) method.',
     'notSource'                     =>  'Source is not valid. (key=:key)',
+    'userPostPermission'            =>  'Only the administrators can add user.',
 ];
