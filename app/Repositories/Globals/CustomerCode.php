@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Repositories\Globals;
 
 use App\Repositories\EloquentRepository;
+use App\Repositories\Supporters\GlobalSupporter;
 use Illuminate\Database\Eloquent\Builder;
 
 /**

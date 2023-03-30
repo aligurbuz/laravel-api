@@ -5,10 +5,9 @@ declare(strict_types=1);
 namespace App\Repositories\Globals;
 
 use App\Facades\Authenticate\Authenticate;
-use App\Facades\Role\Role;
 use App\Repositories\EloquentRepository;
+use App\Repositories\Supporters\GlobalSupporter;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Facades\App;
 
 /**
  * Class UserId
