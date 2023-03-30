@@ -51,7 +51,7 @@ class UserCode extends GlobalSupporter
          * otherwise your system will go in to an infinite loop.
          * if the user is admin, that must see all users.
          */
-        if($this->isAccessible()) {
+        if($this->isAvailableAccessible()) {
             return $this->builder;
         }
 
