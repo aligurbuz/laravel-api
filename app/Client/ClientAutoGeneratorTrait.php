@@ -7,6 +7,7 @@ namespace App\Client;
 use App\Exceptions\Exception;
 use App\Facades\Authenticate\ApiKey;
 use App\Facades\Authenticate\Authenticate;
+use App\Facades\Role\Role;
 use App\Factory\Factory;
 use App\Services\AppContainer;
 use App\Services\Date;
@@ -214,7 +215,7 @@ trait ClientAutoGeneratorTrait
                     $mirror = $this->repository()->getRecursiveMirror($model, $value);
 
                     if (is_null($mirror)) {
-                        Factory::code([$key => $value])->throwExceptionIfDoesntExist();
+                        Factory::code([$key => $value])->throwExceptionIfDoesntExist(!Role::isAdmin());
                     }
                 }
             }
