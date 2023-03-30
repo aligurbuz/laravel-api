@@ -79,13 +79,13 @@ class UpdateClient extends Client
      */
     protected function status(): string|int|bool
     {
-        //the user cannot change own status if that is not admin.
-        Exception::ifTrue(!Role::isAdmin(), 'UserStatusUpdatePermission');
-
         // we will not allow user to make passive self.
         if(!checkBool($this->status) && (int)$this->userCode === Authenticate::code()){
             Exception::customException('userOwnPassive');
         }
+
+        //the user cannot change own status if that is not admin.
+        Exception::ifTrue(!Role::isAdmin(), 'UserStatusUpdatePermission');
 
         return $this->status;
     }
