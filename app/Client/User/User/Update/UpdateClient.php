@@ -92,8 +92,7 @@ class UpdateClient extends Client
     {
         $isDeleted = parent::isDeleted();
 
-        // if the user is an administrator,
-        // we will not allow that to delete self.
+        // we will not allow user to delete self.
         if($isDeleted && $this->userCode === Authenticate::code()){
             Exception::customException('AdminUserOwnDeleting');
         }
