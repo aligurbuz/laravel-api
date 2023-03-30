@@ -12,6 +12,7 @@ use App\Services\Client;
 use App\Services\Db as DBFacade;
 use App\Services\Git;
 use App\Services\HashGenerator;
+use App\Services\Iterators\Days;
 use App\Services\Redis;
 use App\Services\Request\Request as HttpRequest;
 use App\Services\Service;
@@ -33,6 +34,17 @@ if (!function_exists('dod')) {
     function dod(): mixed
     {
         return (new DoodleController())->handle();
+    }
+}
+
+if (!function_exists('days')) {
+
+    /**
+     * @return Days
+     */
+    function days(): Days
+    {
+        return new Days();
     }
 }
 
