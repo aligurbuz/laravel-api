@@ -53,6 +53,6 @@ trait UserPromoterTrait
      */
     public function accessible() : bool
     {
-        return !App::runningInConsole() && Role::isAdmin();
+        return !App::runningInConsole() && endpoint()==='user' && Role::isAdmin();
     }
 }
