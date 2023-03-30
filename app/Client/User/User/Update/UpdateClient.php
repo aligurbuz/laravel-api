@@ -80,7 +80,7 @@ class UpdateClient extends Client
     protected function status(): string|int|bool
     {
         // we will not allow user to make passive self.
-        if(!checkBool($this->status) && (int)$this->userCode === Authenticate::code()){
+        if (!checkBool($this->status) && (int)$this->userCode === Authenticate::code()) {
             Exception::customException('userOwnPassive');
         }
 
@@ -98,7 +98,7 @@ class UpdateClient extends Client
         $isDeleted = parent::isDeleted();
 
         // we will not allow user to delete self.
-        if($isDeleted && (int)$this->userCode === Authenticate::code()){
+        if ($isDeleted && (int)$this->userCode === Authenticate::code()) {
             Exception::customException('userOwnDeleting');
         }
 
