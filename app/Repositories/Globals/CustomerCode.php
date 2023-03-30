@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Builder;
  * Class UserId
  * @package App\Repositories
  */
-class CustomerCode
+class CustomerCode extends GlobalSupporter
 {
     /**
      * @var Builder

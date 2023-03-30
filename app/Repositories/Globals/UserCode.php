@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\App;
  * Class UserId
  * @package App\Repositories
  */
-class UserCode
+class UserCode extends GlobalSupporter
 {
     /**
      * @var Builder
@@ -51,7 +51,7 @@ class UserCode
          * otherwise your system will go in to an infinite loop.
          * if the user is admin, that must see all users.
          */
-        if($this->eloquentRepository->accessible()) {
+        if($this->isAccessible()) {
             return $this->builder;
         }
 
