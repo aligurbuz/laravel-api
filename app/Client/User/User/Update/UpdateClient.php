@@ -65,7 +65,7 @@ class UpdateClient extends Client
      */
     protected function status() : string|int|bool
     {
-        //the user cannot change own role if that is not admin.
+        //the user cannot change own status if that is not admin.
         Exception::ifTrue(!Role::isAdmin(),'UserStatusUpdatePermission');
 
         return $this->status;
@@ -78,7 +78,7 @@ class UpdateClient extends Client
     {
         $isDeleted = parent::isDeleted();
 
-        //the user cannot change own role if that is not admin.
+        //the user cannot make own deleting if that is not admin.
         Exception::ifTrue(!Role::isAdmin(),'UserIsDeletedUpdatePermission');
 
         return $isDeleted;
