@@ -23,18 +23,20 @@ trait ClientSupport
      * @var bool|null
      */
     protected bool|string|int $isDefault;
+
     /**
      * it is password in the client data
      *
      * @var string|null
      */
     protected ?string $password = null;
+
     /**
      * it is is_deleted in the client data
      *
-     * @var string|bool
+     * @var string|int|bool
      */
-    protected string|bool $isDeleted = false;
+    protected string|int|bool $isDeleted = false;
 
     /**
      * get filterMandatory generator for request
@@ -98,9 +100,9 @@ trait ClientSupport
     /**
      * is_deleted input value for client
      *
-     * @return bool|string
+     * @return string|int|bool
      */
-    protected function isDeleted(): string|bool
+    protected function isDeleted(): string|int|bool
     {
         if (isPost()) {
             Exception::customException('postRestricted', 'is_deleted');
