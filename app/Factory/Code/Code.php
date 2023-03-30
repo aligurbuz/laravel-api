@@ -30,21 +30,25 @@ class Code extends CodeManager implements CodeInterface
     }
 
     /**
-     * throws exception if does not exits code for the specified model
+     * throws exception if it does not exist code for the specified model
      *
+     * @param bool $notDeleted
      * @return mixed
      */
-    public function throwExceptionIfDoesntExist(): mixed
+    public function throwExceptionIfDoesntExist(bool $notDeleted = true): mixed
     {
-        return $this->isValidRepository(function ($repository) {
+        return $this->isValidRepository(function ($repository) use($notDeleted) {
 
             // it determines the code and
             // code value according to the binds value.
             $code = $this->getCodeIdentifier();
 
+            // will apply the data control according to the deleted or not deleted.
+            $repositoryApplying = $notDeleted ? $repository->notDeleted() : $repository;
+
             // we detect the existence of the code value using the repository.
             // if false, an exception will be thrown.
-            if (isset($code['codeName'], $code['value']) && !$repository->notDeleted()->exists($code['codeName'], $code['value'])) {
+            if (isset($code['codeName'], $code['value']) && !$repositoryApplying->exists($code['codeName'], $code['value'])) {
                 return inValidCodeException($code['codeName'], $code['value']);
             }
 
