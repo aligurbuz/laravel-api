@@ -69,7 +69,7 @@ class UpdateClient extends Client
     protected function roleCode(): int
     {
         //the user cannot change own role if that is not admin.
-        Exception::ifTrue(!Role::isAdmin(), 'UserRoleUpdatePermission');
+        Exception::ifTrue(!Role::isAdmin(), 'userRoleUpdatePermission');
 
         return $this->roleCode;
     }
@@ -85,7 +85,7 @@ class UpdateClient extends Client
         }
 
         //the user cannot change own status if that is not admin.
-        Exception::ifTrue(!Role::isAdmin(), 'UserStatusUpdatePermission');
+        Exception::ifTrue(!Role::isAdmin(), 'userStatusUpdatePermission');
 
         return $this->status;
     }
@@ -103,7 +103,7 @@ class UpdateClient extends Client
         }
 
         //the user cannot make own deleting if that is not admin.
-        Exception::ifTrue(!Role::isAdmin(), 'UserIsDeletedUpdatePermission');
+        Exception::ifTrue(!Role::isAdmin(), 'userIsDeletedUpdatePermission');
 
         return $isDeleted;
     }

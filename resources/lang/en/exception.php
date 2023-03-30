@@ -55,9 +55,9 @@ return [
     'hitter'                        =>  'The key named (:key) cannot be sent for http (:method) method.',
     'notSource'                     =>  'Source is not valid. (key=:key)',
     'userPostPermission'            =>  'Only the administrators can add user.',
-    'UserRoleUpdatePermission'      =>  'Only the administrators can update user\'s role.',
-    'UserStatusUpdatePermission'    =>  'Only the administrators can update user\'s status.',
-    'UserIsDeletedUpdatePermission' =>  'Only the administrators can update user\'s deleting.',
+    'userRoleUpdatePermission'      =>  'Only the administrators can update user\'s role.',
+    'userStatusUpdatePermission'    =>  'Only the administrators can update user\'s status.',
+    'userIsDeletedUpdatePermission' =>  'Only the administrators can update user\'s deleting.',
     'userOwnDeleting'               =>  'The user cannot delete self.',
     'userOwnPassive'                =>  'The user cannot make passive self.',
 ];
