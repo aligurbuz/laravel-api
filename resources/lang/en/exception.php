@@ -55,4 +55,5 @@ return [
     'hitter'                        =>  'The key named (:key) cannot be sent for http (:method) method.',
     'notSource'                     =>  'Source is not valid. (key=:key)',
     'userPostPermission'            =>  'Only the administrators can add user.',
+    'UserRolePermission'            =>  'Only the administrators can update user\'s role.',
 ];

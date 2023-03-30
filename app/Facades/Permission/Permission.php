@@ -20,3 +20,4 @@ class Permission extends PermissionManager
         return true;
     }
 }
+
