@@ -58,5 +58,6 @@ return [
     'UserRoleUpdatePermission'      =>  'Only the administrators can update user\'s role.',
     'UserStatusUpdatePermission'    =>  'Only the administrators can update user\'s status.',
     'UserIsDeletedUpdatePermission' =>  'Only the administrators can update user\'s deleting.',
-    'AdminUserOwnDeleting'          =>  'The admin user cannot delete self.',
+    'userOwnDeleting'               =>  'The user cannot delete self.',
+    'userOwnPassive'                =>  'The user cannot make passive self.',
 ];

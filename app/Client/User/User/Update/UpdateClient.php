@@ -82,6 +82,11 @@ class UpdateClient extends Client
         //the user cannot change own status if that is not admin.
         Exception::ifTrue(!Role::isAdmin(), 'UserStatusUpdatePermission');
 
+        // we will not allow user to make passive self.
+        if(!checkBool($this->status) && (int)$this->userCode === Authenticate::code()){
+            Exception::customException('userOwnPassive');
+        }
+
         return $this->status;
     }
 
@@ -94,7 +99,7 @@ class UpdateClient extends Client
 
         // we will not allow user to delete self.
         if($isDeleted && (int)$this->userCode === Authenticate::code()){
-            Exception::customException('AdminUserOwnDeleting');
+            Exception::customException('userOwnDeleting');
         }
 
         //the user cannot make own deleting if that is not admin.
