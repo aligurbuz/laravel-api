@@ -5,6 +5,7 @@ namespace App\Client\User\User\Update;
 use App\Client\Client;
 use App\Client\ClientAutoGeneratorTrait;
 use App\Exceptions\Exception;
+use App\Facades\Authenticate\Authenticate;
 use App\Facades\Role\Role;
 use App\Models\User;
 
@@ -42,6 +43,11 @@ class UpdateClient extends Client
     /**
      * @var int
      */
+    protected int $userCode;
+
+    /**
+     * @var int
+     */
     protected int $roleCode;
 
     /**
@@ -52,10 +58,18 @@ class UpdateClient extends Client
     /**
      * @return int
      */
-    protected function roleCode() : int
+    protected function userCode(): int
+    {
+        return $this->userCode;
+    }
+
+    /**
+     * @return int
+     */
+    protected function roleCode(): int
     {
         //the user cannot change own role if that is not admin.
-        Exception::ifTrue(!Role::isAdmin(),'UserRoleUpdatePermission');
+        Exception::ifTrue(!Role::isAdmin(), 'UserRoleUpdatePermission');
 
         return $this->roleCode;
     }
@@ -63,10 +77,10 @@ class UpdateClient extends Client
     /**
      * @return string|int|bool
      */
-    protected function status() : string|int|bool
+    protected function status(): string|int|bool
     {
         //the user cannot change own status if that is not admin.
-        Exception::ifTrue(!Role::isAdmin(),'UserStatusUpdatePermission');
+        Exception::ifTrue(!Role::isAdmin(), 'UserStatusUpdatePermission');
 
         return $this->status;
     }
@@ -74,12 +88,18 @@ class UpdateClient extends Client
     /**
      * @return string|int|bool
      */
-    protected function isDeleted() : string|int|bool
+    protected function isDeleted(): string|int|bool
     {
         $isDeleted = parent::isDeleted();
 
+        // if the user is an administrator,
+        // we will not allow her to delete herself.
+        if($isDeleted && $this->userCode === Authenticate::code()){
+            Exception::customException('AdminUserOwnDeleting');
+        }
+
         //the user cannot make own deleting if that is not admin.
-        Exception::ifTrue(!Role::isAdmin(),'UserIsDeletedUpdatePermission');
+        Exception::ifTrue(!Role::isAdmin(), 'UserIsDeletedUpdatePermission');
 
         return $isDeleted;
     }
