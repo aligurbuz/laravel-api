@@ -56,6 +56,8 @@ class UpdateClient extends Client
     protected string|int|bool $status;
 
     /**
+     * client user code
+     *
      * @return int
      */
     protected function userCode(): int
@@ -64,6 +66,8 @@ class UpdateClient extends Client
     }
 
     /**
+     * the user cannot change own role if that is not admin.
+     *
      * @return string|int
      */
     protected function roleCode(): string|int
@@ -75,6 +79,9 @@ class UpdateClient extends Client
     }
 
     /**
+     * we will not allow user to make passive self.
+     * the user cannot change any user's status if that is not admin.
+     *
      * @return string|int|bool
      */
     protected function status(): string|int|bool
@@ -91,6 +98,9 @@ class UpdateClient extends Client
     }
 
     /**
+     * we will not allow user to delete self.
+     * the user cannot make any user's deleting if that is not admin.
+     *
      * @return string|int|bool
      */
     protected function isDeleted(): string|int|bool
