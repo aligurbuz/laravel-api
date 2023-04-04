@@ -108,7 +108,7 @@ class UpdateClient extends Client
         $isDeleted = parent::isDeleted();
 
         // we will not allow user to delete self.
-        if ($isDeleted && (int)$this->userCode === Authenticate::code()) {
+        if (checkBool($isDeleted) && (int)$this->userCode === Authenticate::code()) {
             Exception::customException('userOwnDeleting');
         }
 
