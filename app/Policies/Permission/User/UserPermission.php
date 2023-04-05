@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Facades\Permission;
+namespace App\Policies\Permission\User;
 
 use App\Exceptions\Exception;
 use App\Facades\Role\Role;
 
-class Permission extends PermissionManager
+trait UserPermission
 {
     /**
      * Only admins can create users.
@@ -20,4 +20,3 @@ class Permission extends PermissionManager
         return true;
     }
 }
-

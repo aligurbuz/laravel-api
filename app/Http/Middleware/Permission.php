@@ -3,7 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Exceptions\Exception;
-use App\Facades\Permission\Permission as PermissionFacade;
+use App\Policies\Permission\Permission as PermissionFacade;
 use Closure;
 use Illuminate\Http\Request;
 

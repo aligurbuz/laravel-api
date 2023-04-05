@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Facades\Permission;
+namespace App\Policies\Permission;
 
 use App\Factory\Factory;
 
