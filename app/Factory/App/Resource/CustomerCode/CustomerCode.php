@@ -37,7 +37,7 @@ class CustomerCode extends AppManager
     {
         $customerCode = Authenticate::code();
 
-        if($customerCode==0){
+        if ($customerCode === 0) {
             return generateHash();
         }
 
