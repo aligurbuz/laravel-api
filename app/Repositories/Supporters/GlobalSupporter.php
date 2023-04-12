@@ -2,6 +2,8 @@
 
 namespace App\Repositories\Supporters;
 
+use App\Repositories\Resources\User\UserRepository;
+
 abstract class GlobalSupporter
 {
     /**
@@ -11,6 +13,7 @@ abstract class GlobalSupporter
      */
     protected function isAvailableAccessible(): bool
     {
+        /** @see UserRepository::accessible() */
         return method_exists($this->eloquentRepository, 'accessible') && $this->eloquentRepository->accessible();
     }
 }
