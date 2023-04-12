@@ -32,7 +32,8 @@ return [
     ],
     'exceptMethodKeys' => [
         'password/changes' => [
-            'POST' => ['hash','client_time']
+            'POST' => ['hash','client_time'],
+            'PUT' => ['client_time','is_deleted','status'],
         ]
     ],
     "ignores" => [
