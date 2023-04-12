@@ -32,6 +32,13 @@ trait ClientSupport
     protected ?string $password = null;
 
     /**
+     * it is email verified at in the client data
+     *
+     * @var string|null
+     */
+    protected ?string $emailVerifiedAt = null;
+
+    /**
      * it is is_deleted in the client data
      *
      * @var string|int|bool
@@ -109,6 +116,18 @@ trait ClientSupport
         }
 
         return $this->isDeleted;
+    }
+
+    /**
+     * email_verified_at input value for client
+     *
+     * @return string|null
+     */
+    public function emailVerifiedAt(): ?string
+    {
+        Exception::customException('emailVerifiedAt');
+
+        return $this->emailVerifiedAt;
     }
 
     /**
