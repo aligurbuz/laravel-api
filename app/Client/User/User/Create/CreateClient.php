@@ -36,7 +36,7 @@ class CreateClient extends Client
     protected array $rule = [
         'name' => 'required|max:50',
         'email' => 'required',
-        'password' => 'required|atLeastUpperLowerNumber',
+        'password' => 'required|atLeastUpperLowerNumber|min:6',
         'username' => 'required|string',
     ];
 }
