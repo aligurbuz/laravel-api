@@ -79,7 +79,7 @@ trait ClientSupport
      */
     protected function isDefault(): bool|string|int
     {
-        if ($this->isDefault && !isGet()) {
+        if (checkBool($this->isDefault) && !isGet()) {
             $this->ensureColumnExists($snakeFunction = Str::snake(__FUNCTION__), function () use ($snakeFunction) {
                 if(!AppContainer::has('noIsDefaultUpdate')){
                     $this->repository()->default()->update([[$snakeFunction => '0']], false);
