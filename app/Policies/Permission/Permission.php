@@ -12,11 +12,11 @@ class Permission extends PermissionManager
      * The method that will work in common for all permissions.
      * Take a global action.
      *
-     * @return bool
+     * @return void
      */
-    public function init() : bool
+    public function init() : void
     {
-        return true;
+        //
     }
 }
 
