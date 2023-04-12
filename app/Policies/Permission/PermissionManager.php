@@ -46,8 +46,8 @@ abstract class PermissionManager
     {
         $withMethod = httpMethod() .ucfirst($name);
 
-        if (method_exists($this, 'handler')) {
-            return $this->handler();
+        if (method_exists($this, 'init')) {
+            return $this->init();
         }
 
         if (method_exists($this, $withMethod)) {

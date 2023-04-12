@@ -14,7 +14,7 @@ class Permission extends PermissionManager
      *
      * @return bool
      */
-    public function handler() : bool
+    public function init() : bool
     {
         return true;
     }
