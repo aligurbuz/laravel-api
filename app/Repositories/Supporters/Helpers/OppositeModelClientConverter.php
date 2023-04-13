@@ -147,7 +147,13 @@ class OppositeModelClientConverter
                 $queries['with'][Str::camel($this->eloquentRepository->getTable())],
                 $client['with'][Str::camel($this->eloquentRepository->getTable())]
             );
+
+            if(!count($client['with'])){
+                unset($client['with']);
+            }
         }
+
+        request()->query->replace($client);
 
         return array($queries, $client);
     }
