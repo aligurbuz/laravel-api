@@ -43,7 +43,7 @@ trait ScopeManager
     /**
      * @var string[]
      */
-    protected array $operators = ['<', '>', '<=', '>=', '<>', '=', 'or'];
+    protected array $operators = ['<', '>', '<=', '>=', '<>', '=', '!=', 'or'];
 
     /**
      * get active scope for model
@@ -74,7 +74,7 @@ trait ScopeManager
      */
     public function scopeLoadRepository(Builder $builder, ?object $repository = null): object
     {
-        if(method_exists($repository,$this->getTable())){
+        if (method_exists($repository, $this->getTable())) {
             return $repository->{$this->getTable()}($builder);
         }
 
