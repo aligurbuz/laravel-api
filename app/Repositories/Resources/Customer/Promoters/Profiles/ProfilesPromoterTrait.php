@@ -35,16 +35,11 @@ trait ProfilesPromoterTrait
     /**
      * the range value getting only male customers.
      *
-     * @param null|Builder $builder
      * @return EloquentRepository
      */
-    public function male(Builder $builder = null): EloquentRepository
+    public function male(): EloquentRepository
     {
-        Client::setFilter('gender', __FUNCTION__);
-
-        $this->repository = $this->setModel('customerGender', true)->builder($builder);
-
-        return $this;
+        return $this->sourceFilter('customerGender', 'gender', __FUNCTION__);
     }
 
     /**
@@ -55,10 +50,6 @@ trait ProfilesPromoterTrait
      */
     public function female(Builder $builder = null): EloquentRepository
     {
-        Client::setFilter('gender', __FUNCTION__);
-
-        $this->repository = $this->setModel('customerGender', true)->builder($builder);
-
-        return $this;
+        return $this->sourceFilter('customerGender', 'gender', __FUNCTION__);
     }
 }

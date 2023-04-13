@@ -6,6 +6,8 @@ namespace App\Repositories;
 
 use App\Facades\Authenticate\ApiKey;
 use App\Facades\Authenticate\Authenticate;
+use App\Services\Client;
+use Illuminate\Database\Eloquent\Builder;
 
 trait GeneralPromoterTrait
 {
@@ -72,5 +74,23 @@ trait GeneralPromoterTrait
     public function getCacheKey(string $model): string
     {
         return $model . '_' . ApiKey::who();
+    }
+
+    /**
+     * It filters by inverse modeling.
+     *
+     * @param string $model
+     * @param string $field
+     * @param string $value
+     * @param Builder|null $builder
+     * @return EloquentRepository
+     */
+    public function sourceFilter(string $model, string $field, string $value, Builder $builder = null): EloquentRepository
+    {
+        Client::setFilter($field, $value);
+
+        $this->repository = $this->setModel($model, true)->builder($builder);
+
+        return $this;
     }
 }
