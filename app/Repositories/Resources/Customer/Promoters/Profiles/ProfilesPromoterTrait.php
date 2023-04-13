@@ -6,8 +6,6 @@ namespace App\Repositories\Resources\Customer\Promoters\Profiles;
 
 use App\Models\Entities\Customer;
 use App\Repositories\EloquentRepository;
-use App\Services\Client;
-use Illuminate\Database\Eloquent\Builder;
 
 trait ProfilesPromoterTrait
 {
@@ -45,10 +43,9 @@ trait ProfilesPromoterTrait
     /**
      * the range value getting only female customers.
      *
-     * @param null|Builder $builder
      * @return EloquentRepository
      */
-    public function female(Builder $builder = null): EloquentRepository
+    public function female(): EloquentRepository
     {
         return $this->sourceFilter('customerGender', 'gender', __FUNCTION__);
     }
