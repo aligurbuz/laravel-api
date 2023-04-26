@@ -110,7 +110,7 @@ trait ClientAutoGeneratorTrait
      */
     public function createdByAutoGenerator(): mixed
     {
-        if (httpMethod() === 'post') {
+        if (isPost()) {
             return $this->ensureColumnExists('created_by', function () {
                 return Authenticate::code();
             });
@@ -126,7 +126,7 @@ trait ClientAutoGeneratorTrait
      */
     public function updatedByAutoGenerator(): mixed
     {
-        if (httpMethod() === 'put') {
+        if (isPut()) {
             return $this->ensureColumnExists('updated_by', function () {
                 return Authenticate::code();
             });
@@ -143,7 +143,7 @@ trait ClientAutoGeneratorTrait
     public function deletedByAutoGenerator(): mixed
     {
         if (
-            httpMethod() === 'put'
+            isPut()
             && $this->has('is_deleted')
             && booleanChecks($this->get('is_deleted'))) {
             return $this->ensureColumnExists('deleted_by', function () {
@@ -162,7 +162,7 @@ trait ClientAutoGeneratorTrait
     public function deletedAtAutoGenerator(): mixed
     {
         if (
-            httpMethod() === 'put'
+            isPut()
             && $this->has('is_deleted')
             && booleanChecks($this->get('is_deleted'))) {
             return $this->ensureColumnExists('deleted_at', function () {
