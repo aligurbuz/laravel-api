@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace App\Repositories\Resources\Password;
 
-use App\Facades\Authenticate\User;
-use App\Facades\Email\Email;
-use App\Facades\Sms\Sms;
 use App\Models\PasswordChange;
 use App\Repositories\EloquentRepository;
 use App\Repositories\GeneralPromoterTrait;
@@ -17,7 +14,6 @@ use App\Repositories\Resources\Password\Events\Changes\BeforeCreate;
 use App\Repositories\Resources\Password\Events\Changes\BeforeUpdate;
 use App\Repositories\Resources\Password\Promoters\Changes\ChangesPromoterTrait;
 use App\Repositories\Resources\Password\PropertyHandlers\ChangesPropertyHandlerTrait;
-use App\Services\Date;
 
 class ChangesRepository extends EloquentRepository implements PasswordChangesRepositoryContract
 {
