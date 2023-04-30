@@ -38,7 +38,7 @@ trait GeneratorTrait
      */
     public function roleCodeGenerator(): int
     {
-        return (Role::createAdministrator())[0]['role_code'];
+        return 2963074553;
     }
 
     /**
