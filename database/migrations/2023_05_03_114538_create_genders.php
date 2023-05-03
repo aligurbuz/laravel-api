@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('gender_code')->default(0)->unique();
 
-            $table->char('name')->comment('gender definition (male,femal etc..)');
+            $table->char('name')->comment('gender definition (male,female etc..)');
 
             //$table->integer('sequence_time')->default(0);
             //$table->integer('sequence')->default(1);
