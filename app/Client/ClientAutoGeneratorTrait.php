@@ -98,9 +98,17 @@ trait ClientAutoGeneratorTrait
      */
     public function customerCodeAutoGenerator(): mixed
     {
-        return $this->ensureColumnExists('customer_code', function () {
-            return customerCode();
-        });
+        if(isPost() && $this->getModelName()==='Customer'){
+            return generateHash();
+        }
+
+        if(!ApiKey::isAdmin()){
+            return $this->ensureColumnExists('customer_code', function () {
+                return customerCode();
+            });
+        }
+
+        return null;
     }
 
     /**

@@ -71,7 +71,7 @@ trait ProfilesPropertyHandlerTrait
      * @var array
      */
     protected array $addPostQueries = [
-        'customer_genders' => 'customer.genders',
-        'customer_ages' => 'customer.ages',
+        'gender' => 'customer.genders',
+        'age' => 'customer.ages',
     ];
 }
