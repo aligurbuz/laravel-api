@@ -18,7 +18,7 @@ trait ProfilesPropertyHandlerTrait
      *
      * @var array
      */
-    protected array $localization = ['name'];
+    protected array $localization = [];
 
     /**
      * hitter values for repository
