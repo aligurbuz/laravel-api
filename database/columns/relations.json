@@ -25,6 +25,7 @@
         "CustomerImage",
         "District",
         "Excel",
+        "Gender",
         "Language",
         "Localization",
         "PasswordChange",
@@ -65,6 +66,9 @@
         "Localization"
     ],
     "Excel": [
+        "Localization"
+    ],
+    "Gender": [
         "Localization"
     ],
     "Language": [

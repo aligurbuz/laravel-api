@@ -75,5 +75,10 @@
         "controller": "Changes",
         "dir": "Password",
         "model": "PasswordChange"
+    },
+    "Definition/genders": {
+        "controller": "Genders",
+        "dir": "Definition",
+        "model": "Gender"
     }
 }

@@ -122,5 +122,17 @@
     "password.changes.update": {
         "class": "App\\Client\\Password\\Changes\\Update\\UpdateClient",
         "model": "passwordChange"
+    },
+    "definition.genders.get": {
+        "class": "App\\Client\\Definition\\Genders\\Get\\GetClient",
+        "model": "gender"
+    },
+    "definition.genders.create": {
+        "class": "App\\Client\\Definition\\Genders\\Create\\CreateClient",
+        "model": "gender"
+    },
+    "definition.genders.update": {
+        "class": "App\\Client\\Definition\\Genders\\Update\\UpdateClient",
+        "model": "gender"
     }
 }

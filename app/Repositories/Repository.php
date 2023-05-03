@@ -24,6 +24,7 @@ use App\Repositories\Resources\Timezones\Contracts\TimezonesRepositoryContract;
 use App\Repositories\Resources\User\Contracts\PhotosRepositoryContract;
 use App\Repositories\Resources\User\Contracts\UserActivationsRepositoryContract;
 use App\Repositories\Resources\User\Contracts\UserRepositoryContract;
+use App\Repositories\Resources\Definition\Contracts\DefinitionGendersRepositoryContract;
 use App\Repositories\Resources\Password\Contracts\PasswordChangesRepositoryContract;
 use App\Repositories\Resources\Customer\Contracts\CustomerContactsRepositoryContract;
 
@@ -33,6 +34,16 @@ use App\Repositories\Resources\Customer\Contracts\CustomerContactsRepositoryCont
  */
 class Repository
 {
+    /**
+     * get gender repository instance
+     *
+     * @return DefinitionGendersRepositoryContract
+     */
+    public static function gender() : DefinitionGendersRepositoryContract
+    {
+        return app()->get(DefinitionGendersRepositoryContract::class);
+    }
+    
     /**
      * get passwordChange repository instance
      *

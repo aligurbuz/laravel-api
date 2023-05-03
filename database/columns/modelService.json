@@ -86,5 +86,9 @@
     "PasswordChange": {
         "controller": "Changes",
         "dir": "Password"
+    },
+    "Gender": {
+        "controller": "Genders",
+        "dir": "Definition"
     }
 }

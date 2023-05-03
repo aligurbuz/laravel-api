@@ -57,5 +57,10 @@
         "get": "App\\Client\\Password\\Changes\\Get\\GetClient",
         "create": "App\\Client\\Password\\Changes\\Create\\CreateClient",
         "update": "App\\Client\\Password\\Changes\\Update\\UpdateClient"
+    },
+    "Gender": {
+        "get": "App\\Client\\Definition\\Genders\\Get\\GetClient",
+        "create": "App\\Client\\Definition\\Genders\\Create\\CreateClient",
+        "update": "App\\Client\\Definition\\Genders\\Update\\UpdateClient"
     }
 }
