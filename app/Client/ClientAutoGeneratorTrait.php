@@ -212,10 +212,6 @@ trait ClientAutoGeneratorTrait
                 continue;
             }
 
-            if(AppContainer::has('isCr')){
-                continue;
-            }
-
             if (is_numeric($key) && is_array($value)) {
                 $this->codeProcessAutoGenerator($value);
             }
