@@ -161,6 +161,8 @@ trait CreateRepository
                         $crData[$crKey][getTableCode($this->getModel())] = $data[getTableCode($this->getModel())];
                     }
 
+                    AppContainer::setWithTerminating('isCr',true);
+
                     try {
                         cR($cr, $crData, null, true);
                     } catch (Exception $exception) {

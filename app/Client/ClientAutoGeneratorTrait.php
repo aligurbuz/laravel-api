@@ -102,7 +102,7 @@ trait ClientAutoGeneratorTrait
             return generateHash();
         }
 
-        if(ApiKey::isWeb()){
+        if(ApiKey::isWeb() && isAuthenticate()){
             return $this->ensureColumnExists('customer_code', function () {
                 return customerCode();
             });
@@ -209,6 +209,10 @@ trait ClientAutoGeneratorTrait
 
         foreach ($data as $key => $value) {
             if (httpMethod() === 'post' && getTableCode($this->getModel()) === $key) {
+                continue;
+            }
+
+            if(AppContainer::has('isCr')){
                 continue;
             }
 
