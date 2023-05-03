@@ -1035,7 +1035,7 @@
                                 ],
                                 "body": {
                                     "mode": "raw",
-                                    "raw": "{\"customer_code\":\"integer\",\"gender\":\"enum\"}",
+                                    "raw": "{\"customer_code\":\"integer\",\"gender_code\":\"integer\"}",
                                     "options": {
                                         "raw": {
                                             "language": "json"
@@ -1088,7 +1088,7 @@
                                 ],
                                 "body": {
                                     "mode": "raw",
-                                    "raw": "{\"customer_code\":\"integer\",\"customer_gender_code\":\"0\",\"gender\":\"enum\",\"is_deleted\":\"0\",\"status\":\"1\"}",
+                                    "raw": "{\"customer_gender_code\":\"0\",\"customer_code\":\"integer\",\"gender_code\":\"integer\",\"is_deleted\":\"0\",\"status\":\"1\"}",
                                     "options": {
                                         "raw": {
                                             "language": "json"

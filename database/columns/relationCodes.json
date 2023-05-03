@@ -36,6 +36,10 @@
     "customer_gender_code": [
         "CustomerGender"
     ],
+    "gender_code": [
+        "CustomerGender",
+        "Gender"
+    ],
     "customer_image_code": [
         "CustomerImage"
     ],
@@ -44,9 +48,6 @@
     ],
     "excel_code": [
         "Excel"
-    ],
-    "gender_code": [
-        "Gender"
     ],
     "language_code": [
         "Language",

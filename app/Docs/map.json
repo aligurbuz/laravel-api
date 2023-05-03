@@ -15,7 +15,8 @@
         "/var/www/html/app/api/app/Docs/Endpoints/Support/Support.json",
         "/var/www/html/app/api/app/Docs/Endpoints/Customer/Customer.json",
         "/Users/teamprocure/Desktop/apps/api/app/Docs/Endpoints/Password/Password.json",
-        "/Users/teamprocure/Desktop/apps/api/app/Docs/Endpoints/Definition/Definition.json"
+        "/Users/teamprocure/Desktop/apps/api/app/Docs/Endpoints/Definition/Definition.json",
+        "/Users/teamprocure/Desktop/apps/api/app/Docs/Endpoints/Customer/Customer.json"
     ],
     "keys": {
         "/var/www/html/app/api/app/Docs/Endpoints/User/User.json": 0,
@@ -31,7 +32,8 @@
         "/var/www/html/app/api/app/Docs/Endpoints/Support/Support.json": 0,
         "/var/www/html/app/api/app/Docs/Endpoints/Customer/Customer.json": 4,
         "/Users/teamprocure/Desktop/apps/api/app/Docs/Endpoints/Password/Password.json": 0,
-        "/Users/teamprocure/Desktop/apps/api/app/Docs/Endpoints/Definition/Definition.json": 0
+        "/Users/teamprocure/Desktop/apps/api/app/Docs/Endpoints/Definition/Definition.json": 0,
+        "/Users/teamprocure/Desktop/apps/api/app/Docs/Endpoints/Customer/Customer.json": 1
     },
     "fingerPrints": {
         "User_User_user": 0,

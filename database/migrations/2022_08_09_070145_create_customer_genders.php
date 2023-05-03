@@ -18,7 +18,7 @@ return new class extends Migration
             $table->bigInteger('customer_gender_code')->default(0)->unique();
             $table->bigInteger('customer_code')->unique()->comment('customer code');
 
-            $table->enum('gender',['male','female'])->index()->comment('gender choosing for customer');
+            $table->bigInteger('gender_code')->index()->comment('customer gender code');
 
             $table->timestamps();
         });

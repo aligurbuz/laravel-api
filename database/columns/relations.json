@@ -59,16 +59,18 @@
     ],
     "CustomerGender": [
         "Customer",
+        "Gender",
         "Localization"
     ],
     "CustomerImage": [
         "Customer",
         "Localization"
     ],
-    "Excel": [
+    "Gender": [
+        "CustomerGender",
         "Localization"
     ],
-    "Gender": [
+    "Excel": [
         "Localization"
     ],
     "Language": [
