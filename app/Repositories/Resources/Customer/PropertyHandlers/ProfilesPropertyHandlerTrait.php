@@ -11,7 +11,9 @@ trait ProfilesPropertyHandlerTrait
      *
      * @var array
      */
-    protected array $ranges = [];
+    protected array $ranges = [
+        'gender' => 'Retrieves the customer\'s gender information.'
+    ];
 
     /**
      * localization values for repository

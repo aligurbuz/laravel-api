@@ -31,6 +31,27 @@ trait ProfilesPromoterTrait
     }
 
     /**
+     * @return void
+     */
+    public function gender(): void
+    {
+        $queryAdd = [
+            'with' => [
+                'customerGenders' => [
+                    'select' => '*',
+                    'with' => [
+                        'gender' => [
+                            'select' => 'name'
+                        ]
+                    ]
+                ]
+            ]
+        ];
+
+        request()->query->add($queryAdd);
+    }
+
+    /**
      * the range value getting only male customers.
      *
      * @return EloquentRepository
