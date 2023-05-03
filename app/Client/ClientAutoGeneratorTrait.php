@@ -102,7 +102,7 @@ trait ClientAutoGeneratorTrait
             return generateHash();
         }
 
-        if(!ApiKey::isAdmin()){
+        if(ApiKey::isWeb()){
             return $this->ensureColumnExists('customer_code', function () {
                 return customerCode();
             });
