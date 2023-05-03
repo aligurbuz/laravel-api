@@ -212,6 +212,10 @@ trait ClientAutoGeneratorTrait
                 continue;
             }
 
+            if(AppContainer::has('mainCrModel') && $key===AppContainer::get('mainCrModel')){
+                continue;
+            }
+
             if (is_numeric($key) && is_array($value)) {
                 $this->codeProcessAutoGenerator($value);
             }

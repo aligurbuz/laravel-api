@@ -159,9 +159,8 @@ trait CreateRepository
                     foreach ($data[$key] as $crKey => $crValues) {
                         $crData[$crKey] = $crValues;
                         $crData[$crKey][getTableCode($this->getModel())] = $data[getTableCode($this->getModel())];
+                        AppContainer::setWithTerminating('mainCrModel',getTableCode($this->getModel()));
                     }
-
-                    AppContainer::setWithTerminating('isCr',true);
 
                     try {
                         cR($cr, $crData, null, true);
