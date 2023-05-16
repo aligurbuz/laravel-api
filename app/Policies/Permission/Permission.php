@@ -16,9 +16,7 @@ class Permission extends PermissionManager
      */
     public function init() : void
     {
-        // this writes the permission values for
-        // the endpoint for the client to the instructions values in the returned response layer.
-        setInstruction(['accessible' => $this->getEndpointPermission()]);
+        //
     }
 }
 
