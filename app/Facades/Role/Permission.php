@@ -34,10 +34,12 @@ class Permission
         $role = $data['roles'] ?? [];
 
         if (!is_null($this->endpoint)) {
-            return $role[$this->code()] ?? [];
+            $role = $role[$this->code()] ?? [];
         }
 
-        return $role;
+        return array_map(static function($value){
+            return checkBool($value);
+        },$role);
     }
 
     /**
