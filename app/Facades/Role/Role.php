@@ -88,6 +88,6 @@ class Role
      */
     public static function permission(?string $endpoint = null): Permission
     {
-        return new Permission($endpoint);
+        return new Permission($endpoint ?? endpoint());
     }
 }
