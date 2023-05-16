@@ -33,7 +33,7 @@ trait UserPromoterTrait
      */
     public function me(Builder $builder = null): EloquentRepository
     {
-        $this->repository = $this->builder($builder)->where($this->getModelCode(),Authenticate::code());
+        $this->repository = $this->builder($builder)->where($this->getModelCode(), Authenticate::code());
 
         return $this;
     }
