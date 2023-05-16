@@ -904,7 +904,7 @@ class EloquentRepository
      */
     public function auth(): object
     {
-        return $this->where('user_code', Authenticate::code());
+        return $this->where(Authenticate::getCodeName(), Authenticate::code());
     }
 
     /**

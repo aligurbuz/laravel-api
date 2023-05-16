@@ -199,6 +199,16 @@ class Authenticate extends FacadeManager
     }
 
     /**
+     * get authenticate column name
+     *
+     * @return string
+     */
+    public static function getCodeName() : string
+    {
+        return (new self)->code;
+    }
+
+    /**
      * get attempt credentials for facade
      *
      * @param string|null $email
