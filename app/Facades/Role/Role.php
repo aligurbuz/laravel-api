@@ -18,7 +18,7 @@ class Role
     public static function get(): array
     {
         $userRole = AppContainer::use('role', static function () {
-            return Repository::user()->code()->role()->getRepository();
+            return Repository::user()->auth()->role()->getRepository();
         });
 
         return $userRole[0]['role'][0] ?? [];

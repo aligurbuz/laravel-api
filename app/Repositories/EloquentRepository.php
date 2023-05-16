@@ -894,9 +894,17 @@ class EloquentRepository
      */
     public function code(int $code = 0): object
     {
-        $code = $code === 0 ? Authenticate::code() : $code;
-
         return $this->where($this->getModelCode(), $code);
+    }
+
+    /**
+     * get authenticate user instance for repository
+     *
+     * @return object
+     */
+    public function auth(): object
+    {
+        return $this->where('user_code', Authenticate::code());
     }
 
     /**
