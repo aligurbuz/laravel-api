@@ -894,6 +894,8 @@ class EloquentRepository
      */
     public function code(int $code = 0): object
     {
+        $code = $code === 0 ? Authenticate::code() : $code;
+
         return $this->where($this->getModelCode(), $code);
     }
 

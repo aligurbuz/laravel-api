@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Facades\Role;
 
+use App\Facades\Authenticate\Authenticate;
 use App\Factory\Factory;
 use App\Repositories\Repository;
 use App\Services\AppContainer;
@@ -18,7 +19,7 @@ class Role
     public static function get(): array
     {
         $userRole = AppContainer::use('role', static function () {
-            return Repository::user()->role()->getRepository();
+            return Repository::user()->code()->role()->getRepository();
         });
 
         return $userRole[0]['role'][0] ?? [];
