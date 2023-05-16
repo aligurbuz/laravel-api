@@ -4,9 +4,12 @@ declare(strict_types=1);
 
 namespace App\Repositories\Resources\User\Promoters\User;
 
+use App\Facades\Authenticate\Authenticate;
 use App\Facades\Role\Role;
 use App\Models\Entities\User;
+use App\Repositories\EloquentRepository;
 use App\Repositories\Globals\UserCode;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\App;
 
 trait UserPromoterTrait
@@ -21,6 +24,20 @@ trait UserPromoterTrait
     {
         return $this->apply($builder);
     }
+
+    /**
+     * get authenticated user data
+     *
+     * @param null|Builder $builder
+     * @return EloquentRepository
+     */
+    public function me(Builder $builder = null): EloquentRepository
+    {
+        $this->repository = $this->builder($builder)->where($this->getModelCode(),Authenticate::code());
+
+        return $this;
+    }
+
 
     /**
      * get entity for repository

@@ -11,7 +11,9 @@ trait UserPropertyHandlerTrait
      *
      * @var array
      */
-    protected array $ranges = [];
+    protected array $ranges = [
+        'me' => 'Displays the information of the user who owns the token.'
+    ];
 
     /**
      * localization values for repository
