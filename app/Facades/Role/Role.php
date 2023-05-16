@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Facades\Role;
 
-use App\Facades\Authenticate\Authenticate;
 use App\Factory\Factory;
 use App\Repositories\Repository;
 use App\Services\AppContainer;
