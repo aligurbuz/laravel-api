@@ -2,7 +2,10 @@
 
 namespace App\Policies\Permission;
 
+use App\Constants;
+use App\Facades\Role\Role;
 use App\Factory\Factory;
+use App\Services\AppContainer;
 
 abstract class PermissionManager
 {
@@ -17,6 +20,16 @@ abstract class PermissionManager
     public function __construct()
     {
         $this->endpoint = endpoint(true);
+    }
+
+    /**
+     * get endpoint permission values
+     *
+     * @return array
+     */
+    public function getEndpointPermission() : array
+    {
+        return Role::permission($this->endpoint)->get();
     }
 
     /**
