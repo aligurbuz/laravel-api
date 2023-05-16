@@ -31,7 +31,11 @@ trait GeneralPromoterTrait
      */
     public function globalAppends() : array
     {
-        $list['accessible'] = Role::permission()->get();
+        $list = [];
+
+        if(ApiKey::isAdmin()){
+            $list['accessible'] = Role::permission()->get();
+        }
 
         return $list;
     }
