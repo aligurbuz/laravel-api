@@ -6,6 +6,7 @@ namespace App\Repositories;
 
 use App\Facades\Authenticate\ApiKey;
 use App\Facades\Authenticate\Authenticate;
+use App\Facades\Role\Role;
 use App\Services\Client;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -21,6 +22,18 @@ trait GeneralPromoterTrait
         // defines laravel relationships
         // that cannot be used based on the apikey value.
         $this->setDeniedEagerLoadingsAccordingToApiKey();
+    }
+
+    /**
+     * get global appends for repository
+     *
+     * @return array
+     */
+    public function globalAppends() : array
+    {
+        $list['accessible'] = Role::permission()->get();
+
+        return $list;
     }
 
     /**

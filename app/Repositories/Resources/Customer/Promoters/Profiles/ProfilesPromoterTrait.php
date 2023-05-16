@@ -21,6 +21,16 @@ trait ProfilesPromoterTrait
     }
 
     /**
+     * get append values for repository
+     *
+     * @return array
+     */
+    public function appends() : array
+    {
+        return [];
+    }
+
+    /**
      * get entity for repository
      *
      * @return Customer
