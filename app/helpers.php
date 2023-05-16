@@ -48,6 +48,18 @@ if (!function_exists('days')) {
     }
 }
 
+if (!function_exists('setInstruction')) {
+
+    /**
+     * @param array $data
+     * @return void
+     */
+    function setInstruction(array $data = []): void
+    {
+        AppContainer::set(Constants::responseFormatterSupplement,$data);
+    }
+}
+
 if (!function_exists('httpMethod')) {
 
     /**

@@ -27,7 +27,7 @@ abstract class PermissionManager
      */
     public function getEndpointPermission() : array
     {
-        return Role::permission($this->endpoint)->get();
+        return Role::permission()->get();
     }
 
     /**
