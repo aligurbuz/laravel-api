@@ -6,7 +6,6 @@ namespace App\Repositories;
 
 use App\Facades\Authenticate\ApiKey;
 use App\Facades\Authenticate\Authenticate;
-use App\Facades\Role\Role;
 use App\Services\Client;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -31,13 +30,7 @@ trait GeneralPromoterTrait
      */
     public function globalAppends() : array
     {
-        $list = [];
-
-        if(ApiKey::isAdmin()){
-            $list['accessible'] = Role::permission()->get();
-        }
-
-        return $list;
+        return [];
     }
 
     /**
