@@ -32,17 +32,15 @@ class Role
      */
     public static function isAdmin(?callable $callback = null): bool
     {
-        return AppContainer::use('isAdmin',static function() use($callback) {
-            $isAdminValue = (static::get())['is_administrator'] ?? false;
+        $isAdminValue = (static::get())['is_administrator'] ?? false;
 
-            $isAdmin = checkBool($isAdminValue);
+        $isAdmin = checkBool($isAdminValue);
 
-            if ($isAdmin && is_callable($callback)) {
-                return $callback($isAdmin);
-            }
+        if ($isAdmin && is_callable($callback)) {
+            return $callback($isAdmin);
+        }
 
-            return $isAdmin;
-        });
+        return $isAdmin;
     }
 
     /**
