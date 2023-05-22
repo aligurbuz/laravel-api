@@ -16,7 +16,7 @@ class UpdateClient extends Client
      *
      * @var array
      */
-    protected array $capsule = [];
+    protected array $capsule = ['gender', 'age'];
 
     /**
      * get model entity validation
