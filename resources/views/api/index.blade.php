@@ -1183,6 +1183,8 @@ wget --no-check-certificate --quiet \
                                                     $crColumnList = [];
 
 
+                                                    $crModelCode = null;
+
                                                     foreach ($extraPostQueries as $extraClientKey => $crValue){
                                                         $crValueSplit = explode('.',$crValue);
                                                         if(!isset($crValueSplit[2]) && $method=='POST'){
@@ -1197,13 +1199,25 @@ wget --no-check-certificate --quiet \
                                                         $crModel = $crMaps[$crValue]['model'] ?? 'none';
                                                         $crModelFile = \App\Constants::modelNamespace.'\\'.ucfirst($crModel);
                                                         if(class_exists($crModelFile)){
-                                                            $crModelTable = (new $crModelFile)->getTable();
+                                                            $crModelInstance = (new $crModelFile);
+                                                            $crModelCode = $crModelInstance->getRepository()->getModelCode();
+                                                            $crModelTable = $crModelInstance->getTable();
                                                             $crEntities = \App\Services\Db::entities($crModelTable);
                                                             $crColumns = $crEntities['columns'] ?? [];
                                                             $crBooleanValues = $crEntities['boolean_values'] ?? [];
+                                                            $crBooleanValueKeys[$extraClientKey[0]] = $crBooleanValues;
                                                             $crTypes = $crEntities['types'] ?? [];
+                                                            $crTypeKeys[$extraClientKey[0]] = $crTypes;
                                                             $crComments = $crEntities['comments'] ?? [];
+                                                            $crCommentKeys[$extraClientKey[0]] = $crComments;
                                                             $crRequireds = $crEntities['required_columns'] ?? [];
+                                                            $crRequiredKeys[$extraClientKey[0]] = $crEntities['required_columns'] ?? [];
+                                                            $crModelCodeKey = (array_keys($crColumns,$crModelCode))[0] ?? 0;
+
+                                                            if($method=='PUT'){
+                                                                $crColumnList[$extraClientKey[0]][$crModelCodeKey] = $crModelCode;
+                                                                $crRequiredKeys[$extraClientKey[0]][] = $crModelCode;
+                                                            }
 
                                                             foreach ($crColumns as $crColumnKey => $crColumn){
                                                                 if(
@@ -1223,7 +1237,6 @@ wget --no-check-certificate --quiet \
                                                             }
                                                         }
                                                     }
-
 
                                                 }
 
@@ -1310,6 +1323,7 @@ wget --no-check-certificate --quiet \
                                                     </tbody>
                                                 </table>
 
+
                                                 @foreach($crColumnList as $cckey => $ccitems)
 
                                                     <h3 style="color: #22863a;">{{ucfirst($cckey)}} Parameters:</h3>
@@ -1331,22 +1345,22 @@ wget --no-check-certificate --quiet \
                                                                 <td><code class="language-plaintext highlighter-rouge">{{$ccItemData}}</code></td>
 
 
-                                                                @if(in_array($ccItemData,$crBooleanValues,true))
+                                                                @if(in_array($ccItemData,$crBooleanValueKeys[$cckey],true))
                                                                     <td><code class="language-plaintext highlighter-rouge">boolean</code></td>
 
                                                                 @else
-                                                                    <td><code class="language-plaintext highlighter-rouge">{{$crTypes[$ccItemKey] ?? 'string'}}</code></td>
+                                                                    <td><code class="language-plaintext highlighter-rouge">{{$crTypeKeys[$cckey][$ccItemKey] ?? 'string'}}</code></td>
 
                                                                 @endif
 
 
-                                                                @if(in_array($ccItemData,$crRequireds,true))
+                                                                @if(in_array($ccItemData,$crRequiredKeys[$cckey],true))
                                                                     <td><code class="language-plaintext highlighter-rouge">true</code></td>
                                                                 @else
                                                                     <td><code class="language-plaintext highlighter-rouge">false</code></td>
                                                                 @endif
 
-                                                                <td><code class="language-plaintext highlighter-rouge">{{$crComments[$ccItemKey] ?? ''}}</code></td>
+                                                                <td><code class="language-plaintext highlighter-rouge">{{$crCommentKeys[$cckey][$ccItemKey] ?? ''}}</code></td>
 
                                                             </tr>
 
