@@ -54,14 +54,14 @@ trait ResourceRepository
                 $result['data'] = $this->resourcePropagation($result['data']);
             }
 
-            if(method_exists($this,'appends')){
+            if (method_exists($this, 'appends')) {
                 $appends = $this->appends();
 
-                if(method_exists($this,'globalAppends')){
-                    $appends = array_merge($this->globalAppends(),$this->appends());
+                if (method_exists($this, 'globalAppends')) {
+                    $appends = array_merge($this->globalAppends(), $this->appends());
                 }
 
-                return $this->source(array_merge($result,$appends));
+                return $this->source(array_merge($result, $appends));
             }
 
             return $this->source($result);
@@ -74,20 +74,19 @@ trait ResourceRepository
      * @param array $result
      * @return array
      */
-    public function source(array $result = []) : array
+    public function source(array $result = []): array
     {
-        if(request()->query->has('source')){
+        if (request()->query->has('source')) {
             $source = request()->query->get('source');
             $relationData = $this->getTable();
 
-            if(isset($result['data'])){
-                foreach ($result['data'] as $key => $value){
-                    if(isset($value[$source][0])){
+            if (isset($result['data'])) {
+                foreach ($result['data'] as $key => $value) {
+                    if (isset($value[$source][0])) {
                         $result['data'][$key] = $value[$source][0];
                         unset($value[$source]);
                         $result['data'][$key][$relationData] = [$value];
-                    }
-                    else{
+                    } else {
                         Exception::customException('notSource', ['key' => $key]);
                     }
                 }
@@ -308,14 +307,16 @@ trait ResourceRepository
     {
         if (property_exists($resource, 'attributes') && is_array($resource->attributes)) {
             foreach ($resource->attributes as $attribute) {
-                if (method_exists($resource, $attribute)) {
-                    $attributeHandler = $resource->$attribute($item);
-                    if (is_null($attributeHandler)) {
-                        unset($item[$attribute]);
-                    } else {
-                        $item[$attribute] = $attributeHandler;
+                clientAttribute($attribute, static function () use ($attribute, $resource, &$item) {
+                    if (method_exists($resource, $camelAttribute = Str::camel($attribute))) {
+                        $attributeHandler = $resource->$camelAttribute($item);
+                        if (is_null($attributeHandler)) {
+                            unset($item[$attribute]);
+                        } else {
+                            $item[$attribute] = $attributeHandler;
+                        }
                     }
-                }
+                });
             }
         }
         return $item;
