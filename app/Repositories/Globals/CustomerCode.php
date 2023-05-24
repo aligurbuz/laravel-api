@@ -48,10 +48,10 @@ class CustomerCode extends GlobalSupporter
     /**
      * handler for global scope process
      *
-     * @param $column
+     * @param string $column
      * @return object
      */
-    public function web($column): object
+    public function web(string $column): object
     {
         return $this->builder->where($column, customerCode());
     }

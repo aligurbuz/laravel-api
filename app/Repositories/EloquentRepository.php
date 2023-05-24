@@ -877,6 +877,18 @@ class EloquentRepository
     }
 
     /**
+     * Determines whether the request
+     * is itself based on the repository "code space" value.
+     *
+     * @param string $codeColumn
+     * @return bool
+     */
+    public function isSelf(string $codeColumn): bool
+    {
+        return $this->getModelCode() === $codeColumn;
+    }
+
+    /**
      * get dummy data for eloquent repository
      *
      * @return array
