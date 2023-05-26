@@ -16,6 +16,7 @@ return [
         "Countries/Districts"   => "It contains the data serving the districts connected to the cities.Districts are strictly associated with city_code.So be careful with your (city_code) value when saving a district.",
         "Support/Excel"         => 'It is the endpoint that allows you to import your Excel files into the specified tables.Your post requests are queued and your due files will be saved in the relevant tables through the queue.',
         "Password/Changes"      => 'This endpoint will send a one-time code via email or sms when the user forgets their login information.You can update your password with this code. There is a code execution time. Expired code will be unavailable. (Note: First, the POST method must be request. Sms or email will be sent via this http method. The password can be changed by sending the incoming code via PUT method) ',
+        "Definition/Genders"    => 'This endpoint generally includes the genders present in the world. This table is empty by default and the customer is expected to fill it herself. The system is not responsible for unnecessary genders. All names will be registered uniquely. The service throws an exception when the same name is registered a second time.',
 
     ],
 
