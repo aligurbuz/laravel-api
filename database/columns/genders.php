@@ -1,5 +1,5 @@
 <?php return [
-        'comments' => ["","","gender definition (male,femal etc..)","0:active 1:passive","0:notDeleted 1:deleted","","","","","",""],
+        'comments' => ["","","gender definition (male,female etc..)","0:active 1:passive","0:notDeleted 1:deleted","","","","","",""],
         'columns' => ["id","gender_code","name","status","is_deleted","created_by","updated_by","deleted_by","deleted_at","created_at","updated_at"],
         'indexes' => ["id","gender_code"],
         'types' => ["integer","integer","string","integer","integer","integer","integer","integer","timestamp","timestamp","timestamp"],
