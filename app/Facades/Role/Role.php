@@ -32,6 +32,7 @@ class Role
      */
     public static function isAdmin(?callable $callback = null): bool
     {
+        //Never remove isAdmin container execution.
         $isAdminValue = AppContainer::use('isAdmin', static function () {
             return (static::get())['is_administrator'] ?? false;
         });
