@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 declare(strict_types=1);
 
@@ -6,6 +6,11 @@ namespace App\Repositories\Resources\Definition\PropertyHandlers;
 
 trait GendersPropertyHandlerTrait
 {
+    /**
+     * @var bool
+     */
+    protected bool $paginator = false;
+
 	/**
 	 * get client ranges for repository
 	 *
