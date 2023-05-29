@@ -37,7 +37,7 @@ trait GendersPropertyHandlerTrait
 	 *
 	 * @var array
 	 */
-	protected array $deniedEagerLoadings = [];
+	protected array $deniedEagerLoadings = ['all'];
 
 	/**
 	 * get auto eager loading values for repository

@@ -177,7 +177,9 @@ class EloquentRepository
     public function detectDeniedEagerLoadings(array $with = []): void
     {
         foreach ($with as $relation => $data) {
-            if (in_array($relation, $this->getDeniedEagerLoadings(), true)) {
+            $deniedEagerLoadings = $this->getDeniedEagerLoadings();
+
+            if (in_array($relation, $deniedEagerLoadings, true) || in_array('all', $deniedEagerLoadings, true)) {
                 Exception::customException(trans('exception.deniedEagerLoadings', ['key' => $relation]));
             }
 
