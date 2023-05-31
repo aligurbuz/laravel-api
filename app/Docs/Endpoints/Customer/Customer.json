@@ -88,7 +88,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"string\",\"email\":\"string\",\"email_verified_at\":\"timestamp\",\"status\":\"0\",\"is_deleted\":\"0\",\"password\":\"string\",\"remember_token\":\"string\"}",
+                            "raw": "{\"name\":\"string\",\"email\":\"string\",\"email_verified_at\":\"NULL\",\"status\":\"0\",\"is_deleted\":\"0\",\"password\":\"string\",\"remember_token\":\"NULL\"}",
                             "options": {
                                 "raw": {
                                     "language": "json"
@@ -141,7 +141,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"customer_code\":\"integer\",\"name\":\"string\",\"email\":\"string\",\"email_verified_at\":\"timestamp\",\"status\":\"1\",\"is_deleted\":\"0\",\"password\":\"string\",\"remember_token\":\"string\"}",
+                            "raw": "{\"customer_code\":\"integer\",\"name\":\"string\",\"email\":\"string\",\"email_verified_at\":\"NULL\",\"status\":\"1\",\"is_deleted\":\"0\",\"password\":\"string\",\"remember_token\":\"NULL\"}",
                             "options": {
                                 "raw": {
                                     "language": "json"
