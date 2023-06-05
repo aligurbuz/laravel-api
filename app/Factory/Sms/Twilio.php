@@ -97,7 +97,7 @@ class Twilio extends SmsManager implements SmsInterface
                 )
             ];
         } catch (Exception $exception) {
-            AppException::customException($exception->getMessage(), [], true);
+            AppException::customException($exception->getMessage(), []);
             return [];
         }
 
