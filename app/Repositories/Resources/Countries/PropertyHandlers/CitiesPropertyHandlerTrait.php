@@ -32,7 +32,7 @@ trait CitiesPropertyHandlerTrait
      *
      * @var array
      */
-    protected array $deniedEagerLoadings = [];
+    protected array $deniedEagerLoadings = ['districts'];
 
     /**
      * get auto eager loading values for repository
