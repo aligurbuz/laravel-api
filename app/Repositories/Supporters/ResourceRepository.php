@@ -50,6 +50,10 @@ trait ResourceRepository
                 unset($result['links']);
             }
 
+
+            $result = !isset($result['data']) ? ['data' => $result] : $result;
+
+
             if (isset($result['data']) && !request()->query->has('source')) {
                 $result['data'] = $this->resourcePropagation($result['data']);
             }
