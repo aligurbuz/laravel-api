@@ -1156,6 +1156,8 @@ wget --no-check-certificate --quiet \
                                                     $clientCapsule = $clientClass->getClientCapsule();
                                                     $clientCapsuleDescriptions = $clientClass->getCapsuleDescriptions();
                                                     $clientRule = $clientClass->getRule();
+                                                    $getClientCapsuleComments = $clientClass->getCapsuleComments();
+
 
                                                     $clientCapsuleList = [];
 
@@ -1253,6 +1255,7 @@ wget --no-check-certificate --quiet \
                                                     </thead>
                                                     <tbody>
 
+
                                                     @foreach($raw as $field=> $type)
                                                         <tr>
                                                             <td><code class="language-plaintext highlighter-rouge">{{$field}}</code></td>
@@ -1312,7 +1315,12 @@ wget --no-check-certificate --quiet \
                                                                 @if(isset($clientCapsuleDescriptions[$field]))
                                                                     <td>{{$clientCapsuleDescriptions[$field]}}</td>
                                                                 @else
-                                                                    <td>{{$comments[$field] ?? ''}}</td>
+                                                                    @if(isset($getClientCapsuleComments[$field]))
+                                                                        <td>{{$getClientCapsuleComments[$field]}}</td>
+                                                                    @else
+                                                                        <td>{{$comments[$field] ?? ''}}</td>
+                                                                        @endif
+
                                                                 @endif
 
                                                             @endif
