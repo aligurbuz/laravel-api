@@ -1327,12 +1327,14 @@ wget --no-check-certificate --quiet \
                                                 @foreach($crColumnList as $cckey => $ccitems)
 
                                                     <h3 style="color: #22863a;">{{ucfirst($cckey)}} Parameters:</h3>
-                                                    <p><b>The values of the key named as ({{$cckey}}) in the body parameter are listed below.</b></p>
+                                                    <p><b>The values of the key named as ({{$cckey}}) in the body parameter are listed below.</b><br>
+                                                        Sample client value to be sent to the service: <br> <a style="color: #22863a; font-weight: bold;">"{{$cckey}}" : [{"clientParameter": "value"}] </a>
+                                                    </p>
 
                                                     <table>
                                                         <thead>
                                                         <tr>
-                                                            <th style="width:200px; background-color: #999988;">{{$cckey}} Parameters</th>
+                                                            <th style="width:200px; background-color: #999988;">Client Parameter</th>
                                                             <th style ="background-color: #999988;">Type</th>
                                                             <th style ="background-color: #999988;">Required</th>
                                                             <th style ="background-color: #999988;">Description</th>
