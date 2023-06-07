@@ -18,7 +18,7 @@ class UpdateClient extends Client
      *
      * @var array
      */
-    protected array $capsule = ['gender', 'age'];
+    protected array $capsule = ['gender', 'age', 'contact'];
 
     /**
      * get model entity validation
@@ -32,5 +32,9 @@ class UpdateClient extends Client
      *
      * @var array
      */
-    protected array $rule = ['customer_code' => 'required|integer'];
+    protected array $rule = [
+        'customer_code' => 'required|integer',
+        'gender' => 'array',
+        'contact' => 'array',
+    ];
 }
