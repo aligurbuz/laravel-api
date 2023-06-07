@@ -1365,7 +1365,7 @@ wget --no-check-certificate --quiet \
 
 
                                                                 @if(in_array($ccItemData,$crRequiredKeys[$cckey],true))
-                                                                    <td><code class="language-plaintext highlighter-rouge">true</code></td>
+                                                                    <td style="background-color: #ddffdd;"><code class="language-plaintext highlighter-rouge">true</code></td>
                                                                 @else
                                                                     <td><code class="language-plaintext highlighter-rouge">false</code></td>
                                                                 @endif
