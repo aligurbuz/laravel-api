@@ -20,6 +20,11 @@ class GetClient extends Client
 	 */
 	protected array $capsule = [];
 
+    protected array $capsuleComments = [
+        'email' => 'Represents the user\'s email address for filtering.',
+        'hash' => 'Represents the hash value required for the validator. It is sent to the user by the system.',
+    ];
+
 	/**
 	 * get model entity validation
 	 *
@@ -34,6 +39,6 @@ class GetClient extends Client
 	 */
 	protected array $rule = [
         'email' => 'required',
-        'hash' => 'required'
+        'hash' => 'required',
     ];
 }
