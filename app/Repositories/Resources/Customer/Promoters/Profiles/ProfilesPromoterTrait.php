@@ -6,6 +6,7 @@ namespace App\Repositories\Resources\Customer\Promoters\Profiles;
 
 use App\Models\Entities\Customer;
 use App\Repositories\EloquentRepository;
+use App\Services\Client;
 
 trait ProfilesPromoterTrait
 {
@@ -58,10 +59,7 @@ trait ProfilesPromoterTrait
             ]
         ];
 
-
-        $request = request()->query->all();
-
-        request()->query->replace(array_merge_recursive($request,$queryAdd));
+        Client::mergeQuery($queryAdd);
     }
 
     /**

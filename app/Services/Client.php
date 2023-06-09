@@ -197,4 +197,19 @@ class Client
 
         return $content;
     }
+
+    /**
+     * merges client query data with data
+     *
+     * @param array $data
+     * @return array
+     */
+    public static function mergeQuery(array $data = []) : array
+    {
+        $request = request()->query->all();
+
+        request()->query->replace(array_merge_recursive($request,$data));
+
+        return request()->query->all();
+    }
 }
