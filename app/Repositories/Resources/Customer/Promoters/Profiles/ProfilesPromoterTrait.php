@@ -58,7 +58,10 @@ trait ProfilesPromoterTrait
             ]
         ];
 
-        request()->query->add($queryAdd);
+
+        $request = request()->query->all();
+
+        request()->query->replace(array_merge_recursive($request,$queryAdd));
     }
 
     /**
