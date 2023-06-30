@@ -20,9 +20,9 @@ class DeploymentController extends Controller
      */
     public function handle(): string
     {
-        $deployKey = request()->segment(2);
+        $deployKey = request()?->segment(2);
 
-        if ($deployKey == config('deployment.key')) {
+        if ($deployKey === config('deployment.key')) {
             $deployment = exec('cd ' . base_path() . ' && git pull origin ' . $this->branch);
             Factory::notify()->deployment($deployment);
 
