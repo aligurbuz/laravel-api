@@ -1293,9 +1293,10 @@ wget --no-check-certificate --quiet \
                                                                         @php
 
                                                                         $crequired = \Illuminate\Support\Str::contains($clientRule[$field],'required') ? 'true' : 'false';
+                                                                        $crequiredColors = ($crequired==='true') ? 'style="background-color: #ddffdd;"' : '';
 
                                                                         @endphp
-                                                                        <td style="background-color: #ddffdd;"><code class="language-plaintext highlighter-rouge">{{$crequired}}</code></td>
+                                                                        <td {{$crequiredColors}}><code class="language-plaintext highlighter-rouge">{{$crequired}}</code></td>
                                                                     @else
                                                                         <td><code class="language-plaintext highlighter-rouge">false</code></td>
                                                                         @endif
