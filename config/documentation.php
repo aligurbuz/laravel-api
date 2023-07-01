@@ -30,7 +30,7 @@ return [
         //'all' => ['GET','PUT'],
         //'countries/districts' => ['GET','PUT','POST'],
         'registration' => ['GET','PUT'],
-        'support/excel' => ['GET','PUT'],
+        'support/excel' => ['GET','PUT']
     ],
     'exceptMethodKeys' => [
         'password/changes' => [

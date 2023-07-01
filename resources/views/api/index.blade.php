@@ -647,12 +647,36 @@ wget --no-check-certificate --quiet \
                 @endif
                 @elseif(!is_null($action))
 
+                    @php
+
+                    $configDocumentationExceptMethods = config('documentation.exceptMethods');
+                    @endphp
                     <article id="article" role="main" class="max-w-full md:block md:w-10/14">
 
                         @if(count($postman['item'][$action]['item'])>1)
                             <select class="endpointselects" name="endpoints" style="border: 1px solid #ccc; height: 40px;">
                                 @foreach($postman['item'][$action]['item'] as $selectItem)
-                                    <option value="layer_{{md5($selectItem['name'])}}">{{$selectItem['name']}}</option>
+                                    @if(isset($selectItem['item'][0]['name']))
+                                        @php
+                                        $realName = $selectItem['item'][0]['name'];
+                                        $realNameSplit = explode('/',$realName);
+                                        $realNameNormalization = strtolower($realNameSplit[0]).'/'.strtolower($realNameSplit[1]);
+
+                                        @endphp
+
+                                        @if(isset($configDocumentationExceptMethods[$realNameNormalization]))
+                                            @if(count($configDocumentationExceptMethods[$realNameNormalization])!==3)
+                                                <option value="layer_{{md5($selectItem['name'])}}">{{$selectItem['name']}}</option>
+                                            @endif
+                                        @else
+                                            <option value="layer_{{md5($selectItem['name'])}}">{{$selectItem['name']}}</option>
+                                        @endif
+
+                                    @else
+                                        <option value="layer_{{md5($selectItem['name'])}}">{{$selectItem['name']}}</option>
+
+                                        @endif
+
 
                                 @endforeach
                             </select>
