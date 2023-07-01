@@ -660,7 +660,12 @@ wget --no-check-certificate --quiet \
                                         @php
                                         $realName = $selectItem['item'][0]['name'];
                                         $realNameSplit = explode('/',$realName);
-                                        $realNameNormalization = strtolower($realNameSplit[0]).'/'.strtolower($realNameSplit[1]);
+                                        if(isset($realNameSplit[1])){
+                                            $realNameNormalization = strtolower($realNameSplit[0]).'/'.strtolower($realNameSplit[1]);
+                                        }
+                                        else{
+                                           $realNameNormalization = strtolower($realNameSplit[0]);
+                                        }
 
                                         @endphp
 
