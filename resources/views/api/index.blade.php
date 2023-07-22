@@ -1436,6 +1436,89 @@ wget --no-check-certificate --quiet \
 
                                                         @endforeach
 
+                                                        @php
+                                                            $capsuleInCapsulePost = [];
+                                                            $capsuleInCapsulePut = [];
+
+                                                                if($method=='POST'){
+                                                                       $getCapInCap = $crModelInstance->getRepository()->client('post');
+                                                                       $capsuleInCapsulePost = $getCapInCap->getClientCapsule();
+                                                                       $capsuleInCapsulePostRules = $getCapInCap->getRule();
+                                                                       $capsuleInCapsulePostDescriptions = $getCapInCap->getCapsuleDescriptions();
+                                                                   }
+
+                                                                if($method=='PUT'){
+                                                                       $getCapInCap = $crModelInstance->getRepository()->client('put');
+                                                                       $capsuleInCapsulePut = $getCapInCap->getClientCapsule();
+                                                                       $capsuleInCapsulePutRules = $getCapInCap->getRule();
+                                                                       $capsuleInCapsulePutDescriptions = $getCapInCap->getCapsuleDescriptions();
+                                                                   }
+                                                        @endphp
+
+                                                        @foreach($capsuleInCapsulePost as $capsPost)
+
+                                                            @php
+                                                                $capType = '';
+                                                                $capRequired = 'false';
+                                                                $capDesc = $capsuleInCapsulePostDescriptions[$capsPost] ?? '';
+                                                                if(isset($capsuleInCapsulePostRules[$capsPost])){
+                                                                    $capRules = [];
+                                                                    if(is_array($capsuleInCapsulePostRules[$capsPost])){
+                                                                        $capRules = $capsuleInCapsulePostRules[$capsPost];
+                                                                    }
+
+                                                                    if(is_string($capsuleInCapsulePostRules[$capsPost])){
+                                                                        $capRules = explode('|',$capsuleInCapsulePostRules[$capsPost]);
+                                                                    }
+
+                                                                    if(in_array('required',$capRules)){
+                                                                        $capRequired = 'true';
+                                                                        $capRequiredKey = array_search('required',$capRules);
+                                                                        unset($capRules[$capRequiredKey]);
+                                                                    }
+                                                                }
+                                                            @endphp
+
+                                                            <tr>
+                                                                <td><code class="language-plaintext highlighter-rouge">{{$capsPost}}</code></td>
+                                                                <td><code class="language-plaintext highlighter-rouge">{{implode('|',$capRules)}}</code></td>
+                                                                <td><code class="language-plaintext highlighter-rouge">{{$capRequired}}</code></td>
+                                                                <td><code class="language-plaintext highlighter-rouge">{{$capDesc}}</code></td>
+                                                            </tr>
+                                                        @endforeach
+
+                                                        @foreach($capsuleInCapsulePut as $capsPost)
+
+                                                            @php
+                                                                $capType = '';
+                                                                $capRequired = 'false';
+                                                                $capDesc = $capsuleInCapsulePutDescriptions[$capsPost] ?? '';
+                                                                if(isset($capsuleInCapsulePutRules[$capsPost])){
+                                                                    $capRules = [];
+                                                                    if(is_array($capsuleInCapsulePutRules[$capsPost])){
+                                                                        $capRules = $capsuleInCapsulePutRules[$capsPost];
+                                                                    }
+
+                                                                    if(is_string($capsuleInCapsulePutRules[$capsPost])){
+                                                                        $capRules = explode('|',$capsuleInCapsulePutRules[$capsPost]);
+                                                                    }
+
+                                                                    if(in_array('required',$capRules)){
+                                                                        $capRequired = 'true';
+                                                                        $capRequiredKey = array_search('required',$capRules);
+                                                                        unset($capRules[$capRequiredKey]);
+                                                                    }
+                                                                }
+                                                            @endphp
+
+                                                            <tr>
+                                                                <td><code class="language-plaintext highlighter-rouge">{{$capsPost}}</code></td>
+                                                                <td><code class="language-plaintext highlighter-rouge">{{implode('|',$capRules)}}</code></td>
+                                                                <td><code class="language-plaintext highlighter-rouge">{{$capRequired}}</code></td>
+                                                                <td><code class="language-plaintext highlighter-rouge">{{$capDesc}}</code></td>
+                                                            </tr>
+                                                        @endforeach
+
                                                         </tbody>
                                                     </table>
                                                 @endforeach
