@@ -1458,11 +1458,11 @@ wget --no-check-certificate --quiet \
                                                         @foreach($capsuleInCapsulePost as $capsPost)
 
                                                             @php
+                                                                $capRules = [];
                                                                 $capType = '';
                                                                 $capRequired = 'false';
                                                                 $capDesc = $capsuleInCapsulePostDescriptions[$capsPost] ?? '';
                                                                 if(isset($capsuleInCapsulePostRules[$capsPost])){
-                                                                    $capRules = [];
                                                                     if(is_array($capsuleInCapsulePostRules[$capsPost])){
                                                                         $capRules = $capsuleInCapsulePostRules[$capsPost];
                                                                     }
