@@ -4,12 +4,14 @@ namespace App\Client\Localizations\Language\Get;
 
 use App\Client\Client;
 use App\Client\ClientAutoGeneratorTrait;
+use App\Client\Localizations\Language\LanguageMainSupport;
 use App\Models\Language;
 
 class GetClient extends Client
 {
     use GeneratorTrait;
     use ClientAutoGeneratorTrait;
+    use LanguageMainSupport;
 
     /**
      * get capsule for client

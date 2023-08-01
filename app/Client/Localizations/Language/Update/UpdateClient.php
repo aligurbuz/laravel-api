@@ -4,12 +4,14 @@ namespace App\Client\Localizations\Language\Update;
 
 use App\Client\Client;
 use App\Client\ClientAutoGeneratorTrait;
+use App\Client\Localizations\Language\LanguageMainSupport;
 use App\Models\Language;
 
 class UpdateClient extends Client
 {
     use GeneratorTrait;
     use ClientAutoGeneratorTrait;
+    use LanguageMainSupport;
 
     /**
      * get capsule for client
