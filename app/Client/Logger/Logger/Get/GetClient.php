@@ -4,11 +4,13 @@ namespace App\Client\Logger\Logger\Get;
 
 use App\Client\Client;
 use App\Client\ClientAutoGeneratorTrait;
+use App\Client\Logger\Logger\LoggerMainSupport;
 
 class GetClient extends Client
 {
     use GeneratorTrait;
     use ClientAutoGeneratorTrait;
+    use LoggerMainSupport;
 
     /**
      * get capsule for client

@@ -4,11 +4,13 @@ namespace App\Client\Logger\Logger\Update;
 
 use App\Client\Client;
 use App\Client\ClientAutoGeneratorTrait;
+use App\Client\Logger\Logger\LoggerMainSupport;
 
 class UpdateClient extends Client
 {
     use GeneratorTrait;
     use ClientAutoGeneratorTrait;
+    use LoggerMainSupport;
 
     /**
      * get capsule for client
