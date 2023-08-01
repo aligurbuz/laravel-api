@@ -4,12 +4,14 @@ namespace App\Client\Timezones\Timezones\Get;
 
 use App\Client\Client;
 use App\Client\ClientAutoGeneratorTrait;
+use App\Client\Timezones\Timezones\TimezonesMainSupport;
 use App\Models\Timezone;
 
 class GetClient extends Client
 {
     use GeneratorTrait;
     use ClientAutoGeneratorTrait;
+    use TimezonesMainSupport;
 
     /**
      * get capsule for client
