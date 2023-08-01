@@ -4,12 +4,14 @@ namespace App\Client\Mix\TableChanges\Get;
 
 use App\Client\Client;
 use App\Client\ClientAutoGeneratorTrait;
+use App\Client\Mix\TableChanges\TableChangesMainSupport;
 use App\Models\TableChange;
 
 class GetClient extends Client
 {
     use GeneratorTrait;
     use ClientAutoGeneratorTrait;
+    use TableChangesMainSupport;
 
     /**
      * get capsule for client
