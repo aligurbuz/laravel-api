@@ -6,6 +6,7 @@ namespace App\Services\Response;
 
 use App\Constants;
 use App\Facades\Authenticate\ApiKey;
+use App\Facades\Role\Role;
 use App\Services\AppContainer;
 use Exception;
 use Throwable;
@@ -50,6 +51,7 @@ class Response extends ResponseSupport
             'responseCode' => static::responseCode(),
             'resource' => static::getResourceData($data),
             'instructions' => AppContainer::get(Constants::responseFormatterSupplement),
+            'permissions' => Role::permission(endpoint())->get(),
         ];
 
         if (isProduction()) {
