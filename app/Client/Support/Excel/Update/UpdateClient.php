@@ -4,12 +4,14 @@ namespace App\Client\Support\Excel\Update;
 
 use App\Client\Client;
 use App\Client\ClientAutoGeneratorTrait;
+use App\Client\Support\Excel\ExcelMainSupport;
 use App\Models\Excel;
 
 class UpdateClient extends Client
 {
     use GeneratorTrait;
     use ClientAutoGeneratorTrait;
+    use ExcelMainSupport;
 
     /**
      * get capsule for client
