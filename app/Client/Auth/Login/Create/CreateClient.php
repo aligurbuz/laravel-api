@@ -2,6 +2,7 @@
 
 namespace App\Client\Auth\Login\Create;
 
+use App\Client\Auth\Login\LoginMainSupport;
 use App\Client\Client;
 use App\Client\ClientAutoGeneratorTrait;
 
@@ -9,6 +10,7 @@ class CreateClient extends Client
 {
     use GeneratorTrait;
     use ClientAutoGeneratorTrait;
+    use LoginMainSupport;
 
     /**
      * get capsule for client
