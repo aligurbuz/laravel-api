@@ -4,12 +4,14 @@ namespace App\Client\Registration\Registration\Create;
 
 use App\Client\Client;
 use App\Client\ClientAutoGeneratorTrait;
+use App\Client\Registration\Registration\RegistrationMainSupport;
 use App\Models\Registration;
 
 class CreateClient extends Client
 {
     use GeneratorTrait;
     use ClientAutoGeneratorTrait;
+    use RegistrationMainSupport;
 
     /**
      * get capsule for client
