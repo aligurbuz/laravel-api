@@ -4,6 +4,7 @@ namespace App\Client\User\User\Update;
 
 use App\Client\Client;
 use App\Client\ClientAutoGeneratorTrait;
+use App\Client\User\User\UserMainSupport;
 use App\Exceptions\Exception;
 use App\Facades\Authenticate\Authenticate;
 use App\Facades\Role\Role;
@@ -15,7 +16,9 @@ use App\Models\User;
  */
 class UpdateClient extends Client
 {
-    use GeneratorTrait, ClientAutoGeneratorTrait;
+    use GeneratorTrait;
+    use ClientAutoGeneratorTrait;
+    use UserMainSupport;
 
     /**
      * get capsule for client

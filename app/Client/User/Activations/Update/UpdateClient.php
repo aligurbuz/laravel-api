@@ -4,12 +4,14 @@ namespace App\Client\User\Activations\Update;
 
 use App\Client\Client;
 use App\Client\ClientAutoGeneratorTrait;
+use App\Client\User\Activations\ActivationsMainSupport;
 use App\Models\UserActivation;
 
 class UpdateClient extends Client
 {
     use GeneratorTrait;
     use ClientAutoGeneratorTrait;
+    use ActivationsMainSupport;
 
     /**
      * get capsule for client

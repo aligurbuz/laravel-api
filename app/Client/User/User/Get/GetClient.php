@@ -4,6 +4,7 @@ namespace App\Client\User\User\Get;
 
 use App\Client\Client;
 use App\Client\ClientAutoGeneratorTrait;
+use App\Client\User\User\UserMainSupport;
 use App\Models\User;
 
 /**
@@ -12,7 +13,9 @@ use App\Models\User;
  */
 class GetClient extends Client
 {
-    use GeneratorTrait, ClientAutoGeneratorTrait;
+    use GeneratorTrait;
+    use ClientAutoGeneratorTrait;
+    use UserMainSupport;
 
     /**
      * get capsule for client

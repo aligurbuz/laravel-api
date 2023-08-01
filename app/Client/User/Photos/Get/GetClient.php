@@ -4,12 +4,14 @@ namespace App\Client\User\Photos\Get;
 
 use App\Client\Client;
 use App\Client\ClientAutoGeneratorTrait;
+use App\Client\User\Photos\PhotosMainSupport;
 use App\Models\UserPhoto;
 
 class GetClient extends Client
 {
     use GeneratorTrait;
     use ClientAutoGeneratorTrait;
+    use PhotosMainSupport;
 
     /**
      * get capsule for client
