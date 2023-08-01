@@ -50,12 +50,11 @@ class Response extends ResponseSupport
             'env' => config('app.env'),
             'responseCode' => static::responseCode(),
             'resource' => static::getResourceData($data),
-            'instructions' => AppContainer::get(Constants::responseFormatterSupplement),
-            'permissions' => Role::permission(endpoint())->get(),
+            'instructions' => AppContainer::get(Constants::responseFormatterSupplement)
         ];
 
-        if (isProduction()) {
-            unset($standard['instructions']);
+        if(isAuthenticate() && ApiKey::isAdmin()){
+            $standard['permission'] = Role::permission(endpoint())->get();
         }
 
         return static::response($standard, $code);

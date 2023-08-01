@@ -4,6 +4,7 @@ return [
     'web' => [
         'login' => ['POST'],
         'countries/*' => ['GET'],
+        'currencies/*' => ['GET'],
         'customer/profiles' => ['POST'],
         'global' => ['GET','POST'],
         //'password/changes' => ['GET','POST'],
