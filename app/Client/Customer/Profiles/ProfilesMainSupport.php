@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Client\Customer;
+namespace App\Client\Customer\Profiles;
 
-trait CustomerMainSupport
+trait ProfilesMainSupport
 {
     /**
      * @var array|string[]

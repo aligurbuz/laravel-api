@@ -1,15 +1,17 @@
-<?php 
+<?php
 
 namespace App\Client\Customer\Contacts\Create;
 
 use App\Client\Client;
 use App\Client\ClientAutoGeneratorTrait;
+use App\Client\Customer\Contacts\ContactsMainSupport;
 use App\Models\CustomerContact;
 
 class CreateClient extends Client
 {
 	use GeneratorTrait;
 	use ClientAutoGeneratorTrait;
+    use ContactsMainSupport;
 
 	/**
 	 * get capsule for client

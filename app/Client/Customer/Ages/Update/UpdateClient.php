@@ -4,12 +4,14 @@ namespace App\Client\Customer\Ages\Update;
 
 use App\Client\Client;
 use App\Client\ClientAutoGeneratorTrait;
+use App\Client\Customer\Ages\AgesMainSupport;
 use App\Models\CustomerAge;
 
 class UpdateClient extends Client
 {
     use GeneratorTrait;
     use ClientAutoGeneratorTrait;
+    use AgesMainSupport;
 
     /**
      * get capsule for client
