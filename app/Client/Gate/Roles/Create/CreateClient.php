@@ -4,12 +4,14 @@ namespace App\Client\Gate\Roles\Create;
 
 use App\Client\Client;
 use App\Client\ClientAutoGeneratorTrait;
+use App\Client\Gate\Roles\RolesMainSupport;
 use App\Models\Role;
 
 class CreateClient extends Client
 {
     use GeneratorTrait;
     use ClientAutoGeneratorTrait;
+    use RolesMainSupport;
 
     /**
      * get capsule for client

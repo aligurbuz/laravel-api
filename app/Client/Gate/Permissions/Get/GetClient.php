@@ -4,12 +4,14 @@ namespace App\Client\Gate\Permissions\Get;
 
 use App\Client\Client;
 use App\Client\ClientAutoGeneratorTrait;
+use App\Client\Gate\Permissions\PermissionsMainSupport;
 use App\Models\Permission;
 
 class GetClient extends Client
 {
     use GeneratorTrait;
     use ClientAutoGeneratorTrait;
+    use PermissionsMainSupport;
 
     /**
      * get capsule for client

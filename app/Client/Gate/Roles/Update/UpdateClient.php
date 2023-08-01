@@ -4,12 +4,14 @@ namespace App\Client\Gate\Roles\Update;
 
 use App\Client\Client;
 use App\Client\ClientAutoGeneratorTrait;
+use App\Client\Gate\Roles\RolesMainSupport;
 use App\Models\Role;
 
 class UpdateClient extends Client
 {
     use GeneratorTrait;
     use ClientAutoGeneratorTrait;
+    use RolesMainSupport;
 
     /**
      * get capsule for client
