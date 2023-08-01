@@ -4,12 +4,14 @@ namespace App\Client\Countries\Countries\Update;
 
 use App\Client\Client;
 use App\Client\ClientAutoGeneratorTrait;
+use App\Client\Countries\Countries\CountriesMainSupport;
 use App\Models\Country;
 
 class UpdateClient extends Client
 {
     use GeneratorTrait;
     use ClientAutoGeneratorTrait;
+    use CountriesMainSupport;
 
     /**
      * get capsule for client

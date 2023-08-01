@@ -4,12 +4,14 @@ namespace App\Client\Countries\Cities\Create;
 
 use App\Client\Client;
 use App\Client\ClientAutoGeneratorTrait;
+use App\Client\Countries\Cities\CitiesMainSupport;
 use App\Models\City;
 
 class CreateClient extends Client
 {
     use GeneratorTrait;
     use ClientAutoGeneratorTrait;
+    use CitiesMainSupport;
 
     /**
      * get capsule for client

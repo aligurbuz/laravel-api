@@ -4,12 +4,14 @@ namespace App\Client\Countries\Districts\Get;
 
 use App\Client\Client;
 use App\Client\ClientAutoGeneratorTrait;
+use App\Client\Countries\Districts\DistrictsMainSupport;
 use App\Models\District;
 
 class GetClient extends Client
 {
     use GeneratorTrait;
     use ClientAutoGeneratorTrait;
+    use DistrictsMainSupport;
 
     /**
      * get capsule for client
