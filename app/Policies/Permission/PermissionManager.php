@@ -2,6 +2,7 @@
 
 namespace App\Policies\Permission;
 
+use App\Facades\Role\Permission;
 use App\Facades\Role\Role;
 use App\Factory\Factory;
 
@@ -21,13 +22,35 @@ abstract class PermissionManager
     }
 
     /**
+     * get permission facade instance
+     *
+     * @return Permission
+     */
+    public function permission() : Permission
+    {
+        return Role::permission();
+    }
+
+    /**
      * get endpoint permission values
      *
      * @return array
      */
-    public function getEndpointPermission() : array
+    public function getEndpointPermission(): array
     {
-        return Role::permission()->get();
+        return $this->permission()->get();
+    }
+
+    /**
+     * Changes the HTTP Method value of the existing permission information.
+     *
+     * @param string $http
+     * @param bool $value
+     * @return void
+     */
+    public function setEndpointPermission(string $http, bool $value) : void
+    {
+        $this->permission()->assign($http,$value);
     }
 
     /**
@@ -55,7 +78,7 @@ abstract class PermissionManager
      */
     public function __call($name, $arguments): bool
     {
-        $withMethod = httpMethod() .ucfirst($name);
+        $withMethod = httpMethod() . ucfirst($name);
 
         if (method_exists($this, 'init')) {
             $this->init();

@@ -34,7 +34,9 @@ class Permission
         $role = $data['roles'] ?? [];
 
         if (!is_null($this->endpoint)) {
-            $role = $role[$this->code()] ?? [];
+            $role = AppContainer::use('endpointPermission_'.$this->endpoint,function() use($role){
+                 return $role[$this->code()] ?? [];
+            });
         }
 
         return array_map(static function($value){
@@ -72,5 +74,22 @@ class Permission
 
             return $endpointPermission[0]['permission_code'] ?? 0;
         });
+    }
+
+    /**
+     * Changes the HTTP Method value of the existing permission information.
+     *
+     * @param string $http
+     * @param bool $value
+     * @return void
+     */
+    public function assign(string $http, bool $value) : void
+    {
+        if($this->has($http)){
+            $permission = $this->get();
+            $permission[$http] = $value;
+
+            AppContainer::setWithTerminating('endpointPermission_'.$this->endpoint,$permission);
+        }
     }
 }
