@@ -62,15 +62,15 @@ class Permission
     /**
      * get permission code for facade
      *
-     * @return int|null
+     * @return int
      */
-    public function code(): ?int
+    public function code(): int
     {
         return AppContainer::use('permissionCode_'.$this->endpoint, function () {
             $endpointPermission = Repository::permission()
                 ->endpoint($this->endpoint)->select(['permission_code'])->getRepository();
 
-            return $endpointPermission[0]['permission_code'] ?? null;
+            return $endpointPermission[0]['permission_code'] ?? 0;
         });
     }
 }
