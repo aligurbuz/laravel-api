@@ -67,7 +67,7 @@ abstract class PermissionManager
         // if the exceptionKey value is not null, it means that we will give a special exception message.
         // this value is controlled in the Middleware Permission class.
         if (!is_null($exceptionKey)) {
-            AppContainer::setWithTerminating('permissionException', $exceptionKey);
+            AppContainer::setWithTerminating(strtolower($http).'PermissionException', $exceptionKey);
         }
     }
 
@@ -109,6 +109,7 @@ abstract class PermissionManager
             // if the permission is set to false,
             // the rule is that endpoint must be stopped and throw an exception.
             if ($this->negativePermission) {
+                $this->negativePermission = false;
                 return false;
             }
         }

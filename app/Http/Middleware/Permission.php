@@ -29,10 +29,12 @@ class Permission
     public function handle(Request $request, Closure $next): mixed
     {
         if ($this->isPermissionFail()) {
+            $httpPermissionMessage = httpMethod().'PermissionException';
+
             // if the permissionException value has in container,
             // it means that we will give a special exception message.
-            if(AppContainer::has('permissionException')){
-                return throw new CustomException(AppContainer::get('permissionException'),Constants::error403);
+            if(AppContainer::has($httpPermissionMessage)){
+                return throw new CustomException(AppContainer::get($httpPermissionMessage),Constants::error403);
             }
 
             return Exception::permissionException('', endpoint());
