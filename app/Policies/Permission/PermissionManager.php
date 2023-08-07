@@ -99,6 +99,8 @@ abstract class PermissionManager
         if (method_exists($this, $initStandardName = 'init'.$standardName)) {
             $this->$initStandardName();
 
+            // if the permission is set to false,
+            // the rule is that endpoint must be stopped and throw an exception.
             if($this->negativePermission) {
                 return false;
             }
