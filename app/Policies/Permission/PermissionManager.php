@@ -50,18 +50,17 @@ abstract class PermissionManager
      * Changes the HTTP Method value of the existing permission information.
      *
      * @param string $http
-     * @param bool $value
      * @return void
      */
-    public function setEndpointPermission(string $http, bool $value) : void
+    public function setEndpointNegativePermission(string $http) : void
     {
         // if the permission is set to false,
         // the rule is that endpoint must be stopped and throw an exception.
-        if(false===$value && $http === strtoupper(httpMethod())) {
+        if($http === strtoupper(httpMethod())) {
             $this->negativePermission = true;
         }
 
-        $this->permission()->assign($http,$value);
+        $this->permission()->assign($http,false);
     }
 
     /**

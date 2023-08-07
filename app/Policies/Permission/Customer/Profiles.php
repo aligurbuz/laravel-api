@@ -10,6 +10,6 @@ trait Profiles
      */
     public function initCustomerProfiles(): void
     {
-        //$this->setEndpointPermission('POST', false);
+        //$this->setEndpointNegativePermission('POST');
     }
 }
