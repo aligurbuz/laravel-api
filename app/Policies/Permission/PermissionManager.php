@@ -72,6 +72,27 @@ abstract class PermissionManager
     }
 
     /**
+     * It will execute the Endpoint method for
+     * the specified HTTP method and put the value into the container.
+     *
+     * @param string $http
+     * @return bool
+     */
+    public function container(string $http) : bool
+    {
+        $standardMethod = $http .ucfirst($this->endpoint);
+
+        if(method_exists($this,$standardMethod)){
+            $callMethod = $this->{$standardMethod}();
+            AppContainer::setWithTerminating($standardMethod.'Permission',$callMethod);
+
+            return $callMethod;
+        }
+
+        return ($this->getEndpointPermission())[strtoupper($http)] ?? true;
+    }
+
+    /**
      * get endpoint for permission
      *
      * @return string
@@ -115,7 +136,9 @@ abstract class PermissionManager
         }
 
         if (method_exists($this, $withMethod)) {
-            return $this->$withMethod();
+            return AppContainer::use($withMethod.'Permission',function() use($withMethod){
+                return $this->$withMethod();
+            });
         }
 
         if (method_exists($this, $name)) {
