@@ -14,6 +14,11 @@ abstract class PermissionManager
     protected ?string $endpoint = null;
 
     /**
+     * @var bool
+     */
+    protected bool $negativePermission = false;
+
+    /**
      * constructor for permission facade
      */
     public function __construct()
@@ -50,6 +55,12 @@ abstract class PermissionManager
      */
     public function setEndpointPermission(string $http, bool $value) : void
     {
+        // if the permission is set to false,
+        // the rule is that endpoint must be stopped and throw an exception.
+        if(false===$value && $http === strtoupper(httpMethod())) {
+            $this->negativePermission = true;
+        }
+
         $this->permission()->assign($http,$value);
     }
 
@@ -87,6 +98,10 @@ abstract class PermissionManager
 
         if (method_exists($this, $initStandardName = 'init'.$standardName)) {
             $this->$initStandardName();
+
+            if($this->negativePermission) {
+                return false;
+            }
         }
 
         if (method_exists($this, $withMethod)) {
