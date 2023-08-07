@@ -24,7 +24,7 @@ class PermissionException extends Exception
      * @param int $code
      * @param Throwable|null $previous
      */
-    public function __construct($message = "permission exception", $code = Constants::error403, Throwable $previous = null)
+    public function __construct(string $message = "permission exception", int $code = Constants::error403, Throwable $previous = null)
     {
         parent::__construct($getMessage = $this->setMessage($message), $code, $previous);
 

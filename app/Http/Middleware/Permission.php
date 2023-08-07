@@ -2,8 +2,11 @@
 
 namespace App\Http\Middleware;
 
+use App\Constants;
+use App\Exceptions\Custom\CustomException;
 use App\Exceptions\Exception;
 use App\Policies\Permission\Permission as PermissionFacade;
+use App\Services\AppContainer;
 use Closure;
 use Illuminate\Http\Request;
 
@@ -20,10 +23,18 @@ class Permission
      * @param Request $request
      * @param Closure $next
      * @return mixed
+     *
+     * @throws CustomException
      */
     public function handle(Request $request, Closure $next): mixed
     {
-        if ($this->permissionCondition()) {
+        if ($this->isPermissionFail()) {
+            // if the permissionException value has in container,
+            // it means that we will give a special exception message.
+            if(AppContainer::has('permissionException')){
+                return throw new CustomException(AppContainer::get('permissionException'),Constants::error403);
+            }
+
             return Exception::permissionException('', endpoint());
         }
 
@@ -35,7 +46,7 @@ class Permission
      *
      * @return bool
      */
-    private function permissionCondition() : bool
+    private function isPermissionFail() : bool
     {
         $endpoint = endpoint(true);
 

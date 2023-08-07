@@ -5,6 +5,7 @@ namespace App\Policies\Permission;
 use App\Facades\Role\Permission;
 use App\Facades\Role\Role;
 use App\Factory\Factory;
+use App\Services\AppContainer;
 
 abstract class PermissionManager
 {
@@ -31,7 +32,7 @@ abstract class PermissionManager
      *
      * @return Permission
      */
-    public function permission() : Permission
+    public function permission(): Permission
     {
         return Role::permission();
     }
@@ -50,17 +51,24 @@ abstract class PermissionManager
      * Changes the HTTP Method value of the existing permission information.
      *
      * @param string $http
+     * @param string|null $exceptionKey
      * @return void
      */
-    public function setEndpointNegativePermission(string $http) : void
+    public function setEndpointNegativePermission(string $http, ?string $exceptionKey = null): void
     {
         // if the permission is set to false,
         // the rule is that endpoint must be stopped and throw an exception.
-        if($http === strtoupper(httpMethod())) {
+        if ($http === strtoupper(httpMethod())) {
             $this->negativePermission = true;
         }
 
-        $this->permission()->assign($http,false);
+        $this->permission()->assign($http, false);
+
+        // if the exceptionKey value is not null, it means that we will give a special exception message.
+        // this value is controlled in the Middleware Permission class.
+        if (!is_null($exceptionKey)) {
+            AppContainer::setWithTerminating('permissionException', $exceptionKey);
+        }
     }
 
     /**
@@ -95,12 +103,12 @@ abstract class PermissionManager
             $this->init();
         }
 
-        if (method_exists($this, $initStandardName = 'init'.$standardName)) {
+        if (method_exists($this, $initStandardName = 'init' . $standardName)) {
             $this->$initStandardName();
 
             // if the permission is set to false,
             // the rule is that endpoint must be stopped and throw an exception.
-            if($this->negativePermission) {
+            if ($this->negativePermission) {
                 return false;
             }
         }
