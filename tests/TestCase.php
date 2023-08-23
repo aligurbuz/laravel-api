@@ -49,12 +49,28 @@ abstract class TestCase extends BaseTestCase
     }
 
     /**
+     * get api key for test
+     *
+     * @return string
+     */
+    public function getApiKey() : string
+    {
+        $apiKey = config('apikey.admin');
+
+        if($apiKey === ''){
+            throw new \RuntimeException('admin api key is not valid');
+        }
+
+        return $apiKey;
+    }
+
+    /**
      * @return string[]
      */
     public function headers() : array
     {
         return [
-            'Apikey' => '36a43836036ead1a475de70bab62ba5c',
+            'Apikey' => $this->getApiKey(),
             'Content-Type' => 'application/json',
             'Accept-Language' => 'en'
         ];
@@ -66,7 +82,7 @@ abstract class TestCase extends BaseTestCase
     public function headersWithAuthorization() : array
     {
         return [
-            'Apikey' => '36a43836036ead1a475de70bab62ba5c',
+            'Apikey' => $this->getApiKey(),
             'Content-Type' => 'application/json',
             'Accept-Language' => 'en',
             'Authorization' => 'Bearer '.$this->getToken()
