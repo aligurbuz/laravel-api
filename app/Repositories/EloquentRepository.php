@@ -869,6 +869,21 @@ class EloquentRepository
     }
 
     /**
+     * it adds to builder not deleted data.
+     *
+     * @param object|null $builder
+     * @return object
+     */
+    public function deleted(?object $builder = null): object
+    {
+        $this->ensureColumnExists('is_deleted', $this->instance(), function () use ($builder) {
+            $this->repository = $this->builder($builder)->where('is_deleted', 1);
+        });
+
+        return $this;
+    }
+
+    /**
      * get fakers for eloquent repository
      *
      * @return array

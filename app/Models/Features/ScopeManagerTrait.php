@@ -23,6 +23,7 @@ trait ScopeManagerTrait
         'active' => 'It filters according to the status=1 value for your object.',
         'sequence' => 'It sorts by sequence value. This means changeable sorting.',
         'notDeleted' => 'Filters undeleted data.',
+        'deleted' => 'Filters deleted data.',
     ];
 
     /**
