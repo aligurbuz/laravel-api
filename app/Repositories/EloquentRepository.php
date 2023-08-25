@@ -28,6 +28,7 @@ use Throwable;
 /**
  * Class EloquentRepository
  * @property $limit
+ * @property bool $paginator
  * @package App\Repositories
  * @method bigIntegerFaker()
  * @method bigInteger()
@@ -143,7 +144,7 @@ class EloquentRepository
      */
     public function setAutoEagerLoadings(): void
     {
-        $with = request()->query('with', []);
+        $with = request()?->query('with', []);
 
         $this->detectDeniedEagerLoadings($with);
 
@@ -485,7 +486,7 @@ class EloquentRepository
      */
     private function paginationHandler(): int
     {
-        $limit = request()->query('limit', $this->pagination);
+        $limit = request()?->query('limit', $this->pagination);
 
         if (!is_numeric($limit)) {
             Exception::customException(trans('exception.limitException'));
@@ -1289,7 +1290,7 @@ class EloquentRepository
     {
         return SqlExceptionManager::make($throwable, $this->getTable(), static function () use ($throwable) {
             return Exception::modelCreateException(
-                is_null($throwable->getPrevious()) ? $throwable->getMessage() : $throwable->getPrevious()->getMessage()
+                is_null($throwable->getPrevious()) ? $throwable->getMessage() : $throwable->getPrevious()?->getMessage()
             );
         });
     }
@@ -1421,7 +1422,7 @@ class EloquentRepository
 
         if (in_array($name, $this->getModelWithValues(), true)) {
             if (isset($args[0]) && is_string($args[0])) {
-                if (request()->method() === $args[0]) {
+                if (request()?->method() === $args[0]) {
                     $this->withBindings[$name] = (static function ($query) {
                     });
                     $this->with();
