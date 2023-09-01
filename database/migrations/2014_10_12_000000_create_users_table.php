@@ -3,9 +3,6 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
-use App\Services\Date;
 
 class CreateUsersTable extends Migration
 {
@@ -30,23 +27,6 @@ class CreateUsersTable extends Migration
             $table->timestamps();
             $table->index(['email','password']);
         });
-
-        DB::table('users')->delete();
-        $users = [
-          [
-              'id' => 1,
-              'user_code' => crc32(config('app.name').'_1user'),
-              'username' => 'username',
-              'name' => 'userTest',
-              'email' => 'test@gmail.com',
-              'password' => Hash::make(123456),
-              'status' => 1,
-              'created_at' => Date::now()->toDateTimeString(),
-              'updated_at' => Date::now()->toDateTimeString(),
-          ]
-        ];
-
-        DB::table('users')->insert($users);
     }
 
     /**
