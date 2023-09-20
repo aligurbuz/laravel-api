@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Exceptions\Exception;
 use App\Services\AppContainer;
+use App\Services\Commands\AddColumnForDatabaseCommand;
 use App\Services\Commands\AppNameCommand;
 use App\Services\Commands\ClientCommand;
 use App\Services\Commands\ControllerCommand;
@@ -61,6 +62,7 @@ class AppServiceProvider extends ServiceProvider
         $this->commands([ServiceCommand::class]);
         $this->commands([SupervisorCommand::class]);
         $this->commands([UpdateMigrationCommand::class]);
+        $this->commands([AddColumnForDatabaseCommand::class]);
     }
 
     /**
