@@ -98,6 +98,8 @@ class AddColumnForDatabaseCommand extends Command
         File::put($lastMigration,$x);
 
         Artisan::call('migrate');
+        Artisan::call('update:migration',['model' => $model]);
+        Artisan::call('update:migration',['model' => $model]);
 
         return 0;
     }
