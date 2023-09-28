@@ -50,10 +50,7 @@ class Db extends Model
         $columnPath = base_path('database/columns/' . $table . '.php');
 
         if (file_exists($columnPath)) {
-            if (!isset(static::$paths[$columnPath])) {
-                static::$paths[$columnPath] = File::getRequire($columnPath);
-            }
-            return static::$paths[$columnPath];
+            return File::getRequire($columnPath);
         }
 
         return [];
