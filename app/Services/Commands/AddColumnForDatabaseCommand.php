@@ -2,9 +2,13 @@
 
 namespace App\Services\Commands;
 
+use App\Constants;
+use App\Exceptions\Exception;
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 
 class AddColumnForDatabaseCommand extends Command
 {
@@ -40,6 +44,14 @@ class AddColumnForDatabaseCommand extends Command
     public function handle()
     {
         $model = $this->ask('Model name');
+        $modelNamespace = Constants::modelNamespace.'\\'.ucfirst($model);
+
+        if(!class_exists($modelNamespace)){
+            Exception::customException('model name is not valid');
+        }
+
+        $table = (new $modelNamespace)->getTable();
+
         $column = $this->ask('Column name');
         $columnType = $this->ask('Column type','string');
 
@@ -48,8 +60,44 @@ class AddColumnForDatabaseCommand extends Command
         }
 
         $columnDefault = $this->ask('Column default value','nullable');
-        $AfterColumn = $this->ask('After which column should it be added?');
-        $comment = $this->ask('Column Comment');
+        $AfterColumn = $this->ask('After which column should it be added?','id');
+        $comment = $this->ask('Column Comment','');
+
+        $name = 'addColumnNamed'.ucfirst($column) .ucfirst($table).'Table';
+
+        Artisan::call('make:migration',['name'=> $name,'--table' => $table]);
+
+        $migrationDirectories = File::allFiles(base_path('Database/Migrations'));
+
+        foreach ($migrationDirectories as $directory) {
+            $migrationFiles = [];
+            $migrationFiles[] = $directory->getFilename();
+        }
+
+        $lastMigration = base_path('Database/Migrations').'/'.$migrationFiles[0];
+        $lastFilePath = File::get($lastMigration);
+
+        $definition = '$table->'.$columnType.'(\''.$column.'\')';
+
+        if($columnDefault==='nullable'){
+            $definition = $definition.'->nullable()';
+        }
+        else{
+            $definition = $definition.'->default(\''.$columnDefault.'\')';
+        }
+
+        $definition = $definition.'->after(\''.$AfterColumn.'\')';
+
+        $definition = $definition.'->comment(\''.$comment.'\')';
+
+        $definition = $definition.';';
+
+        $x = str_replace("Schema::table('customers', function (Blueprint \$table) {\n","Schema::table('customers', function (Blueprint \$table) {
+            {$definition} \n",$lastFilePath);
+
+        File::put($lastMigration,$x);
+
+        Artisan::call('migrate');
 
         return 0;
     }
