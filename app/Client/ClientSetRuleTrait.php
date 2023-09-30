@@ -34,23 +34,35 @@ trait ClientSetRuleTrait
      */
     private function setRanges(): void
     {
-        if (!ApiKey::isAdmin()) {
-            $range = request()?->query('range', '');
-            $range = replaceSpace($range);
+        $range = request()?->query('range', '');
+        $range = replaceSpace($range);
+
+        if(!ApiKey::isAdmin()){
             $range = str_replace(',deleted','',$range);
+        }
 
-            $rangeList = explode(',', $range);
+        $rangeList = explode(',', $range);
 
-            if (!in_array('active', $rangeList, true)) {
-                if (strlen($range) > 0) {
-                    $range = $range . ',active';
-                } else {
-                    $range = 'active';
-                }
-
-                request()->query->remove('range');
-                request()->query->add(['range' => $range]);
+        if (!in_array('desc', $rangeList, true) && !in_array('asc', $rangeList, true)) {
+            if (strlen($range) > 0) {
+                $range = $range . ',desc';
+            } else {
+                $range = 'desc';
             }
+
+            request()->query->remove('range');
+            request()->query->add(['range' => $range]);
+        }
+
+        if (!in_array('active', $rangeList, true)) {
+            if (strlen($range) > 0) {
+                $range = $range . ',active';
+            } else {
+                $range = 'active';
+            }
+
+            request()->query->remove('range');
+            request()->query->add(['range' => $range]);
         }
     }
 
