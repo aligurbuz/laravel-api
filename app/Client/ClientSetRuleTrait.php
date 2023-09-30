@@ -35,8 +35,12 @@ trait ClientSetRuleTrait
     private function setRanges(): void
     {
         if (!ApiKey::isAdmin()) {
-            $range = request()->query('range', '');
+            $range = request()?->query('range', '');
+            $range = replaceSpace($range);
+            $range = str_replace(',deleted','',$range);
+
             $rangeList = explode(',', $range);
+
             if (!in_array('active', $rangeList, true)) {
                 if (strlen($range) > 0) {
                     $range = $range . ',active';

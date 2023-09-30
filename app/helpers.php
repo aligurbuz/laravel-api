@@ -4,6 +4,7 @@ use App\Constants;
 use App\Exceptions\Exception;
 use App\Facades\Authenticate\ApiKey;
 use App\Factory\Factory;
+use App\Http\Controllers\DoodleController;
 use App\Models\Entities\EntityMap;
 use App\Repositories\EloquentRepository;
 use App\Repositories\Repository;
@@ -15,6 +16,7 @@ use App\Services\HashGenerator;
 use App\Services\Iterators\Days;
 use App\Services\Redis;
 use App\Services\Request\Request as HttpRequest;
+use App\Services\Response\Response as ResponseService;
 use App\Services\Service;
 use Faker\Generator;
 use Illuminate\Support\Collection;
@@ -23,8 +25,6 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 use JetBrains\PhpStorm\Pure;
-use App\Http\Controllers\DoodleController;
-use App\Services\Response\Response as ResponseService;
 
 if (!function_exists('dod')) {
 
@@ -34,6 +34,27 @@ if (!function_exists('dod')) {
     function dod(): mixed
     {
         return (new DoodleController())->handle();
+    }
+}
+
+if (!function_exists('replaceSpace')) {
+
+    /**
+     * @param string $string
+     * @param string $seperate
+     * @return string
+     */
+    function replaceSpace(string $string, string $seperate = ','): string
+    {
+        $stringExplode = explode($seperate,$string);
+
+        $list = [];
+
+        foreach ($stringExplode as  $value){
+            $list[] = trim($value);
+        }
+
+        return implode(',',$list);
     }
 }
 
@@ -56,7 +77,7 @@ if (!function_exists('setInstruction')) {
      */
     function setInstruction(array $data = []): void
     {
-        AppContainer::set(Constants::responseFormatterSupplement,$data);
+        AppContainer::set(Constants::responseFormatterSupplement, $data);
     }
 }
 
