@@ -2,8 +2,8 @@
 
 namespace App\Policies\Permission;
 
-use App\Facades\Role\Permission;
-use App\Facades\Role\Role;
+use App\Facades\Database\Role\Permission;
+use App\Facades\Database\Role\Role;
 use App\Factory\Factory;
 use App\Services\AppContainer;
 

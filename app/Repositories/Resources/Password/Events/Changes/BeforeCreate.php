@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Repositories\Resources\Password\Events\Changes;
 
-use App\Facades\Authenticate\User;
+use App\Facades\Database\Authenticate\User;
 
 trait BeforeCreate
 {

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Repositories\Globals;
 
-use App\Facades\Authenticate\Authenticate;
+use App\Facades\Database\Authenticate\Authenticate;
 use App\Repositories\EloquentRepository;
 use App\Repositories\Supporters\GlobalSupporter;
 use Illuminate\Database\Eloquent\Builder;

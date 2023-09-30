@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Api\Registration;
 
-use App\Facades\Email\Email;
+use App\Facades\Support\Email\Email;
 
 trait RegistrationSupportTrait
 {

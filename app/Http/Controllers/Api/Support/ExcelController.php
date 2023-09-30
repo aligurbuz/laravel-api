@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Api\Support;
 
 use App\Client\Support\Excel\Create\CreateClient;
-use App\Facades\Excel\Excel;
+use App\Facades\Support\Excel\Excel;
 use App\Http\Controllers\Api\ApiController;
 use App\Repositories\Resources\Support\Contracts\ExcelRepositoryContract;
 

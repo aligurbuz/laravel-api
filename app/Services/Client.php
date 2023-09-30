@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Services;
 
-use App\Facades\Authenticate\ApiKey;
-use App\Facades\Authenticate\Authenticate;
+use App\Facades\Database\Authenticate\ApiKey;
+use App\Facades\Database\Authenticate\Authenticate;
 use App\Repositories\Repository;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;

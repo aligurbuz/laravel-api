@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\Client;
 
 use App\Exceptions\Exception;
-use App\Facades\Authenticate\ApiKey;
-use App\Facades\Authenticate\Authenticate;
-use App\Facades\Role\Role;
+use App\Facades\Database\Authenticate\ApiKey;
+use App\Facades\Database\Authenticate\Authenticate;
+use App\Facades\Database\Role\Role;
 use App\Factory\Factory;
 use App\Services\AppContainer;
 use App\Services\Date;

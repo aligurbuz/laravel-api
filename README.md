@@ -799,7 +799,7 @@ then let's write a code like this to our generator.
 
 namespace App\Client\User\Comment\Create;
 
-use App\Facades\Authenticate\Authenticate;
+use App\Facades\Database\Authenticate\Authenticate;
 
 trait GeneratorTrait
 {
@@ -863,7 +863,7 @@ See the results below.
 
 namespace App\Client\User\Comment\Create;
 
-use App\Facades\Authenticate\Authenticate;
+use App\Facades\Database\Authenticate\Authenticate;
 
 trait GeneratorTrait
 {

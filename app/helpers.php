@@ -2,7 +2,7 @@
 
 use App\Constants;
 use App\Exceptions\Exception;
-use App\Facades\Authenticate\ApiKey;
+use App\Facades\Database\Authenticate\ApiKey;
 use App\Factory\Factory;
 use App\Http\Controllers\DoodleController;
 use App\Models\Entities\EntityMap;

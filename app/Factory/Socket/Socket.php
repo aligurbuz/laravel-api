@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Factory\Socket;
 
-use App\Facades\Http\Socket\Socket as RequestSocket;
+use App\Facades\Support\Http\Socket\Socket as RequestSocket;
 use App\Factory\Socket\Interfaces\SocketInterface;
 
 /**

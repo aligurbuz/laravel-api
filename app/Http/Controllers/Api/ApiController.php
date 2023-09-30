@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Exceptions\Exception;
-use App\Facades\Authenticate\ApiKey;
-use App\Facades\Authenticate\Guard;
+use App\Facades\Database\Authenticate\ApiKey;
+use App\Facades\Database\Authenticate\Guard;
 use App\Factory\Factory;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;

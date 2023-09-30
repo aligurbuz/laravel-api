@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Factory\App\Resource\CustomerCode;
 
-use App\Facades\Authenticate\Authenticate;
+use App\Facades\Database\Authenticate\Authenticate;
 use App\Factory\App\AppManager;
 
 /**

@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Services\Response;
 
 use App\Constants;
-use App\Facades\Authenticate\ApiKey;
-use App\Facades\Role\Role;
+use App\Facades\Database\Authenticate\ApiKey;
+use App\Facades\Database\Role\Role;
 use App\Services\AppContainer;
 use Exception;
 use Throwable;

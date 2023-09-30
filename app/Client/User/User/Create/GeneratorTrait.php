@@ -2,9 +2,6 @@
 
 namespace App\Client\User\User\Create;
 
-use App\Facades\Role\Role;
-use App\Factory\Factory;
-
 trait GeneratorTrait
 {
     /**

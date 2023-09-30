@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Factory\Notify\Resource\Slack500Formatter;
 
-use App\Facades\Authenticate\ApiKey;
-use App\Facades\Authenticate\Authenticate;
+use App\Facades\Database\Authenticate\ApiKey;
+use App\Facades\Database\Authenticate\Authenticate;
 use App\Services\Date;
 use Throwable;
 

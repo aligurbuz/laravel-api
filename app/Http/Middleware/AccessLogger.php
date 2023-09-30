@@ -2,7 +2,7 @@
 
 namespace App\Http\Middleware;
 
-use App\Facades\Authenticate\ApiKey;
+use App\Facades\Database\Authenticate\ApiKey;
 use App\Factory\Factory;
 use App\Services\AppContainer;
 use Closure;

@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Repositories\Resources\Password\Promoters\Changes;
 
-use App\Facades\Authenticate\User;
-use App\Facades\Email\Email;
-use App\Facades\Faker\Faker;
-use App\Facades\Sms\Sms;
+use App\Facades\Database\Authenticate\User;
+use App\Facades\Support\Email\Email;
+use App\Facades\Support\Faker\Faker;
+use App\Facades\Support\Sms\Sms;
 use App\Models\Entities\PasswordChange;
 use App\Services\Date;
 

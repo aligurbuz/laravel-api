@@ -6,8 +6,8 @@ use App\Client\Client;
 use App\Client\ClientAutoGeneratorTrait;
 use App\Client\User\User\UserMainSupport;
 use App\Exceptions\Exception;
-use App\Facades\Authenticate\Authenticate;
-use App\Facades\Role\Role;
+use App\Facades\Database\Authenticate\Authenticate;
+use App\Facades\Database\Role\Role;
 use App\Models\User;
 
 /**

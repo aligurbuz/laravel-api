@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Client;
 
-use App\Facades\Authenticate\ApiKey;
+use App\Facades\Database\Authenticate\ApiKey;
 use App\Services\Db;
 
 /**

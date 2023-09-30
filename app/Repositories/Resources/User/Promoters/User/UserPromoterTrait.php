@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Repositories\Resources\User\Promoters\User;
 
-use App\Facades\Authenticate\Authenticate;
-use App\Facades\Role\Role;
+use App\Facades\Database\Authenticate\Authenticate;
+use App\Facades\Database\Role\Role;
 use App\Models\Entities\User;
 use App\Repositories\EloquentRepository;
 use App\Repositories\Globals\UserCode;

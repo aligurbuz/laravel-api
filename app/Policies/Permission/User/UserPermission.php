@@ -3,7 +3,7 @@
 namespace App\Policies\Permission\User;
 
 use App\Exceptions\Exception;
-use App\Facades\Role\Role;
+use App\Facades\Database\Role\Role;
 
 trait UserPermission
 {

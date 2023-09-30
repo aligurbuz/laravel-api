@@ -1,0 +1,39 @@
+<?php
+
+namespace App\Facades\Database\Authenticate;
+
+class Login
+{
+    /**
+     * the direct login request without two-factor for facade
+     *
+     * @param string|null $email
+     * @param string|null $password
+     * @return array
+     */
+    public static function attempt(?string $email = null, ?string $password = null): array
+    {
+        // this method overrides the two-authentication system.
+        return Authenticate::attempt($email, $password);
+    }
+
+    /**
+     * the login request for facade
+     *
+     * @param string|null $email
+     * @param string|null $password
+     * @return array
+     */
+    public static function attemptWithTwoFactor(?string $email = null, ?string $password = null): array
+    {
+        return Authenticate::attempt($email, $password, static function () {
+
+            // if the user validates with the two-factor system,
+            // we check it here with the Activation@twoFactor method.
+            // two-factory system : sms or email checking
+            return Activation::twoFactor(callback: static function () {
+                return Authenticate::createToken();
+            });
+        });
+    }
+}

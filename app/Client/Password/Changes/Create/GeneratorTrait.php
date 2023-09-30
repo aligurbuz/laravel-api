@@ -2,7 +2,7 @@
 
 namespace App\Client\Password\Changes\Create;
 
-use App\Facades\Faker\Faker;
+use App\Facades\Support\Faker\Faker;
 use App\Services\Date;
 use Exception;
 

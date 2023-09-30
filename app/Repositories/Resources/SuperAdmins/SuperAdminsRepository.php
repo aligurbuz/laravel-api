@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Repositories\Resources\SuperAdmins;
 
-use App\Facades\Authenticate\Authenticate;
+use App\Facades\Database\Authenticate\Authenticate;
 use App\Models\SuperAdmin;
 use App\Repositories\EloquentRepository;
 use App\Repositories\GeneralPromoterTrait;

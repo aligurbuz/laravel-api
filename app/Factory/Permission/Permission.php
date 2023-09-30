@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Factory\Permission;
 
-use App\Facades\Role\Role;
+use App\Facades\Database\Role\Role;
 use App\Factory\Permission\Interfaces\PermissionInterface;
 use App\Repositories\Repository;
 
