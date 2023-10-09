@@ -67,6 +67,11 @@ class AddColumnForDatabaseCommand extends Command
             $indexName = $this->ask('index name','default');
             $indexName = $indexName==='default' ? '' : $indexName;
         }
+        else{
+            $unique = $this->ask('Unique to be added?','no');
+            $uniqueName = $this->ask('unique name','default');
+            $uniqueName = $uniqueName==='default' ? '' : $uniqueName;
+        }
 
         $comment = $this->ask('Column Comment','');
 
@@ -97,6 +102,10 @@ class AddColumnForDatabaseCommand extends Command
 
         if($index==='yes'){
             $definition = $definition.'->index(\''.$indexName.'\')';
+        }
+
+        if($unique==='yes'){
+            $definition = $definition.'->unique(\''.$uniqueName.'\')';
         }
 
         $definition = $definition.'->comment(\''.$comment.'\')';
