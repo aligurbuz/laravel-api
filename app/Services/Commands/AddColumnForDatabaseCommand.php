@@ -61,6 +61,13 @@ class AddColumnForDatabaseCommand extends Command
 
         $columnDefault = $this->ask('Column default value','nullable');
         $AfterColumn = $this->ask('After which column should it be added?','id');
+        $index = $this->ask('Index to be added?','no');
+
+        if($index==='yes'){
+            $indexName = $this->ask('index name','default');
+            $indexName = $indexName==='default' ? '' : $indexName;
+        }
+
         $comment = $this->ask('Column Comment','');
 
         $name = 'addColumnNamed'.ucfirst($column) .ucfirst($table).'Table';
@@ -87,6 +94,10 @@ class AddColumnForDatabaseCommand extends Command
         }
 
         $definition = $definition.'->after(\''.$AfterColumn.'\')';
+
+        if($index==='yes'){
+            $definition = $definition.'->index(\''.$indexName.'\')';
+        }
 
         $definition = $definition.'->comment(\''.$comment.'\')';
 
