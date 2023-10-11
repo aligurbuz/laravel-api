@@ -27,6 +27,8 @@ class Example extends Command
      */
     public function handle()
     {
+        //throw new \Exception('aassa');
+
         return Command::SUCCESS;
     }
 }
