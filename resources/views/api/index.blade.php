@@ -62,9 +62,10 @@ Api Documentation
 
                 <div style="position:absolute; margin-top: -20px;">
                     <h2 class="tracking-wide mb-0 mt-0 text-xs leading-loose tracking-wide text-indigo-light uppercase">
-                        <a href="guide" target="__blank">User Guide</a></h2>
-                    <h2 class="tracking-wide mb-0 mt-0 text-xs leading-loose tracking-wide text-indigo-light uppercase">
                         <a href="doc">Get Started</a></h2>
+
+                    <h2 class="tracking-wide mb-0 mt-0 text-xs leading-loose tracking-wide text-indigo-light uppercase">
+                        <a href="guide" target="__blank">User Guide</a></h2>
 
                     <h2 class="tracking-wide mb-0 mt-0 text-xs leading-loose tracking-wide text-indigo-light uppercase">
                         <a href="doc?definition=queryParams">Query Parameters</a></h2>
