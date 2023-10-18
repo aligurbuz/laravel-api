@@ -62,6 +62,8 @@ Api Documentation
 
                 <div style="position:absolute; margin-top: -20px;">
                     <h2 class="tracking-wide mb-0 mt-0 text-xs leading-loose tracking-wide text-indigo-light uppercase">
+                        <a href="guide" target="__blank">User Guide</a></h2>
+                    <h2 class="tracking-wide mb-0 mt-0 text-xs leading-loose tracking-wide text-indigo-light uppercase">
                         <a href="doc">Get Started</a></h2>
 
                     <h2 class="tracking-wide mb-0 mt-0 text-xs leading-loose tracking-wide text-indigo-light uppercase">
@@ -71,7 +73,7 @@ Api Documentation
                         <a href="doc?action=Global">Global Requests</a></h2>
                 </div>
 
-                <br><br><br>
+                <br><br><br><br>
 
                 <ul class="list-reset mb-6 block pr-6">
                     <li class="block">

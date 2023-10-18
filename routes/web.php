@@ -18,6 +18,9 @@ use App\Http\Controllers\DoodleController;
 */
 
 Route::get('test',[DoodleController::class,'handle']);
+Route::get('guide', static function (){
+    return view('guide',[]);
+});
 
 Route::get('/doc', [DocumentationController::class,'index']);
 Route::post('/deployment/{key}', [DeploymentController::class,'handle']);
