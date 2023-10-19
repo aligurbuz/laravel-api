@@ -90,7 +90,7 @@ class Client extends ClientManager
     {
         $maxLength = Db::columnMaxLength($this->getTable());
 
-        if ($withoutMethod===true || request()->method() === 'POST') {
+        if ($withoutMethod === true || request()?->method() === 'POST') {
             $entities = Db::entities($this->getTable());
             $requiredColumns = $entities['required_columns'] ?? [];
 
@@ -101,7 +101,7 @@ class Client extends ClientManager
             }
         }
 
-        if (request()->method() !== 'GET') {
+        if (request()?->method() !== 'GET') {
             foreach ($maxLength as $maxLengthColumn => $maxLengthValue) {
                 $this->setRule($maxLengthColumn, 'max:' . $maxLengthValue, false);
             }
@@ -165,7 +165,7 @@ class Client extends ClientManager
             AppContainer::setWithTerminating('clientCapsule', (is_array($this->capsule) ? $this->capsule : []));
             $this->capsule = array_merge($this->columnsForModel(), $this->capsule);
 
-            if ($this->requestMethod == 'GET') {
+            if ($this->requestMethod === 'GET') {
                 $this->capsule = array_merge($this->capsule, config('app.allowedClientKeys'));
 
                 if (count($this->repository()->getCollects())) {
@@ -195,7 +195,9 @@ class Client extends ClientManager
     {
         $camelCaseModelName = Str::camel($this->getModelName());
 
-        if ($justName) return $camelCaseModelName;
+        if ($justName) {
+            return $camelCaseModelName;
+        }
 
         return Repository::$camelCaseModelName();
     }
@@ -260,18 +262,18 @@ class Client extends ClientManager
      *
      * @return array
      */
-    public function getRequireds() : array
+    public function getRequireds(): array
     {
         $rules = $this->getAllRule();
 
         $list = [];
 
-        foreach ($rules as $key => $rule){
-            if(is_string($rule) && Str::contains($rule,'required')){
+        foreach ($rules as $key => $rule) {
+            if (is_string($rule) && Str::contains($rule, 'required')) {
                 $list[] = $key;
             }
 
-            if(is_array($rule) && in_array('required',$rule,true)){
+            if (is_array($rule) && in_array('required', $rule, true)) {
                 $list[] = $key;
             }
         }
@@ -339,7 +341,7 @@ class Client extends ClientManager
      * @param $key
      * @param $value
      */
-    public function setProperty($key, $value)
+    public function setProperty($key, $value): void
     {
         $key = Str::camel($key);
         $this->{$key} = $value;
@@ -439,7 +441,7 @@ class Client extends ClientManager
      */
     public function getCapsuleDescriptions(): array
     {
-        return (property_exists($this, 'capsuleDescriptions') && is_array($this->capsuleDescriptions))
+        return (property_exists($this, 'capsuleDescriptions'))
             ? $this->capsuleDescriptions : [];
     }
 
@@ -484,7 +486,7 @@ class Client extends ClientManager
     public function ensureColumnExists($column, callable $callback): mixed
     {
         if (Db::ensureColumnExists($this->getTable(), $column)) {
-            return call_user_func($callback);
+            return $callback();
         }
 
         return null;
