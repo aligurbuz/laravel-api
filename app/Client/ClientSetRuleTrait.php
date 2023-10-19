@@ -34,10 +34,11 @@ trait ClientSetRuleTrait
      */
     private function setRanges(): void
     {
-        if (!ApiKey::isAdmin()) {
-            $range = request()?->query('range', '');
-            $rangeList = explode(',', $range);
+        $range = request()?->query('range', '');
+        $range = replaceSpace($range);
+        $rangeList = explode(',', $range);
 
+        if (!ApiKey::isAdmin()) {
             if(in_array('deleted',$rangeList,true)){
                 $rangeList = array_values(array_diff($rangeList,['deleted']));
             }
@@ -50,7 +51,7 @@ trait ClientSetRuleTrait
                 }
 
                 request()->query->remove('range');
-                request()->query->add(['range' => $range]);
+                request()->query->add(['range' => replaceSpace($range)]);
             }
         }
     }
@@ -91,7 +92,7 @@ trait ClientSetRuleTrait
      */
     private function setPasswordRule(): void
     {
-        if (request()->method() !== 'GET') {
+        if (request()?->method() !== 'GET') {
             $this->ensureColumnExists('password', function () {
                 $this->setRule('password', 'min:6|max:18');
             });
