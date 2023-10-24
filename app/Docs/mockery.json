@@ -11,7 +11,7 @@
     },
     "PUT_Localizations": {
         "body": {
-            "raw": "{\n    \"localization_code\": 111111,\n    \"language_code\": 11111\n}"
+            "raw": "{\n    \"localization_code\": 111111,\n    \"values\": [\n        {\n            \"name\" : \"newName\"\n        }\n    ]\n}"
         }
     }
 }
