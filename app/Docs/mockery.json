@@ -8,5 +8,10 @@
         "body": {
             "raw": "{\n    \"user\" : {\n        \"name\" : \"fullname\",\n        \"email\" : \"test@gmail.com\",\n        \"password\" : \"Ab123456\"\n    }\n}"
         }
+    },
+    "PUT_Localizations": {
+        "body": {
+            "raw": "{\n    \"localization_code\": 111111,\n    \"language_code\": 11111\n}"
+        }
     }
 }

@@ -1981,7 +1981,7 @@
                                 ],
                                 "body": {
                                     "mode": "raw",
-                                    "raw": "{\"is_deleted\":\"0\",\"language_code\":\"integer\",\"localization_code\":\"integer\",\"localized_code\":\"integer\",\"status\":\"1\",\"values\":\"array\"}",
+                                    "raw": "{\n    \"localization_code\": 111111,\n    \"language_code\": 11111\n}",
                                     "options": {
                                         "raw": {
                                             "language": "json"
