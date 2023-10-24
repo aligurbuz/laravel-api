@@ -13,6 +13,7 @@ use App\Services\Commands\DatabaseCreatorCommand;
 use App\Services\Commands\DbColumn;
 use App\Services\Commands\Documentation;
 use App\Services\Commands\DocumentationUpdate;
+use App\Services\Commands\DropColumnForDatabaseCommand;
 use App\Services\Commands\EnvironmentCommand;
 use App\Services\Commands\FactoryCommand;
 use App\Services\Commands\FeatureTestCommand;
@@ -65,6 +66,7 @@ class AppServiceProvider extends ServiceProvider
         $this->commands([UpdateMigrationCommand::class]);
         $this->commands([AddColumnForDatabaseCommand::class]);
         $this->commands([RenameColumnForDatabaseCommand::class]);
+        $this->commands([DropColumnForDatabaseCommand::class]);
     }
 
     /**
