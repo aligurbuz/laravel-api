@@ -69,7 +69,7 @@ class RenameColumnForDatabaseCommand extends Command
         $lastMigration = base_path('Database/Migrations').'/'.$migrationFiles[0];
         $lastFilePath = File::get($lastMigration);
 
-        $definition = '$table->rename(\''.$oldColumn.'\',\''.$newColumn.'\')';
+        $definition = '$table->renameColumn(\''.$oldColumn.'\',\''.$newColumn.'\')';
 
         $definition = $definition.';';
 
