@@ -69,8 +69,11 @@ class AddColumnForDatabaseCommand extends Command
         }
         else{
             $unique = $this->ask('Unique to be added?','no');
-            $uniqueName = $this->ask('unique name','default');
-            $uniqueName = $uniqueName==='default' ? '' : $uniqueName;
+
+            if($unique==='yes'){
+                $uniqueName = $this->ask('unique name','default');
+                $uniqueName = $uniqueName==='default' ? '' : $uniqueName;
+            }
         }
 
         $comment = $this->ask('Column Comment','');
