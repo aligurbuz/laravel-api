@@ -5,7 +5,7 @@ namespace App\Policies\Permission\User;
 use App\Exceptions\Exception;
 use App\Facades\Database\Role\Role;
 
-trait UserPermission
+trait User
 {
     /**
      * Only admins can create users.
