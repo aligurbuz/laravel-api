@@ -21,6 +21,7 @@ use App\Services\Commands\ModelCommand;
 use App\Services\Commands\PermissionCommand;
 use App\Services\Commands\Postman;
 use App\Services\Commands\RelationCommand;
+use App\Services\Commands\RenameColumnForDatabaseCommand;
 use App\Services\Commands\RepositoryCommand;
 use App\Services\Commands\RepositoryResourceCommand;
 use App\Services\Commands\RequestCommand;
@@ -63,6 +64,7 @@ class AppServiceProvider extends ServiceProvider
         $this->commands([SupervisorCommand::class]);
         $this->commands([UpdateMigrationCommand::class]);
         $this->commands([AddColumnForDatabaseCommand::class]);
+        $this->commands([RenameColumnForDatabaseCommand::class]);
     }
 
     /**

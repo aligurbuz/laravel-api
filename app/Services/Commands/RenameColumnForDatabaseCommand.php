@@ -10,21 +10,21 @@ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 
-class AddColumnForDatabaseCommand extends Command
+class RenameColumnForDatabaseCommand extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'add:column';
+    protected $signature = 'rename:column';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Changes the name of a column linked to a model in the database.';
 
     /**
      * Create a new command instance.
@@ -52,30 +52,10 @@ class AddColumnForDatabaseCommand extends Command
 
         $table = (new $modelNamespace)->getTable();
 
-        $column = $this->ask('Column name');
-        $columnType = $this->ask('Column type','string');
+        $oldColumn = $this->ask('Old column name');
+        $newColumn = $this->ask('New column name');
 
-        if($columnType==='enum'){
-            $columnEnumValues = $this->askWithCompletion('Column enum values',['Separate the values to be taken with commas.']);
-        }
-
-        $columnDefault = $this->ask('Column default value','nullable');
-        $AfterColumn = $this->ask('After which column should it be added?','id');
-        $index = $this->ask('Index to be added?','no');
-
-        if($index==='yes'){
-            $indexName = $this->ask('index name','default');
-            $indexName = $indexName==='default' ? '' : $indexName;
-        }
-        else{
-            $unique = $this->ask('Unique to be added?','no');
-            $uniqueName = $this->ask('unique name','default');
-            $uniqueName = $uniqueName==='default' ? '' : $uniqueName;
-        }
-
-        $comment = $this->ask('Column Comment','');
-
-        $name = 'addColumnNamed'.ucfirst($column) .ucfirst($table).'Table';
+        $name = 'renameColumnNamed'.ucfirst($oldColumn) .ucfirst($table).'Table';
 
         Artisan::call('make:migration',['name'=> $name,'--table' => $table]);
 
@@ -89,26 +69,7 @@ class AddColumnForDatabaseCommand extends Command
         $lastMigration = base_path('Database/Migrations').'/'.$migrationFiles[0];
         $lastFilePath = File::get($lastMigration);
 
-        $definition = '$table->'.$columnType.'(\''.$column.'\')';
-
-        if($columnDefault==='nullable'){
-            $definition = $definition.'->nullable()';
-        }
-        else{
-            $definition = $definition.'->default(\''.$columnDefault.'\')';
-        }
-
-        $definition = $definition.'->after(\''.$AfterColumn.'\')';
-
-        if($index==='yes'){
-            $definition = $definition.'->index(\''.$indexName.'\')';
-        }
-
-        if($unique==='yes'){
-            $definition = $definition.'->unique(\''.$uniqueName.'\')';
-        }
-
-        $definition = $definition.'->comment(\''.$comment.'\')';
+        $definition = '$table->rename(\''.$oldColumn.'\',\''.$newColumn.'\')';
 
         $definition = $definition.';';
 
