@@ -58,6 +58,11 @@ trait ResourceRepository
                 $result['data'] = $this->resourcePropagation($result['data']);
             }
 
+            if($call->filterModelCode()){
+                $result['total'] = count($result['data']);
+                AppContainer::terminate('filterModelCode');
+            }
+
             if (method_exists($this, 'appends')) {
                 $appends = $this->appends();
 

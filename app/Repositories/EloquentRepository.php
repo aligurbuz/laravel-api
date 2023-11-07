@@ -424,11 +424,23 @@ class EloquentRepository
             return $this->graphQl->get()->toArray();
         }
 
-        $paginateDefinition = (property_exists($this, 'simplePaginate') && $this->simplePaginate)
+        $paginateDefinition = (
+            (property_exists($this, 'simplePaginate') && $this->simplePaginate)
+            || $this->filterModelCode()
+        )
             ? 'simplePaginate' : 'paginate';
 
-
         return $this->graphQl->{$paginateDefinition}($pagination ?? $this->paginationHandler())->toArray();
+    }
+
+    /**
+     * The filter detects whether there is model_code in the query data.
+     *
+     * @return bool
+     */
+    public function filterModelCode(): bool
+    {
+        return AppContainer::has('filterModelCode');
     }
 
     /**

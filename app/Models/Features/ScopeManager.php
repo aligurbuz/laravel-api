@@ -306,8 +306,19 @@ trait ScopeManager
                         }
                     }
 
+                    $filterValue = explode(',', (string)$value);
+
                     if (!isset($withOperator) && (is_string($value) || is_numeric($value))) {
-                        $query->whereIn($key, explode(',', (string)$value));
+                        if(count($filterValue)>1){
+                            $query->whereIn($key, $filterValue);
+                        }
+                        else{
+                            $query->where($key, $value);
+                        }
+                    }
+
+                    if($this->getRepository()->getModelCode()===$key){
+                        AppContainer::set('filterModelCode',true);
                     }
 
                 }
