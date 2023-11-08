@@ -9,7 +9,6 @@ use App\Factory\App\Interfaces\AppInterface;
 use App\Factory\Cache\Interfaces\CacheInterface;
 use App\Factory\Client\Interfaces\ClientInterface;
 use App\Factory\Code\Interfaces\CodeInterface;
-use App\Factory\Date\Interfaces\DateInterface;
 use App\Factory\Excel\Interfaces\ExcelInterface;
 use App\Factory\Http\Interfaces\HttpInterface;
 use App\Factory\Localization\Interfaces\LocalizationInterface;
@@ -34,7 +33,6 @@ use App\Factory\Storage\Interfaces\StorageInterface;
  * @method static ClientInterface client($arguments = null)
  * @method static PermissionInterface permission($arguments = null)
  * @method static SearchInterface search($arguments = null)
- * @method static DateInterface date($arguments = null)
  * @method static ApiKeyInterface apiKey($arguments = null)
  * @method static SmsInterface sms($arguments = null)
  * @method static ExcelInterface excel($arguments = null)
