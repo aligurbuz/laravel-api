@@ -416,8 +416,8 @@ trait ScopeManager
                                 if (count($hasFilter)) {
                                     $builder->hasQuery(current($recursiveHasValue), isset($recursiveHasValue[1]) ? [
                                         $recursiveHasValue[1] => [$recursiveHasValueOperator => $recursiveHasValueData]
-                                    ] : [], false)->range($repositoryMethod, (string)$range)
-                                        ->filterQuery($hasFilter);
+                                    ] : [], false)
+                                        ->filterQuery($hasFilter)->range($repositoryMethod, (string)$range);
                                 } else {
                                     $builder->hasQuery(current($recursiveHasValue), isset($recursiveHasValue[1]) ? [
                                         $recursiveHasValue[1] => [$recursiveHasValueOperator => $recursiveHasValueData]
@@ -430,8 +430,8 @@ trait ScopeManager
                             if (isset($request['hasRecursiveFilter'][$has])) {
                                 foreach ($request['hasRecursiveFilter'][$has] as $recursiveHas => $recursiveFilter) {
                                     if (count($hasFilter)) {
-                                        $builder->hasQuery($recursiveHas, $recursiveFilter, false)->range($repositoryMethod, (string)$range)
-                                            ->filterQuery($hasFilter);
+                                        $builder->hasQuery($recursiveHas, $recursiveFilter, false)
+                                            ->filterQuery($hasFilter)->range($repositoryMethod, (string)$range);
                                     } else {
                                         $builder->hasQuery($recursiveHas, $recursiveFilter, false)->range($repositoryMethod, (string)$range);
                                     }
@@ -442,8 +442,8 @@ trait ScopeManager
                             } else {
 
                                 if (count($hasFilter)) {
-                                    $builder->range($repositoryMethod, (string)$range)
-                                        ->filterQuery($hasFilter);
+                                    $builder
+                                        ->filterQuery($hasFilter)->range($repositoryMethod, (string)$range);
                                 } else {
                                     $builder->range($repositoryMethod, (string)$range);
                                 }
