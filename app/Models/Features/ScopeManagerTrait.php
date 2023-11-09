@@ -24,6 +24,9 @@ trait ScopeManagerTrait
         'sequence' => 'It sorts by sequence value. This means changeable sorting.',
         'notDeleted' => 'Filters undeleted data.',
         'deleted' => 'Filters deleted data.',
+        'creator' => 'Returns the user specified in the created_by column.',
+        'updator' => 'Returns the user specified in the updated_by column.',
+        'deletor' => 'Returns the user specified in the deleted_by column.',
     ];
 
     /**

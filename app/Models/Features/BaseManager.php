@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Models\Features;
 
 use App\Constants;
+use App\Models\User;
 use App\Repositories\Repository;
 use App\Services\AppContainer;
 use App\Services\Db;
@@ -286,5 +287,23 @@ trait BaseManager
         }
 
         return parent::__call($name, $args);
+    }
+
+    /**
+     * @return HasOne
+     */
+    public function creator(): HasOne
+    {
+        return $this->hasOne(User::class,'user_code','created_by');
+    }
+
+    public function updator(): HasOne
+    {
+        return $this->hasOne(User::class,'user_code','updated_by');
+    }
+
+    public function deletor(): HasOne
+    {
+        return $this->hasOne(User::class,'user_code','deleted_by');
     }
 }

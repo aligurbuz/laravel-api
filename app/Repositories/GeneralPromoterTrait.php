@@ -24,11 +24,56 @@ trait GeneralPromoterTrait
     }
 
     /**
+     * get authenticated user data
+     *
+     * @param null|Builder $builder
+     * @return EloquentRepository
+     */
+    public function creator(Builder $builder = null): EloquentRepository
+    {
+        $this->ensureColumnExists('created_by', $builder, function () use($builder) {
+            $this->repository = $this->builder($builder)->with('creator');
+        });
+
+        return $this;
+    }
+
+    /**
+     * get authenticated user data
+     *
+     * @param null|Builder $builder
+     * @return EloquentRepository
+     */
+    public function updator(Builder $builder = null): EloquentRepository
+    {
+        $this->ensureColumnExists('updated_by', $builder, function () use($builder) {
+            $this->repository = $this->builder($builder)->with('updator');
+        });
+
+        return $this;
+    }
+
+    /**
+     * get authenticated user data
+     *
+     * @param null|Builder $builder
+     * @return EloquentRepository
+     */
+    public function deletor(Builder $builder = null): EloquentRepository
+    {
+        $this->ensureColumnExists('deleted_by', $builder, function () use($builder) {
+            $this->repository = $this->builder($builder)->with('deletor');
+        });
+
+        return $this;
+    }
+
+    /**
      * get global appends for repository
      *
      * @return array
      */
-    public function globalAppends() : array
+    public function globalAppends(): array
     {
         return [];
     }
