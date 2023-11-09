@@ -309,16 +309,15 @@ trait ScopeManager
                     $filterValue = explode(',', (string)$value);
 
                     if (!isset($withOperator) && (is_string($value) || is_numeric($value))) {
-                        if(count($filterValue)>1){
+                        if (count($filterValue) > 1) {
                             $query->whereIn($key, $filterValue);
-                        }
-                        else{
+                        } else {
                             $query->where($key, $value);
                         }
                     }
 
-                    if($this->getRepository()->getModelCode()===$key){
-                        AppContainer::set('filterModelCode',true);
+                    if ($this->getRepository()->getModelCode() === $key) {
+                        AppContainer::set('filterModelCode', true);
                     }
 
                 }
@@ -505,8 +504,8 @@ trait ScopeManager
      * @param array $with
      * @return object
      */
-    public function scopeWithQuery(Builder $builder, array $with = []): object
+    public function scopeWithQuery(Builder $builder, array $with = [], bool $nested = false): object
     {
-        return $this->withProcessHandler($builder, $with);
+        return $this->withProcessHandler($builder, $with, $nested);
     }
 }
