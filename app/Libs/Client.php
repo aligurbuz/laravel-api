@@ -131,7 +131,7 @@ class Client
      * @param string $value
      * @return void
      */
-    public static function setFilter(string $key, string $value) : void
+    public static function setFilter(string $key, string $value): void
     {
         $request = request()->query;
         $queries = $request->all();
@@ -148,12 +148,12 @@ class Client
      * @param string $orderByCriteria
      * @return void
      */
-    public static function setOrderBy(string $key, string $orderByCriteria = 'asc') : void
+    public static function setOrderBy(string $key, string $orderByCriteria = 'asc'): void
     {
         $request = request()->query;
         $queries = $request->all();
 
-        $queries['orderBy'] = $key.','.$orderByCriteria;
+        $queries['orderBy'] = $key . ',' . $orderByCriteria;
 
         $request->replace($queries);
     }
@@ -164,7 +164,7 @@ class Client
      * @param string $key
      * @return void
      */
-    public static function setSource(string $key) : void
+    public static function setSource(string $key): void
     {
         $request = request()->query;
         $queries = $request->all();
@@ -204,11 +204,11 @@ class Client
      * @param array $data
      * @return array
      */
-    public static function mergeQuery(array $data = []) : array
+    public static function mergeQuery(array $data = []): array
     {
         $request = request()->query->all();
 
-        request()->query->replace(array_merge_recursive($request,$data));
+        request()->query->replace(array_merge_recursive($request, $data));
 
         return request()->query->all();
     }

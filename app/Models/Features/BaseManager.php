@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace App\Models\Features;
 
 use App\Constants;
-use App\Models\User;
-use App\Repositories\Repository;
 use App\Libs\AppContainer;
 use App\Libs\Db;
+use App\Models\User;
+use App\Repositories\Repository;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Str;
 
@@ -294,16 +294,16 @@ trait BaseManager
      */
     public function creator(): HasOne
     {
-        return $this->hasOne(User::class,'user_code','created_by');
+        return $this->hasOne(User::class, 'user_code', 'created_by');
     }
 
     public function updator(): HasOne
     {
-        return $this->hasOne(User::class,'user_code','updated_by');
+        return $this->hasOne(User::class, 'user_code', 'updated_by');
     }
 
     public function deletor(): HasOne
     {
-        return $this->hasOne(User::class,'user_code','deleted_by');
+        return $this->hasOne(User::class, 'user_code', 'deleted_by');
     }
 }

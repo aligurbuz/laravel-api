@@ -39,18 +39,6 @@ class Guard
     }
 
     /**
-     * get auth guard model name
-     *
-     * @return string
-     */
-    public static function model(): string
-    {
-        return lcfirst(
-            class_basename(config('auth.providers.' . ApiKey::who() . '.model'))
-        );
-    }
-
-    /**
      * get model code for guard facade
      *
      * @return string
@@ -70,5 +58,17 @@ class Guard
         $model = static::model();
 
         return Repository::$model();
+    }
+
+    /**
+     * get auth guard model name
+     *
+     * @return string
+     */
+    public static function model(): string
+    {
+        return lcfirst(
+            class_basename(config('auth.providers.' . ApiKey::who() . '.model'))
+        );
     }
 }

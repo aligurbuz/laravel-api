@@ -24,5 +24,5 @@ interface PaymentInterface
      * @see Payment::createWithCard()
      * @see Stripe::createWithCard()
      */
-    public function createWithSavedCard() : array;
+    public function createWithSavedCard(): array;
 }

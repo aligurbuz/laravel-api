@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 declare(strict_types=1);
 
@@ -17,18 +17,18 @@ use App\Repositories\Resources\Customer\PropertyHandlers\ContactsPropertyHandler
 
 class ContactsRepository extends EloquentRepository implements CustomerContactsRepositoryContract
 {
-	use AfterCreate;
-	use AfterUpdate;
-	use BeforeCreate;
-	use BeforeUpdate;
-	use ContactsPromoterTrait;
-	use GeneralPromoterTrait;
-	use ContactsPropertyHandlerTrait;
+    use AfterCreate;
+    use AfterUpdate;
+    use BeforeCreate;
+    use BeforeUpdate;
+    use ContactsPromoterTrait;
+    use GeneralPromoterTrait;
+    use ContactsPropertyHandlerTrait;
 
-	/**
-	 * get model name for repository
-	 *
-	 * @var string
-	 */
-	protected static string $model = CustomerContact::class;
+    /**
+     * get model name for repository
+     *
+     * @var string
+     */
+    protected static string $model = CustomerContact::class;
 }

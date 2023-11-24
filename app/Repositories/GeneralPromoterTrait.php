@@ -24,6 +24,19 @@ trait GeneralPromoterTrait
     }
 
     /**
+     * set denied eager loadings according to apiKey
+     *
+     * @return void
+     */
+    private function setDeniedEagerLoadingsAccordingToApiKey(): void
+    {
+        if (ApiKey::isWeb()) {
+            $this->setDeniedEagerLoadings('role');
+            $this->setDeniedEagerLoadings('user');
+        }
+    }
+
+    /**
      * get authenticated user data
      *
      * @param null|Builder $builder
@@ -31,7 +44,7 @@ trait GeneralPromoterTrait
      */
     public function creator(Builder $builder = null): EloquentRepository
     {
-        $this->ensureColumnExists('created_by', $builder, function () use($builder) {
+        $this->ensureColumnExists('created_by', $builder, function () use ($builder) {
             $this->repository = $this->builder($builder)->with('creator');
         });
 
@@ -46,7 +59,7 @@ trait GeneralPromoterTrait
      */
     public function updator(Builder $builder = null): EloquentRepository
     {
-        $this->ensureColumnExists('updated_by', $builder, function () use($builder) {
+        $this->ensureColumnExists('updated_by', $builder, function () use ($builder) {
             $this->repository = $this->builder($builder)->with('updator');
         });
 
@@ -61,7 +74,7 @@ trait GeneralPromoterTrait
      */
     public function deletor(Builder $builder = null): EloquentRepository
     {
-        $this->ensureColumnExists('deleted_by', $builder, function () use($builder) {
+        $this->ensureColumnExists('deleted_by', $builder, function () use ($builder) {
             $this->repository = $this->builder($builder)->with('deletor');
         });
 
@@ -76,19 +89,6 @@ trait GeneralPromoterTrait
     public function globalAppends(): array
     {
         return [];
-    }
-
-    /**
-     * set denied eager loadings according to apiKey
-     *
-     * @return void
-     */
-    private function setDeniedEagerLoadingsAccordingToApiKey(): void
-    {
-        if (ApiKey::isWeb()) {
-            $this->setDeniedEagerLoadings('role');
-            $this->setDeniedEagerLoadings('user');
-        }
     }
 
     /**

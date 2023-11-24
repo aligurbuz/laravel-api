@@ -58,7 +58,7 @@ trait ResourceRepository
                 $result['data'] = $this->resourcePropagation($result['data']);
             }
 
-            if($call->filterModelCode()){
+            if ($call->filterModelCode()) {
                 $result['total'] = count($result['data']);
                 AppContainer::terminate('filterModelCode');
             }
@@ -75,38 +75,6 @@ trait ResourceRepository
 
             return $this->source($result);
         });
-    }
-
-    /**
-     * get source value for eloquent repository
-     *
-     * @param array $result
-     * @return array
-     */
-    public function source(array $result = []): array
-    {
-        if (request()->query->has('source')) {
-            $source = request()->query->get('source');
-            $relationData = $this->getTable();
-
-            if (isset($result['data'])) {
-                foreach ($result['data'] as $key => $value) {
-                    if (isset($value[$source][0])) {
-                        $result['data'][$key] = $value[$source][0];
-                        unset($value[$source]);
-                        $result['data'][$key][$relationData] = [$value];
-                    } else {
-                        Exception::customException('notSource', ['key' => $key]);
-                    }
-                }
-            }
-        }
-
-        if (isset($result['data'])) {
-            $result['data'] = $this->resourcePropagation($result['data']);
-        }
-
-        return $result;
     }
 
     /**
@@ -273,6 +241,64 @@ trait ResourceRepository
     }
 
     /**
+     * get item attributes for resource repository
+     *
+     * @param object $resource
+     * @param mixed $item
+     * @return mixed
+     */
+    public function getItemAttributes(object $resource, mixed $item): mixed
+    {
+        if (property_exists($resource, 'attributes') && is_array($resource->attributes)) {
+            foreach ($resource->attributes as $attribute) {
+                clientAttribute($attribute, static function () use ($attribute, $resource, &$item) {
+                    if (method_exists($resource, $camelAttribute = Str::camel($attribute))) {
+                        $attributeHandler = $resource->$camelAttribute($item);
+                        if (is_null($attributeHandler)) {
+                            unset($item[$attribute]);
+                        } else {
+                            $item[$attribute] = $attributeHandler;
+                        }
+                    }
+                });
+            }
+        }
+        return $item;
+    }
+
+    /**
+     * get source value for eloquent repository
+     *
+     * @param array $result
+     * @return array
+     */
+    public function source(array $result = []): array
+    {
+        if (request()->query->has('source')) {
+            $source = request()->query->get('source');
+            $relationData = $this->getTable();
+
+            if (isset($result['data'])) {
+                foreach ($result['data'] as $key => $value) {
+                    if (isset($value[$source][0])) {
+                        $result['data'][$key] = $value[$source][0];
+                        unset($value[$source]);
+                        $result['data'][$key][$relationData] = [$value];
+                    } else {
+                        Exception::customException('notSource', ['key' => $key]);
+                    }
+                }
+            }
+        }
+
+        if (isset($result['data'])) {
+            $result['data'] = $this->resourcePropagation($result['data']);
+        }
+
+        return $result;
+    }
+
+    /**
      * get base resource for repository
      *
      * @param array $data
@@ -303,32 +329,6 @@ trait ResourceRepository
         }
 
         return $data;
-    }
-
-    /**
-     * get item attributes for resource repository
-     *
-     * @param object $resource
-     * @param mixed $item
-     * @return mixed
-     */
-    public function getItemAttributes(object $resource, mixed $item): mixed
-    {
-        if (property_exists($resource, 'attributes') && is_array($resource->attributes)) {
-            foreach ($resource->attributes as $attribute) {
-                clientAttribute($attribute, static function () use ($attribute, $resource, &$item) {
-                    if (method_exists($resource, $camelAttribute = Str::camel($attribute))) {
-                        $attributeHandler = $resource->$camelAttribute($item);
-                        if (is_null($attributeHandler)) {
-                            unset($item[$attribute]);
-                        } else {
-                            $item[$attribute] = $attributeHandler;
-                        }
-                    }
-                });
-            }
-        }
-        return $item;
     }
 
 

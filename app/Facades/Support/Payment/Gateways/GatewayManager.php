@@ -22,7 +22,7 @@ abstract class GatewayManager
      *
      * @return array
      */
-    private function setConfiguration() : array
+    private function setConfiguration(): array
     {
         return config(lcfirst(class_basename($this)));
     }
@@ -32,7 +32,7 @@ abstract class GatewayManager
      *
      * @return array
      */
-    protected function getConfiguration() : array
+    protected function getConfiguration(): array
     {
         return $this->configuration;
     }

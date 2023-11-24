@@ -33,22 +33,6 @@ class Authenticate extends FacadeManager
     }
 
     /**
-     * get authenticate user token for facade
-     *
-     * @return array
-     */
-    public static function createToken(): array
-    {
-        $user = GuardFacade::get()->user();
-
-        $data = [];
-        $data['user'] = $user;
-        $data['auth']['token'] = $user->createToken(ApiKey::who())->plainTextToken;
-
-        return $data;
-    }
-
-    /**
      * this method will provide laravel login directly.
      * If you don't want to make MakeActivation, you can use this method directly.
      *
@@ -80,6 +64,46 @@ class Authenticate extends FacadeManager
         // if the system cannot authenticate the user,
         // it will throw an exception directly.
         return Exception::loginException();
+    }
+
+    /**
+     * get attempt credentials for facade
+     *
+     * @param string|null $email
+     * @param string|null $password
+     * @return array
+     */
+    public static function credentials(?string $email = null, ?string $password = null): array
+    {
+        $clientData = client();
+
+        if (isset($clientData['username'])) {
+            return [
+                'username' => $clientData['username'],
+                'password' => $password ?? $clientData['password']
+            ];
+        }
+
+        return [
+            'email' => $email ?? $clientData['email'],
+            'password' => $password ?? $clientData['password']
+        ];
+    }
+
+    /**
+     * get authenticate user token for facade
+     *
+     * @return array
+     */
+    public static function createToken(): array
+    {
+        $user = GuardFacade::get()->user();
+
+        $data = [];
+        $data['user'] = $user;
+        $data['auth']['token'] = $user->createToken(ApiKey::who())->plainTextToken;
+
+        return $data;
     }
 
     /**
@@ -160,15 +184,17 @@ class Authenticate extends FacadeManager
     }
 
     /**
-     * get auth guard model name
+     * get id value for user data
      *
-     * @return string
+     * @return int
      */
-    public static function model(): string
+    public static function code(): int
     {
-        return lcfirst(
-            class_basename(config('auth.providers.' . ApiKey::who() . '.model'))
-        );
+        $self = new self();
+
+        $code = $self->code;
+
+        return (new self)->data->{$code} ?? 0;
     }
 
     /**
@@ -185,17 +211,15 @@ class Authenticate extends FacadeManager
     }
 
     /**
-     * get id value for user data
+     * get auth guard model name
      *
-     * @return int
+     * @return string
      */
-    public static function code(): int
+    public static function model(): string
     {
-        $self = new self();
-
-        $code = $self->code;
-
-        return (new self)->data->{$code} ?? 0;
+        return lcfirst(
+            class_basename(config('auth.providers.' . ApiKey::who() . '.model'))
+        );
     }
 
     /**
@@ -203,32 +227,8 @@ class Authenticate extends FacadeManager
      *
      * @return string
      */
-    public static function getCodeName() : string
+    public static function getCodeName(): string
     {
         return (new self)->code;
-    }
-
-    /**
-     * get attempt credentials for facade
-     *
-     * @param string|null $email
-     * @param string|null $password
-     * @return array
-     */
-    public static function credentials(?string $email = null, ?string $password = null): array
-    {
-        $clientData = client();
-
-        if (isset($clientData['username'])) {
-            return [
-                'username' => $clientData['username'],
-                'password' => $password ?? $clientData['password']
-            ];
-        }
-
-        return [
-            'email' => $email ?? $clientData['email'],
-            'password' => $password ?? $clientData['password']
-        ];
     }
 }

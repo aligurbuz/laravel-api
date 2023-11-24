@@ -54,7 +54,7 @@ trait UserPromoterTrait
      *
      * @return bool[]
      */
-    public function appends() : array
+    public function appends(): array
     {
         return [];
     }
@@ -65,11 +65,11 @@ trait UserPromoterTrait
      * otherwise your system will go in to an infinite loop.
      * if the user is admin, that must see all users.
      *
-     * @see UserCode::handle()
      * @return bool
+     * @see UserCode::handle()
      */
-    public function accessible() : bool
+    public function accessible(): bool
     {
-        return !App::runningInConsole() && endpoint()==='user' && Role::isAdmin();
+        return !App::runningInConsole() && endpoint() === 'user' && Role::isAdmin();
     }
 }

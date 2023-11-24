@@ -49,6 +49,16 @@ class Permission extends PermissionManager implements PermissionInterface
     }
 
     /**
+     * get all permission for factory
+     *
+     * @return array
+     */
+    public function get(): array
+    {
+        return Repository::permission()->all();
+    }
+
+    /**
      * get role formatter for factory
      *
      * @return array
@@ -64,15 +74,5 @@ class Permission extends PermissionManager implements PermissionInterface
         }
 
         return $list;
-    }
-
-    /**
-     * get all permission for factory
-     *
-     * @return array
-     */
-    public function get(): array
-    {
-        return Repository::permission()->all();
     }
 }

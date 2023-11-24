@@ -5,8 +5,8 @@ namespace App\Facades\Database\Authenticate;
 use App\Exceptions\Exception;
 use App\Facades\Support\Email\Email;
 use App\Facades\Support\Sms\Sms;
-use App\Repositories\Repository;
 use App\Libs\AppContainer;
+use App\Repositories\Repository;
 
 class Activation
 {
@@ -32,6 +32,34 @@ class Activation
         }
 
         return $callback();
+    }
+
+    /**
+     * get activation data for user model
+     *
+     * @param int $userCode
+     * @return array
+     */
+    public static function get(int $userCode): array
+    {
+        return AppContainer::use('userActivation_' . $userCode, static function () use ($userCode) {
+            $userActivation = Repository::userActivation()->userCode($userCode)->latest();
+
+            if (count($userActivation) && static::isNullActivationCode()) {
+                $userUpdateActivation = Repository::userActivation()->userCode($userCode)->update([['hash' => random_int(10000, 999999)]]);
+                return $userUpdateActivation[0] ?? [];
+            }
+
+            return $userActivation;
+        });
+    }
+
+    /**
+     * @return bool
+     */
+    protected static function isNullActivationCode(): bool
+    {
+        return is_null(client('activation_code'));
     }
 
     /**
@@ -93,14 +121,6 @@ class Activation
     }
 
     /**
-     * @return bool
-     */
-    protected static function isNullActivationCode(): bool
-    {
-        return is_null(client('activation_code'));
-    }
-
-    /**
      * @param array $activationData
      * @param array $user
      * @return array
@@ -121,25 +141,5 @@ class Activation
         }
 
         return [];
-    }
-
-    /**
-     * get activation data for user model
-     *
-     * @param int $userCode
-     * @return array
-     */
-    public static function get(int $userCode): array
-    {
-        return AppContainer::use('userActivation_' . $userCode, static function () use ($userCode) {
-            $userActivation = Repository::userActivation()->userCode($userCode)->latest();
-
-            if (count($userActivation) && static::isNullActivationCode()) {
-                $userUpdateActivation = Repository::userActivation()->userCode($userCode)->update([['hash' => random_int(10000, 999999)]]);
-                return $userUpdateActivation[0] ?? [];
-            }
-
-            return $userActivation;
-        });
     }
 }

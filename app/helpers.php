@@ -5,9 +5,6 @@ use App\Exceptions\Exception;
 use App\Facades\Database\Authenticate\ApiKey;
 use App\Factory\Factory;
 use App\Http\Controllers\DoodleController;
-use App\Models\Entities\EntityMap;
-use App\Repositories\EloquentRepository;
-use App\Repositories\Repository;
 use App\Libs\AppContainer;
 use App\Libs\Client;
 use App\Libs\Db as DBFacade;
@@ -18,6 +15,9 @@ use App\Libs\Redis;
 use App\Libs\Request\Request as HttpRequest;
 use App\Libs\Response\Response as ResponseService;
 use App\Libs\Service;
+use App\Models\Entities\EntityMap;
+use App\Repositories\EloquentRepository;
+use App\Repositories\Repository;
 use Faker\Generator;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
@@ -46,15 +46,15 @@ if (!function_exists('replaceSpace')) {
      */
     function replaceSpace(string $string, string $seperate = ','): string
     {
-        $stringExplode = explode($seperate,$string);
+        $stringExplode = explode($seperate, $string);
 
         $list = [];
 
-        foreach ($stringExplode as  $value){
+        foreach ($stringExplode as $value) {
             $list[] = trim($value);
         }
 
-        return implode(',',$list);
+        return implode(',', $list);
     }
 }
 

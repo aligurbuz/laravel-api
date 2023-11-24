@@ -2,8 +2,8 @@
 
 namespace App\Libs\Commands;
 
-use App\Models\Entities\EntityMap;
 use App\Libs\Db as DatabaseService;
+use App\Models\Entities\EntityMap;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;

@@ -1,6 +1,6 @@
-<?php 
+<?php
 
-namespace App\Client\Definition\Genders; 
+namespace App\Client\Definition\Genders;
 
 trait GendersMainSupport
 {

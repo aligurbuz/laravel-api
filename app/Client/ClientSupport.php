@@ -44,6 +44,12 @@ trait ClientSupport
      * @var string|int|bool
      */
     protected string|int|bool $isDeleted = false;
+    /**
+     * it is order_count in the client data
+     *
+     * @var string|int
+     */
+    protected string|int $orderCount;
 
     /**
      * get filterMandatory generator for request
@@ -55,7 +61,7 @@ trait ClientSupport
      */
     public function filterMandatoryGenerator(?string $key = null)
     {
-        if(app()->runningInConsole()) return null;
+        if (app()->runningInConsole()) return null;
 
         $filter = request()->get('filter');
 
@@ -63,11 +69,23 @@ trait ClientSupport
             Exception::customException('filterMandatory');
         }
 
-        if(!is_null($key) && !isset($filter[$key])){
+        if (!is_null($key) && !isset($filter[$key])) {
             Exception::customException('filterMandatoryKey', ['key' => $key]);
         }
 
         return null;
+    }
+
+    /**
+     * email_verified_at input value for client
+     *
+     * @return string|null
+     */
+    public function emailVerifiedAt(): ?string
+    {
+        Exception::customException('emailVerifiedAt');
+
+        return $this->emailVerifiedAt;
     }
 
     /**
@@ -81,7 +99,7 @@ trait ClientSupport
     {
         if (checkBool($this->isDefault) && !isGet()) {
             $this->ensureColumnExists($snakeFunction = Str::snake(__FUNCTION__), function () use ($snakeFunction) {
-                if(!AppContainer::has('noIsDefaultUpdate')){
+                if (!AppContainer::has('noIsDefaultUpdate')) {
                     $this->repository()->default()->update([[$snakeFunction => '0']], false);
                 }
             });
@@ -119,31 +137,12 @@ trait ClientSupport
     }
 
     /**
-     * email_verified_at input value for client
-     *
-     * @return string|null
-     */
-    public function emailVerifiedAt(): ?string
-    {
-        Exception::customException('emailVerifiedAt');
-
-        return $this->emailVerifiedAt;
-    }
-
-    /**
-     * it is order_count in the client data
-     *
-     * @var string|int
-     */
-    protected string|int $orderCount;
-
-    /**
      * This key should not be sent by the client.
      *
      * @return bool|string|int
      */
     protected function orderCount(): bool|string|int
     {
-        return Exception::customException(httpMethod().'Restricted',__FUNCTION__);
+        return Exception::customException(httpMethod() . 'Restricted', __FUNCTION__);
     }
 }

@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 declare(strict_types=1);
 
@@ -14,93 +14,93 @@ namespace App\Models\Entities;
  */
 class CustomerGender
 {
-	/**
-	 * query data object for entity
-	 *
-	 * @var object
-	 */
-	protected static object $query;
+    /**
+     * query data object for entity
+     *
+     * @var object
+     */
+    protected static object $query;
 
 
-	/**
-	 * CustomerGender constructor
-	 *
-	 * @param object $query
-	 */
-	public function __construct(object $query)
-	{
-		self::$query = $query;
-	}
+    /**
+     * CustomerGender constructor
+     *
+     * @param object $query
+     */
+    public function __construct(object $query)
+    {
+        self::$query = $query;
+    }
 
 
-	/**
-	 * get id column for database table
-	 *
-	 * @return mixed
-	 */
-	protected static function id(): mixed
-	{
-		return self::$query->id;
-	}
+    /**
+     * get id column for database table
+     *
+     * @return mixed
+     */
+    protected static function id(): mixed
+    {
+        return self::$query->id;
+    }
 
 
-	/**
-	 * get customer_gender_code column for database table
-	 *
-	 * @return mixed
-	 */
-	protected static function customer_gender_code(): mixed
-	{
-		return self::$query->customer_gender_code;
-	}
+    /**
+     * get customer_gender_code column for database table
+     *
+     * @return mixed
+     */
+    protected static function customer_gender_code(): mixed
+    {
+        return self::$query->customer_gender_code;
+    }
 
 
-	/**
-	 * get customer_code column for database table
-	 *
-	 * @return mixed
-	 */
-	protected static function customer_code(): mixed
-	{
-		return self::$query->customer_code;
-	}
+    /**
+     * get customer_code column for database table
+     *
+     * @return mixed
+     */
+    protected static function customer_code(): mixed
+    {
+        return self::$query->customer_code;
+    }
 
 
-	/**
-	 * get gender_code column for database table
-	 *
-	 * @return mixed
-	 */
-	protected static function gender_code(): mixed
-	{
-		return self::$query->gender_code;
-	}
+    /**
+     * get gender_code column for database table
+     *
+     * @return mixed
+     */
+    protected static function gender_code(): mixed
+    {
+        return self::$query->gender_code;
+    }
 
 
-	/**
-	 * get created_at column for database table
-	 *
-	 * @return mixed
-	 */
-	protected static function created_at(): mixed
-	{
-		return self::$query->created_at;
-	}
+    /**
+     * get created_at column for database table
+     *
+     * @return mixed
+     */
+    protected static function created_at(): mixed
+    {
+        return self::$query->created_at;
+    }
 
 
-	/**
-	 * get updated_at column for database table
-	 *
-	 * @return mixed
-	 */
-	protected static function updated_at(): mixed
-	{
-		return self::$query->updated_at;
-	}
+    /**
+     * get updated_at column for database table
+     *
+     * @return mixed
+     */
+    protected static function updated_at(): mixed
+    {
+        return self::$query->updated_at;
+    }
 
 
-	public function __get($name)
-	{
-		return static::{$name}();
-	}
+    public function __get($name)
+    {
+        return static::{$name}();
+    }
 }

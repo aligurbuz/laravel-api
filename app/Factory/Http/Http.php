@@ -59,7 +59,7 @@ class Http extends HttpManager implements HttpInterface
     public function socket(): Request
     {
         $socketAdapter = config('socket.adapter');
-        $socketConnection = config('socket.connection.'.$socketAdapter);
+        $socketConnection = config('socket.connection.' . $socketAdapter);
 
         return $this->request->setHeaders([]
         )->setUrl($socketConnection['socketUrl']);

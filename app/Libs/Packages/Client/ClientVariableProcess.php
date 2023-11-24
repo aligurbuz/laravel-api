@@ -102,7 +102,7 @@ class ClientVariableProcess
 
 
         foreach ($data as $dataKey => $dataValue) {
-            if (isset($defaultGenerator[$dataKey]) && !in_array($dataKey,$dontOverWriteAutoGenerators,true)) {
+            if (isset($defaultGenerator[$dataKey]) && !in_array($dataKey, $dontOverWriteAutoGenerators, true)) {
                 $data[$dataKey] = $defaultGenerator[$dataKey];
             } elseif (array_key_exists($dataKey, $defaultGenerator) && is_null($defaultGenerator[$dataKey])) {
                 unset($data[$dataKey]);

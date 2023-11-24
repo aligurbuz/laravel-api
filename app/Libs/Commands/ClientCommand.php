@@ -88,10 +88,10 @@ class ClientCommand extends Command
         File::put($modelClientJsonFile, Collection::make($modelClientJsonToArray)->toJson(JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
 
         $clientMainGenerator = new PhpNamespace($clientNamespace);
-        $clientMain = $clientMainGenerator->addTrait($clientMainFile = $clientName.'MainSupport');
-        $clientSupportNamespace = $clientNamespace.'\\'.$clientMainFile;
+        $clientMain = $clientMainGenerator->addTrait($clientMainFile = $clientName . 'MainSupport');
+        $clientSupportNamespace = $clientNamespace . '\\' . $clientMainFile;
 
-        if (!file_exists($clientFile = $namePath.''.DIRECTORY_SEPARATOR.''.$clientMainFile.'.php')) {
+        if (!file_exists($clientFile = $namePath . '' . DIRECTORY_SEPARATOR . '' . $clientMainFile . '.php')) {
             touch($clientFile);
             $content = '<?php ' . PHP_EOL . '' . PHP_EOL . 'namespace ' . $clientNamespace . '; ' . PHP_EOL . '' . PHP_EOL . '' . $clientMain;
             File::put($clientFile, $content);

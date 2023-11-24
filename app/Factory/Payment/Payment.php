@@ -38,7 +38,7 @@ class Payment extends PaymentManager implements PaymentInterface
     /**
      * @return array
      */
-    public function createWithCard() : array
+    public function createWithCard(): array
     {
         return [];
     }
@@ -46,7 +46,7 @@ class Payment extends PaymentManager implements PaymentInterface
     /**
      * @return array
      */
-    public function createWithSavedCard() : array
+    public function createWithSavedCard(): array
     {
         return [];
     }

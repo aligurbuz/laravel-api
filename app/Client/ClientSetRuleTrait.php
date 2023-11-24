@@ -39,8 +39,8 @@ trait ClientSetRuleTrait
         $rangeList = explode(',', $range);
 
         if (!ApiKey::isAdmin()) {
-            if(in_array('deleted',$rangeList,true)){
-                $rangeList = array_values(array_diff($rangeList,['deleted']));
+            if (in_array('deleted', $rangeList, true)) {
+                $rangeList = array_values(array_diff($rangeList, ['deleted']));
             }
 
             if (!in_array('active', $rangeList, true)) {

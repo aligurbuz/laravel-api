@@ -13,7 +13,7 @@ class Faker
      * @param int $count
      * @return string
      */
-    public static function letter(int $count = 1) : string
+    public static function letter(int $count = 1): string
     {
         $faker = faker();
 

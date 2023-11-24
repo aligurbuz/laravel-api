@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Client\Password\Changes\Create;
 
@@ -9,28 +9,28 @@ use App\Models\PasswordChange;
 
 class CreateClient extends Client
 {
-	use GeneratorTrait;
-	use ChangesMainSupport;
-	use ClientAutoGeneratorTrait;
+    use GeneratorTrait;
+    use ChangesMainSupport;
+    use ClientAutoGeneratorTrait;
 
-	/**
-	 * get capsule for client
-	 *
-	 * @var array
-	 */
-	protected array $capsule = [];
+    /**
+     * get capsule for client
+     *
+     * @var array
+     */
+    protected array $capsule = [];
 
-	/**
-	 * get model entity validation
-	 *
-	 * @var array|string[]
-	 */
-	protected array $model = [PasswordChange::class];
+    /**
+     * get model entity validation
+     *
+     * @var array|string[]
+     */
+    protected array $model = [PasswordChange::class];
 
-	/**
-	 * get rule for client
-	 *
-	 * @var array
-	 */
-	protected array $rule = [];
+    /**
+     * get rule for client
+     *
+     * @var array
+     */
+    protected array $rule = [];
 }

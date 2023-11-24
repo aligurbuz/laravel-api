@@ -11,11 +11,24 @@ class Phone
      *
      * @return string|null
      */
-    public static function get() : ?string
+    public static function get(): ?string
     {
-        return static::guardDetector(static function(){
+        return static::guardDetector(static function () {
             return User::get()?->phone;
         });
+    }
+
+    /**
+     * @param callable $callback
+     * @return mixed
+     */
+    private static function guardDetector(callable $callback): mixed
+    {
+        if (method_exists((new static()), $model = Guard::model())) {
+            return static::{$model}();
+        }
+
+        return $callback();
     }
 
     /**
@@ -23,23 +36,10 @@ class Phone
      *
      * @return string|null
      */
-    public static function customer() : ?string
+    public static function customer(): ?string
     {
         Customer::setCode(User::code());
 
         return Customer::contact()->phone();
-    }
-
-    /**
-     * @param callable $callback
-     * @return mixed
-     */
-    private static function guardDetector(callable $callback) : mixed
-    {
-        if(method_exists((new static()),$model = Guard::model())){
-            return static::{$model}();
-        }
-
-        return $callback();
     }
 }

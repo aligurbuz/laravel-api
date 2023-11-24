@@ -8,16 +8,16 @@ use App\Facades\Database\Authenticate\Guard;
 
 trait AfterUpdate
 {
-	/**
-	 * event performed after repository update
-	 *
-	 * @param array $result
-	 * @param array $clientData
-	 * @return void
-	 */
-	public function eventFireAfterUpdate(array $result = [], array $clientData = []): void
-	{
+    /**
+     * event performed after repository update
+     *
+     * @param array $result
+     * @param array $clientData
+     * @return void
+     */
+    public function eventFireAfterUpdate(array $result = [], array $clientData = []): void
+    {
         // After everything is completed, we change the user's password with email control.
-		Guard::repository()->instance(false)->where('email' , $result['email'])->update(['password' => $result['password']]);
-	}
+        Guard::repository()->instance(false)->where('email', $result['email'])->update(['password' => $result['password']]);
+    }
 }

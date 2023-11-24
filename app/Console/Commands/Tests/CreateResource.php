@@ -28,7 +28,7 @@ class CreateResource extends Command
      */
     public function handle()
     {
-        Artisan::call('make:command',['name' => 'Tests\Resources\\'.ucfirst($this->argument('file'))]);
+        Artisan::call('make:command', ['name' => 'Tests\Resources\\' . ucfirst($this->argument('file'))]);
 
         return Command::SUCCESS;
     }

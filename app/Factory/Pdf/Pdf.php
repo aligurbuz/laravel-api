@@ -40,7 +40,19 @@ class Pdf extends PdfManager implements PdfInterface
      */
     public function download(string $view, array $viewData = []): mixed
     {
-        return $this->loadHTML($view,$viewData)->download();
+        return $this->loadHTML($view, $viewData)->download();
+    }
+
+    /**
+     * pdf load html for factory
+     *
+     * @param string $view
+     * @param array $viewData
+     * @return mixed
+     */
+    private function loadHTML(string $view, array $viewData = []): mixed
+    {
+        return App::make('dompdf.wrapper')->loadHTML(view('pdf.' . $view, $viewData)->render());
     }
 
     /**
@@ -52,18 +64,6 @@ class Pdf extends PdfManager implements PdfInterface
      */
     public function stream(string $view, array $viewData = []): mixed
     {
-        return $this->loadHTML($view,$viewData)->stream();
-    }
-
-    /**
-     * pdf load html for factory
-     *
-     * @param string $view
-     * @param array $viewData
-     * @return mixed
-     */
-    private function loadHTML(string $view, array $viewData = []) : mixed
-    {
-        return App::make('dompdf.wrapper')->loadHTML(view('pdf.' . $view, $viewData)->render());
+        return $this->loadHTML($view, $viewData)->stream();
     }
 }

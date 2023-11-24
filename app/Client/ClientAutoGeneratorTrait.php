@@ -98,11 +98,11 @@ trait ClientAutoGeneratorTrait
      */
     public function customerCodeAutoGenerator(): mixed
     {
-        if(isPost() && $this->getModelName()==='Customer'){
+        if (isPost() && $this->getModelName() === 'Customer') {
             return generateHash();
         }
 
-        if(ApiKey::isWeb() && isAuthenticate()){
+        if (ApiKey::isWeb() && isAuthenticate()) {
             return $this->ensureColumnExists('customer_code', function () {
                 return customerCode();
             });
@@ -212,7 +212,7 @@ trait ClientAutoGeneratorTrait
                 continue;
             }
 
-            if(AppContainer::has('mainCrModel') && $key===AppContainer::get('mainCrModel')){
+            if (AppContainer::has('mainCrModel') && $key === AppContainer::get('mainCrModel')) {
                 continue;
             }
 

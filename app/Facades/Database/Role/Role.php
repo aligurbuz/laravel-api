@@ -5,25 +5,11 @@ declare(strict_types=1);
 namespace App\Facades\Database\Role;
 
 use App\Factory\Factory;
-use App\Repositories\Repository;
 use App\Libs\AppContainer;
+use App\Repositories\Repository;
 
 class Role
 {
-    /**
-     * get role data information for facade
-     *
-     * @return array
-     */
-    public static function get(): array
-    {
-        $userRole = AppContainer::use('role', static function () {
-            return Repository::user()->auth()->role()->getRepository();
-        });
-
-        return $userRole[0]['role'][0] ?? [];
-    }
-
     /**
      * checks if the user is isAdmin for facade
      *
@@ -44,6 +30,20 @@ class Role
         }
 
         return $isAdmin;
+    }
+
+    /**
+     * get role data information for facade
+     *
+     * @return array
+     */
+    public static function get(): array
+    {
+        $userRole = AppContainer::use('role', static function () {
+            return Repository::user()->auth()->role()->getRepository();
+        });
+
+        return $userRole[0]['role'][0] ?? [];
     }
 
     /**

@@ -37,6 +37,18 @@ class Authenticate extends Middleware
     }
 
     /**
+     * set isAdmin for user
+     *
+     * @return void
+     */
+    private function registerContainerIsAdmin(): void
+    {
+        if (endpoint() === 'user') {
+            User::registerContainerIsAdmin();
+        }
+    }
+
+    /**
      * Get the path the user should be redirected to when they are not authenticated.
      *
      * @param  $request
@@ -46,18 +58,6 @@ class Authenticate extends Middleware
     {
         if (!$request->expectsJson()) {
             Exception::authenticateException();
-        }
-    }
-
-    /**
-     * set isAdmin for user
-     *
-     * @return void
-     */
-    private function registerContainerIsAdmin(): void
-    {
-        if (endpoint() === 'user') {
-            User::registerContainerIsAdmin();
         }
     }
 }

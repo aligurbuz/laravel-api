@@ -17,48 +17,48 @@ class ChangesController extends ApiController
      */
     protected bool $authenticate = false;
 
-	/**
-	 * get changes data
-	 *
-	 * @param GetClient $client
-	 * @param PasswordChangesRepositoryContract $changesRepository
-	 * @return array
-	 */
-	public function get(GetClient $client, PasswordChangesRepositoryContract $changesRepository): array
-	{
-		$client->handle();
-		return $changesRepository->get();
-	}
+    /**
+     * get changes data
+     *
+     * @param GetClient $client
+     * @param PasswordChangesRepositoryContract $changesRepository
+     * @return array
+     */
+    public function get(GetClient $client, PasswordChangesRepositoryContract $changesRepository): array
+    {
+        $client->handle();
+        return $changesRepository->get();
+    }
 
 
-	/**
-	 * create changes data
-	 *
-	 * @param CreateClient $client
-	 * @param PasswordChangesRepositoryContract $changesRepository
-	 * @return array|object
-	 */
-	public function create(CreateClient $client, PasswordChangesRepositoryContract $changesRepository): array|object
-	{
-		return $this->transaction(function() use($client,$changesRepository) {
-		    $client->handle();
-		    return $changesRepository->create();
-		});
-	}
+    /**
+     * create changes data
+     *
+     * @param CreateClient $client
+     * @param PasswordChangesRepositoryContract $changesRepository
+     * @return array|object
+     */
+    public function create(CreateClient $client, PasswordChangesRepositoryContract $changesRepository): array|object
+    {
+        return $this->transaction(function () use ($client, $changesRepository) {
+            $client->handle();
+            return $changesRepository->create();
+        });
+    }
 
 
-	/**
-	 * update changes data
-	 *
-	 * @param UpdateClient $client
-	 * @param PasswordChangesRepositoryContract $changesRepository
-	 * @return array|object
-	 */
-	public function update(UpdateClient $client, PasswordChangesRepositoryContract $changesRepository): array|object
-	{
-		return $this->transaction(function() use($client,$changesRepository) {
-		    $client->handle();
-		    return $changesRepository->update();
-		});
-	}
+    /**
+     * update changes data
+     *
+     * @param UpdateClient $client
+     * @param PasswordChangesRepositoryContract $changesRepository
+     * @return array|object
+     */
+    public function update(UpdateClient $client, PasswordChangesRepositoryContract $changesRepository): array|object
+    {
+        return $this->transaction(function () use ($client, $changesRepository) {
+            $client->handle();
+            return $changesRepository->update();
+        });
+    }
 }

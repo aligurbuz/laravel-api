@@ -8,12 +8,24 @@ use Illuminate\Support\Facades\Hash;
 trait FakerRepository
 {
     /**
+     * generate big integer for faker repository
+     *
+     * @return int
+     *
+     * @throws Exception
+     */
+    public static function bigIntegerFaker(): int
+    {
+        return generateHash();
+    }
+
+    /**
      * generate random letter for faker facade
      *
      * @param int $count
      * @return string
      */
-    public function letterFaker(int $count = 1) : string
+    public function letterFaker(int $count = 1): string
     {
         $faker = faker();
 
@@ -24,18 +36,6 @@ trait FakerRepository
         }
 
         return implode('', $letters);
-    }
-
-    /**
-     * generate big integer for faker repository
-     *
-     * @return int
-     *
-     * @throws Exception
-     */
-    public static function bigIntegerFaker(): int
-    {
-        return generateHash();
     }
 
     /**

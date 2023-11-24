@@ -37,7 +37,7 @@ class Code extends CodeManager implements CodeInterface
      */
     public function throwExceptionIfDoesntExist(bool $notDeleted = true): mixed
     {
-        return $this->isValidRepository(function ($repository) use($notDeleted) {
+        return $this->isValidRepository(function ($repository) use ($notDeleted) {
 
             // it determines the code and
             // code value according to the binds value.

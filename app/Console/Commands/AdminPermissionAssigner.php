@@ -32,10 +32,10 @@ class AdminPermissionAssigner extends Command
         $roleFormatter = Factory::permission()->roleFormatter();
 
         $roleUpdate = Repository::role()->code($this->argument('roleCode'))->update([[
-           'roles' => $roleFormatter
+            'roles' => $roleFormatter
         ]]);
 
-        if($roleUpdate){
+        if ($roleUpdate) {
             return Command::SUCCESS;
         }
 

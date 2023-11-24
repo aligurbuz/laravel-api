@@ -11,7 +11,7 @@ trait Profiles
     public function initCustomerProfiles(): void
     {
         /**if(!$this->container('post')){
-            $this->setEndpointNegativePermission('POST','specialExceptionKey');
-        }**/
+         * $this->setEndpointNegativePermission('POST','specialExceptionKey');
+         * }**/
     }
 }

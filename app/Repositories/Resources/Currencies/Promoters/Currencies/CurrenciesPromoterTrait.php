@@ -39,7 +39,7 @@ trait CurrenciesPromoterTrait
      *
      * @return string
      */
-    public function symbolFaker() : string
+    public function symbolFaker(): string
     {
         return faker()->currencyCode;
     }
@@ -49,7 +49,7 @@ trait CurrenciesPromoterTrait
      *
      * @return string
      */
-    public function currencyNameFaker() : string
+    public function currencyNameFaker(): string
     {
         return $this->letterFaker(3);
     }

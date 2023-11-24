@@ -5,9 +5,8 @@ declare(strict_types=1);
 namespace App\Models\Features;
 
 use App\Exceptions\Exception;
-use App\Factory\App\App;
-use App\Repositories\Repository;
 use App\Libs\AppContainer;
+use App\Repositories\Repository;
 use Illuminate\Database\Eloquent\Builder;
 
 /**
@@ -154,6 +153,27 @@ trait WithProcess
         }]);
     }
 
+    protected function getNestedWithRangeRule(string $with, bool $nested = false): ?string
+    {
+        if (!AppContainer::has('withRangeKeyString')) {
+            AppContainer::set('withRangeKeyString', $with);
+        }
+
+        if ($nested) {
+            $withRangeKeyString = AppContainer::get('withRangeKeyString');
+            $withRangeKeyString = $withRangeKeyString . '.' . $with;
+            AppContainer::setWithTerminating('withRangeKeyString', $withRangeKeyString);
+            $withRangeKeyStringNew = AppContainer::get('withRangeKeyString');
+            $withRangeClientValues = request()->get('withRange', []);
+
+            if (isset($withRangeClientValues[$withRangeKeyStringNew])) {
+                return $withRangeClientValues[$withRangeKeyStringNew];
+            }
+        }
+
+        return null;
+    }
+
     /**
      * handler with query without select for model
      *
@@ -199,26 +219,5 @@ trait WithProcess
             $query->range($repositoryInstance, $withRange);
 
         }]);
-    }
-
-    protected function getNestedWithRangeRule(string $with, bool $nested = false): ?string
-    {
-        if (!AppContainer::has('withRangeKeyString')) {
-            AppContainer::set('withRangeKeyString', $with);
-        }
-
-        if ($nested) {
-            $withRangeKeyString = AppContainer::get('withRangeKeyString');
-            $withRangeKeyString = $withRangeKeyString . '.' . $with;
-            AppContainer::setWithTerminating('withRangeKeyString', $withRangeKeyString);
-            $withRangeKeyStringNew = AppContainer::get('withRangeKeyString');
-            $withRangeClientValues = request()->get('withRange', []);
-
-            if (isset($withRangeClientValues[$withRangeKeyStringNew])) {
-                return $withRangeClientValues[$withRangeKeyStringNew];
-            }
-        }
-
-        return null;
     }
 }

@@ -26,15 +26,15 @@ class ApiKey extends Command
      *
      * @return void
      */
-    public function handle() : void
+    public function handle(): void
     {
         $key = $this->argument('key');
-        $apiKey = config('apikey.'.$key);
+        $apiKey = config('apikey.' . $key);
 
-        if(is_null($apiKey)){
+        if (is_null($apiKey)) {
             Exception::customException('invalid api key');
         }
 
-        $this->info(ucfirst($key).' Apikey : '.$apiKey);
+        $this->info(ucfirst($key) . ' Apikey : ' . $apiKey);
     }
 }

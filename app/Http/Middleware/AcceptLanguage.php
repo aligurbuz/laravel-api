@@ -4,8 +4,8 @@ namespace App\Http\Middleware;
 
 use App\Constants;
 use App\Exceptions\Exception;
-use App\Repositories\Repository;
 use App\Libs\AppContainer;
+use App\Repositories\Repository;
 use Closure;
 use Illuminate\Http\Request;
 

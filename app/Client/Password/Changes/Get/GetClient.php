@@ -9,35 +9,35 @@ use App\Models\PasswordChange;
 
 class GetClient extends Client
 {
-	use GeneratorTrait;
-	use ChangesMainSupport;
-	use ClientAutoGeneratorTrait;
+    use GeneratorTrait;
+    use ChangesMainSupport;
+    use ClientAutoGeneratorTrait;
 
-	/**
-	 * get capsule for client
-	 *
-	 * @var array
-	 */
-	protected array $capsule = [];
+    /**
+     * get capsule for client
+     *
+     * @var array
+     */
+    protected array $capsule = [];
 
     protected array $capsuleComments = [
         'email' => 'Represents the user\'s email address for filtering.',
         'hash' => 'Represents the hash value required for the validator. It is sent to the user by the system.',
     ];
 
-	/**
-	 * get model entity validation
-	 *
-	 * @var array|string[]
-	 */
-	protected array $model = [PasswordChange::class];
+    /**
+     * get model entity validation
+     *
+     * @var array|string[]
+     */
+    protected array $model = [PasswordChange::class];
 
-	/**
-	 * get rule for client
-	 *
-	 * @var array
-	 */
-	protected array $rule = [
+    /**
+     * get rule for client
+     *
+     * @var array
+     */
+    protected array $rule = [
         'email' => 'required',
         'hash' => 'required',
     ];

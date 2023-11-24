@@ -9,18 +9,6 @@ use Illuminate\Support\Str;
 abstract class AppManager
 {
     /**
-     * get resource for bind
-     *
-     * @param $resource
-     * @return object
-     */
-    protected function resource($resource): object
-    {
-        return $this->binds['resource'][$resource] ?? new class {
-        };
-    }
-
-    /**
      * get restaurant_code for gate factory
      *
      * @return int
@@ -33,5 +21,17 @@ abstract class AppManager
 
         $class = Str::camel(class_basename($this));
         return $this->{$class}();
+    }
+
+    /**
+     * get resource for bind
+     *
+     * @param $resource
+     * @return object
+     */
+    protected function resource($resource): object
+    {
+        return $this->binds['resource'][$resource] ?? new class {
+        };
     }
 }

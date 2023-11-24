@@ -2,8 +2,8 @@
 
 namespace App\Repositories\Supporters\Helpers;
 
-use App\Repositories\EloquentRepository;
 use App\Libs\Client;
+use App\Repositories\EloquentRepository;
 use Illuminate\Support\Str;
 
 class OppositeModelClientConverter
@@ -64,6 +64,31 @@ class OppositeModelClientConverter
         $client = Client::data();
 
         return array($request, $queries, $client);
+    }
+
+    /**
+     * since reverse modeling is done, if this reverse model is requested, we unset this value.
+     *
+     * @param array $queries
+     * @param array $client
+     * @return array
+     */
+    private function unsetWithQuery(array $queries, array $client): array
+    {
+        if (isset($queries['with'][Str::camel($this->eloquentRepository->getTable())])) {
+            unset(
+                $queries['with'][Str::camel($this->eloquentRepository->getTable())],
+                $client['with'][Str::camel($this->eloquentRepository->getTable())]
+            );
+
+            if (!count($client['with'])) {
+                unset($client['with']);
+            }
+        }
+
+        request()->query->replace($client);
+
+        return array($queries, $client);
     }
 
     /**
@@ -131,30 +156,5 @@ class OppositeModelClientConverter
         }
 
         return $queries;
-    }
-
-    /**
-     * since reverse modeling is done, if this reverse model is requested, we unset this value.
-     *
-     * @param array $queries
-     * @param array $client
-     * @return array
-     */
-    private function unsetWithQuery(array $queries, array $client): array
-    {
-        if (isset($queries['with'][Str::camel($this->eloquentRepository->getTable())])) {
-            unset(
-                $queries['with'][Str::camel($this->eloquentRepository->getTable())],
-                $client['with'][Str::camel($this->eloquentRepository->getTable())]
-            );
-
-            if(!count($client['with'])){
-                unset($client['with']);
-            }
-        }
-
-        request()->query->replace($client);
-
-        return array($queries, $client);
     }
 }

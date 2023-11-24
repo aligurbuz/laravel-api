@@ -246,18 +246,6 @@ class Client extends ClientManager
     }
 
     /**
-     * get all rule for client
-     *
-     * @return array
-     */
-    public function getAllRule(): array
-    {
-        $this->modelRequiredFields(true);
-
-        return $this->rule;
-    }
-
-    /**
      * get required values for client
      *
      * @return array
@@ -279,6 +267,18 @@ class Client extends ClientManager
         }
 
         return $list;
+    }
+
+    /**
+     * get all rule for client
+     *
+     * @return array
+     */
+    public function getAllRule(): array
+    {
+        $this->modelRequiredFields(true);
+
+        return $this->rule;
     }
 
     /**

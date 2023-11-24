@@ -67,7 +67,7 @@ abstract class ResponseSupport
     {
         $resource = isset($data[0]) ? $data : [$data];
 
-        if(!count($resource[0])){
+        if (!count($resource[0])) {
             return [['data' => []]];
         }
 

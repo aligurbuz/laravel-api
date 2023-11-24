@@ -3,9 +3,9 @@
 namespace App\Libs\Commands;
 
 use App\Constants;
+use App\Libs\Db;
 use App\Repositories\EloquentRepository;
 use App\Repositories\Repository;
-use App\Libs\Db;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\File;

@@ -40,18 +40,63 @@ class Date
     }
 
     /**
-     * Determines how many seconds are between two dates.
+     * get day of week (as numeric) for carbon
      *
-     * @param string $startDate
-     * @param string $finishDate
-     * @return float|int
+     * @param string|null $date
+     * @param string $format
+     * @param null $tz
+     * @param string $info
+     * @return string|int|bool|DateTimeZone|null
      */
-    public static function diffInSeconds(string $startDate, string $finishDate): float|int
+    public static function info(?string $date = null, string $format = 'Y-m-d', $tz = null, string $info = 'dayOfWeek'): string|int|bool|DateTimeZone|null
     {
-        $startDate = static::createFormat($startDate);
-        $finishDate = static::createFormat($finishDate);
+        return $date
+            ? static::createFormat($date, $format, $tz)->{$info}
+            : static::now()->{$info};
+    }
 
-        return $finishDate->diffInSeconds($startDate);
+    /**
+     * create format for date
+     *
+     * @param string $format
+     * @param $date
+     * @param null $tz
+     * @return Carbon|false
+     */
+    public static function createFormat($date, string $format = 'Y-m-d H:i:s', $tz = null): bool|Carbon
+    {
+        $tz = $tz ?? static::getTimezone();
+
+        return Carbon::createFromFormat($format, $date, $tz);
+    }
+
+    /**
+     * get timezone for carbon
+     *
+     * @return string|null
+     */
+    public static function getTimezone(): ?string
+    {
+        return static::$timezone ?? timezone();
+    }
+
+    /**
+     * set timezone for carbon
+     *
+     * @param string $timezone
+     * @return static
+     */
+    public static function setTimeZone(string $timezone): static
+    {
+        return new static($timezone);
+    }
+
+    /**
+     * @return Carbon
+     */
+    public static function now(): Carbon
+    {
+        return Carbon::now(static::getTimezone());
     }
 
     /**
@@ -66,6 +111,21 @@ class Date
         $diffInSeconds = static::diffInSeconds($time, static::now()->toDateTimeString());
 
         return ($diffInSeconds > $criteria);
+    }
+
+    /**
+     * Determines how many seconds are between two dates.
+     *
+     * @param string $startDate
+     * @param string $finishDate
+     * @return float|int
+     */
+    public static function diffInSeconds(string $startDate, string $finishDate): float|int
+    {
+        $startDate = static::createFormat($startDate);
+        $finishDate = static::createFormat($finishDate);
+
+        return $finishDate->diffInSeconds($startDate);
     }
 
     /**
@@ -116,45 +176,6 @@ class Date
     }
 
     /**
-     * get day of week (as numeric) for carbon
-     *
-     * @param string|null $date
-     * @param string $format
-     * @param null $tz
-     * @param string $info
-     * @return string|int|bool|DateTimeZone|null
-     */
-    public static function info(?string $date = null, string $format = 'Y-m-d', $tz = null, string $info = 'dayOfWeek'): string|int|bool|DateTimeZone|null
-    {
-        return $date
-            ? static::createFormat($date, $format, $tz)->{$info}
-            : static::now()->{$info};
-    }
-
-    /**
-     * create format for date
-     *
-     * @param string $format
-     * @param $date
-     * @param null $tz
-     * @return Carbon|false
-     */
-    public static function createFormat($date, string $format = 'Y-m-d H:i:s', $tz = null): bool|Carbon
-    {
-        $tz = $tz ?? static::getTimezone();
-
-        return Carbon::createFromFormat($format, $date, $tz);
-    }
-
-    /**
-     * @return Carbon
-     */
-    public static function now(): Carbon
-    {
-        return Carbon::now(static::getTimezone());
-    }
-
-    /**
      * get tomorrow date
      *
      * @return Carbon
@@ -175,27 +196,6 @@ class Date
     public static function fake(string $format = 'Y-m-d', string $startDate = 'now', string $endDate = '1 year'): string
     {
         return faker()->dateTimeBetween($startDate, $endDate, static::getTimezone())->format($format);
-    }
-
-    /**
-     * get timezone for carbon
-     *
-     * @return string|null
-     */
-    public static function getTimezone(): ?string
-    {
-        return static::$timezone ?? timezone();
-    }
-
-    /**
-     * set timezone for carbon
-     *
-     * @param string $timezone
-     * @return static
-     */
-    public static function setTimeZone(string $timezone): static
-    {
-        return new static($timezone);
     }
 
     /**

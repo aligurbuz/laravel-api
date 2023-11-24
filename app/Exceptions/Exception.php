@@ -83,9 +83,9 @@ class Exception
      * @param $exceptionKey
      * @return void
      */
-    public static function ifTrue(bool $condition,$exceptionKey): void
+    public static function ifTrue(bool $condition, $exceptionKey): void
     {
-        if($condition){
+        if ($condition) {
             static::customException($exceptionKey);
         }
     }

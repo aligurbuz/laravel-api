@@ -58,7 +58,7 @@ class GlobalController extends ApiController
 
                 $callingData = app()->call($controller . '@get');
 
-                $results[str_replace('/','_',$service)] = (isset($callingData['data'])) ? [$callingData] : $callingData;
+                $results[str_replace('/', '_', $service)] = (isset($callingData['data'])) ? [$callingData] : $callingData;
                 $this->resetQueryAll();
             }
         }

@@ -28,26 +28,6 @@ abstract class PermissionManager
     }
 
     /**
-     * get permission facade instance
-     *
-     * @return Permission
-     */
-    public function permission(): Permission
-    {
-        return Role::permission();
-    }
-
-    /**
-     * get endpoint permission values
-     *
-     * @return array
-     */
-    public function getEndpointPermission(): array
-    {
-        return $this->permission()->get();
-    }
-
-    /**
      * Changes the HTTP Method value of the existing permission information.
      *
      * @param string $http
@@ -67,8 +47,18 @@ abstract class PermissionManager
         // if the exceptionKey value is not null, it means that we will give a special exception message.
         // this value is controlled in the Middleware Permission class.
         if (!is_null($exceptionKey)) {
-            AppContainer::setWithTerminating(strtolower($http).'PermissionException', $exceptionKey);
+            AppContainer::setWithTerminating(strtolower($http) . 'PermissionException', $exceptionKey);
         }
+    }
+
+    /**
+     * get permission facade instance
+     *
+     * @return Permission
+     */
+    public function permission(): Permission
+    {
+        return Role::permission();
     }
 
     /**
@@ -78,13 +68,13 @@ abstract class PermissionManager
      * @param string $http
      * @return bool
      */
-    public function container(string $http) : bool
+    public function container(string $http): bool
     {
-        $standardMethod = $http .ucfirst($this->endpoint);
+        $standardMethod = $http . ucfirst($this->endpoint);
 
-        if(method_exists($this,$standardMethod)){
+        if (method_exists($this, $standardMethod)) {
             $callMethod = $this->{$standardMethod}();
-            AppContainer::setWithTerminating($standardMethod.'Permission',$callMethod);
+            AppContainer::setWithTerminating($standardMethod . 'Permission', $callMethod);
 
             return $callMethod;
         }
@@ -93,21 +83,13 @@ abstract class PermissionManager
     }
 
     /**
-     * get endpoint for permission
+     * get endpoint permission values
      *
-     * @return string
+     * @return array
      */
-    protected function endpoint(): string
+    public function getEndpointPermission(): array
     {
-        return $this->endpoint;
-    }
-
-    /**
-     * @return bool
-     */
-    public function handle(): bool
-    {
-        return Factory::permission()->checkEndpoint();
+        return $this->permission()->get();
     }
 
     /**
@@ -136,7 +118,7 @@ abstract class PermissionManager
         }
 
         if (method_exists($this, $withMethod)) {
-            return AppContainer::use($withMethod.'Permission',function() use($withMethod){
+            return AppContainer::use($withMethod . 'Permission', function () use ($withMethod) {
                 return $this->$withMethod();
             });
         }
@@ -146,5 +128,23 @@ abstract class PermissionManager
         }
 
         return $this->handle();
+    }
+
+    /**
+     * @return bool
+     */
+    public function handle(): bool
+    {
+        return Factory::permission()->checkEndpoint();
+    }
+
+    /**
+     * get endpoint for permission
+     *
+     * @return string
+     */
+    protected function endpoint(): string
+    {
+        return $this->endpoint;
     }
 }

@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Repositories\Resources\Customer\Promoters\Profiles;
 
+use App\Libs\Client;
 use App\Models\Entities\Customer;
 use App\Repositories\EloquentRepository;
-use App\Libs\Client;
 
 trait ProfilesPromoterTrait
 {
@@ -26,7 +26,7 @@ trait ProfilesPromoterTrait
      *
      * @return array
      */
-    public function appends() : array
+    public function appends(): array
     {
         return [];
     }

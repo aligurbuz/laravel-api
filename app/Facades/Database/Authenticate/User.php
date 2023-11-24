@@ -9,16 +9,6 @@ use App\Libs\AppContainer;
 class User
 {
     /**
-     * @return mixed
-     */
-    public static function get(): object
-    {
-        return AppContainer::use('user', static function () {
-            return Guard::get()->user();
-        });
-    }
-
-    /**
      * this code looks at the user's status and is_deleted fields.
      * It will throw an exception if the status field value is 0 or the is_deleted field is 1.
      *
@@ -39,13 +29,13 @@ class User
     }
 
     /**
-     * get user role for facade
-     *
-     * @return ?object
+     * @return mixed
      */
-    public static function role() : ?object
+    public static function get(): object
     {
-        return static::get()->role()?->first();
+        return AppContainer::use('user', static function () {
+            return Guard::get()->user();
+        });
     }
 
     /**
@@ -53,16 +43,26 @@ class User
      *
      * @return void
      */
-    public static function registerContainerIsAdmin() : void
+    public static function registerContainerIsAdmin(): void
     {
         AppContainer::setWithTerminating('isAdmin', false);
 
         $role = static::role();
 
-        if(!is_null($role)){
+        if (!is_null($role)) {
             $isAdmin = checkBool($role->is_administrator);
             AppContainer::setWithTerminating('isAdmin', $isAdmin);
         }
+    }
+
+    /**
+     * get user role for facade
+     *
+     * @return ?object
+     */
+    public static function role(): ?object
+    {
+        return static::get()->role()?->first();
     }
 
     /**
@@ -90,7 +90,7 @@ class User
      *
      * @return bool
      */
-    public static function isAdmin() : bool
+    public static function isAdmin(): bool
     {
         return Role::isAdmin();
     }

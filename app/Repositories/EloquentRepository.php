@@ -9,6 +9,10 @@ use App\Exceptions\Exception;
 use App\Exceptions\SqlExceptionManager;
 use App\Facades\Database\Authenticate\ApiKey;
 use App\Facades\Database\Authenticate\Authenticate;
+use App\Libs\AppContainer;
+use App\Libs\Client;
+use App\Libs\Date;
+use App\Libs\Db;
 use App\Repositories\Supporters\CacheRepository;
 use App\Repositories\Supporters\CreateRepository;
 use App\Repositories\Supporters\GlobalScopeManager;
@@ -17,10 +21,6 @@ use App\Repositories\Supporters\Helpers\OppositeModelClientConverter;
 use App\Repositories\Supporters\LocalizationRepository;
 use App\Repositories\Supporters\ResourceRepository;
 use App\Repositories\Supporters\UpdateRepository;
-use App\Libs\AppContainer;
-use App\Libs\Client;
-use App\Libs\Date;
-use App\Libs\Db;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
 use Throwable;
@@ -118,26 +118,6 @@ class EloquentRepository
     }
 
     /**
-     * It detects whether the request sent to the repository class is from the client.
-     *
-     * @return bool
-     */
-    public function isClient(): bool
-    {
-        return isClientRequest();
-    }
-
-    /**
-     * get customer code for repository
-     *
-     * @return int
-     */
-    public function customerCode(): int
-    {
-        return $this->isClient() ? (int)client('customer_code') : customerCode();
-    }
-
-    /**
      * set auto eager loadings for repository
      *
      * @return void
@@ -216,20 +196,6 @@ class EloquentRepository
     {
         if (property_exists($this, 'autoEagerLoadings') && is_array($this->autoEagerLoadings)) {
             return $this->autoEagerLoadings;
-        }
-
-        return [];
-    }
-
-    /**
-     * get countable values for repository
-     *
-     * @return array
-     */
-    public function getCountable(): array
-    {
-        if (property_exists($this, 'countable') && is_array($this->countable)) {
-            return $this->countable;
         }
 
         return [];
@@ -353,6 +319,80 @@ class EloquentRepository
     }
 
     /**
+     * get model connection for repository
+     *
+     * @return string|null
+     */
+    public function getConnection(): ?string
+    {
+        if (property_exists($this, 'connection')) {
+            return $this->connection;
+        }
+
+        if (method_exists($this, 'setConnection')) {
+            return $this->setConnection();
+        }
+
+        return null;
+    }
+
+    /**
+     * get model name for repository
+     *
+     * @param ?string $model
+     * @return string
+     */
+    public function getModelName(string $model = null): string
+    {
+        return class_basename(($model ?? $this->getModel()));
+    }
+
+    /**
+     * get client convert for changed model for repository
+     *
+     * @param string $defaultModel
+     * @return void
+     */
+    public function oppositeModelClientConverter(string $defaultModel): void
+    {
+        new OppositeModelClientConverter($this, $defaultModel);
+    }
+
+    /**
+     * get customer code for repository
+     *
+     * @return int
+     */
+    public function customerCode(): int
+    {
+        return $this->isClient() ? (int)client('customer_code') : customerCode();
+    }
+
+    /**
+     * It detects whether the request sent to the repository class is from the client.
+     *
+     * @return bool
+     */
+    public function isClient(): bool
+    {
+        return isClientRequest();
+    }
+
+    /**
+     * get countable values for repository
+     *
+     * @return array
+     */
+    public function getCountable(): array
+    {
+        if (property_exists($this, 'countable') && is_array($this->countable)) {
+            return $this->countable;
+        }
+
+        return [];
+    }
+
+    /**
      * set model namespace for repository
      *
      * @param string $model
@@ -393,24 +433,6 @@ class EloquentRepository
     }
 
     /**
-     * get model connection for repository
-     *
-     * @return string|null
-     */
-    public function getConnection(): ?string
-    {
-        if (property_exists($this, 'connection')) {
-            return $this->connection;
-        }
-
-        if (method_exists($this, 'setConnection')) {
-            return $this->setConnection();
-        }
-
-        return null;
-    }
-
-    /**
      * get pagination model repository
      *
      * @param int|null $pagination
@@ -431,27 +453,6 @@ class EloquentRepository
             ? 'simplePaginate' : 'paginate';
 
         return $this->graphQl->{$paginateDefinition}($pagination ?? $this->paginationHandler())->toArray();
-    }
-
-    /**
-     * The filter detects whether there is model_code in the query data.
-     *
-     * @return bool
-     */
-    public function filterModelCode(): bool
-    {
-        return AppContainer::has('filterModelCode');
-    }
-
-    /**
-     * set paginator property value for eloquent repository
-     *
-     * @param bool $value
-     * @return void
-     */
-    public function setPaginator(bool $value = true): void
-    {
-        $this->paginator = $value;
     }
 
     /**
@@ -489,6 +490,16 @@ class EloquentRepository
     public function toArray(): array
     {
         return $this->graphQl->get()->toArray();
+    }
+
+    /**
+     * The filter detects whether there is model_code in the query data.
+     *
+     * @return bool
+     */
+    public function filterModelCode(): bool
+    {
+        return AppContainer::has('filterModelCode');
     }
 
     /**
@@ -536,6 +547,17 @@ class EloquentRepository
         } else {
             Exception::customException(trans('exception.limitExceedException'));
         }
+    }
+
+    /**
+     * set paginator property value for eloquent repository
+     *
+     * @param bool $value
+     * @return void
+     */
+    public function setPaginator(bool $value = true): void
+    {
+        $this->paginator = $value;
     }
 
     /**
@@ -761,18 +783,6 @@ class EloquentRepository
     }
 
     /**
-     * update data for repository model
-     *
-     * @param array $data
-     * @param bool $id
-     * @return array|object
-     */
-    public function update(array $data = [], bool $id = true): array|object
-    {
-        return $this->updateHandler($data, $id);
-    }
-
-    /**
      * get client data for create repository model
      *
      * @param array $data
@@ -865,6 +875,17 @@ class EloquentRepository
             ]);
     }
 
+    /**
+     * update data for repository model
+     *
+     * @param array $data
+     * @param bool $id
+     * @return array|object
+     */
+    public function update(array $data = [], bool $id = true): array|object
+    {
+        return $this->updateHandler($data, $id);
+    }
 
     /**
      * it adds to builder not deleted data.
@@ -879,6 +900,27 @@ class EloquentRepository
         });
 
         return $this;
+    }
+
+    /**
+     * get code instance for repository
+     *
+     * @param int $code
+     * @return object
+     */
+    public function code(int $code = 0): object
+    {
+        return $this->where($this->getModelCode(), $code);
+    }
+
+    /**
+     * get table_codee for model name
+     *
+     * @return string
+     */
+    public function getModelCode(): string
+    {
+        return getTableCode($this->getModelName());
     }
 
     /**
@@ -929,17 +971,6 @@ class EloquentRepository
     }
 
     /**
-     * get code instance for repository
-     *
-     * @param int $code
-     * @return object
-     */
-    public function code(int $code = 0): object
-    {
-        return $this->where($this->getModelCode(), $code);
-    }
-
-    /**
      * get authenticate user instance for repository
      *
      * @return object
@@ -947,27 +978,6 @@ class EloquentRepository
     public function auth(): object
     {
         return $this->where(Authenticate::getCodeName(), Authenticate::code());
-    }
-
-    /**
-     * get table_codee for model name
-     *
-     * @return string
-     */
-    public function getModelCode(): string
-    {
-        return getTableCode($this->getModelName());
-    }
-
-    /**
-     * get model name for repository
-     *
-     * @param ?string $model
-     * @return string
-     */
-    public function getModelName(string $model = null): string
-    {
-        return class_basename(($model ?? $this->getModel()));
     }
 
     /**
@@ -1547,6 +1557,16 @@ class EloquentRepository
     }
 
     /**
+     * get table for model name
+     *
+     * @return mixed
+     */
+    public function getModelWithValues(): mixed
+    {
+        return $this->instanceModel()->getWithValues();
+    }
+
+    /**
      * get required columns for model
      *
      * @return array
@@ -1567,16 +1587,6 @@ class EloquentRepository
     }
 
     /**
-     * get table for model name
-     *
-     * @return mixed
-     */
-    public function getModelWithValues(): mixed
-    {
-        return $this->instanceModel()->getWithValues();
-    }
-
-    /**
      * @param string|null $method
      * @return array|object
      */
@@ -1585,16 +1595,5 @@ class EloquentRepository
         $method = $method ?? httpMethod();
 
         return Client::object($this->getModelName(), Client::$methods[$method]);
-    }
-
-    /**
-     * get client convert for changed model for repository
-     *
-     * @param string $defaultModel
-     * @return void
-     */
-    public function oppositeModelClientConverter(string $defaultModel): void
-    {
-        new OppositeModelClientConverter($this, $defaultModel);
     }
 }

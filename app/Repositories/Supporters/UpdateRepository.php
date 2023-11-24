@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Repositories\Supporters;
 
 use App\Exceptions\Exception;
-use App\Repositories\Repository;
 use App\Libs\AppContainer;
+use App\Repositories\Repository;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -191,6 +191,17 @@ trait UpdateRepository
     }
 
     /**
+     * create table changes for model
+     *
+     * @param array $oldData
+     * @param array $newData
+     */
+    public function createTableChanges(array $oldData = [], array $newData = []): void
+    {
+        //
+    }
+
+    /**
      * auto countable model repository handler
      *
      * @param array $oldData
@@ -205,29 +216,16 @@ trait UpdateRepository
                 $countableModelCode = $countableRepository->getModelCode();
                 $repositoryUpdateQuery = $countableRepository->where($countableModelCode, $oldData[$countableModelCode]);
 
-                if(isset($newData[$countableModelCode]) && $oldData[$countableModelCode]!==$newData[$countableModelCode]){
+                if (isset($newData[$countableModelCode]) && $oldData[$countableModelCode] !== $newData[$countableModelCode]) {
                     $repositoryUpdateQuery->decrease($field);
-                    Repository::$repository()->where($countableModelCode,$newData[$countableModelCode])->increase($field);
-                }
-                elseif ((isset($newData['status']) && !$newData['status']) || (isset($newData['is_deleted']) && $newData['is_deleted'])){
+                    Repository::$repository()->where($countableModelCode, $newData[$countableModelCode])->increase($field);
+                } elseif ((isset($newData['status']) && !$newData['status']) || (isset($newData['is_deleted']) && $newData['is_deleted'])) {
                     $repositoryUpdateQuery->decrease($field);
-                }
-                elseif ((isset($newData['status']) && $newData['status']===true)){
+                } elseif ((isset($newData['status']) && $newData['status'] === true)) {
                     $repositoryUpdateQuery->increase($field);
                 }
             }
         }
-    }
-
-    /**
-     * create table changes for model
-     *
-     * @param array $oldData
-     * @param array $newData
-     */
-    public function createTableChanges(array $oldData = [], array $newData = []): void
-    {
-        //
     }
 
     /**

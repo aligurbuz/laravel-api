@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 declare(strict_types=1);
 
@@ -17,18 +17,18 @@ use App\Repositories\Resources\Definition\PropertyHandlers\GendersPropertyHandle
 
 class GendersRepository extends EloquentRepository implements DefinitionGendersRepositoryContract
 {
-	use AfterCreate;
-	use AfterUpdate;
-	use BeforeCreate;
-	use BeforeUpdate;
-	use GendersPromoterTrait;
-	use GeneralPromoterTrait;
-	use GendersPropertyHandlerTrait;
+    use AfterCreate;
+    use AfterUpdate;
+    use BeforeCreate;
+    use BeforeUpdate;
+    use GendersPromoterTrait;
+    use GeneralPromoterTrait;
+    use GendersPropertyHandlerTrait;
 
-	/**
-	 * get model name for repository
-	 *
-	 * @var string
-	 */
-	protected static string $model = Gender::class;
+    /**
+     * get model name for repository
+     *
+     * @var string
+     */
+    protected static string $model = Gender::class;
 }

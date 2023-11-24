@@ -23,6 +23,16 @@ class Macro
     }
 
     /**
+     * @param string $method
+     * @param callable $callback
+     * @return void
+     */
+    public static function set(string $method, callable $callback): void
+    {
+        static::$macros[$method] = $callback;
+    }
+
+    /**
      * @param string $name
      * @param array $arguments
      * @return null
@@ -36,15 +46,5 @@ class Macro
         }
 
         return null;
-    }
-
-    /**
-     * @param string $method
-     * @param callable $callback
-     * @return void
-     */
-    public static function set(string $method, callable $callback): void
-    {
-        static::$macros[$method] = $callback;
     }
 }

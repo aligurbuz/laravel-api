@@ -9,14 +9,17 @@ use App\Repositories\Resources\Countries\Contracts\CountriesRepositoryContract;
 use App\Repositories\Resources\Countries\Contracts\DistrictsRepositoryContract;
 use App\Repositories\Resources\Currencies\Contracts\CurrenciesRepositoryContract;
 use App\Repositories\Resources\Customer\Contracts\CustomerAgesRepositoryContract;
+use App\Repositories\Resources\Customer\Contracts\CustomerContactsRepositoryContract;
 use App\Repositories\Resources\Customer\Contracts\CustomerGendersRepositoryContract;
 use App\Repositories\Resources\Customer\Contracts\CustomerImagesRepositoryContract;
 use App\Repositories\Resources\Customer\Contracts\CustomerProfilesRepositoryContract;
+use App\Repositories\Resources\Definition\Contracts\DefinitionGendersRepositoryContract;
 use App\Repositories\Resources\Gate\Contracts\PermissionsRepositoryContract;
 use App\Repositories\Resources\Gate\Contracts\RolesRepositoryContract;
 use App\Repositories\Resources\Localizations\Contracts\LanguageRepositoryContract;
 use App\Repositories\Resources\Localizations\Contracts\LocalizationsRepositoryContract;
 use App\Repositories\Resources\Logger\Contracts\LoggerRepositoryContract;
+use App\Repositories\Resources\Password\Contracts\PasswordChangesRepositoryContract;
 use App\Repositories\Resources\Registration\Contracts\RegistrationRepositoryContract;
 use App\Repositories\Resources\SuperAdmins\Contracts\SuperAdminsRepositoryContract;
 use App\Repositories\Resources\Support\Contracts\ExcelRepositoryContract;
@@ -24,9 +27,6 @@ use App\Repositories\Resources\Timezones\Contracts\TimezonesRepositoryContract;
 use App\Repositories\Resources\User\Contracts\PhotosRepositoryContract;
 use App\Repositories\Resources\User\Contracts\UserActivationsRepositoryContract;
 use App\Repositories\Resources\User\Contracts\UserRepositoryContract;
-use App\Repositories\Resources\Definition\Contracts\DefinitionGendersRepositoryContract;
-use App\Repositories\Resources\Password\Contracts\PasswordChangesRepositoryContract;
-use App\Repositories\Resources\Customer\Contracts\CustomerContactsRepositoryContract;
 
 /**
  * Class Repository
@@ -39,27 +39,27 @@ class Repository
      *
      * @return DefinitionGendersRepositoryContract
      */
-    public static function gender() : DefinitionGendersRepositoryContract
+    public static function gender(): DefinitionGendersRepositoryContract
     {
         return app()->get(DefinitionGendersRepositoryContract::class);
     }
-    
+
     /**
      * get passwordChange repository instance
      *
      * @return PasswordChangesRepositoryContract
      */
-    public static function passwordChange() : PasswordChangesRepositoryContract
+    public static function passwordChange(): PasswordChangesRepositoryContract
     {
         return app()->get(PasswordChangesRepositoryContract::class);
     }
-    
+
     /**
      * get customerContact repository instance
      *
      * @return CustomerContactsRepositoryContract
      */
-    public static function customerContact() : CustomerContactsRepositoryContract
+    public static function customerContact(): CustomerContactsRepositoryContract
     {
         return app()->get(CustomerContactsRepositoryContract::class);
     }

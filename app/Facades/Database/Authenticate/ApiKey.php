@@ -29,16 +29,6 @@ class ApiKey
     }
 
     /**
-     * get all keys for facade
-     *
-     * @return array
-     */
-    public static function all() : array
-    {
-        return AppContainer::get('apiKeys') ?? [];
-    }
-
-    /**
      * get client according to apikey
      *
      * @param null $header
@@ -60,6 +50,16 @@ class ApiKey
     public static function getHeader(): ?string
     {
         return request()->headers->get(config('app.apikeyString'));
+    }
+
+    /**
+     * get all keys for facade
+     *
+     * @return array
+     */
+    public static function all(): array
+    {
+        return AppContainer::get('apiKeys') ?? [];
     }
 
     /**

@@ -8,8 +8,8 @@ use App\Facades\Database\Authenticate\User;
 use App\Facades\Support\Email\Email;
 use App\Facades\Support\Faker\Faker;
 use App\Facades\Support\Sms\Sms;
-use App\Models\Entities\PasswordChange;
 use App\Libs\Date;
+use App\Models\Entities\PasswordChange;
 
 trait ChangesPromoterTrait
 {

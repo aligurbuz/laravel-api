@@ -2,11 +2,21 @@
 
 namespace App\Facades\Database\Customer;
 
-use App\Repositories\Repository;
 use App\Libs\AppContainer;
+use App\Repositories\Repository;
 
 class Customer
 {
+    /**
+     * get customer code for customer facade
+     *
+     * @return ?int
+     */
+    public static function code(): ?int
+    {
+        return (static::get())[0]['customer_code'] ?? null;
+    }
+
     /**
      * get customer data for facade
      *
@@ -17,16 +27,6 @@ class Customer
         return AppContainer::use('customer', static function () {
             return Repository::customer()->getRepository();
         });
-    }
-
-    /**
-     * get customer code for customer facade
-     *
-     * @return ?int
-     */
-    public static function code(): ?int
-    {
-        return (static::get())[0]['customer_code'] ?? null;
     }
 
     /**

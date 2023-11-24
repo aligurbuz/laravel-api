@@ -6,8 +6,8 @@ namespace App\Repositories\Supporters;
 
 use App\Constants;
 use App\Exceptions\Exception as ExceptionFacade;
-use App\Repositories\Repository;
 use App\Libs\AppContainer;
+use App\Repositories\Repository;
 use Exception;
 
 /**
@@ -107,26 +107,6 @@ trait CreateRepository
     }
 
     /**
-     * auto countable model repository handler
-     *
-     * @param array $data
-     * @return void
-     */
-    public function countableHandler(array $data = []): void
-    {
-        if (count($this->getCountable())) {
-            foreach ($this->getCountable() as $field => $repository) {
-                $countableRepository = Repository::$repository();
-                $countableModelCode = $countableRepository->getModelCode();
-
-                if (isset($data[$countableModelCode])) {
-                    $countableRepository->where($countableModelCode, $data[$countableModelCode])->increase($field);
-                }
-            }
-        }
-    }
-
-    /**
      * add post query dispatcher for repository
      *
      * @param array $data
@@ -159,7 +139,7 @@ trait CreateRepository
                     foreach ($data[$key] as $crKey => $crValues) {
                         $crData[$crKey] = $crValues;
                         $crData[$crKey][getTableCode($this->getModel())] = $data[getTableCode($this->getModel())];
-                        AppContainer::setWithTerminating('mainCrModel',getTableCode($this->getModel()));
+                        AppContainer::setWithTerminating('mainCrModel', getTableCode($this->getModel()));
                     }
 
                     try {
@@ -169,6 +149,26 @@ trait CreateRepository
                     }
 
                     $this->addPostQueryResults[$clientDataKey][$key] = $createStatus ? AppContainer::get('crRepositoryInstance')->{$methodDefine}() : $data[$key];
+                }
+            }
+        }
+    }
+
+    /**
+     * auto countable model repository handler
+     *
+     * @param array $data
+     * @return void
+     */
+    public function countableHandler(array $data = []): void
+    {
+        if (count($this->getCountable())) {
+            foreach ($this->getCountable() as $field => $repository) {
+                $countableRepository = Repository::$repository();
+                $countableModelCode = $countableRepository->getModelCode();
+
+                if (isset($data[$countableModelCode])) {
+                    $countableRepository->where($countableModelCode, $data[$countableModelCode])->increase($field);
                 }
             }
         }

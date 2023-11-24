@@ -5,19 +5,6 @@ namespace App\Facades\Database\Authenticate;
 class Login
 {
     /**
-     * the direct login request without two-factor for facade
-     *
-     * @param string|null $email
-     * @param string|null $password
-     * @return array
-     */
-    public static function attempt(?string $email = null, ?string $password = null): array
-    {
-        // this method overrides the two-authentication system.
-        return Authenticate::attempt($email, $password);
-    }
-
-    /**
      * the login request for facade
      *
      * @param string|null $email
@@ -35,5 +22,18 @@ class Login
                 return Authenticate::createToken();
             });
         });
+    }
+
+    /**
+     * the direct login request without two-factor for facade
+     *
+     * @param string|null $email
+     * @param string|null $password
+     * @return array
+     */
+    public static function attempt(?string $email = null, ?string $password = null): array
+    {
+        // this method overrides the two-authentication system.
+        return Authenticate::attempt($email, $password);
     }
 }

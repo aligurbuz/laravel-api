@@ -9,28 +9,28 @@ use App\Models\CustomerContact;
 
 class CreateClient extends Client
 {
-	use GeneratorTrait;
-	use ClientAutoGeneratorTrait;
+    use GeneratorTrait;
+    use ClientAutoGeneratorTrait;
     use ContactsMainSupport;
 
-	/**
-	 * get capsule for client
-	 *
-	 * @var array
-	 */
-	protected array $capsule = [];
+    /**
+     * get capsule for client
+     *
+     * @var array
+     */
+    protected array $capsule = [];
 
-	/**
-	 * get model entity validation
-	 *
-	 * @var array|string[]
-	 */
-	protected array $model = [CustomerContact::class];
+    /**
+     * get model entity validation
+     *
+     * @var array|string[]
+     */
+    protected array $model = [CustomerContact::class];
 
-	/**
-	 * get rule for client
-	 *
-	 * @var array
-	 */
-	protected array $rule = [];
+    /**
+     * get rule for client
+     *
+     * @var array
+     */
+    protected array $rule = [];
 }

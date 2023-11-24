@@ -5,10 +5,8 @@ namespace App\Libs\Commands;
 use App\Constants;
 use App\Exceptions\Exception;
 use Illuminate\Console\Command;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Str;
 
 class RenameColumnForDatabaseCommand extends Command
 {
@@ -44,9 +42,9 @@ class RenameColumnForDatabaseCommand extends Command
     public function handle()
     {
         $model = $this->ask('Model name');
-        $modelNamespace = Constants::modelNamespace.'\\'.ucfirst($model);
+        $modelNamespace = Constants::modelNamespace . '\\' . ucfirst($model);
 
-        if(!class_exists($modelNamespace)){
+        if (!class_exists($modelNamespace)) {
             Exception::customException('model name is not valid');
         }
 
@@ -55,9 +53,9 @@ class RenameColumnForDatabaseCommand extends Command
         $oldColumn = $this->ask('Old column name');
         $newColumn = $this->ask('New column name');
 
-        $name = 'renameColumnNamed'.ucfirst($oldColumn) .ucfirst($table).'Table';
+        $name = 'renameColumnNamed' . ucfirst($oldColumn) . ucfirst($table) . 'Table';
 
-        Artisan::call('make:migration',['name'=> $name,'--table' => $table]);
+        Artisan::call('make:migration', ['name' => $name, '--table' => $table]);
 
         $migrationDirectories = File::allFiles(base_path('Database/Migrations'));
 
@@ -66,19 +64,19 @@ class RenameColumnForDatabaseCommand extends Command
             $migrationFiles[] = $directory->getFilename();
         }
 
-        $lastMigration = base_path('Database/Migrations').'/'.$migrationFiles[0];
+        $lastMigration = base_path('Database/Migrations') . '/' . $migrationFiles[0];
         $lastFilePath = File::get($lastMigration);
 
-        $definition = '$table->renameColumn(\''.$oldColumn.'\',\''.$newColumn.'\')';
+        $definition = '$table->renameColumn(\'' . $oldColumn . '\',\'' . $newColumn . '\')';
 
-        $definition = $definition.';';
+        $definition = $definition . ';';
 
-        $x = str_replace("Schema::table('".$table."', function (Blueprint \$table) {\n","Schema::table('".$table."', function (Blueprint \$table) {
-            {$definition} \n",$lastFilePath);
+        $x = str_replace("Schema::table('" . $table . "', function (Blueprint \$table) {\n", "Schema::table('" . $table . "', function (Blueprint \$table) {
+            {$definition} \n", $lastFilePath);
 
-        File::put($lastMigration,$x);
+        File::put($lastMigration, $x);
 
-        Artisan::call('update:migration',['model' => $model]);
+        Artisan::call('update:migration', ['model' => $model]);
 
         return 0;
     }

@@ -7,8 +7,8 @@ namespace App\Http\Controllers\Api\Auth;
 use App\Client\Auth\Verifying\Create\CreateClient;
 use App\Exceptions\Exception;
 use App\Http\Controllers\Api\ApiController;
-use App\Repositories\Repository;
 use App\Libs\Date;
+use App\Repositories\Repository;
 
 class VerifyingController extends ApiController
 {

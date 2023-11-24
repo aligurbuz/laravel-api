@@ -33,7 +33,7 @@ class Socket implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(string $channel,mixed $hash, array $data = [])
+    public function __construct(string $channel, mixed $hash, array $data = [])
     {
         $this->channel = $channel;
         $this->hash = $hash;

@@ -1,6 +1,6 @@
-<?php 
+<?php
 
-namespace App\Client\Password\Changes; 
+namespace App\Client\Password\Changes;
 
 trait ChangesMainSupport
 {
