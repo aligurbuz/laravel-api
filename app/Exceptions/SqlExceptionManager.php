@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Exceptions;
 
 use App\Constants;
-use App\Services\AppContainer;
+use App\Libs\AppContainer;
 use Throwable;
 
 /**

@@ -9,8 +9,8 @@ use App\Exceptions\Exception;
 use App\Factory\Cache\Interfaces\CacheInterface;
 use App\Factory\Factory;
 use App\Models\Features\ScopeManagerTrait;
-use App\Services\Client;
-use App\Services\Db;
+use App\Libs\Client;
+use App\Libs\Db;
 use Closure;
 use Illuminate\Support\Str;
 

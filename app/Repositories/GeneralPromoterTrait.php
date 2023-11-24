@@ -6,7 +6,7 @@ namespace App\Repositories;
 
 use App\Facades\Database\Authenticate\ApiKey;
 use App\Facades\Database\Authenticate\Authenticate;
-use App\Services\Client;
+use App\Libs\Client;
 use Illuminate\Database\Eloquent\Builder;
 
 trait GeneralPromoterTrait

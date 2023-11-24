@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models\Features;
 
-use App\Services\Date;
+use App\Libs\Date;
 use Illuminate\Support\Carbon;
 
 /**

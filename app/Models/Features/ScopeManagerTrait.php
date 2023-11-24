@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Models\Features;
 
 use App\Exceptions\Exception;
-use App\Services\AppContainer;
-use App\Services\Response\Response;
+use App\Libs\AppContainer;
+use App\Libs\Response\Response;
 
 /**
  * Trait ScopeManagerTrait

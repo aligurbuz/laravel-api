@@ -6,7 +6,7 @@ use App\Exceptions\Exception;
 use App\Facades\Support\Email\Email;
 use App\Facades\Support\Sms\Sms;
 use App\Repositories\Repository;
-use App\Services\AppContainer;
+use App\Libs\AppContainer;
 
 class Activation
 {

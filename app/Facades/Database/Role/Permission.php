@@ -3,7 +3,7 @@
 namespace App\Facades\Database\Role;
 
 use App\Repositories\Repository;
-use App\Services\AppContainer;
+use App\Libs\AppContainer;
 
 class Permission
 {

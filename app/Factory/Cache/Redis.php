@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Factory\Cache;
 
 use App\Factory\Cache\Interfaces\CacheInterface;
-use App\Services\Redis as RedisInstance;
+use App\Libs\Redis as RedisInstance;
 use Predis\ClientInterface;
 
 /**

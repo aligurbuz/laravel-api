@@ -3,12 +3,12 @@
 namespace Tests;
 
 use App\Constants;
-use App\Services\Db;
-use App\Services\Redis;
+use App\Libs\Db;
+use App\Libs\Redis;
 use Illuminate\Support\Str;
 use Illuminate\Testing\TestResponse;
 use Predis\ClientInterface;
-use App\Services\AppContainer;
+use App\Libs\AppContainer;
 use App\Repositories\Repository;
 use Illuminate\Support\Facades\File;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;

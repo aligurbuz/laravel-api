@@ -3,7 +3,7 @@
 namespace Tests;
 
 use App\Constants;
-use App\Services\AppContainer;
+use App\Libs\AppContainer;
 
 trait TestHttpSupport
 {

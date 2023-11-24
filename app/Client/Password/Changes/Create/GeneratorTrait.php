@@ -3,7 +3,7 @@
 namespace App\Client\Password\Changes\Create;
 
 use App\Facades\Support\Faker\Faker;
-use App\Services\Date;
+use App\Libs\Date;
 use Exception;
 
 trait GeneratorTrait

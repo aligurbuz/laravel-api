@@ -7,8 +7,8 @@ namespace App\Models\Features;
 use App\Constants;
 use App\Models\User;
 use App\Repositories\Repository;
-use App\Services\AppContainer;
-use App\Services\Db;
+use App\Libs\AppContainer;
+use App\Libs\Db;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Str;
 

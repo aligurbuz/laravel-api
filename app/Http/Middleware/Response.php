@@ -2,7 +2,7 @@
 
 namespace App\Http\Middleware;
 
-use App\Services\Response\Response as ResponseFormatter;
+use App\Libs\Response\Response as ResponseFormatter;
 use Closure;
 use Exception;
 use Illuminate\Http\Request;

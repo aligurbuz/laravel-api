@@ -7,7 +7,7 @@ namespace App\Factory\Logger;
 use App\Exceptions\Exception;
 use App\Factory\Factory;
 use App\Factory\Logger\Interfaces\LoggerInterface;
-use App\Services\MongoDb;
+use App\Libs\MongoDb;
 
 /**
  * Class Logger

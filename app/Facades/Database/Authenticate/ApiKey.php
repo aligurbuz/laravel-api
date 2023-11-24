@@ -2,7 +2,7 @@
 
 namespace App\Facades\Database\Authenticate;
 
-use App\Services\AppContainer;
+use App\Libs\AppContainer;
 use Illuminate\Support\Str;
 
 /**

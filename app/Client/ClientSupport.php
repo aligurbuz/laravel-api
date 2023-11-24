@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Client;
 
 use App\Exceptions\Exception;
-use App\Services\AppContainer;
+use App\Libs\AppContainer;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Psr\Container\ContainerExceptionInterface;

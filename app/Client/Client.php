@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Client;
 
-use App\Packages\Client\ClientManager;
+use App\Libs\AppContainer;
+use App\Libs\Client as ClientFacade;
+use App\Libs\Db;
+use App\Libs\Packages\Client\ClientManager;
 use App\Repositories\Repository;
-use App\Services\AppContainer;
-use App\Services\Client as ClientFacade;
-use App\Services\Db;
 use Illuminate\Support\Str;
 
 /**

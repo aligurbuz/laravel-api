@@ -3,7 +3,7 @@
 namespace App\Repositories\Supporters\Helpers;
 
 use App\Repositories\EloquentRepository;
-use App\Services\Client;
+use App\Libs\Client;
 use Illuminate\Support\Str;
 
 class OppositeModelClientConverter

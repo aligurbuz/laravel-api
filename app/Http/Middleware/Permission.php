@@ -6,7 +6,7 @@ use App\Constants;
 use App\Exceptions\Custom\CustomException;
 use App\Exceptions\Exception;
 use App\Policies\Permission\Permission as PermissionFacade;
-use App\Services\AppContainer;
+use App\Libs\AppContainer;
 use Closure;
 use Illuminate\Http\Request;
 

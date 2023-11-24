@@ -2,7 +2,7 @@
 
 namespace App\Facades\Support\Localization;
 
-use App\Services\AppContainer;
+use App\Libs\AppContainer;
 
 class Lang
 {

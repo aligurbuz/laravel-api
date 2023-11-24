@@ -8,7 +8,7 @@ use App\Client\Auth\Verifying\Create\CreateClient;
 use App\Exceptions\Exception;
 use App\Http\Controllers\Api\ApiController;
 use App\Repositories\Repository;
-use App\Services\Date;
+use App\Libs\Date;
 
 class VerifyingController extends ApiController
 {

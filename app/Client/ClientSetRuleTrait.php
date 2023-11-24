@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Client;
 
 use App\Facades\Database\Authenticate\ApiKey;
-use App\Services\Db;
+use App\Libs\Db;
 
 /**
  * Trait ClientSetRuleTrait

@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use App\Constants;
 use App\Exceptions\Exception;
 use App\Repositories\Repository;
-use App\Services\AppContainer;
+use App\Libs\AppContainer;
 use Closure;
 use Illuminate\Http\Request;
 

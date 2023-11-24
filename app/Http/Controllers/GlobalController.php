@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Api\ApiController;
-use App\Services\AppContainer;
+use App\Libs\AppContainer;
 use Illuminate\Support\Facades\File;
 
 class GlobalController extends ApiController

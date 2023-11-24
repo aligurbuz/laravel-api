@@ -3,7 +3,7 @@
 namespace App\Exceptions;
 
 use App\Factory\Factory;
-use App\Services\Response\Response;
+use App\Libs\Response\Response;
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;

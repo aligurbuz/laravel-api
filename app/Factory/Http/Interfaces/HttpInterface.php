@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Factory\Http\Interfaces;
 
 use App\Factory\Http\Http;
-use App\Services\Request\Request;
+use App\Libs\Request\Request;
 
 interface HttpInterface
 {

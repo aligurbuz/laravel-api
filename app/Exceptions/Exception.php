@@ -3,7 +3,7 @@
 namespace App\Exceptions;
 
 use App\Constants;
-use App\Services\AppContainer;
+use App\Libs\AppContainer;
 
 /**
  * Class Exception

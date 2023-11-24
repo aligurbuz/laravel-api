@@ -5,7 +5,7 @@ namespace App\Policies\Permission;
 use App\Facades\Database\Role\Permission;
 use App\Facades\Database\Role\Role;
 use App\Factory\Factory;
-use App\Services\AppContainer;
+use App\Libs\AppContainer;
 
 abstract class PermissionManager
 {

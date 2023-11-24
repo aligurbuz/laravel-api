@@ -7,7 +7,7 @@ namespace App\Models\Features;
 use App\Exceptions\Exception;
 use App\Factory\App\App;
 use App\Repositories\Repository;
-use App\Services\AppContainer;
+use App\Libs\AppContainer;
 use Illuminate\Database\Eloquent\Builder;
 
 /**

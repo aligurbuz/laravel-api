@@ -9,8 +9,8 @@ use App\Facades\Database\Authenticate\ApiKey;
 use App\Facades\Database\Authenticate\Authenticate;
 use App\Facades\Database\Role\Role;
 use App\Factory\Factory;
-use App\Services\AppContainer;
-use App\Services\Date;
+use App\Libs\AppContainer;
+use App\Libs\Date;
 
 /**
  * Trait ClientAutoGeneratorTrait

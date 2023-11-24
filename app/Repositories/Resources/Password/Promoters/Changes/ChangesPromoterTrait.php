@@ -9,7 +9,7 @@ use App\Facades\Support\Email\Email;
 use App\Facades\Support\Faker\Faker;
 use App\Facades\Support\Sms\Sms;
 use App\Models\Entities\PasswordChange;
-use App\Services\Date;
+use App\Libs\Date;
 
 trait ChangesPromoterTrait
 {

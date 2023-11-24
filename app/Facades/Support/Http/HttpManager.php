@@ -4,7 +4,7 @@ namespace App\Facades\Support\Http;
 
 use App\Exceptions\Exception;
 use App\Factory\Factory;
-use App\Services\Request\Request;
+use App\Libs\Request\Request;
 use Illuminate\Support\Str;
 
 abstract class HttpManager

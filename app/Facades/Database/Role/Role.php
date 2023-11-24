@@ -6,7 +6,7 @@ namespace App\Facades\Database\Role;
 
 use App\Factory\Factory;
 use App\Repositories\Repository;
-use App\Services\AppContainer;
+use App\Libs\AppContainer;
 
 class Role
 {

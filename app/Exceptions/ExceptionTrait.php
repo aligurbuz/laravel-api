@@ -2,7 +2,7 @@
 
 namespace App\Exceptions;
 
-use App\Services\AppContainer;
+use App\Libs\AppContainer;
 
 trait ExceptionTrait
 {

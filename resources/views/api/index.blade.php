@@ -1,20 +1,28 @@
 <!DOCTYPE html>
 <!-- saved from url=(0043)https://flysystem.thephpleague.com/v2/docs/ -->
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <title>Api Documentation</title>
     <meta name="description" content="Filesystem abstraction library for PHP.">
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
-    <script type="text/javascript" async="" src="{{publicPath()}}/api/apiDoc_files/analytics.js"></script><script async="" src="{{publicPath()}}/api/apiDoc_files/js"></script>
+    <script type="text/javascript" async="" src="{{publicPath()}}/api/apiDoc_files/analytics.js"></script>
+    <script async="" src="{{publicPath()}}/api/apiDoc_files/js"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments);}
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
         gtag('js', new Date());
         gtag('config', 'UA-46050814-3');
     </script>
-    <!--<base href="https://flysystem.thephpleague.com/">--><base href=".">
+    <!--<base href="https://flysystem.thephpleague.com/">-->
+    <base href=".">
     <link rel="stylesheet" href="{{publicPath()}}/api/apiDoc_files/docsearch.min.css">
     <link rel="stylesheet" href="{{publicPath()}}/api/apiDoc_files/styles.38c6185a8578394bce5d.css">
 </head>
@@ -23,7 +31,8 @@
     <div class="max-w-2xl mx-auto px-4 py-2">
         <div class="flex items-center flex-no-shrink top-0">
             <a href="{{publicPath()}}/doc" class="flex items-center h-10">
-                <img class="h-10 w-10 mr-3" width="30" height="30" src="{{publicPath()}}/api/apiDoc_files/flysystem.svg">
+                <img class="h-10 w-10 mr-3" width="30" height="30"
+                     src="{{publicPath()}}/api/apiDoc_files/flysystem.svg">
                 <span class="pr-2 font-normal overflow-hidden font-heading text-3xl text-indigo-darkest -sm:hidden">
 Api Documentation
 <sup class="text-xs relative text-indigo" style="top: -20px;">1.0.0</sup>
@@ -38,11 +47,14 @@ Api Documentation
 <svg class="fill-current pointer-events-none text-indigo-light w-4 h-4 border-transparent border" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"></path></svg>
 </span>-->
             </div>
-            <a href="https://flysystem.thephpleague.com/#" id="menu-toggle" class="block md:hidden h-8 w-8 border p-1 border-transparent text-grey hover:text-grey menu-closed">
-                <svg class="menu-closed:shown fill-current h-full w-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+            <a href="https://flysystem.thephpleague.com/#" id="menu-toggle"
+               class="block md:hidden h-8 w-8 border p-1 border-transparent text-grey hover:text-grey menu-closed">
+                <svg class="menu-closed:shown fill-current h-full w-full" xmlns="http://www.w3.org/2000/svg"
+                     viewBox="0 0 20 20">
                     <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
                 </svg>
-                <svg class="menu-closed:hidden fill-current h-full w-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                <svg class="menu-closed:hidden fill-current h-full w-full" xmlns="http://www.w3.org/2000/svg"
+                     viewBox="0 0 20 20">
                     <path d="M10 8.586L2.929 1.515 1.515 2.929 8.586 10l-7.071 7.071 1.414 1.414L10 11.414l7.071 7.071 1.414-1.414L11.414 10l7.071-7.071-1.414-1.414L10 8.586z"></path>
                 </svg>
             </a>
@@ -92,7 +104,7 @@ Api Documentation
                             <h2 class="tracking-wide mb-0 mt-0 text-xs leading-loose tracking-wide text-indigo-light uppercase">
                                 <a href="doc?action={{$value['name']}}">{{$value['name']}}</a></h2>
                         @endif
-                    <!--<ul class="list-reset mb-6 block pr-6">
+                        <!--<ul class="list-reset mb-6 block pr-6">
                             <li class="block">
                                 <a class="leading-loose block w-full rounded text-md text-indigo-darkest" href="https://flysystem.thephpleague.com/v2/docs/what-is-new/">New In V2</a>
                             </li>
@@ -117,17 +129,20 @@ Api Documentation
                         }
 
                     @endphp
-                    <h1 class="mb-4">{{ucfirst(str_replace('_',' ',\Illuminate\Support\Str::snake($list)))}} for query parameters.</h1>
+                    <h1 class="mb-4">{{ucfirst(str_replace('_',' ',\Illuminate\Support\Str::snake($list)))}} for query
+                        parameters.</h1>
                     <h2 id="about-flysystem">Introduce</h2>
 
                     @if($list=='dataPagination')
-                        <p>The metadata you requested will automatically return a set of 20 records. This means; API response data implements the concept of pagination.
+                        <p>The metadata you requested will automatically return a set of 20 records. This means; API
+                            response data implements the concept of pagination.
                             Therefore, you can select the records you want with the (page) key.</p>
 
                         <li>baseUrl/products?page=1</li>
                         <br>
 
-                        <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Api Response</span>
+                        <div class="language-php highlighter-rouge">
+                            <div class="highlight"><pre class="highlight"><code><span class="c1">// Api Response</span>
 wget --no-check-certificate --quiet \
   --method GET \
   --timeout=0 \
@@ -136,15 +151,20 @@ wget --no-check-certificate --quiet \
   --header 'Content-Type: application/json' \
   --header 'Accept-Language: en' \
    'baseUrl/products?page=1
-</code></pre></div></div>
+</code></pre>
+                            </div>
+                        </div>
 
-                        <p>If you want, you can specify the number of datasets returned in the response value, provided that it is less than 20.
-                            For example, if you request limit=5 using the (limit) key. Your datasets will return 5 records each.</p>
+                        <p>If you want, you can specify the number of datasets returned in the response value, provided
+                            that it is less than 20.
+                            For example, if you request limit=5 using the (limit) key. Your datasets will return 5
+                            records each.</p>
 
                         <li>baseUrl/products?limit=5</li>
                         <br>
 
-                        <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Api Response</span>
+                        <div class="language-php highlighter-rouge">
+                            <div class="highlight"><pre class="highlight"><code><span class="c1">// Api Response</span>
 wget --no-check-certificate --quiet \
   --method GET \
   --timeout=0 \
@@ -153,16 +173,20 @@ wget --no-check-certificate --quiet \
   --header 'Content-Type: application/json' \
   --header 'Accept-Language: en' \
    'baseUrl/products?limit=5
-</code></pre></div></div>
+</code></pre>
+                            </div>
+                        </div>
 
                     @elseif($list=='withRangeUsing')
-                        <p>As mentioned in the (range) usage section, (range) values will automatically be reflected in your relations.
+                        <p>As mentioned in the (range) usage section, (range) values will automatically be reflected in
+                            your relations.
                             If you want a different (range) usage in your relations, use the (witRange) key.</p>
 
                         <li>baseUrl/products?range=desc&with[items][select]=*&withRange[items]=asc</li>
                         <br>
 
-                        <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Api Response</span>
+                        <div class="language-php highlighter-rouge">
+                            <div class="highlight"><pre class="highlight"><code><span class="c1">// Api Response</span>
 wget --no-check-certificate --quiet \
   --method GET \
   --timeout=0 \
@@ -171,17 +195,23 @@ wget --no-check-certificate --quiet \
   --header 'Content-Type: application/json' \
   --header 'Accept-Language: en' \
    'baseUrl/products?range=desc&with[items][select]=*&withRange[items]=asc
-</code></pre></div></div>
+</code></pre>
+                            </div>
+                        </div>
 
-                        <p>As seen in the query (range) value (desc) was used. However, (items) relationship was requested.
+                        <p>As seen in the query (range) value (desc) was used. However, (items) relationship was
+                            requested.
                             it will not automatically be subject to (desc) (range).</p>
 
-                        <p>With a request parameter such as withRange[items]=asc the relation (items) will be sorted from oldest to newest record.</p>
+                        <p>With a request parameter such as withRange[items]=asc the relation (items) will be sorted
+                            from oldest to newest record.</p>
                     @elseif($list=='rangeUsing')
                         <p>The use of (Range) is a convenience provided by the developer for the client side.
-                            (range) values are given to the client side under the (ranges) key at the bottom of the returned response value.</p>
+                            (range) values are given to the client side under the (ranges) key at the bottom of the
+                            returned response value.</p>
 
-                        <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Api Response</span>
+                        <div class="language-php highlighter-rouge">
+                            <div class="highlight"><pre class="highlight"><code><span class="c1">// Api Response</span>
 "ranges": {
             "desc": "Sorts your object by last registration value.",
             "asc": "Sorts your object by first registration value.",
@@ -189,7 +219,9 @@ wget --no-check-certificate --quiet \
             "sequence": "It sorts by sequence value. This means changeable sorting.",
             "notDeleted": "Filters undeleted data."
         }
-</code></pre></div></div>
+</code></pre>
+                            </div>
+                        </div>
 
                         <p>
                             You can request the (range) values here with the range key as a query parameter.
@@ -198,7 +230,8 @@ wget --no-check-certificate --quiet \
                         <li>baseUrl/products?range=desc</li>
                         <br>
 
-                        <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Api Response</span>
+                        <div class="language-php highlighter-rouge">
+                            <div class="highlight"><pre class="highlight"><code><span class="c1">// Api Response</span>
 wget --no-check-certificate --quiet \
   --method GET \
   --timeout=0 \
@@ -207,10 +240,14 @@ wget --no-check-certificate --quiet \
   --header 'Content-Type: application/json' \
   --header 'Accept-Language: en' \
    'baseUrl/products?range=desc
-</code></pre></div></div>
+</code></pre>
+                            </div>
+                        </div>
 
-                        <p>For example (range) specified as (desc). It will sort your dataset from the last record to the oldest record.
-                            Since the (range) values that are already available to you are in the form of (key) and (value),
+                        <p>For example (range) specified as (desc). It will sort your dataset from the last record to
+                            the oldest record.
+                            Since the (range) values that are already available to you are in the form of (key) and
+                            (value),
                             the (value) value gives a brief information about that range.
                         </p>
 
@@ -220,7 +257,8 @@ wget --no-check-certificate --quiet \
                         <li>baseUrl/products?range=desc,active</li>
                         <br>
 
-                        <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Api Response</span>
+                        <div class="language-php highlighter-rouge">
+                            <div class="highlight"><pre class="highlight"><code><span class="c1">// Api Response</span>
 wget --no-check-certificate --quiet \
   --method GET \
   --timeout=0 \
@@ -229,23 +267,31 @@ wget --no-check-certificate --quiet \
   --header 'Content-Type: application/json' \
   --header 'Accept-Language: en' \
    'baseUrl/products?range=desc,active
-</code></pre></div></div>
+</code></pre>
+                            </div>
+                        </div>
 
-                        <p>This usage will both sort your data and filter according to the values of status=1 and is_deleted=0.</p>
+                        <p>This usage will both sort your data and filter according to the values of status=1 and
+                            is_deleted=0.</p>
 
                         <p><b>Note:</b>The use of (range) will also apply to all relationships of your dataset.
-                            For example: when you use range=desc, this (range) value will be used automatically in the relationship with[items]=*.</p>
+                            For example: when you use range=desc, this (range) value will be used automatically in the
+                            relationship with[items]=*.</p>
 
-                        <p><b>If you need to use a custom (range) value in your relationships, see (withRange Using) section.</b></p>
+                        <p><b>If you need to use a custom (range) value in your relationships, see (withRange Using)
+                                section.</b></p>
                     @elseif($list=='hasAndDoesntHave')
                         <b>Has Using:</b>
-                        <p>The (Has) parameter is used to check your top data set according to the existence of your relationships. For example: you may want to list only products having items.
-                            In this case, it will be sufficient to add the (has) key to your query parameter and write the relation name to its value.
+                        <p>The (Has) parameter is used to check your top data set according to the existence of your
+                            relationships. For example: you may want to list only products having items.
+                            In this case, it will be sufficient to add the (has) key to your query parameter and write
+                            the relation name to its value.
                         </p>
 
                         <li>baseUrl/products?has=items</li>
 
-                        <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Api Request</span>
+                        <div class="language-php highlighter-rouge">
+                            <div class="highlight"><pre class="highlight"><code><span class="c1">// Api Request</span>
 wget --no-check-certificate --quiet \
   --method GET \
   --timeout=0 \
@@ -254,14 +300,18 @@ wget --no-check-certificate --quiet \
   --header 'Content-Type: application/json' \
   --header 'Accept-Language: en' \
    'baseUrl/products?has=items
-</code></pre></div></div>
+</code></pre>
+                            </div>
+                        </div>
 
                         <p>Or you may want to check the existence of more than one relationship.
-                            In this case, you can write more relationships, provided that there are commas between them.</p>
+                            In this case, you can write more relationships, provided that there are commas between
+                            them.</p>
 
                         <li>baseUrl/products?has=items,colors</li>
 
-                        <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Api Request</span>
+                        <div class="language-php highlighter-rouge">
+                            <div class="highlight"><pre class="highlight"><code><span class="c1">// Api Request</span>
 wget --no-check-certificate --quiet \
   --method GET \
   --timeout=0 \
@@ -270,16 +320,20 @@ wget --no-check-certificate --quiet \
   --header 'Content-Type: application/json' \
   --header 'Accept-Language: en' \
    'baseUrl/products?has=items,colors
-</code></pre></div></div>
+</code></pre>
+                            </div>
+                        </div>
 
                         <b>HasFilter Using:</b>
 
-                        <p>In some cases, you may want to do a separate filtering within a (has) control. In such a case, using the (hasFilter) key, you can use the (has) query as follows.
+                        <p>In some cases, you may want to do a separate filtering within a (has) control. In such a
+                            case, using the (hasFilter) key, you can use the (has) query as follows.
                             You can write your query.</p>
 
                         <li>baseUrl/products?hasFilter[items][filterableColumn][=]=value</li>
 
-                        <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Api Request</span>
+                        <div class="language-php highlighter-rouge">
+                            <div class="highlight"><pre class="highlight"><code><span class="c1">// Api Request</span>
 wget --no-check-certificate --quiet \
   --method GET \
   --timeout=0 \
@@ -288,15 +342,21 @@ wget --no-check-certificate --quiet \
   --header 'Content-Type: application/json' \
   --header 'Accept-Language: en' \
    'baseUrl/products?hasFilter[items][filterableColumn][=]=value
-</code></pre></div></div>
+</code></pre>
+                            </div>
+                        </div>
 
-                        <p>Or if you are going to check for a single condition. You can send a query like the one below in a shorter way.
-                            <b>What you need to pay attention to in the following query; (:) sign is used after the relation name and (filterableColumn)
-                                The value must be followed by the (-) sign, then the (oparetor) and then the (-) sign.</b> </p>
+                        <p>Or if you are going to check for a single condition. You can send a query like the one below
+                            in a shorter way.
+                            <b>What you need to pay attention to in the following query; (:) sign is used after the
+                                relation name and (filterableColumn)
+                                The value must be followed by the (-) sign, then the (oparetor) and then the (-)
+                                sign.</b></p>
 
                         <li>baseUrl/products?has=items:filterableColumn-=-value</li>
 
-                        <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Api Request</span>
+                        <div class="language-php highlighter-rouge">
+                            <div class="highlight"><pre class="highlight"><code><span class="c1">// Api Request</span>
 wget --no-check-certificate --quiet \
   --method GET \
   --timeout=0 \
@@ -305,7 +365,9 @@ wget --no-check-certificate --quiet \
   --header 'Content-Type: application/json' \
   --header 'Accept-Language: en' \
    'baseUrl/products?has=items:filterableColumn-=-value
-</code></pre></div></div>
+</code></pre>
+                            </div>
+                        </div>
 
                         <b>DoesntHave Using:</b>
                         <p>In the opposite case; You may want to list products without (item) data.
@@ -314,7 +376,8 @@ wget --no-check-certificate --quiet \
 
                         <li>baseUrl/products?doesntHave=items</li>
 
-                        <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Api Request</span>
+                        <div class="language-php highlighter-rouge">
+                            <div class="highlight"><pre class="highlight"><code><span class="c1">// Api Request</span>
 wget --no-check-certificate --quiet \
   --method GET \
   --timeout=0 \
@@ -323,15 +386,19 @@ wget --no-check-certificate --quiet \
   --header 'Content-Type: application/json' \
   --header 'Accept-Language: en' \
    'baseUrl/products?doesntHave=items
-</code></pre></div></div>
+</code></pre>
+                            </div>
+                        </div>
                     @elseif($list=='dataFiltering')
 
-                        <p>The (Filter) statement will filter the entire data according to the key specified in the returned response data. This can be thought of as a kind of search.
+                        <p>The (Filter) statement will filter the entire data according to the key specified in the
+                            returned response data. This can be thought of as a kind of search.
                         </p>
 
                         <li>baseUrl/products?filter[product_code]=productCode</li>
 
-                        <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Api Request</span>
+                        <div class="language-php highlighter-rouge">
+                            <div class="highlight"><pre class="highlight"><code><span class="c1">// Api Request</span>
 wget --no-check-certificate --quiet \
   --method GET \
   --timeout=0 \
@@ -340,15 +407,21 @@ wget --no-check-certificate --quiet \
   --header 'Content-Type: application/json' \
   --header 'Accept-Language: en' \
    'baseUrl/products?filter[product_code]=productCode
-</code></pre></div></div>
+</code></pre>
+                            </div>
+                        </div>
 
-                        <p>You can use comma separated values for more than one productCode as per the example above.</p>
+                        <p>You can use comma separated values for more than one productCode as per the example
+                            above.</p>
 
 
-                        <p><li>baseUrl/products?filter[product_code]=productCode1,productCode2</li></p>
+                        <p>
+                            <li>baseUrl/products?filter[product_code]=productCode1,productCode2</li>
+                        </p>
 
 
-                        <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Api Request</span>
+                        <div class="language-php highlighter-rouge">
+                            <div class="highlight"><pre class="highlight"><code><span class="c1">// Api Request</span>
 wget --no-check-certificate --quiet \
   --method GET \
   --timeout=0 \
@@ -357,15 +430,20 @@ wget --no-check-certificate --quiet \
   --header 'Content-Type: application/json' \
   --header 'Accept-Language: en' \
    'baseUrl/products?filter[product_code]=productCode1,productCode2
-</code></pre></div></div>
+</code></pre>
+                            </div>
+                        </div>
 
                         <p>Specifying more than one filter means searching by more than one key value.</p>
 
 
-                        <p><li>baseUrl/products?filter[product_code]=productCode&filter[status]=1</li></p>
+                        <p>
+                            <li>baseUrl/products?filter[product_code]=productCode&filter[status]=1</li>
+                        </p>
 
 
-                        <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Api Request</span>
+                        <div class="language-php highlighter-rouge">
+                            <div class="highlight"><pre class="highlight"><code><span class="c1">// Api Request</span>
 wget --no-check-certificate --quiet \
   --method GET \
   --timeout=0 \
@@ -374,19 +452,24 @@ wget --no-check-certificate --quiet \
   --header 'Content-Type: application/json' \
   --header 'Accept-Language: en' \
    'baseUrl/products?filter[product_code]=productCode&filter[status]=1
-</code></pre></div></div>
+</code></pre>
+                            </div>
+                        </div>
 
-                        <b>Note:</b> Not every field can be filtered. Therefore, the fields allowed by the developer will be filtered. In case of unfiltered, you will get 400 response error.
+                        <b>Note:</b> Not every field can be filtered. Therefore, the fields allowed by the developer
+                        will be filtered. In case of unfiltered, you will get 400 response error.
 
                     @elseif($list=='dataSelect')
 
-                        <p>The (Select) statement refers to filtering the key values in the returned response data.If the key values in the data will not be used, there is no point in asking them for nothing.
+                        <p>The (Select) statement refers to filtering the key values in the returned response data.If
+                            the key values in the data will not be used, there is no point in asking them for nothing.
                             That's why you can filter the keys you want in the data using something like the following.
                         </p>
 
                         <li>baseUrl/products?select=product_name,status</li>
 
-                        <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Api Request</span>
+                        <div class="language-php highlighter-rouge">
+                            <div class="highlight"><pre class="highlight"><code><span class="c1">// Api Request</span>
 wget --no-check-certificate --quiet \
   --method GET \
   --timeout=0 \
@@ -395,11 +478,14 @@ wget --no-check-certificate --quiet \
   --header 'Content-Type: application/json' \
   --header 'Accept-Language: en' \
    'baseUrl/products?select=product_name,status
-</code></pre></div></div>
+</code></pre>
+                            </div>
+                        </div>
 
                         <li>baseUrl/products?select=* <b>(An asterisk means I want them all.)</b></li>
 
-                        <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Api Request</span>
+                        <div class="language-php highlighter-rouge">
+                            <div class="highlight"><pre class="highlight"><code><span class="c1">// Api Request</span>
 wget --no-check-certificate --quiet \
   --method GET \
   --timeout=0 \
@@ -408,20 +494,25 @@ wget --no-check-certificate --quiet \
   --header 'Content-Type: application/json' \
   --header 'Accept-Language: en' \
    'baseUrl/products?select=*
-</code></pre></div></div>
+</code></pre>
+                            </div>
+                        </div>
 
                         <p>The select rule is the same for all relationships (using (with)).</p>
 
                         <p><b>Note:</b> It will only apply to HTTP GET requests.</p>
 
-
                     @elseif($list=='whatDataRelations')
 
-                        <p>Relationships contain extra data to be included in the response data.Relationships are managed with the (with) parameter.
-                            Endpoints will definitely return datasets that tell you whether there is a relationship with the returned dataset.Relationships will be returned as  (relations) data in the response.It is bottom of the returned response
+                        <p>Relationships contain extra data to be included in the response data.Relationships are
+                            managed with the (with) parameter.
+                            Endpoints will definitely return datasets that tell you whether there is a relationship with
+                            the returned dataset.Relationships will be returned as (relations) data in the response.It
+                            is bottom of the returned response
                         </p>
 
-                        <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Api Response</span>
+                        <div class="language-php highlighter-rouge">
+                            <div class="highlight"><pre class="highlight"><code><span class="c1">// Api Response</span>
 "relations": {
             "items": {
                 "using": "with[items][select] = '*",
@@ -432,7 +523,9 @@ wget --no-check-certificate --quiet \
                 "hasMany": true
             }
         }
-</code></pre></div></div>
+</code></pre>
+                            </div>
+                        </div>
 
                         <p>Each relationship (using) key tells how to use this relationship.
                             The (hasMany) expression defines whether the relationship is multiple or single.
@@ -442,22 +535,29 @@ wget --no-check-certificate --quiet \
 
                         <ul>
                             <li><a href="doc?definition=queryParams&list=dataRelations">Data Relations</a></li>
-                            <li><a href="doc?definition=queryParams&list=nestedDataRelations">Nested Data Relations</a></li>
-                            <li><a href="doc?definition=queryParams&list=hasAndDoesntHave">Data Relations With (Has) And (DoesntHave)</a></li>
+                            <li><a href="doc?definition=queryParams&list=nestedDataRelations">Nested Data Relations</a>
+                            </li>
+                            <li><a href="doc?definition=queryParams&list=hasAndDoesntHave">Data Relations With (Has) And
+                                    (DoesntHave)</a></li>
                         </ul>
 
                     @elseif($list=='nestedDataRelations')
-                        <p>Relationships contain extra data to be included in the response data.Relationships are managed with the (with) parameter.
+                        <p>Relationships contain extra data to be included in the response data.Relationships are
+                            managed with the (with) parameter.
                             You will understand relationship management by reading the scenario below.
                         </p>
                         <li class="block">
-                            <a class="leading-loose block w-full rounded text-md text-white bg-indigo pl-2 -ml-2">Scenario : For example, we are pulling the products data, and let's get the item data connected to these products. Then,Let's get the colors data depending on this item data.</a>
+                            <a class="leading-loose block w-full rounded text-md text-white bg-indigo pl-2 -ml-2">Scenario
+                                : For example, we are pulling the products data, and let's get the item data connected
+                                to these products. Then,Let's get the colors data depending on this item data.</a>
                         </li>
                         <h2 id="about-flysystem">Request:</h2>
                         <ul>
                             <li>baseUrl/products?with[items][select]=*&with[items][with][colors][select]=*</li>
 
-                            <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Api Request</span>
+                            <div class="language-php highlighter-rouge">
+                                <div class="highlight"><pre class="highlight"><code><span
+                                                    class="c1">// Api Request</span>
 wget --no-check-certificate --quiet \
   --method GET \
   --timeout=0 \
@@ -466,22 +566,30 @@ wget --no-check-certificate --quiet \
   --header 'Content-Type: application/json' \
   --header 'Accept-Language: en' \
    'baseUrl/products?with[items][select]=*&with[items][with][colors][select]=*'
-</code></pre></div></div>
+</code></pre>
+                                </div>
+                            </div>
 
                         </ul>
 
                         <h2 id="about-flysystem">Definition:</h2>
-                        <p>The rule to note here is that the first set of keys after the with parameter defines the relationship, and every set of keys after this relationship name contains key features.
+                        <p>The rule to note here is that the first set of keys after the with parameter defines the
+                            relationship, and every set of keys after this relationship name contains key features.
                             Properties are described with values such as select,with,filter.</p>
 
-                        <p>For better understanding, it can be expressed as follows. Each (with) key represents a data set. <b>with[items]</b> is a data set.
-                            The expression <b>with[items][with][colors]</b> means include the colors dataset linked to the items dataset.</p>
+                        <p>For better understanding, it can be expressed as follows. Each (with) key represents a data
+                            set. <b>with[items]</b> is a data set.
+                            The expression <b>with[items][with][colors]</b> means include the colors dataset linked to
+                            the items dataset.</p>
 
-                        <p><b>Note</b> : The last rule to note is that every (with) statement must be terminated with select. According to the query value above;
-                            <b>with[items][select]=*</b> , <b>with[items][with][colors][select]=*</b>.This means that; All (with) statements must contain the select key.</p>
+                        <p><b>Note</b> : The last rule to note is that every (with) statement must be terminated with
+                            select. According to the query value above;
+                            <b>with[items][select]=*</b> , <b>with[items][with][colors][select]=*</b>.This means that;
+                            All (with) statements must contain the select key.</p>
 
                         <h2 id="about-flysystem">Response:</h2>
-                        <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">
+                        <div class="language-php highlighter-rouge">
+                            <div class="highlight"><pre class="highlight"><code><span class="c1">
 
     "resource": [
         {
@@ -531,22 +639,31 @@ wget --no-check-certificate --quiet \
             ]
         }
     ]
-</code></pre></div></div>
+</code></pre>
+                            </div>
+                        </div>
 
 
-                        Here, asterisk indicates filtering of desired data keys in relation data.If the client wants only the keys she wants for this role data, she can write the keys by separating them with commas instead of *.
+                        Here, asterisk indicates filtering of desired data keys in relation data.If the client wants
+                        only the keys she wants for this role data, she can write the keys by separating them with
+                        commas instead of *.
                     @elseif($list=='dataRelations')
-                        <p>relationships contain extra data to be included in the response data.Relationships are managed with the (with) parameter.
+                        <p>relationships contain extra data to be included in the response data.Relationships are
+                            managed with the (with) parameter.
                             You will understand relationship management by reading the scenario below.
                         </p>
                         <li class="block">
-                            <a class="leading-loose block w-full rounded text-md text-white bg-indigo pl-2 -ml-2">Scenario : When I send a request to the user endpoint, how can I take roles of that user together with the users?</a>
+                            <a class="leading-loose block w-full rounded text-md text-white bg-indigo pl-2 -ml-2">Scenario
+                                : When I send a request to the user endpoint, how can I take roles of that user together
+                                with the users?</a>
                         </li>
                         <h2 id="about-flysystem">Request:</h2>
                         <ul>
                             <li>baseUrl/users?with[role]=*</li>
 
-                            <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Api Request</span>
+                            <div class="language-php highlighter-rouge">
+                                <div class="highlight"><pre class="highlight"><code><span
+                                                    class="c1">// Api Request</span>
 wget --no-check-certificate --quiet \
   --method GET \
   --timeout=0 \
@@ -555,10 +672,14 @@ wget --no-check-certificate --quiet \
   --header 'Content-Type: application/json' \
   --header 'Accept-Language: en' \
    'baseUrl/user?with[role]=*'
-</code></pre></div></div>
+</code></pre>
+                                </div>
+                            </div>
                             <li>baseUrl/users?with[role][select]=* <b>(Note: Same as first request)</b></li>
 
-                            <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Api Request</span>
+                            <div class="language-php highlighter-rouge">
+                                <div class="highlight"><pre class="highlight"><code><span
+                                                    class="c1">// Api Request</span>
 wget --no-check-certificate --quiet \
   --method GET \
   --timeout=0 \
@@ -567,15 +688,19 @@ wget --no-check-certificate --quiet \
   --header 'Content-Type: application/json' \
   --header 'Accept-Language: en' \
    'baseUrl/user?with[role][select]=*'
-</code></pre></div></div>
+</code></pre>
+                                </div>
+                            </div>
                         </ul>
 
                         <h2 id="about-flysystem">Definition:</h2>
-                        <p>Data management can be provided with url parameters in HTTP GET requests.It is managed as an array with data relations (with).
+                        <p>Data management can be provided with url parameters in HTTP GET requests.It is managed as an
+                            array with data relations (with).
                             Therefore, you can easily use more than one relationship.</p>
 
                         <h2 id="about-flysystem">Response:</h2>
-                        <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">
+                        <div class="language-php highlighter-rouge">
+                            <div class="highlight"><pre class="highlight"><code><span class="c1">
 
     "resource": [
         {
@@ -613,35 +738,44 @@ wget --no-check-certificate --quiet \
         }
     ]
 }
-</code></pre></div></div>
+</code></pre>
+                            </div>
+                        </div>
 
 
-                        Here, asterisk indicates filtering of desired data keys in relation data.If the client wants only the keys she wants for this role data, she can write the keys by separating them with commas instead of *.
+                        Here, asterisk indicates filtering of desired data keys in relation data.If the client wants
+                        only the keys she wants for this role data, she can write the keys by separating them with
+                        commas instead of *.
 
                         <br><br>
                         <li>baseUrl/users?with[role][select]=role_name</li>
                         <li>baseUrl/users?with[role][select]=role_name,status</li>
 
                     @else
-                        <p>In HTTP GET requests sent by the client, the response data sent by the API has a flexible structure.
-                            This flexible structure will shape the data requested by the client with parameters such as graphQL requests.
-                            By reading the instructions shown on the following pages, you will be able to easily get the data you want from the endpoints.
+                        <p>In HTTP GET requests sent by the client, the response data sent by the API has a flexible
+                            structure.
+                            This flexible structure will shape the data requested by the client with parameters such as
+                            graphQL requests.
+                            By reading the instructions shown on the following pages, you will be able to easily get the
+                            data you want from the endpoints.
                         </p>
                     @endif
-
-
 
                 @else
                     <h1 class="mb-4">Query Parameters For Http Get Method.</h1>
                     <h2 id="about-flysystem">Introduce</h2>
-                    <p>In HTTP GET requests sent by the client, the response data sent by the API has a flexible structure.
-                        This flexible structure will shape the data requested by the client with parameters such as graphQL requests.
-                        By reading the instructions shown on the following pages, you will be able to easily get the data you want from the endpoints.</p>
+                    <p>In HTTP GET requests sent by the client, the response data sent by the API has a flexible
+                        structure.
+                        This flexible structure will shape the data requested by the client with parameters such as
+                        graphQL requests.
+                        By reading the instructions shown on the following pages, you will be able to easily get the
+                        data you want from the endpoints.</p>
 
                     <h2 id="about-flysystem">Pages</h2>
                     <ul>
                         <li><a href="doc?definition=queryParams&list=dataSelect">Data Selecting</a></li>
-                        <li><a href="doc?definition=queryParams&list=whatDataRelations">What is Data Relations and How to use</a></li>
+                        <li><a href="doc?definition=queryParams&list=whatDataRelations">What is Data Relations and How
+                                to use</a></li>
                         <li><a href="doc?definition=queryParams&list=dataFiltering">Data Filtering</a></li>
                         <li><a href="doc?definition=queryParams&list=rangeUsing">Range Using</a></li>
                         <li><a href="doc?definition=queryParams&list=withRangeUsing">withRange Using</a></li>
@@ -652,23 +786,24 @@ wget --no-check-certificate --quiet \
 
                     @php
 
-                    $configDocumentationExceptMethods = config('documentation.exceptMethods');
+                        $configDocumentationExceptMethods = config('documentation.exceptMethods');
                     @endphp
                     <article id="article" role="main" class="max-w-full md:block md:w-10/14">
 
                         @if(count($postman['item'][$action]['item'])>1)
-                            <select class="endpointselects" name="endpoints" style="border: 1px solid #ccc; height: 40px;">
+                            <select class="endpointselects" name="endpoints"
+                                    style="border: 1px solid #ccc; height: 40px;">
                                 @foreach($postman['item'][$action]['item'] as $selectItem)
                                     @if(isset($selectItem['item'][0]['name']))
                                         @php
-                                        $realName = $selectItem['item'][0]['name'];
-                                        $realNameSplit = explode('/',$realName);
-                                        if(isset($realNameSplit[1])){
-                                            $realNameNormalization = strtolower($realNameSplit[0]).'/'.strtolower($realNameSplit[1]);
-                                        }
-                                        else{
-                                           $realNameNormalization = strtolower($realNameSplit[0]);
-                                        }
+                                            $realName = $selectItem['item'][0]['name'];
+                                            $realNameSplit = explode('/',$realName);
+                                            if(isset($realNameSplit[1])){
+                                                $realNameNormalization = strtolower($realNameSplit[0]).'/'.strtolower($realNameSplit[1]);
+                                            }
+                                            else{
+                                               $realNameNormalization = strtolower($realNameSplit[0]);
+                                            }
 
                                         @endphp
 
@@ -683,8 +818,7 @@ wget --no-check-certificate --quiet \
                                     @else
                                         <option value="layer_{{md5($selectItem['name'])}}">{{$selectItem['name']}}</option>
 
-                                        @endif
-
+                                    @endif
 
                                 @endforeach
                             </select>
@@ -705,8 +839,10 @@ wget --no-check-certificate --quiet \
                                         @endphp
 
                                         <h1 id="about-flysystem">Global Endpoint</h1>
-                                        <p>Web pages may want to request multiple API endpoints to receive their content.
-                                            In this case, API resources are subject to excessive consumption.For HTTP GET requests to avoid this situation
+                                        <p>Web pages may want to request multiple API endpoints to receive their
+                                            content.
+                                            In this case, API resources are subject to excessive consumption.For HTTP
+                                            GET requests to avoid this situation
                                             We have a global endpoint.</p>
 
                                         <p>
@@ -715,13 +851,18 @@ wget --no-check-certificate --quiet \
                                             <li><strong>Test Environment Base Url</strong> : {{apiUrl()}}</li>
                                             @if(isset($configDocumentation['productionLinks'][$endpoint]['all']))
                                                 @if(isset($configDocumentation['productionLinks'][$endpoint][$method]))
-                                                    <li><strong>Production Environment Base Url</strong> : {{$configDocumentation['productionLinks'][$endpoint][$method]}}</li>
+                                                    <li><strong>Production Environment Base Url</strong>
+                                                        : {{$configDocumentation['productionLinks'][$endpoint][$method]}}
+                                                    </li>
                                                 @else
-                                                    <li><strong>Production Environment Base Url</strong> : {{$configDocumentation['productionLinks'][$endpoint]['all']}}</li>
+                                                    <li><strong>Production Environment Base Url</strong>
+                                                        : {{$configDocumentation['productionLinks'][$endpoint]['all']}}
+                                                    </li>
                                                 @endif
 
                                             @else
-                                                <li><strong>Production Environment Base Url</strong> : {{config('app.productBaseUrl')}}</li>
+                                                <li><strong>Production Environment Base Url</strong>
+                                                    : {{config('app.productBaseUrl')}}</li>
                                             @endif
 
                                             <li><strong>Url</strong> : baseUrl/global</li>
@@ -729,23 +870,29 @@ wget --no-check-certificate --quiet \
                                         </p>
 
                                         <p>
-                                        <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Api Request</span>
+                                        <div class="language-php highlighter-rouge">
+                                            <div class="highlight"><pre class="highlight"><code><span class="c1">// Api Request</span>
 {
     "currencies" : {},
     "timezones" : {}
 }
-</code></pre></div></div>
+</code></pre>
+                                            </div>
+                                        </div>
                                         </p>
 
                                         <p>
-                                            For example, when we make a request as above in body data, it will be as if we made a request to currencies and timezones services at once.
+                                            For example, when we make a request as above in body data, it will be as if
+                                            we made a request to currencies and timezones services at once.
                                             You can request as many services as you want.
                                             <b>After the service name,
-                                                you can use everything described in the query parameters and data relations section in the array.</b>
+                                                you can use everything described in the query parameters and data
+                                                relations section in the array.</b>
                                         </p>
 
                                         <p>
-                                        <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Api Request</span>
+                                        <div class="language-php highlighter-rouge">
+                                            <div class="highlight"><pre class="highlight"><code><span class="c1">// Api Request</span>
 {
     "currencies" : {
         "filter" :  {
@@ -754,9 +901,10 @@ wget --no-check-certificate --quiet \
     },
     "timezones" : {}
 }
-</code></pre></div></div>
+</code></pre>
+                                            </div>
+                                        </div>
                                         </p>
-
 
                                     @endif
                                     @if($value['name'] =='Login')
@@ -765,8 +913,10 @@ wget --no-check-certificate --quiet \
                                             $configDocumentation = config('documentation');
                                         @endphp
                                         <h1 id="about-flysystem">Login</h1>
-                                        <p>The login service is the service that gives the authorization token value to the client side.
-                                            If the post request without sending the token value to the login endpoint results in a successful response of 200,
+                                        <p>The login service is the service that gives the authorization token value to
+                                            the client side.
+                                            If the post request without sending the token value to the login endpoint
+                                            results in a successful response of 200,
                                             the system will issue a token to the user.</p>
 
                                         <h3 id="commonly-used-adapters">POST</h3>
@@ -774,13 +924,18 @@ wget --no-check-certificate --quiet \
                                             <li><strong>Test Environment Base Url</strong> : {{apiUrl()}}</li>
                                             @if(isset($configDocumentation['productionLinks'][$endpoint]['all']))
                                                 @if(isset($configDocumentation['productionLinks'][$endpoint][$method]))
-                                                    <li><strong>Production Environment Base Url</strong> : {{$configDocumentation['productionLinks'][$endpoint][$method]}}</li>
+                                                    <li><strong>Production Environment Base Url</strong>
+                                                        : {{$configDocumentation['productionLinks'][$endpoint][$method]}}
+                                                    </li>
                                                 @else
-                                                    <li><strong>Production Environment Base Url</strong> : {{$configDocumentation['productionLinks'][$endpoint]['all']}}</li>
+                                                    <li><strong>Production Environment Base Url</strong>
+                                                        : {{$configDocumentation['productionLinks'][$endpoint]['all']}}
+                                                    </li>
                                                 @endif
 
                                             @else
-                                                <li><strong>Production Environment Base Url</strong> : {{config('app.productBaseUrl')}}</li>
+                                                <li><strong>Production Environment Base Url</strong>
+                                                    : {{config('app.productBaseUrl')}}</li>
                                             @endif
 
                                             <li><strong>Url</strong> : baseUrl/login</li>
@@ -817,7 +972,8 @@ wget --no-check-certificate --quiet \
                                         </p>
 
                                         <p>
-                                        <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Api Request</span>
+                                        <div class="language-php highlighter-rouge">
+                                            <div class="highlight"><pre class="highlight"><code><span class="c1">// Api Request</span>
 wget --no-check-certificate --quiet \
   --method POST \
   --timeout=0 \
@@ -830,9 +986,10 @@ wget --no-check-certificate --quiet \
     }
 ]' \
    '{{apiUrl()}}/login'
-</code></pre></div></div>
+</code></pre>
+                                            </div>
+                                        </div>
                                         </p>
-
 
                                     @endif
 
@@ -847,20 +1004,26 @@ wget --no-check-certificate --quiet \
                                         @endphp
                                         <h1 id="about-flysystem">Logout</h1>
                                         <p>The logout service is the token terminator service.
-                                            The token can be terminated by sending its value.No body value should be sent.</p>
+                                            The token can be terminated by sending its value.No body value should be
+                                            sent.</p>
 
                                         <h3 id="commonly-used-adapters">POST</h3>
                                         <ul>
                                             <li><strong>Test Environment Base Url</strong> : {{apiUrl()}}</li>
                                             @if(isset($configDocumentation['productionLinks'][$endpoint]['all']))
                                                 @if(isset($configDocumentation['productionLinks'][$endpoint][$method]))
-                                                    <li><strong>Production Environment Base Url</strong> : {{$configDocumentation['productionLinks'][$endpoint][$method]}}</li>
+                                                    <li><strong>Production Environment Base Url</strong>
+                                                        : {{$configDocumentation['productionLinks'][$endpoint][$method]}}
+                                                    </li>
                                                 @else
-                                                    <li><strong>Production Environment Base Url</strong> : {{$configDocumentation['productionLinks'][$endpoint]['all']}}</li>
+                                                    <li><strong>Production Environment Base Url</strong>
+                                                        : {{$configDocumentation['productionLinks'][$endpoint]['all']}}
+                                                    </li>
                                                 @endif
 
                                             @else
-                                                <li><strong>Production Environment Base Url</strong> : {{config('app.productBaseUrl')}}</li>
+                                                <li><strong>Production Environment Base Url</strong>
+                                                    : {{config('app.productBaseUrl')}}</li>
                                             @endif
 
                                             <li><strong>Url</strong> : baseUrl/logout</li>
@@ -868,7 +1031,8 @@ wget --no-check-certificate --quiet \
 
 
                                         <p>
-                                        <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Api Request</span>
+                                        <div class="language-php highlighter-rouge">
+                                            <div class="highlight"><pre class="highlight"><code><span class="c1">// Api Request</span>
 wget --no-check-certificate --quiet \
   --method POST \
   --timeout=0 \
@@ -877,9 +1041,10 @@ wget --no-check-certificate --quiet \
   --header 'Content-Type: application/json' \
   ' \
    '{{apiUrl()}}/logout'
-</code></pre></div></div>
+</code></pre>
+                                            </div>
+                                        </div>
                                         </p>
-
 
                                     @endif
 
@@ -890,8 +1055,10 @@ wget --no-check-certificate --quiet \
                                             $configDocumentation = config('documentation');
                                         @endphp
                                         <h1 id="about-flysystem">Verifying</h1>
-                                        <p>When the user registers to the system from (registration) endpoint, that will be passively registered to the system.
-                                            In order to activate the user, a hash is given via mail and the client must post this hash data to the "verifying" endpoint.
+                                        <p>When the user registers to the system from (registration) endpoint, that will
+                                            be passively registered to the system.
+                                            In order to activate the user, a hash is given via mail and the client must
+                                            post this hash data to the "verifying" endpoint.
                                         </p>
 
                                         <h3 id="commonly-used-adapters">POST</h3>
@@ -899,13 +1066,18 @@ wget --no-check-certificate --quiet \
                                             <li><strong>Test Environment Base Url</strong> : {{apiUrl()}}</li>
                                             @if(isset($configDocumentation['productionLinks'][$endpoint]['all']))
                                                 @if(isset($configDocumentation['productionLinks'][$endpoint][$method]))
-                                                    <li><strong>Production Environment Base Url</strong> : {{$configDocumentation['productionLinks'][$endpoint][$method]}}</li>
+                                                    <li><strong>Production Environment Base Url</strong>
+                                                        : {{$configDocumentation['productionLinks'][$endpoint][$method]}}
+                                                    </li>
                                                 @else
-                                                    <li><strong>Production Environment Base Url</strong> : {{$configDocumentation['productionLinks'][$endpoint]['all']}}</li>
+                                                    <li><strong>Production Environment Base Url</strong>
+                                                        : {{$configDocumentation['productionLinks'][$endpoint]['all']}}
+                                                    </li>
                                                 @endif
 
                                             @else
-                                                <li><strong>Production Environment Base Url</strong> : {{config('app.productBaseUrl')}}</li>
+                                                <li><strong>Production Environment Base Url</strong>
+                                                    : {{config('app.productBaseUrl')}}</li>
                                             @endif
 
                                             <li><strong>Url</strong> : baseUrl/verifying</li>
@@ -926,14 +1098,17 @@ wget --no-check-certificate --quiet \
                                                 <td style="width:200px;">hash</td>
                                                 <td>string</td>
                                                 <td>true</td>
-                                                <td>Data that needs to be sent to the endpoint in order to activate the user</td>
+                                                <td>Data that needs to be sent to the endpoint in order to activate the
+                                                    user
+                                                </td>
                                             </tr>
 
                                             </tbody>
                                         </table>
 
                                         <p>
-                                        <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Api Request</span>
+                                        <div class="language-php highlighter-rouge">
+                                            <div class="highlight"><pre class="highlight"><code><span class="c1">// Api Request</span>
 wget --no-check-certificate --quiet \
   --method POST \
   --timeout=0 \
@@ -945,16 +1120,16 @@ wget --no-check-certificate --quiet \
     }
 ]' \
    '{{apiUrl()}}/verifying'
-</code></pre></div></div>
+</code></pre>
+                                            </div>
+                                        </div>
                                         </p>
-
 
                                     @endif
 
 
 
                                     @if(isset($value['item']))
-
 
                                         @foreach($value['item'] as $key => $value)
                                             @php
@@ -973,11 +1148,11 @@ wget --no-check-certificate --quiet \
                                                 }
 
 
-                                                $entities = \App\Services\Db::entities(\App\Constants::modelNamespace.'\\'.$model);
+                                                $entities = \App\Libs\Db::entities(\App\Constants::modelNamespace.'\\'.$model);
                                                 $indexes = $entities['indexes'] ?? [];
-                                                $comments = \App\Services\Db::comments(\App\Constants::modelNamespace.'\\'.$model);
-                                                $booleans = \App\Services\Db::booleanValues(\App\Constants::modelNamespace.'\\'.$model);
-                                                $types = \App\Services\Db::types(\App\Constants::modelNamespace.'\\'.$model);
+                                                $comments = \App\Libs\Db::comments(\App\Constants::modelNamespace.'\\'.$model);
+                                                $booleans = \App\Libs\Db::booleanValues(\App\Constants::modelNamespace.'\\'.$model);
+                                                $types = \App\Libs\Db::types(\App\Constants::modelNamespace.'\\'.$model);
                                                 $tableCode = getTableCode($model);
                                                 $configDocumentation = config('documentation');
                                                 $exceptMethodKeys = $configDocumentation['exceptMethodKeys'][$endpoint][$method] ?? [];
@@ -1021,30 +1196,36 @@ wget --no-check-certificate --quiet \
                                                 @continue
                                             @endif
 
-                                                <h3 id="commonly-used-adapters">{{$value['request']['method']}}  </h3>
+                                            <h3 id="commonly-used-adapters">{{$value['request']['method']}}  </h3>
                                             <ul>
 
                                                 <li><strong>Test Environment Base Url</strong> : {{apiUrl()}}</li>
 
                                                 @if(isset($configDocumentation['productionLinks'][$endpoint]['all']))
                                                     @if(isset($configDocumentation['productionLinks'][$endpoint][$method]))
-                                                        <li><strong>Production Environment Base Url</strong> : {{$configDocumentation['productionLinks'][$endpoint][$method]}}</li>
+                                                        <li><strong>Production Environment Base Url</strong>
+                                                            : {{$configDocumentation['productionLinks'][$endpoint][$method]}}
+                                                        </li>
                                                     @else
-                                                        <li><strong>Production Environment Base Url</strong> : {{$configDocumentation['productionLinks'][$endpoint]['all']}}</li>
+                                                        <li><strong>Production Environment Base Url</strong>
+                                                            : {{$configDocumentation['productionLinks'][$endpoint]['all']}}
+                                                        </li>
                                                     @endif
 
                                                 @else
-                                                    <li><strong>Production Environment Base Url</strong> : {{config('app.productBaseUrl')}}</li>
+                                                    <li><strong>Production Environment Base Url</strong>
+                                                        : {{config('app.productBaseUrl')}}</li>
                                                 @endif
 
                                                 <li><strong>Url</strong> : {{$value['request']['url']['raw']}}</li>
                                             </ul>
 
                                             @if(!is_null(config('documentation.attentions.'.$value['name'].'@'.$value['request']['method'].'')))
-                                                    <span style="color: #22863a; font-weight: bold;"> !!! Attention !!! : </span> <span style="text-decoration: underline;"> {{config('documentation.attentions.'.$value['name'].'@'.$value['request']['method'].'')}}</span>
-                                            <br><br>
+                                                <span style="color: #22863a; font-weight: bold;"> !!! Attention !!! : </span>
+                                                <span style="text-decoration: underline;"> {{config('documentation.attentions.'.$value['name'].'@'.$value['request']['method'].'')}}</span>
+                                                <br><br>
 
-                                                @endif
+                                            @endif
 
 
                                             @if($method=='GET')
@@ -1088,7 +1269,8 @@ wget --no-check-certificate --quiet \
 
                                                 @else
                                                     <div style="padding:10px; background-color:#aaffaa;;">
-                                                        > <b> You can directly (HTTP GET) request this endpoint without a query parameter.</b>
+                                                        > <b> You can directly (HTTP GET) request this endpoint without
+                                                            a query parameter.</b>
                                                     </div>
 
                                                 @endif
@@ -1099,7 +1281,8 @@ wget --no-check-certificate --quiet \
                                                 @endphp
 
                                                 <div style="padding:10px; background-color:#aaffaa;;">
-                                                    > <b> You can directly (HTTP GET) request this endpoint without a query parameter.</b>
+                                                    > <b> You can directly (HTTP GET) request this endpoint without a
+                                                        query parameter.</b>
                                                 </div>
                                                 @php
                                                     }
@@ -1109,13 +1292,16 @@ wget --no-check-certificate --quiet \
 
 
                                                 <div style="padding:10px; background-color:#eeeeee;">
-                                                    > <b> see QUERY PARAMETERS link for response management related to HTTP GET method..</b>
+                                                    > <b> see QUERY PARAMETERS link for response management related to
+                                                        HTTP GET method..</b>
                                                 </div>
 
                                                 <br>
 
                                                 @if(count($indexes))
-                                                    <div style="color: #22863a; font-weight: bold;">Filterable Fields :</div>
+                                                    <div style="color: #22863a; font-weight: bold;">Filterable Fields
+                                                        :
+                                                    </div>
                                                     <ul>
 
                                                         @php
@@ -1138,7 +1324,7 @@ wget --no-check-certificate --quiet \
 
                                             @php
 
-                                                @endphp
+                                                    @endphp
 
                                             @if(isset($value['request']['body']['mode']))
                                                 @php
@@ -1239,7 +1425,7 @@ wget --no-check-certificate --quiet \
                                                             $crModelCode = $crModelInstance->getRepository()->getModelCode();
                                                             $crModelCodes[$extraClientKey[0]] = $crModelCode;
                                                             $crModelTable = $crModelInstance->getTable();
-                                                            $crEntities = \App\Services\Db::entities($crModelTable);
+                                                            $crEntities = \App\Libs\Db::entities($crModelTable);
                                                             $crColumns = $crEntities['columns'] ?? [];
                                                             $crBooleanValues = $crEntities['boolean_values'] ?? [];
                                                             $crBooleanValueKeys[$extraClientKey[0]] = $crBooleanValues;
@@ -1304,14 +1490,21 @@ wget --no-check-certificate --quiet \
 
                                                     @foreach($raw as $field=> $type)
                                                         <tr>
-                                                            <td><code class="language-plaintext highlighter-rouge">{{$field}}</code></td>
+                                                            <td>
+                                                                <code class="language-plaintext highlighter-rouge">{{$field}}</code>
+                                                            </td>
                                                             @if($field=='is_deleted' || $field=='status')
-                                                                <td><code class="language-plaintext highlighter-rouge">boolean</code></td>
+                                                                <td><code class="language-plaintext highlighter-rouge">boolean</code>
+                                                                </td>
                                                             @else
                                                                 @if(in_array($field,$booleans,true))
-                                                                    <td><code class="language-plaintext highlighter-rouge">boolean</code></td>
+                                                                    <td>
+                                                                        <code class="language-plaintext highlighter-rouge">boolean</code>
+                                                                    </td>
                                                                 @else
-                                                                    <td><code class="language-plaintext highlighter-rouge">{{$types[$field] ?? 'string'}}</code></td>
+                                                                    <td>
+                                                                        <code class="language-plaintext highlighter-rouge">{{$types[$field] ?? 'string'}}</code>
+                                                                    </td>
                                                                 @endif
 
                                                             @endif
@@ -1319,36 +1512,50 @@ wget --no-check-certificate --quiet \
                                                             @if($method=='PUT')
 
                                                                 @if(getTableCode($model)==$field)
-                                                                    <td style="background-color: #ddffdd;"><code class="language-plaintext highlighter-rouge">true</code></td>
+                                                                    <td style="background-color: #ddffdd;"><code
+                                                                                class="language-plaintext highlighter-rouge">true</code>
+                                                                    </td>
                                                                 @else
                                                                     @if(isset($clientRule[$field]))
                                                                         @php
 
-                                                                        $crequired = \Illuminate\Support\Str::contains($clientRule[$field],'required') ? 'true' : 'false';
-                                                                        $crequiredColors = ($crequired==='true') ? 'style="background-color: #ddffdd;"' : '';
+                                                                            $crequired = \Illuminate\Support\Str::contains($clientRule[$field],'required') ? 'true' : 'false';
+                                                                            $crequiredColors = ($crequired==='true') ? 'style="background-color: #ddffdd;"' : '';
 
                                                                         @endphp
-                                                                        <td {{$crequiredColors}}><code class="language-plaintext highlighter-rouge">{{$crequired}}</code></td>
+                                                                        <td {{$crequiredColors}}><code
+                                                                                    class="language-plaintext highlighter-rouge">{{$crequired}}</code>
+                                                                        </td>
                                                                     @else
-                                                                        <td><code class="language-plaintext highlighter-rouge">false</code></td>
-                                                                        @endif
+                                                                        <td>
+                                                                            <code class="language-plaintext highlighter-rouge">false</code>
+                                                                        </td>
+                                                                    @endif
 
                                                                 @endif
 
                                                             @else
 
                                                                 @if(isset($entities['required_columns']) && in_array($field,$entities['required_columns'],true))
-                                                                    <td style="background-color: #ddffdd;"><code class="language-plaintext highlighter-rouge">true</code></td>
+                                                                    <td style="background-color: #ddffdd;"><code
+                                                                                class="language-plaintext highlighter-rouge">true</code>
+                                                                    </td>
                                                                 @else
                                                                     @if(isset($clientCapsuleList[$field]['required']))
                                                                         @if($clientCapsuleList[$field]['required']===true)
-                                                                            <td style="background-color: #ddffdd;"><code class="language-plaintext highlighter-rouge">{{$clientCapsuleList[$field]['required']}}</code></td>
+                                                                            <td style="background-color: #ddffdd;"><code
+                                                                                        class="language-plaintext highlighter-rouge">{{$clientCapsuleList[$field]['required']}}</code>
+                                                                            </td>
                                                                         @else
-                                                                            <td><code class="language-plaintext highlighter-rouge">{{$clientCapsuleList[$field]['required']}}</code></td>
-                                                                            @endif
+                                                                            <td>
+                                                                                <code class="language-plaintext highlighter-rouge">{{$clientCapsuleList[$field]['required']}}</code>
+                                                                            </td>
+                                                                        @endif
 
                                                                     @else
-                                                                        <td><code class="language-plaintext highlighter-rouge">false</code></td>
+                                                                        <td>
+                                                                            <code class="language-plaintext highlighter-rouge">false</code>
+                                                                        </td>
                                                                     @endif
 
                                                                 @endif
@@ -1366,7 +1573,7 @@ wget --no-check-certificate --quiet \
                                                                         <td>{{$getClientCapsuleComments[$field]}}</td>
                                                                     @else
                                                                         <td>{{$comments[$field] ?? ''}}</td>
-                                                                        @endif
+                                                                    @endif
 
                                                                 @endif
 
@@ -1382,31 +1589,42 @@ wget --no-check-certificate --quiet \
                                                 @foreach($crColumnList as $cckey => $ccitems)
 
                                                     <h3 style="color: #22863a;">{{ucfirst($cckey)}} Parameters:</h3>
-                                                    <p><b>The values of the key named as ({{$cckey}}) in the body parameter are listed below.</b><br>
-                                                        Sample client value to be sent to the service: <br> <a style="color: #22863a; font-weight: bold;">"{{$cckey}}" : [{"clientParameter": "value"}] </a>
+                                                    <p><b>The values of the key named as ({{$cckey}}) in the body
+                                                            parameter are listed below.</b><br>
+                                                        Sample client value to be sent to the service: <br> <a
+                                                                style="color: #22863a; font-weight: bold;">"{{$cckey}}"
+                                                            : [{"clientParameter": "value"}] </a>
                                                     </p>
 
                                                     <table>
                                                         <thead>
                                                         <tr>
-                                                            <th style="width:200px; background-color: #999988;">Client Parameter</th>
-                                                            <th style ="background-color: #999988;">Type</th>
-                                                            <th style ="background-color: #999988;">Required</th>
-                                                            <th style ="background-color: #999988;">Description</th>
+                                                            <th style="width:200px; background-color: #999988;">Client
+                                                                Parameter
+                                                            </th>
+                                                            <th style="background-color: #999988;">Type</th>
+                                                            <th style="background-color: #999988;">Required</th>
+                                                            <th style="background-color: #999988;">Description</th>
                                                         </tr>
                                                         </thead>
                                                         <tbody>
 
                                                         @foreach($ccitems as $ccItemKey => $ccItemData)
                                                             <tr>
-                                                                <td><code class="language-plaintext highlighter-rouge">{{$ccItemData}}</code></td>
+                                                                <td>
+                                                                    <code class="language-plaintext highlighter-rouge">{{$ccItemData}}</code>
+                                                                </td>
 
 
                                                                 @if(in_array($ccItemData,$crBooleanValueKeys[$cckey],true))
-                                                                    <td><code class="language-plaintext highlighter-rouge">boolean</code></td>
+                                                                    <td>
+                                                                        <code class="language-plaintext highlighter-rouge">boolean</code>
+                                                                    </td>
 
                                                                 @else
-                                                                    <td><code class="language-plaintext highlighter-rouge">{{$crTypeKeys[$cckey][$ccItemKey] ?? 'string'}}</code></td>
+                                                                    <td>
+                                                                        <code class="language-plaintext highlighter-rouge">{{$crTypeKeys[$cckey][$ccItemKey] ?? 'string'}}</code>
+                                                                    </td>
 
                                                                 @endif
 
@@ -1415,25 +1633,32 @@ wget --no-check-certificate --quiet \
                                                                 @if($method=='PUT')
 
                                                                     @if(in_array($ccItemData,$crRequiredList[$cckey],true))
-                                                                        <td style="background-color: #ddffdd;"><code class="language-plaintext highlighter-rouge">true</code></td>
+                                                                        <td style="background-color: #ddffdd;"><code
+                                                                                    class="language-plaintext highlighter-rouge">true</code>
+                                                                        </td>
                                                                     @else
-                                                                        <td><code class="language-plaintext highlighter-rouge">false</code></td>
+                                                                        <td>
+                                                                            <code class="language-plaintext highlighter-rouge">false</code>
+                                                                        </td>
                                                                     @endif
 
                                                                 @else
                                                                     @if(in_array($ccItemData,$crRequiredKeys[$cckey],true))
-                                                                        <td style="background-color: #ddffdd;"><code class="language-plaintext highlighter-rouge">true</code></td>
+                                                                        <td style="background-color: #ddffdd;"><code
+                                                                                    class="language-plaintext highlighter-rouge">true</code>
+                                                                        </td>
                                                                     @else
-                                                                        <td><code class="language-plaintext highlighter-rouge">false</code></td>
+                                                                        <td>
+                                                                            <code class="language-plaintext highlighter-rouge">false</code>
+                                                                        </td>
                                                                     @endif
 
-                                                                    @endif
+                                                                @endif
 
 
-
-
-
-                                                                <td><code class="language-plaintext highlighter-rouge">{{$crCommentKeys[$cckey][$ccItemKey] ?? ''}}</code></td>
+                                                                <td>
+                                                                    <code class="language-plaintext highlighter-rouge">{{$crCommentKeys[$cckey][$ccItemKey] ?? ''}}</code>
+                                                                </td>
 
                                                             </tr>
 
@@ -1483,10 +1708,18 @@ wget --no-check-certificate --quiet \
                                                             @endphp
 
                                                             <tr>
-                                                                <td><code class="language-plaintext highlighter-rouge">{{$capsPost}}</code></td>
-                                                                <td><code class="language-plaintext highlighter-rouge">{{implode('|',$capRules)}}</code></td>
-                                                                <td><code class="language-plaintext highlighter-rouge">{{$capRequired}}</code></td>
-                                                                <td><code class="language-plaintext highlighter-rouge">{{$capDesc}}</code></td>
+                                                                <td>
+                                                                    <code class="language-plaintext highlighter-rouge">{{$capsPost}}</code>
+                                                                </td>
+                                                                <td>
+                                                                    <code class="language-plaintext highlighter-rouge">{{implode('|',$capRules)}}</code>
+                                                                </td>
+                                                                <td>
+                                                                    <code class="language-plaintext highlighter-rouge">{{$capRequired}}</code>
+                                                                </td>
+                                                                <td>
+                                                                    <code class="language-plaintext highlighter-rouge">{{$capDesc}}</code>
+                                                                </td>
                                                             </tr>
                                                         @endforeach
 
@@ -1515,10 +1748,18 @@ wget --no-check-certificate --quiet \
                                                             @endphp
 
                                                             <tr>
-                                                                <td><code class="language-plaintext highlighter-rouge">{{$capsPost}}</code></td>
-                                                                <td><code class="language-plaintext highlighter-rouge">{{implode('|',$capRules)}}</code></td>
-                                                                <td><code class="language-plaintext highlighter-rouge">{{$capRequired}}</code></td>
-                                                                <td><code class="language-plaintext highlighter-rouge">{{$capDesc}}</code></td>
+                                                                <td>
+                                                                    <code class="language-plaintext highlighter-rouge">{{$capsPost}}</code>
+                                                                </td>
+                                                                <td>
+                                                                    <code class="language-plaintext highlighter-rouge">{{implode('|',$capRules)}}</code>
+                                                                </td>
+                                                                <td>
+                                                                    <code class="language-plaintext highlighter-rouge">{{$capRequired}}</code>
+                                                                </td>
+                                                                <td>
+                                                                    <code class="language-plaintext highlighter-rouge">{{$capDesc}}</code>
+                                                                </td>
                                                             </tr>
                                                         @endforeach
 
@@ -1533,7 +1774,8 @@ wget --no-check-certificate --quiet \
                                                             @if(isset($raw[$field]))
 
                                                                 <h3>{{ucfirst($field)}} Body Parameters:</h3>
-                                                                <p><b>The key values to be sent for the {{$field}} parameter are listed below. </b></p>
+                                                                <p><b>The key values to be sent for the {{$field}}
+                                                                        parameter are listed below. </b></p>
                                                                 <table>
                                                                     <thead>
                                                                     <tr>
@@ -1547,10 +1789,18 @@ wget --no-check-certificate --quiet \
 
                                                                     @foreach($lists as $listKey => $listItems)
                                                                         <tr>
-                                                                            <td><code class="language-plaintext highlighter-rouge">{{$listKey}}</code></td>
-                                                                            <td><code class="language-plaintext highlighter-rouge">{{$listItems['type'] ?? ''}}</code></td>
-                                                                            <td><code class="language-plaintext highlighter-rouge">{{$listItems['required'] ?? ''}}</code></td>
-                                                                            <td><code class="language-plaintext highlighter-rouge">{{$listItems['description'] ?? ''}}</code></td>
+                                                                            <td>
+                                                                                <code class="language-plaintext highlighter-rouge">{{$listKey}}</code>
+                                                                            </td>
+                                                                            <td>
+                                                                                <code class="language-plaintext highlighter-rouge">{{$listItems['type'] ?? ''}}</code>
+                                                                            </td>
+                                                                            <td>
+                                                                                <code class="language-plaintext highlighter-rouge">{{$listItems['required'] ?? ''}}</code>
+                                                                            </td>
+                                                                            <td>
+                                                                                <code class="language-plaintext highlighter-rouge">{{$listItems['description'] ?? ''}}</code>
+                                                                            </td>
 
                                                                         </tr>
                                                                     @endforeach
@@ -1572,7 +1822,6 @@ wget --no-check-certificate --quiet \
                                 </div>
                             @endforeach
 
-
                         @endif
 
 
@@ -1582,18 +1831,22 @@ wget --no-check-certificate --quiet \
                     <article id="article" role="main" class="max-w-full md:block md:w-10/14">
                         <h1 class="mb-4">Api Request Guidelines.</h1>
                         <h2 id="about-flysystem">Introduce</h2>
-                        <p>The roadmap to follow in order to reach our API resource is very simple.Simply follow the instructions below.
+                        <p>The roadmap to follow in order to reach our API resource is very simple.Simply follow the
+                            instructions below.
                             The request url map is located on the left menu.</p>
 
                         <h3 id="commonly-used-adapters">Postman:</h3>
                         <ul>
-                            <li><strong><a href="postman/collection" target="_blank">Postman Collection Data</a></strong></li>
-                            <li><strong><a href="postman/environment" target="_blank">Postman Environment Data</a></strong></li>
+                            <li><strong><a href="postman/collection" target="_blank">Postman Collection
+                                        Data</a></strong></li>
+                            <li><strong><a href="postman/environment" target="_blank">Postman Environment
+                                        Data</a></strong></li>
                         </ul>
 
 
                         <h2 id="getting-started">Api Authenticate</h2>
-                        <p>The header keys that must be sent are below.The Authorization value <b>(except for the login service)</b> is required for every request.
+                        <p>The header keys that must be sent are below.The Authorization value <b>(except for the login
+                                service)</b> is required for every request.
                             There is a token key in the response returned when the user logs in. </p>
                         <table>
                             <thead>
@@ -1606,7 +1859,8 @@ wget --no-check-certificate --quiet \
 
                             @foreach($headers as $header)
                                 <tr>
-                                    <td><code class="language-plaintext highlighter-rouge">{{$header['key']}}</code></td>
+                                    <td><code class="language-plaintext highlighter-rouge">{{$header['key']}}</code>
+                                    </td>
                                     <td>{{$header['description']}}</td>
                                 </tr>
                             @endforeach
@@ -1614,7 +1868,9 @@ wget --no-check-certificate --quiet \
                             </tbody>
                         </table>
 
-                        <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Default Api Request</span>
+                        <div class="language-php highlighter-rouge">
+                            <div class="highlight"><pre class="highlight"><code><span
+                                                class="c1">// Default Api Request</span>
 wget --no-check-certificate --quiet \
   --method GET \
   --timeout=0 \
@@ -1623,13 +1879,16 @@ wget --no-check-certificate --quiet \
   --header 'Content-Type: application/json' \
   --header 'Accept-Language: en' \
    'http://baseUrl/user'
-</code></pre></div></div>
+</code></pre>
+                            </div>
+                        </div>
 
 
                         <h2 id="getting-started">Success Sample Response</h2>
 
                         <p>The following is the standard response capsule.This is a successful response.</p>
-                        <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Default Any Endpoint Response</span>
+                        <div class="language-php highlighter-rouge">
+                            <div class="highlight"><pre class="highlight"><code><span class="c1">// Default Any Endpoint Response</span>
 {
     "status": true,
     "code": 200,
@@ -1644,7 +1903,9 @@ wget --no-check-certificate --quiet \
         }
     ]
 }
-</code></pre></div></div>
+</code></pre>
+                            </div>
+                        </div>
 
                         <h2 id="getting-started">Meta Keys</h2>
 
@@ -1697,23 +1958,31 @@ wget --no-check-certificate --quiet \
 
                             <tr>
                                 <td><code class="language-plaintext highlighter-rouge">400</code></td>
-                                <td>it shows that the response failed on the client side. the error should be fixed by looking at the ErrorMessage key.</td>
+                                <td>it shows that the response failed on the client side. the error should be fixed by
+                                    looking at the ErrorMessage key.
+                                </td>
                             </tr>
 
                             <tr>
                                 <td><code class="language-plaintext highlighter-rouge">401</code></td>
                                 <td>When you make a request to a token requesting endpoint,
-                                    If the token is not sent or the token is not valid, the client will get this exception.</td>
+                                    If the token is not sent or the token is not valid, the client will get this
+                                    exception.
+                                </td>
                             </tr>
 
                             <tr>
                                 <td><code class="language-plaintext highlighter-rouge">403</code></td>
-                                <td>When a request is made to an endpoint that requires permission,this exception is thrown if the User permissions are insufficient.</td>
+                                <td>When a request is made to an endpoint that requires permission,this exception is
+                                    thrown if the User permissions are insufficient.
+                                </td>
                             </tr>
 
                             <tr>
                                 <td><code class="language-plaintext highlighter-rouge">500</code></td>
-                                <td>it shows that the response failed on the server side.the client cannot do anything. The error must be fixed by the service provider.</td>
+                                <td>it shows that the response failed on the server side.the client cannot do anything.
+                                    The error must be fixed by the service provider.
+                                </td>
                             </tr>
 
                             </tbody>
@@ -1721,9 +1990,11 @@ wget --no-check-certificate --quiet \
 
                         <h2 id="getting-started">Error Sample Response</h2>
 
-                        <p>As seen in the error response, the status value is returned false.In this case, the errorMessage value will be the key that tells the source of the error for the client.
+                        <p>As seen in the error response, the status value is returned false.In this case, the
+                            errorMessage value will be the key that tells the source of the error for the client.
                             <b>Notice that the errorMessage key is not returned in the resource key.</b></p>
-                        <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Default Any Endpoint Response</span>
+                        <div class="language-php highlighter-rouge">
+                            <div class="highlight"><pre class="highlight"><code><span class="c1">// Default Any Endpoint Response</span>
 {
     "status": false,
     "code": 400,
@@ -1738,7 +2009,9 @@ wget --no-check-certificate --quiet \
         null
     ]
 }
-</code></pre></div></div>
+</code></pre>
+                            </div>
+                        </div>
 
 
                     </article>
@@ -1759,14 +2032,15 @@ wget --no-check-certificate --quiet \
 </script>
 
 <script>
-    $(document).ready(function(){
-        $("select.endpointselects").change(function(){
+    $(document).ready(function () {
+        $("select.endpointselects").change(function () {
             $("div.endpointers").hide();
             let val = $(this).val();
-            $("#"+val+"").show();
+            $("#" + val + "").show();
         });
     });
 </script>
 
 
-</body></html>
+</body>
+</html>

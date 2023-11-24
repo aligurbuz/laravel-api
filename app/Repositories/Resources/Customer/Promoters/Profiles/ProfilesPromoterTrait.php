@@ -6,7 +6,7 @@ namespace App\Repositories\Resources\Customer\Promoters\Profiles;
 
 use App\Models\Entities\Customer;
 use App\Repositories\EloquentRepository;
-use App\Services\Client;
+use App\Libs\Client;
 
 trait ProfilesPromoterTrait
 {

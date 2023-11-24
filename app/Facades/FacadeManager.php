@@ -2,7 +2,7 @@
 
 namespace App\Facades;
 
-use App\Services\AppContainer;
+use App\Libs\AppContainer;
 
 class FacadeManager
 {

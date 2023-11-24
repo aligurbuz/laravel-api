@@ -6,7 +6,7 @@ namespace App\Exceptions;
 
 use App\Constants;
 use App\Factory\Factory;
-use App\Services\AppContainer;
+use App\Libs\AppContainer;
 
 trait ExceptionEventTrait
 {

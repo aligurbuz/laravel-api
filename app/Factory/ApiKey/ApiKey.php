@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Factory\ApiKey;
 
 use App\Factory\ApiKey\Interfaces\ApiKeyInterface;
-use App\Services\ApiKeyManager;
+use App\Libs\ApiKeyManager;
 
 /**
  * Class ApiKey

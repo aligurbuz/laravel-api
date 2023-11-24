@@ -3,7 +3,7 @@
 namespace App\Facades\Database\Customer;
 
 use App\Repositories\Repository;
-use App\Services\AppContainer;
+use App\Libs\AppContainer;
 
 class Contact
 {

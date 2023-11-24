@@ -6,7 +6,7 @@ namespace App\Factory\Notify\Resource\Slack500Formatter;
 
 use App\Facades\Database\Authenticate\ApiKey;
 use App\Facades\Database\Authenticate\Authenticate;
-use App\Services\Date;
+use App\Libs\Date;
 use Throwable;
 
 /**

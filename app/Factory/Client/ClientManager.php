@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Factory\Client;
 
 use App\Factory\Client\Resource\ClientIdentifier\ClientIdentifier;
-use App\Services\AppContainer;
+use App\Libs\AppContainer;
 
 abstract class ClientManager
 {

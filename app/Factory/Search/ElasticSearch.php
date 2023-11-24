@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Factory\Search;
 
 use App\Factory\Search\Interfaces\SearchInterface;
-use App\Services\AppContainer;
-use App\Services\Search\ElasticSearch\Connector;
+use App\Libs\AppContainer;
+use App\Libs\Search\ElasticSearch\Connector;
 
 /**
  * Class ElasticSearch

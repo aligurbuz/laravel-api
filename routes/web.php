@@ -1,6 +1,6 @@
 <?php
 
-use App\Services\Postman;
+use App\Libs\Postman;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DeploymentController;
 use App\Http\Controllers\Api\DocumentationController;

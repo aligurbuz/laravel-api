@@ -302,7 +302,7 @@ If all the class names written in this class are written as annotation. They con
 
 namespace App\Exceptions;
 
-use App\Services\AppContainer;
+use App\Libs\AppContainer;
 
 /**
  * Class Exception
