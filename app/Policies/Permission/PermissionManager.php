@@ -118,13 +118,13 @@ abstract class PermissionManager
         }
 
         if (method_exists($this, $withMethod)) {
-            return AppContainer::use($withMethod . 'Permission', function () use ($withMethod) {
+            AppContainer::use($withMethod . 'Permission', function () use ($withMethod) {
                 return $this->$withMethod();
             });
         }
 
         if (method_exists($this, $name)) {
-            return $this->$name();
+            $this->$name();
         }
 
         return $this->handle();
