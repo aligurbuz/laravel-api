@@ -17,6 +17,7 @@ use App\Factory\Notify\Interfaces\NotifyInterface;
 use App\Factory\Payment\Interfaces\PaymentInterface;
 use App\Factory\Pdf\Interfaces\PdfInterface;
 use App\Factory\Permission\Interfaces\PermissionInterface;
+use App\Factory\Queue\Interfaces\QueueInterface;
 use App\Factory\Search\Interfaces\SearchInterface;
 use App\Factory\Sms\Interfaces\SmsInterface;
 use App\Factory\Socket\Interfaces\SocketInterface;
@@ -41,6 +42,7 @@ use App\Factory\Storage\Interfaces\StorageInterface;
  * @method static PdfInterface pdf($arguments = null)
  * @method static SocketInterface socket($arguments = null)
  * @method static AppInterface app($arguments = null)
+ * @method static QueueInterface queue($arguments = null)
  * @package App\Factory
  */
 class Factory extends FactoryManager
@@ -57,6 +59,7 @@ class Factory extends FactoryManager
         'Cache' => 'Redis',
         'Search' => 'ElasticSearch',
         'Sms' => 'Twilio',
+        'Queue' => 'Rabbit',
     ];
 
     /**
