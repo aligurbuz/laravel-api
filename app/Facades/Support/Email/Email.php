@@ -2,11 +2,18 @@
 
 namespace App\Facades\Support\Email;
 
+use App\Facades\FacadeManager;
+use App\Mail\TestEmail;
 use App\Mail\UserActivation;
 use Illuminate\Support\Facades\Mail;
 
-class Email
+class Email extends FacadeManager
 {
+    public static function test(array $data = []): void
+    {
+        Mail::to($data['to'])->send(new TestEmail($data));
+    }
+
     /**
      * user activation email sending
      *
@@ -16,9 +23,9 @@ class Email
      */
     public static function userActivation(string $email, string $hash): void
     {
-        dispatch(Mail::to($email)->send(new UserActivation([
+        Mail::to($email)->send(new UserActivation([
             'hash' => $hash
-        ])));
+        ]));
     }
 
     /**
@@ -30,9 +37,7 @@ class Email
      */
     public static function verifyingEmail(string $email, string $hash): void
     {
-        /**dispatch(Mail::to($email)->send(new VerifyEmailForUser([
-         * 'hash' => $hash
-         * ])));**/
+        //
     }
 
     /**
@@ -45,8 +50,6 @@ class Email
      */
     public static function passwordReset(string $email, string $hash): void
     {
-        /**dispatch(Mail::to($email)->send(new VerifyEmailForUser([
-         * 'hash' => $hash
-         * ])));**/
+        //
     }
 }

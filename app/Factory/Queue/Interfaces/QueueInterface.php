@@ -9,10 +9,11 @@ use App\Factory\Queue\Rabbit;
 interface QueueInterface
 {
     /**
+     * @param array $data
      * @return void
      * @see Rabbit::publish()
      */
-    public function publish(): void;
+    public function publish(array $data = []): void;
 
     /**
      * @return void

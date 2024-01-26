@@ -2,22 +2,19 @@
 
 namespace App\Facades;
 
-use App\Libs\AppContainer;
+use App\Factory\Factory;
 
 class FacadeManager
 {
     /**
-     * @var mixed
+     * @param array $data
+     * @param string $name
+     * @return void
      */
-    protected mixed $data;
-
-    /**
-     * FacadeManager constructor.
-     */
-    public function __construct()
+    public static function publish(array $data, string $name): void
     {
-        if (AppContainer::has($this->facade)) {
-            $this->data = AppContainer::get($this->facade);
-        }
+        $class = lcfirst(class_basename(new static()));
+
+        Factory::queue(['queue' => $class, 'routingKey' => $class .'.'. $name])->publish($data);
     }
 }

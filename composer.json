@@ -23,6 +23,7 @@
         "maatwebsite/excel": "^3.1",
         "moneyphp/money": "^3.3",
         "nette/php-generator": "^3.5",
+        "php-amqplib/php-amqplib": "^3.6",
         "phpmailer/phpmailer": "^6.5",
         "predis/predis": "^1.1",
         "pusher/pusher-php-server": "^7.0",
