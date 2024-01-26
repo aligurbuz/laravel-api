@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Facades\Support\Queue;
+namespace App\Services\Queue;
 
 use App\Facades\Support\Email\Email;
 

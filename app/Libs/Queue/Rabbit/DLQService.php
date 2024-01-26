@@ -2,7 +2,7 @@
 
 namespace App\Libs\Queue\Rabbit;
 
-use App\Facades\Support\Queue\Process;
+use App\Services\Queue\Process;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use PhpAmqpLib\Message\AMQPMessage;
