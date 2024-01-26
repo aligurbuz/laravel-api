@@ -60,9 +60,9 @@ class DLQService extends QueueConnectionService
     /**
      * All success scenarios
      * @param AMQPMessage $message
-     * @return string|void
+     * @return void
      */
-    public function successScenarios(AMQPMessage $message)
+    public function successScenarios(AMQPMessage $message): void
     {
         $data = json_decode($message->body, 1);
         $routing = explode('.', $message->getRoutingKey());
