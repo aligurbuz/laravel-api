@@ -14,7 +14,7 @@ class Email extends FacadeManager
         Mail::to($data['to'])->send(new TestEmail($data));
     }
 
-    /**
+    /**jv
      * user activation email sending
      *
      * @param string $email
