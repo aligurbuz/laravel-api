@@ -6,7 +6,7 @@ namespace App\Repositories\Resources\User\Resource;
 
 /**
  * Class UserResource
- * @package App\Repositories\Resources\User\Resource
+ * @package App\Repositories\Traits\User\Resource
  */
 class UserResource
 {

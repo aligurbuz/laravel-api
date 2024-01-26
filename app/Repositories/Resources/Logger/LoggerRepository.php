@@ -17,7 +17,7 @@ use App\Repositories\Resources\Logger\PropertyHandlers\LoggerPropertyHandlerTrai
 
 /**
  * Class LoggerRepository
- * @package App\Repositories\Resources\Logger
+ * @package App\Repositories\Traits\Logger
  */
 class LoggerRepository extends EloquentRepository implements LoggerRepositoryContract
 {

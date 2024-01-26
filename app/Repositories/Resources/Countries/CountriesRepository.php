@@ -17,7 +17,7 @@ use App\Repositories\Resources\Countries\PropertyHandlers\CountriesPropertyHandl
 
 /**
  * Class CountriesRepository
- * @package App\Repositories\Resources\Countries
+ * @package App\Repositories\Traits\Countries
  */
 class CountriesRepository extends EloquentRepository implements CountriesRepositoryContract
 {

@@ -17,7 +17,7 @@ use App\Repositories\Resources\User\PropertyHandlers\UserPropertyHandlerTrait;
 
 /**
  * Class UserRepository
- * @package App\Repositories\Resources\User
+ * @package App\Repositories\Traits\User
  * @method $this role()
  * @method accessible()
  */

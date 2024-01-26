@@ -6,9 +6,15 @@ use App\Exceptions\Exception;
 use App\Facades\Database\Authenticate\Guard as GuardFacade;
 use App\Facades\FacadeManager;
 use App\Repositories\Repository;
+use Illuminate\Contracts\Auth\Authenticatable;
 
 class Authenticate extends FacadeManager
 {
+    /**
+     * @var Authenticatable|null
+     */
+    protected Authenticatable|null $data;
+
     /**
      * @var string
      */
@@ -24,12 +30,9 @@ class Authenticate extends FacadeManager
      */
     public function __construct()
     {
-        parent::__construct();
-
         $this->data = auth()->user();
 
         $this->code = ApiKey::isWeb() ? 'customer_code' : 'user_code';
-
     }
 
     /**
