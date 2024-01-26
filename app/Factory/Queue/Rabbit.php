@@ -39,6 +39,7 @@ class Rabbit extends QueueManager implements QueueInterface
     {
         $this->queueService
             ->queue($this->binds['queue'])
+            ->exchange($this->binds['exchange'])
             ->routingKey($this->binds['routingKey'])
             ->publish(json_encode($data));
     }

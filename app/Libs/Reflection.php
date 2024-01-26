@@ -19,6 +19,12 @@ class Reflection
 
     public function getParentMethods(): array
     {
+        $parentClass = $this->reflection->getParentClass();
+
+        if(!$parentClass){
+            return [];
+        }
+
         $methods = $this->reflection->getParentClass()->getMethods();
 
         $list = [];

@@ -2,9 +2,10 @@
 
 namespace App\Facades\Support\Sms;
 
+use App\Facades\FacadeManager;
 use App\Jobs\SmsSender;
 
-class SmsManager
+class SmsManager extends FacadeManager
 {
     /**
      * @var string|null

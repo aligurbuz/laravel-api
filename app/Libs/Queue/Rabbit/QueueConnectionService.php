@@ -2,6 +2,8 @@
 
 namespace App\Libs\Queue\Rabbit;
 
+use App\Libs\Reflection;
+use App\Services\Queue\Process;
 use Exception;
 use Nette\InvalidArgumentException;
 use PhpAmqpLib\Channel\AbstractChannel;
@@ -38,9 +40,7 @@ class QueueConnectionService
     /**
      * @var array
      */
-    protected array $consumeQueues = [
-        'email'
-    ];
+    protected array $consumeQueues = [];
 
     /**
      * @var array|int[]
@@ -81,6 +81,8 @@ class QueueConnectionService
         );
 
         $this->channel = $this->connection->channel();
+
+        $this->consumeQueues = (new Reflection(Process::class))->getChildMethods();
     }
 
     /**
