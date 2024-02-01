@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Client;
 
-use App\Facades\Database\Authenticate\ApiKey;
 use App\Libs\Db;
 
 /**
@@ -34,29 +33,8 @@ trait ClientSetRuleTrait
      */
     private function setRanges(): void
     {
-        $range = request()?->query('range', '');
-        $range = replaceSpace($range);
-        $rangeList = explode(',', $range);
-
         \App\Libs\Client::orderByOperationForRange();
         \App\Libs\Client::statusOperationForRange();
-
-        if (!ApiKey::isAdmin()) {
-            if (in_array('deleted', $rangeList, true)) {
-                $rangeList = array_values(array_diff($rangeList, ['deleted']));
-            }
-
-            if (!in_array('active', $rangeList, true)) {
-                if ($range !== '') {
-                    $range .= ',active';
-                } else {
-                    $range = 'active';
-                }
-
-                request()->query->remove('range');
-                request()->query->add(['range' => replaceSpace($range)]);
-            }
-        }
     }
 
     /**
