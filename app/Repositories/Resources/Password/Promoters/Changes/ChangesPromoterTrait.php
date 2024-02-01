@@ -78,7 +78,10 @@ trait ChangesPromoterTrait
 
         // we send the hash value to
         // the phone number of the user for password change.
-        Sms::passwordChange($userPhone, $hash);
+        Sms::publish([
+            'phone' => $userPhone,
+            'hash' => $hash
+        ], 'passwordChange');
     }
 
     /**

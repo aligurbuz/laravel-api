@@ -13,25 +13,23 @@ class Sms extends SmsManager
      * When a request is made to the password/changes endpoint,
      * it sends an SMS to the user's phone with a use code.
      *
-     * @param string $userPhone
-     * @param string $hash
+     * @param array $data
      * @return void
      */
-    public static function passwordChange(string $userPhone, string $hash): void
+    public static function passwordChange(array $data = []): void
     {
-        static::to($userPhone)->message('Password Reset Code: ' . $hash)->send();
+        static::to($data['phone'])->message('Password Reset Code: ' . $data['hash'])->send();
     }
 
     /**
      * if there is activation at the user login;
      * If the value is sms this will work. see Facades/Authenticate/Activation class
      *
-     * @param string $phone
-     * @param string $hash
+     * @param array $data
      * @return void
      */
-    public static function userActivation(string $phone, string $hash): void
+    public static function userActivation(array $data = []): void
     {
-        static::to($phone)->message('User activation code:' . $hash)->send();
+        static::to($data['phone'])->message('User activation code:' . $data['phone'])->send();
     }
 }

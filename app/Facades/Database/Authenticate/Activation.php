@@ -95,7 +95,10 @@ class Activation
             static::throwExceptionIfActivationCodeNotValid($activationData);
 
             if (static::isNullActivationCode()) {
-                Sms::userActivation($user['phone'], $activationData['hash']);
+                Sms::publish([
+                    'phone' => $user['phone'],
+                    'hash' => $activationData['hash']
+                ], 'userActivation');
 
                 return [
                     'activation_type' => 'Sms',
