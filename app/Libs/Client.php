@@ -212,4 +212,71 @@ class Client
 
         return request()->query->all();
     }
+
+    /**
+     * @param array $data
+     * @return void
+     */
+    public static function setRange(array $data = []): void
+    {
+        $ranges = getRanges();
+        $list = [];
+
+        foreach ($data as $datum) {
+            if (!in_array($datum, $ranges, true)) {
+                $list[] = $datum;
+            }
+        }
+
+        $mergeRange = array_merge($ranges, $list);
+        request()->query->set('range', implode(',', $mergeRange));
+    }
+
+    /**
+     * @return void
+     */
+    public static function orderByOperationForRange(): void
+    {
+        $ranges = getRanges();
+        $orderBy = ['asc', 'desc'];
+
+        $orderByAdding = true;
+
+        foreach ($orderBy as $value) {
+            if (in_array($value, $ranges, true)) {
+                $orderByAdding = false;
+                break;
+            }
+        }
+
+        if ($orderByAdding) {
+            $mergeRequest = array_merge($ranges, ['desc']);
+            request()->query->remove('range');
+            request()->query->set('range', implode(',', $mergeRequest));
+        }
+    }
+
+    /**
+     * @return void
+     */
+    public static function statusOperationForRange(): void
+    {
+        $ranges = getRanges();
+        $active = ['active', 'notDeleted', 'deleted'];
+
+        $statusAdding = true;
+
+        foreach ($active as $value) {
+            if (in_array($value, $ranges, true)) {
+                $statusAdding = false;
+                break;
+            }
+        }
+
+        if ($statusAdding) {
+            $mergeRequest = array_merge($ranges, ['active']);
+            request()->query->remove('range');
+            request()->query->set('range', implode(',', $mergeRequest));
+        }
+    }
 }

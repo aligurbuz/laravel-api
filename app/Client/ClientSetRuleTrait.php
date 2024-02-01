@@ -38,6 +38,9 @@ trait ClientSetRuleTrait
         $range = replaceSpace($range);
         $rangeList = explode(',', $range);
 
+        \App\Libs\Client::orderByOperationForRange();
+        \App\Libs\Client::statusOperationForRange();
+
         if (!ApiKey::isAdmin()) {
             if (in_array('deleted', $rangeList, true)) {
                 $rangeList = array_values(array_diff($rangeList, ['deleted']));
