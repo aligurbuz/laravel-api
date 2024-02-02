@@ -26,7 +26,7 @@ class Role
         $isAdmin = checkBool($isAdminValue);
 
         if ($isAdmin && is_callable($callback)) {
-            return $callback($isAdmin);
+            return $callback();
         }
 
         return $isAdmin;
