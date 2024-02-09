@@ -30,6 +30,6 @@ class Sms extends SmsManager
      */
     public static function userActivation(array $data = []): void
     {
-        static::to($data['phone'])->message('User activation code:' . $data['phone'])->send();
+        static::to($data['phone'])->message('User activation code:' . $data['hash'])->send();
     }
 }
