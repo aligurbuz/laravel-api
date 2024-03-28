@@ -42,7 +42,7 @@ abstract class PermissionManager
             $this->negativePermission = true;
         }
 
-        $this->permission()->assign($http, false);
+        $this->permission()->instantAssign($http, false);
 
         // if the exceptionKey value is not null, it means that we will give a special exception message.
         // this value is controlled in the Middleware Permission class.

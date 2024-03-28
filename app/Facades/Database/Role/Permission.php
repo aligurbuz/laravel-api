@@ -29,7 +29,7 @@ class Permission
      * @param bool $value
      * @return void
      */
-    public function assign(string $http, bool $value): void
+    public function instantAssign(string $http, bool $value): void
     {
         if ($this->has($http)) {
             $permission = $this->get();
