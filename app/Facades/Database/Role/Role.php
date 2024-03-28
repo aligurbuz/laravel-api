@@ -91,4 +91,24 @@ class Role
     {
         return new Permission($endpoint ?? endpoint());
     }
+
+    /**
+     * get role name for facade
+     *
+     * @return string
+     */
+    public static function getName() : string
+    {
+        return (static::get())['role_name'];
+    }
+
+    /**
+     * get role code for facade
+     *
+     * @return int
+     */
+    public static function getCode() : int
+    {
+        return (static::get())['role_code'];
+    }
 }
