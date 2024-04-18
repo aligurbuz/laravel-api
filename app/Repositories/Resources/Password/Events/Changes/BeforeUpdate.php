@@ -21,7 +21,7 @@ trait BeforeUpdate
 
         // If the user wants to change her password, we want her to do so within the specified time.
         // If the timeout has expired, the password reset is not accepted and the system throws an exception.
-        Exception::ifTrue($this->isExpire($passwordChange), 'password_reset_expire');
+        Exception::ifTrue($this->isExpire($passwordChange['client_time']), 'password_reset_expire');
 
         // We ask the user for an email for security purposes. It is checked for recorded data.
         // If the email data is not compatible, the system will throw an exception.

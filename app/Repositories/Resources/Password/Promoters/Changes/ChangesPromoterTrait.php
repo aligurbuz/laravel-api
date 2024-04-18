@@ -50,16 +50,13 @@ trait ChangesPromoterTrait
     /**
      * We check the timeout for client_time.
      *
-     * @param array $result
+     * @param string $clientTime
      * @return bool
      */
-    public function isExpire(array $result = []): bool
+    public function isExpire(string $clientTime): bool
     {
         //If the password change time has passed, it will not return any results.
-        return (
-            isset($result['client_time'])
-            && Date::isExpireAsSecond($result['client_time'], $this->expirationTime)
-        );
+        return Date::isExpireAsSecond($clientTime, $this->expirationTime);
     }
 
     /**
