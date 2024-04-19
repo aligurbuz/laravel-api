@@ -749,6 +749,26 @@ if (!function_exists('cR')) {
     }
 }
 
+if (!function_exists('cC')) {
+
+    /**
+     * get client request namespace
+     *
+     * @param string $client
+     * @return ?object
+     */
+    function cC(string $client): ?object
+    {
+        $clientClass = Factory::client(['client' => $client])->getClientNamespace();
+
+        if (class_exists($clientClass)) {
+            return new $clientClass();
+        }
+
+        return null;
+    }
+}
+
 if (!function_exists('findRepositoryFromCr')) {
 
     /**

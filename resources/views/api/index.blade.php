@@ -1466,7 +1466,25 @@ wget --no-check-certificate --quiet \
                                                                     and $crColumn!=='updated_by'
 
                                                                     ){
-                                                                    $crColumnList[$extraClientKey[0]][$crColumnKey] = $crColumn;
+                                                                    $postQ = $repository->getAddPostQueries();
+
+                                                                    $crColumnList[$extraClientKey[0]][] = $crColumn;
+
+                                                                    if(isset($postQ[$extraClientKey[0]])){
+                                                                        $postQSplit = explode('.',$postQ[$extraClientKey[0]]);
+                                                                        $postQReel = $postQSplit[0].'.'.$postQSplit[1].'.'.\App\Client\Client::$clientMethods[$method];
+                                                                        $ccName = cC($postQReel);
+                                                                        $crRequiredKeys[$extraClientKey[0]] = array_merge($crRequiredKeys[$extraClientKey[0]],$ccName->getRequireds());
+                                                                        $crRequiredKeys[$extraClientKey[0]] = array_unique($crRequiredKeys[$extraClientKey[0]]);
+                                                                        $postQCapcules = $ccName?->getClientCapsule();
+
+                                                                        if(!is_null($postQCapcules)){
+                                                                            foreach ($postQCapcules as $postQCapcule){
+                                                                                $crColumnList[$extraClientKey[0]][] = $postQCapcule;
+                                                                            }
+                                                                        }
+                                                                    }
+
                                                                 }
                                                             }
                                                         }
@@ -1584,7 +1602,6 @@ wget --no-check-certificate --quiet \
 
                                                     </tbody>
                                                 </table>
-
 
                                                 @foreach($crColumnList as $cckey => $ccitems)
 

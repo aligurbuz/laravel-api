@@ -45,4 +45,16 @@ class Client extends ClientManager implements ClientInterface
     {
         return $this->make($data, $container);
     }
+
+    /**
+     * get client namespace for factory
+     *
+     * @return string
+     */
+    public function getClientNamespace(): string
+    {
+        $clientIdentifier = $this->binds['resource']['clientIdentifier'];
+
+        return $clientIdentifier->clientNamespace();
+    }
 }

@@ -11,4 +11,5 @@ interface ClientInterface
      * @return array
      */
     public function cR(array $data = []): array;
+    public function getClientNamespace(): string;
 }

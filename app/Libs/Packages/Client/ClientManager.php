@@ -32,6 +32,18 @@ class ClientManager
      */
     protected array $methods = ['GET', 'POST', 'PUT'];
 
+    public static array $clientMethods = [
+        'GET' => 'get',
+        'POST' => 'create',
+        'PUT' => 'update',
+        'Get' => 'get',
+        'Post' => 'create',
+        'Put' => 'update',
+        'get' => 'get',
+        'post' => 'create',
+        'put' => 'update',
+    ];
+
     /**
      * get request method for client
      *
