@@ -1406,6 +1406,7 @@ wget --no-check-certificate --quiet \
                                                     $crModelCode = null;
                                                     $crModelCodes = [];
                                                     $crRequiredList = [];
+                                                    $crCapsuleComments = [];
 
                                                     foreach ($extraPostQueries as $extraClientKey => $crValue){
                                                         $crValueSplit = explode('.',$crValue);
@@ -1474,6 +1475,8 @@ wget --no-check-certificate --quiet \
                                                                         $postQSplit = explode('.',$postQ[$extraClientKey[0]]);
                                                                         $postQReel = $postQSplit[0].'.'.$postQSplit[1].'.'.\App\Client\Client::$clientMethods[$method];
                                                                         $ccName = cC($postQReel);
+                                                                        $crCapsuleCommentList = $ccName->getCapsuleComments();
+                                                                        $crCapsuleComments[$extraClientKey[0]] = $crCapsuleCommentList;
                                                                         $crRequiredKeys[$extraClientKey[0]] = array_merge($crRequiredKeys[$extraClientKey[0]],$ccName->getRequireds());
                                                                         $crRequiredKeys[$extraClientKey[0]] = array_unique($crRequiredKeys[$extraClientKey[0]]);
                                                                         $postQCapcules = $ccName?->getClientCapsule();
@@ -1674,7 +1677,13 @@ wget --no-check-certificate --quiet \
 
 
                                                                 <td>
-                                                                    <code class="language-plaintext highlighter-rouge">{{$crCommentKeys[$cckey][$ccItemKey] ?? ''}}</code>
+                                                                    @if(isset($crCapsuleComments[$cckey][$ccItemData]))
+                                                                        <code class="language-plaintext highlighter-rouge">{{$crCapsuleComments[$cckey][$ccItemData]}}</code>
+                                                                        @else
+
+                                                                        <code class="language-plaintext highlighter-rouge">{{$crCommentKeys[$cckey][$ccItemKey] ?? ''}}</code>
+                                                                        @endif
+
                                                                 </td>
 
                                                             </tr>
