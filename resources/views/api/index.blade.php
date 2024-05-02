@@ -1407,6 +1407,7 @@ wget --no-check-certificate --quiet \
                                                     $crModelCodes = [];
                                                     $crRequiredList = [];
                                                     $crCapsuleComments = [];
+                                                    $crCapsuleRules = [];
 
                                                     foreach ($extraPostQueries as $extraClientKey => $crValue){
                                                         $crValueSplit = explode('.',$crValue);
@@ -1476,6 +1477,8 @@ wget --no-check-certificate --quiet \
                                                                         $postQReel = $postQSplit[0].'.'.$postQSplit[1].'.'.\App\Client\Client::$clientMethods[$method];
                                                                         $ccName = cC($postQReel);
                                                                         $crCapsuleCommentList = $ccName->getCapsuleComments();
+                                                                        $crCapsuleRule = $ccName->getRule();
+                                                                        $crCapsuleRules[$extraClientKey[0]] = $crCapsuleRule;
                                                                         $crCapsuleComments[$extraClientKey[0]] = $crCapsuleCommentList;
                                                                         $crRequiredKeys[$extraClientKey[0]] = array_merge($crRequiredKeys[$extraClientKey[0]],$ccName->getRequireds());
                                                                         $crRequiredKeys[$extraClientKey[0]] = array_unique($crRequiredKeys[$extraClientKey[0]]);
@@ -1643,7 +1646,18 @@ wget --no-check-certificate --quiet \
 
                                                                 @else
                                                                     <td>
-                                                                        <code class="language-plaintext highlighter-rouge">{{$crTypeKeys[$cckey][$ccItemKey] ?? 'string'}}</code>
+                                                                        @if(isset($crCapsuleRules[$cckey][$ccItemData]))
+                                                                            @php
+                                                                            $capRule = str_replace('required|','',$crCapsuleRules[$cckey][$ccItemData]);
+                                                                            $capRule = str_replace('|required','',$capRule);
+                                                                            @endphp
+
+                                                                            <code class="language-plaintext highlighter-rouge">{{$capRule}}</code>
+                                                                        @else
+
+                                                                            <code class="language-plaintext highlighter-rouge">{{$crTypeKeys[$cckey][$ccItemKey] ?? 'string'}}</code>
+                                                                            @endif
+
                                                                     </td>
 
                                                                 @endif
