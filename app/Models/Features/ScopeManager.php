@@ -305,14 +305,15 @@ trait ScopeManager
                             }
                         }
                     }
+                    else{
+                        $filterValue = explode(',', (string)$value);
 
-                    $filterValue = explode(',', (string)$value);
-
-                    if (!isset($withOperator) && (is_string($value) || is_numeric($value))) {
-                        if (count($filterValue) > 1) {
-                            $query->whereIn($key, $filterValue);
-                        } else {
-                            $query->where($key, $value);
+                        if (!isset($withOperator) && (is_string($value) || is_numeric($value))) {
+                            if (count($filterValue) > 1) {
+                                $query->whereIn($key, $filterValue);
+                            } else {
+                                $query->where($key, $value);
+                            }
                         }
                     }
 
@@ -357,6 +358,11 @@ trait ScopeManager
      */
     public function scopeHasQuery(Builder $builder, ?string $has = null, array $filter = [], bool $recursive = true): Builder
     {
+        $request = request()->query->all();
+        if(isset($request['hasFilter'][$has])){
+            return $builder;
+        }
+
         if (count($filter)) {
             assignQueryParameters(['hasFilter' => [$has => $filter]], $recursive);
         }
