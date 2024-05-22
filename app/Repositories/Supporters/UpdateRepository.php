@@ -54,7 +54,11 @@ trait UpdateRepository
             }
 
             if ($this->getEventStatus() && method_exists($this, 'eventFireBeforeUpdate')) {
-                $this->eventFireBeforeUpdate($data, ($oldData[0] ?? []));
+                $eventFireBeforeUpdate = $this->eventFireBeforeUpdate($data, ($oldData[0] ?? []));
+
+                if(is_array($eventFireBeforeUpdate)){
+                    $data = $eventFireBeforeUpdate;
+                }
             }
 
             if (
