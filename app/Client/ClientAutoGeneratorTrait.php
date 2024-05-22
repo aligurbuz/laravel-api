@@ -227,7 +227,8 @@ trait ClientAutoGeneratorTrait
                     $mirror = $this->repository()->getRecursiveMirror($model, $value);
 
                     if (is_null($mirror)) {
-                        Factory::code([$key => $value])->throwExceptionIfDoesntExist(!Role::isAdmin());
+                        $notDeletedParam = ApiKey::isWeb() || !Role::isAdmin();
+                        Factory::code([$key => $value])->throwExceptionIfDoesntExist($notDeletedParam);
                     }
                 }
             }

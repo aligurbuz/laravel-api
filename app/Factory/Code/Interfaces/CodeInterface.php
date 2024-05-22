@@ -9,8 +9,9 @@ use App\Factory\Code\Code;
 interface CodeInterface
 {
     /**
+     * @param bool $notDeleted
      * @return mixed
      * @see Code::throwExceptionIfDoesntExist()
      */
-    public function throwExceptionIfDoesntExist(): mixed;
+    public function throwExceptionIfDoesntExist(bool $notDeleted = true): mixed;
 }
