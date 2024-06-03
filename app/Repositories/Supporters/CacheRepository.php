@@ -238,7 +238,7 @@ trait CacheRepository
      */
     public function deleteCache(): void
     {
-        if ($this->checkCacheStatus() || $this->checkCacheMemoryStatus()) {
+        if ($this->checkCacheStatus()) {
             $this->setProperties();
 
             $model = $this->getModelName();
