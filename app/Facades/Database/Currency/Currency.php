@@ -14,7 +14,7 @@ class Currency
      */
     public static function get(int $code): EntityCurrency
     {
-        return AppContainer::use('currency_' . $code, function () use ($code) {
+        return AppContainer::use('currency_' . $code, static function () use ($code) {
             return Repository::currency()->code($code)->entity();
         });
     }
