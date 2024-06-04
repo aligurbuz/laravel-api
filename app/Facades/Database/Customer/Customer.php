@@ -30,6 +30,14 @@ class Customer
     }
 
     /**
+     * @return string
+     */
+    public static function getEmail() : string
+    {
+        return (static::get())[0]['email'];
+    }
+
+    /**
      * set customer code for customer facade
      *
      * @param int $customerCode
