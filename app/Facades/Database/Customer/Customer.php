@@ -32,6 +32,14 @@ class Customer
     /**
      * @return ?string
      */
+    public static function getName() : ?string
+    {
+        return (static::get())[0]['name'] ?? null;
+    }
+
+    /**
+     * @return ?string
+     */
     public static function getEmail() : ?string
     {
         return (static::get())[0]['email'] ?? null;
