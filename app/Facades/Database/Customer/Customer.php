@@ -30,11 +30,11 @@ class Customer
     }
 
     /**
-     * @return string
+     * @return ?string
      */
-    public static function getEmail() : string
+    public static function getEmail() : ?string
     {
-        return (static::get())[0]['email'];
+        return (static::get())[0]['email'] ?? null;
     }
 
     /**
