@@ -27,6 +27,7 @@ use App\Repositories\Resources\Timezones\Contracts\TimezonesRepositoryContract;
 use App\Repositories\Resources\User\Contracts\PhotosRepositoryContract;
 use App\Repositories\Resources\User\Contracts\UserActivationsRepositoryContract;
 use App\Repositories\Resources\User\Contracts\UserRepositoryContract;
+use App\Repositories\Resources\Localizations\Contracts\LocalizationsFrontRepositoryContract;
 
 /**
  * Class Repository
@@ -34,6 +35,16 @@ use App\Repositories\Resources\User\Contracts\UserRepositoryContract;
  */
 class Repository
 {
+    /**
+     * get frontLang repository instance
+     *
+     * @return LocalizationsFrontRepositoryContract
+     */
+    public static function frontLang() : LocalizationsFrontRepositoryContract
+    {
+        return app()->get(LocalizationsFrontRepositoryContract::class);
+    }
+    
     /**
      * get gender repository instance
      *

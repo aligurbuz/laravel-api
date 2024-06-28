@@ -90,5 +90,9 @@
     "Gender": {
         "controller": "Genders",
         "dir": "Definition"
+    },
+    "FrontLang": {
+        "controller": "Front",
+        "dir": "Localizations"
     }
 }

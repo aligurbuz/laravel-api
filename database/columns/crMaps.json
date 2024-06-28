@@ -134,5 +134,17 @@
     "definition.genders.update": {
         "class": "App\\Client\\Definition\\Genders\\Update\\UpdateClient",
         "model": "gender"
+    },
+    "localizations.front.get": {
+        "class": "App\\Client\\Localizations\\Front\\Get\\GetClient",
+        "model": "frontLang"
+    },
+    "localizations.front.create": {
+        "class": "App\\Client\\Localizations\\Front\\Create\\CreateClient",
+        "model": "frontLang"
+    },
+    "localizations.front.update": {
+        "class": "App\\Client\\Localizations\\Front\\Update\\UpdateClient",
+        "model": "frontLang"
     }
 }

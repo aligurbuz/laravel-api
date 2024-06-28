@@ -49,7 +49,11 @@
     "excel_code": [
         "Excel"
     ],
+    "front_lang_code": [
+        "FrontLang"
+    ],
     "language_code": [
+        "FrontLang",
         "Language",
         "Localization"
     ],

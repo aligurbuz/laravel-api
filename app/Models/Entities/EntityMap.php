@@ -6,6 +6,15 @@ class EntityMap
 {
     /**
      * @param object $query
+     * @return FrontLang
+     */
+    public function frontLang(object $query) : FrontLang
+    {
+        return new FrontLang($query);
+    }
+    
+    /**
+     * @param object $query
      * @return Gender
      */
     public function gender(object $query): Gender

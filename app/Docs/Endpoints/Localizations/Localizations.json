@@ -149,10 +149,10 @@
             ]
         },
         {
-            "name": "Language",
+            "name": "Front",
             "item": [
                 {
-                    "name": "Localizations/Language",
+                    "name": "Localizations/Front",
                     "response": [],
                     "request": {
                         "method": "GET",
@@ -160,33 +160,37 @@
                             {
                                 "key": "Authorization",
                                 "value": "Bearer {{bearerToken}}",
-                                "type": "text"
+                                "type": "text",
+                                "description": "It is the token value received after the user logs in.(must)"
                             },
                             {
                                 "key": "Apikey",
                                 "value": "{{apiKey}}",
-                                "type": "text"
+                                "type": "text",
+                                "description": "It is a hash value given to you by the system provider.(must)"
                             },
                             {
                                 "key": "Content-Type",
                                 "value": "{{contentType}}",
-                                "type": "text"
+                                "type": "text",
+                                "description": "You can specify the return types for the returned response like json or xml.(not must)"
                             },
                             {
                                 "key": "Accept-Language",
                                 "value": "{{acceptLanguage}}",
-                                "type": "text"
+                                "type": "text",
+                                "description": "You can select the language option for the returned string values.(must)"
                             }
                         ],
                         "body": [],
                         "url": {
-                            "raw": "{{baseUrl}}/localizations/language",
+                            "raw": "{{baseUrl}}/localizations/front",
                             "host": [
                                 "{{baseUrl}}"
                             ],
                             "path": [
                                 "localizations",
-                                "language"
+                                "front"
                             ],
                             "query": [
                                 {
@@ -200,7 +204,7 @@
                     }
                 },
                 {
-                    "name": "Localizations/Language",
+                    "name": "Localizations/Front",
                     "response": [],
                     "request": {
                         "method": "POST",
@@ -208,27 +212,31 @@
                             {
                                 "key": "Authorization",
                                 "value": "Bearer {{bearerToken}}",
-                                "type": "text"
+                                "type": "text",
+                                "description": "It is the token value received after the user logs in.(must)"
                             },
                             {
                                 "key": "Apikey",
                                 "value": "{{apiKey}}",
-                                "type": "text"
+                                "type": "text",
+                                "description": "It is a hash value given to you by the system provider.(must)"
                             },
                             {
                                 "key": "Content-Type",
                                 "value": "{{contentType}}",
-                                "type": "text"
+                                "type": "text",
+                                "description": "You can specify the return types for the returned response like json or xml.(not must)"
                             },
                             {
                                 "key": "Accept-Language",
                                 "value": "{{acceptLanguage}}",
-                                "type": "text"
+                                "type": "text",
+                                "description": "You can select the language option for the returned string values.(must)"
                             }
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"string\"}",
+                            "raw": "{\"language_code\":\"integer\",\"key\":\"string\",\"value\":\"string\",\"status\":\"1\",\"is_deleted\":\"0\"}",
                             "options": {
                                 "raw": {
                                     "language": "json"
@@ -236,20 +244,20 @@
                             }
                         },
                         "url": {
-                            "raw": "{{baseUrl}}/localizations/language",
+                            "raw": "{{baseUrl}}/localizations/front",
                             "host": [
                                 "{{baseUrl}}"
                             ],
                             "path": [
                                 "localizations",
-                                "language"
+                                "front"
                             ],
                             "query": []
                         }
                     }
                 },
                 {
-                    "name": "Localizations/Language",
+                    "name": "Localizations/Front",
                     "response": [],
                     "request": {
                         "method": "PUT",
@@ -257,27 +265,31 @@
                             {
                                 "key": "Authorization",
                                 "value": "Bearer {{bearerToken}}",
-                                "type": "text"
+                                "type": "text",
+                                "description": "It is the token value received after the user logs in.(must)"
                             },
                             {
                                 "key": "Apikey",
                                 "value": "{{apiKey}}",
-                                "type": "text"
+                                "type": "text",
+                                "description": "It is a hash value given to you by the system provider.(must)"
                             },
                             {
                                 "key": "Content-Type",
                                 "value": "{{contentType}}",
-                                "type": "text"
+                                "type": "text",
+                                "description": "You can specify the return types for the returned response like json or xml.(not must)"
                             },
                             {
                                 "key": "Accept-Language",
                                 "value": "{{acceptLanguage}}",
-                                "type": "text"
+                                "type": "text",
+                                "description": "You can select the language option for the returned string values.(must)"
                             }
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"language_code\":\"integer\",\"name\":\"string\",\"is_deleted\":\"0\",\"status\":\"1\"}",
+                            "raw": "{\"front_lang_code\":\"0\",\"language_code\":\"integer\",\"key\":\"string\",\"value\":\"string\",\"status\":\"1\",\"is_deleted\":\"0\"}",
                             "options": {
                                 "raw": {
                                     "language": "json"
@@ -285,13 +297,13 @@
                             }
                         },
                         "url": {
-                            "raw": "{{baseUrl}}/localizations/language",
+                            "raw": "{{baseUrl}}/localizations/front",
                             "host": [
                                 "{{baseUrl}}"
                             ],
                             "path": [
                                 "localizations",
-                                "language"
+                                "front"
                             ],
                             "query": []
                         }

@@ -62,5 +62,10 @@
         "get": "App\\Client\\Definition\\Genders\\Get\\GetClient",
         "create": "App\\Client\\Definition\\Genders\\Create\\CreateClient",
         "update": "App\\Client\\Definition\\Genders\\Update\\UpdateClient"
+    },
+    "FrontLang": {
+        "get": "App\\Client\\Localizations\\Front\\Get\\GetClient",
+        "create": "App\\Client\\Localizations\\Front\\Create\\CreateClient",
+        "update": "App\\Client\\Localizations\\Front\\Update\\UpdateClient"
     }
 }

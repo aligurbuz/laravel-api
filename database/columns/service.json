@@ -14,7 +14,7 @@
     "User": {
         "controller": "User",
         "dir": "User",
-        "model" : "User"
+        "model": "User"
     },
     "Countries": {
         "controller": "Countries",
@@ -31,7 +31,7 @@
     "User/photos": {
         "controller": "Photos",
         "dir": "User",
-        "model" : "UserPhoto"
+        "model": "UserPhoto"
     },
     "Registration/registration": {
         "controller": "Registration",
@@ -82,5 +82,10 @@
         "controller": "Genders",
         "dir": "Definition",
         "model": "Gender"
+    },
+    "Localizations/front": {
+        "controller": "Front",
+        "dir": "Localizations",
+        "model": "FrontLang"
     }
 }
