@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Client\Localizations\Front\Get;
 
@@ -32,5 +32,7 @@ class GetClient extends Client
 	 *
 	 * @var array
 	 */
-	protected array $rule = [];
+	protected array $rule = [
+        'language_code' => 'required|integer'
+    ];
 }
