@@ -19,7 +19,7 @@
         "/Users/teamprocure/Desktop/apps/api/app/Docs/Endpoints/Customer/Customer.json"
     ],
     "keys": {
-        "/var/www/html/app/api/app/Docs/Endpoints/User/User.json": 0,
+        "/var/www/html/app/api/app/Docs/Endpoints/User/User.json": 2,
         "/var/www/html/app/api/app/Docs/Endpoints/Countries/Countries.json": 2,
         "/var/www/html/app/api/app/Docs/Endpoints/Localizations/Localizations.json": 0,
         "/var/www/html/app/api/app/Docs/Endpoints/SuperAdmins/SuperAdmins.json": 0,
@@ -52,7 +52,7 @@
         "Registration_Registration_registration": 0,
         "Excel_Support_excel": 0,
         "Profiles_Customer_customer": 0,
-        "Activations_User_userActivation": 1,
+        "Activations_User_userActivation": 2,
         "Genders_Customer_customerGender": 1,
         "Ages_Customer_customerAge": 2,
         "Images_Customer_customerImage": 3,

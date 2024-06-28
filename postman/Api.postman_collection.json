@@ -2790,6 +2790,219 @@
                     ]
                 },
                 {
+                    "name": "Photos",
+                    "item": [
+                        {
+                            "name": "User/Photos",
+                            "response": [],
+                            "request": {
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Authorization",
+                                        "value": "Bearer {{bearerToken}}",
+                                        "type": "text",
+                                        "description": "It is the token value received after the user logs in.(must)"
+                                    },
+                                    {
+                                        "key": "Apikey",
+                                        "value": "{{apiKey}}",
+                                        "type": "text",
+                                        "description": "It is a hash value given to you by the system provider.(must)"
+                                    },
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "{{contentType}}",
+                                        "type": "text",
+                                        "description": "You can specify the return types for the returned response like json or xml.(not must)"
+                                    },
+                                    {
+                                        "key": "Accept-Language",
+                                        "value": "{{acceptLanguage}}",
+                                        "type": "text",
+                                        "description": "You can select the language option for the returned string values.(must)"
+                                    }
+                                ],
+                                "body": [],
+                                "url": {
+                                    "raw": "{{baseUrl}}/user/photos",
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "path": [
+                                        "user",
+                                        "photos"
+                                    ],
+                                    "query": [
+                                        {
+                                            "key": "range",
+                                            "value": "desc",
+                                            "description": "",
+                                            "disabled": true
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "name": "User/Photos",
+                            "response": [],
+                            "request": {
+                                "method": "POST",
+                                "header": [
+                                    {
+                                        "key": "Authorization",
+                                        "value": "Bearer {{bearerToken}}",
+                                        "type": "text",
+                                        "description": "It is the token value received after the user logs in.(must)"
+                                    },
+                                    {
+                                        "key": "Apikey",
+                                        "value": "{{apiKey}}",
+                                        "type": "text",
+                                        "description": "It is a hash value given to you by the system provider.(must)"
+                                    },
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "{{contentType}}",
+                                        "type": "text",
+                                        "description": "You can specify the return types for the returned response like json or xml.(not must)"
+                                    },
+                                    {
+                                        "key": "Accept-Language",
+                                        "value": "{{acceptLanguage}}",
+                                        "type": "text",
+                                        "description": "You can select the language option for the returned string values.(must)"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "formdata",
+                                    "formdata": [
+                                        {
+                                            "key": "image_description",
+                                            "description": "",
+                                            "value": "string",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "key": "image_name",
+                                            "description": "",
+                                            "value": "string",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "key": "is_deleted",
+                                            "description": "",
+                                            "value": "0",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "key": "sequence",
+                                            "description": "",
+                                            "value": "1",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "key": "sequence_time",
+                                            "description": "",
+                                            "value": "0",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "key": "status",
+                                            "description": "",
+                                            "value": "1",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "key": "user_code",
+                                            "description": "",
+                                            "value": "integer",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "key": "user_image",
+                                            "description": "",
+                                            "type": "file",
+                                            "src": []
+                                        }
+                                    ],
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    },
+                                    "raw": "{\"user_code\":\"integer\",\"options\":\"enum\",\"hash\":\"string\"}"
+                                },
+                                "url": {
+                                    "raw": "{{baseUrl}}/user/photos",
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "path": [
+                                        "user",
+                                        "photos"
+                                    ],
+                                    "query": []
+                                }
+                            }
+                        },
+                        {
+                            "name": "User/Photos",
+                            "response": [],
+                            "request": {
+                                "method": "PUT",
+                                "header": [
+                                    {
+                                        "key": "Authorization",
+                                        "value": "Bearer {{bearerToken}}",
+                                        "type": "text",
+                                        "description": "It is the token value received after the user logs in.(must)"
+                                    },
+                                    {
+                                        "key": "Apikey",
+                                        "value": "{{apiKey}}",
+                                        "type": "text",
+                                        "description": "It is a hash value given to you by the system provider.(must)"
+                                    },
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "{{contentType}}",
+                                        "type": "text",
+                                        "description": "You can specify the return types for the returned response like json or xml.(not must)"
+                                    },
+                                    {
+                                        "key": "Accept-Language",
+                                        "value": "{{acceptLanguage}}",
+                                        "type": "text",
+                                        "description": "You can select the language option for the returned string values.(must)"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\"image_description\":\"string\",\"image_name\":\"string\",\"is_deleted\":\"0\",\"sequence\":\"1\",\"sequence_time\":\"0\",\"status\":\"1\",\"user_code\":\"integer\",\"user_image\":\"image\",\"user_photo_code\":\"0\"}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "{{baseUrl}}/user/photos",
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "path": [
+                                        "user",
+                                        "photos"
+                                    ],
+                                    "query": []
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
                     "name": "Activations",
                     "item": [
                         {
@@ -2877,62 +3090,12 @@
                                 ],
                                 "body": {
                                     "mode": "raw",
-                                    "formdata": [
-                                        {
-                                            "key": "image_description",
-                                            "description": "",
-                                            "value": "string",
-                                            "type": "text"
-                                        },
-                                        {
-                                            "key": "image_name",
-                                            "description": "",
-                                            "value": "string",
-                                            "type": "text"
-                                        },
-                                        {
-                                            "key": "is_deleted",
-                                            "description": "",
-                                            "value": "0",
-                                            "type": "text"
-                                        },
-                                        {
-                                            "key": "sequence",
-                                            "description": "",
-                                            "value": "1",
-                                            "type": "text"
-                                        },
-                                        {
-                                            "key": "sequence_time",
-                                            "description": "",
-                                            "value": "0",
-                                            "type": "text"
-                                        },
-                                        {
-                                            "key": "status",
-                                            "description": "",
-                                            "value": "1",
-                                            "type": "text"
-                                        },
-                                        {
-                                            "key": "user_code",
-                                            "description": "",
-                                            "value": "integer",
-                                            "type": "text"
-                                        },
-                                        {
-                                            "key": "user_image",
-                                            "description": "",
-                                            "type": "file",
-                                            "src": []
-                                        }
-                                    ],
+                                    "raw": "{\"user_code\":\"integer\",\"options\":\"enum\",\"hash\":\"string\"}",
                                     "options": {
                                         "raw": {
                                             "language": "json"
                                         }
-                                    },
-                                    "raw": "{\"user_code\":\"integer\",\"options\":\"enum\",\"hash\":\"string\"}"
+                                    }
                                 },
                                 "url": {
                                     "raw": "{{baseUrl}}/user/activations",
