@@ -21,7 +21,7 @@
     "keys": {
         "/var/www/html/app/api/app/Docs/Endpoints/User/User.json": 2,
         "/var/www/html/app/api/app/Docs/Endpoints/Countries/Countries.json": 2,
-        "/var/www/html/app/api/app/Docs/Endpoints/Localizations/Localizations.json": 1,
+        "/var/www/html/app/api/app/Docs/Endpoints/Localizations/Localizations.json": 2,
         "/var/www/html/app/api/app/Docs/Endpoints/SuperAdmins/SuperAdmins.json": 0,
         "/var/www/html/app/api/app/Docs/Endpoints/Gate/Gate.json": 1,
         "/var/www/html/app/api/app/Docs/Endpoints/Mix/Mix.json": 0,
@@ -59,6 +59,6 @@
         "Contacts_Customer_customerContact": 4,
         "Changes_Password_passwordChange": 0,
         "Genders_Definition_gender": 0,
-        "Front_Localizations_frontLang": 1
+        "Front_Localizations_frontLang": 2
     }
 }
