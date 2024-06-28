@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 declare(strict_types=1);
 
@@ -24,6 +24,11 @@ class FrontRepository extends EloquentRepository implements LocalizationsFrontRe
 	use FrontPromoterTrait;
 	use GeneralPromoterTrait;
 	use FrontPropertyHandlerTrait;
+
+    /**
+     * @var bool
+     */
+    protected bool $paginator = false;
 
 	/**
 	 * get model name for repository
