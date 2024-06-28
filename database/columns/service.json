@@ -13,7 +13,8 @@
     },
     "User": {
         "controller": "User",
-        "dir": "User"
+        "dir": "User",
+        "model" : "User"
     },
     "Countries": {
         "controller": "Countries",
@@ -29,7 +30,8 @@
     },
     "User/photos": {
         "controller": "Photos",
-        "dir": "User"
+        "dir": "User",
+        "model" : "UserPhoto"
     },
     "Registration/registration": {
         "controller": "Registration",
