@@ -33,6 +33,6 @@ class GetClient extends Client
 	 * @var array
 	 */
 	protected array $rule = [
-        'language_code' => 'required|integer'
+        //'language_code' => 'required|integer'
     ];
 }
