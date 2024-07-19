@@ -970,9 +970,13 @@ class EloquentRepository
         return (new Dummy($this))->dummy();
     }
 
+    /**
+     * @param int $count
+     * @return void
+     */
     public function createDummy(int $count = 1): void
     {
-        for($i=0; $i<$count; $i++){
+        for ($i = 0; $i < $count; $i++) {
             $this->create([$this->dummy()]);
         }
     }
