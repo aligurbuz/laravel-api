@@ -53,7 +53,7 @@ class Dummy
 
         foreach ($columns as $column) {
             if ($column === $this->eloquentRepository->getModelCode()) {
-                $dummies[$column] = $this->eloquentRepository->bigIntegerFaker();
+                $dummies[$column] = generateHash();
             } else {
                 $methodFaker = isset($fakers[$column]) ? $fakers[$column] . 'Faker' : Str::camel($column) . 'Faker';
 
