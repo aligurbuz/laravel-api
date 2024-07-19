@@ -1091,6 +1091,19 @@ class EloquentRepository
     }
 
     /**
+     * take the latest data for repository
+     *
+     * @param int $limit
+     * @return object
+     */
+    public function random(int $limit = 1): object
+    {
+        $this->repository = $this->instance()->inRandomOrder()->limit($limit);
+
+        return $this;
+    }
+
+    /**
      * checks if the data is available
      *
      * @param $field
