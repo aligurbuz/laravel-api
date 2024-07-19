@@ -970,6 +970,13 @@ class EloquentRepository
         return (new Dummy($this))->dummy();
     }
 
+    public function createDummy(int $count = 1): void
+    {
+        for($i=0; $i<$count; $i++){
+            $this->create([$this->dummy()]);
+        }
+    }
+
     /**
      * get authenticate user instance for repository
      *
