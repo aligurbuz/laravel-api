@@ -53,6 +53,8 @@ trait CreateRepository
                 $this->beforeCreate($clientData);
             }
 
+            $clientData = isset($clientData[0]) ? $clientData : [$clientData];
+
             foreach ($clientData as $clientDataKey => $value) {
 
                 $value = $this->dummyMerge($value);
