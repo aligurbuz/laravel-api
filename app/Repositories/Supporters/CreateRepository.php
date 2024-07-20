@@ -28,6 +28,15 @@ trait CreateRepository
     ];
 
     /**
+     * @param array $value
+     * @return array
+     */
+    public function dummyMerge(array $value = []): array
+    {
+        return array_merge($this->dummy(),$value);
+    }
+
+    /**
      * create data for user model
      *
      * @param array $data
@@ -45,6 +54,8 @@ trait CreateRepository
             }
 
             foreach ($clientData as $clientDataKey => $value) {
+
+                $value = $this->dummyMerge($value);
 
                 if ($this->getEventStatus() && method_exists($this, 'eventFireBeforeCreate')) {
                     $eventFireBeforeCreate = $this->eventFireBeforeCreate($value);
