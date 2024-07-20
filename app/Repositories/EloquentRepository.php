@@ -1102,7 +1102,7 @@ class EloquentRepository
     }
 
     /**
-     * take the latest data for repository
+     * take the random data for repository
      *
      * @param int $limit
      * @return object
@@ -1112,6 +1112,18 @@ class EloquentRepository
         $this->repository = $this->instance()->inRandomOrder()->limit($limit);
 
         return $this;
+    }
+
+    /**
+     * take the random code data for repository
+     *
+     * @return ?int
+     */
+    public function getRandomCode(): ?int
+    {
+        $data = ($this->random()->getRepository())[0] ?? [];
+
+        return $data[$this->getModelCode()] ?? null;
     }
 
     /**
