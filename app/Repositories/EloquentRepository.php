@@ -903,6 +903,21 @@ class EloquentRepository
     }
 
     /**
+     * it adds to builder not deleted data.
+     *
+     * @param object|null $builder
+     * @return object
+     */
+    public function notActive(?object $builder = null): object
+    {
+        $this->ensureColumnExists('status', $this->instance(), function () use ($builder) {
+            $this->repository = $this->builder($builder)->where('status', 0);
+        });
+
+        return $this;
+    }
+
+    /**
      * get code instance for repository
      *
      * @param int $code
