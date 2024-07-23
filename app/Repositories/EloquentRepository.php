@@ -1134,7 +1134,7 @@ class EloquentRepository
      *
      * @return ?int
      */
-    public function getRandomCode(): ?int
+    public function randomCode(): ?int
     {
         $data = ($this->random()->getRepository())[0] ?? [];
 
