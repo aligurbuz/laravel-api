@@ -16,9 +16,9 @@ class ApiKeyManager
     /**
      * Handle an incoming request.
      *
-     * @return mixed
+     * @return void
      */
-    public function handle(): mixed
+    public function handle(): void
     {
         $request = request();
 
@@ -26,13 +26,11 @@ class ApiKeyManager
         $header = $this->getHeaderKey($request);
 
         if (!in_array($header, $apiKeys, true)) {
-            return Exception::apiKeyException();
+            Exception::apiKeyException();
         }
 
         AppContainer::set('apiKey', $header);
         AppContainer::set('apiKeys', $apiKeys);
-
-        return null;
     }
 
     /**
