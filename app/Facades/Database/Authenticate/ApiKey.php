@@ -49,7 +49,7 @@ class ApiKey
      */
     public static function getHeader(): ?string
     {
-        return request()->headers->get(config('app.apikeyString'));
+        return AppContainer::get('apiKey');
     }
 
     /**
