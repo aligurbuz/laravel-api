@@ -1045,6 +1045,20 @@ if (!function_exists('getTableName')) {
     }
 }
 
+if (!function_exists('getModel')) {
+
+    /**
+     * @param $model
+     * @return object
+     */
+    function getModelInstance($model): object
+    {
+        $model = Constants::modelNamespace . '\\' . $model;
+
+        return new $model;
+    }
+}
+
 if (!function_exists('getModelFromTableCode')) {
 
     /**

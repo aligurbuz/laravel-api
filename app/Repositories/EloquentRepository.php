@@ -1598,6 +1598,26 @@ class EloquentRepository
     }
 
     /**
+     * get relation codes for eloquent object
+     *
+     * @return array
+     */
+    public function getRelationCodes(): array
+    {
+        $list = [];
+
+        foreach ($this->getColumns() as $key => $column) {
+            if ($this->getModelCode() !== $column) {
+                if(Str::endsWith($column,'_code')){
+                    $list[] = $column;
+                }
+            }
+        }
+
+        return array_values($list);
+    }
+
+    /**
      * get columns for model
      *
      * @return array

@@ -51,19 +51,28 @@ class Dummy
     {
         $dummies = [];
 
+        $relationCodes = $this->eloquentRepository->getRelationCodes();
+
         foreach ($columns as $column) {
             if ($column === $this->eloquentRepository->getModelCode()) {
                 $dummies[$column] = generateHash();
             } else {
-                $methodFaker = isset($fakers[$column]) ? $fakers[$column] . 'Faker' : Str::camel($column) . 'Faker';
 
-                if (method_exists($this->eloquentRepository, $methodFaker)) {
-                    $dummies[$column] = $this->eloquentRepository->$methodFaker();
-                } else {
-                    $columnType = $types[$column] . 'Faker';
+                if(in_array($column,$relationCodes,true)){
+                    $model = getModelFromTableCode($column);
+                    $dummies[$column] = getModelInstance($model)->getRepository()->randomCode();
+                }
+                else{
+                    $methodFaker = isset($fakers[$column]) ? $fakers[$column] . 'Faker' : Str::camel($column) . 'Faker';
 
-                    if (method_exists($this->eloquentRepository, $columnType)) {
-                        $dummies[$column] = $this->eloquentRepository->$columnType();
+                    if (method_exists($this->eloquentRepository, $methodFaker)) {
+                        $dummies[$column] = $this->eloquentRepository->$methodFaker();
+                    } else {
+                        $columnType = $types[$column] . 'Faker';
+
+                        if (method_exists($this->eloquentRepository, $columnType)) {
+                            $dummies[$column] = $this->eloquentRepository->$columnType();
+                        }
                     }
                 }
             }
