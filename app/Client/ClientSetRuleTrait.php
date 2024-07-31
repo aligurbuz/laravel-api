@@ -33,8 +33,8 @@ trait ClientSetRuleTrait
      */
     private function setRanges(): void
     {
-        \App\Libs\Client::orderByOperationForRange();
-        \App\Libs\Client::statusOperationForRange();
+        //\App\Libs\Client::orderByOperationForRange();
+        //\App\Libs\Client::statusOperationForRange();
     }
 
     /**
