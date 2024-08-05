@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use App\Constants;
 use App\Exceptions\Exception;
+use App\Facades\Database\Language\Language;
 use App\Libs\AppContainer;
 use App\Repositories\Repository;
 use Closure;
@@ -20,7 +21,7 @@ class AcceptLanguage
      */
     public function handle(Request $request, Closure $next): mixed
     {
-        if (config('app.language') === false) {
+        if (config('app.language') === false || endpoint() === 'localizations') {
             return $next($request);
         }
 
@@ -63,8 +64,12 @@ class AcceptLanguage
      */
     private function checkRepositoryCode(?string $acceptLanguage): mixed
     {
-        $repository = Repository::language()->name($acceptLanguage)->getRepository();
+        $language = Language::code($acceptLanguage);
 
-        return $repository[0]['language_code'] ?? Exception::customException(trans('exception.acceptLanguageNotValid'));
+        if(is_null($language)){
+            Exception::customException(trans('exception.acceptLanguageNotValid'));
+        }
+
+        return $language;
     }
 }

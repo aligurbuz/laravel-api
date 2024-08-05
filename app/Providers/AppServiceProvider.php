@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Constants;
 use App\Exceptions\Exception;
 use App\Libs\AppContainer;
 use App\Libs\Commands\AddColumnForDatabaseCommand;
@@ -103,6 +104,7 @@ class AppServiceProvider extends ServiceProvider
     {
         AppContainer::set('apiUrl', request()->getSchemeAndHttpHost() . '' . request()->getBaseUrl() . '' . DIRECTORY_SEPARATOR . 'api');
         AppContainer::set('public_path', request()->getSchemeAndHttpHost() . '' . request()->getBasePath());
+        AppContainer::set('clientLang', request()->headers->get(Constants::headerLangKey));
         $this->checkPaginationValue();
     }
 

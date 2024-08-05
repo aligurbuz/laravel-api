@@ -94,8 +94,10 @@ trait LocalizationRepository
                 }
             }
 
+
             if (count($localizationData)) {
-                $localization = Repository::localization()->localizedCode(($data[$this->getModelCode()] ?? 0));
+                $localizedCode = ($data[$this->getModelCode()] ?? 0);
+                $localization = Repository::localization()->localizedCode($localizedCode);
                 $repository = $localization->getRepository(false);
                 $values = $repository[0]['values'][0] ?? [];
 
@@ -108,6 +110,14 @@ trait LocalizationRepository
                     ];
 
                     $localization->update($newData, false);
+                }
+                else{
+                    Repository::localization()->create([
+                        'localization_code' => $this->bigIntegerFaker(),
+                        'language_code' => appLanguageCode(),
+                        'localized_code' => $localizedCode,
+                        'values' => [$localizationData]
+                    ]);
                 }
             }
         }

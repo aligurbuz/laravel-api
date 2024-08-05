@@ -57,7 +57,7 @@ trait CreateRepository
 
             foreach ($clientData as $clientDataKey => $value) {
 
-                $value = $this->dummyMerge($value);
+                //$value = $this->dummyMerge($value);
 
                 if ($this->getEventStatus() && method_exists($this, 'eventFireBeforeCreate')) {
                     $eventFireBeforeCreate = $this->eventFireBeforeCreate($value);

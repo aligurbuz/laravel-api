@@ -279,4 +279,9 @@ class Client
             request()->query->set('range', implode(',', $mergeRequest));
         }
     }
+
+    public static function lang()
+    {
+        return AppContainer::get('clientLang');
+    }
 }

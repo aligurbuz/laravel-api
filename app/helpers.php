@@ -921,11 +921,12 @@ if (!function_exists('appLanguageCode')) {
     /**
      * get application language code for application
      *
-     * @return int
+     * @param bool $nullable
+     * @return ?int
      */
-    function appLanguageCode(): int
+    function appLanguageCode(bool $nullable = false): ?int
     {
-        return AppContainer::get(Constants::acceptLanguage, 2693479080);
+        return AppContainer::get(Constants::acceptLanguage, ((is_null($nullable)) ? 2693479080 : null));
     }
 }
 

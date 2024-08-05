@@ -41,7 +41,8 @@ class LocalizationsRepository extends EloquentRepository implements Localization
      */
     public function localizedCode($localizedCode): LocalizationsRepositoryContract
     {
-        $this->repository = $this->instance()->where(Str::snake(__FUNCTION__), intval($localizedCode));
+        $this->repository = $this->instance()
+            ->where('language_code', appLanguageCode())->where(Str::snake(__FUNCTION__), intval($localizedCode));
 
         return $this;
     }
