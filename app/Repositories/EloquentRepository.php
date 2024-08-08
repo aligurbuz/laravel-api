@@ -667,10 +667,6 @@ class EloquentRepository
             $this->repository = $this->builder($builder)->where('status', 1);
         });
 
-        $this->ensureColumnExists('is_deleted', $this->instance(), function () use ($builder) {
-            $this->repository = $this->builder($builder)->where('is_deleted', 0);
-        });
-
         return $this;
     }
 
