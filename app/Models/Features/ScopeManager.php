@@ -401,11 +401,6 @@ trait ScopeManager
                                 ]];
                             }
 
-                            if (isset($request['hasFilter']) && count($hasFilter) == '0') {
-                                Exception::customException(trans('exception.hasFilterException', ['key' => $has]));
-                                return $builder;
-                            }
-
                             $repository = getModelWithPlural($has);
                             $repositoryMethod = Repository::$repository();
 
