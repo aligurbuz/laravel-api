@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Features\BaseManager;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -10,5 +11,11 @@ use Illuminate\Database\Eloquent\Model;
  */
 class ApiKey extends Model
 {
-    use HasFactory;
+    use HasFactory, BaseManager;
+
+    protected array $searchable = [];
+
+    protected array $withQuery = [];
+
+    protected $hidden = ['id'];
 }
