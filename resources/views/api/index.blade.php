@@ -1596,7 +1596,27 @@ wget --no-check-certificate --quiet \
                                                                     @if(isset($getClientCapsuleComments[$field]))
                                                                         <td>{{$getClientCapsuleComments[$field]}}</td>
                                                                     @else
-                                                                        <td>{{$comments[$field] ?? ''}}</td>
+                                                                        @if(isset($types[$field]) && $types[$field]=='enum')
+                                                                            @php
+                                                                                $enumValues = '';
+                                                                                $enumDefValue = '';
+                                                                                if(in_array($field,$entities['enum_columns'],true)){
+                                                                                    $fieldEnumKey = array_search($field,$entities['enum_columns']);
+                                                                                    $enumValues = $entities['enum_values'][$fieldEnumKey];
+
+                                                                                }
+
+                                                                                if(in_array($field,$entities['default_keys'],true)){
+                                                                                    $fieldEnumDefKey = array_search($field,$entities['default_keys']);
+                                                                                    $enumDefValue = $entities['default_values'][$fieldEnumDefKey];
+
+                                                                                }
+                                                                            @endphp
+                                                                            <td>{{$comments[$field] ?? ''}} (Enum Values: {{$enumValues}}) (Default Value: {{$enumDefValue}} ) </td>
+                                                                            @else
+                                                                            <td>{{$comments[$field] ?? ''}}</td>
+                                                                            @endif
+
                                                                     @endif
 
                                                                 @endif
