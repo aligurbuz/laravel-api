@@ -46,7 +46,7 @@ return [
     |
     */
 
-    'expiration' => isLocale() ? null : 15,
+    'expiration' => env('SANCTUM_EXPIRATION'),
 
     /*
     |--------------------------------------------------------------------------
