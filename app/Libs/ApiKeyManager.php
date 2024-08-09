@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Libs;
 
 use App\Exceptions\Exception;
+use App\Models\ApiKey;
 use Illuminate\Http\Request;
 
 /**
@@ -38,7 +39,13 @@ class ApiKeyManager
      */
     private function apiKeys(): array
     {
-        return config('apikey');
+        $list = [];
+
+        foreach (ApiKey::all() as $item){
+            $list[$item->key] = $item->value;
+        }
+
+        return $list;
     }
 
     /**

@@ -29,12 +29,12 @@ class ApiKey extends Command
     public function handle(): void
     {
         $key = $this->argument('key');
-        $apiKey = config('apikey.' . $key);
+        $apiKey = \App\Models\ApiKey::where('key',$key)->first();
 
         if (is_null($apiKey)) {
             Exception::customException('invalid api key');
         }
 
-        $this->info(ucfirst($key) . ' Apikey : ' . $apiKey);
+        $this->info(ucfirst($key) . ' Apikey : ' . $apiKey->value);
     }
 }
