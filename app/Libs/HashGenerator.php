@@ -9,7 +9,7 @@ class HashGenerator
     /**
      * @var string
      */
-    protected string $hashKey = '123abc!#,678def';
+    protected string $hashKey = '123abc!#,678def012wwer32211_/';
 
     /**
      * the given string value makes hashing
