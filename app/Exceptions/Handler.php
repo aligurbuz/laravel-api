@@ -35,7 +35,9 @@ class Handler extends ExceptionHandler
             $this->notifyForInternalServer($e);
         }
 
-        return Response::error($e->getMessage(), $e->getCode(), $e);
+        $code = is_int($e->getCode()) ?: 500;
+
+        return Response::error($e->getMessage(), $code, $e);
     }
 
     /**
