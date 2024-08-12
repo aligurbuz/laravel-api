@@ -9,14 +9,14 @@ trait GeneratorTrait
      *
      * @return array
      */
-    protected array $generators = ['customer_code'];
+    protected array $generators = ['customer_code', 'status'];
 
     /**
      * get dont overwrite generator for client
      *
      * @return array
      */
-    protected array $dontOverWriteGenerators = ['customer_code'];
+    protected array $dontOverWriteGenerators = ['customer_code', 'status'];
 
 
     /**
@@ -27,5 +27,15 @@ trait GeneratorTrait
     public function customerCodeGenerator(): int
     {
         return generateHash();
+    }
+
+    /**
+     * generates status for client
+     *
+     * @return int
+     */
+    public function statusCodeGenerator(): int
+    {
+        return 0;
     }
 }
