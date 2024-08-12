@@ -61,6 +61,5 @@ return [
     'userIsDeletedUpdatePermission' =>  'Only the administrators can update user\'s deleting.',
     'userOwnDeleting'               =>  'The user cannot delete self.',
     'userOwnPassive'                =>  'The user cannot make passive self.',
-    'emailVerifiedAt'               =>  'Email_verified_at data cannot be sent by the client.',
-    'clientIfItem'                  => 'If you send (:client) value, you must also send (:key) value.'
+    'emailVerifiedAt'               =>  'Email_verified_at data cannot be sent by the client.'
 ];
