@@ -11,7 +11,7 @@ abstract class GlobalSupporter
      *
      * @return bool
      */
-    protected function isAvailableAccessible(): bool
+    protected function accessible(): bool
     {
         /** @see UserRepository::accessible() */
         return method_exists($this->eloquentRepository, 'accessible') && $this->eloquentRepository->accessible();
