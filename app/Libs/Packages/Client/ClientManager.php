@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Libs\Packages\Client;
 
+use App\Exceptions\Exception;
 use App\Libs\AppContainer;
 use App\Libs\HttpPutResolve;
 
@@ -312,10 +313,27 @@ class ClientManager
 
         $data = !isset($data[0]) ? [$data] : $data;
 
+        $ifExistValues = [];
+        if(property_exists($this,'ifExist')){
+            $ifExistValues = $this->ifExist;
+        }
+
         foreach ($data as $key => $value) {
 
             $valueList = [];
             foreach ($value as $valueKey => $valueItem) {
+
+                if(isset($ifExistValues[$valueKey])){
+                    foreach ($ifExistValues[$valueKey] as $ifItem){
+                        if(!isset($value[$ifItem])){
+                            Exception::customException('clientIfItem', [
+                                'client' => $valueKey,
+                                'key' => implode(',',$ifExistValues[$valueKey])
+                            ]);
+                        }
+                    }
+                }
+
                 if (!is_null($valueItem)) {
                     $valueList[$valueKey] = $valueItem;
                 }

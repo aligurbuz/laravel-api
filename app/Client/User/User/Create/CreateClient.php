@@ -31,6 +31,8 @@ class CreateClient extends Client
      */
     protected array $model = [User::class];
 
+    //protected array $ifExist = ['input' => ['inputDifficults']]
+
     /**
      * get rule for client
      *
