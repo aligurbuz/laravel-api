@@ -66,7 +66,20 @@ trait ScopeManagerTrait
             }
         }
 
-        foreach ($ranges as $rangeItem) {
+        $operatedRanges = [];
+
+        foreach ($ranges as $range){
+            $rangeExplode = explode(':',$range);
+            $operatedRanges[] = $rangeExplode[0];
+
+            if(isset($rangeExplode[1])){
+                AppContainer::set('rangeBindings',[$rangeExplode[0] => $rangeExplode[1]]);
+            }
+        }
+
+        $inLineRanges = $operatedRanges;
+
+        foreach ($inLineRanges as $rangeItem) {
             if (strlen($rangeItem) > 0 && isset($objRanges[$baseObjectName][$rangeItem]) && !method_exists($object, $rangeItem)) {
                 Exception::rangeException('', ['key' => $rangeItem]);
             }

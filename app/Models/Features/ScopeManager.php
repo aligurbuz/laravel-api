@@ -109,7 +109,14 @@ trait ScopeManager
 
         foreach (($rangeHandler['ranges'] ?? []) as $data) {
             if (array_key_exists($data, ($rangeHandler['modelRanges'] ?? [])) && method_exists($object, $data)) {
-                $object->$data($builder);
+                $rangeBindings = AppContainer::get('rangeBindings',[]);
+                if(isset($rangeBindings[$data])){
+                    $object->$data($builder,$rangeBindings[$data]);
+                }
+                else{
+                    $object->$data($builder);
+                }
+
             } elseif (array_key_exists($data, ($rangeHandler['modelRanges'] ?? [])) && method_exists($object, 'rangeHandler')) {
                 $object->rangeHandler($builder, $data);
             }
