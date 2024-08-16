@@ -73,7 +73,7 @@ trait ScopeManagerTrait
             $operatedRanges[] = $rangeExplode[0];
 
             if(isset($rangeExplode[1])){
-                AppContainer::set('rangeBindings',[$rangeExplode[0] => $rangeExplode[1]]);
+                AppContainer::set('rangeBindings',[$rangeExplode[0] => $rangeExplode[1]],true);
             }
         }
 
