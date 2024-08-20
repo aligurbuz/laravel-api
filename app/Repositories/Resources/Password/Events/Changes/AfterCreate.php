@@ -21,7 +21,7 @@ trait AfterCreate
         // after checking the method to be run
         // in the main repository for notificationAdapter, we run it.
         if (method_exists($this, $notificationAdapter)) {
-            $this->{$this->notificationAdapter}($clientData['hash']);
+            $this->{$notificationAdapter}($clientData['hash']);
         }
 
         // We need to hide the hash value from the user.
