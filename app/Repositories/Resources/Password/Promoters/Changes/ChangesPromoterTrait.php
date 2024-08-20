@@ -16,7 +16,7 @@ trait ChangesPromoterTrait
     /**
      * @var string
      */
-    public string $notificationAdapter = 'smsNotification';
+    public string $notificationAdapter = 'emailNotification';
 
     /**
      * type: second
@@ -94,7 +94,10 @@ trait ChangesPromoterTrait
     {
         // we send the hash value to
         // the email address of the user for password change.
-        Email::passwordReset(User::email(), $hash);
+        Email::publish([
+            'email' => User::email(),
+            'hash' => $hash
+        ],'passwordReset');
     }
 
     /**

@@ -37,12 +37,13 @@ trait User
      * When a request is made to the password/changes endpoint,
      * it sends an email to the user's email with a use code.
      *
-     * @param string $email
-     * @param string $hash
+     * @param array $data
      * @return void
      */
-    public static function passwordReset(string $email, string $hash): void
+    public static function passwordReset(array $data = []): void
     {
-        //
+        Mail::to($data['email'])->send(new UserActivation([
+            'hash' => $data['hash']
+        ]));
     }
 }
