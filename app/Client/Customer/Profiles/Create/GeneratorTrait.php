@@ -2,6 +2,8 @@
 
 namespace App\Client\Customer\Profiles\Create;
 
+use App\Facades\Database\Authenticate\ApiKey;
+
 trait GeneratorTrait
 {
     /**
@@ -34,8 +36,8 @@ trait GeneratorTrait
      *
      * @return int
      */
-    public function statusCodeGenerator(): int
+    public function statusGenerator(): int
     {
-        return 0;
+        return ApiKey::isAdmin() ? 1 : 0;
     }
 }
