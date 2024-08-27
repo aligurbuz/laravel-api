@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Client;
 
+use App\Exceptions\Exception;
 use App\Libs\AppContainer;
 use App\Libs\Client as ClientFacade;
 use App\Libs\Db;
@@ -56,6 +57,7 @@ class Client extends ClientManager
         if ($handler) {
             parent::__construct($data);
             $this->preHandlers();
+            $this->makeClientIfExistObject();
             $this->modelRequiredFields();
             $this->capsule();
             $this->addRule();
@@ -75,6 +77,67 @@ class Client extends ClientManager
             foreach ($this->preHandlers as $preHandler) {
                 if (method_exists($this, $method = 'pre' . ucfirst($preHandler) . 'Handler')) {
                     $this->$method(ClientFacade::data());
+                }
+            }
+        }
+    }
+
+    /**
+     * @return string
+     */
+    public function getHashClientInstance(): string
+    {
+        return md5(sha1(get_class($this)));
+    }
+
+    /**
+     * @return ClientIfExist
+     */
+    public function ifExist(): ClientIfExist
+    {
+        return AppContainer::use('clientIfExistObject_' . $this->getHashClientInstance(), function () {
+            return new ClientIfExist();
+        });
+    }
+
+    /**
+     * @return void
+     */
+    private function makeClientIfExistObject(): void
+    {
+        if(AppContainer::has('clientIfExistObject_'.$this->getHashClientInstance())){
+            $client = current(ClientFacade::data());
+            $inputs = $this->ifExist()->getInputs();
+            $mustValues = $this->ifExist()->getMustValues();
+            $exceptValues = $this->ifExist()->getExceptValues();
+
+            foreach ($inputs as $input){
+                if(isset($client[$input])){
+                    if(isset($mustValues[$input][$client[$input]])){
+                        foreach ($mustValues[$input][$client[$input]] as $mustValue){
+                            if(!isset($client[$mustValue])){
+                                Exception::customException('clientIfExists', [
+                                    'key' => $input,
+                                    'value' => $client[$input],
+                                    'must' => $mustValue
+                                ]);
+                            }
+                        }
+                    }
+
+
+                    if(isset($exceptValues[$input][$client[$input]])){
+                        foreach ($exceptValues[$input][$client[$input]] as $exceptValue){
+                            if(isset($client[$exceptValue])){
+                                Exception::customException('clientIfExceptExists', [
+                                    'key' => $input,
+                                    'value' => $client[$input],
+                                    'except' => $exceptValue
+                                ]);
+                            }
+                        }
+                    }
+
                 }
             }
         }
