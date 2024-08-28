@@ -2,6 +2,11 @@
 
 namespace App\Client;
 
+/**
+ * This usage is a scenario where if a key is at a certain value in the client message,
+ * then the following keys must be mandatory or these keys must be excluded.
+ * @using $this->ifExist()->def('inputKey','inputValue',['mustInputKey'],['exceptInputKey']
+ */
 class ClientIfExist
 {
     /**
