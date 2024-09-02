@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\ApiKey;
 use Illuminate\Console\Command;
 
 class ApiKeys extends Command
@@ -27,7 +28,7 @@ class ApiKeys extends Command
      */
     public function handle(): void
     {
-        $apiKeys = \App\Models\ApiKey::select(['key', 'value'])->orderBy('id', 'desc')->get();
+        $apiKeys = ApiKey::select(['key', 'value'])->orderBy('id', 'desc')->get();
 
         $this->table(['key', 'value'], $apiKeys, 'box-double');
 
