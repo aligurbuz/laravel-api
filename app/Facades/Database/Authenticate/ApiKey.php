@@ -2,7 +2,10 @@
 
 namespace App\Facades\Database\Authenticate;
 
+use App\Facades\Support\Faker\Faker;
 use App\Libs\AppContainer;
+use App\Libs\HashGenerator;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 /**
@@ -70,5 +73,13 @@ class ApiKey
     public static function keys(): array
     {
         return array_keys(static::all());
+    }
+
+    public static function create(string $key): bool
+    {
+        return DB::table('api_keys')->insert([
+            'key' => $key,
+            'value' => (new HashGenerator())->encode($key . rand(0, 100000) . '_' . Faker::stringFaker() . '_' . time())
+        ]);
     }
 }
