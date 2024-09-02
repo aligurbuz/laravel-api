@@ -2,7 +2,6 @@
 
 namespace App\Console\Commands;
 
-use App\Exceptions\Exception;
 use Illuminate\Console\Command;
 
 class ApiKey extends Command
@@ -12,7 +11,7 @@ class ApiKey extends Command
      *
      * @var string
      */
-    protected $signature = 'key {key}';
+    protected $signature = 'keys';
 
     /**
      * The console command description.
@@ -28,13 +27,10 @@ class ApiKey extends Command
      */
     public function handle(): void
     {
-        $key = $this->argument('key');
-        $apiKey = \App\Models\ApiKey::where('key',$key)->first();
+        $apiKeys = \App\Models\ApiKey::all(['key','value']);
 
-        if (is_null($apiKey)) {
-            Exception::customException('invalid api key');
-        }
+        $this->table(['key', 'value'], $apiKeys,'box-double');
 
-        $this->info(ucfirst($key) . ' Apikey : ' . $apiKey->value);
+
     }
 }
