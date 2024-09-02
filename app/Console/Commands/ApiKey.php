@@ -27,9 +27,9 @@ class ApiKey extends Command
      */
     public function handle(): void
     {
-        $apiKeys = \App\Models\ApiKey::all(['key','value']);
+        $apiKeys = \App\Models\ApiKey::select(['key', 'value'])->orderBy('id', 'desc')->get();
 
-        $this->table(['key', 'value'], $apiKeys,'box-double');
+        $this->table(['key', 'value'], $apiKeys, 'box-double');
 
 
     }
