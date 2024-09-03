@@ -23,12 +23,12 @@ class Example extends Command
     /**
      * Execute the console command.
      *
-     * @return int
+     * @return void
      */
     public function handle()
     {
         //throw new \Exception('aassa');
 
-        return Command::SUCCESS;
+        $this->output->success('asasa');
     }
 }

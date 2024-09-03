@@ -3,7 +3,7 @@
 namespace App\Console\Commands\Tests;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Artisan;
+use Symfony\Component\Console\Command\Command as CommandAlias;
 
 class AutoManager extends Command
 {
@@ -12,7 +12,7 @@ class AutoManager extends Command
      *
      * @var string
      */
-    protected $signature = 'run:test';
+    protected $signature = 'run:test {filter?}';
 
     /**
      * The console command description.
@@ -21,13 +21,27 @@ class AutoManager extends Command
      */
     protected $description = 'Command description';
 
+    protected array $runnableCommands = [
+        'example',
+    ];
+
     /**
      * Execute the console command.
      *
      * @return int
      */
-    public function handle()
+    public function handle(): int
     {
-        Artisan::call('example');
+        $filter = $this->argument('filter');
+
+        if (!is_null($filter) && in_array($filter, $this->runnableCommands, true)) {
+            return $this->call($filter);
+        }
+
+        foreach ($this->runnableCommands as $command) {
+            $this->call($command);
+        }
+
+        return CommandAlias::SUCCESS;
     }
 }
