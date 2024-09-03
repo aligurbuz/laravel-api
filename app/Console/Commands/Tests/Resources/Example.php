@@ -29,6 +29,6 @@ class Example extends Command
     {
         //throw new \Exception('aassa');
 
-        $this->output->success('asasa');
+        $this->output->success('example');
     }
 }
