@@ -12,3 +12,5 @@ make example:
 	php artisan run:test example
 make dod:
 	php artisan dod
+make keys:
+	php artisan keys
