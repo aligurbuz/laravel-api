@@ -8,3 +8,7 @@ make publish:
 	php artisan queue:publish
 make consume:
 	php artisan queue:consume
+make example:
+	php artisan run:test example
+make dod:
+	php artisan dod
