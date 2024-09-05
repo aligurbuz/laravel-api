@@ -3,6 +3,7 @@
 namespace Tests;
 
 use App\Constants;
+use App\Facades\Database\Authenticate\ApiKey;
 use App\Libs\Db;
 use App\Libs\Redis;
 use Illuminate\Support\Str;
@@ -55,7 +56,8 @@ abstract class TestCase extends BaseTestCase
      */
     public function getApiKey() : string
     {
-        $apiKey = config('apikey.admin');
+        $key = ApiKey::get('admin');
+        $apiKey = $key->value;
 
         if($apiKey === ''){
             throw new \RuntimeException('admin api key is not valid');

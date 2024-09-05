@@ -75,6 +75,29 @@ class ApiKey
         return array_keys(static::all());
     }
 
+    /**
+     * get db api keys
+     *
+     * @param string|null $key
+     * @return mixed
+     */
+    public static function get(?string $key = null)
+    {
+        $apiKeys = AppContainer::use('dbApiKeys', static function () {
+            return DB::table('api_keys')->get();
+        });
+
+        if(!is_null($key)){
+            foreach ($apiKeys as $apiKey) {
+                if ($apiKey->key === $key) {
+                    return $apiKey;
+                }
+            }
+        }
+
+        return $apiKeys;
+    }
+
     public static function create(string $key): bool
     {
         return DB::table('api_keys')->insert([
