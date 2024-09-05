@@ -87,7 +87,7 @@ class ApiKey
             return DB::table('api_keys')->get();
         });
 
-        if(!is_null($key)){
+        if (!is_null($key)) {
             foreach ($apiKeys as $apiKey) {
                 if ($apiKey->key === $key) {
                     return $apiKey;
