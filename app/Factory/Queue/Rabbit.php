@@ -3,10 +3,10 @@
 declare(strict_types=1);
 
 namespace App\Factory\Queue;
-use Exception;
 
 use App\Factory\Queue\Interfaces\QueueInterface;
 use App\Libs\Queue\Rabbit\QueueService;
+use Exception;
 
 /**
  * Class Rabbit
@@ -21,6 +21,9 @@ class Rabbit extends QueueManager implements QueueInterface
 	 */
 	protected array $binds = [];
 
+    /**
+     * @var QueueService
+     */
     protected QueueService $queueService;
 
 
