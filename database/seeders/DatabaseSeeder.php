@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Facades\Database\Authenticate\ApiKey;
 use App\Models\Gender;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -23,8 +24,8 @@ class DatabaseSeeder extends Seeder
             ['gender_code' => crc32('female'), 'name' => 'female']
         )->create();
 
-        \App\Facades\Database\Authenticate\ApiKey::create('admin');
-        \App\Facades\Database\Authenticate\ApiKey::create('web');
+        ApiKey::create('admin');
+        ApiKey::create('web');
 
         Artisan::call('permissions');
     }
