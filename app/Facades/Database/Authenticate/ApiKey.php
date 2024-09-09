@@ -81,7 +81,7 @@ class ApiKey
      * @param string|null $key
      * @return mixed
      */
-    public static function get(?string $key = null)
+    public static function get(?string $key = null): mixed
     {
         $apiKeys = AppContainer::use('dbApiKeys', static function () {
             return DB::table('api_keys')->get();
