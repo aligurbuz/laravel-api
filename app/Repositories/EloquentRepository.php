@@ -393,6 +393,18 @@ class EloquentRepository
     }
 
     /**
+     * @return $this
+     */
+    public function withoutCountable(): object
+    {
+        if (property_exists($this, 'countable') && is_array($this->countable)) {
+            $this->countable = [];
+        }
+
+        return $this;
+    }
+
+    /**
      * set model namespace for repository
      *
      * @param string $model
@@ -859,7 +871,7 @@ class EloquentRepository
      */
     public function delete(array $data = []): object|array
     {
-        return $this->notDeleted()->update(
+        return $this->notDeleted()->withoutCountable()->update(
             [
                 array_merge($data,
                     [
@@ -1604,7 +1616,7 @@ class EloquentRepository
 
         foreach ($this->getColumns() as $key => $column) {
             if ($this->getModelCode() !== $column) {
-                if(Str::endsWith($column,'_code')){
+                if (Str::endsWith($column, '_code')) {
                     $list[] = $column;
                 }
             }
