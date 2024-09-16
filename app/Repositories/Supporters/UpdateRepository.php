@@ -223,9 +223,10 @@ trait UpdateRepository
                 if (isset($newData[$countableModelCode]) && $oldData[$countableModelCode] !== $newData[$countableModelCode]) {
                     $repositoryUpdateQuery->decrease($field);
                     Repository::$repository()->where($countableModelCode, $newData[$countableModelCode])->increase($field);
-                } elseif ((isset($newData['status']) && !$newData['status']) || (isset($newData['is_deleted']) && $newData['is_deleted'])) {
+                } elseif ((isset($oldData['is_deleted']) && !$oldData['is_deleted']) AND (isset($newData['is_deleted']) && $newData['is_deleted'])) {
                     $repositoryUpdateQuery->decrease($field);
-                } elseif ((isset($newData['status']) && $newData['status'] === true)) {
+                }
+                elseif ((isset($oldData['is_deleted']) && $oldData['is_deleted']) AND (isset($newData['is_deleted']) && !$newData['is_deleted'])) {
                     $repositoryUpdateQuery->increase($field);
                 }
             }
