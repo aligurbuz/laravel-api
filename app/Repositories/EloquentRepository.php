@@ -871,7 +871,7 @@ class EloquentRepository
      */
     public function delete(array $data = []): object|array
     {
-        return $this->notDeleted()->withoutCountable()->update(
+        return $this->notDeleted()->update(
             [
                 array_merge($data,
                     [
