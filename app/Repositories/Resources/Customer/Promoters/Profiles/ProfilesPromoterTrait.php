@@ -7,6 +7,7 @@ namespace App\Repositories\Resources\Customer\Promoters\Profiles;
 use App\Libs\Client;
 use App\Models\Entities\Customer;
 use App\Repositories\EloquentRepository;
+use Exception;
 
 trait ProfilesPromoterTrait
 {
@@ -80,5 +81,22 @@ trait ProfilesPromoterTrait
     public function female(): EloquentRepository
     {
         return $this->sourceFilter('customerGender', 'gender', __FUNCTION__);
+    }
+
+    /**
+     * @param Exception $exception
+     * @return void
+     */
+    public function createFailed(Exception $exception): void
+    {
+        //
+    }
+
+    /**
+     * @return void
+     */
+    public function updateFailed(): void
+    {
+        //
     }
 }

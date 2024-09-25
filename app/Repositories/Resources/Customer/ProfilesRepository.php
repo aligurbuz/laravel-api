@@ -14,7 +14,6 @@ use App\Repositories\Resources\Customer\Events\Profiles\BeforeCreate;
 use App\Repositories\Resources\Customer\Events\Profiles\BeforeUpdate;
 use App\Repositories\Resources\Customer\Promoters\Profiles\ProfilesPromoterTrait;
 use App\Repositories\Resources\Customer\PropertyHandlers\ProfilesPropertyHandlerTrait;
-use Exception;
 
 class ProfilesRepository extends EloquentRepository implements CustomerProfilesRepositoryContract
 {
@@ -32,23 +31,5 @@ class ProfilesRepository extends EloquentRepository implements CustomerProfilesR
      * @var string
      */
     protected static string $model = Customer::class;
-
-    /**
-     * @param Exception $exception
-     * @return void
-     */
-    public function createFailed(Exception $exception): void
-    {
-        //
-    }
-
-    /**
-     * @return void
-     */
-    public function updateFailed(): void
-    {
-        //
-    }
-
 
 }
