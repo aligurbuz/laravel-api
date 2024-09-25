@@ -131,6 +131,23 @@ class RepositoryCommand extends Command
                 //->addComment('@param Builder $builder')
                 ->addComment('@return array');
 
+            $method = $traitPromoterNamespace->addMethod('createFailed');
+            $method->setBody('//')->setReturnType('void');
+            $method->addComment('Create Process Failed.')
+                ->addComment('')
+                //->addComment('@param object|null $builder')
+                //->addComment('@param Builder $builder')
+                ->addComment('@return void');
+
+            $method = $traitPromoterNamespace->addMethod('updateFailed');
+            $method->setBody('//')->setReturnType('void');
+            $method->addComment('Update Process Failed.')
+                ->addComment('')
+                //->addComment('@param object|null $builder')
+                //->addComment('@param Builder $builder')
+                ->addComment('@return void');
+
+
 
             touch($file = $promotersRepositoryDirectory . '' . DIRECTORY_SEPARATOR . '' . $promotersRepositoryClass . '.php');
             $content = '<?php ' . PHP_EOL . '' . PHP_EOL . 'declare(strict_types=1);' . PHP_EOL . '' . PHP_EOL . '' . $promoterNamespace;
