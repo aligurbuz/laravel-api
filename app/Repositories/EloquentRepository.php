@@ -1665,6 +1665,11 @@ class EloquentRepository
         return Db::types($this->getTable());
     }
 
+    public function body(): array
+    {
+        return AppContainer::get('clientRepositoryBody', []);
+    }
+
     /**
      * @param string|null $method
      * @return array|object

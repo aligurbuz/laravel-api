@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Repositories\Supporters;
 
-use App\Constants;
 use App\Exceptions\Exception as ExceptionFacade;
 use App\Libs\AppContainer;
 use App\Repositories\Repository;
@@ -33,7 +32,7 @@ trait CreateRepository
      */
     public function dummyMerge(array $value = []): array
     {
-        return array_merge($this->dummy(),$value);
+        return array_merge($this->dummy(), $value);
     }
 
     /**
@@ -56,6 +55,7 @@ trait CreateRepository
             $clientData = isset($clientData[0]) ? $clientData : [$clientData];
 
             foreach ($clientData as $clientDataKey => $value) {
+                AppContainer::setWithTerminating('clientRepositoryBody', $value);
 
                 if ($this->getEventStatus() && method_exists($this, 'eventFireBeforeCreate')) {
                     $eventFireBeforeCreate = $this->eventFireBeforeCreate($value);
@@ -83,7 +83,6 @@ trait CreateRepository
                 } else {
                     $list[] = $this->resourceHandled($arrayResults);
                 }
-
             }
 
             if (method_exists($this, 'afterCreate')) {
@@ -92,11 +91,8 @@ trait CreateRepository
 
             return $list;
         } catch (Exception $exception) {
-            $className = lcfirst(class_basename($exception));
-            $classNamespace = Constants::exceptionNamespace . '\\' . ucfirst($className);
-
-            if (class_exists($classNamespace)) {
-                return ExceptionFacade::$className($exception->getMessage());
+            if (method_exists($this, 'createFailed')) {
+                $this->createFailed($exception);
             }
 
             return $this->sqlException($exception);

@@ -41,6 +41,7 @@ trait UpdateRepository
         }
 
         foreach ($updateClientData as $dataKey => $data) {
+            AppContainer::setWithTerminating('clientRepositoryBody', $data);
             $baseQuery = $this->getBaseQueryForUpdate($data, $id, (int)($data[$this->getModelCode()] ?? 0));
             $modelMirror = null;
             if (isset($data[$this->getModelCode()])) {
@@ -90,6 +91,10 @@ trait UpdateRepository
                 }
 
                 if ($update == '0') {
+                    if(method_exists($this,'updateFailed')){
+                        $this->updateFailed();
+                    }
+
                     return Exception::updateException('', ['model' => $this->getModelName()]);
                 }
 
