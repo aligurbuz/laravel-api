@@ -58,13 +58,19 @@ class ClientManager
     protected array $register = [];
 
     /**
+     * @var array
+     */
+    protected array $clientData = [];
+
+    /**
      * ClientManager constructor.
      * @param array $data
      * @param null $requestMethod
      */
     public function __construct(array $data = [], $requestMethod = null)
     {
-        $this->requestMethod($requestMethod ?? request()->method());
+        $this->requestMethod($requestMethod ?? request()?->method());
+        $this->clientData = $data;
         $this->setData($data);
     }
 
@@ -76,7 +82,9 @@ class ClientManager
      */
     public function requestMethod($method = null): string
     {
-        $this->requestMethod = $method ?? request()->method();
+        $this->requestMethod = $method ?? request()?->method();
+
+        $this->setData($this->clientData);
 
         return $this->requestMethod;
     }

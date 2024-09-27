@@ -926,7 +926,11 @@ if (!function_exists('appLanguageCode')) {
      */
     function appLanguageCode(bool $nullable = false): ?int
     {
-        return AppContainer::get(Constants::acceptLanguage, ((is_null($nullable)) ? 2693479080 : null));
+        if(app()->runningInConsole()){
+            AppContainer::setWithTerminating(Constants::acceptLanguage,2693479080);
+        }
+
+        return AppContainer::get(Constants::acceptLanguage, ($nullable ? 2693479080 : null));
     }
 }
 

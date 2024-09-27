@@ -37,7 +37,7 @@ trait LocalizationRepository
      *
      * @param array $data
      */
-    public function createLocalization(array $data = [])
+    public function createLocalization(array $data = []): void
     {
         $getLocalizations = $this->getLocalizations();
 
