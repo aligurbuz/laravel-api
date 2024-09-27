@@ -103,6 +103,16 @@ trait FakerRepository
     }
 
     /**
+     * generate double value for faker repository
+     *
+     * @return float
+     */
+    public function doubleFaker(): float
+    {
+        return $this->floatFaker();
+    }
+
+    /**
      * generate decimal value for faker repository
      *
      * @param int $max
