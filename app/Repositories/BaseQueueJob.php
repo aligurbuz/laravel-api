@@ -20,6 +20,11 @@ class BaseQueueJob implements ShouldQueue
     protected SerializableClosure $callback;
 
     /**
+     * @var int
+     */
+    public int $tries = 3;
+
+    /**
      * Create a new job instance.
      *
      */
