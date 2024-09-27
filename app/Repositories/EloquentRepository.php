@@ -23,6 +23,8 @@ use App\Repositories\Supporters\ResourceRepository;
 use App\Repositories\Supporters\UpdateRepository;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
+use Laravel\SerializableClosure\Exceptions\PhpVersionNotSupportedException;
+use Laravel\SerializableClosure\SerializableClosure;
 use Throwable;
 
 /**
@@ -1679,5 +1681,22 @@ class EloquentRepository
         $method = $method ?? httpMethod();
 
         return Client::object($this->getModelName(), Client::$methods[$method]);
+    }
+
+    /**
+     * @param string $name
+     * @param callable $callback
+     * @return void
+     * @throws PhpVersionNotSupportedException
+     */
+    public function queue(string $name, callable $callback): void
+    {
+        dispatch(
+            new BaseQueueJob(
+                new SerializableClosure($callback)
+            )
+        )
+            //->onQueue($name)
+        ;
     }
 }
