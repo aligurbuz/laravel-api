@@ -6,7 +6,7 @@
     "Localizations/language": {
         "controller": "Language",
         "dir": "Localizations",
-        "model" : "Language"
+        "model": "Language"
     },
     "Timezones": {
         "controller": "Timezones",
@@ -88,5 +88,10 @@
         "controller": "Front",
         "dir": "Localizations",
         "model": "FrontLang"
+    },
+    "Store/products": {
+        "controller": "Products",
+        "dir": "Store",
+        "model": "Product"
     }
 }

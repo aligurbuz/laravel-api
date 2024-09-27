@@ -94,5 +94,9 @@
     "FrontLang": {
         "controller": "Front",
         "dir": "Localizations"
+    },
+    "Product": {
+        "controller": "Products",
+        "dir": "Store"
     }
 }

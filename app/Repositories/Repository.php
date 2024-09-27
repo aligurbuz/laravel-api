@@ -27,6 +27,7 @@ use App\Repositories\Resources\Timezones\Contracts\TimezonesRepositoryContract;
 use App\Repositories\Resources\User\Contracts\PhotosRepositoryContract;
 use App\Repositories\Resources\User\Contracts\UserActivationsRepositoryContract;
 use App\Repositories\Resources\User\Contracts\UserRepositoryContract;
+use App\Repositories\Resources\Store\Contracts\StoreProductsRepositoryContract;
 use App\Repositories\Resources\Localizations\Contracts\LocalizationsFrontRepositoryContract;
 
 /**
@@ -35,6 +36,16 @@ use App\Repositories\Resources\Localizations\Contracts\LocalizationsFrontReposit
  */
 class Repository
 {
+    /**
+     * get product repository instance
+     *
+     * @return StoreProductsRepositoryContract
+     */
+    public static function product() : StoreProductsRepositoryContract
+    {
+        return app()->get(StoreProductsRepositoryContract::class);
+    }
+    
     /**
      * get frontLang repository instance
      *

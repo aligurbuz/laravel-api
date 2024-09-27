@@ -146,5 +146,17 @@
     "localizations.front.update": {
         "class": "App\\Client\\Localizations\\Front\\Update\\UpdateClient",
         "model": "frontLang"
+    },
+    "store.products.get": {
+        "class": "App\\Client\\Store\\Products\\Get\\GetClient",
+        "model": "product"
+    },
+    "store.products.create": {
+        "class": "App\\Client\\Store\\Products\\Create\\CreateClient",
+        "model": "product"
+    },
+    "store.products.update": {
+        "class": "App\\Client\\Store\\Products\\Update\\UpdateClient",
+        "model": "product"
     }
 }
