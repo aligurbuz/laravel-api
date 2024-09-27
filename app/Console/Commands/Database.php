@@ -28,18 +28,24 @@ class Database extends Command
      */
     public function handle()
     {
+        $modelData = explode(':', $this->argument('model'));
         /**
          * @var object $model
          */
-        $model = Constants::modelNamespace.'\\'.ucfirst($this->argument('model'));
-        $columns = (new $model)->getRepository()->getColumns();
+        $model = Constants::modelNamespace . '\\' . ucfirst($modelData[0]);
+        $repository = (new $model)->getRepository();
+        $columns = $repository->getColumns();
         unset($columns['0']);
         $limit = $this->argument('limit') ?? 10;
-        $data = $model::query()->select($columns)->take($limit)->orderBy('id','desc')->get();
+
+        if(isset($modelData[1])){
+            $data = $model::query()->select($columns)->where($repository->getModelCode(), $modelData[1])->get();
+        }
+        else{
+            $data = $model::query()->select($columns)->take($limit)->orderBy('id', 'desc')->get();
+        }
 
         $this->table($columns, $data, 'box-double');
-
-
 
         return Command::SUCCESS;
     }
