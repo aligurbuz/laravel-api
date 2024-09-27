@@ -1695,8 +1695,6 @@ class EloquentRepository
             new BaseQueueJob(
                 new SerializableClosure($callback)
             )
-        )
-            //->onQueue($name)
-        ;
+        )->onQueue($name);
     }
 }
