@@ -58,7 +58,7 @@ abstract class HttpManager
         return static::dataHandler(static::request()
             ->endpoint($endpoint)
             ->{$method}(
-                $methodArguments ?? []
+                $methodArguments ?? null
             )
         );
     }
