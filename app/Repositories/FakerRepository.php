@@ -114,6 +114,17 @@ trait FakerRepository
     }
 
     /**
+     * generate decimal value for faker repository
+     *
+     * @param int $max
+     * @return float
+     */
+    public function doubleFaker(int $max = 9999): float
+    {
+        return faker()->randomFloat(2, 1, $max);
+    }
+
+    /**
      * generate email for faker repository
      *
      * @return string
