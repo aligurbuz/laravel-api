@@ -1667,6 +1667,16 @@ class EloquentRepository
         return Db::types($this->getTable());
     }
 
+    /**
+     * get column enums for model
+     *
+     * @return array
+     */
+    public function getColumnEnums(): array
+    {
+        return Db::enums($this->getTable());
+    }
+
     public function body(): array
     {
         return AppContainer::get('clientRepositoryBody', []);

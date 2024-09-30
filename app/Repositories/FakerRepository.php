@@ -116,12 +116,11 @@ trait FakerRepository
     /**
      * generate decimal value for faker repository
      *
-     * @param int $max
      * @return float
      */
-    public function doubleFaker(int $max = 9999): float
+    public function doubleFaker(): float
     {
-        return faker()->randomFloat(2, 1, $max);
+        return $this->floatFaker();
     }
 
     /**
@@ -152,5 +151,20 @@ trait FakerRepository
     public function integerFaker(): string
     {
         return faker()->numerify;
+    }
+
+    /**
+     * @param string $column
+     * @return string
+     */
+    public function enumFaker(string $column): string
+    {
+        $enums = $this->getColumnEnums();
+
+        $values = explode(',', $enums[$column]);
+
+        $randValue = array_rand($values);
+
+        return $values[$randValue];
     }
 }

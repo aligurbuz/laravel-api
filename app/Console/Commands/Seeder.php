@@ -31,7 +31,9 @@ class Seeder extends Command
         $model = $this->ask('model name');
         $count = $this->ask('How many seeds will be planted?',1);
 
-        getModelInstance(ucfirst($model))->getRepository()->createDummy($count);
+        $repository = getModelInstance(ucfirst($model))->getRepository();
+
+        $repository->createDummy($count);
 
         $this->output->success('seed success');
     }

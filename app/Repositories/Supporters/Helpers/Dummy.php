@@ -71,7 +71,7 @@ class Dummy
                         $columnType = $types[$column] . 'Faker';
 
                         if (method_exists($this->eloquentRepository, $columnType)) {
-                            $dummies[$column] = $this->eloquentRepository->$columnType();
+                            $dummies[$column] = $this->eloquentRepository->$columnType($column);
                         }
                     }
                 }
