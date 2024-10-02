@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Builder;
 trait GeneralPromoterTrait
 {
     use FakerRepository;
+    use RepositoryEventHandler;
 
     /**
      * generalPromoterTrait constructor

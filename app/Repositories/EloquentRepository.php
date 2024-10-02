@@ -69,6 +69,11 @@ class EloquentRepository
     protected bool $eventStatus = true;
 
     /**
+     * @var array
+     */
+    protected array $events = [];
+
+    /**
      * get sql syntax information for user model
      *
      * @param bool $fullSql
@@ -1037,6 +1042,19 @@ class EloquentRepository
         $this->eventStatus = $status;
 
         return $this;
+    }
+
+    public function event(string $name, callable $callback): void
+    {
+        if (isset($this->events[$name])) {
+            Exception::customException('sameEvent', ['event' => $name]);
+        }
+
+        $this->events[$name] = $callback;
+
+        if (method_exists($this, $name . 'Event') && $this->{$name}() === true) {
+            call_user_func($callback);
+        }
     }
 
     /**
