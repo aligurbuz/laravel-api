@@ -7,7 +7,7 @@ trait RepositoryEventHandler
     /**
      * @return bool
      */
-    public function onlyHttp(): bool
+    public function onlyHttpEvent(): bool
     {
         return !app()->runningInConsole();
     }

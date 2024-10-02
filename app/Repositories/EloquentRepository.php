@@ -1049,19 +1049,17 @@ class EloquentRepository
      *
      * @param string $name
      * @param callable $callback
-     * @return void
+     * @return mixed
      */
-    public function event(string $name, callable $callback): void
+    public function event(string $name, callable $callback): mixed
     {
-        if (isset($this->events[$name])) {
-            Exception::customException('sameEvent', ['event' => $name]);
-        }
-
-        $this->events[$name] = $callback;
+        $this->events[$name][] = $callback;
 
         if (method_exists($this, $name . 'Event') && $this->{$name}() === true) {
-            call_user_func($callback);
+            return call_user_func($callback);
         }
+
+        return null;
     }
 
     /**
@@ -1072,6 +1070,19 @@ class EloquentRepository
     public function getEvents(): array
     {
         return $this->events;
+    }
+
+    /**
+     * get runs only http protocol for the registered event
+     *
+     * @param callable $callback
+     * @return mixed
+     */
+    public function onlyHttp(callable $callback): mixed
+    {
+        return $this->event(__FUNCTION__, function () use ($callback) {
+            return call_user_func($callback);
+        });
     }
 
     /**
