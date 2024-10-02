@@ -1055,7 +1055,9 @@ class EloquentRepository
     {
         $this->events[$name][] = $callback;
 
-        if (method_exists($this, $name . 'Event') && $this->{$name}() === true) {
+        $eventName = $name . 'Event';
+
+        if (method_exists($this, $eventName) && $this->{$eventName}() === true) {
             return call_user_func($callback);
         }
 
