@@ -1044,6 +1044,13 @@ class EloquentRepository
         return $this;
     }
 
+    /**
+     * set event for repository class
+     *
+     * @param string $name
+     * @param callable $callback
+     * @return void
+     */
     public function event(string $name, callable $callback): void
     {
         if (isset($this->events[$name])) {
@@ -1055,6 +1062,16 @@ class EloquentRepository
         if (method_exists($this, $name . 'Event') && $this->{$name}() === true) {
             call_user_func($callback);
         }
+    }
+
+    /**
+     * get events for repository class
+     *
+     * @return array
+     */
+    public function getEvents(): array
+    {
+        return $this->events;
     }
 
     /**
