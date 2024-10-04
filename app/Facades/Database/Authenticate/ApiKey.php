@@ -5,6 +5,7 @@ namespace App\Facades\Database\Authenticate;
 use App\Facades\Support\Faker\Faker;
 use App\Libs\AppContainer;
 use App\Libs\HashGenerator;
+use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
@@ -98,11 +99,16 @@ class ApiKey
         return $apiKeys;
     }
 
+    /**
+     * create new api key for application
+     *
+     * @throws Exception
+     */
     public static function create(string $key): bool
     {
         return DB::table('api_keys')->insert([
             'key' => $key,
-            'value' => (new HashGenerator())->encode($key . rand(0, 100000) . '_' . Faker::stringFaker() . '_' . time())
+            'value' => (new HashGenerator())->encode($key . random_int(0, 100000) . '_' . Faker::stringFaker() . '_' . time())
         ]);
     }
 }
