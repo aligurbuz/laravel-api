@@ -1058,7 +1058,7 @@ class EloquentRepository
         $eventName = $name . 'Event';
 
         if (method_exists($this, $eventName) && $this->{$eventName}() === true) {
-            return call_user_func($callback);
+            return $callback();
         }
 
         return null;
@@ -1083,7 +1083,7 @@ class EloquentRepository
     public function onlyHttp(callable $callback): mixed
     {
         return $this->event(__FUNCTION__, function () use ($callback) {
-            return call_user_func($callback);
+            return $callback();
         });
     }
 
@@ -1664,11 +1664,9 @@ class EloquentRepository
     {
         $list = [];
 
-        foreach ($this->getColumns() as $key => $column) {
-            if ($this->getModelCode() !== $column) {
-                if (Str::endsWith($column, '_code')) {
-                    $list[] = $column;
-                }
+        foreach ($this->getColumns() as $column) {
+            if (($this->getModelCode() !== $column) && Str::endsWith($column, '_code')) {
+                $list[] = $column;
             }
         }
 
