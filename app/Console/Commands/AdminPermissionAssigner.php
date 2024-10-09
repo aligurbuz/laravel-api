@@ -13,7 +13,7 @@ class AdminPermissionAssigner extends Command
      *
      * @var string
      */
-    protected $signature = 'admin:permission {roleCode}';
+    protected $signature = 'give:permission {roleCode}';
 
     /**
      * The console command description.
