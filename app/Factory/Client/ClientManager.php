@@ -26,6 +26,11 @@ abstract class ClientManager
         return [];
     }
 
+    public function getClientIdentifier()
+    {
+        return $this->binds['resource']['clientIdentifier'];
+    }
+
     /**
      * checks if the clientIdentifier resource is valid
      *

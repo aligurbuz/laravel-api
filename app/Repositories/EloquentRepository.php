@@ -9,6 +9,7 @@ use App\Exceptions\Exception;
 use App\Exceptions\SqlExceptionManager;
 use App\Facades\Database\Authenticate\ApiKey;
 use App\Facades\Database\Authenticate\Authenticate;
+use App\Factory\Factory;
 use App\Libs\AppContainer;
 use App\Libs\Client;
 use App\Libs\Date;
@@ -997,7 +998,21 @@ class EloquentRepository
      */
     public function dummy(): array
     {
-        return (new Dummy($this))->dummy();
+        request()->setMethod('POST');
+        $baseDummy = (new Dummy($this))->dummy();
+        $postQueries = $this->getAddPostQueries();
+
+        $postListQueries = [];
+
+        if (count($postQueries)) {
+            foreach ($postQueries as $key => $client) {
+                $clientNamespace = Factory::client(['client' => $client . '.create'])->getClientIdentifier()->clientNamespace();
+                $postRepository = (new $clientNamespace)->repository();
+                $postListQueries[$key][] = collect($postRepository->dummy())->whereNotNull()->toArray();
+            }
+        }
+
+        return array_merge($baseDummy, $postListQueries);
     }
 
     /**

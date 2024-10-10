@@ -36,6 +36,7 @@ class Dummy
 
         $types = $this->eloquentRepository->getColumnTypes();
 
+
         return $this->getColumns($columns, $fakers, $types);
     }
 

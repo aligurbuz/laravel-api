@@ -146,9 +146,9 @@ trait FakerRepository
     /**
      * generate integer value for faker repository
      *
-     * @return string
+     * @return int
      */
-    public function integerFaker(): string
+    public function integerFaker(): int
     {
         return faker()->numerify;
     }
@@ -166,5 +166,13 @@ trait FakerRepository
         $randValue = array_rand($values);
 
         return $values[$randValue];
+    }
+
+    /**
+     * @return int
+     */
+    public function ageFaker(): int
+    {
+        return rand(18,99);
     }
 }
