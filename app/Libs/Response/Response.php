@@ -41,6 +41,8 @@ class Response extends ResponseSupport
      */
     public static function ok(mixed $data, int $code = 200, bool $isAvailableData = true): object
     {
+        $resource = static::getResourceData($data);
+
         $standard = [
             'status' => true,
             'code' => $code = static::getHttpSuccessCode($code),
@@ -48,8 +50,9 @@ class Response extends ResponseSupport
             'isAvailableData' => $isAvailableData,
             'client' => ApiKey::who(),
             'env' => config('app.env'),
+            'count' => $resource['0']['total'] ?? 0,
             'responseCode' => static::responseCode(),
-            'resource' => static::getResourceData($data),
+            'resource' => $resource,
             'instructions' => AppContainer::get(Constants::responseFormatterSupplement)
         ];
 
