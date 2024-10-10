@@ -20,7 +20,7 @@ class Contact
             return null;
         }
 
-        return $default['phone_code'] . '' . $default['phone'];
+        return $default['phone'];
     }
 
     /**
