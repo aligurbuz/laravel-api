@@ -174,6 +174,26 @@ trait FakerRepository
     }
 
     /**
+     * generate address value for faker repository
+     *
+     * @return string
+     */
+    public function addressFaker(): string
+    {
+        return faker()->address;
+    }
+
+    /**
+     * generate zipcode value for faker repository
+     *
+     * @return string
+     */
+    public function zipcodeFaker(): string
+    {
+        return faker()->postcode;
+    }
+
+    /**
      * @param string $column
      * @return string
      */
