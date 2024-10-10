@@ -154,6 +154,26 @@ trait FakerRepository
     }
 
     /**
+     * generate array value for faker repository
+     *
+     * @return array
+     */
+    public function arrayFaker(): array
+    {
+        return [];
+    }
+
+    /**
+     * generate array value for faker repository
+     *
+     * @return string
+     */
+    public function phoneFaker(): string
+    {
+        return faker()->phoneNumber;
+    }
+
+    /**
      * @param string $column
      * @return string
      */
