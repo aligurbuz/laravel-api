@@ -93,7 +93,7 @@ class AddColumnForDatabaseCommand extends Command
 
         if ($columnDefault === 'nullable') {
             $definition = $definition . '->nullable()';
-        } else {
+        } elseif ($columnDefault !== 'required') {
             $definition = $definition . '->default(\'' . $columnDefault . '\')';
         }
 
@@ -103,7 +103,7 @@ class AddColumnForDatabaseCommand extends Command
             $definition = $definition . '->index(\'' . $indexName . '\')';
         }
 
-        if ($unique === 'yes') {
+        if (isset($unique) && $unique === 'yes') {
             $definition = $definition . '->unique(\'' . $uniqueName . '\')';
         }
 
