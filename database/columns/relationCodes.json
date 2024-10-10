@@ -14,8 +14,7 @@
         "Country"
     ],
     "phone_code": [
-        "Country",
-        "CustomerContact"
+        "Country"
     ],
     "currency_code": [
         "Currency"

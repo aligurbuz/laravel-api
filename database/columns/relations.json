@@ -1,20 +1,9 @@
 {
-    "City": [
-        "District",
-        "Country",
-        "Localization"
-    ],
-    "District": [
-        "City",
-        "Country",
-        "Localization"
-    ],
-    "Country": [
-        "City",
-        "District",
+    "ApiKey": [
         "Localization"
     ],
     "Localization": [
+        "ApiKey",
         "City",
         "Country",
         "Currency",
@@ -39,6 +28,21 @@
         "User",
         "UserActivation",
         "UserPhoto"
+    ],
+    "City": [
+        "District",
+        "Country",
+        "Localization"
+    ],
+    "District": [
+        "City",
+        "Country",
+        "Localization"
+    ],
+    "Country": [
+        "City",
+        "District",
+        "Localization"
     ],
     "Currency": [
         "Localization"

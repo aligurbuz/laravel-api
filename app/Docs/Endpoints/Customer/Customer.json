@@ -765,7 +765,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"customer_code\":\"integer\",\"address\":\"string\",\"zipcode\":\"string\",\"phone_code\":\"string\",\"phone\":\"string\",\"linkedin\":\"string\",\"facebook\":\"string\",\"twitter\":\"string\",\"is_default\":\"0\",\"status\":\"1\",\"is_deleted\":\"0\"}",
+                            "raw": "{\"customer_code\":\"integer\",\"address\":\"string\",\"zipcode\":\"string\",\"phone\":\"string\",\"linkedin\":\"string\",\"facebook\":\"string\",\"twitter\":\"string\",\"is_default\":\"0\",\"status\":\"1\",\"is_deleted\":\"0\"}",
                             "options": {
                                 "raw": {
                                     "language": "json"
@@ -818,7 +818,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"customer_contact_code\":\"0\",\"customer_code\":\"integer\",\"address\":\"string\",\"zipcode\":\"string\",\"phone_code\":\"string\",\"phone\":\"string\",\"linkedin\":\"string\",\"facebook\":\"string\",\"twitter\":\"string\",\"is_default\":\"0\",\"status\":\"1\",\"is_deleted\":\"0\"}",
+                            "raw": "{\"customer_contact_code\":\"0\",\"customer_code\":\"integer\",\"address\":\"string\",\"zipcode\":\"string\",\"phone\":\"string\",\"linkedin\":\"string\",\"facebook\":\"string\",\"twitter\":\"string\",\"is_default\":\"0\",\"status\":\"1\",\"is_deleted\":\"0\"}",
                             "options": {
                                 "raw": {
                                     "language": "json"
