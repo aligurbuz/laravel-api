@@ -60,9 +60,9 @@ class Db extends Model
      * get table name from model
      *
      * @param $model
-     * @return null
+     * @return string|null
      */
-    public static function getTableNameFromModel($model)
+    public static function getTableNameFromModel($model): ?string
     {
         if (class_exists($model)) {
             return (new $model)->getTable();
@@ -242,5 +242,33 @@ class Db extends Model
         return DBFacade::transaction(function () use ($callback) {
             return call_user_func($callback);
         });
+    }
+
+    /**
+     * @param string $model
+     * @return array
+     */
+    public static function dummy(string $model): array
+    {
+        $repository = getModelInstance(ucfirst($model))->getRepository();
+
+        return $repository->dummy();
+    }
+
+    /**
+     * @param string $model
+     * @param array $data
+     * @return array
+     */
+    public static function createDummy(string $model, array $data = []): array
+    {
+        $repository = getModelInstance(ucfirst($model))->getRepository();
+
+        return $repository->create(
+            array_merge(
+                static::dummy($model),
+                $data
+            )
+        );
     }
 }

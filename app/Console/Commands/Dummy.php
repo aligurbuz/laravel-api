@@ -2,8 +2,8 @@
 
 namespace App\Console\Commands;
 
+use App\Libs\Db;
 use Illuminate\Console\Command;
-use Laravel\Octane\Exceptions\DdException;
 
 class Dummy extends Command
 {
@@ -24,13 +24,15 @@ class Dummy extends Command
     /**
      * Execute the console command.
      *
-     * @throws DdException
      */
-    public function handle()
+    public function handle(): void
     {
         $model = $this->argument('model');
-
-        $repository = getModelInstance(ucfirst($model))->getRepository();
-        $this->output->definitionList(json_encode($repository->dummy(),1));
+        $this->output->definitionList(
+            json_encode(
+                Db::dummy($model),
+                1
+            )
+        );
     }
 }
