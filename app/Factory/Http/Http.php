@@ -4,7 +4,11 @@ declare(strict_types=1);
 
 namespace App\Factory\Http;
 
+use App\Constants;
+use App\Facades\Database\Authenticate\ApiKey;
 use App\Factory\Http\Interfaces\HttpInterface;
+use App\Libs\AppContainer;
+use App\Libs\HashGenerator;
 use App\Libs\Request\Request;
 
 /**
@@ -43,10 +47,17 @@ class Http extends HttpManager implements HttpInterface
      */
     public function local(): Request
     {
+        $userCode = AppContainer::get(Constants::userCodeForFakeAuth);
+        $generator = new HashGenerator();
+        $hashCode = $generator->encode((string)$userCode);
+
+        $apiKey = $this->binds['apiKey'] ?? 'admin';
+
         return $this->request->setHeaders([
-                'Apikey' => config('apikey.admin'),
+                'Apikey' => ApiKey::get($apiKey)->value,
                 'Authorization' => '',
-                'Accept-Language' => 'en'
+                'Accept-Language' => 'en',
+                'fakeAuth' => $hashCode
             ]
         )->setUrl('http://172.10.0.13/api/public/api');
     }

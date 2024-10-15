@@ -8,6 +8,7 @@ use App\Facades\Support\Http\HttpManager;
 
 /**
  * @method static getUser(array $data = [])
+ * @method static getCustomer(array $data = [])
  */
 class Local extends HttpManager
 {
@@ -19,7 +20,9 @@ class Local extends HttpManager
     /**
      * @var array
      */
-    protected static array $methods = [];
+    protected static array $methods = [
+        'customer' => 'customer/profiles'
+    ];
 
     /**
      * get error message for client request

@@ -34,4 +34,5 @@ class Constants
     public const exceptionNamespace = 'Exceptions\Custom';
     public const addScopeToEnd = 'addScopeToEnd';
     public const clientRepositoryRequest = 'clientRepositoryRequest';
+    public const userCodeForFakeAuth = 'userCodeForFakeAuth';
 }

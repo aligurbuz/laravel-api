@@ -3,11 +3,14 @@
 namespace App\Http\Middleware;
 
 use App\Exceptions\Exception;
+use App\Facades\Database\Authenticate\ApiKey;
 use App\Facades\Database\Authenticate\User;
+use App\Libs\HashGenerator;
 use Closure;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class Authenticate extends Middleware
 {
@@ -23,6 +26,8 @@ class Authenticate extends Middleware
      */
     public function handle($request, Closure $next, ...$guards): mixed
     {
+        $this->fakeAuth();
+
         if (config('app.authenticate') === true) {
             $this->authenticate($request, $guards);
         }
@@ -58,6 +63,17 @@ class Authenticate extends Middleware
     {
         if (!$request->expectsJson()) {
             Exception::authenticateException();
+        }
+    }
+
+    private function fakeAuth(): void
+    {
+        $fakeAuth = \request()->headers->get('fakeAuth');
+
+        if(!is_null($fakeAuth) && ApiKey::isAdmin()){
+            $generator = new HashGenerator();
+            $id = $generator->decode($fakeAuth);
+            Auth::loginUsingId($id);
         }
     }
 }

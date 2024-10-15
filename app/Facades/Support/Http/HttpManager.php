@@ -15,6 +15,11 @@ abstract class HttpManager
     protected static ?Request $instance = null;
 
     /**
+     * @var string
+     */
+    protected static string $apiKey = 'admin';
+
+    /**
      * @var array|string[]
      */
     protected static array $httpMethods = [
@@ -30,37 +35,17 @@ abstract class HttpManager
      */
     public static function __callStatic(string $name, array $arguments)
     {
-        $snakeName = Str::snake($name);
-        $snakeSplit = explode('_', $snakeName);
-        $method = $snakeSplit[0] ?? null;
-        $endpoint = $snakeSplit[1] ?? null;
+        return self::magicProcess($name, ($arguments[0] ?? []));
+    }
 
-
-        $newInstance = new static();
-
-        if (property_exists($newInstance, 'methods') && isset(static::$methods[$endpoint])) {
-            $endpoint = static::$methods[$endpoint];
-        }
-
-        if ($method === 'get') {
-            $queryParameters = $arguments[0] ?? [];
-            $endpoint .= '?' . http_build_query($queryParameters);
-        } else {
-            $method = static::$httpMethods[$method];
-            $methodArguments = $arguments[0] ?? [];
-        }
-
-        if (isset($methodArguments['routeParameters'])) {
-            $endpoint .= '/' . $methodArguments['routeParameters'];
-            unset($methodArguments['routeParameters']);
-        }
-
-        return static::dataHandler(static::request()
-            ->endpoint($endpoint)
-            ->{$method}(
-                $methodArguments ?? null
-            )
-        );
+    /**
+     * @param string $name
+     * @param array $arguments
+     * @return array
+     */
+    public function __call(string $name, array $arguments)
+    {
+        return self::magicProcess($name, ($arguments[0] ?? []));
     }
 
     /**
@@ -89,9 +74,60 @@ abstract class HttpManager
     {
         if (is_null(static::$instance)) {
             $factoryMethod = lcfirst(class_basename(static::class));
-            static::$instance = Factory::http()->{$factoryMethod}();
+            static::$instance = Factory::http(['apiKey' => static::$apiKey])->{$factoryMethod}();
         }
 
         return static::$instance;
+    }
+
+    /**
+     * @param string $name
+     * @return static
+     */
+    public static function apiKey(string $name): static
+    {
+        static::$apiKey = $name;
+
+        return new static();
+    }
+
+    /**
+     * @param string $name
+     * @param $arguments
+     * @return array
+     */
+    public static function magicProcess(string $name, $arguments): array
+    {
+        $snakeName = Str::snake($name);
+        $snakeSplit = explode('_', $snakeName);
+        $method = $snakeSplit[0] ?? null;
+        $endpoint = $snakeSplit[1] ?? null;
+
+
+        $newInstance = new static();
+
+        if (property_exists($newInstance, 'methods') && isset(static::$methods[$endpoint])) {
+            $endpoint = static::$methods[$endpoint];
+        }
+
+        if ($method === 'get') {
+            $queryParameters = $arguments ?? [];
+            $endpoint .= '?' . http_build_query($queryParameters);
+        } else {
+            $method = static::$httpMethods[$method];
+            $methodArguments = $arguments ?? [];
+        }
+
+        if (isset($methodArguments['routeParameters'])) {
+            $endpoint .= '/' . $methodArguments['routeParameters'];
+            unset($methodArguments['routeParameters']);
+        }
+
+        return static::dataHandler(static::request()
+            ->endpoint($endpoint)
+            ->{$method}(
+                $methodArguments ?? null
+            )
+        );
     }
 }
