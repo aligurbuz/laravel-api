@@ -71,7 +71,10 @@ trait CreateRepository
 
                 foreach ($this->getRelationCodes() as $relationCode){
                     $relationModel = getModelFromTableCode($relationCode);
-                    $arrayResults[Str::snake($relationModel)][] = $this->getRecursiveMirror($relationModel, $arrayResults[$relationCode]);
+                    $mirror = $this->getRecursiveMirror($relationModel, $arrayResults[$relationCode]);
+                    if(!is_null($mirror)){
+                        $arrayResults[Str::snake($relationModel)][] = $this->getRecursiveMirror($relationModel, $arrayResults[$relationCode]);
+                    }
                 }
 
                 $this->createEventDispatcher($value, $clientDataKey);
