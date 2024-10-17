@@ -1381,7 +1381,8 @@ class EloquentRepository
      */
     public function apply(?object $builder = null, bool $globalScope = true): object
     {
-        AppContainer::setWithTerminating('globalScope', $globalScope);
+        AppContainer::setWithTerminating('globalScope',
+            ((AppContainer::get('globalScope') === false) ? false : $globalScope));
 
         return $builder ?? $this->globalScope();
     }
@@ -1395,6 +1396,16 @@ class EloquentRepository
     public function globalScope($builder = null): object
     {
         return $builder ?? (new GlobalScopeManager($this))->setBuilder($builder)->make();
+    }
+
+    /**
+     * @return self
+     */
+    public function withoutGlobalScope(): self
+    {
+        AppContainer::setWithTerminating('globalScope', false);
+
+        return $this;
     }
 
     /**
