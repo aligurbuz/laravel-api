@@ -8,6 +8,7 @@ use App\Exceptions\Exception as ExceptionFacade;
 use App\Libs\AppContainer;
 use App\Repositories\Repository;
 use Exception;
+use Illuminate\Support\Str;
 
 /**
  * Trait CreateRepository
@@ -67,6 +68,11 @@ trait CreateRepository
 
                 $result = $this->createModel($value);
                 $arrayResults = $result->toArray();
+
+                foreach ($this->getRelationCodes() as $relationCode){
+                    $relationModel = getModelFromTableCode($relationCode);
+                    $arrayResults[Str::snake($relationModel)] = $this->getRecursiveMirror($relationModel, $arrayResults[$relationCode]);
+                }
 
                 $this->createEventDispatcher($value, $clientDataKey);
 
