@@ -9,18 +9,22 @@ trait GeneratorTrait
      *
      * @return array
      */
-    protected array $generators = ['customer_contact_code'];
+    protected array $generators = [
+        'customer_contact_code'
+    ];
 
     /**
      * get dont overwrite generator for client
      *
      * @return array
      */
-    protected array $dontOverWriteGenerators = ['customer_contact_code'];
+    protected array $dontOverWriteGenerators = [
+        'customer_contact_code'
+    ];
 
 
     /**
-     * generates customercontact_code for client
+     * generates customer_contact_code for client
      *
      * @return int
      */

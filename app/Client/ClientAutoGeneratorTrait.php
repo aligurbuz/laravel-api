@@ -35,7 +35,7 @@ trait ClientAutoGeneratorTrait
         'deleted_at',
         'clientFileProcess',
         'codeProcess',
-        'isDefaultFirstRegister',
+        //'isDefaultFirstRegister',
         'stopRepositoryHitter',
     ];
 
@@ -54,7 +54,7 @@ trait ClientAutoGeneratorTrait
         'deleted_at',
         'clientFileProcess',
         'codeProcess',
-        'isDefaultFirstRegister',
+        //'isDefaultFirstRegister',
         'stopRepositoryHitter',
     ];
 
