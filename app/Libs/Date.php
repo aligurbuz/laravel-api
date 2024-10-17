@@ -221,4 +221,15 @@ class Date
     {
         return static::info($date, 'Y-m-d', $tz);
     }
+
+    /**
+     * @param string $date
+     * @return bool
+     */
+    public static function isValid(string $date): bool
+    {
+        $date = static::createFormat($date, 'Y-m-d H:i:s', static::getTimezone());
+
+        return $date->getTimestamp() > static::now()->getTimestamp();
+    }
 }
