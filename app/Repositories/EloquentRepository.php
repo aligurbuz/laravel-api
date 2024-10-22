@@ -1740,6 +1740,16 @@ class EloquentRepository
     }
 
     /**
+     * get column types for model
+     *
+     * @return array
+     */
+    public function getColumnBooleans(): array
+    {
+        return Db::booleanValues($this->getTable());
+    }
+
+    /**
      * get column enums for model
      *
      * @return array

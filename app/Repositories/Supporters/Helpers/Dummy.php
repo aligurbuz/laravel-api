@@ -53,6 +53,7 @@ class Dummy
         $dummies = [];
 
         $relationCodes = $this->eloquentRepository->getRelationCodes();
+        $booleans = $this->eloquentRepository->getColumnBooleans();
 
         foreach ($columns as $column) {
             if ($column === $this->eloquentRepository->getModelCode()) {
@@ -69,7 +70,12 @@ class Dummy
                     if (method_exists($this->eloquentRepository, $methodFaker)) {
                         $dummies[$column] = $this->eloquentRepository->$methodFaker();
                     } else {
-                        $columnType = $types[$column] . 'Faker';
+                        if(in_array($column,$booleans,true)){
+                            $columnType = 'booleanFaker';
+                        }
+                        else{
+                            $columnType = $types[$column] . 'Faker';
+                        }
 
                         if (method_exists($this->eloquentRepository, $columnType)) {
                             $dummies[$column] = $this->eloquentRepository->$columnType($column);
