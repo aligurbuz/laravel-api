@@ -38,10 +38,14 @@ class Database extends Command
         unset($columns['0']);
         $limit = $this->argument('limit') ?? 10;
 
-        if(isset($modelData[1])){
-            $data = $model::query()->select($columns)->where($repository->getModelCode(), $modelData[1])->get();
+        if (in_array('id', $columns, true)) {
+            $idKey = array_search('id', $columns);
+            unset($columns[$idKey]);
         }
-        else{
+
+        if (isset($modelData[1])) {
+            $data = $model::query()->select($columns)->where($repository->getModelCode(), $modelData[1])->get();
+        } else {
             $data = $model::query()->select($columns)->take($limit)->orderBy('id', 'desc')->get();
         }
 
