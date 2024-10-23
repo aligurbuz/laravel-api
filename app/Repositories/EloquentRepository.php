@@ -1789,4 +1789,20 @@ class EloquentRepository
             )
         )->onQueue($name);
     }
+
+    /**
+     * @param string $name
+     * @param callable $callback
+     * @return void
+     */
+    public function httpQueue(string $name, callable $callback): void
+    {
+        $this->onlyHttp(static function () use ($name, $callback) {
+            dispatch(
+                new BaseQueueJob(
+                    new SerializableClosure($callback)
+                )
+            )->onQueue($name);
+        });
+    }
 }
