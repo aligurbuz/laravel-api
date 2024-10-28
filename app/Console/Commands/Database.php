@@ -35,7 +35,6 @@ class Database extends Command
         $model = Constants::modelNamespace . '\\' . ucfirst($modelData[0]);
         $repository = (new $model)->getRepository();
         $columns = $repository->getColumns();
-        unset($columns['0']);
         $limit = $this->argument('limit') ?? 10;
 
         if (in_array('id', $columns, true)) {
