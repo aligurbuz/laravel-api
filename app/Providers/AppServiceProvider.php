@@ -6,6 +6,7 @@ use App\Constants;
 use App\Exceptions\Exception;
 use App\Libs\AppContainer;
 use App\Libs\Commands\AddColumnForDatabaseCommand;
+use App\Libs\Commands\AddIndexForDatabaseCommand;
 use App\Libs\Commands\AppNameCommand;
 use App\Libs\Commands\ClientCommand;
 use App\Libs\Commands\ControllerCommand;
@@ -68,6 +69,7 @@ class AppServiceProvider extends ServiceProvider
         $this->commands([AddColumnForDatabaseCommand::class]);
         $this->commands([RenameColumnForDatabaseCommand::class]);
         $this->commands([DropColumnForDatabaseCommand::class]);
+        $this->commands([AddIndexForDatabaseCommand::class]);
     }
 
     /**
