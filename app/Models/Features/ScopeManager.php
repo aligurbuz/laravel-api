@@ -284,6 +284,17 @@ trait ScopeManager
             $builder->where(function ($query) use ($params, $indexes, $builderSql) {
                 $filtering = indexOrdering($this->getTable(), $params['filter']);
                 foreach ($filtering as $key => $value) {
+                    if ($this->getRepository()->getModelCode() === $key) {
+                        AppContainer::set('filterModelCode', true);
+                        if(is_array($value)){
+                            foreach ($value as $valueOp => $valueIt){
+                                if($valueOp!='='){
+                                    AppContainer::terminate('filterModelCode');
+                                }
+                            }
+                        }
+                    }
+
                     if (!in_array($key, $indexes)) {
                         if (!property_exists($this, 'filterException') || $this->filterException) {
                             Exception::filterException('', ['key' => $key]);
@@ -322,10 +333,6 @@ trait ScopeManager
                                 $query->where($key, $value);
                             }
                         }
-                    }
-
-                    if ($this->getRepository()->getModelCode() === $key) {
-                        AppContainer::set('filterModelCode', true);
                     }
 
                 }
