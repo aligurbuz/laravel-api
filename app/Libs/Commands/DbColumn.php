@@ -50,7 +50,7 @@ class DbColumn extends Command
         $model = 'App\Models\\' . $modelName;
         $table = (new $model)->getTable();
         $databaseColumnPath = base_path('database' . DIRECTORY_SEPARATOR . 'columns' . DIRECTORY_SEPARATOR . '' . $table . '.php');
-        $sqlString = 'SELECT * FROM information_schema.columns WHERE table_schema = \'' . $configDatabaseName . '\' && table_name = \'' . $table . '\'';
+        $sqlString = 'SELECT * FROM information_schema.columns WHERE table_schema = \'' . $configDatabaseName . '\' && table_name = \'' . $table . '\' order by ordinal_position';
         $sqlIndexString = 'SHOW KEYS FROM ' . $table;
         $indexes = DB::select($sqlIndexString);
         $columns = DB::select($sqlString);
