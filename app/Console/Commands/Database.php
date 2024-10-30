@@ -28,7 +28,8 @@ class Database extends Command
      */
     public function handle()
     {
-        $modelData = explode(':', $this->argument('model'));
+        $modelName = $this->argument('model');
+        $modelData = explode(':', $modelName);
         /**
          * @var object $model
          */
@@ -45,10 +46,17 @@ class Database extends Command
         if (isset($modelData[1])) {
             $data = $model::query()->select($columns)->where($repository->getModelCode(), $modelData[1])->get();
         } else {
-            $data = $model::query()->select($columns)->take($limit)->orderBy('id', 'desc')->get();
+            $queryString = $model::query()->select($columns)->take($limit);
+            $data = $queryString->orderBy('id', 'desc')->get();
+            $count = $queryString->count();
         }
 
         $this->table($columns, $data, 'box-double');
+
+        if(isset($count)){
+            $this->output->text('There are a total of '.$count.' records in the '.$modelName);
+            echo PHP_EOL;
+        }
 
         return Command::SUCCESS;
     }
