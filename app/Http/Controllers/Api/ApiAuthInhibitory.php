@@ -35,6 +35,10 @@ trait ApiAuthInhibitory
             return $this->inhibitoryHandler($this->inhibitory[who()]);
         }
 
+        if (!isset($this->inhibitory[who()]) && isset($this->inhibitory['authenticate'.ucfirst(who())])) {
+            return $this->inhibitoryOnlyAuthenticateHandler($this->inhibitory['authenticate'.ucfirst(who())]);
+        }
+
         return true;
     }
 
@@ -76,6 +80,37 @@ trait ApiAuthInhibitory
         }
 
         if (count($inhibitory)) $this->apiAuthInhibitoryException = true;
+
+        return true;
+    }
+
+    /**
+     * get inhibitory handler for apiAuthenticate
+     *
+     * @param array $inhibitory
+     * @return bool
+     */
+    private function inhibitoryOnlyAuthenticateHandler(array $inhibitory = []): bool
+    {
+        $endpoint = endpoint();
+        $endpointSplit = explode('/', $endpoint);
+        $rootEndpoint = $endpointSplit[0] ?? null;
+        $authenticateInhibitory = $this->inhibitory[Str::camel('authenticate_' . who())] ?? [];
+
+        if (isset($authenticateInhibitory[$endpoint]) && is_array($authenticateInhibitory[$endpoint])) {
+            if ($this->methods($authenticateInhibitory[$endpoint])) {
+                return true;
+            }
+        }
+
+        if (isset($authenticateInhibitory[$rootEndpoint . '/*']) && is_array($authenticateInhibitory[$rootEndpoint . '/*'])) {
+            if ($this->methods($authenticateInhibitory[$rootEndpoint . '/*'])) {
+                return true;
+            }
+        }
+
+
+        $this->apiAuthInhibitoryException = true;
 
         return true;
     }
