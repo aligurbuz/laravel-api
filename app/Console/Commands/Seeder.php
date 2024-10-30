@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Repositories\Repository;
 use Illuminate\Console\Command;
+use Symfony\Component\Console\Helper\ProgressBar;
 
 class Seeder extends Command
 {
@@ -33,7 +34,18 @@ class Seeder extends Command
 
         $repository = getModelInstance(ucfirst($model))->getRepository();
 
-        $repository->createDummy($count);
+        $progressBar = $this->output->createProgressBar($count);
+
+        $progressBar->start();
+
+        for($i=1; $i<=$count; $i++){
+            $repository->createDummy();
+            $progressBar->advance();
+        }
+
+        $progressBar->finish();
+
+        $this->newLine(3);
 
         $this->output->success('seed success');
     }
