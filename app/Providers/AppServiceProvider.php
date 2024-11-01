@@ -16,6 +16,7 @@ use App\Libs\Commands\DbColumn;
 use App\Libs\Commands\Documentation;
 use App\Libs\Commands\DocumentationUpdate;
 use App\Libs\Commands\DropColumnForDatabaseCommand;
+use App\Libs\Commands\DropIndexForDatabaseCommand;
 use App\Libs\Commands\EnvironmentCommand;
 use App\Libs\Commands\FactoryCommand;
 use App\Libs\Commands\FeatureTestCommand;
@@ -70,6 +71,7 @@ class AppServiceProvider extends ServiceProvider
         $this->commands([RenameColumnForDatabaseCommand::class]);
         $this->commands([DropColumnForDatabaseCommand::class]);
         $this->commands([AddIndexForDatabaseCommand::class]);
+        $this->commands([DropIndexForDatabaseCommand::class]);
     }
 
     /**
