@@ -50,7 +50,7 @@ class Response extends ResponseSupport
             'isAvailableData' => $isAvailableData,
             'client' => ApiKey::who(),
             'env' => config('app.env'),
-            'count' => $resource['0']['total'] ?? 0,
+            'count' => $resource['0']['total'] ?? count(($resource[0]['data'] ?? 0)),
             'responseCode' => static::responseCode(),
             'resource' => $resource,
             'instructions' => AppContainer::get(Constants::responseFormatterSupplement)
