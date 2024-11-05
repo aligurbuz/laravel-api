@@ -89,7 +89,7 @@ trait FakerRepository
      */
     public function passwordFaker(int $min = 6, int $max = 20): string
     {
-        return Hash::make(faker()->password($min, $max));
+        return '123456';
     }
 
     /**
