@@ -29,6 +29,7 @@ use App\Libs\Commands\RenameColumnForDatabaseCommand;
 use App\Libs\Commands\RepositoryCommand;
 use App\Libs\Commands\RepositoryResourceCommand;
 use App\Libs\Commands\RequestCommand;
+use App\Libs\Commands\Seeder;
 use App\Libs\Commands\ServiceCommand;
 use App\Libs\Commands\SupervisorCommand;
 use App\Libs\Commands\UpdateMigrationCommand;
@@ -72,6 +73,7 @@ class AppServiceProvider extends ServiceProvider
         $this->commands([DropColumnForDatabaseCommand::class]);
         $this->commands([AddIndexForDatabaseCommand::class]);
         $this->commands([DropIndexForDatabaseCommand::class]);
+        $this->commands([Seeder::class]);
     }
 
     /**

@@ -1,10 +1,8 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Libs\Commands;
 
-use App\Repositories\Repository;
 use Illuminate\Console\Command;
-use Symfony\Component\Console\Helper\ProgressBar;
 
 class Seeder extends Command
 {
@@ -20,7 +18,7 @@ class Seeder extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'generate seed for model';
 
     /**
      * Execute the console command.
