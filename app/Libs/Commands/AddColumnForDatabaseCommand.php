@@ -55,7 +55,10 @@ class AddColumnForDatabaseCommand extends Command
 
         if ($columnType === 'enum') {
             $columnEnumValues = $this->askWithCompletion('Column enum values', ['Separate the values to be taken with commas.']);
+            $enumValues = explode(',', $columnEnumValues);
+            $enumArrayFormatter = '\'' . implode('\',\'', $enumValues) . '\'';
         }
+
 
         $columnDefault = $this->ask('Column default value', 'nullable');
         $AfterColumn = $this->ask('After which column should it be added?', 'id');
@@ -89,7 +92,11 @@ class AddColumnForDatabaseCommand extends Command
         $lastMigration = base_path('Database/Migrations') . '/' . $migrationFiles[0];
         $lastFilePath = File::get($lastMigration);
 
-        $definition = '$table->' . $columnType . '(\'' . $column . '\')';
+        if ($columnType == 'enum' && isset($enumArrayFormatter)) {
+            $definition = '$table->' . $columnType . '(\'' . $column . '\', [' . $enumArrayFormatter . '])';
+        } else {
+            $definition = '$table->' . $columnType . '(\'' . $column . '\')';
+        }
 
         if ($columnDefault === 'nullable') {
             $definition = $definition . '->nullable()';
