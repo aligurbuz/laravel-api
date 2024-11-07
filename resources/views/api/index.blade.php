@@ -330,7 +330,7 @@ wget --no-check-certificate --quiet \
                             case, using the (hasFilter) key, you can use the (has) query as follows.
                             You can write your query.</p>
 
-                        <li>baseUrl/products?hasFilter[items][filterableColumn][=]=value</li>
+                        <li>baseUrl/products?has=items&hasFilter[items][filterableColumn][=]=value</li>
 
                         <div class="language-php highlighter-rouge">
                             <div class="highlight"><pre class="highlight"><code><span class="c1">// Api Request</span>
@@ -341,19 +341,12 @@ wget --no-check-certificate --quiet \
   --header 'Apikey: ApiKey' \
   --header 'Content-Type: application/json' \
   --header 'Accept-Language: en' \
-   'baseUrl/products?hasFilter[items][filterableColumn][=]=value
+   'baseUrl/products?has=items&hasFilter[items][filterableColumn][=]=value
 </code></pre>
                             </div>
                         </div>
 
-                        <p>Or if you are going to check for a single condition. You can send a query like the one below
-                            in a shorter way.
-                            <b>What you need to pay attention to in the following query; (:) sign is used after the
-                                relation name and (filterableColumn)
-                                The value must be followed by the (-) sign, then the (oparetor) and then the (-)
-                                sign.</b></p>
-
-                        <li>baseUrl/products?has=items:filterableColumn-=-value</li>
+                        or you can pass the trailing dimension of the automatic equality operator. (like following code)
 
                         <div class="language-php highlighter-rouge">
                             <div class="highlight"><pre class="highlight"><code><span class="c1">// Api Request</span>
@@ -364,17 +357,19 @@ wget --no-check-certificate --quiet \
   --header 'Apikey: ApiKey' \
   --header 'Content-Type: application/json' \
   --header 'Accept-Language: en' \
-   'baseUrl/products?has=items:filterableColumn-=-value
+   'baseUrl/products?has=items&hasFilter[items][filterableColumn]=value
 </code></pre>
                             </div>
                         </div>
 
-                        <b>DoesntHave Using:</b>
-                        <p>In the opposite case; You may want to list products without (item) data.
-                            In this case, it will be sufficient to use (doesntHave) instead of (has).
-                        </p>
+                        <p>This snippet: helps you find the "products" object that has the "item" object,
+                            while also allowing you to add an extra column filtering within the item object.
+                            <b>Things you need to pay attention to: It is mandatory to add a "has" query to the "hasFilter" query. Otherwise, your "hasFilter" query will be considered invalid. </b> </p>
 
-                        <li>baseUrl/products?doesntHave=items</li>
+
+                        <b>Recursive (Has) Using:</b>
+                        <p>With this method you can check the existence of a nested relationship.. For example: has=items:variations
+                            In the relationship you separate with two points, you can check both the existence of the item object and the existence of variations depending on the item object..</p>
 
                         <div class="language-php highlighter-rouge">
                             <div class="highlight"><pre class="highlight"><code><span class="c1">// Api Request</span>
@@ -385,10 +380,30 @@ wget --no-check-certificate --quiet \
   --header 'Apikey: ApiKey' \
   --header 'Content-Type: application/json' \
   --header 'Accept-Language: en' \
-   'baseUrl/products?doesntHave=items
+   'baseUrl/products?has=items:variations
 </code></pre>
                             </div>
                         </div>
+
+                        <p>Note: This method will only work until two relationships exist. This method does not work for more than two relationships.</p>
+
+                        <p> For the recursive (has) method, you may need an extra filtering method as above. For this you will need to use (hasRecursiveFilter) key array instead of (hasFilter).</p>
+
+                        <div class="language-php highlighter-rouge">
+                            <div class="highlight"><pre class="highlight"><code><span class="c1">// Api Request</span>
+wget --no-check-certificate --quiet \
+  --method GET \
+  --timeout=0 \
+  --header 'Authorization: Bearer Token' \
+  --header 'Apikey: ApiKey' \
+  --header 'Content-Type: application/json' \
+  --header 'Accept-Language: en' \
+   'baseUrl/products?has=items:variations&hasRecursiveFilter[items][variations][filterableColumn][=]=value
+</code></pre>
+                            </div>
+                        </div>
+
+
                     @elseif($list=='dataFiltering')
 
                         <p>The (Filter) statement will filter the entire data according to the key specified in the
