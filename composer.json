@@ -16,6 +16,7 @@
         "guzzlehttp/guzzle": "^7.0.1",
         "itsgoingd/clockwork": "^5.0",
         "laravel/framework": "^9.0",
+        "laravel/horizon": "^5.29",
         "laravel/octane": "^1.0",
         "laravel/passport": "^10.1",
         "laravel/sanctum": "^2.15",
