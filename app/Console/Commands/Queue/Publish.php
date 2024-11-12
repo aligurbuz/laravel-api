@@ -29,7 +29,7 @@ class Publish extends Command
     public function handle(): void
     {
         $data = [
-            "to" => "ali@haxr.com",
+            "to" => "test@test.com",
             "subject" => "Mail Subject",
             "content" => []
         ];
