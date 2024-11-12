@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Libs\Commands;
 
 use App\Facades\Database\Authenticate\ApiKey;
 use Illuminate\Console\Command;

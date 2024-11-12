@@ -7,9 +7,11 @@ use App\Exceptions\Exception;
 use App\Libs\AppContainer;
 use App\Libs\Commands\AddColumnForDatabaseCommand;
 use App\Libs\Commands\AddIndexForDatabaseCommand;
+use App\Libs\Commands\ApiKeys;
 use App\Libs\Commands\AppNameCommand;
 use App\Libs\Commands\ClientCommand;
 use App\Libs\Commands\ControllerCommand;
+use App\Libs\Commands\CreateApiKey;
 use App\Libs\Commands\CrudCommand;
 use App\Libs\Commands\DatabaseCreatorCommand;
 use App\Libs\Commands\DbColumn;
@@ -17,9 +19,11 @@ use App\Libs\Commands\Documentation;
 use App\Libs\Commands\DocumentationUpdate;
 use App\Libs\Commands\DropColumnForDatabaseCommand;
 use App\Libs\Commands\DropIndexForDatabaseCommand;
+use App\Libs\Commands\Dummy;
 use App\Libs\Commands\EnvironmentCommand;
 use App\Libs\Commands\FactoryCommand;
 use App\Libs\Commands\FeatureTestCommand;
+use App\Libs\Commands\HttpRequest;
 use App\Libs\Commands\MigrationCommand;
 use App\Libs\Commands\ModelCommand;
 use App\Libs\Commands\PermissionCommand;
@@ -74,6 +78,10 @@ class AppServiceProvider extends ServiceProvider
         $this->commands([AddIndexForDatabaseCommand::class]);
         $this->commands([DropIndexForDatabaseCommand::class]);
         $this->commands([Seeder::class]);
+        $this->commands([Dummy::class]);
+        $this->commands([ApiKeys::class]);
+        $this->commands([HttpRequest::class]);
+        $this->commands([CreateApiKey::class]);
     }
 
     /**

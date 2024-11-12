@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Libs\Commands;
 
 use App\Constants;
 use App\Facades\Support\Http\Local\Local;
