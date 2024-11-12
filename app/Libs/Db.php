@@ -251,8 +251,9 @@ class Db extends Model
     public static function dummy(string $model): array
     {
         $repository = getModelInstance(ucfirst($model))->getRepository();
+        $modelCode = $repository->getModelCode();
 
-        return $repository->dummy();
+        return collect($repository->dummy())->except([$modelCode])->toArray();
     }
 
     /**
