@@ -31,7 +31,7 @@ class Dummy extends Command
         $this->output->definitionList(
             json_encode(
                 Db::dummy($model),
-                1
+                JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES
             )
         );
     }
