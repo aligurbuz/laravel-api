@@ -1000,6 +1000,7 @@ class EloquentRepository
     {
         request()->setMethod('POST');
         $baseDummy = (new Dummy($this))->dummy();
+        $modelCode = $this->getModelCode();
         $postQueries = $this->getAddPostQueries();
 
         $postListQueries = [];
@@ -1008,7 +1009,11 @@ class EloquentRepository
             foreach ($postQueries as $key => $client) {
                 $clientNamespace = Factory::client(['client' => $client . '.create'])->getClientIdentifier()->clientNamespace();
                 $postRepository = (new $clientNamespace)->repository();
-                $postListQueries[$key][] = collect($postRepository->dummy())->whereNotNull()->toArray();
+                $postQueryList = collect($postRepository->dummy())
+                    ->except([$modelCode, $postRepository->getModelCode()])
+                    ->whereNotNull()->toArray();
+
+                $postListQueries[$key][] = $postQueryList;
             }
         }
 
