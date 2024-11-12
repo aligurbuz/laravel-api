@@ -154,6 +154,16 @@ trait FakerRepository
     }
 
     /**
+     * generate text value for faker repository
+     *
+     * @return int
+     */
+    public function textFaker(): int
+    {
+        return faker()->text;
+    }
+
+    /**
      * generate array value for faker repository
      *
      * @return array
