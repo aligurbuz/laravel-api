@@ -22,7 +22,9 @@ return [
         'has',
         'hasFilter',
         'doesntHave',
+        'doesntHaveFilter',
         'hasRange',
+        'doesntHaveRange',
         'page',
         'limit',
         'groupBy',
@@ -30,6 +32,7 @@ return [
         'client_time',
         'client_action',
         'hasRecursiveFilter',
+        'doesntHaveRecursiveFilter',
         'search',
         'source',
         'attributes'

@@ -109,11 +109,10 @@ trait ScopeManager
 
         foreach (($rangeHandler['ranges'] ?? []) as $data) {
             if (array_key_exists($data, ($rangeHandler['modelRanges'] ?? [])) && method_exists($object, $data)) {
-                $rangeBindings = AppContainer::get('rangeBindings',[]);
-                if(isset($rangeBindings[$data])){
-                    $object->$data($builder,$rangeBindings[$data]);
-                }
-                else{
+                $rangeBindings = AppContainer::get('rangeBindings', []);
+                if (isset($rangeBindings[$data])) {
+                    $object->$data($builder, $rangeBindings[$data]);
+                } else {
                     $object->$data($builder);
                 }
 
@@ -286,9 +285,9 @@ trait ScopeManager
                 foreach ($filtering as $key => $value) {
                     if ($this->getRepository()->getModelCode() === $key) {
                         AppContainer::set('filterModelCode', true);
-                        if(is_array($value)){
-                            foreach ($value as $valueOp => $valueIt){
-                                if($valueOp!='='){
+                        if (is_array($value)) {
+                            foreach ($value as $valueOp => $valueIt) {
+                                if ($valueOp != '=') {
                                     AppContainer::terminate('filterModelCode');
                                 }
                             }
@@ -322,8 +321,7 @@ trait ScopeManager
                                 Exception::customException(trans('exception.sqlOperatorException', ['key' => $operator]));
                             }
                         }
-                    }
-                    else{
+                    } else {
                         $filterValue = explode(',', (string)$value);
 
                         if (!isset($withOperator) && (is_string($value) || is_numeric($value))) {
@@ -365,6 +363,121 @@ trait ScopeManager
      * get eager loading data for model
      *
      * @param Builder $builder
+     * @param string|null $doesntHave
+     * @param array $filter
+     * @param bool $recursive
+     * @return Builder
+     */
+    public function scopeDoesntHaveQuery(Builder $builder, ?string $doesntHave = null, array $filter = [], bool $recursive = true): Builder
+    {
+        $request = request()->query->all();
+        if (isset($request['doesntHaveFilter'][$doesntHave])) {
+            return $builder;
+        }
+
+        if (count($filter)) {
+            assignQueryParameters(['doesntHaveFilter' => [$doesntHave => $filter]], $recursive);
+        }
+
+        $request = request()->query->all();
+
+        $params = (!is_null($doesntHave))
+            ? ['doesntHave' => $doesntHave]
+            : $request;
+
+        if (isset($params['doesntHave'])) {
+            $withQuery = $this->withQuery;
+            $doesntHaveQuery = explode(',', $params['doesntHave']);
+            $this->doesntHaveValues = $doesntHaveQuery;
+
+            foreach ($doesntHaveQuery as $doesntHave) {
+                $doesntHaveQueryList = explode(':', $doesntHave);
+                $currentDoesntHaveSplit = explode('-', current($doesntHaveQueryList));
+                $doesntHave = current($currentDoesntHaveSplit);
+
+                if (method_exists($this, $doesntHave)) {
+                    $builder->whereDoesntHave($doesntHave, function (object $builder) {
+                        return $builder;
+                    });
+                } elseif (isset($withQuery[$doesntHave], $withQuery[$doesntHave]['nested'])) {
+                    if (false === $withQuery[$doesntHave]['nested']) {
+                        $builder->whereDoesntHave($doesntHave, function (object $builder) use ($request, $doesntHave, $recursive, $doesntHaveQueryList, $currentDoesntHaveSplit) {
+                            $range = $request['doesntHaveRange'][$doesntHave] ?? ($request['range'] ?? '');
+                            $doesntHaveFilter = $request['doesntHaveFilter'][$doesntHave] ?? [];
+
+                            if (count($currentDoesntHaveSplit) > 1) {
+                                $currentDoesntHaveSplitData = $currentDoesntHaveSplit[3] ?? ($currentDoesntHaveSplit[2] ?? 0);
+                                $currentDoesntHaveSplitOperator = isset($currentDoesntHaveSplit[3]) ? $currentDoesntHaveSplit[2] : '=';
+                                $doesntHaveFilter = [$currentDoesntHaveSplit[1] => [
+                                    $currentDoesntHaveSplitOperator => $currentDoesntHaveSplitData
+                                ]];
+                            }
+
+                            $repository = getModelWithPlural($doesntHave);
+                            $repositoryMethod = Repository::$repository();
+
+                            if (isset($doesntHaveQueryList[2])) {
+                                Exception::customException('recursiveDoesntHaveException');
+                            }
+
+                            if (isset($doesntHaveQueryList[1])) {
+                                $recursiveDoesntHaveValue = explode('-', $doesntHaveQueryList[1]);
+                                $recursiveDoesntHaveValueData = $recursiveDoesntHaveValue[3] ?? ($recursiveDoesntHaveValue[2] ?? 0);
+                                $recursiveDoesntHaveValueOperator = isset($recursiveDoesntHaveValue[3]) ? $recursiveDoesntHaveValue[2] : '=';
+
+                                if (count($doesntHaveFilter)) {
+                                    $builder->doesntHaveQuery(current($recursiveDoesntHaveValue), isset($recursiveDoesntHaveValue[1]) ? [
+                                        $recursiveDoesntHaveValue[1] => [$recursiveDoesntHaveValueOperator => $recursiveDoesntHaveValueData]
+                                    ] : [], false)
+                                        ->filterQuery($doesntHaveFilter)->range($repositoryMethod, (string)$range);
+                                } else {
+                                    $builder->doesntHaveQuery(current($recursiveDoesntHaveValue), isset($recursiveDoesntHaveValue[1]) ? [
+                                        $recursiveDoesntHaveValue[1] => [$recursiveDoesntHaveValueOperator => $recursiveDoesntHaveValueData]
+                                    ] : [], false)->range($repositoryMethod, (string)$range);
+                                }
+
+
+                            }
+
+                            if (isset($request['doesntHaveRecursiveFilter'][$doesntHave])) {
+                                foreach ($request['doesntHaveRecursiveFilter'][$doesntHave] as $recursiveDoesntHave => $recursiveFilter) {
+                                    if (count($doesntHaveFilter)) {
+                                        $builder->doesntHaveQuery($recursiveDoesntHave, $recursiveFilter, false)
+                                            ->filterQuery($doesntHaveFilter)->range($repositoryMethod, (string)$range);
+                                    } else {
+                                        $builder->doesntHaveQuery($recursiveDoesntHave, $recursiveFilter, false)->range($repositoryMethod, (string)$range);
+                                    }
+
+
+                                    break;
+                                }
+                            } else {
+
+                                if (count($doesntHaveFilter)) {
+                                    $builder
+                                        ->filterQuery($doesntHaveFilter)->range($repositoryMethod, (string)$range);
+                                } else {
+                                    $builder->range($repositoryMethod, (string)$range);
+                                }
+                            }
+
+                            return $builder;
+                        });
+                    }
+                } else {
+                    Exception::customException(trans('exception.doesntHaveException', ['key' => $doesntHave]));
+                }
+            }
+        }
+
+        return $builder;
+    }
+
+
+    /**
+     * get eager loading data for model
+     *
+     * @param Builder $builder
      * @param string|null $has
      * @param array $filter
      * @param bool $recursive
@@ -373,7 +486,7 @@ trait ScopeManager
     public function scopeHasQuery(Builder $builder, ?string $has = null, array $filter = [], bool $recursive = true): Builder
     {
         $request = request()->query->all();
-        if(isset($request['hasFilter'][$has])){
+        if (isset($request['hasFilter'][$has])) {
             return $builder;
         }
 
@@ -475,42 +588,6 @@ trait ScopeManager
         return $builder;
     }
 
-    /**
-     * get eager loading data for model
-     *
-     * @param Builder $builder
-     * @return Builder
-     */
-    public function scopeDoesntHaveQuery(Builder $builder): Builder
-    {
-        $params = request()->query->all();
-
-        if (isset($params['doesntHave'])) {
-            $withQuery = $this->withQuery;
-            $doesntHaveQuery = explode(',', $params['doesntHave']);
-            $this->doesntHaveValues = $doesntHaveQuery;
-
-            foreach ($doesntHaveQuery as $doesnt) {
-                if (method_exists($this, $doesnt)) {
-                    $builder->whereDoesntHave($doesnt, function (object $builder) use ($params, $doesnt) {
-                        $range = $params['hasRange'][$doesnt] ?? ($params['range'] ?? '');
-                        $repository = getModelWithPlural($doesnt);
-                        $builder->range(Repository::$repository(), (string)$range);
-                        return $builder;
-                    });
-                } elseif (isset($withQuery[$doesnt], $withQuery[$doesnt]['nested']) && false === $withQuery[$doesnt]['nested']) {
-                    $builder->whereDoesntHave($doesnt, function (object $builder) use ($params, $doesnt) {
-                        $range = $params['hasRange'][$doesnt] ?? ($params['range'] ?? '');
-                        $repository = getModelWithPlural($doesnt);
-                        $builder->range(Repository::$repository(), (string)$range);
-                        return $builder;
-                    });
-                }
-            }
-        }
-
-        return $builder;
-    }
 
     /**
      * get eager loading data for model
