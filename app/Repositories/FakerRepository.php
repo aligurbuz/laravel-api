@@ -3,7 +3,6 @@
 namespace App\Repositories;
 
 use Exception;
-use Illuminate\Support\Facades\Hash;
 
 trait FakerRepository
 {
@@ -83,11 +82,9 @@ trait FakerRepository
     /**
      * generate password for faker repository
      *
-     * @param int $min
-     * @param int $max
      * @return string
      */
-    public function passwordFaker(int $min = 6, int $max = 20): string
+    public function passwordFaker(): string
     {
         return '123456';
     }
