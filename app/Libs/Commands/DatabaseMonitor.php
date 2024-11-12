@@ -1,18 +1,18 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Libs\Commands;
 
 use App\Constants;
 use Illuminate\Console\Command;
 
-class Database extends Command
+class DatabaseMonitor extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'db {model} {limit?}';
+    protected $signature = 'data {model} {limit?}';
 
     /**
      * The console command description.

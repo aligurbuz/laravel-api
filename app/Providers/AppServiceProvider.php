@@ -7,6 +7,7 @@ use App\Exceptions\Exception;
 use App\Libs\AppContainer;
 use App\Libs\Commands\AddColumnForDatabaseCommand;
 use App\Libs\Commands\AddIndexForDatabaseCommand;
+use App\Libs\Commands\AdminPermissionAssigner;
 use App\Libs\Commands\ApiKeys;
 use App\Libs\Commands\AppNameCommand;
 use App\Libs\Commands\ClientCommand;
@@ -14,6 +15,7 @@ use App\Libs\Commands\ControllerCommand;
 use App\Libs\Commands\CreateApiKey;
 use App\Libs\Commands\CrudCommand;
 use App\Libs\Commands\DatabaseCreatorCommand;
+use App\Libs\Commands\DatabaseMonitor;
 use App\Libs\Commands\DbColumn;
 use App\Libs\Commands\Documentation;
 use App\Libs\Commands\DocumentationUpdate;
@@ -33,10 +35,13 @@ use App\Libs\Commands\RenameColumnForDatabaseCommand;
 use App\Libs\Commands\RepositoryCommand;
 use App\Libs\Commands\RepositoryResourceCommand;
 use App\Libs\Commands\RequestCommand;
+use App\Libs\Commands\Role;
+use App\Libs\Commands\RolePermissions;
 use App\Libs\Commands\Seeder;
 use App\Libs\Commands\ServiceCommand;
 use App\Libs\Commands\SupervisorCommand;
 use App\Libs\Commands\UpdateMigrationCommand;
+use App\Libs\Commands\UpdateRole;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\ServiceProvider;
 
@@ -82,6 +87,11 @@ class AppServiceProvider extends ServiceProvider
         $this->commands([ApiKeys::class]);
         $this->commands([HttpRequest::class]);
         $this->commands([CreateApiKey::class]);
+        $this->commands([AdminPermissionAssigner::class]);
+        $this->commands([DatabaseMonitor::class]);
+        $this->commands([Role::class]);
+        $this->commands([RolePermissions::class]);
+        $this->commands([UpdateRole::class]);
     }
 
     /**
