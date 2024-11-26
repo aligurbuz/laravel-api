@@ -1877,7 +1877,7 @@
                                 ],
                                 "body": {
                                     "mode": "raw",
-                                    "raw": "{\"role_app_code\":\"integer\",\"role_name\":\"string\",\"is_administrator\":\"integer\",\"roles\":\"array\"}",
+                                    "raw": "{\n    \"role_name\": \"string\"\n}",
                                     "options": {
                                         "raw": {
                                             "language": "json"
@@ -1926,7 +1926,7 @@
                                 ],
                                 "body": {
                                     "mode": "raw",
-                                    "raw": "{\"role_code\":\"integer\",\"role_app_code\":\"integer\",\"role_name\":\"string\",\"is_administrator\":\"integer\",\"roles\":\"array\",\"status\":\"1\",\"is_deleted\":\"0\"}",
+                                    "raw": "{\n    \"role_code\": 2963074553,\n    \"roles\": {\n        \"439797677\": {\n            \"GET\": 1,\n            \"PUT\": 1,\n            \"POST\": 1\n        },\n        \"469161552\": {\n            \"GET\": 1,\n            \"PUT\": 1,\n            \"POST\": 1\n        }\n    }\n}",
                                     "options": {
                                         "raw": {
                                             "language": "json"

@@ -9,6 +9,16 @@
             "raw": "{\n    \"user\" : {\n        \"name\" : \"fullname\",\n        \"email\" : \"test@gmail.com\",\n        \"password\" : \"Ab123456\"\n    }\n}"
         }
     },
+    "POST_Gate/Roles": {
+        "body": {
+            "raw": "{\n    \"role_name\": \"string\"\n}"
+        }
+    },
+    "PUT_Gate/Roles": {
+        "body": {
+            "raw": "{\n    \"role_code\": 2963074553,\n    \"roles\": {\n        \"439797677\": {\n            \"GET\": 1,\n            \"PUT\": 1,\n            \"POST\": 1\n        },\n        \"469161552\": {\n            \"GET\": 1,\n            \"PUT\": 1,\n            \"POST\": 1\n        }\n    }\n}"
+        }
+    },
     "PUT_Localizations": {
         "body": {
             "raw": "{\n    \"localization_code\": 111111,\n    \"values\": [\n        {\n            \"name\" : \"newName\"\n        }\n    ]\n}"
