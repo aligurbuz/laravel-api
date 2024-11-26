@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use App\Constants;
 use App\Exceptions\Custom\CustomException;
 use App\Exceptions\Exception;
+use App\Facades\Database\Role\Role;
 use App\Libs\AppContainer;
 use App\Policies\Permission\Permission as PermissionFacade;
 use Closure;
@@ -15,7 +16,9 @@ class Permission
     /**
      * @var array|string[]
      */
-    protected array $apiKeys = ['admin'];
+    protected array $apiKeys = [
+        'admin'
+    ];
 
     /**
      * Handle an incoming request.
@@ -55,6 +58,7 @@ class Permission
         return (
             true === config('app.permission')
             && in_array(who(), $this->apiKeys, true)
+            && !Role::isAdmin()
             && !(new PermissionFacade())->$endpoint()
         );
     }

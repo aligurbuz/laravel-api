@@ -67,5 +67,8 @@ return [
     'emailVerifiedAt'               =>  'Email_verified_at data cannot be sent by the client.',
     'clientIfExists'                =>  'If the (:key) value is sent as (:value), the (:must) value must be sent mandatory.',
     'clientIfExceptExists'          => 'If the (:key) value is sent as (:value), the (:except) value cannot be sent.',
-    'sameEvent'                     => 'The event named :event has been recorded before.'
+    'sameEvent'                     => 'The event named :event has been recorded before.',
+    'roleUpdatePermission'          => 'Only the administrators can update a role.',
+    'roleCreatePermission'          => 'Only the administrators can create a role.',
+    'administratorRoleUpdate'       => 'The Admin role cannot be updated by any user.',
 ];
