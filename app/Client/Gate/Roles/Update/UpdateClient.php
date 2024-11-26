@@ -21,6 +21,9 @@ class UpdateClient extends Client
      */
     protected array $capsule = [];
 
+    /**
+     * @var int
+     */
     public int $isAdministrator;
 
     /**
