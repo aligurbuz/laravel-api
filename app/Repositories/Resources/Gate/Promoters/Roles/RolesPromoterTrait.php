@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Repositories\Resources\Gate\Promoters\Roles;
 
 use App\Models\Entities\Role;
+use App\Repositories\Repository;
 
 trait RolesPromoterTrait
 {
@@ -27,5 +28,17 @@ trait RolesPromoterTrait
     public function entity(): Role
     {
         return parent::entity();
+    }
+
+    /**
+     * Appends to the end of the returned data.
+     *
+     * @return array
+     */
+    public function appends(): array
+    {
+        return [
+            'permissions' => Repository::permission()->get()
+        ];
     }
 }
