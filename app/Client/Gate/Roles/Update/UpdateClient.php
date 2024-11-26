@@ -5,6 +5,7 @@ namespace App\Client\Gate\Roles\Update;
 use App\Client\Client;
 use App\Client\ClientAutoGeneratorTrait;
 use App\Client\Gate\Roles\RolesMainSupport;
+use App\Exceptions\Exception;
 use App\Models\Role;
 
 class UpdateClient extends Client
@@ -20,6 +21,8 @@ class UpdateClient extends Client
      */
     protected array $capsule = [];
 
+    public int $isAdministrator;
+
     /**
      * get model entity validation
      *
@@ -33,4 +36,12 @@ class UpdateClient extends Client
      * @var array
      */
     protected array $rule = ['role_code' => 'required|integer'];
+
+    /**
+     * @return void
+     */
+    public function isAdministrator(): void
+    {
+        Exception::customException('isAdministratorKey');
+    }
 }
