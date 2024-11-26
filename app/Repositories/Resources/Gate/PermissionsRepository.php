@@ -33,6 +33,11 @@ class PermissionsRepository extends EloquentRepository implements PermissionsRep
     protected static string $model = Permission::class;
 
     /**
+     * @var bool
+     */
+    protected bool $paginator = false;
+
+    /**
      * get endpoint criteria for permission repository
      *
      * @param string|null $endpoint
