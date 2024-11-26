@@ -41,7 +41,7 @@ return [
     "ignores" => [
         "SuperAdmins",
         "Mix",
-        "Gate",
+        //"Gate",
         "Register"
     ],
     "arrayRules" => [
