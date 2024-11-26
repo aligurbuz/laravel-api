@@ -30,19 +30,6 @@ class CreateRoles extends Migration
             $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });
-
-        DB::table('roles')->delete();
-        $roles = [
-            [
-                'id' => 1,
-                'role_code' => crc32('firstRoleCode'),
-                'role_name' => 'Administrator',
-                'is_administrator' => '1',
-                'roles' => json_encode([[]])
-            ]
-        ];
-
-        DB::table('roles')->insert($roles);
     }
 
     /**

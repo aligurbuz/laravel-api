@@ -7,6 +7,7 @@ use App\Models\Gender;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -27,6 +28,21 @@ class DatabaseSeeder extends Seeder
         ApiKey::create('admin');
         ApiKey::create('web');
 
+        $adminRoleCode = crc32('firstRoleCode');
+
+        $roles = [
+            [
+                'id' => 1,
+                'role_code' => $adminRoleCode,
+                'role_name' => 'Administrator',
+                'is_administrator' => '1',
+                'roles' => json_encode([[]])
+            ]
+        ];
+
+        DB::table('roles')->insert($roles);
+
         Artisan::call('permissions');
+        Artisan::call('give:permission', ['roleCode' => $adminRoleCode]);
     }
 }
