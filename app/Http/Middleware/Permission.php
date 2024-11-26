@@ -58,7 +58,6 @@ class Permission
         return (
             true === config('app.permission')
             && in_array(who(), $this->apiKeys, true)
-            && !Role::isAdmin()
             && !(new PermissionFacade())->$endpoint()
         );
     }

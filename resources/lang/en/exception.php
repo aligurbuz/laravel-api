@@ -71,4 +71,6 @@ return [
     'roleUpdatePermission'          => 'Only the administrators can update a role.',
     'roleCreatePermission'          => 'Only the administrators can create a role.',
     'administratorRoleUpdate'       => 'The Admin role cannot be updated by any user.',
+    'updatePermission'              => 'No user can update permission data.',
+    'createPermission'              => 'No user can create permission data.',
 ];

@@ -30,12 +30,17 @@ return [
         //'all' => ['GET','PUT'],
         //'countries/districts' => ['GET','PUT','POST'],
         'registration' => ['GET','PUT'],
-        'support/excel' => ['GET','PUT']
+        'support/excel' => ['GET','PUT'],
+        'gate/permissions' => ['POST','PUT']
     ],
     'exceptMethodKeys' => [
         'password/changes' => [
             'POST' => ['hash','client_time'],
             'PUT' => ['client_time','is_deleted','status'],
+        ],
+        'gate/roles' => [
+            'POST' => ['is_administrator','roles','role_app_code'],
+            'PUT' => ['is_administrator','role_app_code'],
         ]
     ],
     "ignores" => [
