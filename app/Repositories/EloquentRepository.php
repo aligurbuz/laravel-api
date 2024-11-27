@@ -1195,6 +1195,20 @@ class EloquentRepository
     }
 
     /**
+     * take the latest data for repository
+     *
+     * @param string $column
+     * @param string $criteria
+     * @return $this
+     */
+    public function orderBy(string $column, string $criteria): self
+    {
+        $this->repository = $this->instance()->orderBy($column, $criteria);
+
+        return $this;
+    }
+
+    /**
      * take the random data for repository
      *
      * @param int $limit

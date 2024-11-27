@@ -6,6 +6,7 @@ namespace App\Factory\Permission;
 
 use App\Facades\Database\Role\Role;
 use App\Factory\Permission\Interfaces\PermissionInterface;
+use App\Libs\AppContainer;
 use App\Repositories\Repository;
 
 /**
@@ -55,7 +56,9 @@ class Permission extends PermissionManager implements PermissionInterface
      */
     public function get(): array
     {
-        return Repository::permission()->all();
+        return AppContainer::use('permissions', function (){
+            return Repository::permission()->orderBy('endpoint','asc')->all();
+        });
     }
 
     /**
