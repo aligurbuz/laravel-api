@@ -28,6 +28,6 @@ class InternalPermissionException extends Exception
     {
         parent::__construct($getMessage = $this->setMessage($message), $code, $previous);
 
-        $this->eventHandler($getMessage);
+        //$this->eventHandler($getMessage);
     }
 }
