@@ -73,5 +73,6 @@ return [
     'administratorRoleUpdate'       => 'The Admin role cannot be updated by any user.',
     'updatePermission'              => 'No user can update permission data.',
     'createPermission'              => 'No user can create permission data.',
-    'isAdministratorKey'            => 'isAdministrator key cannot be sent by any user '
+    'isAdministratorKey'            => 'isAdministrator key cannot be sent by any user ',
+    'putDeleteAuthorize'            => 'You do not have the permission to delete this data. Please contact your administrator.'
 ];

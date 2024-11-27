@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Client;
 
 use App\Exceptions\Exception;
+use App\Facades\Database\Role\Role;
 use App\Libs\AppContainer;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -131,6 +132,20 @@ trait ClientSupport
     {
         if (isPost()) {
             Exception::customException('postRestricted', 'is_deleted');
+        }
+
+        if (isPut()) {
+            $permission = Role::permission()->get();
+            $method = strtoupper(httpMethod());
+
+            if (
+                $method === 'PUT'
+                && isset($permission[$method]) === TRUE
+                &&  checkBool($this->isDeleted)
+                && $permission['DELETE'] === FALSE
+            ){
+                Exception::internalPermissionException('putDeleteAuthorize');
+            }
         }
 
         return $this->isDeleted;

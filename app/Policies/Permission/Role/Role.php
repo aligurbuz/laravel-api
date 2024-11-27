@@ -13,7 +13,11 @@ trait Role
     public function putGateRoles(): bool
     {
         // You only need to have the admin role to create a user.
-        Exception::ifTrue(!RoleFacade::isAdmin(), 'roleUpdatePermission');
+        Exception::ifTrue(
+            !RoleFacade::isAdmin(),
+            'roleUpdatePermission',
+            'internalPermissionException'
+        );
 
         return true;
     }
@@ -24,7 +28,11 @@ trait Role
     public function postGateRoles(): bool
     {
         // You only need to have the admin role to create a user.
-        Exception::ifTrue(!RoleFacade::isAdmin(), 'roleCreatePermission');
+        Exception::ifTrue(
+            !RoleFacade::isAdmin(),
+            'roleCreatePermission',
+            'internalPermissionException'
+        );
 
         return true;
     }

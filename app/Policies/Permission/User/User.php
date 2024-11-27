@@ -15,7 +15,11 @@ trait User
     public function postUser(): bool
     {
         // You only need to have the admin role to create a user.
-        Exception::ifTrue(!Role::isAdmin(), 'userPostPermission');
+        Exception::ifTrue(
+            !Role::isAdmin(),
+            'userPostPermission',
+            'internalPermissionException'
+        );
 
         return true;
     }

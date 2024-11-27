@@ -11,7 +11,7 @@ trait GatePermission
      */
     public function putGatePermissions(): bool
     {
-        Exception::customException('updatePermission');
+        Exception::internalPermissionException('updatePermission');
 
         return true;
     }
@@ -21,7 +21,7 @@ trait GatePermission
      */
     public function postGatePermissions(): bool
     {
-        Exception::customException('createPermission');
+        Exception::internalPermissionException('createPermission');
 
         return true;
     }

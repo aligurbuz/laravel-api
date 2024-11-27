@@ -74,7 +74,12 @@ class Permission
         }
 
         return array_map(static function ($value) {
-            return checkBool($value);
+            if(is_int($value)){
+                return checkBool($value);
+            }
+
+            return $value;
+
         }, $role);
     }
 

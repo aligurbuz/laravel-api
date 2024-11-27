@@ -32,6 +32,7 @@ use App\Libs\AppContainer;
  * @method static permissionException($message = null, $keys = [], bool|string $notify = true)
  * @method static clientActionException($message = null, $keys = [], bool|string $notify = true)
  * @method static notFoundException($message = null, $keys = [], bool|string $notify = true)
+ * @method static internalPermissionException($message = null, $keys = [], bool|string $notify = true)
  * @package App\Exceptions
  */
 class Exception
@@ -81,12 +82,13 @@ class Exception
     /**
      * @param bool $condition
      * @param $exceptionKey
+     * @param string $permissionName
      * @return void
      */
-    public static function ifTrue(bool $condition, $exceptionKey): void
+    public static function ifTrue(bool $condition, $exceptionKey, string $permissionName = 'customException'): void
     {
         if ($condition) {
-            static::customException($exceptionKey);
+            static::$permissionName($exceptionKey);
         }
     }
 }
