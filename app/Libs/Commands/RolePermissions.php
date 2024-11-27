@@ -45,7 +45,7 @@ class RolePermissions extends Command
             $list[$counter]['http_get'] = $permissions['GET'];
             $list[$counter]['http_post'] = $permissions['POST'];
             $list[$counter]['http_put'] = $permissions['PUT'];
-            $list[$counter]['http_delete'] = $permissions['DELETE'];
+            $list[$counter]['is_delete_for_put'] = $permissions['DELETE'];
 
 
             ++$counter;
@@ -61,7 +61,7 @@ class RolePermissions extends Command
                 'http_get',
                 'http_post',
                 'http_put',
-                'http_delete'
+                'is_delete_for_put'
             ],
             $list,
             'box-double');
