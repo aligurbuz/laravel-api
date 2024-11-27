@@ -74,5 +74,8 @@ return [
     'updatePermission'              => 'No user can update permission data.',
     'createPermission'              => 'No user can create permission data.',
     'isAdministratorKey'            => 'isAdministrator key cannot be sent by any user ',
-    'putDeleteAuthorize'            => 'You do not have the permission to delete this data. Please contact your administrator.'
+    'putDeleteAuthorize'            => 'You do not have the permission to delete this data. Please contact your administrator.',
+    'invalidPermissionCode'         => 'invalid permission code. (code=:code)',
+    'invalidRoleFormatKey'          => 'role format key is invalid (key=:key code=:code)',
+    'invalidRoleFormatValue'        => 'role format value must be only 0 or 1 as integer (key=:key value=:value code=:code) '
 ];

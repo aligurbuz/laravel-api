@@ -25,4 +25,10 @@ interface PermissionInterface
      * @see Permission::checkEndpoint()
      */
     public function checkEndpoint(): bool;
+
+    /**
+     * @return array
+     * @see Permission::formatter()
+     */
+    public function formatter(): array;
 }

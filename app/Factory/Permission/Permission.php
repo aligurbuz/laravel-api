@@ -73,15 +73,23 @@ class Permission extends PermissionManager implements PermissionInterface
         $list = [];
 
         foreach ($permissions as $permission) {
-            $list[($permission['permission_code'] ?? 0)] = [
-                'GET' => 1,
-                'POST' => 1,
-                'PUT' => 1,
-                'DELETE' => 1,
-                'EXTRA' => []
-            ];
+            $list[($permission['permission_code'] ?? 0)] = $this->formatter();
         }
 
         return $list;
+    }
+
+    /**
+     * @return array
+     */
+    public function formatter(): array
+    {
+        return [
+            'GET' => 1,
+            'POST' => 1,
+            'PUT' => 1,
+            'DELETE' => 1,
+            'EXTRA' => []
+        ];
     }
 }
