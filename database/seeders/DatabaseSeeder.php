@@ -42,7 +42,7 @@ class DatabaseSeeder extends Seeder
 
         DB::table('roles')->insert($roles);
 
-        Artisan::call('permissions');
+        Artisan::call('permission');
         Artisan::call('give:permission', ['roleCode' => $adminRoleCode]);
     }
 }
