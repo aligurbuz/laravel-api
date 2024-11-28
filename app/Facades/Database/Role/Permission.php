@@ -2,6 +2,7 @@
 
 namespace App\Facades\Database\Role;
 
+use App\Factory\Factory;
 use App\Libs\AppContainer;
 use App\Repositories\Repository;
 
@@ -67,6 +68,10 @@ class Permission
 
         $role = $data['roles'] ?? [];
 
+        $formatter = Factory::permission()->roleFormatter();
+
+        $role = $role + $formatter;
+
         if (!is_null($this->endpoint)) {
             $role = AppContainer::use('endpointPermission_' . $this->endpoint, function () use ($role) {
                 return $role[$this->code()] ?? [];
@@ -74,7 +79,7 @@ class Permission
         }
 
         return array_map(static function ($value) {
-            if(is_int($value)){
+            if (is_int($value)) {
                 return checkBool($value);
             }
 

@@ -14,7 +14,7 @@ class PermissionCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'permissions';
+    protected $signature = 'permission';
 
     /**
      * The console command description.
@@ -22,25 +22,6 @@ class PermissionCommand extends Command
      * @var string
      */
     protected $description = 'Command description';
-
-    /**
-     * @var array|string[]
-     */
-    protected array $forbiddenRoutes = [
-        'login',
-        'logout',
-        'user',
-        'register',
-        'localizations',
-        'localizations/language',
-        'gate/roles',
-        'gate/permissions',
-        'countries',
-        'countries/cities',
-        'countries/districts',
-        'currencies',
-        'logger'
-    ];
 
     /**
      * Create a new command instance.
@@ -59,20 +40,7 @@ class PermissionCommand extends Command
      */
     public function handle()
     {
-        $routes = collect(Route::getRoutes())->map(function ($route) {
-            return $route->uri();
-        })->toArray();
-
-        $list = [];
-
-        foreach ($routes as $key => $route) {
-            if (Str::startsWith($route, 'api/')) {
-                $endpoint = str_replace('api/', '', $route);
-                if (!in_array($endpoint, $list, true) && !in_array($endpoint, $this->forbiddenRoutes, true)) {
-                    $list[] = $endpoint;
-                }
-            }
-        }
+        $list = \App\Libs\Route::get();
 
         if (count($list)) {
             DB::table('permissions')->delete();

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Repositories\Resources\Gate\Resource;
 
+use App\Factory\Factory;
+
 class RolesResource
 {
     /**
@@ -14,6 +16,8 @@ class RolesResource
      */
     public function handle(array $data = []): array
     {
+        $data['roles'] = $data['roles'] + Factory::permission()->roleFormatter();
+
         return $data;
     }
 
