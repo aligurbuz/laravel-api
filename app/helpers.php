@@ -20,6 +20,7 @@ use App\Repositories\EloquentRepository;
 use App\Repositories\Repository;
 use Faker\Generator;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
@@ -827,6 +828,7 @@ if (!function_exists('pushMigration')) {
                 \git()->commit('migration for ' . $model . ' has been created');
                 \service()->create($service, $directory, $model, $routeFile);
                 \git()->commit('service for ' . $service . ' has been created');
+                Artisan::call('permissions');
             }
         }
     }
