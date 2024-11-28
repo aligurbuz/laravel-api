@@ -828,7 +828,7 @@ if (!function_exists('pushMigration')) {
                 \git()->commit('migration for ' . $model . ' has been created');
                 \service()->create($service, $directory, $model, $routeFile);
                 \git()->commit('service for ' . $service . ' has been created');
-                Artisan::call('permission');
+                Artisan::call('permissions');
             }
         }
     }
