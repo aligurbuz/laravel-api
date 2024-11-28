@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace App\Repositories\Resources\Gate\Promoters\Roles;
 
-use App\Factory\Permission\Permission;
+use App\Factory\Factory;
 use App\Models\Entities\Role;
-use App\Repositories\Repository;
 
 trait RolesPromoterTrait
 {
@@ -39,7 +38,7 @@ trait RolesPromoterTrait
     public function appends(): array
     {
         return [
-            'permissions' => (new Permission())->get()
+            'permissions' => Factory::permission()->get()
         ];
     }
 }
