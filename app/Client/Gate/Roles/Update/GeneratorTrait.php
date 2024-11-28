@@ -67,9 +67,7 @@ trait GeneratorTrait
                 }
             }
 
-            if (isset($userRole['roles'][$permissionCode])) {
-                $userRole['roles'][$permissionCode] = array_merge($formatter, $permissions);
-            }
+            $userRole['roles'][$permissionCode] = array_merge($formatter, $permissions);
         }
 
 
