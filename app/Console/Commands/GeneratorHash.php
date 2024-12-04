@@ -4,7 +4,6 @@ namespace App\Console\Commands;
 
 use App\Libs\HashGenerator;
 use Illuminate\Console\Command;
-use phpseclib3\Crypt\Hash;
 
 class GeneratorHash extends Command
 {
@@ -25,10 +24,13 @@ class GeneratorHash extends Command
     /**
      * Execute the console command.
      *
-     * @return int
+     * @return void
      */
-    public function handle()
+    public function handle(): void
     {
-        $this->output->success((new HashGenerator())->encode(time()));
+        $hash = new HashGenerator();
+        $time = (string)time();
+
+        $this->output->success($hash->encode($time));
     }
 }
