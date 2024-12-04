@@ -26,8 +26,6 @@ class Authenticate extends Middleware
      */
     public function handle($request, Closure $next, ...$guards): mixed
     {
-        $this->fakeAuth();
-
         if (config('app.authenticate') === true) {
             $this->authenticate($request, $guards);
         }
@@ -63,17 +61,6 @@ class Authenticate extends Middleware
     {
         if (!$request->expectsJson()) {
             Exception::authenticateException();
-        }
-    }
-
-    private function fakeAuth(): void
-    {
-        $fakeAuth = \request()->headers->get('fakeAuth');
-
-        if(!is_null($fakeAuth) && ApiKey::isAdmin()){
-            $generator = new HashGenerator();
-            $id = $generator->decode($fakeAuth);
-            Auth::loginUsingId($id);
         }
     }
 }
