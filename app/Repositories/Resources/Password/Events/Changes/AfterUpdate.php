@@ -19,9 +19,12 @@ trait AfterUpdate
     public function eventFireAfterUpdate(array $result = [], array $clientData = []): void
     {
         // After everything is completed, we change the user's password with email control.
-        $userPasswordUpdate = Guard::repository()->instance(false)->where('email', $result['email'])->update(['password' => $result['password']]);
+        $userPasswordUpdate = Guard::repository()
+            ->instance(false)
+            ->where('email', $result['email'])
+            ->update(['password' => $result['password']]);
 
-        if($userPasswordUpdate===0){
+        if ($userPasswordUpdate === 0) {
             Exception::customException('password_reset_fail', ['email' => $result['email']]);
         }
     }
