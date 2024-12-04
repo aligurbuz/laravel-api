@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Libs;
 
 use App\Exceptions\Exception;
+use App\Facades\Database\Authenticate\Authenticate;
 use Illuminate\Support\Facades\Hash;
 
 class HashGenerator
@@ -40,14 +41,14 @@ class HashGenerator
             $result .= $char;
         }
 
-        if($this->recursive){
+        if ($this->recursive) {
             $this->recursive = false;
             return base64_encode($result);
         }
 
         $this->recursive = true;
 
-        return base64_encode($result) . ':::' . $this->encode(Hash::make($data));
+        return base64_encode($result) . $this->separateHashing() . $this->encode(Hash::make($data));
     }
 
     /**
@@ -80,7 +81,7 @@ class HashGenerator
      */
     private function resolve(string $string): array
     {
-        $explode = explode(':::', $string);
+        $explode = explode($this->separateHashing(), $string);
         $result = '';
         $string = base64_decode($explode[0]);
 
@@ -91,5 +92,15 @@ class HashGenerator
             $result .= $char;
         }
         return array($explode, $result);
+    }
+
+    /**
+     * @return string
+     */
+    private function separateHashing(): string
+    {
+        $separateKey = Authenticate::code() !== 0 ? Authenticate::code() : $this->hashKey;
+
+        return md5($separateKey);
     }
 }
