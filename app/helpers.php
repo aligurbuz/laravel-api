@@ -563,6 +563,41 @@ if (!function_exists('makeIfProduction')) {
     }
 }
 
+if (!function_exists('isArraySame')) {
+
+    /**
+     * @param $array1
+     * @param $array2
+     * @return bool
+     */
+    function isArraySame($array1, $array2): bool
+    {
+        if (gettype($array1) !== gettype($array2)) {
+            return false;
+        }
+
+        if (is_array($array1) && is_array($array2)) {
+            if (count($array1) !== count($array2)) {
+                return false;
+            }
+
+            foreach ($array1 as $key => $value) {
+                if (!array_key_exists($key, $array2)) {
+                    return false;
+                }
+
+                if (!isArraySame($value, $array2[$key])) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        return $array1 === $array2;
+    }
+}
+
 if (!function_exists('memory')) {
 
     /**
