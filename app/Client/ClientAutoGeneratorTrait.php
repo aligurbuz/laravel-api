@@ -9,6 +9,7 @@ use App\Facades\Database\Authenticate\ApiKey;
 use App\Facades\Database\Authenticate\Authenticate;
 use App\Facades\Database\Role\Role;
 use App\Factory\Factory;
+use App\Libs\ApiKeyManager;
 use App\Libs\AppContainer;
 use App\Libs\Date;
 
@@ -37,6 +38,8 @@ trait ClientAutoGeneratorTrait
         'codeProcess',
         //'isDefaultFirstRegister',
         'stopRepositoryHitter',
+        'api_key',
+        'authenticate'
     ];
 
     /**
@@ -56,6 +59,8 @@ trait ClientAutoGeneratorTrait
         'codeProcess',
         //'isDefaultFirstRegister',
         'stopRepositoryHitter',
+        'api_key',
+        'authenticate'
     ];
 
     /**
@@ -266,5 +271,30 @@ trait ClientAutoGeneratorTrait
                 }
             }
         }
+    }
+
+    /**
+     * takes api key  for client side
+     *
+     * @return ?string
+     */
+    public function apiKeyAutoGenerator(): ?string
+    {
+        return $this->ensureColumnExists('api_key', function () {
+            return ApiKey::who();
+        });
+
+    }
+
+    /**
+     * takes authenticate code  for client side
+     *
+     * @return ?int
+     */
+    public function authenticateAutoGenerator(): ?int
+    {
+        return $this->ensureColumnExists('authenticate', function () {
+            return Authenticate::code();
+        });
     }
 }

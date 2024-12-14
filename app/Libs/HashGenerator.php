@@ -101,6 +101,6 @@ class HashGenerator
     {
         $separateKey = Authenticate::code() !== 0 ? Authenticate::code() : $this->hashKey;
 
-        return md5($separateKey);
+        return md5((string)$separateKey);
     }
 }

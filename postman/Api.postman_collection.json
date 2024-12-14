@@ -2862,58 +2862,6 @@
                             "name": "Support/Crypt",
                             "response": [],
                             "request": {
-                                "method": "GET",
-                                "header": [
-                                    {
-                                        "key": "Authorization",
-                                        "value": "Bearer {{bearerToken}}",
-                                        "type": "text",
-                                        "description": "It is the token value received after the user logs in.(must)"
-                                    },
-                                    {
-                                        "key": "Apikey",
-                                        "value": "{{apiKey}}",
-                                        "type": "text",
-                                        "description": "It is a hash value given to you by the system provider.(must)"
-                                    },
-                                    {
-                                        "key": "Content-Type",
-                                        "value": "{{contentType}}",
-                                        "type": "text",
-                                        "description": "You can specify the return types for the returned response like json or xml.(not must)"
-                                    },
-                                    {
-                                        "key": "Accept-Language",
-                                        "value": "{{acceptLanguage}}",
-                                        "type": "text",
-                                        "description": "You can select the language option for the returned string values.(must)"
-                                    }
-                                ],
-                                "body": [],
-                                "url": {
-                                    "raw": "{{baseUrl}}/support/crypt",
-                                    "host": [
-                                        "{{baseUrl}}"
-                                    ],
-                                    "path": [
-                                        "support",
-                                        "crypt"
-                                    ],
-                                    "query": [
-                                        {
-                                            "key": "range",
-                                            "value": "desc",
-                                            "description": "",
-                                            "disabled": true
-                                        }
-                                    ]
-                                }
-                            }
-                        },
-                        {
-                            "name": "Support/Crypt",
-                            "response": [],
-                            "request": {
                                 "method": "POST",
                                 "header": [
                                     {
@@ -2943,60 +2891,7 @@
                                 ],
                                 "body": {
                                     "mode": "raw",
-                                    "raw": "{\"api_key\":\"string\",\"authenticate\":\"integer\",\"body\":\"array\"}",
-                                    "options": {
-                                        "raw": {
-                                            "language": "json"
-                                        }
-                                    }
-                                },
-                                "url": {
-                                    "raw": "{{baseUrl}}/support/crypt",
-                                    "host": [
-                                        "{{baseUrl}}"
-                                    ],
-                                    "path": [
-                                        "support",
-                                        "crypt"
-                                    ],
-                                    "query": []
-                                }
-                            }
-                        },
-                        {
-                            "name": "Support/Crypt",
-                            "response": [],
-                            "request": {
-                                "method": "PUT",
-                                "header": [
-                                    {
-                                        "key": "Authorization",
-                                        "value": "Bearer {{bearerToken}}",
-                                        "type": "text",
-                                        "description": "It is the token value received after the user logs in.(must)"
-                                    },
-                                    {
-                                        "key": "Apikey",
-                                        "value": "{{apiKey}}",
-                                        "type": "text",
-                                        "description": "It is a hash value given to you by the system provider.(must)"
-                                    },
-                                    {
-                                        "key": "Content-Type",
-                                        "value": "{{contentType}}",
-                                        "type": "text",
-                                        "description": "You can specify the return types for the returned response like json or xml.(not must)"
-                                    },
-                                    {
-                                        "key": "Accept-Language",
-                                        "value": "{{acceptLanguage}}",
-                                        "type": "text",
-                                        "description": "You can select the language option for the returned string values.(must)"
-                                    }
-                                ],
-                                "body": {
-                                    "mode": "raw",
-                                    "raw": "{\"crypt_code\":\"0\",\"api_key\":\"string\",\"authenticate\":\"integer\",\"body\":\"array\",\"is_deleted\":\"0\",\"status\":\"1\"}",
+                                    "raw": "{\n    \"body\": {\n        \"a\": 1,\n        \"b\": 2\n    }\n}",
                                     "options": {
                                         "raw": {
                                             "language": "json"

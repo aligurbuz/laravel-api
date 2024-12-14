@@ -23,5 +23,10 @@
         "body": {
             "raw": "{\n    \"localization_code\": 111111,\n    \"values\": [\n        {\n            \"name\" : \"newName\"\n        }\n    ]\n}"
         }
+    },
+    "POST_Support/Crypt": {
+        "body": {
+            "raw": "{\n    \"body\": {\n        \"a\": 1,\n        \"b\": 2\n    }\n}"
+        }
     }
 }
