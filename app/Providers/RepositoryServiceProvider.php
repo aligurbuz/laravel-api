@@ -49,6 +49,8 @@ use App\Repositories\Resources\User\Contracts\UserRepositoryContract;
 use App\Repositories\Resources\User\PhotosRepository;
 use App\Repositories\Resources\User\UserRepository;
 use Illuminate\Support\ServiceProvider;
+use App\Repositories\Resources\Support\Contracts\SupportCryptRepositoryContract;
+use App\Repositories\Resources\Support\CryptRepository as SupportCryptRepository;
 use App\Repositories\Resources\Localizations\Contracts\LocalizationsFrontRepositoryContract;
 use App\Repositories\Resources\Localizations\FrontRepository as LocalizationsFrontRepository;
 
@@ -86,6 +88,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(PasswordChangesRepositoryContract::class, PasswordChangesRepository::class);
         $this->app->bind(DefinitionGendersRepositoryContract::class, DefinitionGendersRepository::class);
         $this->app->bind(LocalizationsFrontRepositoryContract::class,LocalizationsFrontRepository::class);
+        $this->app->bind(SupportCryptRepositoryContract::class,SupportCryptRepository::class);
         //newBind
     }
 

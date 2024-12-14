@@ -94,5 +94,9 @@
     "FrontLang": {
         "controller": "Front",
         "dir": "Localizations"
+    },
+    "Crypt": {
+        "controller": "Crypt",
+        "dir": "Support"
     }
 }

@@ -67,5 +67,10 @@
         "get": "App\\Client\\Localizations\\Front\\Get\\GetClient",
         "create": "App\\Client\\Localizations\\Front\\Create\\CreateClient",
         "update": "App\\Client\\Localizations\\Front\\Update\\UpdateClient"
+    },
+    "Crypt": {
+        "get": "App\\Client\\Support\\Crypt\\Get\\GetClient",
+        "create": "App\\Client\\Support\\Crypt\\Create\\CreateClient",
+        "update": "App\\Client\\Support\\Crypt\\Update\\UpdateClient"
     }
 }

@@ -6,6 +6,15 @@ class EntityMap
 {
     /**
      * @param object $query
+     * @return Crypt
+     */
+    public function crypt(object $query) : Crypt
+    {
+        return new Crypt($query);
+    }
+    
+    /**
+     * @param object $query
      * @return FrontLang
      */
     public function frontLang(object $query) : FrontLang

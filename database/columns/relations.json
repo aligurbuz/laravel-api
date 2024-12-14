@@ -6,6 +6,7 @@
         "ApiKey",
         "City",
         "Country",
+        "Crypt",
         "Currency",
         "Customer",
         "CustomerAge",
@@ -42,6 +43,9 @@
     "Country": [
         "City",
         "District",
+        "Localization"
+    ],
+    "Crypt": [
         "Localization"
     ],
     "Currency": [

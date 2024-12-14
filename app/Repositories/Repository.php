@@ -27,6 +27,7 @@ use App\Repositories\Resources\Timezones\Contracts\TimezonesRepositoryContract;
 use App\Repositories\Resources\User\Contracts\PhotosRepositoryContract;
 use App\Repositories\Resources\User\Contracts\UserActivationsRepositoryContract;
 use App\Repositories\Resources\User\Contracts\UserRepositoryContract;
+use App\Repositories\Resources\Support\Contracts\SupportCryptRepositoryContract;
 use App\Repositories\Resources\Localizations\Contracts\LocalizationsFrontRepositoryContract;
 
 /**
@@ -35,6 +36,16 @@ use App\Repositories\Resources\Localizations\Contracts\LocalizationsFrontReposit
  */
 class Repository
 {
+    /**
+     * get crypt repository instance
+     *
+     * @return SupportCryptRepositoryContract
+     */
+    public static function crypt() : SupportCryptRepositoryContract
+    {
+        return app()->get(SupportCryptRepositoryContract::class);
+    }
+    
     /**
      * get frontLang repository instance
      *

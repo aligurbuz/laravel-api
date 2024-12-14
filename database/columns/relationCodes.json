@@ -16,6 +16,9 @@
     "phone_code": [
         "Country"
     ],
+    "crypt_code": [
+        "Crypt"
+    ],
     "currency_code": [
         "Currency"
     ],

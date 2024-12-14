@@ -146,5 +146,17 @@
     "localizations.front.update": {
         "class": "App\\Client\\Localizations\\Front\\Update\\UpdateClient",
         "model": "frontLang"
+    },
+    "support.crypt.get": {
+        "class": "App\\Client\\Support\\Crypt\\Get\\GetClient",
+        "model": "crypt"
+    },
+    "support.crypt.create": {
+        "class": "App\\Client\\Support\\Crypt\\Create\\CreateClient",
+        "model": "crypt"
+    },
+    "support.crypt.update": {
+        "class": "App\\Client\\Support\\Crypt\\Update\\UpdateClient",
+        "model": "crypt"
     }
 }
