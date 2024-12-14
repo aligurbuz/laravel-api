@@ -92,8 +92,6 @@ class ClientBodyProcess extends ClientVariableProcess
                     Exception::clientArrayLimiterException('client data must have a maximum of ' . $arrayLimiter . ' record.');
                 }
 
-                $this->typeValidator($value);
-
                 AppContainer::setWithTerminating('clientDataStreams', $value);
 
                 $generatorProcess = array_merge(
@@ -104,6 +102,8 @@ class ClientBodyProcess extends ClientVariableProcess
                 $generatorProcess = Collection::make($generatorProcess)->filter(function ($value, $key) {
                     return $value !== null;
                 })->toArray();
+
+                $this->typeValidator($generatorProcess);
 
                 //$this->variableProcess($generatorProcess, false);
                 $this->variableProcess(array_merge($generatorProcess, $this->client->getDataStream()), false);
