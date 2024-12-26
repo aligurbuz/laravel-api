@@ -56,7 +56,7 @@ class Response extends ResponseSupport
             'instructions' => AppContainer::get(Constants::responseFormatterSupplement)
         ];
 
-        if (isAuthenticate() && ApiKey::isAdmin()) {
+        if (isAuthenticate() && ApiKey::isAdmin() && AppContainer::get('worksPermission') === true) {
             $standard['permission'] = Role::permission(endpoint())->get();
         }
 

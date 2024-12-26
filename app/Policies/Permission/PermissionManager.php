@@ -99,6 +99,8 @@ abstract class PermissionManager
      */
     public function __call($name, $arguments): bool
     {
+        AppContainer::set('worksPermission',true);
+
         $standardName = ucfirst($name);
         $withMethod = httpMethod() . $standardName;
 
