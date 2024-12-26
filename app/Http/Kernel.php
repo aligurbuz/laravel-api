@@ -2,7 +2,6 @@
 
 namespace App\Http;
 
-use App\Http\Middleware\AcceptLanguage;
 use App\Http\Middleware\AccessLogger;
 use App\Http\Middleware\Authenticate;
 use App\Http\Middleware\EncryptCookies;
@@ -91,7 +90,6 @@ class Kernel extends HttpKernel
         'accessLogger' => AccessLogger::class,
         'response' => Response::class,
         //'contentType' => ContentType::class,
-        'acceptLanguage' => AcceptLanguage::class,
         'superAdmin' => SuperAdmin::class,
         'general' => GeneralMiddleware::class,
     ];

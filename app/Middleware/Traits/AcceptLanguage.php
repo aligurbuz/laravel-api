@@ -1,27 +1,26 @@
 <?php
 
-namespace App\Http\Middleware;
+namespace App\Middleware\Traits;
 
 use App\Constants;
 use App\Exceptions\Exception;
 use App\Facades\Database\Language\Language;
 use App\Libs\AppContainer;
-use Closure;
 use Illuminate\Http\Request;
 
-class AcceptLanguage
+trait AcceptLanguage
 {
     /**
      * Handle an incoming request.
      *
-     * @param Request $request
-     * @param Closure $next
-     * @return mixed
+     * @return bool
      */
-    public function handle(Request $request, Closure $next): mixed
+    protected function acceptLanguage(): bool
     {
+        $request = \request();
+
         if (config('app.language') === false || endpoint() === 'localizations') {
-            return $next($request);
+            return true;
         }
 
         // It checks the accept-language value sent
@@ -35,7 +34,7 @@ class AcceptLanguage
         //we assign the language_code value as the application container value.
         AppContainer::set(Constants::acceptLanguage, $repositoryCode);
 
-        return $next($request);
+        return true;
     }
 
     /**
