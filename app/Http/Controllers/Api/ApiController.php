@@ -23,7 +23,6 @@ class ApiController extends BaseController
      * @var array
      */
     protected array $middlewares = [
-        'permission',
         'general',
         'acceptLanguage',
         'accessLogger',

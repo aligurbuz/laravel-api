@@ -1,17 +1,13 @@
 <?php
 
-namespace App\Http\Middleware;
+namespace App\Middleware\Traits;
 
 use App\Constants;
-use App\Exceptions\Custom\CustomException;
 use App\Exceptions\Exception;
-use App\Facades\Database\Role\Role;
 use App\Libs\AppContainer;
 use App\Policies\Permission\Permission as PermissionFacade;
-use Closure;
-use Illuminate\Http\Request;
 
-class Permission
+trait Permission
 {
     /**
      * @var array|string[]
@@ -23,13 +19,10 @@ class Permission
     /**
      * Handle an incoming request.
      *
-     * @param Request $request
-     * @param Closure $next
-     * @return mixed
+     * @return void
      *
-     * @throws CustomException
      */
-    public function handle(Request $request, Closure $next): mixed
+    protected function permission(): void
     {
         if ($this->isPermissionFail()) {
             $httpPermissionMessage = httpMethod() . 'PermissionException';
@@ -37,13 +30,11 @@ class Permission
             // if the permissionException value has in container,
             // it means that we will give a special exception message.
             if (AppContainer::has($httpPermissionMessage)) {
-                return throw new CustomException(AppContainer::get($httpPermissionMessage), Constants::error403);
+                Exception::customException(AppContainer::get($httpPermissionMessage), Constants::error403);
             }
 
-            return Exception::permissionException('', endpoint());
+            Exception::permissionException('', endpoint());
         }
-
-        return $next($request);
     }
 
     /**

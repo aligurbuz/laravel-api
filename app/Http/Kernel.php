@@ -7,7 +7,6 @@ use App\Http\Middleware\AccessLogger;
 use App\Http\Middleware\Authenticate;
 use App\Http\Middleware\EncryptCookies;
 use App\Http\Middleware\GeneralMiddleware;
-use App\Http\Middleware\Permission;
 use App\Http\Middleware\PreventRequestsDuringMaintenance;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Middleware\Response;
@@ -94,7 +93,6 @@ class Kernel extends HttpKernel
         //'contentType' => ContentType::class,
         'acceptLanguage' => AcceptLanguage::class,
         'superAdmin' => SuperAdmin::class,
-        'permission' => Permission::class,
         'general' => GeneralMiddleware::class,
     ];
 }
