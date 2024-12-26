@@ -23,7 +23,9 @@ abstract class MiddlewareManager
 
         foreach ($this->middlewares as $middleware) {
             if (!in_array($endpoint, $this->except, true)) {
-                $this->$middleware($endpoint);
+                if (method_exists($this, $middleware)) {
+                    $this->$middleware($endpoint);
+                }
             }
         }
     }
