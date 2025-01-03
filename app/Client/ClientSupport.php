@@ -117,6 +117,7 @@ trait ClientSupport
     protected function password(): ?string
     {
         if (!is_null($this->password)) {
+            AppContainer::set('originalPassword', $this->password);
             return Hash::make($this->password);
         }
 
@@ -141,9 +142,9 @@ trait ClientSupport
             if (
                 $method === 'PUT'
                 && isset($permission[$method]) === TRUE
-                &&  checkBool($this->isDeleted)
+                && checkBool($this->isDeleted)
                 && $permission['DELETE'] === FALSE
-            ){
+            ) {
                 Exception::internalPermissionException('putDeleteAuthorize');
             }
         }

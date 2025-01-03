@@ -21,6 +21,6 @@ Route::prefix('user')->group(function(){
     Route::put('/activations', [ActivationsController::class,'update']);
 
     Route::get('/password', [PasswordController::class,'get']);
-    Route::post('/password', [PasswordController::class,'create']);
-    Route::put('/password', [PasswordController::class,'update']);
+    //Route::post('/password', [PasswordController::class,'create']);
+    //Route::put('/password', [PasswordController::class,'update']);
 });

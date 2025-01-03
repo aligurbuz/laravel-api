@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 declare(strict_types=1);
 
@@ -15,6 +15,6 @@ trait AfterCreate
 	 */
 	public function eventFireAfterCreate(array $result = [], array $clientData = []): void
 	{
-		//
+
 	}
 }

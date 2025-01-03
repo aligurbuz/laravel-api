@@ -1820,4 +1820,12 @@ class EloquentRepository
             $this->queue($name, $callback);
         });
     }
+
+    /**
+     * @return mixed
+     */
+    public function originalPassword(): mixed
+    {
+        return AppContainer::get('originalPassword');
+    }
 }

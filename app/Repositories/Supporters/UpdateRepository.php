@@ -40,6 +40,8 @@ trait UpdateRepository
             Exception::customException('clientNormalDataException');
         }
 
+        $updateClientData = !isset($updateClientData[0]) ? [$updateClientData] : $updateClientData;
+
         foreach ($updateClientData as $dataKey => $data) {
             AppContainer::setWithTerminating('clientRepositoryBody', $data);
             $baseQuery = $this->getBaseQueryForUpdate($data, $id, (int)($data[$this->getModelCode()] ?? 0));
@@ -90,7 +92,7 @@ trait UpdateRepository
                     );
                 }
 
-                if ($update == '0') {
+                if ($update == '0' && isset($oldData[0])) {
                     if(method_exists($this,'updateFailed')){
                         $this->updateFailed();
                     }
@@ -98,8 +100,10 @@ trait UpdateRepository
                     return Exception::updateException('', ['model' => $this->getModelName()]);
                 }
 
-                $this->updateEventDispatcher($oldData, $data);
-                $this->addPostQueryDispatcher($data, $dataKey);
+                if(isset($oldData[0])){
+                    $this->updateEventDispatcher($oldData, $data);
+                    $this->addPostQueryDispatcher($data, $dataKey);
+                }
 
             } catch (\Exception $exception) {
                 return $this->sqlException($exception);

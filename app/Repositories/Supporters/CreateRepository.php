@@ -56,6 +56,11 @@ trait CreateRepository
             $clientData = isset($clientData[0]) ? $clientData : [$clientData];
 
             foreach ($clientData as $clientDataKey => $value) {
+                $modelCode = $this->getModelCode();
+                if(!isset($value[$modelCode])){
+                    $value[$modelCode] = generateHash();
+                }
+
                 AppContainer::setWithTerminating('clientRepositoryBody', $value);
 
                 if ($this->getEventStatus() && method_exists($this, 'eventFireBeforeCreate')) {

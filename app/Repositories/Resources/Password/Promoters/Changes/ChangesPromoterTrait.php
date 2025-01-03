@@ -75,10 +75,10 @@ trait ChangesPromoterTrait
 
         // we send the hash value to
         // the phone number of the user for password change.
-        Sms::publish([
-            'phone' => $userPhone,
-            'hash' => $hash
-        ], 'passwordChange');
+//        Sms::publish([
+//            'phone' => $userPhone,
+//            'hash' => $hash
+//        ], 'passwordChange');
     }
 
     /**
@@ -94,10 +94,10 @@ trait ChangesPromoterTrait
     {
         // we send the hash value to
         // the email address of the user for password change.
-        Email::publish([
-            'email' => User::email(),
-            'hash' => $hash
-        ],'passwordReset');
+//        Email::publish([
+//            'email' => User::email(),
+//            'hash' => $hash
+//        ],'passwordReset');
     }
 
     /**

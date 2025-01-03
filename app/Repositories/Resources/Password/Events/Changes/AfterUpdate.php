@@ -20,7 +20,7 @@ trait AfterUpdate
     {
         // After everything is completed, we change the user's password with email control.
         $userPasswordUpdate = Guard::repository()
-            ->instance(false)
+            ->withoutGlobalScope()
             ->where('email', $result['email'])
             ->update(['password' => $result['password']]);
 
