@@ -33,7 +33,8 @@ return [
         'registration' => ['GET','PUT'],
         'support/excel' => ['GET','PUT'],
         'support/crypt' => ['GET','PUT'],
-        'gate/permissions' => ['POST','PUT']
+        'gate/permissions' => ['POST','PUT'],
+        'user/password' => ['POST','PUT']
     ],
     'exceptMethodKeys' => [
         'password/changes' => [
