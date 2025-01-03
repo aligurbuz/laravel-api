@@ -66,7 +66,7 @@ class Client extends ClientManager
         }
 
         AppContainer::setWithTerminating('clientInstance', $this);
-        AppContainer::setWithTerminating('endpointId',md5($this->getModelName()));
+        AppContainer::setWithTerminating('endpointId',encodeString($this->getModelName()));
     }
 
     /**

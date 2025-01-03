@@ -1,8 +1,10 @@
-<?php 
+<?php
 
 declare(strict_types=1);
 
 namespace App\Repositories\Resources\Support\Events\Dummy;
+
+use App\Repositories\Repository;
 
 trait AfterCreate
 {
@@ -11,10 +13,12 @@ trait AfterCreate
 	 *
 	 * @param array $result
 	 * @param array $clientData
-	 * @return void
+	 * @return array
 	 */
-	public function eventFireAfterCreate(array $result = [], array $clientData = []): void
+	public function eventFireAfterCreate(array $result = [], array $clientData = []): array
 	{
-		//
+		$model = decodeString($result['endpoint_id']);
+
+        return Repository::$model()->dummy();
 	}
 }

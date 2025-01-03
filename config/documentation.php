@@ -34,7 +34,8 @@ return [
         'support/excel' => ['GET','PUT'],
         'support/crypt' => ['GET','PUT'],
         'gate/permissions' => ['POST','PUT'],
-        'user/password' => ['POST','PUT']
+        'user/password' => ['POST','PUT'],
+        'support/dummy' => ['GET','PUT']
     ],
     'exceptMethodKeys' => [
         'password/changes' => [
