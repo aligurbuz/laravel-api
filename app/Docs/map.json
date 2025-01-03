@@ -19,7 +19,7 @@
         "/Users/teamprocure/Desktop/apps/api/app/Docs/Endpoints/Customer/Customer.json"
     ],
     "keys": {
-        "/var/www/html/app/api/app/Docs/Endpoints/User/User.json": 2,
+        "/var/www/html/app/api/app/Docs/Endpoints/User/User.json": 3,
         "/var/www/html/app/api/app/Docs/Endpoints/Countries/Countries.json": 2,
         "/var/www/html/app/api/app/Docs/Endpoints/Localizations/Localizations.json": 2,
         "/var/www/html/app/api/app/Docs/Endpoints/SuperAdmins/SuperAdmins.json": 0,
@@ -60,6 +60,7 @@
         "Changes_Password_passwordChange": 0,
         "Genders_Definition_gender": 0,
         "Front_Localizations_frontLang": 2,
-        "Crypt_Support_crypt": 1
+        "Crypt_Support_crypt": 1,
+        "Password_User_userPassword": 3
     }
 }

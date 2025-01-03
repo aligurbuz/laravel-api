@@ -98,5 +98,9 @@
     "Crypt": {
         "controller": "Crypt",
         "dir": "Support"
+    },
+    "UserPassword": {
+        "controller": "Password",
+        "dir": "User"
     }
 }

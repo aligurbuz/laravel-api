@@ -6,6 +6,15 @@ class EntityMap
 {
     /**
      * @param object $query
+     * @return UserPassword
+     */
+    public function userPassword(object $query) : UserPassword
+    {
+        return new UserPassword($query);
+    }
+    
+    /**
+     * @param object $query
      * @return Crypt
      */
     public function crypt(object $query) : Crypt

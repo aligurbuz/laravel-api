@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\User\PasswordController;
 use App\Http\Controllers\Api\User\ActivationsController;
 use App\Http\Controllers\Api\User\PhotosController;
 use App\Http\Controllers\Api\User\UserController;
@@ -18,4 +19,8 @@ Route::prefix('user')->group(function(){
     Route::get('/activations', [ActivationsController::class,'get']);
     Route::post('/activations', [ActivationsController::class,'create']);
     Route::put('/activations', [ActivationsController::class,'update']);
+
+    Route::get('/password', [PasswordController::class,'get']);
+    Route::post('/password', [PasswordController::class,'create']);
+    Route::put('/password', [PasswordController::class,'update']);
 });

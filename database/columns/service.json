@@ -93,5 +93,10 @@
         "controller": "Crypt",
         "dir": "Support",
         "model": "Crypt"
+    },
+    "User/password": {
+        "controller": "Password",
+        "dir": "User",
+        "model": "UserPassword"
     }
 }

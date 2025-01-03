@@ -72,5 +72,10 @@
         "get": "App\\Client\\Support\\Crypt\\Get\\GetClient",
         "create": "App\\Client\\Support\\Crypt\\Create\\CreateClient",
         "update": "App\\Client\\Support\\Crypt\\Update\\UpdateClient"
+    },
+    "UserPassword": {
+        "get": "App\\Client\\User\\Password\\Get\\GetClient",
+        "create": "App\\Client\\User\\Password\\Create\\CreateClient",
+        "update": "App\\Client\\User\\Password\\Update\\UpdateClient"
     }
 }

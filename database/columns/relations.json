@@ -28,6 +28,7 @@
         "Timezone",
         "User",
         "UserActivation",
+        "UserPassword",
         "UserPhoto"
     ],
     "City": [
@@ -112,7 +113,8 @@
         "UserActivation",
         "UserPhoto",
         "Role",
-        "Localization"
+        "Localization",
+        "UserPassword"
     ],
     "TableChange": [
         "Localization"
@@ -125,6 +127,10 @@
         "Localization"
     ],
     "UserPhoto": [
+        "User",
+        "Localization"
+    ],
+    "UserPassword": [
         "User",
         "Localization"
     ]

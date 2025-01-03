@@ -158,5 +158,17 @@
     "support.crypt.update": {
         "class": "App\\Client\\Support\\Crypt\\Update\\UpdateClient",
         "model": "crypt"
+    },
+    "user.password.get": {
+        "class": "App\\Client\\User\\Password\\Get\\GetClient",
+        "model": "userPassword"
+    },
+    "user.password.create": {
+        "class": "App\\Client\\User\\Password\\Create\\CreateClient",
+        "model": "userPassword"
+    },
+    "user.password.update": {
+        "class": "App\\Client\\User\\Password\\Update\\UpdateClient",
+        "model": "userPassword"
     }
 }
