@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Repositories\Resources\Password\Events\Changes;
 
-use App\Exceptions\Exception;
 use App\Facades\Database\Authenticate\Guard;
 
 trait AfterUpdate
@@ -23,9 +22,5 @@ trait AfterUpdate
             ->withoutGlobalScope()
             ->where('email', $result['email'])
             ->update(['password' => $result['password']]);
-
-        if ($userPasswordUpdate === 0) {
-            Exception::customException('password_reset_fail', ['email' => $result['email']]);
-        }
     }
 }
