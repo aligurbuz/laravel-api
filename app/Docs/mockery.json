@@ -14,12 +14,12 @@
             "raw": "{\n    \"role_name\": \"string\"\n}"
         }
     },
-    "POST_Password/Changes": {
+    "PUT_Password/Changes": {
         "body": {
             "raw": "{\n    \"password_change_code\": 1880093556,\n    \"email\": \"foo@gmail.com\",\n    \"hash\": \"hash\",\n    \"password\": \"password\"\n}"
         }
     },
-    "PUT_Password/Changes": {
+    "POST_Password/Changes": {
         "body": {
             "raw": "{\n    \"email\": \"foo@gmail.com\"\n}"
         }

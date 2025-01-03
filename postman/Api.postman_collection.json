@@ -2630,7 +2630,7 @@
                                 ],
                                 "body": {
                                     "mode": "raw",
-                                    "raw": "{\n    \"password_change_code\": 1880093556,\n    \"email\": \"foo@gmail.com\",\n    \"hash\": \"hash\",\n    \"password\": \"password\"\n}",
+                                    "raw": "{\n    \"email\": \"foo@gmail.com\"\n}",
                                     "options": {
                                         "raw": {
                                             "language": "json"
@@ -2683,7 +2683,7 @@
                                 ],
                                 "body": {
                                     "mode": "raw",
-                                    "raw": "{\n    \"email\": \"foo@gmail.com\"\n}",
+                                    "raw": "{\n    \"password_change_code\": 1880093556,\n    \"email\": \"foo@gmail.com\",\n    \"hash\": \"hash\",\n    \"password\": \"password\"\n}",
                                     "options": {
                                         "raw": {
                                             "language": "json"
