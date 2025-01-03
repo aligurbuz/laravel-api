@@ -46,6 +46,7 @@ class Response extends ResponseSupport
         $standard = [
             'status' => true,
             'code' => $code = static::getHttpSuccessCode($code),
+            'endpointId' => AppContainer::get('endpointId'),
             'cache' => (isset($data['cache'])),
             'isAvailableData' => $isAvailableData,
             'client' => ApiKey::who(),

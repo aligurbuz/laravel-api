@@ -8,6 +8,7 @@ use App\Exceptions\Exception;
 use App\Libs\AppContainer;
 use App\Libs\Client as ClientFacade;
 use App\Libs\Db;
+use App\Libs\HashGenerator;
 use App\Libs\Packages\Client\ClientManager;
 use App\Repositories\Repository;
 use Illuminate\Support\Str;
@@ -65,6 +66,7 @@ class Client extends ClientManager
         }
 
         AppContainer::setWithTerminating('clientInstance', $this);
+        AppContainer::setWithTerminating('endpointId',md5($this->getModelName()));
     }
 
     /**
