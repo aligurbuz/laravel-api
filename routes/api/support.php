@@ -10,7 +10,7 @@ Route::prefix('support')->group(function(){
     Route::post('/crypt', [CryptController::class,'create']);
     //Route::put('/crypt', [CryptController::class,'update']);
 
-    Route::get('/dummy', [DummyController::class,'get']);
+    //Route::get('/dummy', [DummyController::class,'get']);
     Route::post('/dummy', [DummyController::class,'create']);
-    Route::put('/dummy', [DummyController::class,'update']);
+    //Route::put('/dummy', [DummyController::class,'update']);
 });
