@@ -14,6 +14,8 @@ trait BeforeCreate
      */
     public function eventFireBeforeCreate(array $clientData = []): void
     {
-        $this->where('status', 1)->update(['status' => 0]);
+        $this
+            ->where('user_code',$clientData['user_code'])
+            ->where('status', 1)->update(['status' => 0]);
     }
 }
