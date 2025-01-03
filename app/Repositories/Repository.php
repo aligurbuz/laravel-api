@@ -27,6 +27,7 @@ use App\Repositories\Resources\Timezones\Contracts\TimezonesRepositoryContract;
 use App\Repositories\Resources\User\Contracts\PhotosRepositoryContract;
 use App\Repositories\Resources\User\Contracts\UserActivationsRepositoryContract;
 use App\Repositories\Resources\User\Contracts\UserRepositoryContract;
+use App\Repositories\Resources\Support\Contracts\SupportDummyRepositoryContract;
 use App\Repositories\Resources\User\Contracts\UserPasswordRepositoryContract;
 use App\Repositories\Resources\Support\Contracts\SupportCryptRepositoryContract;
 use App\Repositories\Resources\Localizations\Contracts\LocalizationsFrontRepositoryContract;
@@ -37,6 +38,16 @@ use App\Repositories\Resources\Localizations\Contracts\LocalizationsFrontReposit
  */
 class Repository
 {
+    /**
+     * get dummy repository instance
+     *
+     * @return SupportDummyRepositoryContract
+     */
+    public static function dummy() : SupportDummyRepositoryContract
+    {
+        return app()->get(SupportDummyRepositoryContract::class);
+    }
+    
     /**
      * get userPassword repository instance
      *

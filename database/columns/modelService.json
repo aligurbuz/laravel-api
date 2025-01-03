@@ -102,5 +102,9 @@
     "UserPassword": {
         "controller": "Password",
         "dir": "User"
+    },
+    "Dummy": {
+        "controller": "Dummy",
+        "dir": "Support"
     }
 }

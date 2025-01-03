@@ -170,5 +170,17 @@
     "user.password.update": {
         "class": "App\\Client\\User\\Password\\Update\\UpdateClient",
         "model": "userPassword"
+    },
+    "support.dummy.get": {
+        "class": "App\\Client\\Support\\Dummy\\Get\\GetClient",
+        "model": "dummy"
+    },
+    "support.dummy.create": {
+        "class": "App\\Client\\Support\\Dummy\\Create\\CreateClient",
+        "model": "dummy"
+    },
+    "support.dummy.update": {
+        "class": "App\\Client\\Support\\Dummy\\Update\\UpdateClient",
+        "model": "dummy"
     }
 }

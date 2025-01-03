@@ -48,6 +48,9 @@
     "district_code": [
         "District"
     ],
+    "dummy_code": [
+        "Dummy"
+    ],
     "excel_code": [
         "Excel"
     ],

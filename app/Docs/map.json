@@ -29,7 +29,7 @@
         "/var/www/html/app/api/app/Docs/Endpoints/Timezones/Timezones.json": 0,
         "/var/www/html/app/api/app/Docs/Endpoints/Global/Global.json": 0,
         "/var/www/html/app/api/app/Docs/Endpoints/Registration/Registration.json": 0,
-        "/var/www/html/app/api/app/Docs/Endpoints/Support/Support.json": 1,
+        "/var/www/html/app/api/app/Docs/Endpoints/Support/Support.json": 2,
         "/var/www/html/app/api/app/Docs/Endpoints/Customer/Customer.json": 4,
         "/Users/teamprocure/Desktop/apps/api/app/Docs/Endpoints/Password/Password.json": 0,
         "/Users/teamprocure/Desktop/apps/api/app/Docs/Endpoints/Definition/Definition.json": 0,
@@ -61,6 +61,7 @@
         "Genders_Definition_gender": 0,
         "Front_Localizations_frontLang": 2,
         "Crypt_Support_crypt": 1,
-        "Password_User_userPassword": 3
+        "Password_User_userPassword": 3,
+        "Dummy_Support_dummy": 2
     }
 }

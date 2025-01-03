@@ -98,5 +98,10 @@
         "controller": "Password",
         "dir": "User",
         "model": "UserPassword"
+    },
+    "Support/dummy": {
+        "controller": "Dummy",
+        "dir": "Support",
+        "model": "Dummy"
     }
 }

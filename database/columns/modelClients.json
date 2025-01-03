@@ -77,5 +77,10 @@
         "get": "App\\Client\\User\\Password\\Get\\GetClient",
         "create": "App\\Client\\User\\Password\\Create\\CreateClient",
         "update": "App\\Client\\User\\Password\\Update\\UpdateClient"
+    },
+    "Dummy": {
+        "get": "App\\Client\\Support\\Dummy\\Get\\GetClient",
+        "create": "App\\Client\\Support\\Dummy\\Create\\CreateClient",
+        "update": "App\\Client\\Support\\Dummy\\Update\\UpdateClient"
     }
 }

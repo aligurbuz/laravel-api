@@ -14,6 +14,7 @@
         "CustomerGender",
         "CustomerImage",
         "District",
+        "Dummy",
         "Excel",
         "FrontLang",
         "Gender",
@@ -80,6 +81,9 @@
         "CustomerGender",
         "Localization"
     ],
+    "Dummy": [
+        "Localization"
+    ],
     "Excel": [
         "Localization"
     ],
@@ -111,10 +115,10 @@
     "User": [
         "SuperAdmin",
         "UserActivation",
+        "UserPassword",
         "UserPhoto",
         "Role",
-        "Localization",
-        "UserPassword"
+        "Localization"
     ],
     "TableChange": [
         "Localization"
@@ -126,11 +130,11 @@
         "User",
         "Localization"
     ],
-    "UserPhoto": [
+    "UserPassword": [
         "User",
         "Localization"
     ],
-    "UserPassword": [
+    "UserPhoto": [
         "User",
         "Localization"
     ]
