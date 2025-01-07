@@ -16,7 +16,7 @@ class LogoutController extends ApiController
      */
     public function logout(): array
     {
-        $logout = auth()->user()->tokens()->delete();
+        $logout = auth()->user()?->tokens()->delete();
 
         if (!$logout) {
             Exception::loginException();
