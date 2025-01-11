@@ -6,7 +6,7 @@
     },
     "POST_Registration": {
         "body": {
-            "raw": "{\n    \"user\" : {\n        \"name\" : \"fullname\",\n        \"email\" : \"test@gmail.com\",\n        \"password\" : \"Ab123456\"\n    }\n}"
+            "raw": "{\n    \"user\" : {\n        \"username\" : \"aligurbuz\",\n        \"name\" : \"fullname\",\n        \"email\" : \"aligurbuz@gmail.com\",\n        \"password\" : \"Ab123456\"\n    }\n}"
         }
     },
     "POST_Gate/Roles": {
