@@ -652,10 +652,6 @@ class EloquentRepository
             $this->repository = $this->instance();
         }
 
-        if ($afterLoadingRepository && method_exists($this, 'afterLoadingRepository')) {
-            $this->repository = $this->afterLoadingRepository();
-        }
-
         $this->setEndpointQueries($this->repository);
 
         if ($instance) {
@@ -663,16 +659,6 @@ class EloquentRepository
         }
 
         return $this->resourceRepository();
-    }
-
-    /**
-     * after loading for repository
-     *
-     * @return object
-     */
-    public function afterLoadingRepository(): object
-    {
-        return $this->active()->instance();
     }
 
     /**
