@@ -22,20 +22,31 @@ trait PasswordExpire
     protected int $expiredAt = 60 * 60 * 24 * 180;
 
     /**
-     * @return void
+     * @var array|string[]
      */
-    protected function passwordExpire(): void
+    protected array $passwordExpireExcept = [
+        'password/changes'
+    ];
+
+    /**
+     * @return bool
+     */
+    protected function passwordExpire(): bool
     {
-        if (ApiKey::isAdmin()) {
-            $password = Repository::userPassword()->getRepository();
+        if(!ApiKey::isAdmin()) {
+            return true;
+        }
 
-            if (isset($password[0])) {
-                $password = $password[0];
+        $password = Repository::userPassword()->getRepository();
 
-                if (Date::isExpireAsSecond($password['expired_at'], $this->expiredAt)) {
-                    Exception::passwordExpireException();
-                }
+        if (isset($password[0])) {
+            $password = $password[0];
+
+            if (Date::now()> $password['expired_at']) {
+                Exception::passwordExpireException();
             }
         }
+
+        return true;
     }
 }
