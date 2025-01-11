@@ -98,7 +98,7 @@ trait LocalizationRepository
             if (count($localizationData)) {
                 $localizedCode = ($data[$this->getModelCode()] ?? 0);
                 $localization = Repository::localization()->localizedCode($localizedCode);
-                $repository = $localization->getRepository(false);
+                $repository = $localization->getRepository();
                 $values = $repository[0]['values'][0] ?? [];
 
                 if (count($values)) {

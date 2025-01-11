@@ -642,11 +642,10 @@ class EloquentRepository
     /**
      * get repository results for model
      *
-     * @param bool $afterLoadingRepository
      * @param bool $instance
      * @return array
      */
-    public function getRepository(bool $afterLoadingRepository = true, bool $instance = false): array
+    public function getRepository(bool $instance = false): array
     {
         if (is_null($this->repository)) {
             $this->repository = $this->instance();
