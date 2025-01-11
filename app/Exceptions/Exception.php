@@ -33,6 +33,7 @@ use App\Libs\AppContainer;
  * @method static clientActionException($message = null, $keys = [], bool|string $notify = true)
  * @method static notFoundException($message = null, $keys = [], bool|string $notify = true)
  * @method static internalPermissionException($message = null, $keys = [], bool|string $notify = true)
+ * @method static passwordExpireException($message = null, $keys = [], bool|string $notify = true)
  * @package App\Exceptions
  */
 class Exception

@@ -3,12 +3,14 @@
 namespace App\Middleware;
 
 use App\Middleware\Traits\AcceptLanguage;
+use App\Middleware\Traits\PasswordExpire;
 use App\Middleware\Traits\Permission;
 
 class Middleware extends MiddlewareManager
 {
     use Permission;
     use AcceptLanguage;
+    use PasswordExpire;
 
     /**
      * @var array|string[]
@@ -16,6 +18,7 @@ class Middleware extends MiddlewareManager
     protected array $middlewares = [
         'init',
         'acceptLanguage',
+        //'passwordExpire',
         'permission',
     ];
 

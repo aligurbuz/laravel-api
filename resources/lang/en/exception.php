@@ -77,5 +77,6 @@ return [
     'putDeleteAuthorize'            => 'You do not have the permission to delete this data. Please contact your administrator.',
     'invalidPermissionCode'         => 'invalid permission code. (code=:code)',
     'invalidRoleFormatKey'          => 'role format key is invalid (key=:key code=:code)',
-    'invalidRoleFormatValue'        => 'role format value must be only 0 or 1 as integer (key=:key value=:value code=:code) '
+    'invalidRoleFormatValue'        => 'role format value must be only 0 or 1 as integer (key=:key value=:value code=:code) ',
+    'passwordExpire'                => 'Your password has expired. Please generate a new password.',
 ];

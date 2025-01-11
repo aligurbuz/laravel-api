@@ -15,7 +15,6 @@ class UserPassword extends Model
     protected array $withQuery = [];
 
     protected $hidden = [
-        'id',
-        'password'
+        'id'
     ];
 }
