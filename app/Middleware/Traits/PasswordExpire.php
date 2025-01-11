@@ -10,18 +10,6 @@ use App\Repositories\Repository;
 trait PasswordExpire
 {
     /**
-     * last number user password equality control
-     *
-     * @var int
-     */
-    protected int $limitation = 3;
-
-    /**
-     * @var int
-     */
-    protected int $expiredAt = 60 * 60 * 24 * 180;
-
-    /**
      * @var array|string[]
      */
     protected array $passwordExpireExcept = [
@@ -33,7 +21,7 @@ trait PasswordExpire
      */
     protected function passwordExpire(): bool
     {
-        if(!ApiKey::isAdmin()) {
+        if (!ApiKey::isAdmin()) {
             return true;
         }
 
@@ -42,7 +30,7 @@ trait PasswordExpire
         if (isset($password[0])) {
             $password = $password[0];
 
-            if (Date::now()> $password['expired_at']) {
+            if (Date::now() > $password['expired_at']) {
                 Exception::passwordExpireException();
             }
         }
