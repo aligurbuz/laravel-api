@@ -25,7 +25,7 @@ trait PasswordExpire
             return true;
         }
 
-        $password = Repository::userPassword()->getRepository();
+        $password = Repository::userPassword()->active()->getRepository();
 
         if (isset($password[0])) {
             $password = $password[0];
