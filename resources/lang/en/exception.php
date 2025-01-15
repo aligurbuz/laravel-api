@@ -79,4 +79,5 @@ return [
     'invalidRoleFormatKey'          => 'role format key is invalid (key=:key code=:code)',
     'invalidRoleFormatValue'        => 'role format value must be only 0 or 1 as integer (key=:key value=:value code=:code) ',
     'passwordExpire'                => 'Your password has expired. Please generate a new password.',
+    'lastPasswordSameRule'          => 'The last :limit passwords cannot be the same as the current password.',
 ];

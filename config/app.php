@@ -2,6 +2,7 @@
 
 return [
 
+    'passwordExpire' => env('PASSWORD_EXPIRE'),
     'authenticate' => env('Authenticate',true),
     'logger' => env('Logger',true),
     'permission' => env('Permission',true),

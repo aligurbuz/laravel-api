@@ -18,7 +18,7 @@ class Middleware extends MiddlewareManager
     protected array $middlewares = [
         'init',
         'acceptLanguage',
-        //'passwordExpire',
+        'passwordExpire',
         'permission',
     ];
 

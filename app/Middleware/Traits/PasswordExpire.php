@@ -25,6 +25,10 @@ trait PasswordExpire
             return true;
         }
 
+        if (config('app.password_expire') === false) {
+            return true;
+        }
+
         $password = Repository::userPassword()->active()->getRepository();
 
         if (isset($password[0])) {

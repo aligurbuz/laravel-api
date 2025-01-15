@@ -130,4 +130,15 @@ class User
 
         return $user->toArray();
     }
+
+    /**
+     * Creates and returns a new Password instance.
+     *
+     * @return Password
+     */
+    public static function password(): Password
+    {
+        return (new Password());
+    }
+
 }

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Repositories\Resources\Password\Events\Changes;
 
 use App\Exceptions\Exception;
+use App\Facades\Database\Authenticate\User;
 
 trait BeforeUpdate
 {
@@ -26,5 +27,12 @@ trait BeforeUpdate
         // We ask the user for an email for security purposes. It is checked for recorded data.
         // If the email data is not compatible, the system will throw an exception.
         Exception::ifTrue($passwordChange['hash'] !== $clientData['hash'], 'invalid_hash');
+
+        // Represents the client data used within the Api application.
+        // This data can be retrieved or processed as part of application functionality.
+        if (config('app.passwordExpire') === true) {
+            User::setContainer($clientData['email']);
+            User::password()->validPassword($this->originalPassword());
+        }
     }
 }
