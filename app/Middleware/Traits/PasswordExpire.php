@@ -25,7 +25,7 @@ trait PasswordExpire
             return true;
         }
 
-        if (config('app.password_expire') === false) {
+        if (config('app.passwordExpire') === false) {
             return true;
         }
 
