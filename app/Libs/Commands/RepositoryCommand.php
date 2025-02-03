@@ -245,7 +245,7 @@ class RepositoryCommand extends Command
             File::put($file, $content);
 
             $eventsRepositoryBeforeCreateNamespace = new PhpNamespace($eventsRepositoryNamespaceDirectory);
-            $eventsRepositoryBeforeCreateNamespace->addTrait('BeforeCreate');
+            //$eventsRepositoryBeforeCreateNamespace->addTrait('BeforeCreate');
             $traitBeforeCreate = $eventsRepositoryBeforeCreateNamespace->addTrait('BeforeCreate');
             $traitMethod = $traitBeforeCreate->addMethod('eventFireBeforeCreate');
             $traitMethod->addComment('event performed before repository create');
