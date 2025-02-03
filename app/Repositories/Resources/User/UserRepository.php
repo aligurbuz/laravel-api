@@ -47,4 +47,15 @@ class UserRepository extends EloquentRepository implements UserRepositoryContrac
     {
         return parent::update($data, false);
     }
+
+    /**
+     * @param string $email
+     * @return $this
+     */
+    public function email(string $email): self
+    {
+        $this->repository = $this->repository->where('email',$email);
+
+        return $this;
+    }
 }

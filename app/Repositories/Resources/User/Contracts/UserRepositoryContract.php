@@ -8,6 +8,13 @@ use App\Repositories\Resources\User\UserRepository;
 interface UserRepositoryContract
 {
     /**
+     * @param string $email
+     * @return self
+     * @see UserRepository::email()
+     */
+    public function email(string $email): self;
+
+    /**
      * @return array
      * @see UserRepository::get()
      */
