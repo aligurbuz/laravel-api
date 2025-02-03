@@ -21,11 +21,13 @@ trait AfterCreate
         $result['encrypt_body'] = $hash->encode($result['body']);
         $result['decrypt_body'] = $hash->decode($result['encrypt_body'], true);
 
-        unset($result['body']);
-        unset($result['api_key']);
-        unset($result['authenticate']);
-        unset($result['updated_at']);
-        unset($result['created_at']);
+        unset(
+            $result['body'],
+            $result['api_key'],
+            $result['authenticate'],
+            $result['updated_at'],
+            $result['created_at']
+        );
 
         return $result;
     }
