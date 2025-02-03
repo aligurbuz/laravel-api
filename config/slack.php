@@ -7,7 +7,7 @@ return [
     ],
     'error500' => [
         'channel' => 'error500',
-        'hook' => env('slack500error','hook'),
+        'hook' => env('SLACK_500_ERROR','hook'),
     ],
     'deployment' => [
         'channel' => 'deployment',

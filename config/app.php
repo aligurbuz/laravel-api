@@ -3,10 +3,10 @@
 return [
 
     'passwordExpire' => env('PASSWORD_EXPIRE'),
-    'authenticate' => env('Authenticate',true),
-    'logger' => env('Logger',true),
-    'permission' => env('Permission',true),
-    'language' => env('Language',true),
+    'authenticate' => env('AUTHENTICATE',true),
+    'logger' => env('LOGGER',true),
+    'permission' => env('PERMISSION',true),
+    'language' => env('LANGUAGE',true),
     'apikeyString' => 'apikey',
     'defaultApiResponseFormatter' => 'json',
     'productBaseUrl' => env('productBaseUrl','productBaseUrl'),

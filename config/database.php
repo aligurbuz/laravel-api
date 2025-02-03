@@ -146,10 +146,10 @@ return [
 
     'mongoDb' => [
         'default' => [
-            'mongoDbHost' => env('mongoDbHost',null),
-            'mongoDbPort' => env('mongoDbPort',null),
-            'mongoDbUser' => env('mongoDbUser',null),
-            'mongoDbPassword' => env('mongoDbPassword',null),
+            'mongoDbHost' => env('MONGO_DB_HOST',null),
+            'mongoDbPort' => env('MONGO_DB_PORT',null),
+            'mongoDbUser' => env('MONGO_DB_USER',null),
+            'mongoDbPassword' => env('MONGO_DB_PASSWORD',null),
         ]
     ]
 
