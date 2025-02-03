@@ -4,6 +4,7 @@ namespace App\Libs\Commands;
 
 use App\Constants;
 use Illuminate\Console\Command;
+use Illuminate\Support\Str;
 
 class DatabaseMonitor extends Command
 {
@@ -46,7 +47,16 @@ class DatabaseMonitor extends Command
         if (isset($modelData[1])) {
             $data = $model::query()->select($columns)->where($repository->getModelCode(), $modelData[1])->get();
         } else {
-            $queryString = $model::query()->select($columns)->take($limit);
+
+            if(Str::startsWith($limit,'filter:')){
+                $filter = str_replace('filter:','',$limit);
+                $filterValue = explode('=',$filter);
+                $queryString = $model::query()->select($columns)->where($filterValue[0],$filterValue[1]);
+            }
+            else{
+                $queryString = $model::query()->select($columns)->take($limit);
+            }
+
             $data = $queryString->orderBy('id', 'desc')->get();
             $count = $queryString->count();
         }
