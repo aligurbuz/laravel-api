@@ -2,6 +2,8 @@
 
 namespace App\Facades\Support\Env;
 
+use App\Libs\Redis;
+
 class Env
 {
     /**
@@ -75,6 +77,8 @@ class Env
                 $newLines[] = "{$key}=\"{$value}\"";
             }
         }
+
+        Redis::client()->flushall();
 
         return file_put_contents($envPath, implode("\n", $newLines) . "\n") !== false;
     }

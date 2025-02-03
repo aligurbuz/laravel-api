@@ -41,8 +41,6 @@ class ChangeTestAdmin extends Command
             'password' => Hash::make($newPassword)
         ]);
 
-        Redis::client()->flushall();
-
         Env::set([
             'ADMIN_USER_EMAIL' => $email,
             'ADMIN_USER_PASSWORD' => $newPassword,
