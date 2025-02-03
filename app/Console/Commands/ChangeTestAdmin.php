@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Facades\Support\Env\Env;
 use App\Libs\Redis;
 use App\Repositories\Repository;
 use Illuminate\Console\Command;
@@ -41,6 +42,11 @@ class ChangeTestAdmin extends Command
         ]);
 
         Redis::client()->flushall();
+
+        Env::set([
+            'ADMIN_USER_EMAIL' => $email,
+            'ADMIN_USER_PASSWORD' => $newPassword,
+        ]);
 
         $this->comment('new email: '.$email);
         $this->comment('new password: '.$newPassword);
