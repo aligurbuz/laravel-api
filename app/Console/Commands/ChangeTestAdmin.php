@@ -20,7 +20,7 @@ class ChangeTestAdmin extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'First admin new information';
 
     /**
      * Execute the console command.
