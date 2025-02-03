@@ -4,6 +4,7 @@ namespace Tests;
 
 use App\Constants;
 use App\Facades\Database\Authenticate\ApiKey;
+use App\Facades\Support\Env\Env;
 use App\Libs\Db;
 use App\Libs\Redis;
 use Illuminate\Support\Str;
@@ -359,8 +360,8 @@ abstract class TestCase extends BaseTestCase
 
         if(!$redis->exists(static::$unitTestToken)){
             $response = $this->postJson('/api/login',[
-                'email' => 'test@gmail.com',
-                'password' => '123456'
+                'email' => Env::get('ADMIN_USER_EMAIL'),
+                'password' => Env::get('ADMIN_USER_PASSWORD')
             ],$this->headers());
 
             $content = json_decode($response->getContent(),true);

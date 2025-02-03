@@ -78,4 +78,15 @@ class Env
 
         return file_put_contents($envPath, implode("\n", $newLines) . "\n") !== false;
     }
+
+    /**
+     * @param string $key
+     * @return mixed|null
+     */
+    public static function get(string $key): mixed
+    {
+        $keys = static::all();
+
+        return $keys[$key] ?? null;
+    }
 }

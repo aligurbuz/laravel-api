@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Facades\Support\Env\Env;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
@@ -23,7 +24,7 @@ class UserFactory extends Factory
      */
     public function definition()
     {
-        return [
+        $list = [
             'id' => 1,
             'user_code' => crc32(config('app.name').'_1user'),
             'role_code' => '2963074553',
@@ -33,6 +34,13 @@ class UserFactory extends Factory
             'password' => Hash::make(123456),
             'status' => 1,
         ];
+
+        Env::set([
+            'ADMIN_USER_EMAIL' => $list['email'],
+            'ADMIN_USER_PASSWORD' => '123456',
+        ]);
+
+        return  $list;
     }
 
     /**

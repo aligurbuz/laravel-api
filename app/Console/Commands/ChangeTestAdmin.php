@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Libs\Redis;
 use App\Repositories\Repository;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Hash;
@@ -38,6 +39,8 @@ class ChangeTestAdmin extends Command
             'email' => $email,
             'password' => Hash::make($newPassword)
         ]);
+
+        Redis::client()->flushall();
 
         $this->comment('new email: '.$email);
         $this->comment('new password: '.$newPassword);
