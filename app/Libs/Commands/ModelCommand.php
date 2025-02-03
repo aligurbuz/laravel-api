@@ -5,6 +5,7 @@ namespace App\Libs\Commands;
 use App\Constants;
 use App\Libs\AppContainer;
 use Illuminate\Console\Command;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\File;
 
@@ -55,7 +56,10 @@ class ModelCommand extends Command
         $modelFileChange = str_replace('use Illuminate\Database\Eloquent\Model;', 'use Illuminate\Database\Eloquent\Model;
 use App\Models\Features\BaseManager;', $modelFileContent);
 
-        $modelFileChange = str_replace('use HasFactory;', 'use HasFactory,BaseManager;
+        $modelFileChange = str_replace('Model
+{', 'Model
+{
+    use BaseManager;
 
     protected array $searchable = [];
 
