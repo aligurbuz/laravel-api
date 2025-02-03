@@ -365,6 +365,8 @@ abstract class TestCase extends BaseTestCase
 
             $content = json_decode($response->getContent(),true);
 
+            dd($content);
+
 
             $response->assertStatus(200);
             $this->assertArrayHasKey('token',$content['resource'][0]['data'][0]['auth']);
