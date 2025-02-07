@@ -25,10 +25,10 @@ Route::get('guide', static function (){
 Route::get('/doc', [DocumentationController::class,'index']);
 Route::post('/deployment/{key}', [DeploymentController::class,'handle']);
 
-Route::get('/postman/collection',function(){
+Route::get('/postman/collection', static function(){
     return response()->json(Postman::collection());
 });
 
-Route::get('/postman/environment',function(){
+Route::get('/postman/environment', static function(){
     return response()->json(Postman::environment());
 });
