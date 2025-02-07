@@ -57,6 +57,8 @@ use App\Repositories\Resources\User\PasswordRepository as UserPasswordRepository
 use App\Repositories\Resources\User\PhotosRepository;
 use App\Repositories\Resources\User\UserRepository;
 use Illuminate\Support\ServiceProvider;
+use App\Repositories\Resources\Store\Contracts\StoreProductsRepositoryContract;
+use App\Repositories\Resources\Store\ProductsRepository as StoreProductsRepository;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -95,6 +97,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(SupportCryptRepositoryContract::class, SupportCryptRepository::class);
         $this->app->bind(UserPasswordRepositoryContract::class, UserPasswordRepository::class);
         $this->app->bind(SupportDummyRepositoryContract::class, SupportDummyRepository::class);
+        $this->app->bind(StoreProductsRepositoryContract::class,StoreProductsRepository::class);
         //newBind
     }
 

@@ -106,5 +106,9 @@
     "Dummy": {
         "controller": "Dummy",
         "dir": "Support"
+    },
+    "Product": {
+        "controller": "Products",
+        "dir": "Store"
     }
 }

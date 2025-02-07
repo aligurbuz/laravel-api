@@ -22,6 +22,7 @@
         "Localization",
         "PasswordChange",
         "Permission",
+        "Product",
         "Registration",
         "Role",
         "SuperAdmin",
@@ -99,6 +100,9 @@
         "Localization"
     ],
     "Permission": [
+        "Localization"
+    ],
+    "Product": [
         "Localization"
     ],
     "Registration": [
