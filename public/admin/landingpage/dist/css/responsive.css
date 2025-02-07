@@ -1,0 +1,96 @@
+@import url(https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700);
+/*Theme Colors*/
+/**
+ * Table Of Content
+ *
+ * 	1. Color system
+ *	2. Options
+ *	3. Body
+ *	4. Typography
+ *	5. Breadcrumbs
+ *	6. Cards
+ *	7. Dropdowns
+ *	8. Buttons
+ *	9. Typography
+ *	10. Progress bars
+ *	11. Tables
+ *	12. Forms
+ *	14. Component
+ */
+/*For Laptop (1280px)*/
+@media (max-width: 1350px) {
+  .carousel .item h3 {
+    font-size: 17px;
+    height: 90px; }
+  .inbox-center a {
+    width: 400px; } }
+
+@media (min-width: 1024px) {
+  .testimonial-text {
+    width: 80%; }
+  .navbar-default .navbar-nav .cst-dwn .dropdown-menu {
+    background: #474d5d;
+    border: none;
+    padding: 20px; }
+    .navbar-default .navbar-nav .cst-dwn .dropdown-menu a {
+      color: rgba(255, 255, 255, 0.7);
+      background: none; }
+      .navbar-default .navbar-nav .cst-dwn .dropdown-menu a:hover, .navbar-default .navbar-nav .cst-dwn .dropdown-menu a:focus {
+        color: #01c0c8;
+        background: none; }
+  .navbar-default .navbar-nav .cst-dwn:hover, .navbar-default .navbar-nav .cst-dwn:focus {
+    background: #474d5d;
+    color: #01c0c8; }
+    .navbar-default .navbar-nav .cst-dwn:hover > a, .navbar-default .navbar-nav .cst-dwn:focus > a {
+      color: #01c0c8; }
+    .navbar-default .navbar-nav .cst-dwn:hover .dropdown-menu, .navbar-default .navbar-nav .cst-dwn:focus .dropdown-menu {
+      display: block; } }
+
+@media (max-width: 1023px) {
+  .auto-img img {
+    width: 150%; }
+  .fix-width {
+    padding: 0 30px; }
+  .top-features {
+    margin: 20px 0 !important; }
+  .call-to-action {
+    text-align: center; } }
+
+@media (min-width: 768px) {
+  .dual-bg {
+    background: #474d5d;
+    /* Old browsers */
+    background: -moz-linear-gradient(left, #474d5d 0%, #383c49 50%, #474d5d 50%, #383c49 100%);
+    /* FF3.6-15 */
+    background: -webkit-linear-gradient(left, #474d5d 0%, #383c49 50%, #474d5d 50%, #383c49 100%);
+    /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right, #474d5d 0%, #383c49 50%, #474d5d 50%, #383c49 100%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$dark', endColorstr='#383c49', GradientType=1);
+    /* IE6-9 */ } }
+
+@media (max-width: 767px) {
+  .navbar-light .navbar-nav {
+    margin-top: 15px;
+    padding-top: 15px; }
+    .navbar-light .navbar-nav .nav-link {
+      padding: 15px 10px; }
+    .navbar-light .navbar-nav .cs-btn {
+      margin-left: 0;
+      margin-top: 15px;
+      display: block; }
+  .auto-img img {
+    width: 100%; }
+  .banner-part .banner-small-text {
+    font-size: 14px;
+    max-width: 100%; }
+  .banner-part h1 {
+    font-size: 18px;
+    line-height: 30px; }
+  .dual-bg {
+    background: #474d5d; } }
+
+@media (max-width: 480px) {
+  .banner-part h1 {
+    font-size: 18px;
+    line-height: 30px; } }

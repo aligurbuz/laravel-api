@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon.png">
+    <title>Elite admin Template - The Ultimate Multipurpose admin template</title>
+    <!-- This page css -->
+    <!-- Custom CSS -->
+	<link href="../assets/node_modules/footable/css/footable.bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="../inverse/dist/css/style.css" rel="stylesheet">
+    <!-- Custom CSS -->
+	<link rel="stylesheet" type="text/css" href="highlights/highlight.min.css">
+	
+	<!-- Custom CSS -->
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+	<!-- Custom CSS -->
+	<style>
+		.font-18 {
+		    font-size: 18px !important;
+		}
+	</style>
+</head>
+
+<body class="skin-default fixed-layout">
+    <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <div class="loader">
+            <div class="loader__figure"></div>
+            <p class="loader__label">Elite Admin</p>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <div id="main-wrapper">
+        <!-- ============================================================== -->
+        <!-- Topbar header - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+        <header class="topbar">
+				<nav class="navbar top-navbar navbar-expand-md navbar-dark">
+					<!-- ============================================================== -->
+					<!-- Logo -->
+					<!-- ============================================================== -->
+					<div class="navbar-header">
+						<a class="navbar-brand" href="index.html">
+							<!-- Logo icon --><b>
+							<!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
+							<!-- Dark Logo icon -->
+							<img src="../assets/images/logo-icon.png" alt="homepage" class="dark-logo" />
+							<!-- Light Logo icon -->
+							<img src="../assets/images/logo-light-icon.png" alt="homepage" class="light-logo" />
+							</b>
+							<!--End Logo icon -->
+							<!-- Logo text --><span>
+							<!-- dark Logo text -->
+							<img src="../assets/images/logo-text.png" alt="homepage" class="dark-logo" />
+							<!-- Light Logo text -->
+						<img src="../assets/images/logo-light-text.png" class="light-logo" alt="homepage" /></span> </a>
+					</div>
+					<!-- ============================================================== -->
+					<!-- End Logo -->
+					<!-- ============================================================== -->
+					<div class="navbar-collapse">
+						<!-- ============================================================== -->
+						<!-- toggle and nav items -->
+						<!-- ============================================================== -->
+						<ul class="navbar-nav me-auto">
+							<!-- This is  -->
+							<li class="nav-item">
+	                            <a class="nav-link nav-toggler d-block d-md-none waves-effect waves-dark" href="javascript:void(0)">
+	                                <i class="ti-menu"></i>
+	                            </a>
+	                        </li>
+	                        <li class="nav-item">
+	                            <a class="nav-link sidebartoggler d-none d-lg-none d-md-block waves-effect waves-dark" href="javascript:void(0)">
+	                                <i class="icon-menu"></i>
+	                            </a>
+	                        </li>
+
+							<li class="nav-item"> <a class="nav-link waves-effect waves-light" href="documentation.html">Documentation</a></li>
+							
+						</ul>
+					</div>
+				</nav>
+			</header>
+        <!-- ============================================================== -->
+        <!-- End Topbar header -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <aside class="left-sidebar">
+            <!-- Sidebar scroll-->
+            <div class="scroll-sidebar">
+                <!-- Sidebar navigation-->
+                <nav class="sidebar-nav">
+                    <ul id="sidebarnav">
+                        <li class="nav-small-cap pt-2 mt-0">-- Getting Started</li>
+                        <li> <a class="waves-effect waves-dark" href="documentation.html" aria-expanded="false"><i
+                                    class="icon-chart font-18"></i>
+                                <span class="hide-menu">Introduction</span></a>
+                        </li>
+                        <li> <a class="waves-effect waves-dark" href="docs-start.html" aria-expanded="false"><i
+                                    class="ti-notepad font-18"></i>
+                                <span class="hide-menu">Gettings Started</span></a>
+                        </li>
+                       
+                        <li class="nav-small-cap text-uppercase">--- Customization</li>
+                    <li> <a class="waves-effect waves-dark" href="docs-theme-options.html" aria-expanded="false"><i
+                                    class="icon-drawar font-18"></i>
+                                <span class="hide-menu">Theme Options</span></a>
+                        </li>
+                    <li class="sidebar-item">
+                        <a class="sidebar-link sidebar-link" href="docs-change-logo.html" aria-expanded="false"><i class="icon-equalizer font-18"></i>
+                          <span class="hide-menu">Change Logo</span></a>
+                      </li>
+                      <li class="sidebar-item">
+                        <a class="sidebar-link sidebar-link d-flex align-items-center" href="docs-change-fonts.html" aria-expanded="false"><i class="ti-smallcap font-18"></i>
+                          <span class="hide-menu ms-2 text-truncate">Change Theme Fonts</span></a>
+                      </li>
+                        <li class="nav-small-cap border-top pt-3 border-muted">-- UI Components</li>
+                        <li> <a class="waves-effect waves-dark has-arrow" href="javascript:void(0)"
+                                aria-expanded="false"><i class="icon-grid font-18"></i><span class="hide-menu">Bootstrap
+                                </span></a>
+                            <ul aria-expanded="false" class="collapse  first-level">
+                                <li><a href="docs-ui-buttons.html"><span class="hide-menu"> Buttons </span></a></li>
+                                <li><a href="docs-ui-modals.html"><span class="hide-menu"> Modals </span></a></li>
+                                <li><a href="docs-ui-tabs.html"><span class="hide-menu"> Tabs </span></a></li>
+                                <li><a href="docs-ui-tooltip-popover.html"><span class="hide-menu"> Tooltip & Popover
+                                        </span></a></li>
+                                <li><a href="docs-ui-notification.html"><span class="hide-menu"> Notification
+                                        </span></a></li>
+                                <li><a href="docs-ui-progressbar.html"><span class="hide-menu"> Progressbar </span></a>
+                                </li>
+                                <li><a href="docs-ui-typography.html"><span class="hide-menu"> Typography </span></a>
+                                </li>
+                                <li><a href="docs-ui-bootstrapui.html"><span class="hide-menu"> Bootstrap UI </span></a>
+                                </li>
+                                <li><a href="docs-ui-breadcrumb.html"><span class="hide-menu"> Breadcrumb </span></a>
+                                </li>
+                                <li><a href="docs-ui-listmedia.html"><span class="hide-menu"> List Media </span></a>
+                                </li>
+                                <li><a href="docs-ui-grid.html"><span class="hide-menu"> Grid </span></a></li>
+                                <li><a href="docs-ui-carousel.html"><span class="hide-menu"> Carousel </span></a></li>
+                                <li><a href="docs-ui-offcanvas.html"><span class="hide-menu"> Offcanvas </span></a></li>
+                                <li><a href="docs-ui-scrollspy.html"><span class="hide-menu"> Scrollspy </span></a></li>
+                                <li><a href="docs-ui-toasts.html"><span class="hide-menu"> Toasts </span></a></li>
+                                <li><a href="docs-ui-spinner.html"><span class="hide-menu"> Spinner </span></a></li>
+                            </ul>
+                        </li>
+                        <li> <a class="waves-effect waves-dark has-arrow waves-effect waves-dark"
+                                href="javascript:void(0)" aria-expanded="false"><i class="icon-note font-18"></i><span
+                                    class="hide-menu">Customized</span></a>
+                            <ul aria-expanded="false" class="collapse first-level">
+                                <li><a href="docs-custom-datatables.html"><span class="hide-menu"> Datatables</span></a>
+                                </li>
+                                <li><a href="docs-custom-table-footable.html"><span class="hide-menu"> Footable
+                                            Table</span></a></li>
+                                <li><a href="docs-custom-table-bootstrap.html"><span class="hide-menu"> Bootstrap
+                                            Table</span></a></li>
+                                <li><a href="docs-custom-cards.html"><span class="hide-menu"> Cards</span></a></li>
+                                <li><a href="docs-custom-widgets.html"><span class="hide-menu"> Widgets</span></a></li>
+                                <li><a href="docs-custom-chart-chartjs.html"><span class="hide-menu"> ChartJs</span></a>
+                                </li>
+                                <li><a href="docs-custom-chart-chartist.html"><span class="hide-menu">
+                                            Chartist</span></a></li>
+                                <li><a href="docs-custom-chart-echart.html"><span class="hide-menu"> Echart</span></a>
+                                </li>
+                                <li><a href="docs-custom-colorpicker.html"><span class="hide-menu">
+                                            Colorpicker</span></a></li>
+                                <li><a href="docs-custom-material-datepicker.html"><span class="hide-menu"> Material
+                                            Datepicker</span></a></li>
+                                <li><a href="docs-custom-touchspin.html"><span class="hide-menu"> Touchspin</span></a>
+                                </li>
+                                <li><a href="docs-custom-multiselect.html"><span class="hide-menu">
+                                            Multiselect</span></a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-small-cap border-top pt-3 border-muted">-- Extra</li>
+
+                        <li> <a class="waves-effect waves-dark" href="docs-third-party.html" aria-expanded="false"><i
+                                    class="icon-book-open font-18"></i>
+                                <span class="hide-menu">Third Party Plugins</span></a>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- End Sidebar navigation -->
+            </div>
+            <!-- End Sidebar scroll-->
+        </aside>
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper  -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="page-content container-fluid">
+	            <!-- ============================================================== -->
+	            <!-- Bread crumb and right sidebar toggle -->
+	            <!-- ============================================================== -->
+	            <div class="row page-titles">
+	                <div class="col-md-5 align-self-center">
+	                    <h4 class="text-themecolor">Footable</h4>
+	                </div>
+	                <div class="col-md-7 align-self-center">
+	                    <ol class="breadcrumb float-end">
+	                        <li class="breadcrumb-item"><a href="javascript:void(0)">Elite</a></li>
+	                        <li class="breadcrumb-item text-primary font-medium">Footable</li>
+	                    </ol>
+	                </div>
+	            </div>
+	            <!-- ============================================================== -->
+	            <!-- End Bread crumb and right sidebar toggle -->
+	            <!-- ============================================================== -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card overflow-hidden">
+							<div class="card-body border-bottom">
+								<h4 class="card-title mb-0">Footable</h4>
+							</div>
+							<div class="row justify-content-center bg-light p-5">
+								<div class="col-md-11">
+									<div class="card shadow-sm">
+										<div class="p-4">
+											<div class="table-responsive">
+		                                        <table id="demo-foo-row-toggler" class="table table-bordered" data-bs-toggle-column="first">
+		                                            <thead>
+		                                                <tr>
+		                                                    <th data-breakpoints="xs">ID</th>
+		                                                    <th>First Name</th>
+		                                                    <th>Last Name</th>
+		                                                    <th data-breakpoints="xs sm">Mobile No</th>
+		                                                    <th data-breakpoints="xs">Job Title</th>
+		                                                    <th data-breakpoints="all" data-title="DOB">Date of Birth</th>
+		                                                </tr>
+		                                            </thead>
+		                                            <tbody>
+		                                                <tr data-expanded="true">
+		                                                    <td>1</td>
+		                                                    <td>
+		                                                        <a href="javascript:void(0)"><img src="../assets/images/users/4.jpg" alt="user" width="40" class="img-circle" /> Genelia Deshmukh</a>
+		                                                    </td>
+		                                                    <td>genelia@gmail.com</td>
+		                                                    <td>+123 112 789</td>
+		                                                    <td><span class="label label-danger">Designer</span> </td>
+		                                                    <td>February 26th 1966</td>
+		                                                </tr>
+		                                                <tr>
+		                                                    <td>2</td>
+		                                                    <td>
+		                                                        <a href="javascript:void(0)"><img src="../assets/images/users/8.jpg" alt="user" width="40" class="img-circle" /> Shraddha Kapoor</a>
+		                                                    </td>
+		                                                    <td>gov12inda@gmail.com</td>
+		                                                    <td>+345 456 125</td>
+		                                                    <td><span class="label label-success">Accountant</span></td>
+		                                                    <td>February 26th 1966</td>
+		                                                </tr>
+		                                                <tr>
+		                                                    <td>3</td>
+		                                                    <td>
+		                                                        <a href="javascript:void(0)"><img src="../assets/images/users/1.jpg" alt="user" width="40" class="img-circle" /> Akshay Kumar</a>
+		                                                    </td>
+		                                                    <td>g12enelia@gmail.com</td>
+		                                                    <td>+154 456 789</td>
+		                                                    <td><span class="label label-warning">Developer</span> </td>
+		                                                    <td>February 26th 1966</td>
+		                                                </tr>
+		                                                <tr>
+		                                                    <td>4</td>
+		                                                    <td>
+		                                                        <a href="javascript:void(0)"><img src="../assets/images/users/6.jpg" alt="user" width="40" class="img-circle" /> Genelia Deshmukh</a>
+		                                                    </td>
+		                                                    <td>abc@gmail.com</td>
+		                                                    <td>+123 456 163</td>
+		                                                    <td><span class="label label-danger">Designer</span> </td>
+		                                                    <td>March 29th 1966</td>
+		                                                </tr>
+		                                                <tr>
+		                                                    <td>5</td>
+		                                                    <td>
+		                                                        <a href="javascript:void(0)"><img src="../assets/images/users/5.jpg" alt="user" width="40" class="img-circle" /> Steve Jobs</a>
+		                                                    </td>
+		                                                    <td>shraddha@gmail.com</td>
+		                                                    <td>+123 420 789</td>
+		                                                    <td><span class="label label-success">Theme Developer</span> </td>
+		                                                    <td>September 22nd 1964</td>
+		                                                </tr>
+		                                                <tr>
+		                                                    <td>6</td>
+		                                                    <td>
+		                                                        <a href="javascript:void(0)"><img src="../assets/images/users/4.jpg" alt="user" width="40" class="img-circle" /> Anil Kapoor</a>
+		                                                    </td>
+		                                                    <td>gamw12@gmail.com</td>
+		                                                    <td>+123 960 789</td>
+		                                                    <td><span class="label label-inverse">Designer</span> </td>
+		                                                    <td>August 4th 1991</td>
+		                                                </tr>
+		                                                <tr>
+		                                                    <td>7</td>
+		                                                    <td>
+		                                                        <a href="javascript:void(0)"><img src="../assets/images/users/3.jpg" alt="user" width="40" class="img-circle" /> Priyank Deshmukh</a>
+		                                                    </td>
+		                                                    <td>shr123@gmail.com</td>
+		                                                    <td>+123 456 700</td>
+		                                                    <td><span class="label label-danger">Hacker</span> </td>
+		                                                    <td>November 20th 1979</td>
+		                                                </tr>
+		                                                <tr>
+		                                                    <td>8</td>
+		                                                    <td>
+		                                                        <a href="javascript:void(0)"><img src="../assets/images/users/2.jpg" alt="user" width="40" class="img-circle" /> Genelia Deshmukh</a>
+		                                                    </td>
+		                                                    <td>developer@gmail.com</td>
+		                                                    <td>+123 700 789</td>
+		                                                    <td><span class="label label-success">Designer</span> </td>
+		                                                    <td>April 7th 1969</td>
+		                                                </tr>
+		                                            </tbody>
+		                                        </table>
+		                                    </div>
+										</div>	
+									</div>
+								</div>
+							</div>
+							<div class="px-4">
+								<h4 class="card-title mt-4">Code Here:</h4>
+								<hr>
+								<pre class="highlight html shadow-none">
+									<code class="shadow-sm px-4" style="height: 200px;">
+&lt;div class=&quot;table-responsive&quot;&gt;
+    &lt;table id=&quot;demo-foo-row-toggler&quot; class=&quot;table table-bordered&quot; data-bs-toggle-column=&quot;first&quot;&gt;
+        &lt;thead&gt;
+            &lt;tr&gt;
+                &lt;th data-breakpoints=&quot;xs&quot;&gt;ID&lt;/th&gt;
+                &lt;th&gt;First Name&lt;/th&gt;
+                &lt;th&gt;Last Name&lt;/th&gt;
+                &lt;th data-breakpoints=&quot;xs sm&quot;&gt;Mobile No&lt;/th&gt;
+                &lt;th data-breakpoints=&quot;xs&quot;&gt;Job Title&lt;/th&gt;
+                &lt;th data-breakpoints=&quot;all&quot; data-title=&quot;DOB&quot;&gt;Date of Birth&lt;/th&gt;
+            &lt;/tr&gt;
+        &lt;/thead&gt;
+        &lt;tbody&gt;
+            &lt;tr data-expanded=&quot;true&quot;&gt;
+                &lt;td&gt;1&lt;/td&gt;
+                &lt;td&gt;
+                    &lt;a href=&quot;javascript:void(0)&quot;&gt;&lt;img src=&quot;../assets/images/users/4.jpg&quot; alt=&quot;user&quot; width=&quot;40&quot; class=&quot;img-circle&quot; /&gt; Genelia Deshmukh&lt;/a&gt;
+                &lt;/td&gt;
+                &lt;td&gt;genelia@gmail.com&lt;/td&gt;
+                &lt;td&gt;+123 112 789&lt;/td&gt;
+                &lt;td&gt;&lt;span class=&quot;label label-danger&quot;&gt;Designer&lt;/span&gt; &lt;/td&gt;
+                &lt;td&gt;February 26th 1966&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;td&gt;2&lt;/td&gt;
+                &lt;td&gt;
+                    &lt;a href=&quot;javascript:void(0)&quot;&gt;&lt;img src=&quot;../assets/images/users/8.jpg&quot; alt=&quot;user&quot; width=&quot;40&quot; class=&quot;img-circle&quot; /&gt; Shraddha Kapoor&lt;/a&gt;
+                &lt;/td&gt;
+                &lt;td&gt;gov12inda@gmail.com&lt;/td&gt;
+                &lt;td&gt;+345 456 125&lt;/td&gt;
+                &lt;td&gt;&lt;span class=&quot;label label-success&quot;&gt;Accountant&lt;/span&gt;&lt;/td&gt;
+                &lt;td&gt;February 26th 1966&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;td&gt;3&lt;/td&gt;
+                &lt;td&gt;
+                    &lt;a href=&quot;javascript:void(0)&quot;&gt;&lt;img src=&quot;../assets/images/users/1.jpg&quot; alt=&quot;user&quot; width=&quot;40&quot; class=&quot;img-circle&quot; /&gt; Akshay Kumar&lt;/a&gt;
+                &lt;/td&gt;
+                &lt;td&gt;g12enelia@gmail.com&lt;/td&gt;
+                &lt;td&gt;+154 456 789&lt;/td&gt;
+                &lt;td&gt;&lt;span class=&quot;label label-warning&quot;&gt;Developer&lt;/span&gt; &lt;/td&gt;
+                &lt;td&gt;February 26th 1966&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;td&gt;4&lt;/td&gt;
+                &lt;td&gt;
+                    &lt;a href=&quot;javascript:void(0)&quot;&gt;&lt;img src=&quot;../assets/images/users/6.jpg&quot; alt=&quot;user&quot; width=&quot;40&quot; class=&quot;img-circle&quot; /&gt; Genelia Deshmukh&lt;/a&gt;
+                &lt;/td&gt;
+                &lt;td&gt;abc@gmail.com&lt;/td&gt;
+                &lt;td&gt;+123 456 163&lt;/td&gt;
+                &lt;td&gt;&lt;span class=&quot;label label-danger&quot;&gt;Designer&lt;/span&gt; &lt;/td&gt;
+                &lt;td&gt;March 29th 1966&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;td&gt;5&lt;/td&gt;
+                &lt;td&gt;
+                    &lt;a href=&quot;javascript:void(0)&quot;&gt;&lt;img src=&quot;../assets/images/users/5.jpg&quot; alt=&quot;user&quot; width=&quot;40&quot; class=&quot;img-circle&quot; /&gt; Steve Jobs&lt;/a&gt;
+                &lt;/td&gt;
+                &lt;td&gt;shraddha@gmail.com&lt;/td&gt;
+                &lt;td&gt;+123 420 789&lt;/td&gt;
+                &lt;td&gt;&lt;span class=&quot;label label-success&quot;&gt;Theme Developer&lt;/span&gt; &lt;/td&gt;
+                &lt;td&gt;September 22nd 1964&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;td&gt;6&lt;/td&gt;
+                &lt;td&gt;
+                    &lt;a href=&quot;javascript:void(0)&quot;&gt;&lt;img src=&quot;../assets/images/users/4.jpg&quot; alt=&quot;user&quot; width=&quot;40&quot; class=&quot;img-circle&quot; /&gt; Anil Kapoor&lt;/a&gt;
+                &lt;/td&gt;
+                &lt;td&gt;gamw12@gmail.com&lt;/td&gt;
+                &lt;td&gt;+123 960 789&lt;/td&gt;
+                &lt;td&gt;&lt;span class=&quot;label label-inverse&quot;&gt;Designer&lt;/span&gt; &lt;/td&gt;
+                &lt;td&gt;August 4th 1991&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;td&gt;7&lt;/td&gt;
+                &lt;td&gt;
+                    &lt;a href=&quot;javascript:void(0)&quot;&gt;&lt;img src=&quot;../assets/images/users/3.jpg&quot; alt=&quot;user&quot; width=&quot;40&quot; class=&quot;img-circle&quot; /&gt; Priyank Deshmukh&lt;/a&gt;
+                &lt;/td&gt;
+                &lt;td&gt;shr123@gmail.com&lt;/td&gt;
+                &lt;td&gt;+123 456 700&lt;/td&gt;
+                &lt;td&gt;&lt;span class=&quot;label label-danger&quot;&gt;Hacker&lt;/span&gt; &lt;/td&gt;
+                &lt;td&gt;November 20th 1979&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;td&gt;8&lt;/td&gt;
+                &lt;td&gt;
+                    &lt;a href=&quot;javascript:void(0)&quot;&gt;&lt;img src=&quot;../assets/images/users/2.jpg&quot; alt=&quot;user&quot; width=&quot;40&quot; class=&quot;img-circle&quot; /&gt; Genelia Deshmukh&lt;/a&gt;
+                &lt;/td&gt;
+                &lt;td&gt;developer@gmail.com&lt;/td&gt;
+                &lt;td&gt;+123 700 789&lt;/td&gt;
+                &lt;td&gt;&lt;span class=&quot;label label-success&quot;&gt;Designer&lt;/span&gt; &lt;/td&gt;
+                &lt;td&gt;April 7th 1969&lt;/td&gt;
+            &lt;/tr&gt;
+        &lt;/tbody&gt;
+    &lt;/table&gt;
+&lt;/div&gt;
+									</code>
+								</pre>
+							</div>
+							<div class="px-4">
+								<h4 class="card-title mt-4">Required Files For Footable Here</h4>
+								<hr>
+								<pre class="highlight html shadow-none">
+									<code class="shadow-sm px-4" style="height: 169px;">
+&lt;!-- CSS Here --&gt;
+&lt;link href=&quot;../assets/node_modules/footable/css/footable.bootstrap.min.css&quot; rel=&quot;stylesheet&quot;&gt;
+
+&lt;!-- Javascript Here --&gt;
+&lt;script src=&quot;../assets/node_modules/moment/moment.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;../assets/node_modules/footable/js/footable.min.js&quot;&gt;&lt;/script&gt;
+									</code>
+								</pre>
+							</div>
+						</div>
+                    </div>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Container fluid  -->
+            <!-- ============================================================== -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page wrapper  -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- footer -->
+    <!-- ============================================================== -->
+    <footer class="footer">
+            © 2021 Eliteadmin by themedesigner.in
+            <a href="https://www.wrappixel.com/">WrapPixel</a>
+        </footer>
+    <!-- ============================================================== -->
+    <!-- End footer -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
+    <!-- End Page -->
+    <!-- ============================================================== -->
+    <!-- All Jquery -->
+    <!-- ============================================================== -->
+    <script src="../assets/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../assets/node_modules/popper/popper.min.js"></script>
+    <script src="../assets/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- apps -->
+	<script src="../inverse/dist/js/perfect-scrollbar.jquery.min.js"></script>
+	<script src="../inverse/dist/js/waves.js"></script>
+    <!--Menu sidebar -->
+    <script src="../inverse/dist/js/sidebarmenu.js"></script>
+<script src="../inverse/dist/js/perfect-scrollbar.jquery.min.js"></script>
+    <!--Custom JavaScript -->
+	<!--Custom JavaScript -->
+    <script src="../inverse/dist/js/custom.js"></script>	
+	<script src="highlights/highlight.min.js"></script>
+	<script src="../assets/node_modules/moment/moment.js" type="text/javascript"></script>
+	<script src="../assets/node_modules/footable/js/footable.min.js"></script>
+	<script>
+		$(function(){
+			$('#demo-foo-row-toggler').footable();
+			hljs.initHighlightingOnLoad();
+		});
+	</script>
+    <!-- End JS -->
+</body>
+
+</html>

@@ -1,0 +1,138 @@
+@import 'variable';
+
+/*For Laptop (1280px)*/
+@media(max-width:1350px) {
+	.carousel .item {
+		h3 {
+			font-size: 17px;
+			height: 90px;
+		}
+	}
+
+	.inbox-center {
+		a {
+			width: 400px;
+		}
+	}
+}
+
+@media(min-width:1024px) {
+	.testimonial-text {
+		width: 80%;
+	}
+
+	.navbar-default .navbar-nav .cst-dwn {
+		.dropdown-menu {
+			background: $dark;
+			border: none;
+			padding: 20px;
+
+			a {
+				color: rgba(255, 255, 255, 0.7);
+				background: none;
+
+				&:hover,
+				&:focus {
+					color: $cyan;
+					background: none;
+				}
+			}
+		}
+
+		&:hover,
+		&:focus {
+			background: $dark;
+			color: $cyan;
+
+			>a {
+				color: $cyan;
+			}
+
+			.dropdown-menu {
+				display: block;
+			}
+		}
+	}
+}
+
+@media (max-width:1023px) {
+	.auto-img img {
+		width: 150%;
+	}
+
+	.fix-width {
+		padding: 0 30px;
+	}
+
+	.top-features {
+		margin: 20px 0 !important;
+	}
+
+	.call-to-action {
+		text-align: center;
+	}
+}
+
+@media(min-width:768px) {
+
+	.dual-bg {
+
+		background: $dark;
+		/* Old browsers */
+		background: -moz-linear-gradient(left, $dark 0%, #383c49 50%, $dark 50%, #383c49 100%);
+		/* FF3.6-15 */
+		background: -webkit-linear-gradient(left, $dark 0%, #383c49 50%, $dark 50%, #383c49 100%);
+		/* Chrome10-25,Safari5.1-6 */
+		background: linear-gradient(to right, $dark 0%, #383c49 50%, $dark 50%, #383c49 100%);
+		/* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$dark', endColorstr='#383c49', GradientType=1);
+		/* IE6-9 */
+
+	}
+
+}
+
+@media(max-width:767px) {
+	.navbar-light .navbar-nav {
+		margin-top: 15px;
+		padding-top: 15px;
+
+		.nav-link {
+			padding: 15px 10px;
+		}
+
+		.cs-btn {
+			margin-left: 0;
+			margin-top: 15px;
+			display: block;
+		}
+	}
+
+	.auto-img img {
+		width: 100%;
+	}
+
+
+	.banner-part .banner-small-text {
+		font-size: 14px;
+		max-width: 100%;
+	}
+
+	.banner-part h1 {
+		font-size: 18px;
+		line-height: 30px;
+	}
+
+	.dual-bg {
+		background: $dark;
+	}
+
+}
+
+@media(max-width:480px) {
+
+	.banner-part h1 {
+		font-size: 18px;
+		line-height: 30px;
+	}
+}
