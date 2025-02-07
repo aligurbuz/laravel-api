@@ -15,14 +15,13 @@ class BaseQueueJob implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     /**
-     * @var SerializableClosure
-     */
-    protected SerializableClosure $callback;
-
-    /**
      * @var int
      */
     public int $tries = 3;
+    /**
+     * @var SerializableClosure
+     */
+    protected SerializableClosure $callback;
 
     /**
      * Create a new job instance.
@@ -30,7 +29,7 @@ class BaseQueueJob implements ShouldQueue
      */
     public function __construct(SerializableClosure $callback)
     {
-       $this->callback = $callback;
+        $this->callback = $callback;
     }
 
     /**

@@ -34,7 +34,7 @@ class Publish extends Command
             "content" => []
         ];
 
-        Email::publish($data,'test');
+        Email::publish($data, 'test');
 
         $this->output->success('queue publishing is success');
     }

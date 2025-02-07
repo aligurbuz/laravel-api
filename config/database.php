@@ -123,7 +123,7 @@ return [
 
         'options' => [
             'cluster' => env('REDIS_CLUSTER', 'redis'),
-            'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_').'_database_'),
+            'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_') . '_database_'),
         ],
 
         'default' => [
@@ -146,10 +146,10 @@ return [
 
     'mongoDb' => [
         'default' => [
-            'mongoDbHost' => env('MONGO_DB_HOST',null),
-            'mongoDbPort' => env('MONGO_DB_PORT',null),
-            'mongoDbUser' => env('MONGO_DB_USER',null),
-            'mongoDbPassword' => env('MONGO_DB_PASSWORD',null),
+            'mongoDbHost' => env('MONGO_DB_HOST', null),
+            'mongoDbPort' => env('MONGO_DB_PORT', null),
+            'mongoDbUser' => env('MONGO_DB_USER', null),
+            'mongoDbPassword' => env('MONGO_DB_PASSWORD', null),
         ]
     ]
 

@@ -1,10 +1,10 @@
 <?php
 
+use App\Libs\Date;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
-use App\Libs\Date;
+use Illuminate\Support\Facades\Schema;
 
 class CreateTimezones extends Migration
 {
@@ -27,7 +27,7 @@ class CreateTimezones extends Migration
             $table->bigInteger('created_by')->default(0);
             $table->bigInteger('updated_by')->default(0);
             $table->bigInteger('deleted_by')->default(0);
-            $table->index(['status','is_deleted']);
+            $table->index(['status', 'is_deleted']);
             $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });

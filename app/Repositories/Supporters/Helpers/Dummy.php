@@ -60,20 +60,18 @@ class Dummy
                 $dummies[$column] = generateHash();
             } else {
 
-                if(in_array($column,$relationCodes,true)){
+                if (in_array($column, $relationCodes, true)) {
                     $model = getModelFromTableCode($column);
                     $dummies[$column] = getModelInstance($model)->getRepository()->randomCode();
-                }
-                else{
+                } else {
                     $methodFaker = isset($fakers[$column]) ? $fakers[$column] . 'Faker' : Str::camel($column) . 'Faker';
 
                     if (method_exists($this->eloquentRepository, $methodFaker)) {
                         $dummies[$column] = $this->eloquentRepository->$methodFaker();
                     } else {
-                        if(in_array($column,$booleans,true)){
+                        if (in_array($column, $booleans, true)) {
                             $columnType = 'booleanFaker';
-                        }
-                        else{
+                        } else {
                             $columnType = $types[$column] . 'Faker';
                         }
 

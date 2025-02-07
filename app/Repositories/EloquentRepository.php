@@ -661,6 +661,18 @@ class EloquentRepository
     }
 
     /**
+     * resource repository for eloquent model
+     *
+     * @return array
+     */
+    public function resourceRepository(): array
+    {
+        return $this->additionalResourceHandler(
+            $this->baseResource($this->repository->get()->toArray())
+        );
+    }
+
+    /**
      * get today scope for client
      *
      * @param object|null $builder
@@ -730,18 +742,6 @@ class EloquentRepository
     public function builder(object $builder = null): object
     {
         return $builder ?? $this->instance();
-    }
-
-    /**
-     * resource repository for eloquent model
-     *
-     * @return array
-     */
-    public function resourceRepository(): array
-    {
-        return $this->additionalResourceHandler(
-            $this->baseResource($this->repository->get()->toArray())
-        );
     }
 
     /**
@@ -904,21 +904,6 @@ class EloquentRepository
     }
 
     /**
-     * it adds to builder not deleted data.
-     *
-     * @param object|null $builder
-     * @return object
-     */
-    public function notActive(?object $builder = null): object
-    {
-        $this->ensureColumnExists('status', $this->instance(), function () use ($builder) {
-            $this->repository = $this->builder($builder)->where('status', 0);
-        });
-
-        return $this;
-    }
-
-    /**
      * get code instance for repository
      *
      * @param int $code
@@ -937,6 +922,21 @@ class EloquentRepository
     public function getModelCode(): string
     {
         return getTableCode($this->getModelName());
+    }
+
+    /**
+     * it adds to builder not deleted data.
+     *
+     * @param object|null $builder
+     * @return object
+     */
+    public function notActive(?object $builder = null): object
+    {
+        $this->ensureColumnExists('status', $this->instance(), function () use ($builder) {
+            $this->repository = $this->builder($builder)->where('status', 0);
+        });
+
+        return $this;
     }
 
     /**
@@ -977,6 +977,17 @@ class EloquentRepository
     }
 
     /**
+     * @param int $count
+     * @return void
+     */
+    public function createDummy(int $count = 1): void
+    {
+        for ($i = 0; $i < $count; $i++) {
+            $this->create([$this->dummy()]);
+        }
+    }
+
+    /**
      * get dummy data for eloquent repository
      *
      * @return array
@@ -1006,14 +1017,28 @@ class EloquentRepository
     }
 
     /**
-     * @param int $count
-     * @return void
+     * get addPostQueries fields for repository
+     *
+     * @return array
      */
-    public function createDummy(int $count = 1): void
+    public function getAddPostQueries(): array
     {
-        for ($i = 0; $i < $count; $i++) {
-            $this->create([$this->dummy()]);
+        if (property_exists($this, 'addPostQueries') && is_array($this->addPostQueries)) {
+            return $this->addPostQueries;
         }
+
+        return [];
+    }
+
+    /**
+     * @param string|null $method
+     * @return array|object
+     */
+    public function client(?string $method = null): object|array
+    {
+        $method = $method ?? httpMethod();
+
+        return Client::object($this->getModelName(), Client::$methods[$method]);
     }
 
     /**
@@ -1050,26 +1075,6 @@ class EloquentRepository
     }
 
     /**
-     * set event for repository class
-     *
-     * @param string $name
-     * @param callable $callback
-     * @return mixed
-     */
-    public function event(string $name, callable $callback): mixed
-    {
-        $this->events[$name][] = $callback;
-
-        $eventName = $name . 'Event';
-
-        if (method_exists($this, $eventName) && $this->{$eventName}() === true) {
-            return $callback();
-        }
-
-        return null;
-    }
-
-    /**
      * get events for repository class
      *
      * @return array
@@ -1077,19 +1082,6 @@ class EloquentRepository
     public function getEvents(): array
     {
         return $this->events;
-    }
-
-    /**
-     * get runs only http protocol for the registered event
-     *
-     * @param callable $callback
-     * @return mixed
-     */
-    public function onlyHttp(callable $callback): mixed
-    {
-        return $this->event(__FUNCTION__, function () use ($callback) {
-            return $callback();
-        });
     }
 
     /**
@@ -1194,6 +1186,18 @@ class EloquentRepository
     }
 
     /**
+     * take the random code data for repository
+     *
+     * @return ?int
+     */
+    public function randomCode(): ?int
+    {
+        $data = ($this->random()->getRepository())[0] ?? [];
+
+        return $data[$this->getModelCode()] ?? null;
+    }
+
+    /**
      * take the random data for repository
      *
      * @param int $limit
@@ -1204,18 +1208,6 @@ class EloquentRepository
         $this->repository = $this->instance()->inRandomOrder()->limit($limit);
 
         return $this;
-    }
-
-    /**
-     * take the random code data for repository
-     *
-     * @return ?int
-     */
-    public function randomCode(): ?int
-    {
-        $data = ($this->random()->getRepository())[0] ?? [];
-
-        return $data[$this->getModelCode()] ?? null;
     }
 
     /**
@@ -1533,20 +1525,6 @@ class EloquentRepository
     }
 
     /**
-     * get addPostQueries fields for repository
-     *
-     * @return array
-     */
-    public function getAddPostQueries(): array
-    {
-        if (property_exists($this, 'addPostQueries') && is_array($this->addPostQueries)) {
-            return $this->addPostQueries;
-        }
-
-        return [];
-    }
-
-    /**
      * get,create,put operations are blocked for the specified apiKey values.
      *
      * @param array $apiKeys
@@ -1686,24 +1664,6 @@ class EloquentRepository
     }
 
     /**
-     * get relation codes for eloquent object
-     *
-     * @return array
-     */
-    public function getRelationCodes(): array
-    {
-        $list = [];
-
-        foreach ($this->getColumns() as $column) {
-            if (($this->getModelCode() !== $column) && Str::endsWith($column, '_code')) {
-                $list[] = $column;
-            }
-        }
-
-        return array_values($list);
-    }
-
-    /**
      * get columns for model
      *
      * @return array
@@ -1721,6 +1681,24 @@ class EloquentRepository
     public function getModelWithValues(): mixed
     {
         return $this->instanceModel()->getWithValues();
+    }
+
+    /**
+     * get relation codes for eloquent object
+     *
+     * @return array
+     */
+    public function getRelationCodes(): array
+    {
+        $list = [];
+
+        foreach ($this->getColumns() as $column) {
+            if (($this->getModelCode() !== $column) && Str::endsWith($column, '_code')) {
+                $list[] = $column;
+            }
+        }
+
+        return array_values($list);
     }
 
     /**
@@ -1769,14 +1747,48 @@ class EloquentRepository
     }
 
     /**
-     * @param string|null $method
-     * @return array|object
+     * @param string $name
+     * @param callable $callback
+     * @return void
      */
-    public function client(?string $method = null): object|array
+    public function httpQueue(string $name, callable $callback): void
     {
-        $method = $method ?? httpMethod();
+        $this->onlyHttp(static function () use ($name, $callback) {
+            $this->queue($name, $callback);
+        });
+    }
 
-        return Client::object($this->getModelName(), Client::$methods[$method]);
+    /**
+     * get runs only http protocol for the registered event
+     *
+     * @param callable $callback
+     * @return mixed
+     */
+    public function onlyHttp(callable $callback): mixed
+    {
+        return $this->event(__FUNCTION__, function () use ($callback) {
+            return $callback();
+        });
+    }
+
+    /**
+     * set event for repository class
+     *
+     * @param string $name
+     * @param callable $callback
+     * @return mixed
+     */
+    public function event(string $name, callable $callback): mixed
+    {
+        $this->events[$name][] = $callback;
+
+        $eventName = $name . 'Event';
+
+        if (method_exists($this, $eventName) && $this->{$eventName}() === true) {
+            return $callback();
+        }
+
+        return null;
     }
 
     /**
@@ -1792,18 +1804,6 @@ class EloquentRepository
                 new SerializableClosure($callback)
             )
         )->onQueue($name);
-    }
-
-    /**
-     * @param string $name
-     * @param callable $callback
-     * @return void
-     */
-    public function httpQueue(string $name, callable $callback): void
-    {
-        $this->onlyHttp(static function () use ($name, $callback) {
-            $this->queue($name, $callback);
-        });
     }
 
     /**

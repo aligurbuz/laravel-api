@@ -255,16 +255,6 @@ trait CacheRepository
     }
 
     /**
-     * get checkCacheMemoryStatus for repository
-     *
-     * @return bool
-     */
-    private function checkCacheMemoryStatus(): bool
-    {
-        return config('repository.repositoryMemoryCache');
-    }
-
-    /**
      * delete relation cache for repository model
      *
      * @param string $model
@@ -303,5 +293,15 @@ trait CacheRepository
                 }
             }
         }
+    }
+
+    /**
+     * get checkCacheMemoryStatus for repository
+     *
+     * @return bool
+     */
+    private function checkCacheMemoryStatus(): bool
+    {
+        return config('repository.repositoryMemoryCache');
     }
 }

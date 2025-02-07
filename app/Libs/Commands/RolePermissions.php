@@ -52,7 +52,7 @@ class RolePermissions extends Command
 
         }
 
-        usort($list, function($a, $b) {
+        usort($list, function ($a, $b) {
             return strcmp($a['endpoint'], $b['endpoint']);
         });
 

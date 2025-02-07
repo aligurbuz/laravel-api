@@ -2,13 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\Features\BaseManager;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Features\BaseManager;
 
 class Dummy extends Model
 {
-    use HasFactory,BaseManager;
+    use HasFactory, BaseManager;
 
     protected array $searchable = [];
 

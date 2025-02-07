@@ -16,8 +16,8 @@ class CreateCurrencies extends Migration
         Schema::create('currencies', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('currency_code')->default(0)->unique()->index();
-            $table->char('symbol',10)->comment('currency symbol ($,€ etc.)');
-            $table->char('name',20)->comment('currency name (EURO,USD etc.)');
+            $table->char('symbol', 10)->comment('currency symbol ($,€ etc.)');
+            $table->char('name', 20)->comment('currency name (EURO,USD etc.)');
             $table->boolean('symbol_place_status')->default(1)->comment('Indicates whether the symbol is to the right or left of the number.(0:left,1:right)');
 
             $table->boolean('status')->default(1)->comment('0:active 1:passive');
@@ -25,7 +25,7 @@ class CreateCurrencies extends Migration
             $table->bigInteger('created_by')->default(0);
             $table->bigInteger('updated_by')->default(0);
             $table->bigInteger('deleted_by')->default(0);
-            $table->index(['status','is_deleted']);
+            $table->index(['status', 'is_deleted']);
             $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });
@@ -34,7 +34,7 @@ class CreateCurrencies extends Migration
         $currencies = [
             [
                 'id' => 1,
-                'currency_code' => crc32(config('app.name').'_usdCurrency'),
+                'currency_code' => crc32(config('app.name') . '_usdCurrency'),
                 'symbol' => '$',
                 'name' => 'USD',
                 'symbol_place_status' => 0,
@@ -43,7 +43,7 @@ class CreateCurrencies extends Migration
             ],
             [
                 'id' => 2,
-                'currency_code' => crc32(config('app.name').'_euroCurrency'),
+                'currency_code' => crc32(config('app.name') . '_euroCurrency'),
                 'symbol' => '€',
                 'name' => 'EURO',
                 'symbol_place_status' => 0,

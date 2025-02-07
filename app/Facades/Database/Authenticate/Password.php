@@ -23,23 +23,6 @@ class Password
     }
 
     /**
-     * Retrieves the last three passwords used by the user.
-     *
-     * @return mixed
-     */
-    public function lastPasswords(): mixed
-    {
-        return AppContainer::use('userLastPasswords', function () {
-            return Repository::userPassword()
-                ->withoutGlobalScope()
-                ->where('user_code', User::code())
-                ->orderBy('id', 'desc')
-                ->limitation($this->expireLimitation)
-                ->getRepository();
-        });
-    }
-
-    /**
      * Check if the given password matches any of the user's last passwords.
      *
      * This function iterates through the user's previous passwords and compares
@@ -57,6 +40,23 @@ class Password
                 Exception::customException('lastPasswordSameRule', ['limit' => $this->expireLimitation]);
             }
         }
+    }
+
+    /**
+     * Retrieves the last three passwords used by the user.
+     *
+     * @return mixed
+     */
+    public function lastPasswords(): mixed
+    {
+        return AppContainer::use('userLastPasswords', function () {
+            return Repository::userPassword()
+                ->withoutGlobalScope()
+                ->where('user_code', User::code())
+                ->orderBy('id', 'desc')
+                ->limitation($this->expireLimitation)
+                ->getRepository();
+        });
     }
 
 }

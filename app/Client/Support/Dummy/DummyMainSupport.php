@@ -1,6 +1,6 @@
-<?php 
+<?php
 
-namespace App\Client\Support\Dummy; 
+namespace App\Client\Support\Dummy;
 
 trait DummyMainSupport
 {

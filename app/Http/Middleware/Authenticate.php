@@ -3,14 +3,11 @@
 namespace App\Http\Middleware;
 
 use App\Exceptions\Exception;
-use App\Facades\Database\Authenticate\ApiKey;
 use App\Facades\Database\Authenticate\User;
-use App\Libs\HashGenerator;
 use Closure;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class Authenticate extends Middleware
 {

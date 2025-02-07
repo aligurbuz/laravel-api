@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 declare(strict_types=1);
 
@@ -12,48 +12,48 @@ use App\Repositories\Resources\User\Contracts\UserPasswordRepositoryContract;
 
 class PasswordController extends ApiController
 {
-	/**
-	 * get password data
-	 *
-	 * @param GetClient $client
-	 * @param UserPasswordRepositoryContract $passwordRepository
-	 * @return array
-	 */
-	public function get(GetClient $client, UserPasswordRepositoryContract $passwordRepository): array
-	{
-		$client->handle();
-		return $passwordRepository->get();
-	}
+    /**
+     * get password data
+     *
+     * @param GetClient $client
+     * @param UserPasswordRepositoryContract $passwordRepository
+     * @return array
+     */
+    public function get(GetClient $client, UserPasswordRepositoryContract $passwordRepository): array
+    {
+        $client->handle();
+        return $passwordRepository->get();
+    }
 
 
-	/**
-	 * create password data
-	 *
-	 * @param CreateClient $client
-	 * @param UserPasswordRepositoryContract $passwordRepository
-	 * @return array|object
-	 */
-	public function create(CreateClient $client, UserPasswordRepositoryContract $passwordRepository): array|object
-	{
-		return $this->transaction(function() use($client,$passwordRepository) {
-		    $client->handle();
-		    return $passwordRepository->create();
-		});
-	}
+    /**
+     * create password data
+     *
+     * @param CreateClient $client
+     * @param UserPasswordRepositoryContract $passwordRepository
+     * @return array|object
+     */
+    public function create(CreateClient $client, UserPasswordRepositoryContract $passwordRepository): array|object
+    {
+        return $this->transaction(function () use ($client, $passwordRepository) {
+            $client->handle();
+            return $passwordRepository->create();
+        });
+    }
 
 
-	/**
-	 * update password data
-	 *
-	 * @param UpdateClient $client
-	 * @param UserPasswordRepositoryContract $passwordRepository
-	 * @return array|object
-	 */
-	public function update(UpdateClient $client, UserPasswordRepositoryContract $passwordRepository): array|object
-	{
-		return $this->transaction(function() use($client,$passwordRepository) {
-		    $client->handle();
-		    return $passwordRepository->update();
-		});
-	}
+    /**
+     * update password data
+     *
+     * @param UpdateClient $client
+     * @param UserPasswordRepositoryContract $passwordRepository
+     * @return array|object
+     */
+    public function update(UpdateClient $client, UserPasswordRepositoryContract $passwordRepository): array|object
+    {
+        return $this->transaction(function () use ($client, $passwordRepository) {
+            $client->handle();
+            return $passwordRepository->update();
+        });
+    }
 }

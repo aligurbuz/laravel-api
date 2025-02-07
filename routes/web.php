@@ -1,10 +1,10 @@
 <?php
 
+use App\Http\Controllers\Api\DocumentationController;
+use App\Http\Controllers\DeploymentController;
+use App\Http\Controllers\DoodleController;
 use App\Libs\Postman;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\DeploymentController;
-use App\Http\Controllers\Api\DocumentationController;
-use App\Http\Controllers\DoodleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,18 +17,18 @@ use App\Http\Controllers\DoodleController;
 |
 */
 
-Route::get('test',[DoodleController::class,'handle']);
-Route::get('guide', static function (){
-    return view('guide',[]);
+Route::get('test', [DoodleController::class, 'handle']);
+Route::get('guide', static function () {
+    return view('guide', []);
 });
 
-Route::get('/doc', [DocumentationController::class,'index']);
-Route::post('/deployment/{key}', [DeploymentController::class,'handle']);
+Route::get('/doc', [DocumentationController::class, 'index']);
+Route::post('/deployment/{key}', [DeploymentController::class, 'handle']);
 
-Route::get('/postman/collection', static function(){
+Route::get('/postman/collection', static function () {
     return response()->json(Postman::collection());
 });
 
-Route::get('/postman/environment', static function(){
+Route::get('/postman/environment', static function () {
     return response()->json(Postman::environment());
 });

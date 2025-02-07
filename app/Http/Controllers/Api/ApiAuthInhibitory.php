@@ -35,8 +35,8 @@ trait ApiAuthInhibitory
             return $this->inhibitoryHandler($this->inhibitory[who()]);
         }
 
-        if (!isset($this->inhibitory[who()]) && isset($this->inhibitory['authenticate'.ucfirst(who())])) {
-            return $this->inhibitoryOnlyAuthenticateHandler($this->inhibitory['authenticate'.ucfirst(who())]);
+        if (!isset($this->inhibitory[who()]) && isset($this->inhibitory['authenticate' . ucfirst(who())])) {
+            return $this->inhibitoryOnlyAuthenticateHandler($this->inhibitory['authenticate' . ucfirst(who())]);
         }
 
         return true;
@@ -85,6 +85,17 @@ trait ApiAuthInhibitory
     }
 
     /**
+     * checks if the methods are valid
+     *
+     * @param array $methods
+     * @return bool
+     */
+    private function methods(array $methods = []): bool
+    {
+        return in_array(request()->method(), $methods, true);
+    }
+
+    /**
      * get inhibitory handler for apiAuthenticate
      *
      * @param array $inhibitory
@@ -113,16 +124,5 @@ trait ApiAuthInhibitory
         $this->apiAuthInhibitoryException = true;
 
         return true;
-    }
-
-    /**
-     * checks if the methods are valid
-     *
-     * @param array $methods
-     * @return bool
-     */
-    private function methods(array $methods = []): bool
-    {
-        return in_array(request()->method(), $methods, true);
     }
 }

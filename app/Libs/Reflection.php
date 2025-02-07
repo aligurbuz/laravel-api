@@ -17,25 +17,6 @@ class Reflection
         $this->reflection = new ReflectionClass($class);
     }
 
-    public function getParentMethods(): array
-    {
-        $parentClass = $this->reflection->getParentClass();
-
-        if(!$parentClass){
-            return [];
-        }
-
-        $methods = $this->reflection->getParentClass()->getMethods();
-
-        $list = [];
-
-        foreach ($methods as $method) {
-            $list[] = $method->getName();
-        }
-
-        return $list;
-    }
-
     public function getChildMethods(): array
     {
         $methods = $this->getMethods();
@@ -55,6 +36,25 @@ class Reflection
     public function getMethods(): array
     {
         $methods = $this->reflection->getMethods();
+
+        $list = [];
+
+        foreach ($methods as $method) {
+            $list[] = $method->getName();
+        }
+
+        return $list;
+    }
+
+    public function getParentMethods(): array
+    {
+        $parentClass = $this->reflection->getParentClass();
+
+        if (!$parentClass) {
+            return [];
+        }
+
+        $methods = $this->reflection->getParentClass()->getMethods();
 
         $list = [];
 

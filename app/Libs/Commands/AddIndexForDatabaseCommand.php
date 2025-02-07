@@ -55,9 +55,9 @@ class AddIndexForDatabaseCommand extends Command
 
         $columns = explode(',', $column);
 
-        $arrayFormatter = '\''.implode('\',\'',$columns).'\'';
+        $arrayFormatter = '\'' . implode('\',\'', $columns) . '\'';
 
-        $name = 'add_index_to_columns_' . implode('_', $columns) . '_for_' . $table.'_table';
+        $name = 'add_index_to_columns_' . implode('_', $columns) . '_for_' . $table . '_table';
 
         Artisan::call('make:migration', ['name' => $name, '--table' => $table]);
 
@@ -73,11 +73,10 @@ class AddIndexForDatabaseCommand extends Command
         $lastMigration = base_path('Database/Migrations') . '/' . $addedFile;
         $lastFilePath = File::get($lastMigration);
 
-        if(is_null($indexName)){
-            $definition = '$table->index(['.$arrayFormatter.']);';
-        }
-        else{
-            $definition = '$table->index(['.$arrayFormatter.'], \''.$indexName.'\');';
+        if (is_null($indexName)) {
+            $definition = '$table->index([' . $arrayFormatter . ']);';
+        } else {
+            $definition = '$table->index([' . $arrayFormatter . '], \'' . $indexName . '\');';
         }
 
         $x = str_replace("Schema::table('" . $table . "', function (Blueprint \$table) {\n", "Schema::table('" . $table . "', function (Blueprint \$table) {

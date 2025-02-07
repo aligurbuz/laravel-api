@@ -15,17 +15,15 @@ class UpdateClient extends Client
     use RolesMainSupport;
 
     /**
+     * @var int
+     */
+    public int $isAdministrator;
+    /**
      * get capsule for client
      *
      * @var array
      */
     protected array $capsule = [];
-
-    /**
-     * @var int
-     */
-    public int $isAdministrator;
-
     /**
      * get model entity validation
      *

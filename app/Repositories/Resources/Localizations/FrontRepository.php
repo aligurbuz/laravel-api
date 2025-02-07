@@ -17,23 +17,22 @@ use App\Repositories\Resources\Localizations\PropertyHandlers\FrontPropertyHandl
 
 class FrontRepository extends EloquentRepository implements LocalizationsFrontRepositoryContract
 {
-	use AfterCreate;
-	use AfterUpdate;
-	use BeforeCreate;
-	use BeforeUpdate;
-	use FrontPromoterTrait;
-	use GeneralPromoterTrait;
-	use FrontPropertyHandlerTrait;
+    use AfterCreate;
+    use AfterUpdate;
+    use BeforeCreate;
+    use BeforeUpdate;
+    use FrontPromoterTrait;
+    use GeneralPromoterTrait;
+    use FrontPropertyHandlerTrait;
 
+    /**
+     * get model name for repository
+     *
+     * @var string
+     */
+    protected static string $model = FrontLang::class;
     /**
      * @var bool
      */
     protected bool $paginator = false;
-
-	/**
-	 * get model name for repository
-	 *
-	 * @var string
-	 */
-	protected static string $model = FrontLang::class;
 }

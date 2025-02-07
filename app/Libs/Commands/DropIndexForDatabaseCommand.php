@@ -52,7 +52,7 @@ class DropIndexForDatabaseCommand extends Command
 
         $indexName = $this->ask('Index name');
 
-        $name = 'drop_index_to_columns_' . $indexName . '_for_' . $table.'_table';
+        $name = 'drop_index_to_columns_' . $indexName . '_for_' . $table . '_table';
 
         Artisan::call('make:migration', ['name' => $name, '--table' => $table]);
 
@@ -68,7 +68,7 @@ class DropIndexForDatabaseCommand extends Command
         $lastMigration = base_path('Database/Migrations') . '/' . $addedFile;
         $lastFilePath = File::get($lastMigration);
 
-        $definition = '$table->dropIndex(\''.$indexName.'\');';
+        $definition = '$table->dropIndex(\'' . $indexName . '\');';
 
         $x = str_replace("Schema::table('" . $table . "', function (Blueprint \$table) {\n", "Schema::table('" . $table . "', function (Blueprint \$table) {
             {$definition} \n", $lastFilePath);

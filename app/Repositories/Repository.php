@@ -17,20 +17,20 @@ use App\Repositories\Resources\Definition\Contracts\DefinitionGendersRepositoryC
 use App\Repositories\Resources\Gate\Contracts\PermissionsRepositoryContract;
 use App\Repositories\Resources\Gate\Contracts\RolesRepositoryContract;
 use App\Repositories\Resources\Localizations\Contracts\LanguageRepositoryContract;
+use App\Repositories\Resources\Localizations\Contracts\LocalizationsFrontRepositoryContract;
 use App\Repositories\Resources\Localizations\Contracts\LocalizationsRepositoryContract;
 use App\Repositories\Resources\Logger\Contracts\LoggerRepositoryContract;
 use App\Repositories\Resources\Password\Contracts\PasswordChangesRepositoryContract;
 use App\Repositories\Resources\Registration\Contracts\RegistrationRepositoryContract;
 use App\Repositories\Resources\SuperAdmins\Contracts\SuperAdminsRepositoryContract;
 use App\Repositories\Resources\Support\Contracts\ExcelRepositoryContract;
+use App\Repositories\Resources\Support\Contracts\SupportCryptRepositoryContract;
+use App\Repositories\Resources\Support\Contracts\SupportDummyRepositoryContract;
 use App\Repositories\Resources\Timezones\Contracts\TimezonesRepositoryContract;
 use App\Repositories\Resources\User\Contracts\PhotosRepositoryContract;
 use App\Repositories\Resources\User\Contracts\UserActivationsRepositoryContract;
-use App\Repositories\Resources\User\Contracts\UserRepositoryContract;
-use App\Repositories\Resources\Support\Contracts\SupportDummyRepositoryContract;
 use App\Repositories\Resources\User\Contracts\UserPasswordRepositoryContract;
-use App\Repositories\Resources\Support\Contracts\SupportCryptRepositoryContract;
-use App\Repositories\Resources\Localizations\Contracts\LocalizationsFrontRepositoryContract;
+use App\Repositories\Resources\User\Contracts\UserRepositoryContract;
 
 /**
  * Class Repository
@@ -43,41 +43,41 @@ class Repository
      *
      * @return SupportDummyRepositoryContract
      */
-    public static function dummy() : SupportDummyRepositoryContract
+    public static function dummy(): SupportDummyRepositoryContract
     {
         return app()->get(SupportDummyRepositoryContract::class);
     }
-    
+
     /**
      * get userPassword repository instance
      *
      * @return UserPasswordRepositoryContract
      */
-    public static function userPassword() : UserPasswordRepositoryContract
+    public static function userPassword(): UserPasswordRepositoryContract
     {
         return app()->get(UserPasswordRepositoryContract::class);
     }
-    
+
     /**
      * get crypt repository instance
      *
      * @return SupportCryptRepositoryContract
      */
-    public static function crypt() : SupportCryptRepositoryContract
+    public static function crypt(): SupportCryptRepositoryContract
     {
         return app()->get(SupportCryptRepositoryContract::class);
     }
-    
+
     /**
      * get frontLang repository instance
      *
      * @return LocalizationsFrontRepositoryContract
      */
-    public static function frontLang() : LocalizationsFrontRepositoryContract
+    public static function frontLang(): LocalizationsFrontRepositoryContract
     {
         return app()->get(LocalizationsFrontRepositoryContract::class);
     }
-    
+
     /**
      * get gender repository instance
      *

@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 declare(strict_types=1);
 
@@ -21,170 +21,170 @@ namespace App\Models\Entities;
  */
 class FrontLang
 {
-	/**
-	 * query data object for entity
-	 *
-	 * @var object
-	 */
-	protected static object $query;
+    /**
+     * query data object for entity
+     *
+     * @var object
+     */
+    protected static object $query;
 
 
-	/**
-	 * FrontLang constructor
-	 *
-	 * @param object $query
-	 */
-	public function __construct(object $query)
-	{
-		self::$query = $query;
-	}
+    /**
+     * FrontLang constructor
+     *
+     * @param object $query
+     */
+    public function __construct(object $query)
+    {
+        self::$query = $query;
+    }
 
 
-	/**
-	 * get id column for database table
-	 *
-	 * @return mixed
-	 */
-	protected static function id(): mixed
-	{
-		return self::$query->id;
-	}
+    /**
+     * get id column for database table
+     *
+     * @return mixed
+     */
+    protected static function id(): mixed
+    {
+        return self::$query->id;
+    }
 
 
-	/**
-	 * get front_lang_code column for database table
-	 *
-	 * @return mixed
-	 */
-	protected static function front_lang_code(): mixed
-	{
-		return self::$query->front_lang_code;
-	}
+    /**
+     * get front_lang_code column for database table
+     *
+     * @return mixed
+     */
+    protected static function front_lang_code(): mixed
+    {
+        return self::$query->front_lang_code;
+    }
 
 
-	/**
-	 * get language_code column for database table
-	 *
-	 * @return mixed
-	 */
-	protected static function language_code(): mixed
-	{
-		return self::$query->language_code;
-	}
+    /**
+     * get language_code column for database table
+     *
+     * @return mixed
+     */
+    protected static function language_code(): mixed
+    {
+        return self::$query->language_code;
+    }
 
 
-	/**
-	 * get key column for database table
-	 *
-	 * @return mixed
-	 */
-	protected static function key(): mixed
-	{
-		return self::$query->key;
-	}
+    /**
+     * get key column for database table
+     *
+     * @return mixed
+     */
+    protected static function key(): mixed
+    {
+        return self::$query->key;
+    }
 
 
-	/**
-	 * get value column for database table
-	 *
-	 * @return mixed
-	 */
-	protected static function value(): mixed
-	{
-		return self::$query->value;
-	}
+    /**
+     * get value column for database table
+     *
+     * @return mixed
+     */
+    protected static function value(): mixed
+    {
+        return self::$query->value;
+    }
 
 
-	/**
-	 * get status column for database table
-	 *
-	 * @return mixed
-	 */
-	protected static function status(): mixed
-	{
-		return self::$query->status;
-	}
+    /**
+     * get status column for database table
+     *
+     * @return mixed
+     */
+    protected static function status(): mixed
+    {
+        return self::$query->status;
+    }
 
 
-	/**
-	 * get is_deleted column for database table
-	 *
-	 * @return mixed
-	 */
-	protected static function is_deleted(): mixed
-	{
-		return self::$query->is_deleted;
-	}
+    /**
+     * get is_deleted column for database table
+     *
+     * @return mixed
+     */
+    protected static function is_deleted(): mixed
+    {
+        return self::$query->is_deleted;
+    }
 
 
-	/**
-	 * get created_by column for database table
-	 *
-	 * @return mixed
-	 */
-	protected static function created_by(): mixed
-	{
-		return self::$query->created_by;
-	}
+    /**
+     * get created_by column for database table
+     *
+     * @return mixed
+     */
+    protected static function created_by(): mixed
+    {
+        return self::$query->created_by;
+    }
 
 
-	/**
-	 * get updated_by column for database table
-	 *
-	 * @return mixed
-	 */
-	protected static function updated_by(): mixed
-	{
-		return self::$query->updated_by;
-	}
+    /**
+     * get updated_by column for database table
+     *
+     * @return mixed
+     */
+    protected static function updated_by(): mixed
+    {
+        return self::$query->updated_by;
+    }
 
 
-	/**
-	 * get deleted_by column for database table
-	 *
-	 * @return mixed
-	 */
-	protected static function deleted_by(): mixed
-	{
-		return self::$query->deleted_by;
-	}
+    /**
+     * get deleted_by column for database table
+     *
+     * @return mixed
+     */
+    protected static function deleted_by(): mixed
+    {
+        return self::$query->deleted_by;
+    }
 
 
-	/**
-	 * get deleted_at column for database table
-	 *
-	 * @return mixed
-	 */
-	protected static function deleted_at(): mixed
-	{
-		return self::$query->deleted_at;
-	}
+    /**
+     * get deleted_at column for database table
+     *
+     * @return mixed
+     */
+    protected static function deleted_at(): mixed
+    {
+        return self::$query->deleted_at;
+    }
 
 
-	/**
-	 * get created_at column for database table
-	 *
-	 * @return mixed
-	 */
-	protected static function created_at(): mixed
-	{
-		return self::$query->created_at;
-	}
+    /**
+     * get created_at column for database table
+     *
+     * @return mixed
+     */
+    protected static function created_at(): mixed
+    {
+        return self::$query->created_at;
+    }
 
 
-	/**
-	 * get updated_at column for database table
-	 *
-	 * @return mixed
-	 */
-	protected static function updated_at(): mixed
-	{
-		return self::$query->updated_at;
-	}
+    /**
+     * get updated_at column for database table
+     *
+     * @return mixed
+     */
+    protected static function updated_at(): mixed
+    {
+        return self::$query->updated_at;
+    }
 
 
-	public function __get($name)
-	{
-		return static::{$name}();
-	}
+    public function __get($name)
+    {
+        return static::{$name}();
+    }
 }

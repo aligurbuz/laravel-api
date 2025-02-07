@@ -22,6 +22,26 @@ class QueueService extends QueueConnectionService
     }
 
     /**
+     * If Exchange Cannot Be Found or If No Queue Matches the Routing Key Is Found
+     * @return void
+     */
+    public function callback(): void
+    {
+        $this->channel->set_return_listener(function ($replyCode, $replyText, $exchange, $routingKey, $message) {
+
+            $message = [
+                "replyCode" => $replyCode,
+                "replyText" => $replyText,
+                "exchange" => $exchange,
+                "routingKey" => $routingKey,
+                "message" => $message
+            ];
+
+            $this->error('Exchange or queue not found: ' . json_encode($message));
+        });
+    }
+
+    /**
      * @return void
      * @throws Exception
      */
@@ -56,26 +76,6 @@ class QueueService extends QueueConnectionService
         while ($this->channel->is_consuming()) {
             $this->channel->wait();
         }
-    }
-
-    /**
-     * If Exchange Cannot Be Found or If No Queue Matches the Routing Key Is Found
-     * @return void
-     */
-    public function callback(): void
-    {
-        $this->channel->set_return_listener(function ($replyCode, $replyText, $exchange, $routingKey, $message) {
-
-            $message = [
-                "replyCode" => $replyCode,
-                "replyText" => $replyText,
-                "exchange" => $exchange,
-                "routingKey" => $routingKey,
-                "message" => $message
-            ];
-
-            $this->error('Exchange or queue not found: ' . json_encode($message));
-        });
     }
 
     /**

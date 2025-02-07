@@ -57,26 +57,6 @@ class ApiKey
     }
 
     /**
-     * get all keys for facade
-     *
-     * @return array
-     */
-    public static function all(): array
-    {
-        return AppContainer::get('apiKeys') ?? [];
-    }
-
-    /**
-     * get keys for apiKeys
-     *
-     * @return array
-     */
-    public static function keys(): array
-    {
-        return array_keys(static::all());
-    }
-
-    /**
      * get db api keys
      *
      * @param string|null $key
@@ -97,6 +77,26 @@ class ApiKey
         }
 
         return $apiKeys;
+    }
+
+    /**
+     * get all keys for facade
+     *
+     * @return array
+     */
+    public static function all(): array
+    {
+        return AppContainer::get('apiKeys') ?? [];
+    }
+
+    /**
+     * get keys for apiKeys
+     *
+     * @return array
+     */
+    public static function keys(): array
+    {
+        return array_keys(static::all());
     }
 
     /**

@@ -97,7 +97,7 @@ class Role
      *
      * @return string
      */
-    public static function getName() : string
+    public static function getName(): string
     {
         return (static::get())['role_name'];
     }
@@ -107,7 +107,7 @@ class Role
      *
      * @return int
      */
-    public static function getCode() : int
+    public static function getCode(): int
     {
         return (static::get())['role_code'];
     }

@@ -56,8 +56,8 @@ class Permission extends PermissionManager implements PermissionInterface
      */
     public function get(): array
     {
-        return AppContainer::use('permissions', function (){
-            return Repository::permission()->orderBy('endpoint','asc')->all();
+        return AppContainer::use('permissions', function () {
+            return Repository::permission()->orderBy('endpoint', 'asc')->all();
         });
     }
 

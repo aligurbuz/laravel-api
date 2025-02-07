@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      *
@@ -18,7 +17,7 @@ return new class extends Migration
             $table->bigInteger('user_activation_code')->unique();
             $table->bigInteger('user_code')->unique();
 
-            $table->enum('options',['None','Sms','Email'])->comment('User activation values : None or Sms or Email');
+            $table->enum('options', ['None', 'Sms', 'Email'])->comment('User activation values : None or Sms or Email');
             $table->string('hash')->nullable(true)->comment('one time hashing');
 
             //$table->boolean('status')->default(1)->comment('0:active 1:passive');
@@ -30,7 +29,7 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        pushMigration('activations','user','userActivation');
+        pushMigration('activations', 'user', 'userActivation');
     }
 
     /**

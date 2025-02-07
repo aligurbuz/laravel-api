@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 declare(strict_types=1);
 
@@ -17,18 +17,18 @@ use App\Repositories\Resources\User\PropertyHandlers\PasswordPropertyHandlerTrai
 
 class PasswordRepository extends EloquentRepository implements UserPasswordRepositoryContract
 {
-	use AfterCreate;
-	use AfterUpdate;
-	use BeforeCreate;
-	use BeforeUpdate;
-	use PasswordPromoterTrait;
-	use GeneralPromoterTrait;
-	use PasswordPropertyHandlerTrait;
+    use AfterCreate;
+    use AfterUpdate;
+    use BeforeCreate;
+    use BeforeUpdate;
+    use PasswordPromoterTrait;
+    use GeneralPromoterTrait;
+    use PasswordPropertyHandlerTrait;
 
-	/**
-	 * get model name for repository
-	 *
-	 * @var string
-	 */
-	protected static string $model = UserPassword::class;
+    /**
+     * get model name for repository
+     *
+     * @var string
+     */
+    protected static string $model = UserPassword::class;
 }

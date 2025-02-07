@@ -17,7 +17,7 @@ class CreateRoles extends Migration
             $table->id();
             $table->bigInteger('role_code')->default(0)->unique()->index();
             $table->bigInteger('role_app_code')->default(0)->index();
-            $table->char('role_name',30);
+            $table->char('role_name', 30);
             $table->tinyInteger('is_administrator')->default(0);
             $table->jsonb('roles');
 
@@ -26,7 +26,7 @@ class CreateRoles extends Migration
             $table->bigInteger('created_by')->default(0);
             $table->bigInteger('updated_by')->default(0);
             $table->bigInteger('deleted_by')->default(0);
-            $table->index(['status','is_deleted']);
+            $table->index(['status', 'is_deleted']);
             $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });

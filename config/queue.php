@@ -72,7 +72,7 @@ return [
                  *   'local_key' => env('RABBITMQ_SSL_LOCALKEY', null),
                  *   'verify_peer' => env('RABBITMQ_SSL_VERIFY_PEER', true),
                  *   'passphrase' => env('RABBITMQ_SSL_PASSPHRASE', null),
-                ],
+                 * ],
                  */
             ],
             'worker' => env('RABBITMQ_WORKER', 'default'),

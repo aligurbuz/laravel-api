@@ -18,7 +18,7 @@ trait LocalizationsPromoterTrait
      */
     public function localizationsRepository(?object $builder = null): object
     {
-        if(endpoint() === 'localizations' && is_null(Client::lang())){
+        if (endpoint() === 'localizations' && is_null(Client::lang())) {
             return $this->apply($builder);
         }
 

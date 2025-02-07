@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Libs\Packages\Client;
 
-use App\Exceptions\Exception;
 use App\Libs\AppContainer;
 use App\Libs\HttpPutResolve;
 
@@ -14,25 +13,6 @@ use App\Libs\HttpPutResolve;
  */
 class ClientManager
 {
-    /**
-     * get client data
-     *
-     * @var array
-     */
-    protected array $data = [];
-
-    /**
-     * @var null|mixed
-     */
-    protected array $dataStream = [];
-
-    /**
-     * available http methods for client
-     *
-     * @var array|string[]
-     */
-    protected array $methods = ['GET', 'POST', 'PUT'];
-
     public static array $clientMethods = [
         'GET' => 'get',
         'POST' => 'create',
@@ -44,7 +24,22 @@ class ClientManager
         'post' => 'create',
         'put' => 'update',
     ];
-
+    /**
+     * get client data
+     *
+     * @var array
+     */
+    protected array $data = [];
+    /**
+     * @var null|mixed
+     */
+    protected array $dataStream = [];
+    /**
+     * available http methods for client
+     *
+     * @var array|string[]
+     */
+    protected array $methods = ['GET', 'POST', 'PUT'];
     /**
      * get request method for client
      *

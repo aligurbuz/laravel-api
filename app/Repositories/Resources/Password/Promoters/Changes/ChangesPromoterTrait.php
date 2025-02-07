@@ -5,9 +5,7 @@ declare(strict_types=1);
 namespace App\Repositories\Resources\Password\Promoters\Changes;
 
 use App\Facades\Database\Authenticate\User;
-use App\Facades\Support\Email\Email;
 use App\Facades\Support\Faker\Faker;
-use App\Facades\Support\Sms\Sms;
 use App\Libs\Date;
 use App\Models\Entities\PasswordChange;
 

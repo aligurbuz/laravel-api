@@ -64,7 +64,7 @@ trait AcceptLanguage
     {
         $language = Language::code($acceptLanguage);
 
-        if(is_null($language)){
+        if (is_null($language)) {
             Exception::customException(trans('exception.acceptLanguageNotValid'));
         }
 

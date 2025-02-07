@@ -3,14 +3,14 @@
 return [
 
     'passwordExpire' => env('PASSWORD_EXPIRE'),
-    'authenticate' => env('AUTHENTICATE',true),
-    'logger' => env('LOGGER',true),
-    'permission' => env('PERMISSION',true),
-    'language' => env('LANGUAGE',true),
+    'authenticate' => env('AUTHENTICATE', true),
+    'logger' => env('LOGGER', true),
+    'permission' => env('PERMISSION', true),
+    'language' => env('LANGUAGE', true),
     'apikeyString' => 'apikey',
     'defaultApiResponseFormatter' => 'json',
-    'productBaseUrl' => env('productBaseUrl','productBaseUrl'),
-    'exceptionNotifyChannel' => env('EXCEPTION_NOTIFY_CHANNEL','EXCEPTION_NOTIFY_CHANNEL'),
+    'productBaseUrl' => env('productBaseUrl', 'productBaseUrl'),
+    'exceptionNotifyChannel' => env('EXCEPTION_NOTIFY_CHANNEL', 'EXCEPTION_NOTIFY_CHANNEL'),
 
     'allowedClientKeys' => [
         'range',
@@ -76,7 +76,7 @@ return [
     |
     */
 
-    'debug' => (bool) env('APP_DEBUG', false),
+    'debug' => (bool)env('APP_DEBUG', false),
 
     /*
     |--------------------------------------------------------------------------

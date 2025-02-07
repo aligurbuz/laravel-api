@@ -28,7 +28,7 @@ class Seeder extends Command
     public function handle()
     {
         $model = $this->ask('model name');
-        $count = $this->ask('How many seeds will be planted?',1);
+        $count = $this->ask('How many seeds will be planted?', 1);
 
         $repository = getModelInstance(ucfirst($model))->getRepository();
 
@@ -36,7 +36,7 @@ class Seeder extends Command
 
         $progressBar->start();
 
-        for($i=1; $i<=$count; $i++){
+        for ($i = 1; $i <= $count; $i++) {
             $repository->createDummy();
             $progressBar->advance();
         }

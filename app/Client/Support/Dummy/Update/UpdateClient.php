@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Client\Support\Dummy\Update;
 
@@ -9,28 +9,28 @@ use App\Models\Dummy;
 
 class UpdateClient extends Client
 {
-	use GeneratorTrait;
-	use DummyMainSupport;
-	use ClientAutoGeneratorTrait;
+    use GeneratorTrait;
+    use DummyMainSupport;
+    use ClientAutoGeneratorTrait;
 
-	/**
-	 * get capsule for client
-	 *
-	 * @var array
-	 */
-	protected array $capsule = [];
+    /**
+     * get capsule for client
+     *
+     * @var array
+     */
+    protected array $capsule = [];
 
-	/**
-	 * get model entity validation
-	 *
-	 * @var array|string[]
-	 */
-	protected array $model = [Dummy::class];
+    /**
+     * get model entity validation
+     *
+     * @var array|string[]
+     */
+    protected array $model = [Dummy::class];
 
-	/**
-	 * get rule for client
-	 *
-	 * @var array
-	 */
-	protected array $rule = ['dummy_code' => 'required|integer'];
+    /**
+     * get rule for client
+     *
+     * @var array
+     */
+    protected array $rule = ['dummy_code' => 'required|integer'];
 }

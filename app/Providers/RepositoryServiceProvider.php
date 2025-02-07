@@ -27,7 +27,9 @@ use App\Repositories\Resources\Gate\Contracts\RolesRepositoryContract;
 use App\Repositories\Resources\Gate\PermissionsRepository;
 use App\Repositories\Resources\Gate\RolesRepository;
 use App\Repositories\Resources\Localizations\Contracts\LanguageRepositoryContract;
+use App\Repositories\Resources\Localizations\Contracts\LocalizationsFrontRepositoryContract;
 use App\Repositories\Resources\Localizations\Contracts\LocalizationsRepositoryContract;
+use App\Repositories\Resources\Localizations\FrontRepository as LocalizationsFrontRepository;
 use App\Repositories\Resources\Localizations\LanguageRepository;
 use App\Repositories\Resources\Localizations\LocalizationsRepository;
 use App\Repositories\Resources\Logger\Contracts\LoggerRepositoryContract;
@@ -39,24 +41,22 @@ use App\Repositories\Resources\Registration\RegistrationRepository;
 use App\Repositories\Resources\SuperAdmins\Contracts\SuperAdminsRepositoryContract;
 use App\Repositories\Resources\SuperAdmins\SuperAdminsRepository;
 use App\Repositories\Resources\Support\Contracts\ExcelRepositoryContract;
+use App\Repositories\Resources\Support\Contracts\SupportCryptRepositoryContract;
+use App\Repositories\Resources\Support\Contracts\SupportDummyRepositoryContract;
+use App\Repositories\Resources\Support\CryptRepository as SupportCryptRepository;
+use App\Repositories\Resources\Support\DummyRepository as SupportDummyRepository;
 use App\Repositories\Resources\Support\ExcelRepository;
 use App\Repositories\Resources\Timezones\Contracts\TimezonesRepositoryContract;
 use App\Repositories\Resources\Timezones\TimezonesRepository;
 use App\Repositories\Resources\User\ActivationsRepository as UserActivationsRepository;
 use App\Repositories\Resources\User\Contracts\PhotosRepositoryContract;
 use App\Repositories\Resources\User\Contracts\UserActivationsRepositoryContract;
+use App\Repositories\Resources\User\Contracts\UserPasswordRepositoryContract;
 use App\Repositories\Resources\User\Contracts\UserRepositoryContract;
+use App\Repositories\Resources\User\PasswordRepository as UserPasswordRepository;
 use App\Repositories\Resources\User\PhotosRepository;
 use App\Repositories\Resources\User\UserRepository;
 use Illuminate\Support\ServiceProvider;
-use App\Repositories\Resources\Support\Contracts\SupportDummyRepositoryContract;
-use App\Repositories\Resources\Support\DummyRepository as SupportDummyRepository;
-use App\Repositories\Resources\User\Contracts\UserPasswordRepositoryContract;
-use App\Repositories\Resources\User\PasswordRepository as UserPasswordRepository;
-use App\Repositories\Resources\Support\Contracts\SupportCryptRepositoryContract;
-use App\Repositories\Resources\Support\CryptRepository as SupportCryptRepository;
-use App\Repositories\Resources\Localizations\Contracts\LocalizationsFrontRepositoryContract;
-use App\Repositories\Resources\Localizations\FrontRepository as LocalizationsFrontRepository;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -91,10 +91,10 @@ class RepositoryServiceProvider extends ServiceProvider
 
         $this->app->bind(PasswordChangesRepositoryContract::class, PasswordChangesRepository::class);
         $this->app->bind(DefinitionGendersRepositoryContract::class, DefinitionGendersRepository::class);
-        $this->app->bind(LocalizationsFrontRepositoryContract::class,LocalizationsFrontRepository::class);
-        $this->app->bind(SupportCryptRepositoryContract::class,SupportCryptRepository::class);
-        $this->app->bind(UserPasswordRepositoryContract::class,UserPasswordRepository::class);
-        $this->app->bind(SupportDummyRepositoryContract::class,SupportDummyRepository::class);
+        $this->app->bind(LocalizationsFrontRepositoryContract::class, LocalizationsFrontRepository::class);
+        $this->app->bind(SupportCryptRepositoryContract::class, SupportCryptRepository::class);
+        $this->app->bind(UserPasswordRepositoryContract::class, UserPasswordRepository::class);
+        $this->app->bind(SupportDummyRepositoryContract::class, SupportDummyRepository::class);
         //newBind
     }
 

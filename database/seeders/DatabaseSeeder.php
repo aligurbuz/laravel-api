@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
         User::factory(1)->create();
 
         Gender::factory(2)->sequence(
-            ['gender_code' => crc32('male'),'name' => 'male'],
+            ['gender_code' => crc32('male'), 'name' => 'male'],
             ['gender_code' => crc32('female'), 'name' => 'female']
         )->create();
 

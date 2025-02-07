@@ -40,12 +40,42 @@ abstract class HttpManager
 
     /**
      * @param string $name
-     * @param array $arguments
+     * @param $arguments
      * @return array
      */
-    public function __call(string $name, array $arguments)
+    public static function magicProcess(string $name, $arguments): array
     {
-        return self::magicProcess($name, ($arguments[0] ?? []));
+        $snakeName = Str::snake($name);
+        $snakeSplit = explode('_', $snakeName);
+        $method = $snakeSplit[0] ?? null;
+        $endpoint = $snakeSplit[1] ?? null;
+
+
+        $newInstance = new static();
+
+        if (property_exists($newInstance, 'methods') && isset(static::$methods[$endpoint])) {
+            $endpoint = static::$methods[$endpoint];
+        }
+
+        if ($method === 'get') {
+            $queryParameters = $arguments ?? [];
+            $endpoint .= '?' . http_build_query($queryParameters);
+        } else {
+            $method = static::$httpMethods[$method];
+            $methodArguments = $arguments ?? [];
+        }
+
+        if (isset($methodArguments['routeParameters'])) {
+            $endpoint .= '/' . $methodArguments['routeParameters'];
+            unset($methodArguments['routeParameters']);
+        }
+
+        return static::dataHandler(static::request()
+            ->endpoint($endpoint)
+            ->{$method}(
+                $methodArguments ?? null
+            )
+        );
     }
 
     /**
@@ -93,41 +123,11 @@ abstract class HttpManager
 
     /**
      * @param string $name
-     * @param $arguments
+     * @param array $arguments
      * @return array
      */
-    public static function magicProcess(string $name, $arguments): array
+    public function __call(string $name, array $arguments)
     {
-        $snakeName = Str::snake($name);
-        $snakeSplit = explode('_', $snakeName);
-        $method = $snakeSplit[0] ?? null;
-        $endpoint = $snakeSplit[1] ?? null;
-
-
-        $newInstance = new static();
-
-        if (property_exists($newInstance, 'methods') && isset(static::$methods[$endpoint])) {
-            $endpoint = static::$methods[$endpoint];
-        }
-
-        if ($method === 'get') {
-            $queryParameters = $arguments ?? [];
-            $endpoint .= '?' . http_build_query($queryParameters);
-        } else {
-            $method = static::$httpMethods[$method];
-            $methodArguments = $arguments ?? [];
-        }
-
-        if (isset($methodArguments['routeParameters'])) {
-            $endpoint .= '/' . $methodArguments['routeParameters'];
-            unset($methodArguments['routeParameters']);
-        }
-
-        return static::dataHandler(static::request()
-            ->endpoint($endpoint)
-            ->{$method}(
-                $methodArguments ?? null
-            )
-        );
+        return self::magicProcess($name, ($arguments[0] ?? []));
     }
 }

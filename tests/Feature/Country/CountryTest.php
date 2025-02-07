@@ -18,14 +18,14 @@ class CountryTest extends TestCase
      */
     public function test_countries()
     {
-        $response = $this->get($this->apiRequestPrefix(),$this->headers());
+        $response = $this->get($this->apiRequestPrefix(), $this->headers());
 
         $content = $this->getContentArray($response);
         $resourceData = $this->getResourceData($content);
 
         $response->assertStatus(200);
         $this->assertIsArray($resourceData);
-        $this->assertTrue(true,$resourceData[0]['country_code']);
+        $this->assertTrue(true, $resourceData[0]['country_code']);
     }
 
     /**
@@ -35,13 +35,13 @@ class CountryTest extends TestCase
      */
     public function test_countries_withoutAuth()
     {
-        $response = $this->get($this->apiRequestPrefix(),$this->headers());
+        $response = $this->get($this->apiRequestPrefix(), $this->headers());
 
         $content = $this->getContentArray($response);
         $resourceData = $this->getResourceData($content);
 
         $response->assertStatus(200);
         $this->assertIsArray($resourceData);
-        $this->assertTrue(true,$resourceData[0]['country_code']);
+        $this->assertTrue(true, $resourceData[0]['country_code']);
     }
 }

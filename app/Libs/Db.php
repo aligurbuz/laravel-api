@@ -246,18 +246,6 @@ class Db extends Model
 
     /**
      * @param string $model
-     * @return array
-     */
-    public static function dummy(string $model): array
-    {
-        $repository = getModelInstance(ucfirst($model))->getRepository();
-        $modelCode = $repository->getModelCode();
-
-        return collect($repository->dummy())->except([$modelCode])->toArray();
-    }
-
-    /**
-     * @param string $model
      * @param array $data
      * @return array
      */
@@ -271,5 +259,17 @@ class Db extends Model
                 $data
             )
         );
+    }
+
+    /**
+     * @param string $model
+     * @return array
+     */
+    public static function dummy(string $model): array
+    {
+        $repository = getModelInstance(ucfirst($model))->getRepository();
+        $modelCode = $repository->getModelCode();
+
+        return collect($repository->dummy())->except([$modelCode])->toArray();
     }
 }

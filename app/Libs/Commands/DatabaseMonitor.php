@@ -48,12 +48,11 @@ class DatabaseMonitor extends Command
             $data = $model::query()->select($columns)->where($repository->getModelCode(), $modelData[1])->get();
         } else {
 
-            if(Str::startsWith($limit,'filter:')){
-                $filter = str_replace('filter:','',$limit);
-                $filterValue = explode('=',$filter);
-                $queryString = $model::query()->select($columns)->where($filterValue[0],$filterValue[1]);
-            }
-            else{
+            if (Str::startsWith($limit, 'filter:')) {
+                $filter = str_replace('filter:', '', $limit);
+                $filterValue = explode('=', $filter);
+                $queryString = $model::query()->select($columns)->where($filterValue[0], $filterValue[1]);
+            } else {
                 $queryString = $model::query()->select($columns)->take($limit);
             }
 
@@ -63,8 +62,8 @@ class DatabaseMonitor extends Command
 
         $this->table($columns, $data, 'box-double');
 
-        if(isset($count)){
-            $this->output->text('There are a total of '.$count.' records in the '.$modelName);
+        if (isset($count)) {
+            $this->output->text('There are a total of ' . $count . ' records in the ' . $modelName);
             echo PHP_EOL;
         }
 

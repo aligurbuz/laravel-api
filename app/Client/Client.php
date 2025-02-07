@@ -8,7 +8,6 @@ use App\Exceptions\Exception;
 use App\Libs\AppContainer;
 use App\Libs\Client as ClientFacade;
 use App\Libs\Db;
-use App\Libs\HashGenerator;
 use App\Libs\Packages\Client\ClientManager;
 use App\Repositories\Repository;
 use Illuminate\Support\Str;
@@ -66,7 +65,7 @@ class Client extends ClientManager
         }
 
         AppContainer::setWithTerminating('clientInstance', $this);
-        AppContainer::setWithTerminating('endpointId',encodeString($this->getModelName()));
+        AppContainer::setWithTerminating('endpointId', encodeString($this->getModelName()));
     }
 
     /**
@@ -86,6 +85,85 @@ class Client extends ClientManager
     }
 
     /**
+     * @return void
+     */
+    private function makeClientIfExistObject(): void
+    {
+        if (AppContainer::has('clientIfExistObject_' . $this->getHashClientInstance())) {
+            $client = current(ClientFacade::data());
+            $inputs = $this->ifExist()->getInputs();
+            $mustValues = $this->ifExist()->getMustValues();
+            $exceptValues = $this->ifExist()->getExceptValues();
+
+            foreach ($inputs as $input) {
+                if (isset($client[$input])) {
+                    if (isset($mustValues[$input][$client[$input]])) {
+                        foreach ($mustValues[$input][$client[$input]] as $mustValue) {
+                            if (!isset($client[$mustValue])) {
+                                Exception::customException('clientIfExists', [
+                                    'key' => $input,
+                                    'value' => $client[$input],
+                                    'must' => $mustValue
+                                ]);
+                            }
+                        }
+                    }
+
+
+                    if (isset($exceptValues[$input][$client[$input]])) {
+                        foreach ($exceptValues[$input][$client[$input]] as $exceptValue) {
+                            if (isset($client[$exceptValue])) {
+                                Exception::customException('clientIfExceptExists', [
+                                    'key' => $input,
+                                    'value' => $client[$input],
+                                    'except' => $exceptValue
+                                ]);
+                            }
+                        }
+                    }
+
+                }
+            }
+        }
+    }
+
+    /**
+     * check if the key is valid for client
+     *
+     * @param null|string $key
+     * @return bool
+     */
+    public function has(?string $key = null): bool
+    {
+        $streamData = $this->getClientDataStreams();
+
+        return (isset($streamData[$key]));
+    }
+
+    /**
+     * get client data stream for client
+     *
+     * @return array
+     */
+    public function getClientDataStreams(): array
+    {
+        return AppContainer::get('clientDataStreams', []);
+    }
+
+    /**
+     * set input for client
+     *
+     * @param null|string $key
+     * @return mixed
+     */
+    public function get(?string $key = null): mixed
+    {
+        $streamData = $this->getClientDataStreams();
+
+        return $streamData[$key] ?? $streamData;
+    }
+
+    /**
      * @return string
      */
     public function getHashClientInstance(): string
@@ -101,49 +179,6 @@ class Client extends ClientManager
         return AppContainer::use('clientIfExistObject_' . $this->getHashClientInstance(), function () {
             return new ClientIfExist();
         });
-    }
-
-    /**
-     * @return void
-     */
-    private function makeClientIfExistObject(): void
-    {
-        if(AppContainer::has('clientIfExistObject_'.$this->getHashClientInstance())){
-            $client = current(ClientFacade::data());
-            $inputs = $this->ifExist()->getInputs();
-            $mustValues = $this->ifExist()->getMustValues();
-            $exceptValues = $this->ifExist()->getExceptValues();
-
-            foreach ($inputs as $input){
-                if(isset($client[$input])){
-                    if(isset($mustValues[$input][$client[$input]])){
-                        foreach ($mustValues[$input][$client[$input]] as $mustValue){
-                            if(!isset($client[$mustValue])){
-                                Exception::customException('clientIfExists', [
-                                    'key' => $input,
-                                    'value' => $client[$input],
-                                    'must' => $mustValue
-                                ]);
-                            }
-                        }
-                    }
-
-
-                    if(isset($exceptValues[$input][$client[$input]])){
-                        foreach ($exceptValues[$input][$client[$input]] as $exceptValue){
-                            if(isset($client[$exceptValue])){
-                                Exception::customException('clientIfExceptExists', [
-                                    'key' => $input,
-                                    'value' => $client[$input],
-                                    'except' => $exceptValue
-                                ]);
-                            }
-                        }
-                    }
-
-                }
-            }
-        }
     }
 
     /**
@@ -522,29 +557,6 @@ class Client extends ClientManager
     }
 
     /**
-     * set input for client
-     *
-     * @param null|string $key
-     * @return mixed
-     */
-    public function get(?string $key = null): mixed
-    {
-        $streamData = $this->getClientDataStreams();
-
-        return $streamData[$key] ?? $streamData;
-    }
-
-    /**
-     * get client data stream for client
-     *
-     * @return array
-     */
-    public function getClientDataStreams(): array
-    {
-        return AppContainer::get('clientDataStreams', []);
-    }
-
-    /**
      * @param $column
      * @param callable $callback
      * @return mixed
@@ -581,18 +593,5 @@ class Client extends ClientManager
         $this->setRegister($key, $value);
 
         return $this;
-    }
-
-    /**
-     * check if the key is valid for client
-     *
-     * @param null|string $key
-     * @return bool
-     */
-    public function has(?string $key = null): bool
-    {
-        $streamData = $this->getClientDataStreams();
-
-        return (isset($streamData[$key]));
     }
 }

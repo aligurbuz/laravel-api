@@ -2,7 +2,7 @@
 
 return [
 
-    'adapter' => env('SOCKET_ADAPTER','default'),
+    'adapter' => env('SOCKET_ADAPTER', 'default'),
 
     'connection' => [
         'default' => [

@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 declare(strict_types=1);
 
@@ -12,48 +12,48 @@ use App\Repositories\Resources\Localizations\Contracts\LocalizationsFrontReposit
 
 class FrontController extends ApiController
 {
-	/**
-	 * get front data
-	 *
-	 * @param GetClient $client
-	 * @param LocalizationsFrontRepositoryContract $frontRepository
-	 * @return array
-	 */
-	public function get(GetClient $client, LocalizationsFrontRepositoryContract $frontRepository): array
-	{
-		$client->handle();
-		return $frontRepository->get();
-	}
+    /**
+     * get front data
+     *
+     * @param GetClient $client
+     * @param LocalizationsFrontRepositoryContract $frontRepository
+     * @return array
+     */
+    public function get(GetClient $client, LocalizationsFrontRepositoryContract $frontRepository): array
+    {
+        $client->handle();
+        return $frontRepository->get();
+    }
 
 
-	/**
-	 * create front data
-	 *
-	 * @param CreateClient $client
-	 * @param LocalizationsFrontRepositoryContract $frontRepository
-	 * @return array|object
-	 */
-	public function create(CreateClient $client, LocalizationsFrontRepositoryContract $frontRepository): array|object
-	{
-		return $this->transaction(function() use($client,$frontRepository) {
-		    $client->handle();
-		    return $frontRepository->create();
-		});
-	}
+    /**
+     * create front data
+     *
+     * @param CreateClient $client
+     * @param LocalizationsFrontRepositoryContract $frontRepository
+     * @return array|object
+     */
+    public function create(CreateClient $client, LocalizationsFrontRepositoryContract $frontRepository): array|object
+    {
+        return $this->transaction(function () use ($client, $frontRepository) {
+            $client->handle();
+            return $frontRepository->create();
+        });
+    }
 
 
-	/**
-	 * update front data
-	 *
-	 * @param UpdateClient $client
-	 * @param LocalizationsFrontRepositoryContract $frontRepository
-	 * @return array|object
-	 */
-	public function update(UpdateClient $client, LocalizationsFrontRepositoryContract $frontRepository): array|object
-	{
-		return $this->transaction(function() use($client,$frontRepository) {
-		    $client->handle();
-		    return $frontRepository->update();
-		});
-	}
+    /**
+     * update front data
+     *
+     * @param UpdateClient $client
+     * @param LocalizationsFrontRepositoryContract $frontRepository
+     * @return array|object
+     */
+    public function update(UpdateClient $client, LocalizationsFrontRepositoryContract $frontRepository): array|object
+    {
+        return $this->transaction(function () use ($client, $frontRepository) {
+            $client->handle();
+            return $frontRepository->update();
+        });
+    }
 }

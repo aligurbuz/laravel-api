@@ -1,6 +1,6 @@
-<?php 
+<?php
 
-namespace App\Client\Localizations\Front; 
+namespace App\Client\Localizations\Front;
 
 trait FrontMainSupport
 {

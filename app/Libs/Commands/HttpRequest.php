@@ -34,11 +34,11 @@ class HttpRequest extends Command
     #[NoReturn] public function handle(): void
     {
         $endpoint = $this->ask('endpoint');
-        $id = $this->ask('userCode',1);
-        $method = $this->ask('Which http method will be used to send the request? (get, post, put)','get');
-        $range = $this->ask('range values','desc');
+        $id = $this->ask('userCode', 1);
+        $method = $this->ask('Which http method will be used to send the request? (get, post, put)', 'get');
+        $range = $this->ask('range values', 'desc');
 
-        $endpoint = Str::camel($method.'_'.$endpoint);
+        $endpoint = Str::camel($method . '_' . $endpoint);
 
         AppContainer::setWithTerminating(Constants::userCodeForFakeAuth, $id);
 

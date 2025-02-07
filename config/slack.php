@@ -7,10 +7,10 @@ return [
     ],
     'error500' => [
         'channel' => 'error500',
-        'hook' => env('SLACK_500_ERROR','hook'),
+        'hook' => env('SLACK_500_ERROR', 'hook'),
     ],
     'deployment' => [
         'channel' => 'deployment',
-        'hook' => env('DEPLOYMENT_HOOK',''),
+        'hook' => env('DEPLOYMENT_HOOK', ''),
     ]
 ];

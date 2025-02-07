@@ -8,38 +8,38 @@ class EntityMap
      * @param object $query
      * @return Dummy
      */
-    public function dummy(object $query) : Dummy
+    public function dummy(object $query): Dummy
     {
         return new Dummy($query);
     }
-    
+
     /**
      * @param object $query
      * @return UserPassword
      */
-    public function userPassword(object $query) : UserPassword
+    public function userPassword(object $query): UserPassword
     {
         return new UserPassword($query);
     }
-    
+
     /**
      * @param object $query
      * @return Crypt
      */
-    public function crypt(object $query) : Crypt
+    public function crypt(object $query): Crypt
     {
         return new Crypt($query);
     }
-    
+
     /**
      * @param object $query
      * @return FrontLang
      */
-    public function frontLang(object $query) : FrontLang
+    public function frontLang(object $query): FrontLang
     {
         return new FrontLang($query);
     }
-    
+
     /**
      * @param object $query
      * @return Gender

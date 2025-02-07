@@ -2,8 +2,8 @@
 
 namespace Tests\Feature\Customer;
 
-use Tests\TestCase;
 use App\Models\CustomerContact;
+use Tests\TestCase;
 
 class ContactsTest extends TestCase
 {
@@ -79,7 +79,7 @@ class ContactsTest extends TestCase
      */
     public function test_customer_contacts_put_activation()
     {
-        $this->putHttpMethodActivation([],1);
+        $this->putHttpMethodActivation([], 1);
     }
 
     /**
@@ -89,7 +89,7 @@ class ContactsTest extends TestCase
      */
     public function test_customer_contacts_put_activation2()
     {
-        $this->putHttpMethodActivation(['status' => true],1);
+        $this->putHttpMethodActivation(['status' => true], 1);
     }
 
     /**
@@ -99,7 +99,7 @@ class ContactsTest extends TestCase
      */
     public function test_customer_contacts_put_activation3()
     {
-        $this->putHttpMethodActivation(['status' => true,'is_deleted' => true]);
+        $this->putHttpMethodActivation(['status' => true, 'is_deleted' => true]);
     }
 
     /**
@@ -109,7 +109,7 @@ class ContactsTest extends TestCase
      */
     public function test_customer_contacts_put_activation4()
     {
-        $this->putHttpMethodActivation(['status' => true,'is_deleted' => false],1);
+        $this->putHttpMethodActivation(['status' => true, 'is_deleted' => false], 1);
     }
 
     /**
@@ -119,7 +119,7 @@ class ContactsTest extends TestCase
      */
     public function test_customer_contacts_put_activation5()
     {
-        $this->putHttpMethodActivation(['status' => false,'is_deleted' => false]);
+        $this->putHttpMethodActivation(['status' => false, 'is_deleted' => false]);
     }
 
     /**
@@ -129,7 +129,7 @@ class ContactsTest extends TestCase
      */
     public function test_customer_contacts_put_activation6()
     {
-        $this->putHttpMethodActivation(['status' => false,'is_deleted' => true]);
+        $this->putHttpMethodActivation(['status' => false, 'is_deleted' => true]);
     }
 
     /**
@@ -139,6 +139,6 @@ class ContactsTest extends TestCase
      */
     public function test_customer_contacts_put_activation7()
     {
-        $this->putHttpMethodActivation(['status' => true,'is_deleted' => false],1);
+        $this->putHttpMethodActivation(['status' => true, 'is_deleted' => false], 1);
     }
 }

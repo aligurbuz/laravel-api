@@ -68,12 +68,12 @@ trait ScopeManagerTrait
 
         $operatedRanges = [];
 
-        foreach ($ranges as $range){
-            $rangeExplode = explode(':',$range);
+        foreach ($ranges as $range) {
+            $rangeExplode = explode(':', $range);
             $operatedRanges[] = $rangeExplode[0];
 
-            if(isset($rangeExplode[1])){
-                AppContainer::set('rangeBindings',[$rangeExplode[0] => $rangeExplode[1]],true);
+            if (isset($rangeExplode[1])) {
+                AppContainer::set('rangeBindings', [$rangeExplode[0] => $rangeExplode[1]], true);
             }
         }
 

@@ -41,7 +41,7 @@ class ApiKeyManager
     {
         $list = [];
 
-        foreach (ApiKey::all() as $item){
+        foreach (ApiKey::all() as $item) {
             $list[$item->key] = $item->value;
         }
 

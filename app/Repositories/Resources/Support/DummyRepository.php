@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 declare(strict_types=1);
 
@@ -17,18 +17,18 @@ use App\Repositories\Resources\Support\PropertyHandlers\DummyPropertyHandlerTrai
 
 class DummyRepository extends EloquentRepository implements SupportDummyRepositoryContract
 {
-	use AfterCreate;
-	use AfterUpdate;
-	use BeforeCreate;
-	use BeforeUpdate;
-	use DummyPromoterTrait;
-	use GeneralPromoterTrait;
-	use DummyPropertyHandlerTrait;
+    use AfterCreate;
+    use AfterUpdate;
+    use BeforeCreate;
+    use BeforeUpdate;
+    use DummyPromoterTrait;
+    use GeneralPromoterTrait;
+    use DummyPropertyHandlerTrait;
 
-	/**
-	 * get model name for repository
-	 *
-	 * @var string
-	 */
-	protected static string $model = Dummy::class;
+    /**
+     * get model name for repository
+     *
+     * @var string
+     */
+    protected static string $model = Dummy::class;
 }

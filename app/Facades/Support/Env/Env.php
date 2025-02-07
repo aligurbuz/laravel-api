@@ -7,37 +7,6 @@ use App\Libs\Redis;
 class Env
 {
     /**
-     * @return array
-     */
-    public static function all(): array
-    {
-        $envPath = base_path('.env');
-        if (!file_exists($envPath)) {
-            return [];
-        }
-
-        $envArray = [];
-        $lines = file($envPath, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-
-        foreach ($lines as $line) {
-            if (str_starts_with(trim($line), '#') || !str_contains($line, '=')) {
-                continue;
-            }
-
-            list($key, $value) = explode('=', $line, 2);
-
-            $key = trim($key);
-            $value = trim($value);
-
-            $value = trim($value, "\"'");
-
-            $envArray[$key] = $value;
-        }
-
-        return $envArray;
-    }
-
-    /**
      * @param array $data
      * @return bool
      */
@@ -92,5 +61,36 @@ class Env
         $keys = static::all();
 
         return $keys[$key] ?? null;
+    }
+
+    /**
+     * @return array
+     */
+    public static function all(): array
+    {
+        $envPath = base_path('.env');
+        if (!file_exists($envPath)) {
+            return [];
+        }
+
+        $envArray = [];
+        $lines = file($envPath, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+
+        foreach ($lines as $line) {
+            if (str_starts_with(trim($line), '#') || !str_contains($line, '=')) {
+                continue;
+            }
+
+            list($key, $value) = explode('=', $line, 2);
+
+            $key = trim($key);
+            $value = trim($value);
+
+            $value = trim($value, "\"'");
+
+            $envArray[$key] = $value;
+        }
+
+        return $envArray;
     }
 }

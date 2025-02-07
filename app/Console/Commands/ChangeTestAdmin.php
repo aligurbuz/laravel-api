@@ -3,7 +3,6 @@
 namespace App\Console\Commands;
 
 use App\Facades\Support\Env\Env;
-use App\Libs\Redis;
 use App\Repositories\Repository;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Hash;
@@ -46,7 +45,7 @@ class ChangeTestAdmin extends Command
             'ADMIN_USER_PASSWORD' => $newPassword,
         ]);
 
-        $this->comment('new email: '.$email);
-        $this->comment('new password: '.$newPassword);
+        $this->comment('new email: ' . $email);
+        $this->comment('new password: ' . $newPassword);
     }
 }

@@ -57,7 +57,7 @@ trait CreateRepository
 
             foreach ($clientData as $clientDataKey => $value) {
                 $modelCode = $this->getModelCode();
-                if(!isset($value[$modelCode])){
+                if (!isset($value[$modelCode])) {
                     $value[$modelCode] = generateHash();
                 }
 
@@ -74,10 +74,10 @@ trait CreateRepository
                 $result = $this->createModel($value);
                 $arrayResults = $result->toArray();
 
-                foreach ($this->getRelationCodes() as $relationCode){
+                foreach ($this->getRelationCodes() as $relationCode) {
                     $relationModel = getModelFromTableCode($relationCode);
                     $mirror = $this->getRecursiveMirror($relationModel, $arrayResults[$relationCode]);
-                    if(!is_null($mirror)){
+                    if (!is_null($mirror)) {
                         $arrayResults[Str::snake($relationModel)][] = $this->getRecursiveMirror($relationModel, $arrayResults[$relationCode]);
                     }
                 }

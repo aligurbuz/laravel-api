@@ -28,7 +28,7 @@ class TruncateModel extends Command
      */
     public function handle(): void
     {
-        if(!app()->isLocal()){
+        if (!app()->isLocal()) {
             Exception::customException('onlyLocal');
         }
 
@@ -37,7 +37,7 @@ class TruncateModel extends Command
         $code = Repository::$model()->getModelCode();
         $relations = Db::relationCodes();
 
-        foreach ($relations[$code] as $relation){
+        foreach ($relations[$code] as $relation) {
             $table = getModelInstance($relation)->getTable();
             \Illuminate\Support\Facades\DB::table($table)->truncate();
         }

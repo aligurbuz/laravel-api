@@ -59,7 +59,7 @@ trait UpdateRepository
             if ($this->getEventStatus() && method_exists($this, 'eventFireBeforeUpdate')) {
                 $eventFireBeforeUpdate = $this->eventFireBeforeUpdate($data, ($oldData[0] ?? []));
 
-                if(is_array($eventFireBeforeUpdate)){
+                if (is_array($eventFireBeforeUpdate)) {
                     $data = $eventFireBeforeUpdate;
                 }
             }
@@ -93,14 +93,14 @@ trait UpdateRepository
                 }
 
                 if ($update == '0' && isset($oldData[0])) {
-                    if(method_exists($this,'updateFailed')){
+                    if (method_exists($this, 'updateFailed')) {
                         $this->updateFailed();
                     }
 
                     return Exception::updateException('', ['model' => $this->getModelName()]);
                 }
 
-                if(isset($oldData[0])){
+                if (isset($oldData[0])) {
                     $this->updateEventDispatcher($oldData, $data);
                     $this->addPostQueryDispatcher($data, $dataKey);
                 }
@@ -232,10 +232,9 @@ trait UpdateRepository
                 if (isset($newData[$countableModelCode]) && $oldData[$countableModelCode] !== $newData[$countableModelCode]) {
                     $repositoryUpdateQuery->decrease($field);
                     Repository::$repository()->where($countableModelCode, $newData[$countableModelCode])->increase($field);
-                } elseif ((isset($oldData['is_deleted']) && !$oldData['is_deleted']) AND (isset($newData['is_deleted']) && $newData['is_deleted'])) {
+                } elseif ((isset($oldData['is_deleted']) && !$oldData['is_deleted']) and (isset($newData['is_deleted']) && $newData['is_deleted'])) {
                     $repositoryUpdateQuery->decrease($field);
-                }
-                elseif ((isset($oldData['is_deleted']) && $oldData['is_deleted']) AND (isset($newData['is_deleted']) && !$newData['is_deleted'])) {
+                } elseif ((isset($oldData['is_deleted']) && $oldData['is_deleted']) and (isset($newData['is_deleted']) && !$newData['is_deleted'])) {
                     $repositoryUpdateQuery->increase($field);
                 }
             }

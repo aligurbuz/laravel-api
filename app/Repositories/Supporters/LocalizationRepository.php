@@ -110,8 +110,7 @@ trait LocalizationRepository
                     ];
 
                     $localization->update($newData, false);
-                }
-                else{
+                } else {
                     Repository::localization()->create([
                         'localization_code' => $this->bigIntegerFaker(),
                         'language_code' => appLanguageCode(),

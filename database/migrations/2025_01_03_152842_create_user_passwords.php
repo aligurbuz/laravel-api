@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      *
@@ -22,7 +21,7 @@ return new class extends Migration
             $table->timestamp('expired_at')->comment('user password expired_at value');
             $table->boolean('status')->default(1)->comment('0:active 1:passive');
 
-            $table->index(['user_code','status']);
+            $table->index(['user_code', 'status']);
 
             //$table->integer('sequence_time')->default(0);
             //$table->integer('sequence')->default(1);
@@ -30,7 +29,7 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        pushMigration('password','user','userPassword');
+        pushMigration('password', 'user', 'userPassword');
     }
 
     /**

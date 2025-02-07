@@ -16,8 +16,8 @@ class CreateTableChanges extends Migration
         Schema::create('table_changes', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('table_change_code')->default(0)->unique()->index();
-            $table->char('table_name',100);
-            $table->char('column_name',100);
+            $table->char('table_name', 100);
+            $table->char('column_name', 100);
             $table->text('old_data');
             $table->text('new_data');
 
@@ -26,7 +26,7 @@ class CreateTableChanges extends Migration
             $table->bigInteger('created_by')->default(0);
             $table->bigInteger('updated_by')->default(0);
             $table->bigInteger('deleted_by')->default(0);
-            $table->index(['status','is_deleted']);
+            $table->index(['status', 'is_deleted']);
             $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });

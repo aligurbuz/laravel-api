@@ -102,22 +102,22 @@ trait FakerRepository
     /**
      * generate decimal value for faker repository
      *
+     * @return float
+     */
+    public function doubleFaker(): float
+    {
+        return $this->floatFaker();
+    }
+
+    /**
+     * generate decimal value for faker repository
+     *
      * @param int $max
      * @return float
      */
     public function floatFaker(int $max = 9999): float
     {
         return faker()->randomFloat(2, 1, $max);
-    }
-
-    /**
-     * generate decimal value for faker repository
-     *
-     * @return float
-     */
-    public function doubleFaker(): float
-    {
-        return $this->floatFaker();
     }
 
     /**
@@ -220,6 +220,6 @@ trait FakerRepository
      */
     public function ageFaker(): int
     {
-        return rand(18,99);
+        return rand(18, 99);
     }
 }

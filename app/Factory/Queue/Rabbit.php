@@ -14,12 +14,12 @@ use Exception;
  */
 class Rabbit extends QueueManager implements QueueInterface
 {
-	/**
-	 * binds property variable
-	 *
-	 * @var array
-	 */
-	protected array $binds = [];
+    /**
+     * binds property variable
+     *
+     * @var array
+     */
+    protected array $binds = [];
 
     /**
      * @var QueueService
@@ -27,16 +27,16 @@ class Rabbit extends QueueManager implements QueueInterface
     protected QueueService $queueService;
 
 
-	/**
-	 * Rabbit constructor
-	 *
-	 * @param array $binds
-	 */
-	public function __construct(array $binds = [])
-	{
-		$this->binds = $binds;
+    /**
+     * Rabbit constructor
+     *
+     * @param array $binds
+     */
+    public function __construct(array $binds = [])
+    {
+        $this->binds = $binds;
         $this->queueService = new QueueService();
-	}
+    }
 
     public function publish(array $data = []): void
     {

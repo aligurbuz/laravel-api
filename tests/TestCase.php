@@ -5,22 +5,22 @@ namespace Tests;
 use App\Constants;
 use App\Facades\Database\Authenticate\ApiKey;
 use App\Facades\Support\Env\Env;
+use App\Libs\AppContainer;
 use App\Libs\Db;
 use App\Libs\Redis;
+use App\Repositories\Repository;
+use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Illuminate\Testing\TestResponse;
 use Predis\ClientInterface;
-use App\Libs\AppContainer;
-use App\Repositories\Repository;
-use Illuminate\Support\Facades\File;
-use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 
 /**
  * @property $repository
  */
 abstract class TestCase extends BaseTestCase
 {
-    use CreatesApplication,TestHttpSupport;
+    use CreatesApplication, TestHttpSupport;
 
     /**
      * @var string
@@ -35,100 +35,26 @@ abstract class TestCase extends BaseTestCase
     public function __construct(?string $name = null, array $data = [], $dataName = '')
     {
         parent::__construct($name, $data, $dataName);
-        static::$unitTestToken = static::$unitTestToken.'_'.md5(__DIR__);
+        static::$unitTestToken = static::$unitTestToken . '_' . md5(__DIR__);
     }
 
     /**
-     * get api request prefix for feature test class
+     * get is available required in rules for endpoint
      *
-     * @param string|null $endpoint
-     * @return string
+     * @param string $method
+     * @return bool
      */
-    public function apiRequestPrefix(?string $endpoint = null) : string
+    public function isAvailableRequiredInRules(string $method = 'get'): bool
     {
-        $endpoint = $endpoint ?? $this->endpoint;
-        return Constants::apiPrefix.'/'.$endpoint;
-    }
+        $rules = $this->getClientRules($method);
 
-    /**
-     * get api key for test
-     *
-     * @return string
-     */
-    public function getApiKey() : string
-    {
-        $key = ApiKey::get('admin');
-        $apiKey = $key->value;
-
-        if($apiKey === ''){
-            throw new \RuntimeException('admin api key is not valid');
+        foreach ($rules as $key => $value) {
+            if ($this->isRequired($key, $rules)) {
+                return true;
+            }
         }
 
-        return $apiKey;
-    }
-
-    /**
-     * @return string[]
-     */
-    public function headers() : array
-    {
-        return [
-            'Apikey' => $this->getApiKey(),
-            'Content-Type' => 'application/json',
-            'Accept-Language' => 'en'
-        ];
-    }
-
-    /**
-     * @return string[]
-     */
-    public function headersWithAuthorization() : array
-    {
-        return [
-            'Apikey' => $this->getApiKey(),
-            'Content-Type' => 'application/json',
-            'Accept-Language' => 'en',
-            'Authorization' => 'Bearer '.$this->getToken()
-        ];
-    }
-
-    /**
-     * @param object $data
-     * @return array
-     */
-    public function getContentArray(object $data) : array
-    {
-        return json_decode($data->getContent(),true);
-    }
-
-    /**
-     * @param array $data
-     * @return array
-     */
-    public function getResourceData(array $data = []) : array
-    {
-        return $data['resource'][0]['data'] ?? $data['resource'];
-    }
-
-    /**
-     * get client for endpoint
-     *
-     * @return array
-     */
-    public function getClient() : array
-    {
-        $client = json_decode(File::get(database_path('columns').''.DIRECTORY_SEPARATOR.'modelClients.json'),true);
-        return $client[ucfirst($this->getModel())] ?? [];
-    }
-
-    /**
-     * @param string $method
-     * @return object
-     */
-    public function getClientInstance(string $method = 'get') : object
-    {
-        $client = $this->getClient();
-        return new $client[$method];
+        return false;
     }
 
     /**
@@ -137,9 +63,41 @@ abstract class TestCase extends BaseTestCase
      * @param string $method
      * @return array
      */
-    public function getClientRules(string $method = 'get') : array
+    public function getClientRules(string $method = 'get'): array
     {
         return $this->getClientInstance($method)->getRule();
+    }
+
+    /**
+     * @param string $method
+     * @return object
+     */
+    public function getClientInstance(string $method = 'get'): object
+    {
+        $client = $this->getClient();
+        return new $client[$method];
+    }
+
+    /**
+     * get client for endpoint
+     *
+     * @return array
+     */
+    public function getClient(): array
+    {
+        $client = json_decode(File::get(database_path('columns') . '' . DIRECTORY_SEPARATOR . 'modelClients.json'), true);
+        return $client[ucfirst($this->getModel())] ?? [];
+    }
+
+    /**
+     * get model for endpoint
+     *
+     * @return string
+     */
+    public function getModel(): string
+    {
+        $serviceJson = getServiceJson($this->endpoint);
+        return $serviceJson['model'] ?? 'none';
     }
 
     /**
@@ -149,27 +107,27 @@ abstract class TestCase extends BaseTestCase
      * @param array $rules
      * @return bool
      */
-    public function isRequired(?string $key = null,array $rules = []) : bool
+    public function isRequired(?string $key = null, array $rules = []): bool
     {
         $clientRules = count($rules) ? $rules : $this->getClientRules();
 
-        if(in_array($key,$this->getRequiredColumns(),true)){
+        if (in_array($key, $this->getRequiredColumns(), true)) {
             return true;
         }
 
-        if(
+        if (
             isset($clientRules[$key])
             && is_array($clientRules[$key])
-            && in_array('required',$clientRules[$key],true)
-        ){
+            && in_array('required', $clientRules[$key], true)
+        ) {
             return true;
         }
 
-        if(
+        if (
             isset($clientRules[$key])
             && is_string($clientRules[$key])
-            && Str::contains('required',$clientRules[$key])
-        ){
+            && Str::contains('required', $clientRules[$key])
+        ) {
             return true;
         }
 
@@ -177,22 +135,16 @@ abstract class TestCase extends BaseTestCase
     }
 
     /**
-     * get is available required in rules for endpoint
+     * get required columns
      *
-     * @param string $method
-     * @return bool
+     * @return array
      */
-    public function isAvailableRequiredInRules(string $method = 'get') : bool
+    public function getRequiredColumns(): array
     {
-        $rules = $this->getClientRules($method);
+        $modelNamespace = Constants::modelNamespace . '\\' . $this->getModel();
+        $modelInstance = new $modelNamespace;
 
-        foreach ($rules as $key => $value){
-            if($this->isRequired($key,$rules)){
-                return true;
-            }
-        }
-
-        return false;
+        return Db::requiredColumns($modelInstance->getTable());
     }
 
     /**
@@ -205,10 +157,39 @@ abstract class TestCase extends BaseTestCase
         $content = $this->getContentArray($response);
         $resourceData = $this->getResourceData($content);
 
-        AppContainer::setWithTerminating('testEndpointRelations',$this->getRelations($content));
+        AppContainer::setWithTerminating('testEndpointRelations', $this->getRelations($content));
 
         $response->assertStatus(200);
         $this->assertIsArray($resourceData);
+    }
+
+    /**
+     * @param object $data
+     * @return array
+     */
+    public function getContentArray(object $data): array
+    {
+        return json_decode($data->getContent(), true);
+    }
+
+    /**
+     * @param array $data
+     * @return array
+     */
+    public function getResourceData(array $data = []): array
+    {
+        return $data['resource'][0]['data'] ?? $data['resource'];
+    }
+
+    /**
+     * get relations
+     *
+     * @param array $content
+     * @return array
+     */
+    public function getRelations(array $content = []): array
+    {
+        return $content['instructions']['relations'] ?? [];
     }
 
     /**
@@ -216,32 +197,32 @@ abstract class TestCase extends BaseTestCase
      *
      * @return array
      */
-    public function getTestEndpointRelations() : array
+    public function getTestEndpointRelations(): array
     {
-        $relations = AppContainer::get('testEndpointRelations',[]);
+        $relations = AppContainer::get('testEndpointRelations', []);
 
         $repository = $this->repository;
         $deniedEagerLoadings = Repository::$repository()->getDeniedEagerLoadings();
 
         $list = [];
 
-        foreach ($relations as $item){
-            foreach ($deniedEagerLoadings as $deniedEagerLoading){
-                if(
-                    Str::contains($item['using'],'with['.$deniedEagerLoading.']')
-                    || Str::contains($item['using'],'[with]['.$deniedEagerLoading.']')
-                ){
+        foreach ($relations as $item) {
+            foreach ($deniedEagerLoadings as $deniedEagerLoading) {
+                if (
+                    Str::contains($item['using'], 'with[' . $deniedEagerLoading . ']')
+                    || Str::contains($item['using'], '[with][' . $deniedEagerLoading . ']')
+                ) {
                     $denied = true;
                     break;
                 }
             }
 
-            if(isset($denied)) continue;
+            if (isset($denied)) continue;
 
             $using = $item['using'] ?? '';
-            $usingExplode = explode('=',$using);
+            $usingExplode = explode('=', $using);
 
-            if(isset($usingExplode[1])){
+            if (isset($usingExplode[1])) {
                 $list[$usingExplode[0]] = $usingExplode[1];
             }
 
@@ -251,102 +232,65 @@ abstract class TestCase extends BaseTestCase
     }
 
     /**
-     * get relations
-     *
-     * @param array $content
-     * @return array
-     */
-    public function getRelations(array $content = []) : array
-    {
-        return $content['instructions']['relations'] ?? [];
-    }
-
-    /**
      * get request for endpoint
      *
      * @param array $params
      * @return TestResponse
      */
-    public function getRequest(array $params = []) : TestResponse
+    public function getRequest(array $params = []): TestResponse
     {
-        $params = count($params) ? '?'.http_build_query($params) : '';
+        $params = count($params) ? '?' . http_build_query($params) : '';
 
-        return $this->get($this->apiRequestPrefix().''.$params,$this->headersWithAuthorization());
+        return $this->get($this->apiRequestPrefix() . '' . $params, $this->headersWithAuthorization());
     }
 
     /**
-     * get model for endpoint
+     * get api request prefix for feature test class
      *
+     * @param string|null $endpoint
      * @return string
      */
-    public function getModel() : string
+    public function apiRequestPrefix(?string $endpoint = null): string
     {
-        $serviceJson = getServiceJson($this->endpoint);
-        return $serviceJson['model'] ?? 'none';
+        $endpoint = $endpoint ?? $this->endpoint;
+        return Constants::apiPrefix . '/' . $endpoint;
     }
 
     /**
-     * get model for endpoint
-     *
-     * @param object $response
-     * @return void
+     * @return string[]
      */
-    public function setResponseModelCode(object $response) : void
+    public function headersWithAuthorization(): array
     {
-        $content = $this->getContentArray($response);
-        $resource = $this->getResourceData($content);
-        $modelCode = $resource['0'][$this->getRepository()->getModelCode()];
-        AppContainer::setWithTerminating('testModelCode',$modelCode);
+        return [
+            'Apikey' => $this->getApiKey(),
+            'Content-Type' => 'application/json',
+            'Accept-Language' => 'en',
+            'Authorization' => 'Bearer ' . $this->getToken()
+        ];
     }
 
     /**
-     * get model for endpoint
-     *
-     * @return object
+     * @return string
      */
-    public function getRepository() : object
+    public function getToken(): string
     {
-        $serviceJson = getServiceJson($this->endpoint);
-        $model = lcfirst(($serviceJson['model'] ?? 'none'));
+        $token = $this->getRedisConnection()->get(static::$unitTestToken);
 
-        return Repository::$model();
-    }
+        if (is_null($token)) {
+            $this->test_login();
+        }
 
-    /**
-     * get required columns
-     *
-     * @return array
-     */
-    public function getRequiredColumns() : array
-    {
-        $modelNamespace = Constants::modelNamespace.'\\'.$this->getModel();
-        $modelInstance = new $modelNamespace;
-
-        return Db::requiredColumns($modelInstance->getTable());
+        return $this->getRedisConnection()->get(static::$unitTestToken);
     }
 
     /**
      * @return ClientInterface
      */
-    public function getRedisConnection() : ClientInterface
+    public function getRedisConnection(): ClientInterface
     {
-        return AppContainer::use('redisConnection',function(){
+        return AppContainer::use('redisConnection', function () {
             return Redis::client();
         });
-    }
-
-    /**
-     * @return string
-     */
-    public function getToken() : string
-    {
-        $token = $this->getRedisConnection()->get(static::$unitTestToken);
-
-        if(is_null($token)){
-            $this->test_login();
-        }
-
-        return $this->getRedisConnection()->get(static::$unitTestToken);
     }
 
     /**
@@ -358,22 +302,77 @@ abstract class TestCase extends BaseTestCase
     {
         $redis = $this->getRedisConnection();
 
-        if(!$redis->exists(static::$unitTestToken)){
-            $response = $this->postJson('/api/login',[
+        if (!$redis->exists(static::$unitTestToken)) {
+            $response = $this->postJson('/api/login', [
                 'email' => Env::get('ADMIN_USER_EMAIL'),
                 'password' => Env::get('ADMIN_USER_PASSWORD')
-            ],$this->headers());
+            ], $this->headers());
 
-            $content = json_decode($response->getContent(),true);
+            $content = json_decode($response->getContent(), true);
 
             $response->assertStatus(200);
-            $this->assertArrayHasKey('token',$content['resource'][0]['data'][0]['auth']);
-            $this->assertArrayHasKey('user',$content['resource'][0]['data'][0]);
-            $redis->set(static::$unitTestToken,$content['resource'][0]['data'][0]['auth']['token']);
-            $redis->expire(static::$unitTestToken,3600);
-        }
-        else{
+            $this->assertArrayHasKey('token', $content['resource'][0]['data'][0]['auth']);
+            $this->assertArrayHasKey('user', $content['resource'][0]['data'][0]);
+            $redis->set(static::$unitTestToken, $content['resource'][0]['data'][0]['auth']['token']);
+            $redis->expire(static::$unitTestToken, 3600);
+        } else {
             $this->assertTrue(true);
         }
+    }
+
+    /**
+     * @return string[]
+     */
+    public function headers(): array
+    {
+        return [
+            'Apikey' => $this->getApiKey(),
+            'Content-Type' => 'application/json',
+            'Accept-Language' => 'en'
+        ];
+    }
+
+    /**
+     * get api key for test
+     *
+     * @return string
+     */
+    public function getApiKey(): string
+    {
+        $key = ApiKey::get('admin');
+        $apiKey = $key->value;
+
+        if ($apiKey === '') {
+            throw new \RuntimeException('admin api key is not valid');
+        }
+
+        return $apiKey;
+    }
+
+    /**
+     * get model for endpoint
+     *
+     * @param object $response
+     * @return void
+     */
+    public function setResponseModelCode(object $response): void
+    {
+        $content = $this->getContentArray($response);
+        $resource = $this->getResourceData($content);
+        $modelCode = $resource['0'][$this->getRepository()->getModelCode()];
+        AppContainer::setWithTerminating('testModelCode', $modelCode);
+    }
+
+    /**
+     * get model for endpoint
+     *
+     * @return object
+     */
+    public function getRepository(): object
+    {
+        $serviceJson = getServiceJson($this->endpoint);
+        $model = lcfirst(($serviceJson['model'] ?? 'none'));
+
+        return Repository::$model();
     }
 }

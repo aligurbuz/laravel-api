@@ -15,7 +15,7 @@ class Sanitize
             if (is_string($value)) {
                 $list[$key] = htmlspecialchars(trim(str_ireplace(static::sqlDefinitions(), '', $value)));
             }
-            if(is_array($value)){
+            if (is_array($value)) {
                 $list[$key] = static::search($value);
             }
         }

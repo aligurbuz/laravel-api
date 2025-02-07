@@ -20,15 +20,15 @@ class CreateLocalizations extends Migration
             $table->bigInteger('localized_code');
             $table->jsonb('values');
 
-            $table->index(['language_code','localized_code']);
-            $table->unique(['language_code','localized_code']);
+            $table->index(['language_code', 'localized_code']);
+            $table->unique(['language_code', 'localized_code']);
 
             $table->boolean('status')->default(1);
             $table->boolean('is_deleted')->default(0);
             $table->bigInteger('created_by')->default(0);
             $table->bigInteger('updated_by')->default(0);
             $table->bigInteger('deleted_by')->default(0);
-            $table->index(['status','is_deleted']);
+            $table->index(['status', 'is_deleted']);
             $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });

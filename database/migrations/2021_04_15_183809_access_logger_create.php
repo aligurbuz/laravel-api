@@ -18,7 +18,7 @@ class AccessLoggerCreate extends Migration
             $table->string('client_key')->index();
             $table->string('endpoint_name')->index();
             $table->bigInteger('response_code')->default(0)->index();
-            $table->string('http_method',10);
+            $table->string('http_method', 10);
             $table->jsonb('http_client_headers');
             $table->jsonb('http_client_params_data');
             $table->jsonb('http_client_body_data');

@@ -13,7 +13,7 @@ class GeneralMiddleware
      * Handle an incoming request.
      *
      * @param Request $request
-     * @param  \Closure(Request): (\Illuminate\Http\Response|RedirectResponse)  $next
+     * @param \Closure(Request): (\Illuminate\Http\Response|RedirectResponse) $next
      * @return \Illuminate\Http\Response|RedirectResponse
      */
     public function handle(Request $request, Closure $next)

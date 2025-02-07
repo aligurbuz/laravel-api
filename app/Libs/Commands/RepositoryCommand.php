@@ -148,7 +148,6 @@ class RepositoryCommand extends Command
                 ->addComment('@return void');
 
 
-
             touch($file = $promotersRepositoryDirectory . '' . DIRECTORY_SEPARATOR . '' . $promotersRepositoryClass . '.php');
             $content = '<?php ' . PHP_EOL . '' . PHP_EOL . 'declare(strict_types=1);' . PHP_EOL . '' . PHP_EOL . '' . $promoterNamespace;
             File::put($file, $content);

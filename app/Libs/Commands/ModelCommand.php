@@ -5,7 +5,6 @@ namespace App\Libs\Commands;
 use App\Constants;
 use App\Libs\AppContainer;
 use Illuminate\Console\Command;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\File;
 

@@ -21,12 +21,12 @@ class CreateUserPhotos extends Migration
             $table->char('image_name')->nullable(true);
             $table->char('image_description')->nullable(true);
 
-            $table->index(['user_code','status','is_deleted'],'userStatusIsDeleted');
-            $table->index(['user_code','is_deleted'],'userIsDeleted');
+            $table->index(['user_code', 'status', 'is_deleted'], 'userStatusIsDeleted');
+            $table->index(['user_code', 'is_deleted'], 'userIsDeleted');
 
             $table->integer('sequence_time')->default(0);
             $table->integer('sequence')->default(1);
-            $table->index(['sequence_time','sequence']);
+            $table->index(['sequence_time', 'sequence']);
 
             $table->boolean('status')->default(1);
             $table->boolean('is_deleted')->default(0);

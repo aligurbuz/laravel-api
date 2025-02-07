@@ -55,7 +55,8 @@ Api Documentation
                 </svg>
                 <svg class="menu-closed:hidden fill-current h-full w-full" xmlns="http://www.w3.org/2000/svg"
                      viewBox="0 0 20 20">
-                    <path d="M10 8.586L2.929 1.515 1.515 2.929 8.586 10l-7.071 7.071 1.414 1.414L10 11.414l7.071 7.071 1.414-1.414L11.414 10l7.071-7.071-1.414-1.414L10 8.586z"></path>
+                    <path
+                        d="M10 8.586L2.929 1.515 1.515 2.929 8.586 10l-7.071 7.071 1.414 1.414L10 11.414l7.071 7.071 1.414-1.414L11.414 10l7.071-7.071-1.414-1.414L10 8.586z"></path>
                 </svg>
             </a>
         </div>
@@ -364,12 +365,16 @@ wget --no-check-certificate --quiet \
 
                         <p>This snippet: helps you find the "products" object that has the "item" object,
                             while also allowing you to add an extra column filtering within the item object.
-                            <b>Things you need to pay attention to: It is mandatory to add a "has" query to the "hasFilter" query. Otherwise, your "hasFilter" query will be considered invalid. </b> </p>
+                            <b>Things you need to pay attention to: It is mandatory to add a "has" query to the
+                                "hasFilter" query. Otherwise, your "hasFilter" query will be considered invalid. </b>
+                        </p>
 
 
                         <b>Recursive (Has) Using:</b>
-                        <p>With this method you can check the existence of a nested relationship.. For example: has=items:variations
-                            In the relationship you separate with two points, you can check both the existence of the item object and the existence of variations depending on the item object..</p>
+                        <p>With this method you can check the existence of a nested relationship.. For example:
+                            has=items:variations
+                            In the relationship you separate with two points, you can check both the existence of the
+                            item object and the existence of variations depending on the item object..</p>
 
                         <div class="language-php highlighter-rouge">
                             <div class="highlight"><pre class="highlight"><code><span class="c1">// Api Request</span>
@@ -385,9 +390,11 @@ wget --no-check-certificate --quiet \
                             </div>
                         </div>
 
-                        <p>Note: This method will only work until two relationships exist. This method does not work for more than two relationships.</p>
+                        <p>Note: This method will only work until two relationships exist. This method does not work for
+                            more than two relationships.</p>
 
-                        <p> For the recursive (has) method, you may need an extra filtering method as above. For this you will need to use (hasRecursiveFilter) key array instead of (hasFilter).</p>
+                        <p> For the recursive (has) method, you may need an extra filtering method as above. For this
+                            you will need to use (hasRecursiveFilter) key array instead of (hasFilter).</p>
 
                         <div class="language-php highlighter-rouge">
                             <div class="highlight"><pre class="highlight"><code><span class="c1">// Api Request</span>
@@ -402,7 +409,6 @@ wget --no-check-certificate --quiet \
 </code></pre>
                             </div>
                         </div>
-
 
                     @elseif($list=='dataFiltering')
 
@@ -572,7 +578,7 @@ wget --no-check-certificate --quiet \
 
                             <div class="language-php highlighter-rouge">
                                 <div class="highlight"><pre class="highlight"><code><span
-                                                    class="c1">// Api Request</span>
+                                                class="c1">// Api Request</span>
 wget --no-check-certificate --quiet \
   --method GET \
   --timeout=0 \
@@ -678,7 +684,7 @@ wget --no-check-certificate --quiet \
 
                             <div class="language-php highlighter-rouge">
                                 <div class="highlight"><pre class="highlight"><code><span
-                                                    class="c1">// Api Request</span>
+                                                class="c1">// Api Request</span>
 wget --no-check-certificate --quiet \
   --method GET \
   --timeout=0 \
@@ -694,7 +700,7 @@ wget --no-check-certificate --quiet \
 
                             <div class="language-php highlighter-rouge">
                                 <div class="highlight"><pre class="highlight"><code><span
-                                                    class="c1">// Api Request</span>
+                                                class="c1">// Api Request</span>
 wget --no-check-certificate --quiet \
   --method GET \
   --timeout=0 \
@@ -824,14 +830,17 @@ wget --no-check-certificate --quiet \
 
                                         @if(isset($configDocumentationExceptMethods[$realNameNormalization]))
                                             @if(count($configDocumentationExceptMethods[$realNameNormalization])!==3)
-                                                <option value="layer_{{md5($selectItem['name'])}}">{{$selectItem['name']}}</option>
+                                                <option
+                                                    value="layer_{{md5($selectItem['name'])}}">{{$selectItem['name']}}</option>
                                             @endif
                                         @else
-                                            <option value="layer_{{md5($selectItem['name'])}}">{{$selectItem['name']}}</option>
+                                            <option
+                                                value="layer_{{md5($selectItem['name'])}}">{{$selectItem['name']}}</option>
                                         @endif
 
                                     @else
-                                        <option value="layer_{{md5($selectItem['name'])}}">{{$selectItem['name']}}</option>
+                                        <option
+                                            value="layer_{{md5($selectItem['name'])}}">{{$selectItem['name']}}</option>
 
                                     @endif
 
@@ -1236,8 +1245,10 @@ wget --no-check-certificate --quiet \
                                             </ul>
 
                                             @if(!is_null(config('documentation.attentions.'.$value['name'].'@'.$value['request']['method'].'')))
-                                                <span style="color: #22863a; font-weight: bold;"> !!! Attention !!! : </span>
-                                                <span style="text-decoration: underline;"> {{config('documentation.attentions.'.$value['name'].'@'.$value['request']['method'].'')}}</span>
+                                                <span
+                                                    style="color: #22863a; font-weight: bold;"> !!! Attention !!! : </span>
+                                                <span
+                                                    style="text-decoration: underline;"> {{config('documentation.attentions.'.$value['name'].'@'.$value['request']['method'].'')}}</span>
                                                 <br><br>
 
                                             @endif
@@ -1339,7 +1350,7 @@ wget --no-check-certificate --quiet \
 
                                             @php
 
-                                                    @endphp
+                                                @endphp
 
                                             @if(isset($value['request']['body']['mode']))
                                                 @php
@@ -1530,7 +1541,8 @@ wget --no-check-certificate --quiet \
                                                     @foreach($raw as $field=> $type)
                                                         <tr>
                                                             <td>
-                                                                <code class="language-plaintext highlighter-rouge">{{$field}}</code>
+                                                                <code
+                                                                    class="language-plaintext highlighter-rouge">{{$field}}</code>
                                                             </td>
                                                             @if($field=='is_deleted' || $field=='status')
                                                                 <td><code class="language-plaintext highlighter-rouge">boolean</code>
@@ -1538,11 +1550,13 @@ wget --no-check-certificate --quiet \
                                                             @else
                                                                 @if(in_array($field,$booleans,true))
                                                                     <td>
-                                                                        <code class="language-plaintext highlighter-rouge">boolean</code>
+                                                                        <code
+                                                                            class="language-plaintext highlighter-rouge">boolean</code>
                                                                     </td>
                                                                 @else
                                                                     <td>
-                                                                        <code class="language-plaintext highlighter-rouge">{{$types[$field] ?? 'string'}}</code>
+                                                                        <code
+                                                                            class="language-plaintext highlighter-rouge">{{$types[$field] ?? 'string'}}</code>
                                                                     </td>
                                                                 @endif
 
@@ -1552,7 +1566,7 @@ wget --no-check-certificate --quiet \
 
                                                                 @if(getTableCode($model)==$field)
                                                                     <td style="background-color: #ddffdd;"><code
-                                                                                class="language-plaintext highlighter-rouge">true</code>
+                                                                            class="language-plaintext highlighter-rouge">true</code>
                                                                     </td>
                                                                 @else
                                                                     @if(isset($clientRule[$field]))
@@ -1563,11 +1577,12 @@ wget --no-check-certificate --quiet \
 
                                                                         @endphp
                                                                         <td {{$crequiredColors}}><code
-                                                                                    class="language-plaintext highlighter-rouge">{{$crequired}}</code>
+                                                                                class="language-plaintext highlighter-rouge">{{$crequired}}</code>
                                                                         </td>
                                                                     @else
                                                                         <td>
-                                                                            <code class="language-plaintext highlighter-rouge">false</code>
+                                                                            <code
+                                                                                class="language-plaintext highlighter-rouge">false</code>
                                                                         </td>
                                                                     @endif
 
@@ -1577,23 +1592,25 @@ wget --no-check-certificate --quiet \
 
                                                                 @if(isset($entities['required_columns']) && in_array($field,$entities['required_columns'],true))
                                                                     <td style="background-color: #ddffdd;"><code
-                                                                                class="language-plaintext highlighter-rouge">true</code>
+                                                                            class="language-plaintext highlighter-rouge">true</code>
                                                                     </td>
                                                                 @else
                                                                     @if(isset($clientCapsuleList[$field]['required']))
                                                                         @if($clientCapsuleList[$field]['required']===true)
                                                                             <td style="background-color: #ddffdd;"><code
-                                                                                        class="language-plaintext highlighter-rouge">{{$clientCapsuleList[$field]['required']}}</code>
+                                                                                    class="language-plaintext highlighter-rouge">{{$clientCapsuleList[$field]['required']}}</code>
                                                                             </td>
                                                                         @else
                                                                             <td>
-                                                                                <code class="language-plaintext highlighter-rouge">{{$clientCapsuleList[$field]['required']}}</code>
+                                                                                <code
+                                                                                    class="language-plaintext highlighter-rouge">{{$clientCapsuleList[$field]['required']}}</code>
                                                                             </td>
                                                                         @endif
 
                                                                     @else
                                                                         <td>
-                                                                            <code class="language-plaintext highlighter-rouge">false</code>
+                                                                            <code
+                                                                                class="language-plaintext highlighter-rouge">false</code>
                                                                         </td>
                                                                     @endif
 
@@ -1627,10 +1644,13 @@ wget --no-check-certificate --quiet \
 
                                                                                 }
                                                                             @endphp
-                                                                            <td>{{$comments[$field] ?? ''}} (Enum Values: {{$enumValues}}) (Default Value: {{$enumDefValue}} ) </td>
-                                                                            @else
+                                                                            <td>{{$comments[$field] ?? ''}} (Enum
+                                                                                Values: {{$enumValues}}) (Default
+                                                                                Value: {{$enumDefValue}} )
+                                                                            </td>
+                                                                        @else
                                                                             <td>{{$comments[$field] ?? ''}}</td>
-                                                                            @endif
+                                                                        @endif
 
                                                                     @endif
 
@@ -1650,7 +1670,7 @@ wget --no-check-certificate --quiet \
                                                     <p><b>The values of the key named as ({{$cckey}}) in the body
                                                             parameter are listed below.</b><br>
                                                         Sample client value to be sent to the service: <br> <a
-                                                                style="color: #22863a; font-weight: bold;">"{{$cckey}}"
+                                                            style="color: #22863a; font-weight: bold;">"{{$cckey}}"
                                                             : [{"clientParameter": "value"}] </a>
                                                     </p>
 
@@ -1670,28 +1690,32 @@ wget --no-check-certificate --quiet \
                                                         @foreach($ccitems as $ccItemKey => $ccItemData)
                                                             <tr>
                                                                 <td>
-                                                                    <code class="language-plaintext highlighter-rouge">{{$ccItemData}}</code>
+                                                                    <code
+                                                                        class="language-plaintext highlighter-rouge">{{$ccItemData}}</code>
                                                                 </td>
 
 
                                                                 @if(in_array($ccItemData,$crBooleanValueKeys[$cckey],true))
                                                                     <td>
-                                                                        <code class="language-plaintext highlighter-rouge">boolean</code>
+                                                                        <code
+                                                                            class="language-plaintext highlighter-rouge">boolean</code>
                                                                     </td>
 
                                                                 @else
                                                                     <td>
                                                                         @if(isset($crCapsuleRules[$cckey][$ccItemData]))
                                                                             @php
-                                                                            $capRule = str_replace('required|','',$crCapsuleRules[$cckey][$ccItemData]);
-                                                                            $capRule = str_replace('|required','',$capRule);
+                                                                                $capRule = str_replace('required|','',$crCapsuleRules[$cckey][$ccItemData]);
+                                                                                $capRule = str_replace('|required','',$capRule);
                                                                             @endphp
 
-                                                                            <code class="language-plaintext highlighter-rouge">{{$capRule}}</code>
+                                                                            <code
+                                                                                class="language-plaintext highlighter-rouge">{{$capRule}}</code>
                                                                         @else
 
-                                                                            <code class="language-plaintext highlighter-rouge">{{$crTypeKeys[$cckey][$ccItemKey] ?? 'string'}}</code>
-                                                                            @endif
+                                                                            <code
+                                                                                class="language-plaintext highlighter-rouge">{{$crTypeKeys[$cckey][$ccItemKey] ?? 'string'}}</code>
+                                                                        @endif
 
                                                                     </td>
 
@@ -1703,22 +1727,24 @@ wget --no-check-certificate --quiet \
 
                                                                     @if(in_array($ccItemData,$crRequiredList[$cckey],true))
                                                                         <td style="background-color: #ddffdd;"><code
-                                                                                    class="language-plaintext highlighter-rouge">true</code>
+                                                                                class="language-plaintext highlighter-rouge">true</code>
                                                                         </td>
                                                                     @else
                                                                         <td>
-                                                                            <code class="language-plaintext highlighter-rouge">false</code>
+                                                                            <code
+                                                                                class="language-plaintext highlighter-rouge">false</code>
                                                                         </td>
                                                                     @endif
 
                                                                 @else
                                                                     @if(in_array($ccItemData,$crRequiredKeys[$cckey],true))
                                                                         <td style="background-color: #ddffdd;"><code
-                                                                                    class="language-plaintext highlighter-rouge">true</code>
+                                                                                class="language-plaintext highlighter-rouge">true</code>
                                                                         </td>
                                                                     @else
                                                                         <td>
-                                                                            <code class="language-plaintext highlighter-rouge">false</code>
+                                                                            <code
+                                                                                class="language-plaintext highlighter-rouge">false</code>
                                                                         </td>
                                                                     @endif
 
@@ -1727,11 +1753,13 @@ wget --no-check-certificate --quiet \
 
                                                                 <td>
                                                                     @if(isset($crCapsuleComments[$cckey][$ccItemData]))
-                                                                        <code class="language-plaintext highlighter-rouge">{{$crCapsuleComments[$cckey][$ccItemData]}}</code>
-                                                                        @else
+                                                                        <code
+                                                                            class="language-plaintext highlighter-rouge">{{$crCapsuleComments[$cckey][$ccItemData]}}</code>
+                                                                    @else
 
-                                                                        <code class="language-plaintext highlighter-rouge">{{$crCommentKeys[$cckey][$ccItemKey] ?? ''}}</code>
-                                                                        @endif
+                                                                        <code
+                                                                            class="language-plaintext highlighter-rouge">{{$crCommentKeys[$cckey][$ccItemKey] ?? ''}}</code>
+                                                                    @endif
 
                                                                 </td>
 
@@ -1784,16 +1812,20 @@ wget --no-check-certificate --quiet \
 
                                                             <tr>
                                                                 <td>
-                                                                    <code class="language-plaintext highlighter-rouge">{{$capsPost}}</code>
+                                                                    <code
+                                                                        class="language-plaintext highlighter-rouge">{{$capsPost}}</code>
                                                                 </td>
                                                                 <td>
-                                                                    <code class="language-plaintext highlighter-rouge">{{implode('|',$capRules)}}</code>
+                                                                    <code
+                                                                        class="language-plaintext highlighter-rouge">{{implode('|',$capRules)}}</code>
                                                                 </td>
                                                                 <td>
-                                                                    <code class="language-plaintext highlighter-rouge">{{$capRequired}}</code>
+                                                                    <code
+                                                                        class="language-plaintext highlighter-rouge">{{$capRequired}}</code>
                                                                 </td>
                                                                 <td>
-                                                                    <code class="language-plaintext highlighter-rouge">{{$capDesc}}</code>
+                                                                    <code
+                                                                        class="language-plaintext highlighter-rouge">{{$capDesc}}</code>
                                                                 </td>
                                                             </tr>
                                                         @endforeach
@@ -1824,16 +1856,20 @@ wget --no-check-certificate --quiet \
 
                                                             <tr>
                                                                 <td>
-                                                                    <code class="language-plaintext highlighter-rouge">{{$capsPost}}</code>
+                                                                    <code
+                                                                        class="language-plaintext highlighter-rouge">{{$capsPost}}</code>
                                                                 </td>
                                                                 <td>
-                                                                    <code class="language-plaintext highlighter-rouge">{{implode('|',$capRules)}}</code>
+                                                                    <code
+                                                                        class="language-plaintext highlighter-rouge">{{implode('|',$capRules)}}</code>
                                                                 </td>
                                                                 <td>
-                                                                    <code class="language-plaintext highlighter-rouge">{{$capRequired}}</code>
+                                                                    <code
+                                                                        class="language-plaintext highlighter-rouge">{{$capRequired}}</code>
                                                                 </td>
                                                                 <td>
-                                                                    <code class="language-plaintext highlighter-rouge">{{$capDesc}}</code>
+                                                                    <code
+                                                                        class="language-plaintext highlighter-rouge">{{$capDesc}}</code>
                                                                 </td>
                                                             </tr>
                                                         @endforeach
@@ -1865,16 +1901,20 @@ wget --no-check-certificate --quiet \
                                                                     @foreach($lists as $listKey => $listItems)
                                                                         <tr>
                                                                             <td>
-                                                                                <code class="language-plaintext highlighter-rouge">{{$listKey}}</code>
+                                                                                <code
+                                                                                    class="language-plaintext highlighter-rouge">{{$listKey}}</code>
                                                                             </td>
                                                                             <td>
-                                                                                <code class="language-plaintext highlighter-rouge">{{$listItems['type'] ?? ''}}</code>
+                                                                                <code
+                                                                                    class="language-plaintext highlighter-rouge">{{$listItems['type'] ?? ''}}</code>
                                                                             </td>
                                                                             <td>
-                                                                                <code class="language-plaintext highlighter-rouge">{{$listItems['required'] ?? ''}}</code>
+                                                                                <code
+                                                                                    class="language-plaintext highlighter-rouge">{{$listItems['required'] ?? ''}}</code>
                                                                             </td>
                                                                             <td>
-                                                                                <code class="language-plaintext highlighter-rouge">{{$listItems['description'] ?? ''}}</code>
+                                                                                <code
+                                                                                    class="language-plaintext highlighter-rouge">{{$listItems['description'] ?? ''}}</code>
                                                                             </td>
 
                                                                         </tr>
@@ -1945,7 +1985,7 @@ wget --no-check-certificate --quiet \
 
                         <div class="language-php highlighter-rouge">
                             <div class="highlight"><pre class="highlight"><code><span
-                                                class="c1">// Default Api Request</span>
+                                            class="c1">// Default Api Request</span>
 wget --no-check-certificate --quiet \
   --method GET \
   --timeout=0 \

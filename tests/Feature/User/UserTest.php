@@ -18,7 +18,7 @@ class UserTest extends TestCase
      */
     public function test_user()
     {
-        $response = $this->get(''.$this->apiRequestPrefix().'?with[role]=*',$this->headersWithAuthorization());
+        $response = $this->get('' . $this->apiRequestPrefix() . '?with[role]=*', $this->headersWithAuthorization());
 
         $content = $this->getContentArray($response);
         $resourceData = $this->getResourceData($content);

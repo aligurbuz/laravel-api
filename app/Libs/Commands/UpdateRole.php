@@ -34,7 +34,7 @@ class UpdateRole extends Command
         $httpMethod = $this->ask('http method', 'get');
         $change = $this->ask('http method new value', 0);
 
-        $role = Repository::role()->where('role_code',$roleCode);
+        $role = Repository::role()->where('role_code', $roleCode);
 
         $roles = $role->entity()->roles;
         $roles[$permissionCode][strtoupper($httpMethod)] = $change;

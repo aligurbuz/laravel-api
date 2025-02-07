@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 declare(strict_types=1);
 
@@ -12,48 +12,48 @@ use App\Repositories\Resources\Support\Contracts\SupportDummyRepositoryContract;
 
 class DummyController extends ApiController
 {
-	/**
-	 * get dummy data
-	 *
-	 * @param GetClient $client
-	 * @param SupportDummyRepositoryContract $dummyRepository
-	 * @return array
-	 */
-	public function get(GetClient $client, SupportDummyRepositoryContract $dummyRepository): array
-	{
-		$client->handle();
-		return $dummyRepository->get();
-	}
+    /**
+     * get dummy data
+     *
+     * @param GetClient $client
+     * @param SupportDummyRepositoryContract $dummyRepository
+     * @return array
+     */
+    public function get(GetClient $client, SupportDummyRepositoryContract $dummyRepository): array
+    {
+        $client->handle();
+        return $dummyRepository->get();
+    }
 
 
-	/**
-	 * create dummy data
-	 *
-	 * @param CreateClient $client
-	 * @param SupportDummyRepositoryContract $dummyRepository
-	 * @return array|object
-	 */
-	public function create(CreateClient $client, SupportDummyRepositoryContract $dummyRepository): array|object
-	{
-		return $this->transaction(function() use($client,$dummyRepository) {
-		    $client->handle();
-		    return $dummyRepository->create();
-		});
-	}
+    /**
+     * create dummy data
+     *
+     * @param CreateClient $client
+     * @param SupportDummyRepositoryContract $dummyRepository
+     * @return array|object
+     */
+    public function create(CreateClient $client, SupportDummyRepositoryContract $dummyRepository): array|object
+    {
+        return $this->transaction(function () use ($client, $dummyRepository) {
+            $client->handle();
+            return $dummyRepository->create();
+        });
+    }
 
 
-	/**
-	 * update dummy data
-	 *
-	 * @param UpdateClient $client
-	 * @param SupportDummyRepositoryContract $dummyRepository
-	 * @return array|object
-	 */
-	public function update(UpdateClient $client, SupportDummyRepositoryContract $dummyRepository): array|object
-	{
-		return $this->transaction(function() use($client,$dummyRepository) {
-		    $client->handle();
-		    return $dummyRepository->update();
-		});
-	}
+    /**
+     * update dummy data
+     *
+     * @param UpdateClient $client
+     * @param SupportDummyRepositoryContract $dummyRepository
+     * @return array|object
+     */
+    public function update(UpdateClient $client, SupportDummyRepositoryContract $dummyRepository): array|object
+    {
+        return $this->transaction(function () use ($client, $dummyRepository) {
+            $client->handle();
+            return $dummyRepository->update();
+        });
+    }
 }

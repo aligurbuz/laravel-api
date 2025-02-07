@@ -31,7 +31,7 @@ return [
     */
     'connections' => [
         'ElasticSearch' => [
-            'host' => env('elasticSearchHost','172.10.0.10'),
+            'host' => env('elasticSearchHost', '172.10.0.10'),
         ]
     ]
 ];

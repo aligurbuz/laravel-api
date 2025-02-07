@@ -1,6 +1,6 @@
-<?php 
+<?php
 
-namespace App\Client\Support\Crypt; 
+namespace App\Client\Support\Crypt;
 
 trait CryptMainSupport
 {

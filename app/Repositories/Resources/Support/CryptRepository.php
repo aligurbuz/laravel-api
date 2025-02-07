@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 declare(strict_types=1);
 
@@ -17,18 +17,18 @@ use App\Repositories\Resources\Support\PropertyHandlers\CryptPropertyHandlerTrai
 
 class CryptRepository extends EloquentRepository implements SupportCryptRepositoryContract
 {
-	use AfterCreate;
-	use AfterUpdate;
-	use BeforeCreate;
-	use BeforeUpdate;
-	use CryptPromoterTrait;
-	use GeneralPromoterTrait;
-	use CryptPropertyHandlerTrait;
+    use AfterCreate;
+    use AfterUpdate;
+    use BeforeCreate;
+    use BeforeUpdate;
+    use CryptPromoterTrait;
+    use GeneralPromoterTrait;
+    use CryptPropertyHandlerTrait;
 
-	/**
-	 * get model name for repository
-	 *
-	 * @var string
-	 */
-	protected static string $model = Crypt::class;
+    /**
+     * get model name for repository
+     *
+     * @var string
+     */
+    protected static string $model = Crypt::class;
 }

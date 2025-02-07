@@ -52,6 +52,16 @@ class HashGenerator
     }
 
     /**
+     * @return string
+     */
+    private function separateHashing(): string
+    {
+        $separateKey = Authenticate::code() !== 0 ? Authenticate::code() : $this->hashKey;
+
+        return md5((string)$separateKey);
+    }
+
+    /**
      * the given hash string makes decoding
      *
      * @param string $string
@@ -92,15 +102,5 @@ class HashGenerator
             $result .= $char;
         }
         return array($explode, $result);
-    }
-
-    /**
-     * @return string
-     */
-    private function separateHashing(): string
-    {
-        $separateKey = Authenticate::code() !== 0 ? Authenticate::code() : $this->hashKey;
-
-        return md5((string)$separateKey);
     }
 }
