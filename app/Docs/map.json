@@ -35,7 +35,7 @@
         "/Users/teamprocure/Desktop/apps/api/app/Docs/Endpoints/Password/Password.json": 0,
         "/Users/teamprocure/Desktop/apps/api/app/Docs/Endpoints/Definition/Definition.json": 0,
         "/Users/teamprocure/Desktop/apps/api/app/Docs/Endpoints/Customer/Customer.json": 0,
-        "/var/www/html/app/api/app/Docs/Endpoints/Store/Store.json": 0
+        "/var/www/html/app/api/app/Docs/Endpoints/Store/Store.json": 1
     },
     "fingerPrints": {
         "User_User_user": 0,
@@ -65,6 +65,7 @@
         "Crypt_Support_crypt": 1,
         "Password_User_userPassword": 3,
         "Dummy_Support_dummy": 2,
-        "Products_Store_product": 0
+        "Products_Store_product": 0,
+        "Items_Store_item": 1
     }
 }

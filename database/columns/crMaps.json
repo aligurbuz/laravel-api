@@ -194,5 +194,17 @@
     "store.products.update": {
         "class": "App\\Client\\Store\\Products\\Update\\UpdateClient",
         "model": "product"
+    },
+    "store.items.get": {
+        "class": "App\\Client\\Store\\Items\\Get\\GetClient",
+        "model": "item"
+    },
+    "store.items.create": {
+        "class": "App\\Client\\Store\\Items\\Create\\CreateClient",
+        "model": "item"
+    },
+    "store.items.update": {
+        "class": "App\\Client\\Store\\Items\\Update\\UpdateClient",
+        "model": "item"
     }
 }

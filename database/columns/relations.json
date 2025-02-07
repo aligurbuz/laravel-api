@@ -18,6 +18,7 @@
         "Excel",
         "FrontLang",
         "Gender",
+        "Item",
         "Language",
         "Localization",
         "PasswordChange",
@@ -96,13 +97,18 @@
         "FrontLang",
         "Localization"
     ],
+    "Item": [
+        "Product",
+        "Localization"
+    ],
+    "Product": [
+        "Item",
+        "Localization"
+    ],
     "PasswordChange": [
         "Localization"
     ],
     "Permission": [
-        "Localization"
-    ],
-    "Product": [
         "Localization"
     ],
     "Registration": [

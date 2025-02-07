@@ -110,5 +110,9 @@
     "Product": {
         "controller": "Products",
         "dir": "Store"
+    },
+    "Item": {
+        "controller": "Items",
+        "dir": "Store"
     }
 }

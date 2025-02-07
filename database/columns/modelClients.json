@@ -87,5 +87,10 @@
         "get": "App\\Client\\Store\\Products\\Get\\GetClient",
         "create": "App\\Client\\Store\\Products\\Create\\CreateClient",
         "update": "App\\Client\\Store\\Products\\Update\\UpdateClient"
+    },
+    "Item": {
+        "get": "App\\Client\\Store\\Items\\Get\\GetClient",
+        "create": "App\\Client\\Store\\Items\\Create\\CreateClient",
+        "update": "App\\Client\\Store\\Items\\Update\\UpdateClient"
     }
 }

@@ -31,6 +31,7 @@ use App\Repositories\Resources\User\Contracts\PhotosRepositoryContract;
 use App\Repositories\Resources\User\Contracts\UserActivationsRepositoryContract;
 use App\Repositories\Resources\User\Contracts\UserPasswordRepositoryContract;
 use App\Repositories\Resources\User\Contracts\UserRepositoryContract;
+use App\Repositories\Resources\Store\Contracts\StoreItemsRepositoryContract;
 use App\Repositories\Resources\Store\Contracts\StoreProductsRepositoryContract;
 
 /**
@@ -39,6 +40,16 @@ use App\Repositories\Resources\Store\Contracts\StoreProductsRepositoryContract;
  */
 class Repository
 {
+    /**
+     * get item repository instance
+     *
+     * @return StoreItemsRepositoryContract
+     */
+    public static function item() : StoreItemsRepositoryContract
+    {
+        return app()->get(StoreItemsRepositoryContract::class);
+    }
+    
     /**
      * get product repository instance
      *
