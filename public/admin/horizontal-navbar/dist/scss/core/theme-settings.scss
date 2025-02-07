@@ -1,0 +1,221 @@
+// Theme settings.
+@media(min-width:767px) {   
+    .horizontal-nav { 
+        /*This is for the navigation*/
+        .left-sidebar {
+            width: 100%;
+            height: auto;
+            position: relative; 
+            padding-top:0px; 
+        }
+        .scroll-sidebar{
+            height: auto;
+        }
+        .sidebar-nav {
+            padding: 0px 15px;
+           
+            #sidebarnav {
+                display: flex; 
+                li {
+                    position: relative;
+                    a {
+                        padding:5px 15px; 
+                    }
+                }
+                >li {
+                    line-height: 27px; 
+                    margin-bottom: 0px;
+                    margin-top: 0px;
+                    
+                    &:hover > a{
+                        background: $sidebar-alt;
+                    }
+                    &:last-child > ul {
+                        right: 0px;
+                        left: auto;
+                    }
+                    >a{
+                        padding:17px 15px;
+                        border-left: 0px;
+                        border-bottom: 3px solid transparent;   
+                    }
+                    &.active >a{
+                        border-bottom-width: 3px;
+                    }
+                    > a.two-column + ul{
+                        width: 400px;
+                        > li{
+                            display: inline-block;
+                            width: 49%;
+                            vertical-align: top;
+                        }
+                    }
+                }
+                
+                > li > ul {
+                    position: absolute;
+                    left: 0px;
+                    top: auto; 
+                    width: 220px;
+                    max-height: 350px;
+                    overflow-y: auto;
+                    padding-bottom: 10px;
+                    z-index: 1001;
+                    background: $sidebar-alt;
+                    display: none;
+                    padding-left: 1px;
+                   
+                }
+                > li:hover > ul {
+                    height: auto !important;
+                    overflow: auto;
+                }
+                > li:hover > ul,
+                > li:hover > ul.collapse {
+                    display: block;
+                }
+                > li > a.has-arrow:after {
+                    display: none;
+                }
+                .nav-small-cap,
+                .sidebar-footer,
+                .user-pro, 
+                .badge {
+                    display: none; 
+                }
+            }
+        }
+        .navbar-header{
+            padding-left: 15px;
+        }
+        /*This is for the page wrapper*/
+        .page-wrapper{
+            margin-left:0px; 
+        }  
+        .footer{
+            left: 0px;
+        }
+        .page-titles{
+            background: transparent!important;
+            box-shadow: none;
+            padding: 22px 0px;
+            margin: 0 -10px; 
+        }
+    }
+    
+}
+
+@media(min-width:1400px) {
+    /*******************
+    Boxed
+    ******************/
+    .boxed #main-wrapper {  
+        width: 100%;
+        max-width: 1500px;
+        margin: 0 auto;
+        box-shadow: 0 0 60px rgba(0, 0, 0, 0.1);
+        .topbar, .left-sidebar{ 
+            max-width: 1500px; 
+        }
+         
+    }
+}
+
+/*******************
+Fixed -sidebar
+******************/
+
+.fixed-sidebar{
+    .left-sidebar{
+        position: fixed;
+    }
+}
+@media(max-width:767px) {
+    .fixed-sidebar.mini-sidebar {
+        .navbar-header{
+            position: relative;
+        }
+        .navbar-collapse{
+            margin-left: 0px;
+        }
+    }
+    .fixed-layout{
+        .topbar{
+            position: fixed;
+            width: 100%;
+        } 
+        .page-wrapper{
+            padding-top: 65px; 
+        } 
+    }
+    .left-sidebar{
+        overflow: auto; 
+    }
+}
+/*******************
+Fixed -Header
+******************/
+@media(min-width:769px) {
+.fixed-header{
+    .topbar{
+        position: fixed;
+        width: 100%;
+    }
+    .left-sidebar{
+        top:66px; 
+    }
+    .page-wrapper{
+        padding-top: 127px;
+    }
+}
+.fixed-layout{
+     
+    .page-wrapper{
+        padding-top: 10px;   
+    }
+}
+}
+
+
+/*******************
+Single Column
+******************/
+.single-column {
+    .left-sidebar {
+        display: none;
+    }
+    .page-wrapper {
+        margin-left: 0px!important;
+    }
+}
+/*******************
+Mini sidebar
+******************/
+ 
+@media(max-width:767px) {
+    .mini-sidebar {
+        .left-sidebar,
+        .sidebar-footer {
+            left: -220px;
+        }
+        &.show-sidebar {
+            .left-sidebar,
+            .sidebar-footer {
+                left: 0px;
+            }
+        }
+    }
+}
+/*******************
+Logo center
+******************/
+.logo-center {
+    .top-navbar {
+        .navbar-header {
+            position: absolute;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+        }
+    }
+}

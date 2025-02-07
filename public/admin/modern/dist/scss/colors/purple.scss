@@ -1,0 +1,51 @@
+// Green colors
+.skin-purple {
+    /*Theme Colors*/
+    $themecolor: #6f42c1;
+    $themecolor-alt: #26c6da;
+    // Topbar
+    .topbar {
+        background: $themecolor;
+        .top-navbar .navbar-header .navbar-brand .dark-logo {
+            display: none;
+        }
+        .top-navbar .navbar-header .navbar-brand .light-logo {
+            display: inline-block;
+            color: rgba(255, 255, 255, 0.8);
+        }
+    }
+    //Sidebar
+    .side-mini-panel {
+        ul.mini-nav {
+            > li {
+                &:hover > a, &.selected > a {
+                    border-left: 3px solid $themecolor;
+                }
+                &.selected > a {
+                    color: $themecolor;
+                }
+            }
+        }
+    }
+    .togglediv #togglebtn i:hover,
+    .togglediv #togglebtn i:focus {
+        color: $themecolor;
+    }
+    .sidebar-menu {
+        a {
+            &.active {
+                color: $themecolor;
+            } 
+        }
+        > li > a {
+            &:hover {
+                color: $themecolor;
+            }
+        } 
+    }
+    
+    //Bread-crumb
+    .page-titles .breadcrumb .breadcrumb-item.active{
+        color: $themecolor;
+    }
+}

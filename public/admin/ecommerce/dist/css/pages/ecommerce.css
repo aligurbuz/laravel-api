@@ -1,0 +1,78 @@
+/*
+Template Name: Admin Template
+Author: Wrappixel
+
+File: scss
+*/
+@import url(https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700);
+/*Theme Colors*/
+/**
+ * Table Of Content
+ *
+ * 	1. Color system
+ *	2. Options
+ *	3. Body
+ *	4. Typography
+ *	5. Breadcrumbs
+ *	6. Cards
+ *	7. Dropdowns
+ *	8. Buttons
+ *	9. Typography
+ *	10. Progress bars
+ *	11. Tables
+ *	12. Forms
+ *	14. Component
+ */
+/*******************
+ Our income
+*******************/
+.ecomm-donute svg text {
+  font-family: "Poppins", sans-serif !important;
+  font-weight: 200 !important; }
+
+.product-img {
+  text-align: center;
+  position: relative; }
+  .product-img img {
+    max-width: 200px; }
+  .product-img .pro-img-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    display: none;
+    background: rgba(255, 255, 255, 0.8); }
+    .product-img .pro-img-overlay a {
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      height: 40px;
+      width: 40px;
+      display: inline-block;
+      border-radius: 100%;
+      -webkit-border-radius: 100%;
+      -o-border-radius: 100%;
+      text-align: center;
+      padding: 11px 0;
+      color: #fff;
+      margin: 20% 5px; }
+      .product-img .pro-img-overlay a:hover {
+        background: #343a40 !important; }
+  .product-img:hover .pro-img-overlay {
+    display: block; }
+
+.product-text {
+  border-top: 1px solid #e9ecef;
+  padding-top: 15px;
+  position: relative; }
+  .product-text .pro-price {
+    position: absolute;
+    padding: 20px 0;
+    width: 60px;
+    height: 60px;
+    color: #fff;
+    text-align: center;
+    border-radius: 100%;
+    -webkit-border-radius: 100%;
+    -o-border-radius: 100%;
+    top: -30px;
+    right: 0px; }

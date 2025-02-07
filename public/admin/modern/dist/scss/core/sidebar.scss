@@ -1,0 +1,239 @@
+.side-mini-panel {
+    width: 60px;
+    position: fixed;
+    left: 0px;
+    height: 100%;
+    background: $sidebar;
+    top: 66px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    z-index: 8;
+    ul.mini-nav {
+        height: 100%;
+        margin: 0px;
+        padding: 0px 0 140px 0;
+        display: inline-block;
+        > li {
+            list-style: none;
+            display: block;
+            > a {
+                padding: 15px 0px 14px;
+                display: block;
+                width: 60px;
+                font-size: 18px;
+                color: $sidebar-text;
+                text-align: center;
+                border-left: 3px solid transparent;
+                border-top: 1px solid $border-color;
+                background-color: transparent;
+            }
+            &:hover > a, &.selected > a {
+                border-left: 3px solid $themecolor;
+                background: rgba(0, 0, 0, 0.02);
+            }
+            &.selected > a {
+                background: $white;
+                color: $themecolor;
+            }
+            .sidebarmenu {
+                padding: 0px;
+                position: absolute;
+                height: 100%;
+                width: 240px;
+                background: $white;
+                top: 0px;
+                box-shadow: 5px 0px 10px rgba(0, 0, 0, 0.05);
+                left: 60px;
+                display: none;
+            }
+            &.selected .sidebarmenu{
+                display: block;
+            }
+            &.selected.cnt-none .sidebarmenu{
+                display: none;
+            }
+        }
+    }
+}
+
+/************Search menu************/
+
+.menu-search { 
+    padding: 10px 20px;
+    position: relative;
+    .form-control {
+        border: 1px solid $border-color;
+        border-radius: 60px;
+        padding-left: 35px;
+        &:focus {
+            border-color: $dark;
+        }  
+    }
+    a {
+        position: absolute;
+        top: 19px;
+        left: 32px;
+        color: $sidebar-text;
+    }
+}
+
+/************New sidebar menu************/
+
+.sidebar-menu {
+    list-style: none;
+    height: 100%;
+    position: relative;
+    margin: 0px;
+    padding: 0px 0 250px 0;
+    > li {
+        position: relative;
+        margin: 0;
+        padding: 0;
+        display: block; 
+        &.active > a {
+            font-weight:500;
+        }
+    }
+    a {
+        color: $sidebar-text;
+        text-decoration: none;
+        &.active {
+            font-weight:500;
+            color: $themecolor;
+        } 
+    }
+    > li > a {
+        padding: 12px 20px 12px 20px;
+        display: block;
+        &:hover {
+            color: $themecolor;
+        }
+    } 
+}
+
+/************This is for submenu************/
+
+.menu-title {
+    padding: 12px 15px 12px 15px;
+    display: block;
+    margin: 0px;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 30px;
+} 
+
+/************This is for submenu************/
+
+.sidebar-menu li.active .sub-menu.in {
+    display:block;
+}
+
+.sidebar-menu .sub-menu > li > a {
+    &:hover {
+       color:$themecolor;
+    }
+    &.active {
+       font-weight:500;
+    }
+}
+
+.sidebar-menu > li > .sub-menu {
+   margin: 0;
+}
+
+.sidebar-menu li > a > .fa-angle-left {
+    width: auto;
+    height: auto;
+    padding: 0;
+    margin-top: 3px; 
+}
+
+.sidebar-menu li.active > a > .fa-angle-left,
+.sidebar-menu .sub-menu > li > a.active > .fa-angle-left {
+    transform: rotate(-90deg); 
+}
+
+.sidebar-menu .sub-menu {
+    position:relative;
+    display: none;
+    list-style: none;
+    padding: 0;
+    margin: 0;   
+}
+
+.sidebar-menu .sub-menu .sub-menu {
+    padding-left: 20px; 
+}
+.sidebar-menu .sub-menu > li {
+    margin: 0;
+    padding: 0;
+    display: block;
+}
+.sidebar-menu .sub-menu > li > a {
+    padding: 12px 20px 12px 30px;
+    display: block;
+    font-size: 14px;  
+}
+
+.sidebar-menu .sub-menu > li > ul > li{
+    margin-bottom: 8px;
+    margin-top: 8px;
+    list-style: none;
+    &.active > a {
+        color: $themecolor;
+        font-weight: 500;
+         border-left: 3px solid $themecolor;
+        i {
+            color: $themecolor;
+        }
+    }
+}
+
+
+/************This is For button************/
+
+.sidebar-menu .cst-btn{
+    color: $white;
+    margin: 15px;
+    padding: 10px ;
+    &:hover{
+        color: $white;
+    }
+}
+.sidebar-menu .btn-outline{
+    border-size: 2px;
+    margin: 15px;
+    padding: 10px ;
+}
+
+/************This is for toggle************/
+
+.rmv-sidebarmenu #togglebtn {
+    display: none!important;
+}
+.togglediv {
+    position: absolute;
+    left: 265px;
+    top: 17px;
+    z-index: 10;
+}
+.togglediv #togglebtn i {
+    font-size: 16px;
+    color: $body-color;
+    margin-top: 5px;
+}
+.togglediv #togglebtn i:hover,
+.togglediv #togglebtn i:focus {
+    color: $themecolor;
+}
+
+/************This is for label************/
+
+.sidebar-menu .label {
+    position: absolute;
+    right: 35px;
+    padding: 5px 12px 4px;
+}
+
+.collapse.in {
+    display: block;
+}

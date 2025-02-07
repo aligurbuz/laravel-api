@@ -1,0 +1,8383 @@
+@font-face {
+	font-family: 'icomoon';
+	src:url('../../../assets/icons/iconmind/fonts/icomoon.eot?-rdmvgc');
+	src:url('../../../assets/icons/iconmind/fonts/icomoon.eot?#iefix-rdmvgc') format('embedded-opentype'),
+		url('../../../assets/icons/iconmind/fonts/icomoon.woff?-rdmvgc') format('woff'),
+		url('../../../assets/icons/iconmind/fonts/icomoon.ttf?-rdmvgc') format('truetype'),
+		url('../../../assets/icons/iconmind/fonts/icomoon.svg?-rdmvgc#icomoon') format('svg'); 
+	font-weight: normal;
+	font-style: normal;
+}
+
+[class^="icons-"], [class*=" icons-"] {
+	font-family: 'icomoon';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+// Iconmind Overrite Here
+
+.icons-A-Z,
+.icons-Aa,
+.icons-Add-Bag,
+.icons-Add-Basket,
+.icons-Add-Cart,
+.icons-Add-File,
+.icons-Add-SpaceAfterParagraph,
+.icons-Add-SpaceBeforeParagraph,
+.icons-Add-User,
+.icons-Add-UserStar,
+.icons-Add-Window,
+.icons-Add,
+.icons-Address-Book,
+.icons-Address-Book2,
+.icons-Administrator,
+.icons-Aerobics-2,
+.icons-Aerobics-3,
+.icons-Aerobics,
+.icons-Affiliate,
+.icons-Aim,
+.icons-Air-Balloon,
+.icons-Airbrush,
+.icons-Airship,
+.icons-Alarm-Clock,
+.icons-Alarm-Clock2,
+.icons-Alarm,
+.icons-Alien-2,
+.icons-Alien,
+.icons-Aligator,
+.icons-Align-Center,
+.icons-Align-JustifyAll,
+.icons-Align-JustifyCenter,
+.icons-Align-JustifyLeft,
+.icons-Align-JustifyRight,
+.icons-Align-Left,
+.icons-Align-Right,
+.icons-Alpha,
+.icons-Ambulance,
+.icons-AMX,
+.icons-Anchor-2,
+.icons-Anchor,
+.icons-Android-Store,
+.icons-Android,
+.icons-Angel-Smiley,
+.icons-Angel,
+.icons-Angry,
+.icons-Apple-Bite,
+.icons-Apple-Store,
+.icons-Apple,
+.icons-Approved-Window,
+.icons-Aquarius-2,
+.icons-Aquarius,
+.icons-Archery-2,
+.icons-Archery,
+.icons-Argentina,
+.icons-Aries-2,
+.icons-Aries,
+.icons-Army-Key,
+.icons-Arrow-Around,
+.icons-Arrow-Back3,
+.icons-Arrow-Back,
+.icons-Arrow-Back2,
+.icons-Arrow-Barrier,
+.icons-Arrow-Circle,
+.icons-Arrow-Cross,
+.icons-Arrow-Down,
+.icons-Arrow-Down2,
+.icons-Arrow-Down3,
+.icons-Arrow-DowninCircle,
+.icons-Arrow-Fork,
+.icons-Arrow-Forward,
+.icons-Arrow-Forward2,
+.icons-Arrow-From,
+.icons-Arrow-Inside,
+.icons-Arrow-Inside45,
+.icons-Arrow-InsideGap,
+.icons-Arrow-InsideGap45,
+.icons-Arrow-Into,
+.icons-Arrow-Join,
+.icons-Arrow-Junction,
+.icons-Arrow-Left,
+.icons-Arrow-Left2,
+.icons-Arrow-LeftinCircle,
+.icons-Arrow-Loop,
+.icons-Arrow-Merge,
+.icons-Arrow-Mix,
+.icons-Arrow-Next,
+.icons-Arrow-OutLeft,
+.icons-Arrow-OutRight,
+.icons-Arrow-Outside,
+.icons-Arrow-Outside45,
+.icons-Arrow-OutsideGap,
+.icons-Arrow-OutsideGap45,
+.icons-Arrow-Over,
+.icons-Arrow-Refresh,
+.icons-Arrow-Refresh2,
+.icons-Arrow-Right,
+.icons-Arrow-Right2,
+.icons-Arrow-RightinCircle,
+.icons-Arrow-Shuffle,
+.icons-Arrow-Squiggly,
+.icons-Arrow-Through,
+.icons-Arrow-To,
+.icons-Arrow-TurnLeft,
+.icons-Arrow-TurnRight,
+.icons-Arrow-Up,
+.icons-Arrow-Up2,
+.icons-Arrow-Up3,
+.icons-Arrow-UpinCircle,
+.icons-Arrow-XLeft,
+.icons-Arrow-XRight,
+.icons-Ask,
+.icons-Assistant,
+.icons-Astronaut,
+.icons-At-Sign,
+.icons-ATM,
+.icons-Atom,
+.icons-Audio,
+.icons-Auto-Flash,
+.icons-Autumn,
+.icons-Baby-Clothes,
+.icons-Baby-Clothes2,
+.icons-Baby-Cry,
+.icons-Baby,
+.icons-Back2,
+.icons-Back-Media,
+.icons-Back-Music,
+.icons-Back,
+.icons-Background,
+.icons-Bacteria,
+.icons-Bag-Coins,
+.icons-Bag-Items,
+.icons-Bag-Quantity,
+.icons-Bag,
+.icons-Bakelite,
+.icons-Ballet-Shoes,
+.icons-Balloon,
+.icons-Banana,
+.icons-Band-Aid,
+.icons-Bank,
+.icons-Bar-Chart,
+.icons-Bar-Chart2,
+.icons-Bar-Chart3,
+.icons-Bar-Chart4,
+.icons-Bar-Chart5,
+.icons-Bar-Code,
+.icons-Barricade-2,
+.icons-Barricade,
+.icons-Baseball,
+.icons-Basket-Ball,
+.icons-Basket-Coins,
+.icons-Basket-Items,
+.icons-Basket-Quantity,
+.icons-Bat-2,
+.icons-Bat,
+.icons-Bathrobe,
+.icons-Batman-Mask,
+.icons-Battery-0,
+.icons-Battery-25,
+.icons-Battery-50,
+.icons-Battery-75,
+.icons-Battery-100,
+.icons-Battery-Charge,
+.icons-Bear,
+.icons-Beard-2,
+.icons-Beard-3,
+.icons-Beard,
+.icons-Bebo,
+.icons-Bee,
+.icons-Beer-Glass,
+.icons-Beer,
+.icons-Bell-2,
+.icons-Bell,
+.icons-Belt-2,
+.icons-Belt-3,
+.icons-Belt,
+.icons-Berlin-Tower,
+.icons-Beta,
+.icons-Betvibes,
+.icons-Bicycle-2,
+.icons-Bicycle-3,
+.icons-Bicycle,
+.icons-Big-Bang,
+.icons-Big-Data,
+.icons-Bike-Helmet,
+.icons-Bikini,
+.icons-Bilk-Bottle2,
+.icons-Billing,
+.icons-Bing,
+.icons-Binocular,
+.icons-Bio-Hazard,
+.icons-Biotech,
+.icons-Bird-DeliveringLetter,
+.icons-Bird,
+.icons-Birthday-Cake,
+.icons-Bisexual,
+.icons-Bishop,
+.icons-Bitcoin,
+.icons-Black-Cat,
+.icons-Blackboard,
+.icons-Blinklist,
+.icons-Block-Cloud,
+.icons-Block-Window,
+.icons-Blogger,
+.icons-Blood,
+.icons-Blouse,
+.icons-Blueprint,
+.icons-Board,
+.icons-Bodybuilding,
+.icons-Bold-Text,
+.icons-Bone,
+.icons-Bones,
+.icons-Book,
+.icons-Bookmark,
+.icons-Books-2,
+.icons-Books,
+.icons-Boom,
+.icons-Boot-2,
+.icons-Boot,
+.icons-Bottom-ToTop,
+.icons-Bow-2,
+.icons-Bow-3,
+.icons-Bow-4,
+.icons-Bow-5,
+.icons-Bow-6,
+.icons-Bow,
+.icons-Bowling-2,
+.icons-Bowling,
+.icons-Box2,
+.icons-Box-Close,
+.icons-Box-Full,
+.icons-Box-Open,
+.icons-Box-withFolders,
+.icons-Box,
+.icons-Boy,
+.icons-Bra,
+.icons-Brain-2,
+.icons-Brain-3,
+.icons-Brain,
+.icons-Brazil,
+.icons-Bread-2,
+.icons-Bread,
+.icons-Bridge,
+.icons-Brightkite,
+.icons-Broke-Link2,
+.icons-Broken-Link,
+.icons-Broom,
+.icons-Brush,
+.icons-Bucket,
+.icons-Bug,
+.icons-Building,
+.icons-Bulleted-List,
+.icons-Bus-2,
+.icons-Bus,
+.icons-Business-Man,
+.icons-Business-ManWoman,
+.icons-Business-Mens,
+.icons-Business-Woman,
+.icons-Butterfly,
+.icons-Button,
+.icons-Cable-Car,
+.icons-Cake,
+.icons-Calculator-2,
+.icons-Calculator-3,
+.icons-Calculator,
+.icons-Calendar-2,
+.icons-Calendar-3,
+.icons-Calendar-4,
+.icons-Calendar-Clock,
+.icons-Calendar,
+.icons-Camel,
+.icons-Camera-2,
+.icons-Camera-3,
+.icons-Camera-4,
+.icons-Camera-5,
+.icons-Camera-Back,
+.icons-Camera,
+.icons-Can-2,
+.icons-Can,
+.icons-Canada,
+.icons-Cancer-2,
+.icons-Cancer-3,
+.icons-Cancer,
+.icons-Candle,
+.icons-Candy-Cane,
+.icons-Candy,
+.icons-Cannon,
+.icons-Cap-2,
+.icons-Cap-3,
+.icons-Cap-Smiley,
+.icons-Cap,
+.icons-Capricorn-2,
+.icons-Capricorn,
+.icons-Car-2,
+.icons-Car-3,
+.icons-Car-Coins,
+.icons-Car-Items,
+.icons-Car-Wheel,
+.icons-Car,
+.icons-Cardigan,
+.icons-Cardiovascular,
+.icons-Cart-Quantity,
+.icons-Casette-Tape,
+.icons-Cash-Register,
+.icons-Cash-register2,
+.icons-Castle,
+.icons-Cat,
+.icons-Cathedral,
+.icons-Cauldron,
+.icons-CD-2,
+.icons-CD-Cover,
+.icons-CD,
+.icons-Cello,
+.icons-Celsius,
+.icons-Chacked-Flag,
+.icons-Chair,
+.icons-Charger,
+.icons-Check-2,
+.icons-Check,
+.icons-Checked-User,
+.icons-Checkmate,
+.icons-Checkout-Bag,
+.icons-Checkout-Basket,
+.icons-Checkout,
+.icons-Cheese,
+.icons-Cheetah,
+.icons-Chef-Hat,
+.icons-Chef-Hat2,
+.icons-Chef,
+.icons-Chemical-2,
+.icons-Chemical-3,
+.icons-Chemical-4,
+.icons-Chemical-5,
+.icons-Chemical,
+.icons-Chess-Board,
+.icons-Chess,
+.icons-Chicken,
+.icons-Chile,
+.icons-Chimney,
+.icons-China,
+.icons-Chinese-Temple,
+.icons-Chip,
+.icons-Chopsticks-2,
+.icons-Chopsticks,
+.icons-Christmas-Ball,
+.icons-Christmas-Bell,
+.icons-Christmas-Candle,
+.icons-Christmas-Hat,
+.icons-Christmas-Sleigh,
+.icons-Christmas-Snowman,
+.icons-Christmas-Sock,
+.icons-Christmas-Tree,
+.icons-Christmas,
+.icons-Chrome,
+.icons-Chrysler-Building,
+.icons-Cinema,
+.icons-Circular-Point,
+.icons-City-Hall,
+.icons-Clamp,
+.icons-Clapperboard-Close,
+.icons-Clapperboard-Open,
+.icons-Claps,
+.icons-Clef,
+.icons-Clinic,
+.icons-Clock-2,
+.icons-Clock-3,
+.icons-Clock-4,
+.icons-Clock-Back,
+.icons-Clock-Forward,
+.icons-Clock,
+.icons-Close-Window,
+.icons-Close,
+.icons-Clothing-Store,
+.icons-Cloud--,
+.icons-Cloud-,
+.icons-Cloud-Camera,
+.icons-Cloud-Computer,
+.icons-Cloud-Email,
+.icons-Cloud-Hail,
+.icons-Cloud-Laptop,
+.icons-Cloud-Lock,
+.icons-Cloud-Moon,
+.icons-Cloud-Music,
+.icons-Cloud-Picture,
+.icons-Cloud-Rain,
+.icons-Cloud-Remove,
+.icons-Cloud-Secure,
+.icons-Cloud-Settings,
+.icons-Cloud-Smartphone,
+.icons-Cloud-Snow,
+.icons-Cloud-Sun,
+.icons-Cloud-Tablet,
+.icons-Cloud-Video,
+.icons-Cloud-Weather,
+.icons-Cloud,
+.icons-Clouds-Weather,
+.icons-Clouds,
+.icons-Clown,
+.icons-CMYK,
+.icons-Coat,
+.icons-Cocktail,
+.icons-Coconut,
+.icons-Code-Window,
+.icons-Coding,
+.icons-Coffee-2,
+.icons-Coffee-Bean,
+.icons-Coffee-Machine,
+.icons-Coffee-toGo,
+.icons-Coffee,
+.icons-Coffin,
+.icons-Coin,
+.icons-Coins-2,
+.icons-Coins-3,
+.icons-Coins,
+.icons-Colombia,
+.icons-Colosseum,
+.icons-Column-2,
+.icons-Column-3,
+.icons-Column,
+.icons-Comb-2,
+.icons-Comb,
+.icons-Communication-Tower,
+.icons-Communication-Tower2,
+.icons-Compass-2,
+.icons-Compass-3,
+.icons-Compass-4,
+.icons-Compass-Rose,
+.icons-Compass,
+.icons-Computer-2,
+.icons-Computer-3,
+.icons-Computer-Secure,
+.icons-Computer,
+.icons-Conference,
+.icons-Confused,
+.icons-Conservation,
+.icons-Consulting,
+.icons-Contrast,
+.icons-Control-2,
+.icons-Control,
+.icons-Cookie-Man,
+.icons-Cookies,
+.icons-Cool-Guy,
+.icons-Cool,
+.icons-Copyright,
+.icons-Costume,
+.icons-Couple-Sign,
+.icons-Cow,
+.icons-CPU,
+.icons-Crane,
+.icons-Cranium,
+.icons-Credit-Card,
+.icons-Credit-Card2,
+.icons-Credit-Card3,
+.icons-Cricket,
+.icons-Criminal,
+.icons-Croissant,
+.icons-Crop-2,
+.icons-Crop-3,
+.icons-Crown-2,
+.icons-Crown,
+.icons-Crying,
+.icons-Cube-Molecule,
+.icons-Cube-Molecule2,
+.icons-Cupcake,
+.icons-Cursor-Click,
+.icons-Cursor-Click2,
+.icons-Cursor-Move,
+.icons-Cursor-Move2,
+.icons-Cursor-Select,
+.icons-Cursor,
+.icons-D-Eyeglasses,
+.icons-D-Eyeglasses2,
+.icons-Dam,
+.icons-Danemark,
+.icons-Danger-2,
+.icons-Danger,
+.icons-Dashboard,
+.icons-Data-Backup,
+.icons-Data-Block,
+.icons-Data-Center,
+.icons-Data-Clock,
+.icons-Data-Cloud,
+.icons-Data-Compress,
+.icons-Data-Copy,
+.icons-Data-Download,
+.icons-Data-Financial,
+.icons-Data-Key,
+.icons-Data-Lock,
+.icons-Data-Network,
+.icons-Data-Password,
+.icons-Data-Power,
+.icons-Data-Refresh,
+.icons-Data-Save,
+.icons-Data-Search,
+.icons-Data-Security,
+.icons-Data-Settings,
+.icons-Data-Sharing,
+.icons-Data-Shield,
+.icons-Data-Signal,
+.icons-Data-Storage,
+.icons-Data-Stream,
+.icons-Data-Transfer,
+.icons-Data-Unlock,
+.icons-Data-Upload,
+.icons-Data-Yes,
+.icons-Data,
+.icons-David-Star,
+.icons-Daylight,
+.icons-Death,
+.icons-Debian,
+.icons-Dec,
+.icons-Decrase-Inedit,
+.icons-Deer-2,
+.icons-Deer,
+.icons-Delete-File,
+.icons-Delete-Window,
+.icons-Delicious,
+.icons-Depression,
+.icons-Deviantart,
+.icons-Device-SyncwithCloud,
+.icons-Diamond,
+.icons-Dice-2,
+.icons-Dice,
+.icons-Digg,
+.icons-Digital-Drawing,
+.icons-Diigo,
+.icons-Dinosaur,
+.icons-Diploma-2,
+.icons-Diploma,
+.icons-Direction-East,
+.icons-Direction-North,
+.icons-Direction-South,
+.icons-Direction-West,
+.icons-Director,
+.icons-Disk,
+.icons-Dj,
+.icons-DNA-2,
+.icons-DNA-Helix,
+.icons-DNA,
+.icons-Doctor,
+.icons-Dog,
+.icons-Dollar-Sign,
+.icons-Dollar-Sign2,
+.icons-Dollar,
+.icons-Dolphin,
+.icons-Domino,
+.icons-Door-Hanger,
+.icons-Door,
+.icons-Doplr,
+.icons-Double-Circle,
+.icons-Double-Tap,
+.icons-Doughnut,
+.icons-Dove,
+.icons-Down-2,
+.icons-Down-3,
+.icons-Down-4,
+.icons-Down,
+.icons-Download-2,
+.icons-Download-fromCloud,
+.icons-Download-Window,
+.icons-Download,
+.icons-Downward,
+.icons-Drag-Down,
+.icons-Drag-Left,
+.icons-Drag-Right,
+.icons-Drag-Up,
+.icons-Drag,
+.icons-Dress,
+.icons-Drill-2,
+.icons-Drill,
+.icons-Drop,
+.icons-Dropbox,
+.icons-Drum,
+.icons-Dry,
+.icons-Duck,
+.icons-Dumbbell,
+.icons-Duplicate-Layer,
+.icons-Duplicate-Window,
+.icons-DVD,
+.icons-Eagle,
+.icons-Ear,
+.icons-Earphones-2,
+.icons-Earphones,
+.icons-Eci-Icon,
+.icons-Edit-Map,
+.icons-Edit,
+.icons-Eggs,
+.icons-Egypt,
+.icons-Eifel-Tower,
+.icons-eject-2,
+.icons-Eject,
+.icons-El-Castillo,
+.icons-Elbow,
+.icons-Electric-Guitar,
+.icons-Electricity,
+.icons-Elephant,
+.icons-Email,
+.icons-Embassy,
+.icons-Empire-StateBuilding,
+.icons-Empty-Box,
+.icons-End2,
+.icons-End-2,
+.icons-End,
+.icons-Endways,
+.icons-Engineering,
+.icons-Envelope-2,
+.icons-Envelope,
+.icons-Environmental-2,
+.icons-Environmental-3,
+.icons-Environmental,
+.icons-Equalizer,
+.icons-Eraser-2,
+.icons-Eraser-3,
+.icons-Eraser,
+.icons-Error-404Window,
+.icons-Euro-Sign,
+.icons-Euro-Sign2,
+.icons-Euro,
+.icons-Evernote,
+.icons-Evil,
+.icons-Explode,
+.icons-Eye-2,
+.icons-Eye-Blind,
+.icons-Eye-Invisible,
+.icons-Eye-Scan,
+.icons-Eye-Visible,
+.icons-Eye,
+.icons-Eyebrow-2,
+.icons-Eyebrow-3,
+.icons-Eyebrow,
+.icons-Eyeglasses-Smiley,
+.icons-Eyeglasses-Smiley2,
+.icons-Face-Style,
+.icons-Face-Style2,
+.icons-Face-Style3,
+.icons-Face-Style4,
+.icons-Face-Style5,
+.icons-Face-Style6,
+.icons-Facebook-2,
+.icons-Facebook,
+.icons-Factory-2,
+.icons-Factory,
+.icons-Fahrenheit,
+.icons-Family-Sign,
+.icons-Fan,
+.icons-Farmer,
+.icons-Fashion,
+.icons-Favorite-Window,
+.icons-Fax,
+.icons-Feather,
+.icons-Feedburner,
+.icons-Female-2,
+.icons-Female-Sign,
+.icons-Female,
+.icons-File-Block,
+.icons-File-Bookmark,
+.icons-File-Chart,
+.icons-File-Clipboard,
+.icons-File-ClipboardFileText,
+.icons-File-ClipboardTextImage,
+.icons-File-Cloud,
+.icons-File-Copy,
+.icons-File-Copy2,
+.icons-File-CSV,
+.icons-File-Download,
+.icons-File-Edit,
+.icons-File-Excel,
+.icons-File-Favorite,
+.icons-File-Fire,
+.icons-File-Graph,
+.icons-File-Hide,
+.icons-File-Horizontal,
+.icons-File-HorizontalText,
+.icons-File-HTML,
+.icons-File-JPG,
+.icons-File-Link,
+.icons-File-Loading,
+.icons-File-Lock,
+.icons-File-Love,
+.icons-File-Music,
+.icons-File-Network,
+.icons-File-Pictures,
+.icons-File-Pie,
+.icons-File-Presentation,
+.icons-File-Refresh,
+.icons-File-Search,
+.icons-File-Settings,
+.icons-File-Share,
+.icons-File-TextImage,
+.icons-File-Trash,
+.icons-File-TXT,
+.icons-File-Upload,
+.icons-File-Video,
+.icons-File-Word,
+.icons-File-Zip,
+.icons-File,
+.icons-Files,
+.icons-Film-Board,
+.icons-Film-Cartridge,
+.icons-Film-Strip,
+.icons-Film-Video,
+.icons-Film,
+.icons-Filter-2,
+.icons-Filter,
+.icons-Financial,
+.icons-Find-User,
+.icons-Finger-DragFourSides,
+.icons-Finger-DragTwoSides,
+.icons-Finger-Print,
+.icons-Finger,
+.icons-Fingerprint-2,
+.icons-Fingerprint,
+.icons-Fire-Flame,
+.icons-Fire-Flame2,
+.icons-Fire-Hydrant,
+.icons-Fire-Staion,
+.icons-Firefox,
+.icons-Firewall,
+.icons-First-Aid,
+.icons-First,
+.icons-Fish-Food,
+.icons-Fish,
+.icons-Fit-To,
+.icons-Fit-To2,
+.icons-Five-Fingers,
+.icons-Five-FingersDrag,
+.icons-Five-FingersDrag2,
+.icons-Five-FingersTouch,
+.icons-Flag-2,
+.icons-Flag-3,
+.icons-Flag-4,
+.icons-Flag-5,
+.icons-Flag-6,
+.icons-Flag,
+.icons-Flamingo,
+.icons-Flash-2,
+.icons-Flash-Video,
+.icons-Flash,
+.icons-Flashlight,
+.icons-Flask-2,
+.icons-Flask,
+.icons-Flick,
+.icons-Flickr,
+.icons-Flowerpot,
+.icons-Fluorescent,
+.icons-Fog-Day,
+.icons-Fog-Night,
+.icons-Folder-Add,
+.icons-Folder-Archive,
+.icons-Folder-Binder,
+.icons-Folder-Binder2,
+.icons-Folder-Block,
+.icons-Folder-Bookmark,
+.icons-Folder-Close,
+.icons-Folder-Cloud,
+.icons-Folder-Delete,
+.icons-Folder-Download,
+.icons-Folder-Edit,
+.icons-Folder-Favorite,
+.icons-Folder-Fire,
+.icons-Folder-Hide,
+.icons-Folder-Link,
+.icons-Folder-Loading,
+.icons-Folder-Lock,
+.icons-Folder-Love,
+.icons-Folder-Music,
+.icons-Folder-Network,
+.icons-Folder-Open,
+.icons-Folder-Open2,
+.icons-Folder-Organizing,
+.icons-Folder-Pictures,
+.icons-Folder-Refresh,
+.icons-Folder-Remove-,
+.icons-Folder-Search,
+.icons-Folder-Settings,
+.icons-Folder-Share,
+.icons-Folder-Trash,
+.icons-Folder-Upload,
+.icons-Folder-Video,
+.icons-Folder-WithDocument,
+.icons-Folder-Zip,
+.icons-Folder,
+.icons-Folders,
+.icons-Font-Color,
+.icons-Font-Name,
+.icons-Font-Size,
+.icons-Font-Style,
+.icons-Font-StyleSubscript,
+.icons-Font-StyleSuperscript,
+.icons-Font-Window,
+.icons-Foot-2,
+.icons-Foot,
+.icons-Football-2,
+.icons-Football,
+.icons-Footprint-2,
+.icons-Footprint-3,
+.icons-Footprint,
+.icons-Forest,
+.icons-Fork,
+.icons-Formspring,
+.icons-Formula,
+.icons-Forsquare,
+.icons-Forward,
+.icons-Fountain-Pen,
+.icons-Four-Fingers,
+.icons-Four-FingersDrag,
+.icons-Four-FingersDrag2,
+.icons-Four-FingersTouch,
+.icons-Fox,
+.icons-Frankenstein,
+.icons-French-Fries,
+.icons-Friendfeed,
+.icons-Friendster,
+.icons-Frog,
+.icons-Fruits,
+.icons-Fuel,
+.icons-Full-Bag,
+.icons-Full-Basket,
+.icons-Full-Cart,
+.icons-Full-Moon,
+.icons-Full-Screen,
+.icons-Full-Screen2,
+.icons-Full-View,
+.icons-Full-View2,
+.icons-Full-ViewWindow,
+.icons-Function,
+.icons-Funky,
+.icons-Funny-Bicycle,
+.icons-Furl,
+.icons-Gamepad-2,
+.icons-Gamepad,
+.icons-Gas-Pump,
+.icons-Gaugage-2,
+.icons-Gaugage,
+.icons-Gay,
+.icons-Gear-2,
+.icons-Gear,
+.icons-Gears-2,
+.icons-Gears,
+.icons-Geek-2,
+.icons-Geek,
+.icons-Gemini-2,
+.icons-Gemini,
+.icons-Genius,
+.icons-Gentleman,
+.icons-Geo--,
+.icons-Geo-,
+.icons-Geo-Close,
+.icons-Geo-Love,
+.icons-Geo-Number,
+.icons-Geo-Star,
+.icons-Geo,
+.icons-Geo2--,
+.icons-Geo2-,
+.icons-Geo2-Close,
+.icons-Geo2-Love,
+.icons-Geo2-Number,
+.icons-Geo2-Star,
+.icons-Geo2,
+.icons-Geo3--,
+.icons-Geo3-,
+.icons-Geo3-Close,
+.icons-Geo3-Love,
+.icons-Geo3-Number,
+.icons-Geo3-Star,
+.icons-Geo3,
+.icons-Gey,
+.icons-Gift-Box,
+.icons-Giraffe,
+.icons-Girl,
+.icons-Glass-Water,
+.icons-Glasses-2,
+.icons-Glasses-3,
+.icons-Glasses,
+.icons-Global-Position,
+.icons-Globe-2,
+.icons-Globe,
+.icons-Gloves,
+.icons-Go-Bottom,
+.icons-Go-Top,
+.icons-Goggles,
+.icons-Golf-2,
+.icons-Golf,
+.icons-Google-Buzz,
+.icons-Google-Drive,
+.icons-Google-Play,
+.icons-Google-Plus,
+.icons-Google,
+.icons-Gopro,
+.icons-Gorilla,
+.icons-Gowalla,
+.icons-Grave,
+.icons-Graveyard,
+.icons-Greece,
+.icons-Green-Energy,
+.icons-Green-House,
+.icons-Guitar,
+.icons-Gun-2,
+.icons-Gun-3,
+.icons-Gun,
+.icons-Gymnastics,
+.icons-Hair-2,
+.icons-Hair-3,
+.icons-Hair-4,
+.icons-Hair,
+.icons-Half-Moon,
+.icons-Halloween-HalfMoon,
+.icons-Halloween-Moon,
+.icons-Hamburger,
+.icons-Hammer,
+.icons-Hand-Touch,
+.icons-Hand-Touch2,
+.icons-Hand-TouchSmartphone,
+.icons-Hand,
+.icons-Hands,
+.icons-Handshake,
+.icons-Hanger,
+.icons-Happy,
+.icons-Hat-2,
+.icons-Hat,
+.icons-Haunted-House,
+.icons-HD-Video,
+.icons-HD,
+.icons-HDD,
+.icons-Headphone,
+.icons-Headphones,
+.icons-Headset,
+.icons-Heart-2,
+.icons-Heart,
+.icons-Heels-2,
+.icons-Heels,
+.icons-Height-Window,
+.icons-Helicopter-2,
+.icons-Helicopter,
+.icons-Helix-2,
+.icons-Hello,
+.icons-Helmet-2,
+.icons-Helmet-3,
+.icons-Helmet,
+.icons-Hipo,
+.icons-Hipster-Glasses,
+.icons-Hipster-Glasses2,
+.icons-Hipster-Glasses3,
+.icons-Hipster-Headphones,
+.icons-Hipster-Men,
+.icons-Hipster-Men2,
+.icons-Hipster-Men3,
+.icons-Hipster-Sunglasses,
+.icons-Hipster-Sunglasses2,
+.icons-Hipster-Sunglasses3,
+.icons-Hokey,
+.icons-Holly,
+.icons-Home-2,
+.icons-Home-3,
+.icons-Home-4,
+.icons-Home-5,
+.icons-Home-Window,
+.icons-Home,
+.icons-Homosexual,
+.icons-Honey,
+.icons-Hong-Kong,
+.icons-Hoodie,
+.icons-Horror,
+.icons-Horse,
+.icons-Hospital-2,
+.icons-Hospital,
+.icons-Host,
+.icons-Hot-Dog,
+.icons-Hotel,
+.icons-Hour,
+.icons-Hub,
+.icons-Humor,
+.icons-Hurt,
+.icons-Ice-Cream,
+.icons-ICQ,
+.icons-ID-2,
+.icons-ID-3,
+.icons-ID-Card,
+.icons-Idea-2,
+.icons-Idea-3,
+.icons-Idea-4,
+.icons-Idea-5,
+.icons-Idea,
+.icons-Identification-Badge,
+.icons-ImDB,
+.icons-Inbox-Empty,
+.icons-Inbox-Forward,
+.icons-Inbox-Full,
+.icons-Inbox-Into,
+.icons-Inbox-Out,
+.icons-Inbox-Reply,
+.icons-Inbox,
+.icons-Increase-Inedit,
+.icons-Indent-FirstLine,
+.icons-Indent-LeftMargin,
+.icons-Indent-RightMargin,
+.icons-India,
+.icons-Info-Window,
+.icons-Information,
+.icons-Inifity,
+.icons-Instagram,
+.icons-Internet-2,
+.icons-Internet-Explorer,
+.icons-Internet-Smiley,
+.icons-Internet,
+.icons-iOS-Apple,
+.icons-Israel,
+.icons-Italic-Text,
+.icons-Jacket-2,
+.icons-Jacket,
+.icons-Jamaica,
+.icons-Japan,
+.icons-Japanese-Gate,
+.icons-Jeans,
+.icons-Jeep-2,
+.icons-Jeep,
+.icons-Jet,
+.icons-Joystick,
+.icons-Juice,
+.icons-Jump-Rope,
+.icons-Kangoroo,
+.icons-Kenya,
+.icons-Key-2,
+.icons-Key-3,
+.icons-Key-Lock,
+.icons-Key,
+.icons-Keyboard,
+.icons-Keyboard3,
+.icons-Keypad,
+.icons-King-2,
+.icons-King,
+.icons-Kiss,
+.icons-Knee,
+.icons-Knife-2,
+.icons-Knife,
+.icons-Knight,
+.icons-Koala,
+.icons-Korea,
+.icons-Lamp,
+.icons-Landscape-2,
+.icons-Landscape,
+.icons-Lantern,
+.icons-Laptop-2,
+.icons-Laptop-3,
+.icons-Laptop-Phone,
+.icons-Laptop-Secure,
+.icons-Laptop-Tablet,
+.icons-Laptop,
+.icons-Laser,
+.icons-Last-FM,
+.icons-Last,
+.icons-Laughing,
+.icons-Layer-1635,
+.icons-Layer-1646,
+.icons-Layer-Backward,
+.icons-Layer-Forward,
+.icons-Leafs-2,
+.icons-Leafs,
+.icons-Leaning-Tower,
+.icons-Left--Right,
+.icons-Left--Right3,
+.icons-Left-2,
+.icons-Left-3,
+.icons-Left-4,
+.icons-Left-ToRight,
+.icons-Left,
+.icons-Leg-2,
+.icons-Leg,
+.icons-Lego,
+.icons-Lemon,
+.icons-Len-2,
+.icons-Len-3,
+.icons-Len,
+.icons-Leo-2,
+.icons-Leo,
+.icons-Leopard,
+.icons-Lesbian,
+.icons-Lesbians,
+.icons-Letter-Close,
+.icons-Letter-Open,
+.icons-Letter-Sent,
+.icons-Libra-2,
+.icons-Libra,
+.icons-Library-2,
+.icons-Library,
+.icons-Life-Jacket,
+.icons-Life-Safer,
+.icons-Light-Bulb,
+.icons-Light-Bulb2,
+.icons-Light-BulbLeaf,
+.icons-Lighthouse,
+.icons-Like-2,
+.icons-Like,
+.icons-Line-Chart,
+.icons-Line-Chart2,
+.icons-Line-Chart3,
+.icons-Line-Chart4,
+.icons-Line-Spacing,
+.icons-Line-SpacingText,
+.icons-Link-2,
+.icons-Link,
+.icons-Linkedin-2,
+.icons-Linkedin,
+.icons-Linux,
+.icons-Lion,
+.icons-Livejournal,
+.icons-Loading-2,
+.icons-Loading-3,
+.icons-Loading-Window,
+.icons-Loading,
+.icons-Location-2,
+.icons-Location,
+.icons-Lock-2,
+.icons-Lock-3,
+.icons-Lock-User,
+.icons-Lock-Window,
+.icons-Lock,
+.icons-Lollipop-2,
+.icons-Lollipop-3,
+.icons-Lollipop,
+.icons-Loop,
+.icons-Loud,
+.icons-Loudspeaker,
+.icons-Love-2,
+.icons-Love-User,
+.icons-Love-Window,
+.icons-Love,
+.icons-Lowercase-Text,
+.icons-Luggafe-Front,
+.icons-Luggage-2,
+.icons-Macro,
+.icons-Magic-Wand,
+.icons-Magnet,
+.icons-Magnifi-Glass-,
+.icons-Magnifi-Glass,
+.icons-Magnifi-Glass2,
+.icons-Mail-2,
+.icons-Mail-3,
+.icons-Mail-Add,
+.icons-Mail-Attachement,
+.icons-Mail-Block,
+.icons-Mail-Delete,
+.icons-Mail-Favorite,
+.icons-Mail-Forward,
+.icons-Mail-Gallery,
+.icons-Mail-Inbox,
+.icons-Mail-Link,
+.icons-Mail-Lock,
+.icons-Mail-Love,
+.icons-Mail-Money,
+.icons-Mail-Open,
+.icons-Mail-Outbox,
+.icons-Mail-Password,
+.icons-Mail-Photo,
+.icons-Mail-Read,
+.icons-Mail-Removex,
+.icons-Mail-Reply,
+.icons-Mail-ReplyAll,
+.icons-Mail-Search,
+.icons-Mail-Send,
+.icons-Mail-Settings,
+.icons-Mail-Unread,
+.icons-Mail-Video,
+.icons-Mail-withAtSign,
+.icons-Mail-WithCursors,
+.icons-Mail,
+.icons-Mailbox-Empty,
+.icons-Mailbox-Full,
+.icons-Male-2,
+.icons-Male-Sign,
+.icons-Male,
+.icons-MaleFemale,
+.icons-Man-Sign,
+.icons-Management,
+.icons-Mans-Underwear,
+.icons-Mans-Underwear2,
+.icons-Map-Marker,
+.icons-Map-Marker2,
+.icons-Map-Marker3,
+.icons-Map,
+.icons-Map2,
+.icons-Marker-2,
+.icons-Marker-3,
+.icons-Marker,
+.icons-Martini-Glass,
+.icons-Mask,
+.icons-Master-Card,
+.icons-Maximize-Window,
+.icons-Maximize,
+.icons-Medal-2,
+.icons-Medal-3,
+.icons-Medal,
+.icons-Medical-Sign,
+.icons-Medicine-2,
+.icons-Medicine-3,
+.icons-Medicine,
+.icons-Megaphone,
+.icons-Memory-Card,
+.icons-Memory-Card2,
+.icons-Memory-Card3,
+.icons-Men,
+.icons-Menorah,
+.icons-Mens,
+.icons-Metacafe,
+.icons-Mexico,
+.icons-Mic,
+.icons-Microphone-2,
+.icons-Microphone-3,
+.icons-Microphone-4,
+.icons-Microphone-5,
+.icons-Microphone-6,
+.icons-Microphone-7,
+.icons-Microphone,
+.icons-Microscope,
+.icons-Milk-Bottle,
+.icons-Mine,
+.icons-Minimize-Maximize-Close-Window,
+.icons-Minimize-Window,
+.icons-Minimize,
+.icons-Mirror,
+.icons-Mixer,
+.icons-Mixx,
+.icons-Money-2,
+.icons-Money-Bag,
+.icons-Money-Smiley,
+.icons-Money,
+.icons-Monitor-2,
+.icons-Monitor-3,
+.icons-Monitor-4,
+.icons-Monitor-5,
+.icons-Monitor-Analytics,
+.icons-Monitor-Laptop,
+.icons-Monitor-phone,
+.icons-Monitor-Tablet,
+.icons-Monitor-Vertical,
+.icons-Monitor,
+.icons-Monitoring,
+.icons-Monkey,
+.icons-Monster,
+.icons-Morocco,
+.icons-Motorcycle,
+.icons-Mouse-2,
+.icons-Mouse-3,
+.icons-Mouse-4,
+.icons-Mouse-Pointer,
+.icons-Mouse,
+.icons-Moustache-Smiley,
+.icons-Movie-Ticket,
+.icons-Movie,
+.icons-Mp3-File,
+.icons-Museum,
+.icons-Mushroom,
+.icons-Music-Note,
+.icons-Music-Note2,
+.icons-Music-Note3,
+.icons-Music-Note4,
+.icons-Music-Player,
+.icons-Mustache-2,
+.icons-Mustache-3,
+.icons-Mustache-4,
+.icons-Mustache-5,
+.icons-Mustache-6,
+.icons-Mustache-7,
+.icons-Mustache-8,
+.icons-Mustache,
+.icons-Mute,
+.icons-Myspace,
+.icons-Navigat-Start,
+.icons-Navigate-End,
+.icons-Navigation-LeftWindow,
+.icons-Navigation-RightWindow,
+.icons-Nepal,
+.icons-Netscape,
+.icons-Network-Window,
+.icons-Network,
+.icons-Neutron,
+.icons-New-Mail,
+.icons-New-Tab,
+.icons-Newspaper-2,
+.icons-Newspaper,
+.icons-Newsvine,
+.icons-Next2,
+.icons-Next-3,
+.icons-Next-Music,
+.icons-Next,
+.icons-No-Battery,
+.icons-No-Drop,
+.icons-No-Flash,
+.icons-No-Smoking,
+.icons-Noose,
+.icons-Normal-Text,
+.icons-Note,
+.icons-Notepad-2,
+.icons-Notepad,
+.icons-Nuclear,
+.icons-Numbering-List,
+.icons-Nurse,
+.icons-Office-Lamp,
+.icons-Office,
+.icons-Oil,
+.icons-Old-Camera,
+.icons-Old-Cassette,
+.icons-Old-Clock,
+.icons-Old-Radio,
+.icons-Old-Sticky,
+.icons-Old-Sticky2,
+.icons-Old-Telephone,
+.icons-Old-TV,
+.icons-On-Air,
+.icons-On-Off-2,
+.icons-On-Off-3,
+.icons-On-off,
+.icons-One-Finger,
+.icons-One-FingerTouch,
+.icons-One-Window,
+.icons-Open-Banana,
+.icons-Open-Book,
+.icons-Opera-House,
+.icons-Opera,
+.icons-Optimization,
+.icons-Orientation-2,
+.icons-Orientation-3,
+.icons-Orientation,
+.icons-Orkut,
+.icons-Ornament,
+.icons-Over-Time,
+.icons-Over-Time2,
+.icons-Owl,
+.icons-Pac-Man,
+.icons-Paint-Brush,
+.icons-Paint-Bucket,
+.icons-Paintbrush,
+.icons-Palette,
+.icons-Palm-Tree,
+.icons-Panda,
+.icons-Panorama,
+.icons-Pantheon,
+.icons-Pantone,
+.icons-Pants,
+.icons-Paper-Plane,
+.icons-Paper,
+.icons-Parasailing,
+.icons-Parrot,
+.icons-Password-2shopping,
+.icons-Password-Field,
+.icons-Password-shopping,
+.icons-Password,
+.icons-pause-2,
+.icons-Pause,
+.icons-Paw,
+.icons-Pawn,
+.icons-Paypal,
+.icons-Pen-2,
+.icons-Pen-3,
+.icons-Pen-4,
+.icons-Pen-5,
+.icons-Pen-6,
+.icons-Pen,
+.icons-Pencil-Ruler,
+.icons-Pencil,
+.icons-Penguin,
+.icons-Pentagon,
+.icons-People-onCloud,
+.icons-Pepper-withFire,
+.icons-Pepper,
+.icons-Petrol,
+.icons-Petronas-Tower,
+.icons-Philipines,
+.icons-Phone-2,
+.icons-Phone-3,
+.icons-Phone-3G,
+.icons-Phone-4G,
+.icons-Phone-Simcard,
+.icons-Phone-SMS,
+.icons-Phone-Wifi,
+.icons-Phone,
+.icons-Photo-2,
+.icons-Photo-3,
+.icons-Photo-Album,
+.icons-Photo-Album2,
+.icons-Photo-Album3,
+.icons-Photo,
+.icons-Photos,
+.icons-Physics,
+.icons-Pi,
+.icons-Piano,
+.icons-Picasa,
+.icons-Pie-Chart,
+.icons-Pie-Chart2,
+.icons-Pie-Chart3,
+.icons-Pilates-2,
+.icons-Pilates-3,
+.icons-Pilates,
+.icons-Pilot,
+.icons-Pinch,
+.icons-Ping-Pong,
+.icons-Pinterest,
+.icons-Pipe,
+.icons-Pipette,
+.icons-Piramids,
+.icons-Pisces-2,
+.icons-Pisces,
+.icons-Pizza-Slice,
+.icons-Pizza,
+.icons-Plane-2,
+.icons-Plane,
+.icons-Plant,
+.icons-Plasmid,
+.icons-Plaster,
+.icons-Plastic-CupPhone,
+.icons-Plastic-CupPhone2,
+.icons-Plate,
+.icons-Plates,
+.icons-Plaxo,
+.icons-Play-Music,
+.icons-Plug-In,
+.icons-Plug-In2,
+.icons-Plurk,
+.icons-Pointer,
+.icons-Poland,
+.icons-Police-Man,
+.icons-Police-Station,
+.icons-Police-Woman,
+.icons-Police,
+.icons-Polo-Shirt,
+.icons-Portrait,
+.icons-Portugal,
+.icons-Post-Mail,
+.icons-Post-Mail2,
+.icons-Post-Office,
+.icons-Post-Sign,
+.icons-Post-Sign2ways,
+.icons-Posterous,
+.icons-Pound-Sign,
+.icons-Pound-Sign2,
+.icons-Pound,
+.icons-Power-2,
+.icons-Power-3,
+.icons-Power-Cable,
+.icons-Power-Station,
+.icons-Power,
+.icons-Prater,
+.icons-Present,
+.icons-Presents,
+.icons-Press,
+.icons-Preview,
+.icons-Previous,
+.icons-Pricing,
+.icons-Printer,
+.icons-Professor,
+.icons-Profile,
+.icons-Project,
+.icons-Projector-2,
+.icons-Projector,
+.icons-Pulse,
+.icons-Pumpkin,
+.icons-Punk,
+.icons-Punker,
+.icons-Puzzle,
+.icons-QIK,
+.icons-QR-Code,
+.icons-Queen-2,
+.icons-Queen,
+.icons-Quill-2,
+.icons-Quill-3,
+.icons-Quill,
+.icons-Quotes-2,
+.icons-Quotes,
+.icons-Radio,
+.icons-Radioactive,
+.icons-Rafting,
+.icons-Rain-Drop,
+.icons-Rainbow-2,
+.icons-Rainbow,
+.icons-Ram,
+.icons-Razzor-Blade,
+.icons-Receipt-2,
+.icons-Receipt-3,
+.icons-Receipt-4,
+.icons-Receipt,
+.icons-Record2,
+.icons-Record-3,
+.icons-Record-Music,
+.icons-Record,
+.icons-Recycling-2,
+.icons-Recycling,
+.icons-Reddit,
+.icons-Redhat,
+.icons-Redirect,
+.icons-Redo,
+.icons-Reel,
+.icons-Refinery,
+.icons-Refresh-Window,
+.icons-Refresh,
+.icons-Reload-2,
+.icons-Reload-3,
+.icons-Reload,
+.icons-Remote-Controll,
+.icons-Remote-Controll2,
+.icons-Remove-Bag,
+.icons-Remove-Basket,
+.icons-Remove-Cart,
+.icons-Remove-File,
+.icons-Remove-User,
+.icons-Remove-Window,
+.icons-Remove,
+.icons-Rename,
+.icons-Repair,
+.icons-Repeat-2,
+.icons-Repeat-3,
+.icons-Repeat-4,
+.icons-Repeat-5,
+.icons-Repeat-6,
+.icons-Repeat-7,
+.icons-Repeat,
+.icons-Reset,
+.icons-Resize,
+.icons-Restore-Window,
+.icons-Retouching,
+.icons-Retro-Camera,
+.icons-Retro,
+.icons-Retweet,
+.icons-Reverbnation,
+.icons-Rewind,
+.icons-RGB,
+.icons-Ribbon-2,
+.icons-Ribbon-3,
+.icons-Ribbon,
+.icons-Right-2,
+.icons-Right-3,
+.icons-Right-4,
+.icons-Right-ToLeft,
+.icons-Right,
+.icons-Road-2,
+.icons-Road-3,
+.icons-Road,
+.icons-Robot-2,
+.icons-Robot,
+.icons-Rock-andRoll,
+.icons-Rocket,
+.icons-Roller,
+.icons-Roof,
+.icons-Rook,
+.icons-Rotate-Gesture,
+.icons-Rotate-Gesture2,
+.icons-Rotate-Gesture3,
+.icons-Rotation-390,
+.icons-Rotation,
+.icons-Router-2,
+.icons-Router,
+.icons-RSS,
+.icons-Ruler-2,
+.icons-Ruler,
+.icons-Running-Shoes,
+.icons-Running,
+.icons-Safari,
+.icons-Safe-Box,
+.icons-Safe-Box2,
+.icons-Safety-PinClose,
+.icons-Safety-PinOpen,
+.icons-Sagittarus-2,
+.icons-Sagittarus,
+.icons-Sailing-Ship,
+.icons-Sand-watch,
+.icons-Sand-watch2,
+.icons-Santa-Claus,
+.icons-Santa-Claus2,
+.icons-Santa-onSled,
+.icons-Satelite-2,
+.icons-Satelite,
+.icons-Save-Window,
+.icons-Save,
+.icons-Saw,
+.icons-Saxophone,
+.icons-Scale,
+.icons-Scarf,
+.icons-Scissor,
+.icons-Scooter-Front,
+.icons-Scooter,
+.icons-Scorpio-2,
+.icons-Scorpio,
+.icons-Scotland,
+.icons-Screwdriver,
+.icons-Scroll-Fast,
+.icons-Scroll,
+.icons-Scroller-2,
+.icons-Scroller,
+.icons-Sea-Dog,
+.icons-Search-onCloud,
+.icons-Search-People,
+.icons-secound,
+.icons-secound2,
+.icons-Security-Block,
+.icons-Security-Bug,
+.icons-Security-Camera,
+.icons-Security-Check,
+.icons-Security-Settings,
+.icons-Security-Smiley,
+.icons-Securiy-Remove,
+.icons-Seed,
+.icons-Selfie,
+.icons-Serbia,
+.icons-Server-2,
+.icons-Server,
+.icons-Servers,
+.icons-Settings-Window,
+.icons-Sewing-Machine,
+.icons-Sexual,
+.icons-Share-onCloud,
+.icons-Share-Window,
+.icons-Share,
+.icons-Sharethis,
+.icons-Shark,
+.icons-Sheep,
+.icons-Sheriff-Badge,
+.icons-Shield,
+.icons-Ship-2,
+.icons-Ship,
+.icons-Shirt,
+.icons-Shoes-2,
+.icons-Shoes-3,
+.icons-Shoes,
+.icons-Shop-2,
+.icons-Shop-3,
+.icons-Shop-4,
+.icons-Shop,
+.icons-Shopping-Bag,
+.icons-Shopping-Basket,
+.icons-Shopping-Cart,
+.icons-Short-Pants,
+.icons-Shoutwire,
+.icons-Shovel,
+.icons-Shuffle-2,
+.icons-Shuffle-3,
+.icons-Shuffle-4,
+.icons-Shuffle,
+.icons-Shutter,
+.icons-Sidebar-Window,
+.icons-Signal,
+.icons-Singapore,
+.icons-Skate-Shoes,
+.icons-Skateboard-2,
+.icons-Skateboard,
+.icons-Skeleton,
+.icons-Ski,
+.icons-Skirt,
+.icons-Skrill,
+.icons-Skull,
+.icons-Skydiving,
+.icons-Skype,
+.icons-Sled-withGifts,
+.icons-Sled,
+.icons-Sleeping,
+.icons-Sleet,
+.icons-Slippers,
+.icons-Smart,
+.icons-Smartphone-2,
+.icons-Smartphone-3,
+.icons-Smartphone-4,
+.icons-Smartphone-Secure,
+.icons-Smartphone,
+.icons-Smile,
+.icons-Smoking-Area,
+.icons-Smoking-Pipe,
+.icons-Snake,
+.icons-Snorkel,
+.icons-Snow-2,
+.icons-Snow-Dome,
+.icons-Snow-Storm,
+.icons-Snow,
+.icons-Snowflake-2,
+.icons-Snowflake-3,
+.icons-Snowflake-4,
+.icons-Snowflake,
+.icons-Snowman,
+.icons-Soccer-Ball,
+.icons-Soccer-Shoes,
+.icons-Socks,
+.icons-Solar,
+.icons-Sound-Wave,
+.icons-Sound,
+.icons-Soundcloud,
+.icons-Soup,
+.icons-South-Africa,
+.icons-Space-Needle,
+.icons-Spain,
+.icons-Spam-Mail,
+.icons-Speach-Bubble,
+.icons-Speach-Bubble2,
+.icons-Speach-Bubble3,
+.icons-Speach-Bubble4,
+.icons-Speach-Bubble5,
+.icons-Speach-Bubble6,
+.icons-Speach-Bubble7,
+.icons-Speach-Bubble8,
+.icons-Speach-Bubble9,
+.icons-Speach-Bubble10,
+.icons-Speach-Bubble11,
+.icons-Speach-Bubble12,
+.icons-Speach-Bubble13,
+.icons-Speach-BubbleAsking,
+.icons-Speach-BubbleComic,
+.icons-Speach-BubbleComic2,
+.icons-Speach-BubbleComic3,
+.icons-Speach-BubbleComic4,
+.icons-Speach-BubbleDialog,
+.icons-Speach-Bubbles,
+.icons-Speak-2,
+.icons-Speak,
+.icons-Speaker-2,
+.icons-Speaker,
+.icons-Spell-Check,
+.icons-Spell-CheckABC,
+.icons-Spermium,
+.icons-Spider,
+.icons-Spiderweb,
+.icons-Split-FourSquareWindow,
+.icons-Split-Horizontal,
+.icons-Split-Horizontal2Window,
+.icons-Split-Vertical,
+.icons-Split-Vertical2,
+.icons-Split-Window,
+.icons-Spoder,
+.icons-Spoon,
+.icons-Sport-Mode,
+.icons-Sports-Clothings1,
+.icons-Sports-Clothings2,
+.icons-Sports-Shirt,
+.icons-Spot,
+.icons-Spray,
+.icons-Spread,
+.icons-Spring,
+.icons-Spurl,
+.icons-Spy,
+.icons-Squirrel,
+.icons-SSL,
+.icons-St-BasilsCathedral,
+.icons-St-PaulsCathedral,
+.icons-Stamp-2,
+.icons-Stamp,
+.icons-Stapler,
+.icons-Star-Track,
+.icons-Star,
+.icons-Starfish,
+.icons-Start2,
+.icons-Start-3,
+.icons-Start-ways,
+.icons-Start,
+.icons-Statistic,
+.icons-Stethoscope,
+.icons-stop--2,
+.icons-Stop-Music,
+.icons-Stop,
+.icons-Stopwatch-2,
+.icons-Stopwatch,
+.icons-Storm,
+.icons-Street-View,
+.icons-Street-View2,
+.icons-Strikethrough-Text,
+.icons-Stroller,
+.icons-Structure,
+.icons-Student-Female,
+.icons-Student-Hat,
+.icons-Student-Hat2,
+.icons-Student-Male,
+.icons-Student-MaleFemale,
+.icons-Students,
+.icons-Studio-Flash,
+.icons-Studio-Lightbox,
+.icons-Stumbleupon,
+.icons-Suit,
+.icons-Suitcase,
+.icons-Sum-2,
+.icons-Sum,
+.icons-Summer,
+.icons-Sun-CloudyRain,
+.icons-Sun,
+.icons-Sunglasses-2,
+.icons-Sunglasses-3,
+.icons-Sunglasses-Smiley,
+.icons-Sunglasses-Smiley2,
+.icons-Sunglasses-W,
+.icons-Sunglasses-W2,
+.icons-Sunglasses-W3,
+.icons-Sunglasses,
+.icons-Sunrise,
+.icons-Sunset,
+.icons-Superman,
+.icons-Support,
+.icons-Surprise,
+.icons-Sushi,
+.icons-Sweden,
+.icons-Swimming-Short,
+.icons-Swimming,
+.icons-Swimmwear,
+.icons-Switch,
+.icons-Switzerland,
+.icons-Sync-Cloud,
+.icons-Sync,
+.icons-Synchronize-2,
+.icons-Synchronize,
+.icons-T-Shirt,
+.icons-Tablet-2,
+.icons-Tablet-3,
+.icons-Tablet-Orientation,
+.icons-Tablet-Phone,
+.icons-Tablet-Secure,
+.icons-Tablet-Vertical,
+.icons-Tablet,
+.icons-Tactic,
+.icons-Tag-2,
+.icons-Tag-3,
+.icons-Tag-4,
+.icons-Tag-5,
+.icons-Tag,
+.icons-Taj-Mahal,
+.icons-Talk-Man,
+.icons-Tap,
+.icons-Target-Market,
+.icons-Target,
+.icons-Taurus-2,
+.icons-Taurus,
+.icons-Taxi-2,
+.icons-Taxi-Sign,
+.icons-Taxi,
+.icons-Teacher,
+.icons-Teapot,
+.icons-Technorati,
+.icons-Teddy-Bear,
+.icons-Tee-Mug,
+.icons-Telephone-2,
+.icons-Telephone,
+.icons-Telescope,
+.icons-Temperature-2,
+.icons-Temperature-3,
+.icons-Temperature,
+.icons-Temple,
+.icons-Tennis-Ball,
+.icons-Tennis,
+.icons-Tent,
+.icons-Test-Tube,
+.icons-Test-Tube2,
+.icons-Testimonal,
+.icons-Text-Box,
+.icons-Text-Effect,
+.icons-Text-HighlightColor,
+.icons-Text-Paragraph,
+.icons-Thailand,
+.icons-The-WhiteHouse,
+.icons-This-SideUp,
+.icons-Thread,
+.icons-Three-ArrowFork,
+.icons-Three-Fingers,
+.icons-Three-FingersDrag,
+.icons-Three-FingersDrag2,
+.icons-Three-FingersTouch,
+.icons-Thumb,
+.icons-Thumbs-DownSmiley,
+.icons-Thumbs-UpSmiley,
+.icons-Thunder,
+.icons-Thunderstorm,
+.icons-Ticket,
+.icons-Tie-2,
+.icons-Tie-3,
+.icons-Tie-4,
+.icons-Tie,
+.icons-Tiger,
+.icons-Time-Backup,
+.icons-Time-Bomb,
+.icons-Time-Clock,
+.icons-Time-Fire,
+.icons-Time-Machine,
+.icons-Time-Window,
+.icons-Timer-2,
+.icons-Timer,
+.icons-To-Bottom,
+.icons-To-Bottom2,
+.icons-To-Left,
+.icons-To-Right,
+.icons-To-Top,
+.icons-To-Top2,
+.icons-Token-,
+.icons-Tomato,
+.icons-Tongue,
+.icons-Tooth-2,
+.icons-Tooth,
+.icons-Top-ToBottom,
+.icons-Touch-Window,
+.icons-Tourch,
+.icons-Tower-2,
+.icons-Tower-Bridge,
+.icons-Tower,
+.icons-Trace,
+.icons-Tractor,
+.icons-traffic-Light,
+.icons-Traffic-Light2,
+.icons-Train-2,
+.icons-Train,
+.icons-Tram,
+.icons-Transform-2,
+.icons-Transform-3,
+.icons-Transform-4,
+.icons-Transform,
+.icons-Trash-withMen,
+.icons-Tree-2,
+.icons-Tree-3,
+.icons-Tree-4,
+.icons-Tree-5,
+.icons-Tree,
+.icons-Trekking,
+.icons-Triangle-ArrowDown,
+.icons-Triangle-ArrowLeft,
+.icons-Triangle-ArrowRight,
+.icons-Triangle-ArrowUp,
+.icons-Tripod-2,
+.icons-Tripod-andVideo,
+.icons-Tripod-withCamera,
+.icons-Tripod-withGopro,
+.icons-Trophy-2,
+.icons-Trophy,
+.icons-Truck,
+.icons-Trumpet,
+.icons-Tumblr,
+.icons-Turkey,
+.icons-Turn-Down,
+.icons-Turn-Down2,
+.icons-Turn-DownFromLeft,
+.icons-Turn-DownFromRight,
+.icons-Turn-Left,
+.icons-Turn-Left3,
+.icons-Turn-Right,
+.icons-Turn-Right3,
+.icons-Turn-Up,
+.icons-Turn-Up2,
+.icons-Turtle,
+.icons-Tuxedo,
+.icons-TV,
+.icons-Twister,
+.icons-Twitter-2,
+.icons-Twitter,
+.icons-Two-Fingers,
+.icons-Two-FingersDrag,
+.icons-Two-FingersDrag2,
+.icons-Two-FingersScroll,
+.icons-Two-FingersTouch,
+.icons-Two-Windows,
+.icons-Type-Pass,
+.icons-Ukraine,
+.icons-Umbrela,
+.icons-Umbrella-2,
+.icons-Umbrella-3,
+.icons-Under-LineText,
+.icons-Undo,
+.icons-United-Kingdom,
+.icons-United-States,
+.icons-University-2,
+.icons-University,
+.icons-Unlike-2,
+.icons-Unlike,
+.icons-Unlock-2,
+.icons-Unlock-3,
+.icons-Unlock,
+.icons-Up--Down,
+.icons-Up--Down3,
+.icons-Up-2,
+.icons-Up-3,
+.icons-Up-4,
+.icons-Up,
+.icons-Upgrade,
+.icons-Upload-2,
+.icons-Upload-toCloud,
+.icons-Upload-Window,
+.icons-Upload,
+.icons-Uppercase-Text,
+.icons-Upward,
+.icons-URL-Window,
+.icons-Usb-2,
+.icons-Usb-Cable,
+.icons-Usb,
+.icons-User,
+.icons-Ustream,
+.icons-Vase,
+.icons-Vector-2,
+.icons-Vector-3,
+.icons-Vector-4,
+.icons-Vector-5,
+.icons-Vector,
+.icons-Venn-Diagram,
+.icons-Vest-2,
+.icons-Vest,
+.icons-Viddler,
+.icons-Video-2,
+.icons-Video-3,
+.icons-Video-4,
+.icons-Video-5,
+.icons-Video-6,
+.icons-Video-GameController,
+.icons-Video-Len,
+.icons-Video-Len2,
+.icons-Video-Photographer,
+.icons-Video-Tripod,
+.icons-Video,
+.icons-Vietnam,
+.icons-View-Height,
+.icons-View-Width,
+.icons-Vimeo,
+.icons-Virgo-2,
+.icons-Virgo,
+.icons-Virus-2,
+.icons-Virus-3,
+.icons-Virus,
+.icons-Visa,
+.icons-Voice,
+.icons-Voicemail,
+.icons-Volleyball,
+.icons-Volume-Down,
+.icons-Volume-Up,
+.icons-VPN,
+.icons-Wacom-Tablet,
+.icons-Waiter,
+.icons-Walkie-Talkie,
+.icons-Wallet-2,
+.icons-Wallet-3,
+.icons-Wallet,
+.icons-Warehouse,
+.icons-Warning-Window,
+.icons-Watch-2,
+.icons-Watch-3,
+.icons-Watch,
+.icons-Wave-2,
+.icons-Wave,
+.icons-Webcam,
+.icons-weight-Lift,
+.icons-Wheelbarrow,
+.icons-Wheelchair,
+.icons-Width-Window,
+.icons-Wifi-2,
+.icons-Wifi-Keyboard,
+.icons-Wifi,
+.icons-Wind-Turbine,
+.icons-Windmill,
+.icons-Window-2,
+.icons-Window,
+.icons-Windows-2,
+.icons-Windows-Microsoft,
+.icons-Windows,
+.icons-Windsock,
+.icons-Windy,
+.icons-Wine-Bottle,
+.icons-Wine-Glass,
+.icons-Wink,
+.icons-Winter-2,
+.icons-Winter,
+.icons-Wireless,
+.icons-Witch-Hat,
+.icons-Witch,
+.icons-Wizard,
+.icons-Wolf,
+.icons-Woman-Sign,
+.icons-WomanMan,
+.icons-Womans-Underwear,
+.icons-Womans-Underwear2,
+.icons-Women,
+.icons-Wonder-Woman,
+.icons-Wordpress,
+.icons-Worker-Clothes,
+.icons-Worker,
+.icons-Wrap-Text,
+.icons-Wreath,
+.icons-Wrench,
+.icons-X-Box,
+.icons-X-ray,
+.icons-Xanga,
+.icons-Xing,
+.icons-Yacht,
+.icons-Yahoo-Buzz, 
+.icons-Yahoo,
+.icons-Yelp,
+.icons-Yes,
+.icons-Ying-Yang,
+.icons-Youtube,
+.icons-Z-A,
+.icons-Zebra,
+.icons-Zombie,
+.icons-Zoom-Gesture,
+.icons-Zootool {
+	font-family: 'icomoon';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal; 
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale; 
+}
+
+.icons-A-Z:before {
+  content: "\e600"; }
+
+.icons-Aa:before {
+  content: "\e601"; }
+
+.icons-Add-Bag:before {
+  content: "\e602"; }
+
+.icons-Add-Basket:before {
+  content: "\e603"; }
+
+.icons-Add-Cart:before {
+  content: "\e604"; }
+
+.icons-Add-File:before {
+  content: "\e605"; }
+
+.icons-Add-SpaceAfterParagraph:before {
+  content: "\e606"; }
+
+.icons-Add-SpaceBeforeParagraph:before {
+  content: "\e607"; }
+
+.icons-Add-User:before {
+  content: "\e608"; }
+
+.icons-Add-UserStar:before {
+  content: "\e609"; }
+
+.icons-Add-Window:before {
+  content: "\e60a"; }
+
+.icons-Add:before {
+  content: "\e60b"; }
+
+.icons-Address-Book:before {
+  content: "\e60c"; }
+
+.icons-Address-Book2:before {
+  content: "\e60d"; }
+
+.icons-Administrator:before {
+  content: "\e60e"; }
+
+.icons-Aerobics-2:before {
+  content: "\e60f"; }
+
+.icons-Aerobics-3:before {
+  content: "\e610"; }
+
+.icons-Aerobics:before {
+  content: "\e611"; }
+
+.icons-Affiliate:before {
+  content: "\e612"; }
+
+.icons-Aim:before {
+  content: "\e613"; }
+
+.icons-Air-Balloon:before {
+  content: "\e614"; }
+
+.icons-Airbrush:before {
+  content: "\e615"; }
+
+.icons-Airship:before {
+  content: "\e616"; }
+
+.icons-Alarm-Clock:before {
+  content: "\e617"; }
+
+.icons-Alarm-Clock2:before {
+  content: "\e618"; }
+
+.icons-Alarm:before {
+  content: "\e619"; }
+
+.icons-Alien-2:before {
+  content: "\e61a"; }
+
+.icons-Alien:before {
+  content: "\e61b"; }
+
+.icons-Aligator:before {
+  content: "\e61c"; }
+
+.icons-Align-Center:before {
+  content: "\e61d"; }
+
+.icons-Align-JustifyAll:before {
+  content: "\e61e"; }
+
+.icons-Align-JustifyCenter:before {
+  content: "\e61f"; }
+
+.icons-Align-JustifyLeft:before {
+  content: "\e620"; }
+
+.icons-Align-JustifyRight:before {
+  content: "\e621"; }
+
+.icons-Align-Left:before {
+  content: "\e622"; }
+
+.icons-Align-Right:before {
+  content: "\e623"; }
+
+.icons-Alpha:before {
+  content: "\e624"; }
+
+.icons-Ambulance:before {
+  content: "\e625"; }
+
+.icons-AMX:before {
+  content: "\e626"; }
+
+.icons-Anchor-2:before {
+  content: "\e627"; }
+
+.icons-Anchor:before {
+  content: "\e628"; }
+
+.icons-Android-Store:before {
+  content: "\e629"; }
+
+.icons-Android:before {
+  content: "\e62a"; }
+
+.icons-Angel-Smiley:before {
+  content: "\e62b"; }
+
+.icons-Angel:before {
+  content: "\e62c"; }
+
+.icons-Angry:before {
+  content: "\e62d"; }
+
+.icons-Apple-Bite:before {
+  content: "\e62e"; }
+
+.icons-Apple-Store:before {
+  content: "\e62f"; }
+
+.icons-Apple:before {
+  content: "\e630"; }
+
+.icons-Approved-Window:before {
+  content: "\e631"; }
+
+.icons-Aquarius-2:before {
+  content: "\e632"; }
+
+.icons-Aquarius:before {
+  content: "\e633"; }
+
+.icons-Archery-2:before {
+  content: "\e634"; }
+
+.icons-Archery:before {
+  content: "\e635"; }
+
+.icons-Argentina:before {
+  content: "\e636"; }
+
+.icons-Aries-2:before {
+  content: "\e637"; }
+
+.icons-Aries:before {
+  content: "\e638"; }
+
+.icons-Army-Key:before {
+  content: "\e639"; }
+
+.icons-Arrow-Around:before {
+  content: "\e63a"; }
+
+.icons-Arrow-Back3:before {
+  content: "\e63b"; }
+
+.icons-Arrow-Back:before {
+  content: "\e63c"; }
+
+.icons-Arrow-Back2:before {
+  content: "\e63d"; }
+
+.icons-Arrow-Barrier:before {
+  content: "\e63e"; }
+
+.icons-Arrow-Circle:before {
+  content: "\e63f"; }
+
+.icons-Arrow-Cross:before {
+  content: "\e640"; }
+
+.icons-Arrow-Down:before {
+  content: "\e641"; }
+
+.icons-Arrow-Down2:before {
+  content: "\e642"; }
+
+.icons-Arrow-Down3:before {
+  content: "\e643"; }
+
+.icons-Arrow-DowninCircle:before {
+  content: "\e644"; }
+
+.icons-Arrow-Fork:before {
+  content: "\e645"; }
+
+.icons-Arrow-Forward:before {
+  content: "\e646"; }
+
+.icons-Arrow-Forward2:before {
+  content: "\e647"; }
+
+.icons-Arrow-From:before {
+  content: "\e648"; }
+
+.icons-Arrow-Inside:before {
+  content: "\e649"; }
+
+.icons-Arrow-Inside45:before {
+  content: "\e64a"; }
+
+.icons-Arrow-InsideGap:before {
+  content: "\e64b"; }
+
+.icons-Arrow-InsideGap45:before {
+  content: "\e64c"; }
+
+.icons-Arrow-Into:before {
+  content: "\e64d"; }
+
+.icons-Arrow-Join:before {
+  content: "\e64e"; }
+
+.icons-Arrow-Junction:before {
+  content: "\e64f"; }
+
+.icons-Arrow-Left:before {
+  content: "\e650"; }
+
+.icons-Arrow-Left2:before {
+  content: "\e651"; }
+
+.icons-Arrow-LeftinCircle:before {
+  content: "\e652"; }
+
+.icons-Arrow-Loop:before {
+  content: "\e653"; }
+
+.icons-Arrow-Merge:before {
+  content: "\e654"; }
+
+.icons-Arrow-Mix:before {
+  content: "\e655"; }
+
+.icons-Arrow-Next:before {
+  content: "\e656"; }
+
+.icons-Arrow-OutLeft:before {
+  content: "\e657"; }
+
+.icons-Arrow-OutRight:before {
+  content: "\e658"; }
+
+.icons-Arrow-Outside:before {
+  content: "\e659"; }
+
+.icons-Arrow-Outside45:before {
+  content: "\e65a"; }
+
+.icons-Arrow-OutsideGap:before {
+  content: "\e65b"; }
+
+.icons-Arrow-OutsideGap45:before {
+  content: "\e65c"; }
+
+.icons-Arrow-Over:before {
+  content: "\e65d"; }
+
+.icons-Arrow-Refresh:before {
+  content: "\e65e"; }
+
+.icons-Arrow-Refresh2:before {
+  content: "\e65f"; }
+
+.icons-Arrow-Right:before {
+  content: "\e660"; }
+
+.icons-Arrow-Right2:before {
+  content: "\e661"; }
+
+.icons-Arrow-RightinCircle:before {
+  content: "\e662"; }
+
+.icons-Arrow-Shuffle:before {
+  content: "\e663"; }
+
+.icons-Arrow-Squiggly:before {
+  content: "\e664"; }
+
+.icons-Arrow-Through:before {
+  content: "\e665"; }
+
+.icons-Arrow-To:before {
+  content: "\e666"; }
+
+.icons-Arrow-TurnLeft:before {
+  content: "\e667"; }
+
+.icons-Arrow-TurnRight:before {
+  content: "\e668"; }
+
+.icons-Arrow-Up:before {
+  content: "\e669"; }
+
+.icons-Arrow-Up2:before {
+  content: "\e66a"; }
+
+.icons-Arrow-Up3:before {
+  content: "\e66b"; }
+
+.icons-Arrow-UpinCircle:before {
+  content: "\e66c"; }
+
+.icons-Arrow-XLeft:before {
+  content: "\e66d"; }
+
+.icons-Arrow-XRight:before {
+  content: "\e66e"; }
+
+.icons-Ask:before {
+  content: "\e66f"; }
+
+.icons-Assistant:before {
+  content: "\e670"; }
+
+.icons-Astronaut:before {
+  content: "\e671"; }
+
+.icons-At-Sign:before {
+  content: "\e672"; }
+
+.icons-ATM:before {
+  content: "\e673"; }
+
+.icons-Atom:before {
+  content: "\e674"; }
+
+.icons-Audio:before {
+  content: "\e675"; }
+
+.icons-Auto-Flash:before {
+  content: "\e676"; }
+
+.icons-Autumn:before {
+  content: "\e677"; }
+
+.icons-Baby-Clothes:before {
+  content: "\e678"; }
+
+.icons-Baby-Clothes2:before {
+  content: "\e679"; }
+
+.icons-Baby-Cry:before {
+  content: "\e67a"; }
+
+.icons-Baby:before {
+  content: "\e67b"; }
+
+.icons-Back2:before {
+  content: "\e67c"; }
+
+.icons-Back-Media:before {
+  content: "\e67d"; }
+
+.icons-Back-Music:before {
+  content: "\e67e"; }
+
+.icons-Back:before {
+  content: "\e67f"; }
+
+.icons-Background:before {
+  content: "\e680"; }
+
+.icons-Bacteria:before {
+  content: "\e681"; }
+
+.icons-Bag-Coins:before {
+  content: "\e682"; }
+
+.icons-Bag-Items:before {
+  content: "\e683"; }
+
+.icons-Bag-Quantity:before {
+  content: "\e684"; }
+
+.icons-Bag:before {
+  content: "\e685"; }
+
+.icons-Bakelite:before {
+  content: "\e686"; }
+
+.icons-Ballet-Shoes:before {
+  content: "\e687"; }
+
+.icons-Balloon:before {
+  content: "\e688"; }
+
+.icons-Banana:before {
+  content: "\e689"; }
+
+.icons-Band-Aid:before {
+  content: "\e68a"; }
+
+.icons-Bank:before {
+  content: "\e68b"; }
+
+.icons-Bar-Chart:before {
+  content: "\e68c"; }
+
+.icons-Bar-Chart2:before {
+  content: "\e68d"; }
+
+.icons-Bar-Chart3:before {
+  content: "\e68e"; }
+
+.icons-Bar-Chart4:before {
+  content: "\e68f"; }
+
+.icons-Bar-Chart5:before {
+  content: "\e690"; }
+
+.icons-Bar-Code:before {
+  content: "\e691"; }
+
+.icons-Barricade-2:before {
+  content: "\e692"; }
+
+.icons-Barricade:before {
+  content: "\e693"; }
+
+.icons-Baseball:before {
+  content: "\e694"; }
+
+.icons-Basket-Ball:before {
+  content: "\e695"; }
+
+.icons-Basket-Coins:before {
+  content: "\e696"; }
+
+.icons-Basket-Items:before {
+  content: "\e697"; }
+
+.icons-Basket-Quantity:before {
+  content: "\e698"; }
+
+.icons-Bat-2:before {
+  content: "\e699"; }
+
+.icons-Bat:before {
+  content: "\e69a"; }
+
+.icons-Bathrobe:before {
+  content: "\e69b"; }
+
+.icons-Batman-Mask:before {
+  content: "\e69c"; }
+
+.icons-Battery-0:before {
+  content: "\e69d"; }
+
+.icons-Battery-25:before {
+  content: "\e69e"; }
+
+.icons-Battery-50:before {
+  content: "\e69f"; }
+
+.icons-Battery-75:before {
+  content: "\e6a0"; }
+
+.icons-Battery-100:before {
+  content: "\e6a1"; }
+
+.icons-Battery-Charge:before {
+  content: "\e6a2"; }
+
+.icons-Bear:before {
+  content: "\e6a3"; }
+
+.icons-Beard-2:before {
+  content: "\e6a4"; }
+
+.icons-Beard-3:before {
+  content: "\e6a5"; }
+
+.icons-Beard:before {
+  content: "\e6a6"; }
+
+.icons-Bebo:before {
+  content: "\e6a7"; }
+
+.icons-Bee:before {
+  content: "\e6a8"; }
+
+.icons-Beer-Glass:before {
+  content: "\e6a9"; }
+
+.icons-Beer:before {
+  content: "\e6aa"; }
+
+.icons-Bell-2:before {
+  content: "\e6ab"; }
+
+.icons-Bell:before {
+  content: "\e6ac"; }
+
+.icons-Belt-2:before {
+  content: "\e6ad"; }
+
+.icons-Belt-3:before {
+  content: "\e6ae"; }
+
+.icons-Belt:before {
+  content: "\e6af"; }
+
+.icons-Berlin-Tower:before {
+  content: "\e6b0"; }
+
+.icons-Beta:before {
+  content: "\e6b1"; }
+
+.icons-Betvibes:before {
+  content: "\e6b2"; }
+
+.icons-Bicycle-2:before {
+  content: "\e6b3"; }
+
+.icons-Bicycle-3:before {
+  content: "\e6b4"; }
+
+.icons-Bicycle:before {
+  content: "\e6b5"; }
+
+.icons-Big-Bang:before {
+  content: "\e6b6"; }
+
+.icons-Big-Data:before {
+  content: "\e6b7"; }
+
+.icons-Bike-Helmet:before {
+  content: "\e6b8"; }
+
+.icons-Bikini:before {
+  content: "\e6b9"; }
+
+.icons-Bilk-Bottle2:before {
+  content: "\e6ba"; }
+
+.icons-Billing:before {
+  content: "\e6bb"; }
+
+.icons-Bing:before {
+  content: "\e6bc"; }
+
+.icons-Binocular:before {
+  content: "\e6bd"; }
+
+.icons-Bio-Hazard:before {
+  content: "\e6be"; }
+
+.icons-Biotech:before {
+  content: "\e6bf"; }
+
+.icons-Bird-DeliveringLetter:before {
+  content: "\e6c0"; }
+
+.icons-Bird:before {
+  content: "\e6c1"; }
+
+.icons-Birthday-Cake:before {
+  content: "\e6c2"; }
+
+.icons-Bisexual:before {
+  content: "\e6c3"; }
+
+.icons-Bishop:before {
+  content: "\e6c4"; }
+
+.icons-Bitcoin:before {
+  content: "\e6c5"; }
+
+.icons-Black-Cat:before {
+  content: "\e6c6"; }
+
+.icons-Blackboard:before {
+  content: "\e6c7"; }
+
+.icons-Blinklist:before {
+  content: "\e6c8"; }
+
+.icons-Block-Cloud:before {
+  content: "\e6c9"; }
+
+.icons-Block-Window:before {
+  content: "\e6ca"; }
+
+.icons-Blogger:before {
+  content: "\e6cb"; }
+
+.icons-Blood:before {
+  content: "\e6cc"; }
+
+.icons-Blouse:before {
+  content: "\e6cd"; }
+
+.icons-Blueprint:before {
+  content: "\e6ce"; }
+
+.icons-Board:before {
+  content: "\e6cf"; }
+
+.icons-Bodybuilding:before {
+  content: "\e6d0"; }
+
+.icons-Bold-Text:before {
+  content: "\e6d1"; }
+
+.icons-Bone:before {
+  content: "\e6d2"; }
+
+.icons-Bones:before {
+  content: "\e6d3"; }
+
+.icons-Book:before {
+  content: "\e6d4"; }
+
+.icons-Bookmark:before {
+  content: "\e6d5"; }
+
+.icons-Books-2:before {
+  content: "\e6d6"; }
+
+.icons-Books:before {
+  content: "\e6d7"; }
+
+.icons-Boom:before {
+  content: "\e6d8"; }
+
+.icons-Boot-2:before {
+  content: "\e6d9"; }
+
+.icons-Boot:before {
+  content: "\e6da"; }
+
+.icons-Bottom-ToTop:before {
+  content: "\e6db"; }
+
+.icons-Bow-2:before {
+  content: "\e6dc"; }
+
+.icons-Bow-3:before {
+  content: "\e6dd"; }
+
+.icons-Bow-4:before {
+  content: "\e6de"; }
+
+.icons-Bow-5:before {
+  content: "\e6df"; }
+
+.icons-Bow-6:before {
+  content: "\e6e0"; }
+
+.icons-Bow:before {
+  content: "\e6e1"; }
+
+.icons-Bowling-2:before {
+  content: "\e6e2"; }
+
+.icons-Bowling:before {
+  content: "\e6e3"; }
+
+.icons-Box2:before {
+  content: "\e6e4"; }
+
+.icons-Box-Close:before {
+  content: "\e6e5"; }
+
+.icons-Box-Full:before {
+  content: "\e6e6"; }
+
+.icons-Box-Open:before {
+  content: "\e6e7"; }
+
+.icons-Box-withFolders:before {
+  content: "\e6e8"; }
+
+.icons-Box:before {
+  content: "\e6e9"; }
+
+.icons-Boy:before {
+  content: "\e6ea"; }
+
+.icons-Bra:before {
+  content: "\e6eb"; }
+
+.icons-Brain-2:before {
+  content: "\e6ec"; }
+
+.icons-Brain-3:before {
+  content: "\e6ed"; }
+
+.icons-Brain:before {
+  content: "\e6ee"; }
+
+.icons-Brazil:before {
+  content: "\e6ef"; }
+
+.icons-Bread-2:before {
+  content: "\e6f0"; }
+
+.icons-Bread:before {
+  content: "\e6f1"; }
+
+.icons-Bridge:before {
+  content: "\e6f2"; }
+
+.icons-Brightkite:before {
+  content: "\e6f3"; }
+
+.icons-Broke-Link2:before {
+  content: "\e6f4"; }
+
+.icons-Broken-Link:before {
+  content: "\e6f5"; }
+
+.icons-Broom:before {
+  content: "\e6f6"; }
+
+.icons-Brush:before {
+  content: "\e6f7"; }
+
+.icons-Bucket:before {
+  content: "\e6f8"; }
+
+.icons-Bug:before {
+  content: "\e6f9"; }
+
+.icons-Building:before {
+  content: "\e6fa"; }
+
+.icons-Bulleted-List:before {
+  content: "\e6fb"; }
+
+.icons-Bus-2:before {
+  content: "\e6fc"; }
+
+.icons-Bus:before {
+  content: "\e6fd"; }
+
+.icons-Business-Man:before {
+  content: "\e6fe"; }
+
+.icons-Business-ManWoman:before {
+  content: "\e6ff"; }
+
+.icons-Business-Mens:before {
+  content: "\e700"; }
+
+.icons-Business-Woman:before {
+  content: "\e701"; }
+
+.icons-Butterfly:before {
+  content: "\e702"; }
+
+.icons-Button:before {
+  content: "\e703"; }
+
+.icons-Cable-Car:before {
+  content: "\e704"; }
+
+.icons-Cake:before {
+  content: "\e705"; }
+
+.icons-Calculator-2:before {
+  content: "\e706"; }
+
+.icons-Calculator-3:before {
+  content: "\e707"; }
+
+.icons-Calculator:before {
+  content: "\e708"; }
+
+.icons-Calendar-2:before {
+  content: "\e709"; }
+
+.icons-Calendar-3:before {
+  content: "\e70a"; }
+
+.icons-Calendar-4:before {
+  content: "\e70b"; }
+
+.icons-Calendar-Clock:before {
+  content: "\e70c"; }
+
+.icons-Calendar:before {
+  content: "\e70d"; }
+
+.icons-Camel:before {
+  content: "\e70e"; }
+
+.icons-Camera-2:before {
+  content: "\e70f"; }
+
+.icons-Camera-3:before {
+  content: "\e710"; }
+
+.icons-Camera-4:before {
+  content: "\e711"; }
+
+.icons-Camera-5:before {
+  content: "\e712"; }
+
+.icons-Camera-Back:before {
+  content: "\e713"; }
+
+.icons-Camera:before {
+  content: "\e714"; }
+
+.icons-Can-2:before {
+  content: "\e715"; }
+
+.icons-Can:before {
+  content: "\e716"; }
+
+.icons-Canada:before {
+  content: "\e717"; }
+
+.icons-Cancer-2:before {
+  content: "\e718"; }
+
+.icons-Cancer-3:before {
+  content: "\e719"; }
+
+.icons-Cancer:before {
+  content: "\e71a"; }
+
+.icons-Candle:before {
+  content: "\e71b"; }
+
+.icons-Candy-Cane:before {
+  content: "\e71c"; }
+
+.icons-Candy:before {
+  content: "\e71d"; }
+
+.icons-Cannon:before {
+  content: "\e71e"; }
+
+.icons-Cap-2:before {
+  content: "\e71f"; }
+
+.icons-Cap-3:before {
+  content: "\e720"; }
+
+.icons-Cap-Smiley:before {
+  content: "\e721"; }
+
+.icons-Cap:before {
+  content: "\e722"; }
+
+.icons-Capricorn-2:before {
+  content: "\e723"; }
+
+.icons-Capricorn:before {
+  content: "\e724"; }
+
+.icons-Car-2:before {
+  content: "\e725"; }
+
+.icons-Car-3:before {
+  content: "\e726"; }
+
+.icons-Car-Coins:before {
+  content: "\e727"; }
+
+.icons-Car-Items:before {
+  content: "\e728"; }
+
+.icons-Car-Wheel:before {
+  content: "\e729"; }
+
+.icons-Car:before {
+  content: "\e72a"; }
+
+.icons-Cardigan:before {
+  content: "\e72b"; }
+
+.icons-Cardiovascular:before {
+  content: "\e72c"; }
+
+.icons-Cart-Quantity:before {
+  content: "\e72d"; }
+
+.icons-Casette-Tape:before {
+  content: "\e72e"; }
+
+.icons-Cash-Register:before {
+  content: "\e72f"; }
+
+.icons-Cash-register2:before {
+  content: "\e730"; }
+
+.icons-Castle:before {
+  content: "\e731"; }
+
+.icons-Cat:before {
+  content: "\e732"; }
+
+.icons-Cathedral:before {
+  content: "\e733"; }
+
+.icons-Cauldron:before {
+  content: "\e734"; }
+
+.icons-CD-2:before {
+  content: "\e735"; }
+
+.icons-CD-Cover:before {
+  content: "\e736"; }
+
+.icons-CD:before {
+  content: "\e737"; }
+
+.icons-Cello:before {
+  content: "\e738"; }
+
+.icons-Celsius:before {
+  content: "\e739"; }
+
+.icons-Chacked-Flag:before {
+  content: "\e73a"; }
+
+.icons-Chair:before {
+  content: "\e73b"; }
+
+.icons-Charger:before {
+  content: "\e73c"; }
+
+.icons-Check-2:before {
+  content: "\e73d"; }
+
+.icons-Check:before {
+  content: "\e73e"; }
+
+.icons-Checked-User:before {
+  content: "\e73f"; }
+
+.icons-Checkmate:before {
+  content: "\e740"; }
+
+.icons-Checkout-Bag:before {
+  content: "\e741"; }
+
+.icons-Checkout-Basket:before {
+  content: "\e742"; }
+
+.icons-Checkout:before {
+  content: "\e743"; }
+
+.icons-Cheese:before {
+  content: "\e744"; }
+
+.icons-Cheetah:before {
+  content: "\e745"; }
+
+.icons-Chef-Hat:before {
+  content: "\e746"; }
+
+.icons-Chef-Hat2:before {
+  content: "\e747"; }
+
+.icons-Chef:before {
+  content: "\e748"; }
+
+.icons-Chemical-2:before {
+  content: "\e749"; }
+
+.icons-Chemical-3:before {
+  content: "\e74a"; }
+
+.icons-Chemical-4:before {
+  content: "\e74b"; }
+
+.icons-Chemical-5:before {
+  content: "\e74c"; }
+
+.icons-Chemical:before {
+  content: "\e74d"; }
+
+.icons-Chess-Board:before {
+  content: "\e74e"; }
+
+.icons-Chess:before {
+  content: "\e74f"; }
+
+.icons-Chicken:before {
+  content: "\e750"; }
+
+.icons-Chile:before {
+  content: "\e751"; }
+
+.icons-Chimney:before {
+  content: "\e752"; }
+
+.icons-China:before {
+  content: "\e753"; }
+
+.icons-Chinese-Temple:before {
+  content: "\e754"; }
+
+.icons-Chip:before {
+  content: "\e755"; }
+
+.icons-Chopsticks-2:before {
+  content: "\e756"; }
+
+.icons-Chopsticks:before {
+  content: "\e757"; }
+
+.icons-Christmas-Ball:before {
+  content: "\e758"; }
+
+.icons-Christmas-Bell:before {
+  content: "\e759"; }
+
+.icons-Christmas-Candle:before {
+  content: "\e75a"; }
+
+.icons-Christmas-Hat:before {
+  content: "\e75b"; }
+
+.icons-Christmas-Sleigh:before {
+  content: "\e75c"; }
+
+.icons-Christmas-Snowman:before {
+  content: "\e75d"; }
+
+.icons-Christmas-Sock:before {
+  content: "\e75e"; }
+
+.icons-Christmas-Tree:before {
+  content: "\e75f"; }
+
+.icons-Christmas:before {
+  content: "\e760"; }
+
+.icons-Chrome:before {
+  content: "\e761"; }
+
+.icons-Chrysler-Building:before {
+  content: "\e762"; }
+
+.icons-Cinema:before {
+  content: "\e763"; }
+
+.icons-Circular-Point:before {
+  content: "\e764"; }
+
+.icons-City-Hall:before {
+  content: "\e765"; }
+
+.icons-Clamp:before {
+  content: "\e766"; }
+
+.icons-Clapperboard-Close:before {
+  content: "\e767"; }
+
+.icons-Clapperboard-Open:before {
+  content: "\e768"; }
+
+.icons-Claps:before {
+  content: "\e769"; }
+
+.icons-Clef:before {
+  content: "\e76a"; }
+
+.icons-Clinic:before {
+  content: "\e76b"; }
+
+.icons-Clock-2:before {
+  content: "\e76c"; }
+
+.icons-Clock-3:before {
+  content: "\e76d"; }
+
+.icons-Clock-4:before {
+  content: "\e76e"; }
+
+.icons-Clock-Back:before {
+  content: "\e76f"; }
+
+.icons-Clock-Forward:before {
+  content: "\e770"; }
+
+.icons-Clock:before {
+  content: "\e771"; }
+
+.icons-Close-Window:before {
+  content: "\e772"; }
+
+.icons-Close:before {
+  content: "\e773"; }
+
+.icons-Clothing-Store:before {
+  content: "\e774"; }
+
+.icons-Cloud--:before {
+  content: "\e775"; }
+
+.icons-Cloud-:before {
+  content: "\e776"; }
+
+.icons-Cloud-Camera:before {
+  content: "\e777"; }
+
+.icons-Cloud-Computer:before {
+  content: "\e778"; }
+
+.icons-Cloud-Email:before {
+  content: "\e779"; }
+
+.icons-Cloud-Hail:before {
+  content: "\e77a"; }
+
+.icons-Cloud-Laptop:before {
+  content: "\e77b"; }
+
+.icons-Cloud-Lock:before {
+  content: "\e77c"; }
+
+.icons-Cloud-Moon:before {
+  content: "\e77d"; }
+
+.icons-Cloud-Music:before {
+  content: "\e77e"; }
+
+.icons-Cloud-Picture:before {
+  content: "\e77f"; }
+
+.icons-Cloud-Rain:before {
+  content: "\e780"; }
+
+.icons-Cloud-Remove:before {
+  content: "\e781"; }
+
+.icons-Cloud-Secure:before {
+  content: "\e782"; }
+
+.icons-Cloud-Settings:before {
+  content: "\e783"; }
+
+.icons-Cloud-Smartphone:before {
+  content: "\e784"; }
+
+.icons-Cloud-Snow:before {
+  content: "\e785"; }
+
+.icons-Cloud-Sun:before {
+  content: "\e786"; }
+
+.icons-Cloud-Tablet:before {
+  content: "\e787"; }
+
+.icons-Cloud-Video:before {
+  content: "\e788"; }
+
+.icons-Cloud-Weather:before {
+  content: "\e789"; }
+
+.icons-Cloud:before {
+  content: "\e78a"; }
+
+.icons-Clouds-Weather:before {
+  content: "\e78b"; }
+
+.icons-Clouds:before {
+  content: "\e78c"; }
+
+.icons-Clown:before {
+  content: "\e78d"; }
+
+.icons-CMYK:before {
+  content: "\e78e"; }
+
+.icons-Coat:before {
+  content: "\e78f"; }
+
+.icons-Cocktail:before {
+  content: "\e790"; }
+
+.icons-Coconut:before {
+  content: "\e791"; }
+
+.icons-Code-Window:before {
+  content: "\e792"; }
+
+.icons-Coding:before {
+  content: "\e793"; }
+
+.icons-Coffee-2:before {
+  content: "\e794"; }
+
+.icons-Coffee-Bean:before {
+  content: "\e795"; }
+
+.icons-Coffee-Machine:before {
+  content: "\e796"; }
+
+.icons-Coffee-toGo:before {
+  content: "\e797"; }
+
+.icons-Coffee:before {
+  content: "\e798"; }
+
+.icons-Coffin:before {
+  content: "\e799"; }
+
+.icons-Coin:before {
+  content: "\e79a"; }
+
+.icons-Coins-2:before {
+  content: "\e79b"; }
+
+.icons-Coins-3:before {
+  content: "\e79c"; }
+
+.icons-Coins:before {
+  content: "\e79d"; }
+
+.icons-Colombia:before {
+  content: "\e79e"; }
+
+.icons-Colosseum:before {
+  content: "\e79f"; }
+
+.icons-Column-2:before {
+  content: "\e7a0"; }
+
+.icons-Column-3:before {
+  content: "\e7a1"; }
+
+.icons-Column:before {
+  content: "\e7a2"; }
+
+.icons-Comb-2:before {
+  content: "\e7a3"; }
+
+.icons-Comb:before {
+  content: "\e7a4"; }
+
+.icons-Communication-Tower:before {
+  content: "\e7a5"; }
+
+.icons-Communication-Tower2:before {
+  content: "\e7a6"; }
+
+.icons-Compass-2:before {
+  content: "\e7a7"; }
+
+.icons-Compass-3:before {
+  content: "\e7a8"; }
+
+.icons-Compass-4:before {
+  content: "\e7a9"; }
+
+.icons-Compass-Rose:before {
+  content: "\e7aa"; }
+
+.icons-Compass:before {
+  content: "\e7ab"; }
+
+.icons-Computer-2:before {
+  content: "\e7ac"; }
+
+.icons-Computer-3:before {
+  content: "\e7ad"; }
+
+.icons-Computer-Secure:before {
+  content: "\e7ae"; }
+
+.icons-Computer:before {
+  content: "\e7af"; }
+
+.icons-Conference:before {
+  content: "\e7b0"; }
+
+.icons-Confused:before {
+  content: "\e7b1"; }
+
+.icons-Conservation:before {
+  content: "\e7b2"; }
+
+.icons-Consulting:before {
+  content: "\e7b3"; }
+
+.icons-Contrast:before {
+  content: "\e7b4"; }
+
+.icons-Control-2:before {
+  content: "\e7b5"; }
+
+.icons-Control:before {
+  content: "\e7b6"; }
+
+.icons-Cookie-Man:before {
+  content: "\e7b7"; }
+
+.icons-Cookies:before {
+  content: "\e7b8"; }
+
+.icons-Cool-Guy:before {
+  content: "\e7b9"; }
+
+.icons-Cool:before {
+  content: "\e7ba"; }
+
+.icons-Copyright:before {
+  content: "\e7bb"; }
+
+.icons-Costume:before {
+  content: "\e7bc"; }
+
+.icons-Couple-Sign:before {
+  content: "\e7bd"; }
+
+.icons-Cow:before {
+  content: "\e7be"; }
+
+.icons-CPU:before {
+  content: "\e7bf"; }
+
+.icons-Crane:before {
+  content: "\e7c0"; }
+
+.icons-Cranium:before {
+  content: "\e7c1"; }
+
+.icons-Credit-Card:before {
+  content: "\e7c2"; }
+
+.icons-Credit-Card2:before {
+  content: "\e7c3"; }
+
+.icons-Credit-Card3:before {
+  content: "\e7c4"; }
+
+.icons-Cricket:before {
+  content: "\e7c5"; }
+
+.icons-Criminal:before {
+  content: "\e7c6"; }
+
+.icons-Croissant:before {
+  content: "\e7c7"; }
+
+.icons-Crop-2:before {
+  content: "\e7c8"; }
+
+.icons-Crop-3:before {
+  content: "\e7c9"; }
+
+.icons-Crown-2:before {
+  content: "\e7ca"; }
+
+.icons-Crown:before {
+  content: "\e7cb"; }
+
+.icons-Crying:before {
+  content: "\e7cc"; }
+
+.icons-Cube-Molecule:before {
+  content: "\e7cd"; }
+
+.icons-Cube-Molecule2:before {
+  content: "\e7ce"; }
+
+.icons-Cupcake:before {
+  content: "\e7cf"; }
+
+.icons-Cursor-Click:before {
+  content: "\e7d0"; }
+
+.icons-Cursor-Click2:before {
+  content: "\e7d1"; }
+
+.icons-Cursor-Move:before {
+  content: "\e7d2"; }
+
+.icons-Cursor-Move2:before {
+  content: "\e7d3"; }
+
+.icons-Cursor-Select:before {
+  content: "\e7d4"; }
+
+.icons-Cursor:before {
+  content: "\e7d5"; }
+
+.icons-D-Eyeglasses:before {
+  content: "\e7d6"; }
+
+.icons-D-Eyeglasses2:before {
+  content: "\e7d7"; }
+
+.icons-Dam:before {
+  content: "\e7d8"; }
+
+.icons-Danemark:before {
+  content: "\e7d9"; }
+
+.icons-Danger-2:before {
+  content: "\e7da"; }
+
+.icons-Danger:before {
+  content: "\e7db"; }
+
+.icons-Dashboard:before {
+  content: "\e7dc"; }
+
+.icons-Data-Backup:before {
+  content: "\e7dd"; }
+
+.icons-Data-Block:before {
+  content: "\e7de"; }
+
+.icons-Data-Center:before {
+  content: "\e7df"; }
+
+.icons-Data-Clock:before {
+  content: "\e7e0"; }
+
+.icons-Data-Cloud:before {
+  content: "\e7e1"; }
+
+.icons-Data-Compress:before {
+  content: "\e7e2"; }
+
+.icons-Data-Copy:before {
+  content: "\e7e3"; }
+
+.icons-Data-Download:before {
+  content: "\e7e4"; }
+
+.icons-Data-Financial:before {
+  content: "\e7e5"; }
+
+.icons-Data-Key:before {
+  content: "\e7e6"; }
+
+.icons-Data-Lock:before {
+  content: "\e7e7"; }
+
+.icons-Data-Network:before {
+  content: "\e7e8"; }
+
+.icons-Data-Password:before {
+  content: "\e7e9"; }
+
+.icons-Data-Power:before {
+  content: "\e7ea"; }
+
+.icons-Data-Refresh:before {
+  content: "\e7eb"; }
+
+.icons-Data-Save:before {
+  content: "\e7ec"; }
+
+.icons-Data-Search:before {
+  content: "\e7ed"; }
+
+.icons-Data-Security:before {
+  content: "\e7ee"; }
+
+.icons-Data-Settings:before {
+  content: "\e7ef"; }
+
+.icons-Data-Sharing:before {
+  content: "\e7f0"; }
+
+.icons-Data-Shield:before {
+  content: "\e7f1"; }
+
+.icons-Data-Signal:before {
+  content: "\e7f2"; }
+
+.icons-Data-Storage:before {
+  content: "\e7f3"; }
+
+.icons-Data-Stream:before {
+  content: "\e7f4"; }
+
+.icons-Data-Transfer:before {
+  content: "\e7f5"; }
+
+.icons-Data-Unlock:before {
+  content: "\e7f6"; }
+
+.icons-Data-Upload:before {
+  content: "\e7f7"; }
+
+.icons-Data-Yes:before {
+  content: "\e7f8"; }
+
+.icons-Data:before {
+  content: "\e7f9"; }
+
+.icons-David-Star:before {
+  content: "\e7fa"; }
+
+.icons-Daylight:before {
+  content: "\e7fb"; }
+
+.icons-Death:before {
+  content: "\e7fc"; }
+
+.icons-Debian:before {
+  content: "\e7fd"; }
+
+.icons-Dec:before {
+  content: "\e7fe"; }
+
+.icons-Decrase-Inedit:before {
+  content: "\e7ff"; }
+
+.icons-Deer-2:before {
+  content: "\e800"; }
+
+.icons-Deer:before {
+  content: "\e801"; }
+
+.icons-Delete-File:before {
+  content: "\e802"; }
+
+.icons-Delete-Window:before {
+  content: "\e803"; }
+
+.icons-Delicious:before {
+  content: "\e804"; }
+
+.icons-Depression:before {
+  content: "\e805"; }
+
+.icons-Deviantart:before {
+  content: "\e806"; }
+
+.icons-Device-SyncwithCloud:before {
+  content: "\e807"; }
+
+.icons-Diamond:before {
+  content: "\e808"; }
+
+.icons-Dice-2:before {
+  content: "\e809"; }
+
+.icons-Dice:before {
+  content: "\e80a"; }
+
+.icons-Digg:before {
+  content: "\e80b"; }
+
+.icons-Digital-Drawing:before {
+  content: "\e80c"; }
+
+.icons-Diigo:before {
+  content: "\e80d"; }
+
+.icons-Dinosaur:before {
+  content: "\e80e"; }
+
+.icons-Diploma-2:before {
+  content: "\e80f"; }
+
+.icons-Diploma:before {
+  content: "\e810"; }
+
+.icons-Direction-East:before {
+  content: "\e811"; }
+
+.icons-Direction-North:before {
+  content: "\e812"; }
+
+.icons-Direction-South:before {
+  content: "\e813"; }
+
+.icons-Direction-West:before {
+  content: "\e814"; }
+
+.icons-Director:before {
+  content: "\e815"; }
+
+.icons-Disk:before {
+  content: "\e816"; }
+
+.icons-Dj:before {
+  content: "\e817"; }
+
+.icons-DNA-2:before {
+  content: "\e818"; }
+
+.icons-DNA-Helix:before {
+  content: "\e819"; }
+
+.icons-DNA:before {
+  content: "\e81a"; }
+
+.icons-Doctor:before {
+  content: "\e81b"; }
+
+.icons-Dog:before {
+  content: "\e81c"; }
+
+.icons-Dollar-Sign:before {
+  content: "\e81d"; }
+
+.icons-Dollar-Sign2:before {
+  content: "\e81e"; }
+
+.icons-Dollar:before {
+  content: "\e81f"; }
+
+.icons-Dolphin:before {
+  content: "\e820"; }
+
+.icons-Domino:before {
+  content: "\e821"; }
+
+.icons-Door-Hanger:before {
+  content: "\e822"; }
+
+.icons-Door:before {
+  content: "\e823"; }
+
+.icons-Doplr:before {
+  content: "\e824"; }
+
+.icons-Double-Circle:before {
+  content: "\e825"; }
+
+.icons-Double-Tap:before {
+  content: "\e826"; }
+
+.icons-Doughnut:before {
+  content: "\e827"; }
+
+.icons-Dove:before {
+  content: "\e828"; }
+
+.icons-Down-2:before {
+  content: "\e829"; }
+
+.icons-Down-3:before {
+  content: "\e82a"; }
+
+.icons-Down-4:before {
+  content: "\e82b"; }
+
+.icons-Down:before {
+  content: "\e82c"; }
+
+.icons-Download-2:before {
+  content: "\e82d"; }
+
+.icons-Download-fromCloud:before {
+  content: "\e82e"; }
+
+.icons-Download-Window:before {
+  content: "\e82f"; }
+
+.icons-Download:before {
+  content: "\e830"; }
+
+.icons-Downward:before {
+  content: "\e831"; }
+
+.icons-Drag-Down:before {
+  content: "\e832"; }
+
+.icons-Drag-Left:before {
+  content: "\e833"; }
+
+.icons-Drag-Right:before {
+  content: "\e834"; }
+
+.icons-Drag-Up:before {
+  content: "\e835"; }
+
+.icons-Drag:before {
+  content: "\e836"; }
+
+.icons-Dress:before {
+  content: "\e837"; }
+
+.icons-Drill-2:before {
+  content: "\e838"; }
+
+.icons-Drill:before {
+  content: "\e839"; }
+
+.icons-Drop:before {
+  content: "\e83a"; }
+
+.icons-Dropbox:before {
+  content: "\e83b"; }
+
+.icons-Drum:before {
+  content: "\e83c"; }
+
+.icons-Dry:before {
+  content: "\e83d"; }
+
+.icons-Duck:before {
+  content: "\e83e"; }
+
+.icons-Dumbbell:before {
+  content: "\e83f"; }
+
+.icons-Duplicate-Layer:before {
+  content: "\e840"; }
+
+.icons-Duplicate-Window:before {
+  content: "\e841"; }
+
+.icons-DVD:before {
+  content: "\e842"; }
+
+.icons-Eagle:before {
+  content: "\e843"; }
+
+.icons-Ear:before {
+  content: "\e844"; }
+
+.icons-Earphones-2:before {
+  content: "\e845"; }
+
+.icons-Earphones:before {
+  content: "\e846"; }
+
+.icons-Eci-Icon:before {
+  content: "\e847"; }
+
+.icons-Edit-Map:before {
+  content: "\e848"; }
+
+.icons-Edit:before {
+  content: "\e849"; }
+
+.icons-Eggs:before {
+  content: "\e84a"; }
+
+.icons-Egypt:before {
+  content: "\e84b"; }
+
+.icons-Eifel-Tower:before {
+  content: "\e84c"; }
+
+.icons-eject-2:before {
+  content: "\e84d"; }
+
+.icons-Eject:before {
+  content: "\e84e"; }
+
+.icons-El-Castillo:before {
+  content: "\e84f"; }
+
+.icons-Elbow:before {
+  content: "\e850"; }
+
+.icons-Electric-Guitar:before {
+  content: "\e851"; }
+
+.icons-Electricity:before {
+  content: "\e852"; }
+
+.icons-Elephant:before {
+  content: "\e853"; }
+
+.icons-Email:before {
+  content: "\e854"; }
+
+.icons-Embassy:before {
+  content: "\e855"; }
+
+.icons-Empire-StateBuilding:before {
+  content: "\e856"; }
+
+.icons-Empty-Box:before {
+  content: "\e857"; }
+
+.icons-End2:before {
+  content: "\e858"; }
+
+.icons-End-2:before {
+  content: "\e859"; }
+
+.icons-End:before {
+  content: "\e85a"; }
+
+.icons-Endways:before {
+  content: "\e85b"; }
+
+.icons-Engineering:before {
+  content: "\e85c"; }
+
+.icons-Envelope-2:before {
+  content: "\e85d"; }
+
+.icons-Envelope:before {
+  content: "\e85e"; }
+
+.icons-Environmental-2:before {
+  content: "\e85f"; }
+
+.icons-Environmental-3:before {
+  content: "\e860"; }
+
+.icons-Environmental:before {
+  content: "\e861"; }
+
+.icons-Equalizer:before {
+  content: "\e862"; }
+
+.icons-Eraser-2:before {
+  content: "\e863"; }
+
+.icons-Eraser-3:before {
+  content: "\e864"; }
+
+.icons-Eraser:before {
+  content: "\e865"; }
+
+.icons-Error-404Window:before {
+  content: "\e866"; }
+
+.icons-Euro-Sign:before {
+  content: "\e867"; }
+
+.icons-Euro-Sign2:before {
+  content: "\e868"; }
+
+.icons-Euro:before {
+  content: "\e869"; }
+
+.icons-Evernote:before {
+  content: "\e86a"; }
+
+.icons-Evil:before {
+  content: "\e86b"; }
+
+.icons-Explode:before {
+  content: "\e86c"; }
+
+.icons-Eye-2:before {
+  content: "\e86d"; }
+
+.icons-Eye-Blind:before {
+  content: "\e86e"; }
+
+.icons-Eye-Invisible:before {
+  content: "\e86f"; }
+
+.icons-Eye-Scan:before {
+  content: "\e870"; }
+
+.icons-Eye-Visible:before {
+  content: "\e871"; }
+
+.icons-Eye:before {
+  content: "\e872"; }
+
+.icons-Eyebrow-2:before {
+  content: "\e873"; }
+
+.icons-Eyebrow-3:before {
+  content: "\e874"; }
+
+.icons-Eyebrow:before {
+  content: "\e875"; }
+
+.icons-Eyeglasses-Smiley:before {
+  content: "\e876"; }
+
+.icons-Eyeglasses-Smiley2:before {
+  content: "\e877"; }
+
+.icons-Face-Style:before {
+  content: "\e878"; }
+
+.icons-Face-Style2:before {
+  content: "\e879"; }
+
+.icons-Face-Style3:before {
+  content: "\e87a"; }
+
+.icons-Face-Style4:before {
+  content: "\e87b"; }
+
+.icons-Face-Style5:before {
+  content: "\e87c"; }
+
+.icons-Face-Style6:before {
+  content: "\e87d"; }
+
+.icons-Facebook-2:before {
+  content: "\e87e"; }
+
+.icons-Facebook:before {
+  content: "\e87f"; }
+
+.icons-Factory-2:before {
+  content: "\e880"; }
+
+.icons-Factory:before {
+  content: "\e881"; }
+
+.icons-Fahrenheit:before {
+  content: "\e882"; }
+
+.icons-Family-Sign:before {
+  content: "\e883"; }
+
+.icons-Fan:before {
+  content: "\e884"; }
+
+.icons-Farmer:before {
+  content: "\e885"; }
+
+.icons-Fashion:before {
+  content: "\e886"; }
+
+.icons-Favorite-Window:before {
+  content: "\e887"; }
+
+.icons-Fax:before {
+  content: "\e888"; }
+
+.icons-Feather:before {
+  content: "\e889"; }
+
+.icons-Feedburner:before {
+  content: "\e88a"; }
+
+.icons-Female-2:before {
+  content: "\e88b"; }
+
+.icons-Female-Sign:before {
+  content: "\e88c"; }
+
+.icons-Female:before {
+  content: "\e88d"; }
+
+.icons-File-Block:before {
+  content: "\e88e"; }
+
+.icons-File-Bookmark:before {
+  content: "\e88f"; }
+
+.icons-File-Chart:before {
+  content: "\e890"; }
+
+.icons-File-Clipboard:before {
+  content: "\e891"; }
+
+.icons-File-ClipboardFileText:before {
+  content: "\e892"; }
+
+.icons-File-ClipboardTextImage:before {
+  content: "\e893"; }
+
+.icons-File-Cloud:before {
+  content: "\e894"; }
+
+.icons-File-Copy:before {
+  content: "\e895"; }
+
+.icons-File-Copy2:before {
+  content: "\e896"; }
+
+.icons-File-CSV:before {
+  content: "\e897"; }
+
+.icons-File-Download:before {
+  content: "\e898"; }
+
+.icons-File-Edit:before {
+  content: "\e899"; }
+
+.icons-File-Excel:before {
+  content: "\e89a"; }
+
+.icons-File-Favorite:before {
+  content: "\e89b"; }
+
+.icons-File-Fire:before {
+  content: "\e89c"; }
+
+.icons-File-Graph:before {
+  content: "\e89d"; }
+
+.icons-File-Hide:before {
+  content: "\e89e"; }
+
+.icons-File-Horizontal:before {
+  content: "\e89f"; }
+
+.icons-File-HorizontalText:before {
+  content: "\e8a0"; }
+
+.icons-File-HTML:before {
+  content: "\e8a1"; }
+
+.icons-File-JPG:before {
+  content: "\e8a2"; }
+
+.icons-File-Link:before {
+  content: "\e8a3"; }
+
+.icons-File-Loading:before {
+  content: "\e8a4"; }
+
+.icons-File-Lock:before {
+  content: "\e8a5"; }
+
+.icons-File-Love:before {
+  content: "\e8a6"; }
+
+.icons-File-Music:before {
+  content: "\e8a7"; }
+
+.icons-File-Network:before {
+  content: "\e8a8"; }
+
+.icons-File-Pictures:before {
+  content: "\e8a9"; }
+
+.icons-File-Pie:before {
+  content: "\e8aa"; }
+
+.icons-File-Presentation:before {
+  content: "\e8ab"; }
+
+.icons-File-Refresh:before {
+  content: "\e8ac"; }
+
+.icons-File-Search:before {
+  content: "\e8ad"; }
+
+.icons-File-Settings:before {
+  content: "\e8ae"; }
+
+.icons-File-Share:before {
+  content: "\e8af"; }
+
+.icons-File-TextImage:before {
+  content: "\e8b0"; }
+
+.icons-File-Trash:before {
+  content: "\e8b1"; }
+
+.icons-File-TXT:before {
+  content: "\e8b2"; }
+
+.icons-File-Upload:before {
+  content: "\e8b3"; }
+
+.icons-File-Video:before {
+  content: "\e8b4"; }
+
+.icons-File-Word:before {
+  content: "\e8b5"; }
+
+.icons-File-Zip:before {
+  content: "\e8b6"; }
+
+.icons-File:before {
+  content: "\e8b7"; }
+
+.icons-Files:before {
+  content: "\e8b8"; }
+
+.icons-Film-Board:before {
+  content: "\e8b9"; }
+
+.icons-Film-Cartridge:before {
+  content: "\e8ba"; }
+
+.icons-Film-Strip:before {
+  content: "\e8bb"; }
+
+.icons-Film-Video:before {
+  content: "\e8bc"; }
+
+.icons-Film:before {
+  content: "\e8bd"; }
+
+.icons-Filter-2:before {
+  content: "\e8be"; }
+
+.icons-Filter:before {
+  content: "\e8bf"; }
+
+.icons-Financial:before {
+  content: "\e8c0"; }
+
+.icons-Find-User:before {
+  content: "\e8c1"; }
+
+.icons-Finger-DragFourSides:before {
+  content: "\e8c2"; }
+
+.icons-Finger-DragTwoSides:before {
+  content: "\e8c3"; }
+
+.icons-Finger-Print:before {
+  content: "\e8c4"; }
+
+.icons-Finger:before {
+  content: "\e8c5"; }
+
+.icons-Fingerprint-2:before {
+  content: "\e8c6"; }
+
+.icons-Fingerprint:before {
+  content: "\e8c7"; }
+
+.icons-Fire-Flame:before {
+  content: "\e8c8"; }
+
+.icons-Fire-Flame2:before {
+  content: "\e8c9"; }
+
+.icons-Fire-Hydrant:before {
+  content: "\e8ca"; }
+
+.icons-Fire-Staion:before {
+  content: "\e8cb"; }
+
+.icons-Firefox:before {
+  content: "\e8cc"; }
+
+.icons-Firewall:before {
+  content: "\e8cd"; }
+
+.icons-First-Aid:before {
+  content: "\e8ce"; }
+
+.icons-First:before {
+  content: "\e8cf"; }
+
+.icons-Fish-Food:before {
+  content: "\e8d0"; }
+
+.icons-Fish:before {
+  content: "\e8d1"; }
+
+.icons-Fit-To:before {
+  content: "\e8d2"; }
+
+.icons-Fit-To2:before {
+  content: "\e8d3"; }
+
+.icons-Five-Fingers:before {
+  content: "\e8d4"; }
+
+.icons-Five-FingersDrag:before {
+  content: "\e8d5"; }
+
+.icons-Five-FingersDrag2:before {
+  content: "\e8d6"; }
+
+.icons-Five-FingersTouch:before {
+  content: "\e8d7"; }
+
+.icons-Flag-2:before {
+  content: "\e8d8"; }
+
+.icons-Flag-3:before {
+  content: "\e8d9"; }
+
+.icons-Flag-4:before {
+  content: "\e8da"; }
+
+.icons-Flag-5:before {
+  content: "\e8db"; }
+
+.icons-Flag-6:before {
+  content: "\e8dc"; }
+
+.icons-Flag:before {
+  content: "\e8dd"; }
+
+.icons-Flamingo:before {
+  content: "\e8de"; }
+
+.icons-Flash-2:before {
+  content: "\e8df"; }
+
+.icons-Flash-Video:before {
+  content: "\e8e0"; }
+
+.icons-Flash:before {
+  content: "\e8e1"; }
+
+.icons-Flashlight:before {
+  content: "\e8e2"; }
+
+.icons-Flask-2:before {
+  content: "\e8e3"; }
+
+.icons-Flask:before {
+  content: "\e8e4"; }
+
+.icons-Flick:before {
+  content: "\e8e5"; }
+
+.icons-Flickr:before {
+  content: "\e8e6"; }
+
+.icons-Flowerpot:before {
+  content: "\e8e7"; }
+
+.icons-Fluorescent:before {
+  content: "\e8e8"; }
+
+.icons-Fog-Day:before {
+  content: "\e8e9"; }
+
+.icons-Fog-Night:before {
+  content: "\e8ea"; }
+
+.icons-Folder-Add:before {
+  content: "\e8eb"; }
+
+.icons-Folder-Archive:before {
+  content: "\e8ec"; }
+
+.icons-Folder-Binder:before {
+  content: "\e8ed"; }
+
+.icons-Folder-Binder2:before {
+  content: "\e8ee"; }
+
+.icons-Folder-Block:before {
+  content: "\e8ef"; }
+
+.icons-Folder-Bookmark:before {
+  content: "\e8f0"; }
+
+.icons-Folder-Close:before {
+  content: "\e8f1"; }
+
+.icons-Folder-Cloud:before {
+  content: "\e8f2"; }
+
+.icons-Folder-Delete:before {
+  content: "\e8f3"; }
+
+.icons-Folder-Download:before {
+  content: "\e8f4"; }
+
+.icons-Folder-Edit:before {
+  content: "\e8f5"; }
+
+.icons-Folder-Favorite:before {
+  content: "\e8f6"; }
+
+.icons-Folder-Fire:before {
+  content: "\e8f7"; }
+
+.icons-Folder-Hide:before {
+  content: "\e8f8"; }
+
+.icons-Folder-Link:before {
+  content: "\e8f9"; }
+
+.icons-Folder-Loading:before {
+  content: "\e8fa"; }
+
+.icons-Folder-Lock:before {
+  content: "\e8fb"; }
+
+.icons-Folder-Love:before {
+  content: "\e8fc"; }
+
+.icons-Folder-Music:before {
+  content: "\e8fd"; }
+
+.icons-Folder-Network:before {
+  content: "\e8fe"; }
+
+.icons-Folder-Open:before {
+  content: "\e8ff"; }
+
+.icons-Folder-Open2:before {
+  content: "\e900"; }
+
+.icons-Folder-Organizing:before {
+  content: "\e901"; }
+
+.icons-Folder-Pictures:before {
+  content: "\e902"; }
+
+.icons-Folder-Refresh:before {
+  content: "\e903"; }
+
+.icons-Folder-Remove-:before {
+  content: "\e904"; }
+
+.icons-Folder-Search:before {
+  content: "\e905"; }
+
+.icons-Folder-Settings:before {
+  content: "\e906"; }
+
+.icons-Folder-Share:before {
+  content: "\e907"; }
+
+.icons-Folder-Trash:before {
+  content: "\e908"; }
+
+.icons-Folder-Upload:before {
+  content: "\e909"; }
+
+.icons-Folder-Video:before {
+  content: "\e90a"; }
+
+.icons-Folder-WithDocument:before {
+  content: "\e90b"; }
+
+.icons-Folder-Zip:before {
+  content: "\e90c"; }
+
+.icons-Folder:before {
+  content: "\e90d"; }
+
+.icons-Folders:before {
+  content: "\e90e"; }
+
+.icons-Font-Color:before {
+  content: "\e90f"; }
+
+.icons-Font-Name:before {
+  content: "\e910"; }
+
+.icons-Font-Size:before {
+  content: "\e911"; }
+
+.icons-Font-Style:before {
+  content: "\e912"; }
+
+.icons-Font-StyleSubscript:before {
+  content: "\e913"; }
+
+.icons-Font-StyleSuperscript:before {
+  content: "\e914"; }
+
+.icons-Font-Window:before {
+  content: "\e915"; }
+
+.icons-Foot-2:before {
+  content: "\e916"; }
+
+.icons-Foot:before {
+  content: "\e917"; }
+
+.icons-Football-2:before {
+  content: "\e918"; }
+
+.icons-Football:before {
+  content: "\e919"; }
+
+.icons-Footprint-2:before {
+  content: "\e91a"; }
+
+.icons-Footprint-3:before {
+  content: "\e91b"; }
+
+.icons-Footprint:before {
+  content: "\e91c"; }
+
+.icons-Forest:before {
+  content: "\e91d"; }
+
+.icons-Fork:before {
+  content: "\e91e"; }
+
+.icons-Formspring:before {
+  content: "\e91f"; }
+
+.icons-Formula:before {
+  content: "\e920"; }
+
+.icons-Forsquare:before {
+  content: "\e921"; }
+
+.icons-Forward:before {
+  content: "\e922"; }
+
+.icons-Fountain-Pen:before {
+  content: "\e923"; }
+
+.icons-Four-Fingers:before {
+  content: "\e924"; }
+
+.icons-Four-FingersDrag:before {
+  content: "\e925"; }
+
+.icons-Four-FingersDrag2:before {
+  content: "\e926"; }
+
+.icons-Four-FingersTouch:before {
+  content: "\e927"; }
+
+.icons-Fox:before {
+  content: "\e928"; }
+
+.icons-Frankenstein:before {
+  content: "\e929"; }
+
+.icons-French-Fries:before {
+  content: "\e92a"; }
+
+.icons-Friendfeed:before {
+  content: "\e92b"; }
+
+.icons-Friendster:before {
+  content: "\e92c"; }
+
+.icons-Frog:before {
+  content: "\e92d"; }
+
+.icons-Fruits:before {
+  content: "\e92e"; }
+
+.icons-Fuel:before {
+  content: "\e92f"; }
+
+.icons-Full-Bag:before {
+  content: "\e930"; }
+
+.icons-Full-Basket:before {
+  content: "\e931"; }
+
+.icons-Full-Cart:before {
+  content: "\e932"; }
+
+.icons-Full-Moon:before {
+  content: "\e933"; }
+
+.icons-Full-Screen:before {
+  content: "\e934"; }
+
+.icons-Full-Screen2:before {
+  content: "\e935"; }
+
+.icons-Full-View:before {
+  content: "\e936"; }
+
+.icons-Full-View2:before {
+  content: "\e937"; }
+
+.icons-Full-ViewWindow:before {
+  content: "\e938"; }
+
+.icons-Function:before {
+  content: "\e939"; }
+
+.icons-Funky:before {
+  content: "\e93a"; }
+
+.icons-Funny-Bicycle:before {
+  content: "\e93b"; }
+
+.icons-Furl:before {
+  content: "\e93c"; }
+
+.icons-Gamepad-2:before {
+  content: "\e93d"; }
+
+.icons-Gamepad:before {
+  content: "\e93e"; }
+
+.icons-Gas-Pump:before {
+  content: "\e93f"; }
+
+.icons-Gaugage-2:before {
+  content: "\e940"; }
+
+.icons-Gaugage:before {
+  content: "\e941"; }
+
+.icons-Gay:before {
+  content: "\e942"; }
+
+.icons-Gear-2:before {
+  content: "\e943"; }
+
+.icons-Gear:before {
+  content: "\e944"; }
+
+.icons-Gears-2:before {
+  content: "\e945"; }
+
+.icons-Gears:before {
+  content: "\e946"; }
+
+.icons-Geek-2:before {
+  content: "\e947"; }
+
+.icons-Geek:before {
+  content: "\e948"; }
+
+.icons-Gemini-2:before {
+  content: "\e949"; }
+
+.icons-Gemini:before {
+  content: "\e94a"; }
+
+.icons-Genius:before {
+  content: "\e94b"; }
+
+.icons-Gentleman:before {
+  content: "\e94c"; }
+
+.icons-Geo--:before {
+  content: "\e94d"; }
+
+.icons-Geo-:before {
+  content: "\e94e"; }
+
+.icons-Geo-Close:before {
+  content: "\e94f"; }
+
+.icons-Geo-Love:before {
+  content: "\e950"; }
+
+.icons-Geo-Number:before {
+  content: "\e951"; }
+
+.icons-Geo-Star:before {
+  content: "\e952"; }
+
+.icons-Geo:before {
+  content: "\e953"; }
+
+.icons-Geo2--:before {
+  content: "\e954"; }
+
+.icons-Geo2-:before {
+  content: "\e955"; }
+
+.icons-Geo2-Close:before {
+  content: "\e956"; }
+
+.icons-Geo2-Love:before {
+  content: "\e957"; }
+
+.icons-Geo2-Number:before {
+  content: "\e958"; }
+
+.icons-Geo2-Star:before {
+  content: "\e959"; }
+
+.icons-Geo2:before {
+  content: "\e95a"; }
+
+.icons-Geo3--:before {
+  content: "\e95b"; }
+
+.icons-Geo3-:before {
+  content: "\e95c"; }
+
+.icons-Geo3-Close:before {
+  content: "\e95d"; }
+
+.icons-Geo3-Love:before {
+  content: "\e95e"; }
+
+.icons-Geo3-Number:before {
+  content: "\e95f"; }
+
+.icons-Geo3-Star:before {
+  content: "\e960"; }
+
+.icons-Geo3:before {
+  content: "\e961"; }
+
+.icons-Gey:before {
+  content: "\e962"; }
+
+.icons-Gift-Box:before {
+  content: "\e963"; }
+
+.icons-Giraffe:before {
+  content: "\e964"; }
+
+.icons-Girl:before {
+  content: "\e965"; }
+
+.icons-Glass-Water:before {
+  content: "\e966"; }
+
+.icons-Glasses-2:before {
+  content: "\e967"; }
+
+.icons-Glasses-3:before {
+  content: "\e968"; }
+
+.icons-Glasses:before {
+  content: "\e969"; }
+
+.icons-Global-Position:before {
+  content: "\e96a"; }
+
+.icons-Globe-2:before {
+  content: "\e96b"; }
+
+.icons-Globe:before {
+  content: "\e96c"; }
+
+.icons-Gloves:before {
+  content: "\e96d"; }
+
+.icons-Go-Bottom:before {
+  content: "\e96e"; }
+
+.icons-Go-Top:before {
+  content: "\e96f"; }
+
+.icons-Goggles:before {
+  content: "\e970"; }
+
+.icons-Golf-2:before {
+  content: "\e971"; }
+
+.icons-Golf:before {
+  content: "\e972"; }
+
+.icons-Google-Buzz:before {
+  content: "\e973"; }
+
+.icons-Google-Drive:before {
+  content: "\e974"; }
+
+.icons-Google-Play:before {
+  content: "\e975"; }
+
+.icons-Google-Plus:before {
+  content: "\e976"; }
+
+.icons-Google:before {
+  content: "\e977"; }
+
+.icons-Gopro:before {
+  content: "\e978"; }
+
+.icons-Gorilla:before {
+  content: "\e979"; }
+
+.icons-Gowalla:before {
+  content: "\e97a"; }
+
+.icons-Grave:before {
+  content: "\e97b"; }
+
+.icons-Graveyard:before {
+  content: "\e97c"; }
+
+.icons-Greece:before {
+  content: "\e97d"; }
+
+.icons-Green-Energy:before {
+  content: "\e97e"; }
+
+.icons-Green-House:before {
+  content: "\e97f"; }
+
+.icons-Guitar:before {
+  content: "\e980"; }
+
+.icons-Gun-2:before {
+  content: "\e981"; }
+
+.icons-Gun-3:before {
+  content: "\e982"; }
+
+.icons-Gun:before {
+  content: "\e983"; }
+
+.icons-Gymnastics:before {
+  content: "\e984"; }
+
+.icons-Hair-2:before {
+  content: "\e985"; }
+
+.icons-Hair-3:before {
+  content: "\e986"; }
+
+.icons-Hair-4:before {
+  content: "\e987"; }
+
+.icons-Hair:before {
+  content: "\e988"; }
+
+.icons-Half-Moon:before {
+  content: "\e989"; }
+
+.icons-Halloween-HalfMoon:before {
+  content: "\e98a"; }
+
+.icons-Halloween-Moon:before {
+  content: "\e98b"; }
+
+.icons-Hamburger:before {
+  content: "\e98c"; }
+
+.icons-Hammer:before {
+  content: "\e98d"; }
+
+.icons-Hand-Touch:before {
+  content: "\e98e"; }
+
+.icons-Hand-Touch2:before {
+  content: "\e98f"; }
+
+.icons-Hand-TouchSmartphone:before {
+  content: "\e990"; }
+
+.icons-Hand:before {
+  content: "\e991"; }
+
+.icons-Hands:before {
+  content: "\e992"; }
+
+.icons-Handshake:before {
+  content: "\e993"; }
+
+.icons-Hanger:before {
+  content: "\e994"; }
+
+.icons-Happy:before {
+  content: "\e995"; }
+
+.icons-Hat-2:before {
+  content: "\e996"; }
+
+.icons-Hat:before {
+  content: "\e997"; }
+
+.icons-Haunted-House:before {
+  content: "\e998"; }
+
+.icons-HD-Video:before {
+  content: "\e999"; }
+
+.icons-HD:before {
+  content: "\e99a"; }
+
+.icons-HDD:before {
+  content: "\e99b"; }
+
+.icons-Headphone:before {
+  content: "\e99c"; }
+
+.icons-Headphones:before {
+  content: "\e99d"; }
+
+.icons-Headset:before {
+  content: "\e99e"; }
+
+.icons-Heart-2:before {
+  content: "\e99f"; }
+
+.icons-Heart:before {
+  content: "\e9a0"; }
+
+.icons-Heels-2:before {
+  content: "\e9a1"; }
+
+.icons-Heels:before {
+  content: "\e9a2"; }
+
+.icons-Height-Window:before {
+  content: "\e9a3"; }
+
+.icons-Helicopter-2:before {
+  content: "\e9a4"; }
+
+.icons-Helicopter:before {
+  content: "\e9a5"; }
+
+.icons-Helix-2:before {
+  content: "\e9a6"; }
+
+.icons-Hello:before {
+  content: "\e9a7"; }
+
+.icons-Helmet-2:before {
+  content: "\e9a8"; }
+
+.icons-Helmet-3:before {
+  content: "\e9a9"; }
+
+.icons-Helmet:before {
+  content: "\e9aa"; }
+
+.icons-Hipo:before {
+  content: "\e9ab"; }
+
+.icons-Hipster-Glasses:before {
+  content: "\e9ac"; }
+
+.icons-Hipster-Glasses2:before {
+  content: "\e9ad"; }
+
+.icons-Hipster-Glasses3:before {
+  content: "\e9ae"; }
+
+.icons-Hipster-Headphones:before {
+  content: "\e9af"; }
+
+.icons-Hipster-Men:before {
+  content: "\e9b0"; }
+
+.icons-Hipster-Men2:before {
+  content: "\e9b1"; }
+
+.icons-Hipster-Men3:before {
+  content: "\e9b2"; }
+
+.icons-Hipster-Sunglasses:before {
+  content: "\e9b3"; }
+
+.icons-Hipster-Sunglasses2:before {
+  content: "\e9b4"; }
+
+.icons-Hipster-Sunglasses3:before {
+  content: "\e9b5"; }
+
+.icons-Hokey:before {
+  content: "\e9b6"; }
+
+.icons-Holly:before {
+  content: "\e9b7"; }
+
+.icons-Home-2:before {
+  content: "\e9b8"; }
+
+.icons-Home-3:before {
+  content: "\e9b9"; }
+
+.icons-Home-4:before {
+  content: "\e9ba"; }
+
+.icons-Home-5:before {
+  content: "\e9bb"; }
+
+.icons-Home-Window:before {
+  content: "\e9bc"; }
+
+.icons-Home:before {
+  content: "\e9bd"; }
+
+.icons-Homosexual:before {
+  content: "\e9be"; }
+
+.icons-Honey:before {
+  content: "\e9bf"; }
+
+.icons-Hong-Kong:before {
+  content: "\e9c0"; }
+
+.icons-Hoodie:before {
+  content: "\e9c1"; }
+
+.icons-Horror:before {
+  content: "\e9c2"; }
+
+.icons-Horse:before {
+  content: "\e9c3"; }
+
+.icons-Hospital-2:before {
+  content: "\e9c4"; }
+
+.icons-Hospital:before {
+  content: "\e9c5"; }
+
+.icons-Host:before {
+  content: "\e9c6"; }
+
+.icons-Hot-Dog:before {
+  content: "\e9c7"; }
+
+.icons-Hotel:before {
+  content: "\e9c8"; }
+
+.icons-Hour:before {
+  content: "\e9c9"; }
+
+.icons-Hub:before {
+  content: "\e9ca"; }
+
+.icons-Humor:before {
+  content: "\e9cb"; }
+
+.icons-Hurt:before {
+  content: "\e9cc"; }
+
+.icons-Ice-Cream:before {
+  content: "\e9cd"; }
+
+.icons-ICQ:before {
+  content: "\e9ce"; }
+
+.icons-ID-2:before {
+  content: "\e9cf"; }
+
+.icons-ID-3:before {
+  content: "\e9d0"; }
+
+.icons-ID-Card:before {
+  content: "\e9d1"; }
+
+.icons-Idea-2:before {
+  content: "\e9d2"; }
+
+.icons-Idea-3:before {
+  content: "\e9d3"; }
+
+.icons-Idea-4:before {
+  content: "\e9d4"; }
+
+.icons-Idea-5:before {
+  content: "\e9d5"; }
+
+.icons-Idea:before {
+  content: "\e9d6"; }
+
+.icons-Identification-Badge:before {
+  content: "\e9d7"; }
+
+.icons-ImDB:before {
+  content: "\e9d8"; }
+
+.icons-Inbox-Empty:before {
+  content: "\e9d9"; }
+
+.icons-Inbox-Forward:before {
+  content: "\e9da"; }
+
+.icons-Inbox-Full:before {
+  content: "\e9db"; }
+
+.icons-Inbox-Into:before {
+  content: "\e9dc"; }
+
+.icons-Inbox-Out:before {
+  content: "\e9dd"; }
+
+.icons-Inbox-Reply:before {
+  content: "\e9de"; }
+
+.icons-Inbox:before {
+  content: "\e9df"; }
+
+.icons-Increase-Inedit:before {
+  content: "\e9e0"; }
+
+.icons-Indent-FirstLine:before {
+  content: "\e9e1"; }
+
+.icons-Indent-LeftMargin:before {
+  content: "\e9e2"; }
+
+.icons-Indent-RightMargin:before {
+  content: "\e9e3"; }
+
+.icons-India:before {
+  content: "\e9e4"; }
+
+.icons-Info-Window:before {
+  content: "\e9e5"; }
+
+.icons-Information:before {
+  content: "\e9e6"; }
+
+.icons-Inifity:before {
+  content: "\e9e7"; }
+
+.icons-Instagram:before {
+  content: "\e9e8"; }
+
+.icons-Internet-2:before {
+  content: "\e9e9"; }
+
+.icons-Internet-Explorer:before {
+  content: "\e9ea"; }
+
+.icons-Internet-Smiley:before {
+  content: "\e9eb"; }
+
+.icons-Internet:before {
+  content: "\e9ec"; }
+
+.icons-iOS-Apple:before {
+  content: "\e9ed"; }
+
+.icons-Israel:before {
+  content: "\e9ee"; }
+
+.icons-Italic-Text:before {
+  content: "\e9ef"; }
+
+.icons-Jacket-2:before {
+  content: "\e9f0"; }
+
+.icons-Jacket:before {
+  content: "\e9f1"; }
+
+.icons-Jamaica:before {
+  content: "\e9f2"; }
+
+.icons-Japan:before {
+  content: "\e9f3"; }
+
+.icons-Japanese-Gate:before {
+  content: "\e9f4"; }
+
+.icons-Jeans:before {
+  content: "\e9f5"; }
+
+.icons-Jeep-2:before {
+  content: "\e9f6"; }
+
+.icons-Jeep:before {
+  content: "\e9f7"; }
+
+.icons-Jet:before {
+  content: "\e9f8"; }
+
+.icons-Joystick:before {
+  content: "\e9f9"; }
+
+.icons-Juice:before {
+  content: "\e9fa"; }
+
+.icons-Jump-Rope:before {
+  content: "\e9fb"; }
+
+.icons-Kangoroo:before {
+  content: "\e9fc"; }
+
+.icons-Kenya:before {
+  content: "\e9fd"; }
+
+.icons-Key-2:before {
+  content: "\e9fe"; }
+
+.icons-Key-3:before {
+  content: "\e9ff"; }
+
+.icons-Key-Lock:before {
+  content: "\ea00"; }
+
+.icons-Key:before {
+  content: "\ea01"; }
+
+.icons-Keyboard:before {
+  content: "\ea02"; }
+
+.icons-Keyboard3:before {
+  content: "\ea03"; }
+
+.icons-Keypad:before {
+  content: "\ea04"; }
+
+.icons-King-2:before {
+  content: "\ea05"; }
+
+.icons-King:before {
+  content: "\ea06"; }
+
+.icons-Kiss:before {
+  content: "\ea07"; }
+
+.icons-Knee:before {
+  content: "\ea08"; }
+
+.icons-Knife-2:before {
+  content: "\ea09"; }
+
+.icons-Knife:before {
+  content: "\ea0a"; }
+
+.icons-Knight:before {
+  content: "\ea0b"; }
+
+.icons-Koala:before {
+  content: "\ea0c"; }
+
+.icons-Korea:before {
+  content: "\ea0d"; }
+
+.icons-Lamp:before {
+  content: "\ea0e"; }
+
+.icons-Landscape-2:before {
+  content: "\ea0f"; }
+
+.icons-Landscape:before {
+  content: "\ea10"; }
+
+.icons-Lantern:before {
+  content: "\ea11"; }
+
+.icons-Laptop-2:before {
+  content: "\ea12"; }
+
+.icons-Laptop-3:before {
+  content: "\ea13"; }
+
+.icons-Laptop-Phone:before {
+  content: "\ea14"; }
+
+.icons-Laptop-Secure:before {
+  content: "\ea15"; }
+
+.icons-Laptop-Tablet:before {
+  content: "\ea16"; }
+
+.icons-Laptop:before {
+  content: "\ea17"; }
+
+.icons-Laser:before {
+  content: "\ea18"; }
+
+.icons-Last-FM:before {
+  content: "\ea19"; }
+
+.icons-Last:before {
+  content: "\ea1a"; }
+
+.icons-Laughing:before {
+  content: "\ea1b"; }
+
+.icons-Layer-1635:before {
+  content: "\ea1c"; }
+
+.icons-Layer-1646:before {
+  content: "\ea1d"; }
+
+.icons-Layer-Backward:before {
+  content: "\ea1e"; }
+
+.icons-Layer-Forward:before {
+  content: "\ea1f"; }
+
+.icons-Leafs-2:before {
+  content: "\ea20"; }
+
+.icons-Leafs:before {
+  content: "\ea21"; }
+
+.icons-Leaning-Tower:before {
+  content: "\ea22"; }
+
+.icons-Left--Right:before {
+  content: "\ea23"; }
+
+.icons-Left--Right3:before {
+  content: "\ea24"; }
+
+.icons-Left-2:before {
+  content: "\ea25"; }
+
+.icons-Left-3:before {
+  content: "\ea26"; }
+
+.icons-Left-4:before {
+  content: "\ea27"; }
+
+.icons-Left-ToRight:before {
+  content: "\ea28"; }
+
+.icons-Left:before {
+  content: "\ea29"; }
+
+.icons-Leg-2:before {
+  content: "\ea2a"; }
+
+.icons-Leg:before {
+  content: "\ea2b"; }
+
+.icons-Lego:before {
+  content: "\ea2c"; }
+
+.icons-Lemon:before {
+  content: "\ea2d"; }
+
+.icons-Len-2:before {
+  content: "\ea2e"; }
+
+.icons-Len-3:before {
+  content: "\ea2f"; }
+
+.icons-Len:before {
+  content: "\ea30"; }
+
+.icons-Leo-2:before {
+  content: "\ea31"; }
+
+.icons-Leo:before {
+  content: "\ea32"; }
+
+.icons-Leopard:before {
+  content: "\ea33"; }
+
+.icons-Lesbian:before {
+  content: "\ea34"; }
+
+.icons-Lesbians:before {
+  content: "\ea35"; }
+
+.icons-Letter-Close:before {
+  content: "\ea36"; }
+
+.icons-Letter-Open:before {
+  content: "\ea37"; }
+
+.icons-Letter-Sent:before {
+  content: "\ea38"; }
+
+.icons-Libra-2:before {
+  content: "\ea39"; }
+
+.icons-Libra:before {
+  content: "\ea3a"; }
+
+.icons-Library-2:before {
+  content: "\ea3b"; }
+
+.icons-Library:before {
+  content: "\ea3c"; }
+
+.icons-Life-Jacket:before {
+  content: "\ea3d"; }
+
+.icons-Life-Safer:before {
+  content: "\ea3e"; }
+
+.icons-Light-Bulb:before {
+  content: "\ea3f"; }
+
+.icons-Light-Bulb2:before {
+  content: "\ea40"; }
+
+.icons-Light-BulbLeaf:before {
+  content: "\ea41"; }
+
+.icons-Lighthouse:before {
+  content: "\ea42"; }
+
+.icons-Like-2:before {
+  content: "\ea43"; }
+
+.icons-Like:before {
+  content: "\ea44"; }
+
+.icons-Line-Chart:before {
+  content: "\ea45"; }
+
+.icons-Line-Chart2:before {
+  content: "\ea46"; }
+
+.icons-Line-Chart3:before {
+  content: "\ea47"; }
+
+.icons-Line-Chart4:before {
+  content: "\ea48"; }
+
+.icons-Line-Spacing:before {
+  content: "\ea49"; }
+
+.icons-Line-SpacingText:before {
+  content: "\ea4a"; }
+
+.icons-Link-2:before {
+  content: "\ea4b"; }
+
+.icons-Link:before {
+  content: "\ea4c"; }
+
+.icons-Linkedin-2:before {
+  content: "\ea4d"; }
+
+.icons-Linkedin:before {
+  content: "\ea4e"; }
+
+.icons-Linux:before {
+  content: "\ea4f"; }
+
+.icons-Lion:before {
+  content: "\ea50"; }
+
+.icons-Livejournal:before {
+  content: "\ea51"; }
+
+.icons-Loading-2:before {
+  content: "\ea52"; }
+
+.icons-Loading-3:before {
+  content: "\ea53"; }
+
+.icons-Loading-Window:before {
+  content: "\ea54"; }
+
+.icons-Loading:before {
+  content: "\ea55"; }
+
+.icons-Location-2:before {
+  content: "\ea56"; }
+
+.icons-Location:before {
+  content: "\ea57"; }
+
+.icons-Lock-2:before {
+  content: "\ea58"; }
+
+.icons-Lock-3:before {
+  content: "\ea59"; }
+
+.icons-Lock-User:before {
+  content: "\ea5a"; }
+
+.icons-Lock-Window:before {
+  content: "\ea5b"; }
+
+.icons-Lock:before {
+  content: "\ea5c"; }
+
+.icons-Lollipop-2:before {
+  content: "\ea5d"; }
+
+.icons-Lollipop-3:before {
+  content: "\ea5e"; }
+
+.icons-Lollipop:before {
+  content: "\ea5f"; }
+
+.icons-Loop:before {
+  content: "\ea60"; }
+
+.icons-Loud:before {
+  content: "\ea61"; }
+
+.icons-Loudspeaker:before {
+  content: "\ea62"; }
+
+.icons-Love-2:before {
+  content: "\ea63"; }
+
+.icons-Love-User:before {
+  content: "\ea64"; }
+
+.icons-Love-Window:before {
+  content: "\ea65"; }
+
+.icons-Love:before {
+  content: "\ea66"; }
+
+.icons-Lowercase-Text:before {
+  content: "\ea67"; }
+
+.icons-Luggafe-Front:before {
+  content: "\ea68"; }
+
+.icons-Luggage-2:before {
+  content: "\ea69"; }
+
+.icons-Macro:before {
+  content: "\ea6a"; }
+
+.icons-Magic-Wand:before {
+  content: "\ea6b"; }
+
+.icons-Magnet:before {
+  content: "\ea6c"; }
+
+.icons-Magnifi-Glass-:before {
+  content: "\ea6d"; }
+
+.icons-Magnifi-Glass:before {
+  content: "\ea6e"; }
+
+.icons-Magnifi-Glass2:before {
+  content: "\ea6f"; }
+
+.icons-Mail-2:before {
+  content: "\ea70"; }
+
+.icons-Mail-3:before {
+  content: "\ea71"; }
+
+.icons-Mail-Add:before {
+  content: "\ea72"; }
+
+.icons-Mail-Attachement:before {
+  content: "\ea73"; }
+
+.icons-Mail-Block:before {
+  content: "\ea74"; }
+
+.icons-Mail-Delete:before {
+  content: "\ea75"; }
+
+.icons-Mail-Favorite:before {
+  content: "\ea76"; }
+
+.icons-Mail-Forward:before {
+  content: "\ea77"; }
+
+.icons-Mail-Gallery:before {
+  content: "\ea78"; }
+
+.icons-Mail-Inbox:before {
+  content: "\ea79"; }
+
+.icons-Mail-Link:before {
+  content: "\ea7a"; }
+
+.icons-Mail-Lock:before {
+  content: "\ea7b"; }
+
+.icons-Mail-Love:before {
+  content: "\ea7c"; }
+
+.icons-Mail-Money:before {
+  content: "\ea7d"; }
+
+.icons-Mail-Open:before {
+  content: "\ea7e"; }
+
+.icons-Mail-Outbox:before {
+  content: "\ea7f"; }
+
+.icons-Mail-Password:before {
+  content: "\ea80"; }
+
+.icons-Mail-Photo:before {
+  content: "\ea81"; }
+
+.icons-Mail-Read:before {
+  content: "\ea82"; }
+
+.icons-Mail-Removex:before {
+  content: "\ea83"; }
+
+.icons-Mail-Reply:before {
+  content: "\ea84"; }
+
+.icons-Mail-ReplyAll:before {
+  content: "\ea85"; }
+
+.icons-Mail-Search:before {
+  content: "\ea86"; }
+
+.icons-Mail-Send:before {
+  content: "\ea87"; }
+
+.icons-Mail-Settings:before {
+  content: "\ea88"; }
+
+.icons-Mail-Unread:before {
+  content: "\ea89"; }
+
+.icons-Mail-Video:before {
+  content: "\ea8a"; }
+
+.icons-Mail-withAtSign:before {
+  content: "\ea8b"; }
+
+.icons-Mail-WithCursors:before {
+  content: "\ea8c"; }
+
+.icons-Mail:before {
+  content: "\ea8d"; }
+
+.icons-Mailbox-Empty:before {
+  content: "\ea8e"; }
+
+.icons-Mailbox-Full:before {
+  content: "\ea8f"; }
+
+.icons-Male-2:before {
+  content: "\ea90"; }
+
+.icons-Male-Sign:before {
+  content: "\ea91"; }
+
+.icons-Male:before {
+  content: "\ea92"; }
+
+.icons-MaleFemale:before {
+  content: "\ea93"; }
+
+.icons-Man-Sign:before {
+  content: "\ea94"; }
+
+.icons-Management:before {
+  content: "\ea95"; }
+
+.icons-Mans-Underwear:before {
+  content: "\ea96"; }
+
+.icons-Mans-Underwear2:before {
+  content: "\ea97"; }
+
+.icons-Map-Marker:before {
+  content: "\ea98"; }
+
+.icons-Map-Marker2:before {
+  content: "\ea99"; }
+
+.icons-Map-Marker3:before {
+  content: "\ea9a"; }
+
+.icons-Map:before {
+  content: "\ea9b"; }
+
+.icons-Map2:before {
+  content: "\ea9c"; }
+
+.icons-Marker-2:before {
+  content: "\ea9d"; }
+
+.icons-Marker-3:before {
+  content: "\ea9e"; }
+
+.icons-Marker:before {
+  content: "\ea9f"; }
+
+.icons-Martini-Glass:before {
+  content: "\eaa0"; }
+
+.icons-Mask:before {
+  content: "\eaa1"; }
+
+.icons-Master-Card:before {
+  content: "\eaa2"; }
+
+.icons-Maximize-Window:before {
+  content: "\eaa3"; }
+
+.icons-Maximize:before {
+  content: "\eaa4"; }
+
+.icons-Medal-2:before {
+  content: "\eaa5"; }
+
+.icons-Medal-3:before {
+  content: "\eaa6"; }
+
+.icons-Medal:before {
+  content: "\eaa7"; }
+
+.icons-Medical-Sign:before {
+  content: "\eaa8"; }
+
+.icons-Medicine-2:before {
+  content: "\eaa9"; }
+
+.icons-Medicine-3:before {
+  content: "\eaaa"; }
+
+.icons-Medicine:before {
+  content: "\eaab"; }
+
+.icons-Megaphone:before {
+  content: "\eaac"; }
+
+.icons-Memory-Card:before {
+  content: "\eaad"; }
+
+.icons-Memory-Card2:before {
+  content: "\eaae"; }
+
+.icons-Memory-Card3:before {
+  content: "\eaaf"; }
+
+.icons-Men:before {
+  content: "\eab0"; }
+
+.icons-Menorah:before {
+  content: "\eab1"; }
+
+.icons-Mens:before {
+  content: "\eab2"; }
+
+.icons-Metacafe:before {
+  content: "\eab3"; }
+
+.icons-Mexico:before {
+  content: "\eab4"; }
+
+.icons-Mic:before {
+  content: "\eab5"; }
+
+.icons-Microphone-2:before {
+  content: "\eab6"; }
+
+.icons-Microphone-3:before {
+  content: "\eab7"; }
+
+.icons-Microphone-4:before {
+  content: "\eab8"; }
+
+.icons-Microphone-5:before {
+  content: "\eab9"; }
+
+.icons-Microphone-6:before {
+  content: "\eaba"; }
+
+.icons-Microphone-7:before {
+  content: "\eabb"; }
+
+.icons-Microphone:before {
+  content: "\eabc"; }
+
+.icons-Microscope:before {
+  content: "\eabd"; }
+
+.icons-Milk-Bottle:before {
+  content: "\eabe"; }
+
+.icons-Mine:before {
+  content: "\eabf"; }
+
+.icons-Minimize-Maximize-Close-Window:before {
+  content: "\eac0"; }
+
+.icons-Minimize-Window:before {
+  content: "\eac1"; }
+
+.icons-Minimize:before {
+  content: "\eac2"; }
+
+.icons-Mirror:before {
+  content: "\eac3"; }
+
+.icons-Mixer:before {
+  content: "\eac4"; }
+
+.icons-Mixx:before {
+  content: "\eac5"; }
+
+.icons-Money-2:before {
+  content: "\eac6"; }
+
+.icons-Money-Bag:before {
+  content: "\eac7"; }
+
+.icons-Money-Smiley:before {
+  content: "\eac8"; }
+
+.icons-Money:before {
+  content: "\eac9"; }
+
+.icons-Monitor-2:before {
+  content: "\eaca"; }
+
+.icons-Monitor-3:before {
+  content: "\eacb"; }
+
+.icons-Monitor-4:before {
+  content: "\eacc"; }
+
+.icons-Monitor-5:before {
+  content: "\eacd"; }
+
+.icons-Monitor-Analytics:before {
+  content: "\eace"; }
+
+.icons-Monitor-Laptop:before {
+  content: "\eacf"; }
+
+.icons-Monitor-phone:before {
+  content: "\ead0"; }
+
+.icons-Monitor-Tablet:before {
+  content: "\ead1"; }
+
+.icons-Monitor-Vertical:before {
+  content: "\ead2"; }
+
+.icons-Monitor:before {
+  content: "\ead3"; }
+
+.icons-Monitoring:before {
+  content: "\ead4"; }
+
+.icons-Monkey:before {
+  content: "\ead5"; }
+
+.icons-Monster:before {
+  content: "\ead6"; }
+
+.icons-Morocco:before {
+  content: "\ead7"; }
+
+.icons-Motorcycle:before {
+  content: "\ead8"; }
+
+.icons-Mouse-2:before {
+  content: "\ead9"; }
+
+.icons-Mouse-3:before {
+  content: "\eada"; }
+
+.icons-Mouse-4:before {
+  content: "\eadb"; }
+
+.icons-Mouse-Pointer:before {
+  content: "\eadc"; }
+
+.icons-Mouse:before {
+  content: "\eadd"; }
+
+.icons-Moustache-Smiley:before {
+  content: "\eade"; }
+
+.icons-Movie-Ticket:before {
+  content: "\eadf"; }
+
+.icons-Movie:before {
+  content: "\eae0"; }
+
+.icons-Mp3-File:before {
+  content: "\eae1"; }
+
+.icons-Museum:before {
+  content: "\eae2"; }
+
+.icons-Mushroom:before {
+  content: "\eae3"; }
+
+.icons-Music-Note:before {
+  content: "\eae4"; }
+
+.icons-Music-Note2:before {
+  content: "\eae5"; }
+
+.icons-Music-Note3:before {
+  content: "\eae6"; }
+
+.icons-Music-Note4:before {
+  content: "\eae7"; }
+
+.icons-Music-Player:before {
+  content: "\eae8"; }
+
+.icons-Mustache-2:before {
+  content: "\eae9"; }
+
+.icons-Mustache-3:before {
+  content: "\eaea"; }
+
+.icons-Mustache-4:before {
+  content: "\eaeb"; }
+
+.icons-Mustache-5:before {
+  content: "\eaec"; }
+
+.icons-Mustache-6:before {
+  content: "\eaed"; }
+
+.icons-Mustache-7:before {
+  content: "\eaee"; }
+
+.icons-Mustache-8:before {
+  content: "\eaef"; }
+
+.icons-Mustache:before {
+  content: "\eaf0"; }
+
+.icons-Mute:before {
+  content: "\eaf1"; }
+
+.icons-Myspace:before {
+  content: "\eaf2"; }
+
+.icons-Navigat-Start:before {
+  content: "\eaf3"; }
+
+.icons-Navigate-End:before {
+  content: "\eaf4"; }
+
+.icons-Navigation-LeftWindow:before {
+  content: "\eaf5"; }
+
+.icons-Navigation-RightWindow:before {
+  content: "\eaf6"; }
+
+.icons-Nepal:before {
+  content: "\eaf7"; }
+
+.icons-Netscape:before {
+  content: "\eaf8"; }
+
+.icons-Network-Window:before {
+  content: "\eaf9"; }
+
+.icons-Network:before {
+  content: "\eafa"; }
+
+.icons-Neutron:before {
+  content: "\eafb"; }
+
+.icons-New-Mail:before {
+  content: "\eafc"; }
+
+.icons-New-Tab:before {
+  content: "\eafd"; }
+
+.icons-Newspaper-2:before {
+  content: "\eafe"; }
+
+.icons-Newspaper:before {
+  content: "\eaff"; }
+
+.icons-Newsvine:before {
+  content: "\eb00"; }
+
+.icons-Next2:before {
+  content: "\eb01"; }
+
+.icons-Next-3:before {
+  content: "\eb02"; }
+
+.icons-Next-Music:before {
+  content: "\eb03"; }
+
+.icons-Next:before {
+  content: "\eb04"; }
+
+.icons-No-Battery:before {
+  content: "\eb05"; }
+
+.icons-No-Drop:before {
+  content: "\eb06"; }
+
+.icons-No-Flash:before {
+  content: "\eb07"; }
+
+.icons-No-Smoking:before {
+  content: "\eb08"; }
+
+.icons-Noose:before {
+  content: "\eb09"; }
+
+.icons-Normal-Text:before {
+  content: "\eb0a"; }
+
+.icons-Note:before {
+  content: "\eb0b"; }
+
+.icons-Notepad-2:before {
+  content: "\eb0c"; }
+
+.icons-Notepad:before {
+  content: "\eb0d"; }
+
+.icons-Nuclear:before {
+  content: "\eb0e"; }
+
+.icons-Numbering-List:before {
+  content: "\eb0f"; }
+
+.icons-Nurse:before {
+  content: "\eb10"; }
+
+.icons-Office-Lamp:before {
+  content: "\eb11"; }
+
+.icons-Office:before {
+  content: "\eb12"; }
+
+.icons-Oil:before {
+  content: "\eb13"; }
+
+.icons-Old-Camera:before {
+  content: "\eb14"; }
+
+.icons-Old-Cassette:before {
+  content: "\eb15"; }
+
+.icons-Old-Clock:before {
+  content: "\eb16"; }
+
+.icons-Old-Radio:before {
+  content: "\eb17"; }
+
+.icons-Old-Sticky:before {
+  content: "\eb18"; }
+
+.icons-Old-Sticky2:before {
+  content: "\eb19"; }
+
+.icons-Old-Telephone:before {
+  content: "\eb1a"; }
+
+.icons-Old-TV:before {
+  content: "\eb1b"; }
+
+.icons-On-Air:before {
+  content: "\eb1c"; }
+
+.icons-On-Off-2:before {
+  content: "\eb1d"; }
+
+.icons-On-Off-3:before {
+  content: "\eb1e"; }
+
+.icons-On-off:before {
+  content: "\eb1f"; }
+
+.icons-One-Finger:before {
+  content: "\eb20"; }
+
+.icons-One-FingerTouch:before {
+  content: "\eb21"; }
+
+.icons-One-Window:before {
+  content: "\eb22"; }
+
+.icons-Open-Banana:before {
+  content: "\eb23"; }
+
+.icons-Open-Book:before {
+  content: "\eb24"; }
+
+.icons-Opera-House:before {
+  content: "\eb25"; }
+
+.icons-Opera:before {
+  content: "\eb26"; }
+
+.icons-Optimization:before {
+  content: "\eb27"; }
+
+.icons-Orientation-2:before {
+  content: "\eb28"; }
+
+.icons-Orientation-3:before {
+  content: "\eb29"; }
+
+.icons-Orientation:before {
+  content: "\eb2a"; }
+
+.icons-Orkut:before {
+  content: "\eb2b"; }
+
+.icons-Ornament:before {
+  content: "\eb2c"; }
+
+.icons-Over-Time:before {
+  content: "\eb2d"; }
+
+.icons-Over-Time2:before {
+  content: "\eb2e"; }
+
+.icons-Owl:before {
+  content: "\eb2f"; }
+
+.icons-Pac-Man:before {
+  content: "\eb30"; }
+
+.icons-Paint-Brush:before {
+  content: "\eb31"; }
+
+.icons-Paint-Bucket:before {
+  content: "\eb32"; }
+
+.icons-Paintbrush:before {
+  content: "\eb33"; }
+
+.icons-Palette:before {
+  content: "\eb34"; }
+
+.icons-Palm-Tree:before {
+  content: "\eb35"; }
+
+.icons-Panda:before {
+  content: "\eb36"; }
+
+.icons-Panorama:before {
+  content: "\eb37"; }
+
+.icons-Pantheon:before {
+  content: "\eb38"; }
+
+.icons-Pantone:before {
+  content: "\eb39"; }
+
+.icons-Pants:before {
+  content: "\eb3a"; }
+
+.icons-Paper-Plane:before {
+  content: "\eb3b"; }
+
+.icons-Paper:before {
+  content: "\eb3c"; }
+
+.icons-Parasailing:before {
+  content: "\eb3d"; }
+
+.icons-Parrot:before {
+  content: "\eb3e"; }
+
+.icons-Password-2shopping:before {
+  content: "\eb3f"; }
+
+.icons-Password-Field:before {
+  content: "\eb40"; }
+
+.icons-Password-shopping:before {
+  content: "\eb41"; }
+
+.icons-Password:before {
+  content: "\eb42"; }
+
+.icons-pause-2:before {
+  content: "\eb43"; }
+
+.icons-Pause:before {
+  content: "\eb44"; }
+
+.icons-Paw:before {
+  content: "\eb45"; }
+
+.icons-Pawn:before {
+  content: "\eb46"; }
+
+.icons-Paypal:before {
+  content: "\eb47"; }
+
+.icons-Pen-2:before {
+  content: "\eb48"; }
+
+.icons-Pen-3:before {
+  content: "\eb49"; }
+
+.icons-Pen-4:before {
+  content: "\eb4a"; }
+
+.icons-Pen-5:before {
+  content: "\eb4b"; }
+
+.icons-Pen-6:before {
+  content: "\eb4c"; }
+
+.icons-Pen:before {
+  content: "\eb4d"; }
+
+.icons-Pencil-Ruler:before {
+  content: "\eb4e"; }
+
+.icons-Pencil:before {
+  content: "\eb4f"; }
+
+.icons-Penguin:before {
+  content: "\eb50"; }
+
+.icons-Pentagon:before {
+  content: "\eb51"; }
+
+.icons-People-onCloud:before {
+  content: "\eb52"; }
+
+.icons-Pepper-withFire:before {
+  content: "\eb53"; }
+
+.icons-Pepper:before {
+  content: "\eb54"; }
+
+.icons-Petrol:before {
+  content: "\eb55"; }
+
+.icons-Petronas-Tower:before {
+  content: "\eb56"; }
+
+.icons-Philipines:before {
+  content: "\eb57"; }
+
+.icons-Phone-2:before {
+  content: "\eb58"; }
+
+.icons-Phone-3:before {
+  content: "\eb59"; }
+
+.icons-Phone-3G:before {
+  content: "\eb5a"; }
+
+.icons-Phone-4G:before {
+  content: "\eb5b"; }
+
+.icons-Phone-Simcard:before {
+  content: "\eb5c"; }
+
+.icons-Phone-SMS:before {
+  content: "\eb5d"; }
+
+.icons-Phone-Wifi:before {
+  content: "\eb5e"; }
+
+.icons-Phone:before {
+  content: "\eb5f"; }
+
+.icons-Photo-2:before {
+  content: "\eb60"; }
+
+.icons-Photo-3:before {
+  content: "\eb61"; }
+
+.icons-Photo-Album:before {
+  content: "\eb62"; }
+
+.icons-Photo-Album2:before {
+  content: "\eb63"; }
+
+.icons-Photo-Album3:before {
+  content: "\eb64"; }
+
+.icons-Photo:before {
+  content: "\eb65"; }
+
+.icons-Photos:before {
+  content: "\eb66"; }
+
+.icons-Physics:before {
+  content: "\eb67"; }
+
+.icons-Pi:before {
+  content: "\eb68"; }
+
+.icons-Piano:before {
+  content: "\eb69"; }
+
+.icons-Picasa:before {
+  content: "\eb6a"; }
+
+.icons-Pie-Chart:before {
+  content: "\eb6b"; }
+
+.icons-Pie-Chart2:before {
+  content: "\eb6c"; }
+
+.icons-Pie-Chart3:before {
+  content: "\eb6d"; }
+
+.icons-Pilates-2:before {
+  content: "\eb6e"; }
+
+.icons-Pilates-3:before {
+  content: "\eb6f"; }
+
+.icons-Pilates:before {
+  content: "\eb70"; }
+
+.icons-Pilot:before {
+  content: "\eb71"; }
+
+.icons-Pinch:before {
+  content: "\eb72"; }
+
+.icons-Ping-Pong:before {
+  content: "\eb73"; }
+
+.icons-Pinterest:before {
+  content: "\eb74"; }
+
+.icons-Pipe:before {
+  content: "\eb75"; }
+
+.icons-Pipette:before {
+  content: "\eb76"; }
+
+.icons-Piramids:before {
+  content: "\eb77"; }
+
+.icons-Pisces-2:before {
+  content: "\eb78"; }
+
+.icons-Pisces:before {
+  content: "\eb79"; }
+
+.icons-Pizza-Slice:before {
+  content: "\eb7a"; }
+
+.icons-Pizza:before {
+  content: "\eb7b"; }
+
+.icons-Plane-2:before {
+  content: "\eb7c"; }
+
+.icons-Plane:before {
+  content: "\eb7d"; }
+
+.icons-Plant:before {
+  content: "\eb7e"; }
+
+.icons-Plasmid:before {
+  content: "\eb7f"; }
+
+.icons-Plaster:before {
+  content: "\eb80"; }
+
+.icons-Plastic-CupPhone:before {
+  content: "\eb81"; }
+
+.icons-Plastic-CupPhone2:before {
+  content: "\eb82"; }
+
+.icons-Plate:before {
+  content: "\eb83"; }
+
+.icons-Plates:before {
+  content: "\eb84"; }
+
+.icons-Plaxo:before {
+  content: "\eb85"; }
+
+.icons-Play-Music:before {
+  content: "\eb86"; }
+
+.icons-Plug-In:before {
+  content: "\eb87"; }
+
+.icons-Plug-In2:before {
+  content: "\eb88"; }
+
+.icons-Plurk:before {
+  content: "\eb89"; }
+
+.icons-Pointer:before {
+  content: "\eb8a"; }
+
+.icons-Poland:before {
+  content: "\eb8b"; }
+
+.icons-Police-Man:before {
+  content: "\eb8c"; }
+
+.icons-Police-Station:before {
+  content: "\eb8d"; }
+
+.icons-Police-Woman:before {
+  content: "\eb8e"; }
+
+.icons-Police:before {
+  content: "\eb8f"; }
+
+.icons-Polo-Shirt:before {
+  content: "\eb90"; }
+
+.icons-Portrait:before {
+  content: "\eb91"; }
+
+.icons-Portugal:before {
+  content: "\eb92"; }
+
+.icons-Post-Mail:before {
+  content: "\eb93"; }
+
+.icons-Post-Mail2:before {
+  content: "\eb94"; }
+
+.icons-Post-Office:before {
+  content: "\eb95"; }
+
+.icons-Post-Sign:before {
+  content: "\eb96"; }
+
+.icons-Post-Sign2ways:before {
+  content: "\eb97"; }
+
+.icons-Posterous:before {
+  content: "\eb98"; }
+
+.icons-Pound-Sign:before {
+  content: "\eb99"; }
+
+.icons-Pound-Sign2:before {
+  content: "\eb9a"; }
+
+.icons-Pound:before {
+  content: "\eb9b"; }
+
+.icons-Power-2:before {
+  content: "\eb9c"; }
+
+.icons-Power-3:before {
+  content: "\eb9d"; }
+
+.icons-Power-Cable:before {
+  content: "\eb9e"; }
+
+.icons-Power-Station:before {
+  content: "\eb9f"; }
+
+.icons-Power:before {
+  content: "\eba0"; }
+
+.icons-Prater:before {
+  content: "\eba1"; }
+
+.icons-Present:before {
+  content: "\eba2"; }
+
+.icons-Presents:before {
+  content: "\eba3"; }
+
+.icons-Press:before {
+  content: "\eba4"; }
+
+.icons-Preview:before {
+  content: "\eba5"; }
+
+.icons-Previous:before {
+  content: "\eba6"; }
+
+.icons-Pricing:before {
+  content: "\eba7"; }
+
+.icons-Printer:before {
+  content: "\eba8"; }
+
+.icons-Professor:before {
+  content: "\eba9"; }
+
+.icons-Profile:before {
+  content: "\ebaa"; }
+
+.icons-Project:before {
+  content: "\ebab"; }
+
+.icons-Projector-2:before {
+  content: "\ebac"; }
+
+.icons-Projector:before {
+  content: "\ebad"; }
+
+.icons-Pulse:before {
+  content: "\ebae"; }
+
+.icons-Pumpkin:before {
+  content: "\ebaf"; }
+
+.icons-Punk:before {
+  content: "\ebb0"; }
+
+.icons-Punker:before {
+  content: "\ebb1"; }
+
+.icons-Puzzle:before {
+  content: "\ebb2"; }
+
+.icons-QIK:before {
+  content: "\ebb3"; }
+
+.icons-QR-Code:before {
+  content: "\ebb4"; }
+
+.icons-Queen-2:before {
+  content: "\ebb5"; }
+
+.icons-Queen:before {
+  content: "\ebb6"; }
+
+.icons-Quill-2:before {
+  content: "\ebb7"; }
+
+.icons-Quill-3:before {
+  content: "\ebb8"; }
+
+.icons-Quill:before {
+  content: "\ebb9"; }
+
+.icons-Quotes-2:before {
+  content: "\ebba"; }
+
+.icons-Quotes:before {
+  content: "\ebbb"; }
+
+.icons-Radio:before {
+  content: "\ebbc"; }
+
+.icons-Radioactive:before {
+  content: "\ebbd"; }
+
+.icons-Rafting:before {
+  content: "\ebbe"; }
+
+.icons-Rain-Drop:before {
+  content: "\ebbf"; }
+
+.icons-Rainbow-2:before {
+  content: "\ebc0"; }
+
+.icons-Rainbow:before {
+  content: "\ebc1"; }
+
+.icons-Ram:before {
+  content: "\ebc2"; }
+
+.icons-Razzor-Blade:before {
+  content: "\ebc3"; }
+
+.icons-Receipt-2:before {
+  content: "\ebc4"; }
+
+.icons-Receipt-3:before {
+  content: "\ebc5"; }
+
+.icons-Receipt-4:before {
+  content: "\ebc6"; }
+
+.icons-Receipt:before {
+  content: "\ebc7"; }
+
+.icons-Record2:before {
+  content: "\ebc8"; }
+
+.icons-Record-3:before {
+  content: "\ebc9"; }
+
+.icons-Record-Music:before {
+  content: "\ebca"; }
+
+.icons-Record:before {
+  content: "\ebcb"; }
+
+.icons-Recycling-2:before {
+  content: "\ebcc"; }
+
+.icons-Recycling:before {
+  content: "\ebcd"; }
+
+.icons-Reddit:before {
+  content: "\ebce"; }
+
+.icons-Redhat:before {
+  content: "\ebcf"; }
+
+.icons-Redirect:before {
+  content: "\ebd0"; }
+
+.icons-Redo:before {
+  content: "\ebd1"; }
+
+.icons-Reel:before {
+  content: "\ebd2"; }
+
+.icons-Refinery:before {
+  content: "\ebd3"; }
+
+.icons-Refresh-Window:before {
+  content: "\ebd4"; }
+
+.icons-Refresh:before {
+  content: "\ebd5"; }
+
+.icons-Reload-2:before {
+  content: "\ebd6"; }
+
+.icons-Reload-3:before {
+  content: "\ebd7"; }
+
+.icons-Reload:before {
+  content: "\ebd8"; }
+
+.icons-Remote-Controll:before {
+  content: "\ebd9"; }
+
+.icons-Remote-Controll2:before {
+  content: "\ebda"; }
+
+.icons-Remove-Bag:before {
+  content: "\ebdb"; }
+
+.icons-Remove-Basket:before {
+  content: "\ebdc"; }
+
+.icons-Remove-Cart:before {
+  content: "\ebdd"; }
+
+.icons-Remove-File:before {
+  content: "\ebde"; }
+
+.icons-Remove-User:before {
+  content: "\ebdf"; }
+
+.icons-Remove-Window:before {
+  content: "\ebe0"; }
+
+.icons-Remove:before {
+  content: "\ebe1"; }
+
+.icons-Rename:before {
+  content: "\ebe2"; }
+
+.icons-Repair:before {
+  content: "\ebe3"; }
+
+.icons-Repeat-2:before {
+  content: "\ebe4"; }
+
+.icons-Repeat-3:before {
+  content: "\ebe5"; }
+
+.icons-Repeat-4:before {
+  content: "\ebe6"; }
+
+.icons-Repeat-5:before {
+  content: "\ebe7"; }
+
+.icons-Repeat-6:before {
+  content: "\ebe8"; }
+
+.icons-Repeat-7:before {
+  content: "\ebe9"; }
+
+.icons-Repeat:before {
+  content: "\ebea"; }
+
+.icons-Reset:before {
+  content: "\ebeb"; }
+
+.icons-Resize:before {
+  content: "\ebec"; }
+
+.icons-Restore-Window:before {
+  content: "\ebed"; }
+
+.icons-Retouching:before {
+  content: "\ebee"; }
+
+.icons-Retro-Camera:before {
+  content: "\ebef"; }
+
+.icons-Retro:before {
+  content: "\ebf0"; }
+
+.icons-Retweet:before {
+  content: "\ebf1"; }
+
+.icons-Reverbnation:before {
+  content: "\ebf2"; }
+
+.icons-Rewind:before {
+  content: "\ebf3"; }
+
+.icons-RGB:before {
+  content: "\ebf4"; }
+
+.icons-Ribbon-2:before {
+  content: "\ebf5"; }
+
+.icons-Ribbon-3:before {
+  content: "\ebf6"; }
+
+.icons-Ribbon:before {
+  content: "\ebf7"; }
+
+.icons-Right-2:before {
+  content: "\ebf8"; }
+
+.icons-Right-3:before {
+  content: "\ebf9"; }
+
+.icons-Right-4:before {
+  content: "\ebfa"; }
+
+.icons-Right-ToLeft:before {
+  content: "\ebfb"; }
+
+.icons-Right:before {
+  content: "\ebfc"; }
+
+.icons-Road-2:before {
+  content: "\ebfd"; }
+
+.icons-Road-3:before {
+  content: "\ebfe"; }
+
+.icons-Road:before {
+  content: "\ebff"; }
+
+.icons-Robot-2:before {
+  content: "\ec00"; }
+
+.icons-Robot:before {
+  content: "\ec01"; }
+
+.icons-Rock-andRoll:before {
+  content: "\ec02"; }
+
+.icons-Rocket:before {
+  content: "\ec03"; }
+
+.icons-Roller:before {
+  content: "\ec04"; }
+
+.icons-Roof:before {
+  content: "\ec05"; }
+
+.icons-Rook:before {
+  content: "\ec06"; }
+
+.icons-Rotate-Gesture:before {
+  content: "\ec07"; }
+
+.icons-Rotate-Gesture2:before {
+  content: "\ec08"; }
+
+.icons-Rotate-Gesture3:before {
+  content: "\ec09"; }
+
+.icons-Rotation-390:before {
+  content: "\ec0a"; }
+
+.icons-Rotation:before {
+  content: "\ec0b"; }
+
+.icons-Router-2:before {
+  content: "\ec0c"; }
+
+.icons-Router:before {
+  content: "\ec0d"; }
+
+.icons-RSS:before {
+  content: "\ec0e"; }
+
+.icons-Ruler-2:before {
+  content: "\ec0f"; }
+
+.icons-Ruler:before {
+  content: "\ec10"; }
+
+.icons-Running-Shoes:before {
+  content: "\ec11"; }
+
+.icons-Running:before {
+  content: "\ec12"; }
+
+.icons-Safari:before {
+  content: "\ec13"; }
+
+.icons-Safe-Box:before {
+  content: "\ec14"; }
+
+.icons-Safe-Box2:before {
+  content: "\ec15"; }
+
+.icons-Safety-PinClose:before {
+  content: "\ec16"; }
+
+.icons-Safety-PinOpen:before {
+  content: "\ec17"; }
+
+.icons-Sagittarus-2:before {
+  content: "\ec18"; }
+
+.icons-Sagittarus:before {
+  content: "\ec19"; }
+
+.icons-Sailing-Ship:before {
+  content: "\ec1a"; }
+
+.icons-Sand-watch:before {
+  content: "\ec1b"; }
+
+.icons-Sand-watch2:before {
+  content: "\ec1c"; }
+
+.icons-Santa-Claus:before {
+  content: "\ec1d"; }
+
+.icons-Santa-Claus2:before {
+  content: "\ec1e"; }
+
+.icons-Santa-onSled:before {
+  content: "\ec1f"; }
+
+.icons-Satelite-2:before {
+  content: "\ec20"; }
+
+.icons-Satelite:before {
+  content: "\ec21"; }
+
+.icons-Save-Window:before {
+  content: "\ec22"; }
+
+.icons-Save:before {
+  content: "\ec23"; }
+
+.icons-Saw:before {
+  content: "\ec24"; }
+
+.icons-Saxophone:before {
+  content: "\ec25"; }
+
+.icons-Scale:before {
+  content: "\ec26"; }
+
+.icons-Scarf:before {
+  content: "\ec27"; }
+
+.icons-Scissor:before {
+  content: "\ec28"; }
+
+.icons-Scooter-Front:before {
+  content: "\ec29"; }
+
+.icons-Scooter:before {
+  content: "\ec2a"; }
+
+.icons-Scorpio-2:before {
+  content: "\ec2b"; }
+
+.icons-Scorpio:before {
+  content: "\ec2c"; }
+
+.icons-Scotland:before {
+  content: "\ec2d"; }
+
+.icons-Screwdriver:before {
+  content: "\ec2e"; }
+
+.icons-Scroll-Fast:before {
+  content: "\ec2f"; }
+
+.icons-Scroll:before {
+  content: "\ec30"; }
+
+.icons-Scroller-2:before {
+  content: "\ec31"; }
+
+.icons-Scroller:before {
+  content: "\ec32"; }
+
+.icons-Sea-Dog:before {
+  content: "\ec33"; }
+
+.icons-Search-onCloud:before {
+  content: "\ec34"; }
+
+.icons-Search-People:before {
+  content: "\ec35"; }
+
+.icons-secound:before {
+  content: "\ec36"; }
+
+.icons-secound2:before {
+  content: "\ec37"; }
+
+.icons-Security-Block:before {
+  content: "\ec38"; }
+
+.icons-Security-Bug:before {
+  content: "\ec39"; }
+
+.icons-Security-Camera:before {
+  content: "\ec3a"; }
+
+.icons-Security-Check:before {
+  content: "\ec3b"; }
+
+.icons-Security-Settings:before {
+  content: "\ec3c"; }
+
+.icons-Security-Smiley:before {
+  content: "\ec3d"; }
+
+.icons-Securiy-Remove:before {
+  content: "\ec3e"; }
+
+.icons-Seed:before {
+  content: "\ec3f"; }
+
+.icons-Selfie:before {
+  content: "\ec40"; }
+
+.icons-Serbia:before {
+  content: "\ec41"; }
+
+.icons-Server-2:before {
+  content: "\ec42"; }
+
+.icons-Server:before {
+  content: "\ec43"; }
+
+.icons-Servers:before {
+  content: "\ec44"; }
+
+.icons-Settings-Window:before {
+  content: "\ec45"; }
+
+.icons-Sewing-Machine:before {
+  content: "\ec46"; }
+
+.icons-Sexual:before {
+  content: "\ec47"; }
+
+.icons-Share-onCloud:before {
+  content: "\ec48"; }
+
+.icons-Share-Window:before {
+  content: "\ec49"; }
+
+.icons-Share:before {
+  content: "\ec4a"; }
+
+.icons-Sharethis:before {
+  content: "\ec4b"; }
+
+.icons-Shark:before {
+  content: "\ec4c"; }
+
+.icons-Sheep:before {
+  content: "\ec4d"; }
+
+.icons-Sheriff-Badge:before {
+  content: "\ec4e"; }
+
+.icons-Shield:before {
+  content: "\ec4f"; }
+
+.icons-Ship-2:before {
+  content: "\ec50"; }
+
+.icons-Ship:before {
+  content: "\ec51"; }
+
+.icons-Shirt:before {
+  content: "\ec52"; }
+
+.icons-Shoes-2:before {
+  content: "\ec53"; }
+
+.icons-Shoes-3:before {
+  content: "\ec54"; }
+
+.icons-Shoes:before {
+  content: "\ec55"; }
+
+.icons-Shop-2:before {
+  content: "\ec56"; }
+
+.icons-Shop-3:before {
+  content: "\ec57"; }
+
+.icons-Shop-4:before {
+  content: "\ec58"; }
+
+.icons-Shop:before {
+  content: "\ec59"; }
+
+.icons-Shopping-Bag:before {
+  content: "\ec5a"; }
+
+.icons-Shopping-Basket:before {
+  content: "\ec5b"; }
+
+.icons-Shopping-Cart:before {
+  content: "\ec5c"; }
+
+.icons-Short-Pants:before {
+  content: "\ec5d"; }
+
+.icons-Shoutwire:before {
+  content: "\ec5e"; }
+
+.icons-Shovel:before {
+  content: "\ec5f"; }
+
+.icons-Shuffle-2:before {
+  content: "\ec60"; }
+
+.icons-Shuffle-3:before {
+  content: "\ec61"; }
+
+.icons-Shuffle-4:before {
+  content: "\ec62"; }
+
+.icons-Shuffle:before {
+  content: "\ec63"; }
+
+.icons-Shutter:before {
+  content: "\ec64"; }
+
+.icons-Sidebar-Window:before {
+  content: "\ec65"; }
+
+.icons-Signal:before {
+  content: "\ec66"; }
+
+.icons-Singapore:before {
+  content: "\ec67"; }
+
+.icons-Skate-Shoes:before {
+  content: "\ec68"; }
+
+.icons-Skateboard-2:before {
+  content: "\ec69"; }
+
+.icons-Skateboard:before {
+  content: "\ec6a"; }
+
+.icons-Skeleton:before {
+  content: "\ec6b"; }
+
+.icons-Ski:before {
+  content: "\ec6c"; }
+
+.icons-Skirt:before {
+  content: "\ec6d"; }
+
+.icons-Skrill:before {
+  content: "\ec6e"; }
+
+.icons-Skull:before {
+  content: "\ec6f"; }
+
+.icons-Skydiving:before {
+  content: "\ec70"; }
+
+.icons-Skype:before {
+  content: "\ec71"; }
+
+.icons-Sled-withGifts:before {
+  content: "\ec72"; }
+
+.icons-Sled:before {
+  content: "\ec73"; }
+
+.icons-Sleeping:before {
+  content: "\ec74"; }
+
+.icons-Sleet:before {
+  content: "\ec75"; }
+
+.icons-Slippers:before {
+  content: "\ec76"; }
+
+.icons-Smart:before {
+  content: "\ec77"; }
+
+.icons-Smartphone-2:before {
+  content: "\ec78"; }
+
+.icons-Smartphone-3:before {
+  content: "\ec79"; }
+
+.icons-Smartphone-4:before {
+  content: "\ec7a"; }
+
+.icons-Smartphone-Secure:before {
+  content: "\ec7b"; }
+
+.icons-Smartphone:before {
+  content: "\ec7c"; }
+
+.icons-Smile:before {
+  content: "\ec7d"; }
+
+.icons-Smoking-Area:before {
+  content: "\ec7e"; }
+
+.icons-Smoking-Pipe:before {
+  content: "\ec7f"; }
+
+.icons-Snake:before {
+  content: "\ec80"; }
+
+.icons-Snorkel:before {
+  content: "\ec81"; }
+
+.icons-Snow-2:before {
+  content: "\ec82"; }
+
+.icons-Snow-Dome:before {
+  content: "\ec83"; }
+
+.icons-Snow-Storm:before {
+  content: "\ec84"; }
+
+.icons-Snow:before {
+  content: "\ec85"; }
+
+.icons-Snowflake-2:before {
+  content: "\ec86"; }
+
+.icons-Snowflake-3:before {
+  content: "\ec87"; }
+
+.icons-Snowflake-4:before {
+  content: "\ec88"; }
+
+.icons-Snowflake:before {
+  content: "\ec89"; }
+
+.icons-Snowman:before {
+  content: "\ec8a"; }
+
+.icons-Soccer-Ball:before {
+  content: "\ec8b"; }
+
+.icons-Soccer-Shoes:before {
+  content: "\ec8c"; }
+
+.icons-Socks:before {
+  content: "\ec8d"; }
+
+.icons-Solar:before {
+  content: "\ec8e"; }
+
+.icons-Sound-Wave:before {
+  content: "\ec8f"; }
+
+.icons-Sound:before {
+  content: "\ec90"; }
+
+.icons-Soundcloud:before {
+  content: "\ec91"; }
+
+.icons-Soup:before {
+  content: "\ec92"; }
+
+.icons-South-Africa:before {
+  content: "\ec93"; }
+
+.icons-Space-Needle:before {
+  content: "\ec94"; }
+
+.icons-Spain:before {
+  content: "\ec95"; }
+
+.icons-Spam-Mail:before {
+  content: "\ec96"; }
+
+.icons-Speach-Bubble:before {
+  content: "\ec97"; }
+
+.icons-Speach-Bubble2:before {
+  content: "\ec98"; }
+
+.icons-Speach-Bubble3:before {
+  content: "\ec99"; }
+
+.icons-Speach-Bubble4:before {
+  content: "\ec9a"; }
+
+.icons-Speach-Bubble5:before {
+  content: "\ec9b"; }
+
+.icons-Speach-Bubble6:before {
+  content: "\ec9c"; }
+
+.icons-Speach-Bubble7:before {
+  content: "\ec9d"; }
+
+.icons-Speach-Bubble8:before {
+  content: "\ec9e"; }
+
+.icons-Speach-Bubble9:before {
+  content: "\ec9f"; }
+
+.icons-Speach-Bubble10:before {
+  content: "\eca0"; }
+
+.icons-Speach-Bubble11:before {
+  content: "\eca1"; }
+
+.icons-Speach-Bubble12:before {
+  content: "\eca2"; }
+
+.icons-Speach-Bubble13:before {
+  content: "\eca3"; }
+
+.icons-Speach-BubbleAsking:before {
+  content: "\eca4"; }
+
+.icons-Speach-BubbleComic:before {
+  content: "\eca5"; }
+
+.icons-Speach-BubbleComic2:before {
+  content: "\eca6"; }
+
+.icons-Speach-BubbleComic3:before {
+  content: "\eca7"; }
+
+.icons-Speach-BubbleComic4:before {
+  content: "\eca8"; }
+
+.icons-Speach-BubbleDialog:before {
+  content: "\eca9"; }
+
+.icons-Speach-Bubbles:before {
+  content: "\ecaa"; }
+
+.icons-Speak-2:before {
+  content: "\ecab"; }
+
+.icons-Speak:before {
+  content: "\ecac"; }
+
+.icons-Speaker-2:before {
+  content: "\ecad"; }
+
+.icons-Speaker:before {
+  content: "\ecae"; }
+
+.icons-Spell-Check:before {
+  content: "\ecaf"; }
+
+.icons-Spell-CheckABC:before {
+  content: "\ecb0"; }
+
+.icons-Spermium:before {
+  content: "\ecb1"; }
+
+.icons-Spider:before {
+  content: "\ecb2"; }
+
+.icons-Spiderweb:before {
+  content: "\ecb3"; }
+
+.icons-Split-FourSquareWindow:before {
+  content: "\ecb4"; }
+
+.icons-Split-Horizontal:before {
+  content: "\ecb5"; }
+
+.icons-Split-Horizontal2Window:before {
+  content: "\ecb6"; }
+
+.icons-Split-Vertical:before {
+  content: "\ecb7"; }
+
+.icons-Split-Vertical2:before {
+  content: "\ecb8"; }
+
+.icons-Split-Window:before {
+  content: "\ecb9"; }
+
+.icons-Spoder:before {
+  content: "\ecba"; }
+
+.icons-Spoon:before {
+  content: "\ecbb"; }
+
+.icons-Sport-Mode:before {
+  content: "\ecbc"; }
+
+.icons-Sports-Clothings1:before {
+  content: "\ecbd"; }
+
+.icons-Sports-Clothings2:before {
+  content: "\ecbe"; }
+
+.icons-Sports-Shirt:before {
+  content: "\ecbf"; }
+
+.icons-Spot:before {
+  content: "\ecc0"; }
+
+.icons-Spray:before {
+  content: "\ecc1"; }
+
+.icons-Spread:before {
+  content: "\ecc2"; }
+
+.icons-Spring:before {
+  content: "\ecc3"; }
+
+.icons-Spurl:before {
+  content: "\ecc4"; }
+
+.icons-Spy:before {
+  content: "\ecc5"; }
+
+.icons-Squirrel:before {
+  content: "\ecc6"; }
+
+.icons-SSL:before {
+  content: "\ecc7"; }
+
+.icons-St-BasilsCathedral:before {
+  content: "\ecc8"; }
+
+.icons-St-PaulsCathedral:before {
+  content: "\ecc9"; }
+
+.icons-Stamp-2:before {
+  content: "\ecca"; }
+
+.icons-Stamp:before {
+  content: "\eccb"; }
+
+.icons-Stapler:before {
+  content: "\eccc"; }
+
+.icons-Star-Track:before {
+  content: "\eccd"; }
+
+.icons-Star:before {
+  content: "\ecce"; }
+
+.icons-Starfish:before {
+  content: "\eccf"; }
+
+.icons-Start2:before {
+  content: "\ecd0"; }
+
+.icons-Start-3:before {
+  content: "\ecd1"; }
+
+.icons-Start-ways:before {
+  content: "\ecd2"; }
+
+.icons-Start:before {
+  content: "\ecd3"; }
+
+.icons-Statistic:before {
+  content: "\ecd4"; }
+
+.icons-Stethoscope:before {
+  content: "\ecd5"; }
+
+.icons-stop--2:before {
+  content: "\ecd6"; }
+
+.icons-Stop-Music:before {
+  content: "\ecd7"; }
+
+.icons-Stop:before {
+  content: "\ecd8"; }
+
+.icons-Stopwatch-2:before {
+  content: "\ecd9"; }
+
+.icons-Stopwatch:before {
+  content: "\ecda"; }
+
+.icons-Storm:before {
+  content: "\ecdb"; }
+
+.icons-Street-View:before {
+  content: "\ecdc"; }
+
+.icons-Street-View2:before {
+  content: "\ecdd"; }
+
+.icons-Strikethrough-Text:before {
+  content: "\ecde"; }
+
+.icons-Stroller:before {
+  content: "\ecdf"; }
+
+.icons-Structure:before {
+  content: "\ece0"; }
+
+.icons-Student-Female:before {
+  content: "\ece1"; }
+
+.icons-Student-Hat:before {
+  content: "\ece2"; }
+
+.icons-Student-Hat2:before {
+  content: "\ece3"; }
+
+.icons-Student-Male:before {
+  content: "\ece4"; }
+
+.icons-Student-MaleFemale:before {
+  content: "\ece5"; }
+
+.icons-Students:before {
+  content: "\ece6"; }
+
+.icons-Studio-Flash:before {
+  content: "\ece7"; }
+
+.icons-Studio-Lightbox:before {
+  content: "\ece8"; }
+
+.icons-Stumbleupon:before {
+  content: "\ece9"; }
+
+.icons-Suit:before {
+  content: "\ecea"; }
+
+.icons-Suitcase:before {
+  content: "\eceb"; }
+
+.icons-Sum-2:before {
+  content: "\ecec"; }
+
+.icons-Sum:before {
+  content: "\eced"; }
+
+.icons-Summer:before {
+  content: "\ecee"; }
+
+.icons-Sun-CloudyRain:before {
+  content: "\ecef"; }
+
+.icons-Sun:before {
+  content: "\ecf0"; }
+
+.icons-Sunglasses-2:before {
+  content: "\ecf1"; }
+
+.icons-Sunglasses-3:before {
+  content: "\ecf2"; }
+
+.icons-Sunglasses-Smiley:before {
+  content: "\ecf3"; }
+
+.icons-Sunglasses-Smiley2:before {
+  content: "\ecf4"; }
+
+.icons-Sunglasses-W:before {
+  content: "\ecf5"; }
+
+.icons-Sunglasses-W2:before {
+  content: "\ecf6"; }
+
+.icons-Sunglasses-W3:before {
+  content: "\ecf7"; }
+
+.icons-Sunglasses:before {
+  content: "\ecf8"; }
+
+.icons-Sunrise:before {
+  content: "\ecf9"; }
+
+.icons-Sunset:before {
+  content: "\ecfa"; }
+
+.icons-Superman:before {
+  content: "\ecfb"; }
+
+.icons-Support:before {
+  content: "\ecfc"; }
+
+.icons-Surprise:before {
+  content: "\ecfd"; }
+
+.icons-Sushi:before {
+  content: "\ecfe"; }
+
+.icons-Sweden:before {
+  content: "\ecff"; }
+
+.icons-Swimming-Short:before {
+  content: "\ed00"; }
+
+.icons-Swimming:before {
+  content: "\ed01"; }
+
+.icons-Swimmwear:before {
+  content: "\ed02"; }
+
+.icons-Switch:before {
+  content: "\ed03"; }
+
+.icons-Switzerland:before {
+  content: "\ed04"; }
+
+.icons-Sync-Cloud:before {
+  content: "\ed05"; }
+
+.icons-Sync:before {
+  content: "\ed06"; }
+
+.icons-Synchronize-2:before {
+  content: "\ed07"; }
+
+.icons-Synchronize:before {
+  content: "\ed08"; }
+
+.icons-T-Shirt:before {
+  content: "\ed09"; }
+
+.icons-Tablet-2:before {
+  content: "\ed0a"; }
+
+.icons-Tablet-3:before {
+  content: "\ed0b"; }
+
+.icons-Tablet-Orientation:before {
+  content: "\ed0c"; }
+
+.icons-Tablet-Phone:before {
+  content: "\ed0d"; }
+
+.icons-Tablet-Secure:before {
+  content: "\ed0e"; }
+
+.icons-Tablet-Vertical:before {
+  content: "\ed0f"; }
+
+.icons-Tablet:before {
+  content: "\ed10"; }
+
+.icons-Tactic:before {
+  content: "\ed11"; }
+
+.icons-Tag-2:before {
+  content: "\ed12"; }
+
+.icons-Tag-3:before {
+  content: "\ed13"; }
+
+.icons-Tag-4:before {
+  content: "\ed14"; }
+
+.icons-Tag-5:before {
+  content: "\ed15"; }
+
+.icons-Tag:before {
+  content: "\ed16"; }
+
+.icons-Taj-Mahal:before {
+  content: "\ed17"; }
+
+.icons-Talk-Man:before {
+  content: "\ed18"; }
+
+.icons-Tap:before {
+  content: "\ed19"; }
+
+.icons-Target-Market:before {
+  content: "\ed1a"; }
+
+.icons-Target:before {
+  content: "\ed1b"; }
+
+.icons-Taurus-2:before {
+  content: "\ed1c"; }
+
+.icons-Taurus:before {
+  content: "\ed1d"; }
+
+.icons-Taxi-2:before {
+  content: "\ed1e"; }
+
+.icons-Taxi-Sign:before {
+  content: "\ed1f"; }
+
+.icons-Taxi:before {
+  content: "\ed20"; }
+
+.icons-Teacher:before {
+  content: "\ed21"; }
+
+.icons-Teapot:before {
+  content: "\ed22"; }
+
+.icons-Technorati:before {
+  content: "\ed23"; }
+
+.icons-Teddy-Bear:before {
+  content: "\ed24"; }
+
+.icons-Tee-Mug:before {
+  content: "\ed25"; }
+
+.icons-Telephone-2:before {
+  content: "\ed26"; }
+
+.icons-Telephone:before {
+  content: "\ed27"; }
+
+.icons-Telescope:before {
+  content: "\ed28"; }
+
+.icons-Temperature-2:before {
+  content: "\ed29"; }
+
+.icons-Temperature-3:before {
+  content: "\ed2a"; }
+
+.icons-Temperature:before {
+  content: "\ed2b"; }
+
+.icons-Temple:before {
+  content: "\ed2c"; }
+
+.icons-Tennis-Ball:before {
+  content: "\ed2d"; }
+
+.icons-Tennis:before {
+  content: "\ed2e"; }
+
+.icons-Tent:before {
+  content: "\ed2f"; }
+
+.icons-Test-Tube:before {
+  content: "\ed30"; }
+
+.icons-Test-Tube2:before {
+  content: "\ed31"; }
+
+.icons-Testimonal:before {
+  content: "\ed32"; }
+
+.icons-Text-Box:before {
+  content: "\ed33"; }
+
+.icons-Text-Effect:before {
+  content: "\ed34"; }
+
+.icons-Text-HighlightColor:before {
+  content: "\ed35"; }
+
+.icons-Text-Paragraph:before {
+  content: "\ed36"; }
+
+.icons-Thailand:before {
+  content: "\ed37"; }
+
+.icons-The-WhiteHouse:before {
+  content: "\ed38"; }
+
+.icons-This-SideUp:before {
+  content: "\ed39"; }
+
+.icons-Thread:before {
+  content: "\ed3a"; }
+
+.icons-Three-ArrowFork:before {
+  content: "\ed3b"; }
+
+.icons-Three-Fingers:before {
+  content: "\ed3c"; }
+
+.icons-Three-FingersDrag:before {
+  content: "\ed3d"; }
+
+.icons-Three-FingersDrag2:before {
+  content: "\ed3e"; }
+
+.icons-Three-FingersTouch:before {
+  content: "\ed3f"; }
+
+.icons-Thumb:before {
+  content: "\ed40"; }
+
+.icons-Thumbs-DownSmiley:before {
+  content: "\ed41"; }
+
+.icons-Thumbs-UpSmiley:before {
+  content: "\ed42"; }
+
+.icons-Thunder:before {
+  content: "\ed43"; }
+
+.icons-Thunderstorm:before {
+  content: "\ed44"; }
+
+.icons-Ticket:before {
+  content: "\ed45"; }
+
+.icons-Tie-2:before {
+  content: "\ed46"; }
+
+.icons-Tie-3:before {
+  content: "\ed47"; }
+
+.icons-Tie-4:before {
+  content: "\ed48"; }
+
+.icons-Tie:before {
+  content: "\ed49"; }
+
+.icons-Tiger:before {
+  content: "\ed4a"; }
+
+.icons-Time-Backup:before {
+  content: "\ed4b"; }
+
+.icons-Time-Bomb:before {
+  content: "\ed4c"; }
+
+.icons-Time-Clock:before {
+  content: "\ed4d"; }
+
+.icons-Time-Fire:before {
+  content: "\ed4e"; }
+
+.icons-Time-Machine:before {
+  content: "\ed4f"; }
+
+.icons-Time-Window:before {
+  content: "\ed50"; }
+
+.icons-Timer-2:before {
+  content: "\ed51"; }
+
+.icons-Timer:before {
+  content: "\ed52"; }
+
+.icons-To-Bottom:before {
+  content: "\ed53"; }
+
+.icons-To-Bottom2:before {
+  content: "\ed54"; }
+
+.icons-To-Left:before {
+  content: "\ed55"; }
+
+.icons-To-Right:before {
+  content: "\ed56"; }
+
+.icons-To-Top:before {
+  content: "\ed57"; }
+
+.icons-To-Top2:before {
+  content: "\ed58"; }
+
+.icons-Token-:before {
+  content: "\ed59"; }
+
+.icons-Tomato:before {
+  content: "\ed5a"; }
+
+.icons-Tongue:before {
+  content: "\ed5b"; }
+
+.icons-Tooth-2:before {
+  content: "\ed5c"; }
+
+.icons-Tooth:before {
+  content: "\ed5d"; }
+
+.icons-Top-ToBottom:before {
+  content: "\ed5e"; }
+
+.icons-Touch-Window:before {
+  content: "\ed5f"; }
+
+.icons-Tourch:before {
+  content: "\ed60"; }
+
+.icons-Tower-2:before {
+  content: "\ed61"; }
+
+.icons-Tower-Bridge:before {
+  content: "\ed62"; }
+
+.icons-Tower:before {
+  content: "\ed63"; }
+
+.icons-Trace:before {
+  content: "\ed64"; }
+
+.icons-Tractor:before {
+  content: "\ed65"; }
+
+.icons-traffic-Light:before {
+  content: "\ed66"; }
+
+.icons-Traffic-Light2:before {
+  content: "\ed67"; }
+
+.icons-Train-2:before {
+  content: "\ed68"; }
+
+.icons-Train:before {
+  content: "\ed69"; }
+
+.icons-Tram:before {
+  content: "\ed6a"; }
+
+.icons-Transform-2:before {
+  content: "\ed6b"; }
+
+.icons-Transform-3:before {
+  content: "\ed6c"; }
+
+.icons-Transform-4:before {
+  content: "\ed6d"; }
+
+.icons-Transform:before {
+  content: "\ed6e"; }
+
+.icons-Trash-withMen:before {
+  content: "\ed6f"; }
+
+.icons-Tree-2:before {
+  content: "\ed70"; }
+
+.icons-Tree-3:before {
+  content: "\ed71"; }
+
+.icons-Tree-4:before {
+  content: "\ed72"; }
+
+.icons-Tree-5:before {
+  content: "\ed73"; }
+
+.icons-Tree:before {
+  content: "\ed74"; }
+
+.icons-Trekking:before {
+  content: "\ed75"; }
+
+.icons-Triangle-ArrowDown:before {
+  content: "\ed76"; }
+
+.icons-Triangle-ArrowLeft:before {
+  content: "\ed77"; }
+
+.icons-Triangle-ArrowRight:before {
+  content: "\ed78"; }
+
+.icons-Triangle-ArrowUp:before {
+  content: "\ed79"; }
+
+.icons-Tripod-2:before {
+  content: "\ed7a"; }
+
+.icons-Tripod-andVideo:before {
+  content: "\ed7b"; }
+
+.icons-Tripod-withCamera:before {
+  content: "\ed7c"; }
+
+.icons-Tripod-withGopro:before {
+  content: "\ed7d"; }
+
+.icons-Trophy-2:before {
+  content: "\ed7e"; }
+
+.icons-Trophy:before {
+  content: "\ed7f"; }
+
+.icons-Truck:before {
+  content: "\ed80"; }
+
+.icons-Trumpet:before {
+  content: "\ed81"; }
+
+.icons-Tumblr:before {
+  content: "\ed82"; }
+
+.icons-Turkey:before {
+  content: "\ed83"; }
+
+.icons-Turn-Down:before {
+  content: "\ed84"; }
+
+.icons-Turn-Down2:before {
+  content: "\ed85"; }
+
+.icons-Turn-DownFromLeft:before {
+  content: "\ed86"; }
+
+.icons-Turn-DownFromRight:before {
+  content: "\ed87"; }
+
+.icons-Turn-Left:before {
+  content: "\ed88"; }
+
+.icons-Turn-Left3:before {
+  content: "\ed89"; }
+
+.icons-Turn-Right:before {
+  content: "\ed8a"; }
+
+.icons-Turn-Right3:before {
+  content: "\ed8b"; }
+
+.icons-Turn-Up:before {
+  content: "\ed8c"; }
+
+.icons-Turn-Up2:before {
+  content: "\ed8d"; }
+
+.icons-Turtle:before {
+  content: "\ed8e"; }
+
+.icons-Tuxedo:before {
+  content: "\ed8f"; }
+
+.icons-TV:before {
+  content: "\ed90"; }
+
+.icons-Twister:before {
+  content: "\ed91"; }
+
+.icons-Twitter-2:before {
+  content: "\ed92"; }
+
+.icons-Twitter:before {
+  content: "\ed93"; }
+
+.icons-Two-Fingers:before {
+  content: "\ed94"; }
+
+.icons-Two-FingersDrag:before {
+  content: "\ed95"; }
+
+.icons-Two-FingersDrag2:before {
+  content: "\ed96"; }
+
+.icons-Two-FingersScroll:before {
+  content: "\ed97"; }
+
+.icons-Two-FingersTouch:before {
+  content: "\ed98"; }
+
+.icons-Two-Windows:before {
+  content: "\ed99"; }
+
+.icons-Type-Pass:before {
+  content: "\ed9a"; }
+
+.icons-Ukraine:before {
+  content: "\ed9b"; }
+
+.icons-Umbrela:before {
+  content: "\ed9c"; }
+
+.icons-Umbrella-2:before {
+  content: "\ed9d"; }
+
+.icons-Umbrella-3:before {
+  content: "\ed9e"; }
+
+.icons-Under-LineText:before {
+  content: "\ed9f"; }
+
+.icons-Undo:before {
+  content: "\eda0"; }
+
+.icons-United-Kingdom:before {
+  content: "\eda1"; }
+
+.icons-United-States:before {
+  content: "\eda2"; }
+
+.icons-University-2:before {
+  content: "\eda3"; }
+
+.icons-University:before {
+  content: "\eda4"; }
+
+.icons-Unlike-2:before {
+  content: "\eda5"; }
+
+.icons-Unlike:before {
+  content: "\eda6"; }
+
+.icons-Unlock-2:before {
+  content: "\eda7"; }
+
+.icons-Unlock-3:before {
+  content: "\eda8"; }
+
+.icons-Unlock:before {
+  content: "\eda9"; }
+
+.icons-Up--Down:before {
+  content: "\edaa"; }
+
+.icons-Up--Down3:before {
+  content: "\edab"; }
+
+.icons-Up-2:before {
+  content: "\edac"; }
+
+.icons-Up-3:before {
+  content: "\edad"; }
+
+.icons-Up-4:before {
+  content: "\edae"; }
+
+.icons-Up:before {
+  content: "\edaf"; }
+
+.icons-Upgrade:before {
+  content: "\edb0"; }
+
+.icons-Upload-2:before {
+  content: "\edb1"; }
+
+.icons-Upload-toCloud:before {
+  content: "\edb2"; }
+
+.icons-Upload-Window:before {
+  content: "\edb3"; }
+
+.icons-Upload:before {
+  content: "\edb4"; }
+
+.icons-Uppercase-Text:before {
+  content: "\edb5"; }
+
+.icons-Upward:before {
+  content: "\edb6"; }
+
+.icons-URL-Window:before {
+  content: "\edb7"; }
+
+.icons-Usb-2:before {
+  content: "\edb8"; }
+
+.icons-Usb-Cable:before {
+  content: "\edb9"; }
+
+.icons-Usb:before {
+  content: "\edba"; }
+
+.icons-User:before {
+  content: "\edbb"; }
+
+.icons-Ustream:before {
+  content: "\edbc"; }
+
+.icons-Vase:before {
+  content: "\edbd"; }
+
+.icons-Vector-2:before {
+  content: "\edbe"; }
+
+.icons-Vector-3:before {
+  content: "\edbf"; }
+
+.icons-Vector-4:before {
+  content: "\edc0"; }
+
+.icons-Vector-5:before {
+  content: "\edc1"; }
+
+.icons-Vector:before {
+  content: "\edc2"; }
+
+.icons-Venn-Diagram:before {
+  content: "\edc3"; }
+
+.icons-Vest-2:before {
+  content: "\edc4"; }
+
+.icons-Vest:before {
+  content: "\edc5"; }
+
+.icons-Viddler:before {
+  content: "\edc6"; }
+
+.icons-Video-2:before {
+  content: "\edc7"; }
+
+.icons-Video-3:before {
+  content: "\edc8"; }
+
+.icons-Video-4:before {
+  content: "\edc9"; }
+
+.icons-Video-5:before {
+  content: "\edca"; }
+
+.icons-Video-6:before {
+  content: "\edcb"; }
+
+.icons-Video-GameController:before {
+  content: "\edcc"; }
+
+.icons-Video-Len:before {
+  content: "\edcd"; }
+
+.icons-Video-Len2:before {
+  content: "\edce"; }
+
+.icons-Video-Photographer:before {
+  content: "\edcf"; }
+
+.icons-Video-Tripod:before {
+  content: "\edd0"; }
+
+.icons-Video:before {
+  content: "\edd1"; }
+
+.icons-Vietnam:before {
+  content: "\edd2"; }
+
+.icons-View-Height:before {
+  content: "\edd3"; }
+
+.icons-View-Width:before {
+  content: "\edd4"; }
+
+.icons-Vimeo:before {
+  content: "\edd5"; }
+
+.icons-Virgo-2:before {
+  content: "\edd6"; }
+
+.icons-Virgo:before {
+  content: "\edd7"; }
+
+.icons-Virus-2:before {
+  content: "\edd8"; }
+
+.icons-Virus-3:before {
+  content: "\edd9"; }
+
+.icons-Virus:before {
+  content: "\edda"; }
+
+.icons-Visa:before {
+  content: "\eddb"; }
+
+.icons-Voice:before {
+  content: "\eddc"; }
+
+.icons-Voicemail:before {
+  content: "\eddd"; }
+
+.icons-Volleyball:before {
+  content: "\edde"; }
+
+.icons-Volume-Down:before {
+  content: "\eddf"; }
+
+.icons-Volume-Up:before {
+  content: "\ede0"; }
+
+.icons-VPN:before {
+  content: "\ede1"; }
+
+.icons-Wacom-Tablet:before {
+  content: "\ede2"; }
+
+.icons-Waiter:before {
+  content: "\ede3"; }
+
+.icons-Walkie-Talkie:before {
+  content: "\ede4"; }
+
+.icons-Wallet-2:before {
+  content: "\ede5"; }
+
+.icons-Wallet-3:before {
+  content: "\ede6"; }
+
+.icons-Wallet:before {
+  content: "\ede7"; }
+
+.icons-Warehouse:before {
+  content: "\ede8"; }
+
+.icons-Warning-Window:before {
+  content: "\ede9"; }
+
+.icons-Watch-2:before {
+  content: "\edea"; }
+
+.icons-Watch-3:before {
+  content: "\edeb"; }
+
+.icons-Watch:before {
+  content: "\edec"; }
+
+.icons-Wave-2:before {
+  content: "\eded"; }
+
+.icons-Wave:before {
+  content: "\edee"; }
+
+.icons-Webcam:before {
+  content: "\edef"; }
+
+.icons-weight-Lift:before {
+  content: "\edf0"; }
+
+.icons-Wheelbarrow:before {
+  content: "\edf1"; }
+
+.icons-Wheelchair:before {
+  content: "\edf2"; }
+
+.icons-Width-Window:before {
+  content: "\edf3"; }
+
+.icons-Wifi-2:before {
+  content: "\edf4"; }
+
+.icons-Wifi-Keyboard:before {
+  content: "\edf5"; }
+
+.icons-Wifi:before {
+  content: "\edf6"; }
+
+.icons-Wind-Turbine:before {
+  content: "\edf7"; }
+
+.icons-Windmill:before {
+  content: "\edf8"; }
+
+.icons-Window-2:before {
+  content: "\edf9"; }
+
+.icons-Window:before {
+  content: "\edfa"; }
+
+.icons-Windows-2:before {
+  content: "\edfb"; }
+
+.icons-Windows-Microsoft:before {
+  content: "\edfc"; }
+
+.icons-Windows:before {
+  content: "\edfd"; }
+
+.icons-Windsock:before {
+  content: "\edfe"; }
+
+.icons-Windy:before {
+  content: "\edff"; }
+
+.icons-Wine-Bottle:before {
+  content: "\ee00"; }
+
+.icons-Wine-Glass:before {
+  content: "\ee01"; }
+
+.icons-Wink:before {
+  content: "\ee02"; }
+
+.icons-Winter-2:before {
+  content: "\ee03"; }
+
+.icons-Winter:before {
+  content: "\ee04"; }
+
+.icons-Wireless:before {
+  content: "\ee05"; }
+
+.icons-Witch-Hat:before {
+  content: "\ee06"; }
+
+.icons-Witch:before {
+  content: "\ee07"; }
+
+.icons-Wizard:before {
+  content: "\ee08"; }
+
+.icons-Wolf:before {
+  content: "\ee09"; }
+
+.icons-Woman-Sign:before {
+  content: "\ee0a"; }
+
+.icons-WomanMan:before {
+  content: "\ee0b"; }
+
+.icons-Womans-Underwear:before {
+  content: "\ee0c"; }
+
+.icons-Womans-Underwear2:before {
+  content: "\ee0d"; }
+
+.icons-Women:before {
+  content: "\ee0e"; }
+
+.icons-Wonder-Woman:before {
+  content: "\ee0f"; }
+
+.icons-Wordpress:before {
+  content: "\ee10"; }
+
+.icons-Worker-Clothes:before {
+  content: "\ee11"; }
+
+.icons-Worker:before {
+  content: "\ee12"; }
+
+.icons-Wrap-Text:before {
+  content: "\ee13"; }
+
+.icons-Wreath:before {
+  content: "\ee14"; }
+
+.icons-Wrench:before {
+  content: "\ee15"; }
+
+.icons-X-Box:before {
+  content: "\ee16"; }
+
+.icons-X-ray:before {
+  content: "\ee17"; }
+
+.icons-Xanga:before {
+  content: "\ee18"; }
+
+.icons-Xing:before {
+  content: "\ee19"; }
+
+.icons-Yacht:before {
+  content: "\ee1a"; }
+
+.icons-Yahoo-Buzz:before {
+  content: "\ee1b"; }
+
+.icons-Yahoo:before {
+  content: "\ee1c"; }
+
+.icons-Yelp:before {
+  content: "\ee1d"; }
+
+.icons-Yes:before {
+  content: "\ee1e"; } 
+
+.icons-Ying-Yang:before {
+  content: "\ee1f"; }
+
+.icons-Youtube:before {
+  content: "\ee20"; }
+
+.icons-Z-A:before {
+  content: "\ee21"; }
+
+.icons-Zebra:before {
+  content: "\ee22"; }
+
+.icons-Zombie:before {
+  content: "\ee23"; }
+
+.icons-Zoom-Gesture:before {
+  content: "\ee24"; }
+
+.icons-Zootool:before {
+  content: "\ee25"; }

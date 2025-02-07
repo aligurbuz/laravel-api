@@ -1,0 +1,505 @@
+@import './variable';
+// this is bootstrap overwrite 
+/*******************
+Basic Common
+*******************/
+body{
+    text-align: right;
+    direction: rtl;
+}
+.custom-select{
+    padding: .375rem .75rem .375rem 1.75rem;
+}
+.custom-control{
+    padding-left: 0;
+    padding-right: 1.5rem;
+}  
+.custom-control-label::after, .custom-control-label::before{
+    left: auto;
+    right: -25px;
+}
+
+.custom-switch .custom-control-label::before {
+    right: -2.25rem;
+}
+
+.custom-file-label, .custom-file-label::after {
+    left: 0;
+    right: auto;
+}
+
+.custom-file-label {
+    width: 100%;
+    &::after {
+        border-left: 0;
+        border-right: inherit;
+        border-radius: .25rem 0 0 .25rem;
+    }
+}
+
+.custom-select { 
+    background: url(../../../assets/images/custom-select.png) left .75rem center no-repeat;
+}
+
+.btn-group>.btn-group:not(:first-child)>.btn, 
+.btn-group>.btn:not(:first-child), 
+.input-group>.custom-file:not(:first-child) .custom-file-label, 
+.input-group>.custom-select:not(:first-child), 
+.input-group>.form-control:not(:first-child) {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-top-left-radius: .25rem;
+    border-bottom-left-radius: .25rem;
+}
+
+.input-form .btn {
+     padding: 7px 12px;
+}
+
+.form-control.is-invalid, .was-validated .form-control:invalid,
+.form-control.is-valid, .was-validated .form-control:valid {
+    background-position: center left calc(.375em + .1875rem);
+}
+
+.form-check-input {
+    margin-right: 0 !important;  
+}
+
+.modal-header .close {
+    margin: -1rem auto -1rem -1rem;
+}
+
+.list-group{
+    padding: 0px; 
+}
+ .btn-group, .pagination {
+   // Reset rounded corners
+  .btn:first-child, .page-item:first-child .page-link{
+     border-radius: 0 $border-radius $border-radius 0 !important;
+  }  
+  .btn:last-child, .page-item:last-child .page-link{
+     border-radius: $border-radius 0 0 $border-radius;   
+   }         
+}   
+  
+// spacing - margin -padding
+
+.ml-auto{
+    margin-right: auto!important;
+    margin-left: 0px!important; 
+}
+
+.mr-auto{
+    margin-left: auto!important;
+    margin-right: 0px!important; 
+}
+.close{
+    float:$rgt;  
+}
+/*******************
+Padding margin property  check in scafholding.scss we have changed in that
+*******************/
+
+/*******************
+flot left to right we have changed in variable.scss check that
+*******************/
+.pull-left{
+    float:$lft;
+}
+.pull-right{
+    float:$rgt; 
+}
+/*******************
+text-alignment 
+*******************/
+.text-end{
+    text-align: left!important; 
+}
+.text-start{
+    text-align: right!important; 
+}
+
+/*************************************************************************************************************************************/
+
+
+/*******************
+Topbar
+*******************/
+.navbar-expand-md .navbar-nav{  
+    padding: 0px;
+}
+.topbar .top-navbar .navbar-header{
+    padding-left: 0px;
+    padding-right: 10px; 
+}
+@media (min-width: 768px){
+    .navbar-expand-md .navbar-nav .dropdown-menu-right {
+        right: auto;
+        left: 0;
+    }
+}
+html body {
+    .navbar-dark .mailbox .message-center a, .message-box .message-widget a {
+        text-align: right;  
+        .user-img{
+            margin: 0 0px 15px 10px
+        }
+        .mail-contnet{
+            text-align: right;
+            padding-left: 0px;
+            padding-right: 10px;
+        }
+    }
+}
+/*************************************************************************************************************************************/
+
+/*******************
+sidebar
+*******************/
+.sidebar-nav {
+    ul li ul li a, ul li a{
+        padding: 7px 15px 7px 35px;  
+    }
+    ul li ul{
+        padding-left: 0px;
+        padding-right: 23px;    
+    }
+    ul li ul ul{
+        padding-left: 0px;
+        padding-right: 15px;  
+    }
+    .has-arrow::after{
+        right: auto;
+        left: 20px;  
+    }
+}
+.scroll-sidebar {
+    &.ps .ps__scrollbar-y-rail {
+        right: 0px!important;  
+        left: auto;
+     }
+}
+@media (min-width: 768px){
+    .mini-sidebar {
+        .sidebar-nav #sidebarnav>li:hover>ul {
+            right: 70px;
+            left: auto; 
+        }
+        .page-wrapper, .footer {
+            margin-left: 0px; 
+            margin-right: 70px; 
+        }
+        .sidebar-nav #sidebarnav>li>a{
+            padding: 15px 25px 15px 15px
+        }
+    }
+    
+}
+@media(max-width:767px) {
+.mini-sidebar {
+        .left-sidebar,
+        .sidebar-footer {
+            right: -220px;
+            left: auto;
+        }
+        &.show-sidebar {
+            .left-sidebar,
+            .sidebar-footer {
+                left: auto;
+                right:0px;
+            }
+        }
+    }
+}
+.right-sidebar{
+    right: auto;
+    left: -240px;
+    .rpanel-title span{
+        float: $rgt;
+    } 
+}
+.shw-rside{
+    left: 0px; 
+}
+/*************************************************************************************************************************************/
+
+/*******************
+Responsive
+*******************/
+/*-- ============================================================== 
+ Small Desktop & above all (1024px) 
+ ============================================================== */
+
+@media(min-width:1024px) {
+    .page-wrapper, .footer {
+        margin-left: 0px;
+        margin-right: 220px;
+    }
+    
+} 
+/*************************************************************************************************************************************/
+
+/*******************
+widgets
+*******************/
+.browser td .badge{
+    float:$rgt;
+}
+.steamline{
+    border-left:0px;
+    border-right: 1px solid $border-color;
+    margin-left: 0px;
+    margin-right: 20px; 
+    .sl-right{
+        padding-left: 0px; 
+        padding-right: 50px;  
+    }
+    .sl-left { 
+        margin-right: -20px; 
+        margin-left: 15px;   
+    }
+}
+
+/*************************************************************************************************************************************/
+
+/*******************
+pages
+*******************/
+.chat-main-box .chat-left-aside{
+    border-right: 0px;
+    border-left: 1px solid $border-color; 
+}
+
+.right-aside{
+    margin-right: 250px;
+    margin-left: 0px; 
+}
+
+/*************************************************************************************************************************************/
+
+/*******************
+Tables
+*******************/
+th{
+    text-align: right; 
+}
+.stylish-table tbody tr, .comment-widgets .comment-row{
+        border-left: 0px;
+        border-right:4px solid $white;
+    &.active, &:hover{
+        border-left: 0px!important;
+        border-right: 4px solid $themecolor;
+    }
+    
+} 
+/*-- ============================================================== 
+ This is for Dahboard 3
+ ============================================================== */
+.profiletimeline{
+    padding-right: 40px;
+    border-right: 1px solid $border-color;
+    border-left: 0px;  
+}
+.profiletimeline .sl-left{
+    float: $lft;
+    margin-left:10px;
+    margin-right: -60px; 
+}
+.like-comm{
+    a{
+        display: inline-block;
+    }
+}
+.css-bar > i{
+    margin-left: 0px;
+    margin-right: 5px;
+} 
+/*-- ============================================================== 
+ This is for Tab page
+ ============================================================== */
+html body{
+.vtabs .tabs-vertical{
+    padding-right: 0px;
+    border-left:1px solid $border-color;
+    border-right: 0px;
+    li a.nav-link.active, li a.nav-link:hover{
+        border-radius: 0 $border-radius $border-radius 0;
+     }
+}
+
+.customvtab .tabs-vertical li .nav-link.active, .customvtab .tabs-vertical li .nav-link:hover, .customvtab .tabs-vertical li .nav-link:focus{
+    border-left:2px solid $themecolor;
+    border-right:0px;
+    margin-left: -1px;
+    border-radius: 0 ;
+}
+ }   
+/*-- ============================================================== 
+ This is for Ribbon page
+ ============================================================== */
+html body{
+.ribbon-vertical-r {
+    right: auto;
+    left: 12px;
+}
+.ribbon-vertical-l{
+    right:12px;
+}
+.ribbon-vwrapper-reverse {
+    padding: 15px 15px 15px 50px;
+}
+.ribbon-vwrapper{
+    padding: 15px 50px 15px 15px;
+}
+}
+/*-- ============================================================== 
+ This is for Form page
+ ============================================================== */
+.custom-control{
+    padding-left: 1rem;
+    padding-right: 1.5rem;
+}
+.custom-control-indicator{
+    right: 0px;
+}
+
+.form-check-label{
+    padding-left: 0px;
+    padding-right: 1.25rem;
+}
+.form-check-input {
+    margin-right: -1.25rem;
+    margin-left: 0rem;
+}
+.custom-file-control::before{
+    left:-1px;
+    right: initial;
+    border-radius: .25rem 0 0 .25rem;
+}
+.form-control+.input-group-addon:not(:first-child){
+    
+    border-right:0px;
+}
+.input-group .form-control:not(:first-child), .input-group-addon:not(:first-child), .input-group-btn:not(:first-child)>.btn, .input-group-btn:not(:first-child)>.btn-group>.btn, .input-group-btn:not(:first-child)>.dropdown-toggle, .input-group-btn:not(:last-child)>.btn-group:not(:first-child)>.btn, .input-group-btn:not(:last-child)>.btn:not(:first-child){
+    border-bottom-left-radius: .25rem;
+    border-top-left-radius: .25rem;
+    border-bottom-right-radius: 0rem;
+    border-top-right-radius: 0rem;
+}
+.input-group-addon:not(:last-child){
+    border-right:1px solid $border-color;
+    border-left:0px;
+}
+.input-group .form-control:not(:last-child), .input-group-addon:not(:last-child), .input-group-btn:not(:first-child)>.btn-group:not(:last-child)>.btn, .input-group-btn:not(:first-child)>.btn:not(:last-child):not(.dropdown-toggle), .input-group-btn:not(:last-child)>.btn, .input-group-btn:not(:last-child)>.btn-group>.btn, .input-group-btn:not(:last-child)>.dropdown-toggle{
+    border-bottom-right-radius: .25rem;
+    border-top-right-radius: .25rem;
+    border-bottom-left-radius: 0rem;
+    border-top-left-radius: 0rem;
+}
+.input-group {
+    .input-group-append .btn, .input-group-append .input-group-text{
+      border-radius: $border-radius 0 0 $border-radius; 
+    }
+    .input-group-prepend .btn, .input-group-prepend .input-group-text{
+        border-radius: 0 $border-radius $border-radius 0; 
+    }    
+}
+.dtp > .dtp-content{
+    left: auto;
+    right: 50%; 
+}
+/*-- ============================================================== 
+ This is for Form addons page
+ ============================================================== */
+html body {
+.bootstrap-select>.dropdown-toggle{
+    padding-left: 25px;
+    padding-right: 15px;
+}
+.dropdown-toggle::after{
+    margin-right: .3em;
+}
+.bootstrap-select.btn-group .dropdown-toggle .filter-option{
+    text-align: $lft;
+}
+
+.has-warning .form-control-warning, .floating-labels .has-success .form-control, .has-danger .form-control-danger, .has-success .form-control-success{
+    background-position: left 0.75rem center;
+    padding-left:2.25rem;
+    padding-right: 10px;
+}
+.asColorPicker-trigger{
+    right: initial;
+    left:-35px;
+}
+.asColorPicker-clear{
+    left:10px;
+    right: initial;
+}
+.icheck-list{
+   float: $lft;
+    padding-left: 50px;
+    padding-right: 0px;     
+}
+ul.wysihtml5-toolbar > li{
+    float: $lft;
+}
+.wysihtml5-sandbox{
+    direction: rtl;
+}
+}    
+/*-- ============================================================== 
+ This is for Form wizrd page
+ ============================================================== */
+html body {
+.wizard-content .wizard>.steps>ul>li:after{
+    left:0px;
+    right:initial;
+}
+.wizard-content .wizard>.steps>ul>li:before{
+    right:0px;
+    left:initial;
+}
+.dataTables_filter, .dataTables_wrapper .dataTables_paginate, .tablesaw-advance{
+    float: $rgt;
+}
+.tablesaw-toolbar{ 
+    float: $lft;
+}  
+.tablesaw-enhanced .tablesaw-bar .btn.btn-select{
+    text-align: $lft;
+}   
+
+    .tablesaw-toolbar label{
+        margin-right:0px;
+        margin-left: 20px;
+    }
+
+}     
+/*-- ============================================================== 
+ This is for timeline page 
+ ============================================================== */
+html body .timeline > li.timeline-inverted > .timeline-panel{ 
+    float: $lft;   
+}
+
+/*-- ============================================================== 
+ This is for Nestable page 
+ ============================================================== */
+html body{
+    .dd3-handle { 
+        left:auto;
+        right:0px;
+    }
+    .myadmin-dd-empty .dd-list .dd3-content {
+        padding:  8px 46px 8px 16px ;
+    }
+    .dd3-item > button {
+        margin-left:0px;
+        margin-right:30px; 
+        float:$lft;
+    }
+    .dd-item>button{
+        float:$lft;
+    }
+}  

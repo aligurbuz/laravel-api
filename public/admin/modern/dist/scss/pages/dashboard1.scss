@@ -1,0 +1,27 @@
+
+@import '../variable';
+
+/*******************
+ Our income
+*******************/
+.cmin-height{
+    height: 105px;
+}
+
+/*******************
+ Blog Slide
+*******************/
+.blogs-slide{
+    .overlaybg{
+        height: 452px;
+        overflow: hidden;
+    }
+    .blogs-content {
+    	right: 0;
+    	left: 0;
+    	bottom: 0;
+    	text-align: left;
+    	padding: 20px;
+    	background: url(../../../../assets/images/news/gradiant-bg.png) top center repeat-x;
+    }
+} 

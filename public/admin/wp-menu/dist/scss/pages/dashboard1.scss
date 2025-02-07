@@ -1,0 +1,24 @@
+
+@import '../variable';
+
+/*******************
+ Our income
+*******************/
+.cmin-height{
+    height: 105px;
+}
+.dash-timeline{
+    > li > .timeline-badge{
+        left: 30px;
+    }
+    > li > .timeline-panel{
+        width: 90%;  
+    }
+    >li.timeline-inverted > .timeline-panel{
+        float: $lft;
+        margin-left: 75px; 
+    }
+    &:before{
+        left: 30px; 
+    }
+}

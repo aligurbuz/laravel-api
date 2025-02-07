@@ -1,0 +1,142 @@
+@import './variable';
+
+// This is for the dark version
+$dark-bg: #303641;
+/*============================================================== 
+ Common changes done in the variable.scss 
+ ============================================================== */
+html body{
+.page-titles, .footer, .footable-odd, .footable .pagination li.disabled a, .mega-dropdown .nav-accordion .card-header, .myadmin-dd .dd-list .dd-item .dd-handle, 
+.myadmin-dd-empty .dd-list .dd3-content, .myadmin-dd-empty .dd-list .dd3-handle, .page-item.disabled .page-link, .daterangepicker td.off, .daterangepicker td.off, .dropify-wrapper input, .jsgrid-row>.jsgrid-cell, .jsgrid-filter-row>.jsgrid-cell {
+    background: $gray-100;      
+}
+
+select, .fc-button, .footable .pagination li a, .dropzone, .page-link, .breadcrumb, .bootstrap-switch .bootstrap-switch-label, .grid-stack-item-content, 
+.fileinput .input-group-addon, .select2-container--default .select2-selection--multiple, .select2-container--default .select2-selection--single, .select2-dropdown,
+.bootstrap-tagsinput, .ms-container .ms-selectable, .ms-container .ms-selection, .daterangepicker .calendar-table, .dropify-wrapper, .wizard-content .wizard.wizard-circle>.steps .step,
+.wizard-content .wizard>.steps .step, .note-editor.note-frame .note-editing-area .note-editable, .jsgrid-header-row>.jsgrid-header-cell, .jsgrid-grid-header, .jsgrid-alt-row>.jsgrid-cell { 
+    background: $gray-200;          
+}
+    .bootstrap-switch .bootstrap-switch-label, .list-group-item, .select2-container--default .select2-selection--single .select2-selection__rendered, .ms-container .ms-selectable li.ms-elem-selectable, .ms-container .ms-selection li.ms-elem-selection, select, .modal-header .close, .bootstrap-tagsinput input{  
+        color:$gray-500;  
+    }  
+} 
+
+/*============================================================== 
+ Card background  
+ ============================================================== */
+html body{
+    .fc-day, 
+    .btn-outline-secondary, 
+    .customvtab .tabs-vertical li .nav-link.active, 
+    .customvtab .tabs-vertical li .nav-link:hover, 
+    .customvtab .tabs-vertical li .nav-link:focus, 
+    .form-control-line .form-control, 
+    .floating-labels .form-control, 
+    .right-sidebar{ 
+         background:$card-bg;   
+    }
+} 
+html body {
+	.modal-content,
+    .ms-container .ms-selectable li.disabled, .ms-container .ms-selection li.disabled {
+		background-color: $dark-bg;
+	}
+}
+
+html body {
+    .custom-select {
+        background-color: $gray-200;
+    }
+    .form-material .form-control {
+        background-color: rgb(53, 60, 72);
+    }
+    .jsgrid-selected-row>.jsgrid-cell{
+       border-color: $body-bg;
+    }
+    .fixed-table-container tbody td,
+    table.footable, table.footable-details {
+        border: 1px solid $body-bg !important;
+    }
+    .nav-tabs .nav-link:focus, .nav-tabs .nav-link:hover {
+        border-color: #4F5467;
+    }
+}
+/*============================================================== 
+ borders  
+ ============================================================== */
+html body{
+.calendar-events:hover, .footable .pagination li.disabled a, .footable .pagination li a, .dropzone, ul.wysihtml5-toolbar, .tabcontent-border, .bootstrap-switch,
+.select2-container--default .select2-selection--multiple, .select2-container--default .select2-selection--single, .bootstrap-tagsinput, .ms-container .ms-selectable li.ms-elem-selectable, .ms-container .ms-selection li.ms-elem-selection, .ms-container .ms-list, .daterangepicker .calendar-table, .dropify-wrapper, .jsgrid-cell, .jsgrid-edit-row>.jsgrid-cell, .jsgrid-filter-row>.jsgrid-cell, .jsgrid-grid-body, .jsgrid-grid-header, .jsgrid-header-row>.jsgrid-header-cell, .jsgrid-insert-row>.jsgrid-cell, .jsgrid-pager-current-page, .jsgrid-pager-nav-button a, .jsgrid-pager-page a,
+.bootstrap-table .table, .bootstrap-table .table>thead>tr>th, .fixed-table-container {  
+    border-color:$border-color;              
+}
+} 
+
+.calendar-events{
+    border-color:transparent; 
+}
+
+pre {
+    background-color: #3c4452 !important;
+}
+
+code {
+    text-shadow: none !important;
+}
+
+
+// July 8, 2021 Form scss Start
+
+.mce-container-body {
+    background-color: #4c5666 !important;
+}
+
+#mceu_0-button {
+    background-color: #4c5666 !important;
+    opacity: 1;
+}
+
+.mce-btn {
+    background-color: #4c5666 !important;
+}
+
+.mce-ico {
+    color: #fff !important;
+}
+
+.mce-txt {
+    color: #fff !important;
+}
+
+.note-toolbar {
+    background-color: #4c5666 !important;
+}
+
+.note-resizebar {
+    background-color: #4c5666 !important;
+}
+
+.toast-header {
+    background-color: #4c5666 !important;
+    color: #ced4da !important;
+}
+
+.btn-close {
+    color: #ced4da !important;
+}
+
+.toast {
+
+    background-color: #4c5666 !important;
+}
+
+.toast-body {
+    background-color: #4c5666 !important;
+}
+
+.dp-off {
+    background-color: #4c5667 !important;
+}
+
+// July 8, 2021 Form scss End
