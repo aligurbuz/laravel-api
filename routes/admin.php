@@ -8,5 +8,6 @@ Route::prefix('admin')->group(static function () {
     Route::get('/login', [AuthenticateController::class, 'login'])->name('admin.get.login');
     Route::post('/login', [AuthenticateController::class, 'login'])->name('admin.post.login');
 
+    Route::middleware(['admin'])->get('/logout', [AuthenticateController::class, 'logout'])->name('admin.logout');
     Route::middleware(['admin'])->get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard.index');
 });

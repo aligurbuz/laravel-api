@@ -18,13 +18,13 @@ class AuthenticateController extends Controller
      */
     public function login(Request $request)
     {
-        if($request->method() === 'POST'){
+        if ($request->method() === 'POST') {
             $httpRequest = Http::post('login', [
                 'email' => $request->email,
                 'password' => $request->password
             ]);
 
-            if(!$httpRequest['status']){
+            if (!$httpRequest['status']) {
                 return redirect()->route('admin.get.login')->with('message', 'Invalid credentials');
             }
 
@@ -35,5 +35,18 @@ class AuthenticateController extends Controller
         }
 
         return view('admin.login');
+    }
+
+    /**
+     * @throws JsonException
+     * @throws ConnectionException
+     */
+    public function logout()
+    {
+        $httpRequest = Http::postJson('logout', []);
+
+        if ($httpRequest['status']) {
+            return redirect()->route('admin.get.login');
+        }
     }
 }

@@ -42,6 +42,23 @@ class Http
         return json_decode($request->getBody()->getContents(), 1, 512, JSON_THROW_ON_ERROR);
     }
 
+    /**
+     * @param string $url
+     * @param array $data
+     * @param array $headers
+     * @return array
+     * @throws ConnectionException
+     * @throws JsonException
+     */
+    public static function postJson(string $url, array $data, array $headers = []): array
+    {
+        $url = Env::get('INTERNAL_API').'/'.$url;
+        $headers = array_merge($headers,static::defaultHeaders()); // Default to authenticated headers
+        $request = \Illuminate\Support\Facades\Http::withHeaders($headers)->post($url, $data);
+
+        return json_decode($request->getBody()->getContents(), 1, 512, JSON_THROW_ON_ERROR);
+    }
+
     public static function headersWithAuth(): array
     {
         return [
