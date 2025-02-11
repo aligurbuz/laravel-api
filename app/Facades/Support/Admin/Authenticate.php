@@ -15,4 +15,9 @@ class Authenticate
     {
         return Session::get('adminUser');
     }
+
+    public static function userName()
+    {
+        return static::user()['username'] ?? null;
+    }
 }
