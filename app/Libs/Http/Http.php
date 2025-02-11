@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Http;
+namespace App\Libs\Http;
 
 use App\Facades\Database\Authenticate\ApiKey;
+use App\Facades\Support\Admin\Authenticate;
 use App\Facades\Support\Env\Env;
 use Illuminate\Http\Client\ConnectionException;
 use JsonException;
@@ -10,6 +11,19 @@ use JsonException;
 class Http
 {
     private const HEADER_API_KEY = 'Apikey';
+
+    /**
+     * @throws JsonException
+     * @throws ConnectionException
+     */
+    public static function get(string $url, array $headers = []): array
+    {
+        $url = Env::get('INTERNAL_API').'/'.$url;
+        $headers = array_merge($headers,static::defaultHeaders()); // Default to authenticated headers
+        $request = \Illuminate\Support\Facades\Http::withHeaders($headers)->get($url);
+
+        return json_decode($request->getBody()->getContents(), 1, 512, JSON_THROW_ON_ERROR);
+    }
 
     /**
      * @param string $url
@@ -37,6 +51,10 @@ class Http
 
     public static function defaultHeaders(): array // Renamed from headersWithoutAuth()
     {
-        return [];
+        return [
+            self::HEADER_API_KEY => ApiKey::get('admin')->value,
+            'Authorization' => 'Bearer '.Authenticate::token(),
+            'Accept-Language' => 'en',
+        ];
     }
 }

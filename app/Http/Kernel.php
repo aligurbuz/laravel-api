@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use App\Http\Middleware\AccessLogger;
+use App\Http\Middleware\Admin;
 use App\Http\Middleware\Authenticate;
 use App\Http\Middleware\EncryptCookies;
 use App\Http\Middleware\GeneralMiddleware;
@@ -90,5 +91,6 @@ class Kernel extends HttpKernel
         //'contentType' => ContentType::class,
         'superAdmin' => SuperAdmin::class,
         'general' => GeneralMiddleware::class,
+        'admin' => Admin::class
     ];
 }
