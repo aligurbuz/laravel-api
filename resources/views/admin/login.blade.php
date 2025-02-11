@@ -9,9 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="{{\App\Libs\AppContainer::get('public_path')}}/admin/assets/images/favicon.png">
-    <title>Elite Admin Template - The Ultimate Multipurpose admin template</title>
-
+    <title>{{__('admin/login.title')}}</title>
     <!-- page css -->
     <link href="{{\App\Libs\AppContainer::get('public_path')}}/admin/eliteadmin/dist/css/pages/login-register-lock.css" rel="stylesheet">
     <!-- Custom CSS -->
@@ -33,7 +31,7 @@
 <div class="preloader">
     <div class="loader">
         <div class="loader__figure"></div>
-        <p class="loader__label">Elite admin</p>
+        <p class="loader__label">{{__('admin/login.title')}}</p>
     </div>
 </div>
 <!-- ============================================================== -->
@@ -48,31 +46,31 @@
             @endif
             <div class="card-body">
                 <form class="form-horizontal form-material" id="loginform" method="POST">
-                    <h3 class="text-center m-b-20">Sign In</h3>
+                    <h3 class="text-center m-b-20">{{__('admin/login.signIn')}}</h3>
                     <div class="form-group ">
                         <div class="col-xs-12">
-                            <input class="form-control" type="text" name="email" required="" placeholder="Email"> </div>
+                            <input class="form-control" type="text" name="email" required="" placeholder="{{__('admin/general.email')}}"> </div>
                     </div>
                     <div class="form-group">
                         <div class="col-xs-12">
-                            <input class="form-control" type="password" name="password" required="" placeholder="Password"> </div>
+                            <input class="form-control" type="password" name="password" required="" placeholder="{{__('admin/general.password')}}"> </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-md-12">
                             <div class="d-flex no-block align-items-center">
                                 <div class="form-check">
                                     <input type="checkbox" class="form-check-input" id="customCheck1">
-                                    <label class="form-check-label" for="customCheck1">Remember me</label>
+                                    <label class="form-check-label" for="customCheck1">{{__('admin/login.remember')}}</label>
                                 </div>
                                 <div class="ms-auto">
-                                    <a href="javascript:void(0)" id="to-recover" class="text-muted"><i class="fas fa-lock m-r-5"></i> Forgot pwd?</a>
+                                    <a href="javascript:void(0)" id="to-recover" class="text-muted"><i class="fas fa-lock m-r-5"></i> {{__('admin/login.forgot')}}</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="form-group text-center">
                         <div class="col-xs-12 p-b-20">
-                            <button class="btn w-100 btn-lg btn-info btn-rounded text-white" type="submit">Log In</button>
+                            <button class="btn w-100 btn-lg btn-info btn-rounded text-white" type="submit">{{__('admin/login.button')}}</button>
                         </div>
                     </div>
 
