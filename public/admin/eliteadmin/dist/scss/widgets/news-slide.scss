@@ -1,0 +1,11 @@
+.news-slide{
+    .overlaybg{
+            height: 380px;
+            overflow: hidden;
+            background-color: $gray-800;
+        img{
+            width: 100%;
+            min-height: 380px;
+        }
+    }  
+} 
