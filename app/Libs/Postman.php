@@ -66,13 +66,22 @@ class Postman
         $exclude = ['Auth', 'Support', 'Registration','Global'];
 
         $menus = [];
+        $endpoints = [];
 
         foreach ($lists['item'] as $item) {
             if (isset($item['name']) && !in_array($item['name'], $exclude, true)) {
                 $menus[] = $item['name'];
+                if(isset($item['item'])){
+                   foreach ($item['item'] as $endpoint) {
+                       $endpoints[$item['name']][] = $endpoint['name'];
+                   }
+                }
             }
         }
 
-        return $menus;
+        return [
+            'menus' => $menus,
+            'endpoints' => $endpoints,
+        ];
     }
 }

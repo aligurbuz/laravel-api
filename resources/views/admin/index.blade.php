@@ -240,15 +240,15 @@
                     </li>
                     <li> <a class="waves-effect waves-dark" href="{{route('admin.dashboard.index')}}" aria-expanded="false"><i class="icon-speedometer"></i><span class="hide-menu">Dashboard</span></a>
                     </li>
-                    @foreach($menus as $menu)
+                    @foreach($menus['menus'] as $menu)
                         <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="ti-layout-grid2"></i><span class="hide-menu">{{$menu}}</span></a>
                             <ul aria-expanded="false" class="collapse">
-                                <li><a href="app-calendar.html">Calendar</a></li>
-                                <li><a href="app-chat.html">Chat app</a></li>
-                                <li><a href="app-ticket.html">Support Ticket</a></li>
-                                <li><a href="app-contact.html">Contact / Employee</a></li>
-                                <li><a href="app-contact2.html">Contact Grid</a></li>
-                                <li><a href="app-contact-detail.html">Contact Detail</a></li>
+                                @if($menus['endpoints'][$menu])
+                                    @foreach($menus['endpoints'][$menu] as $endpoint)
+                                        <li><a href="app-ticket.html">{{$endpoint}}</a></li>
+                                    @endforeach
+
+                                @endif
                             </ul>
                         </li>
                     @endforeach
