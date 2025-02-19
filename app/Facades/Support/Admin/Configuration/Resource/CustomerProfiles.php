@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Facades\Support\Admin\Configuration;
+namespace App\Facades\Support\Admin\Configuration\Resource;
 
+use App\Facades\Support\Admin\Configuration\ConfigurationManager;
 use Illuminate\Http\Client\ConnectionException;
 use JsonException;
 

@@ -2,6 +2,7 @@
 
 namespace App\Facades\Support\Admin\Configuration;
 
+use App\Facades\Support\Admin\Configuration\Resource\CustomerProfiles;
 use App\Libs\Http\Http;
 use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Support\Str;
