@@ -127,6 +127,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         AppContainer::set('apiUrl', request()->getSchemeAndHttpHost() . '' . request()->getBaseUrl() . '' . DIRECTORY_SEPARATOR . 'api');
+        AppContainer::set('adminUrl', request()->getSchemeAndHttpHost() . '' . request()->getBaseUrl() . '' . DIRECTORY_SEPARATOR . 'admin');
         AppContainer::set('public_path', request()->getSchemeAndHttpHost() . '' . request()->getBasePath());
         AppContainer::set('clientLang', request()->headers->get(Constants::headerLangKey));
         $this->checkPaginationValue();
