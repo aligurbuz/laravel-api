@@ -40,7 +40,8 @@ class PagesController extends Controller
         $httpRequest = Http::get($requestUri, $params);
 
         $model = getModelFromEndpoint($requestUri);
-        $columns = array_values(array_diff(getModelInstance($model)->getRepository()->getColumns(), ['id', 'password']));
+        $repository = getModelInstance($model)->getRepository();
+        $columns = array_values(array_diff($repository->getColumns(), ['id', 'password']));
         $data = $httpRequest['resource'][0]['data'] ?? [];
 
         if (isset($data[0])) {
