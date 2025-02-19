@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Facades\Support\Admin;
+namespace App\Facades\Support\Admin\Configuration;
 
 use App\Libs\Http\Http;
 use Illuminate\Http\Client\ConnectionException;
@@ -10,6 +10,8 @@ use function request;
 
 class Configuration
 {
+    use CustomerProfiles;
+
     /**
      * @param string $endpoint
      * @return array

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Facades\Support\Admin\Configuration;
+use App\Facades\Support\Admin\Configuration\Configuration;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Client\ConnectionException;
@@ -21,8 +21,21 @@ class PagesController extends Controller
         return view('admin.index', ['config' => [
             'endpoint' => $endpoint,
             'method' => $request->method(),
-            'resource' => Configuration::handle($endpoint)
+            'resource' => $this->configuration($endpoint),
         ]
         ]);
+    }
+
+    /**
+     * @throws ConnectionException
+     * @throws JsonException
+     */
+    private function configuration(string $endpoint): array
+    {
+        if(method_exists(Configuration::class, $endpoint)) {
+            return Configuration::$endpoint($endpoint);
+        }
+
+        return Configuration::handle($endpoint);
     }
 }
