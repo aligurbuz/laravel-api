@@ -1103,6 +1103,20 @@ if (!function_exists('getModel')) {
     }
 }
 
+if (!function_exists('getModelFromEndpoint')) {
+
+    /**
+     * @param $endpoint
+     * @return string
+     */
+    function getModelFromEndpoint($endpoint): string
+    {
+        $serviceJson = getServiceJson(ucfirst($endpoint));
+
+        return $serviceJson['model'];
+    }
+}
+
 if (!function_exists('getModelFromTableCode')) {
 
     /**
