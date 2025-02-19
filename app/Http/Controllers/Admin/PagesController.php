@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Libs\Http\Http;
-use App\Repositories\Repository;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Http\Request;
@@ -40,7 +39,12 @@ class PagesController extends Controller
         $httpRequest = Http::get($requestUri);
 
         return [
-            'data' => $httpRequest
+            'data' => $httpRequest,
+            'widgets' => [
+                'table' => [
+                    'columns' => []
+                ]
+            ]
         ];
     }
 }

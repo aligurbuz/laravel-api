@@ -1,6 +1,11 @@
 <div class="row">
     <div class="col-12">
-        @include('admin.widgets.table', $config)
+        @if(isset($config['resource']['widgets']))
+            @foreach($config['resource']['widgets'] as $name => $values)
+                @include('admin.widgets.'.$name, $values)
+            @endforeach
+        @endif
+
 
     </div>
 </div>
