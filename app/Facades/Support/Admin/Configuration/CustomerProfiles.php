@@ -31,6 +31,17 @@ trait CustomerProfiles
         ];
     }
 
+    public static function extraTableColumns(): array
+    {
+        return [
+            'after' => 'email',
+            'keys' => [
+                'age' => 'age',
+                'gender' => 'gender',
+            ]
+        ];
+    }
+
     /**
      * @param string $requestUri
      * @param array $params
