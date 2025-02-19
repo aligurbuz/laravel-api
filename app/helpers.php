@@ -1132,6 +1132,23 @@ if (!function_exists('arrayMergeAfterKey')) {
     }
 }
 
+if (!function_exists('arrayMergeAfterValue')) {
+    function arrayMergeAfterValue($array1, $array2, $afterValue): array
+    {
+        $index = array_search($afterValue, $array1, true);
+
+        if ($index === false) {
+            return array_merge($array1, $array2);
+        }
+
+        $firstPart = array_slice($array1, 0, $index + 1, true);
+
+        $secondPart = array_slice($array1, $index + 1, null, true);
+
+        return array_values(array_merge($firstPart, $array2, $secondPart));
+    }
+}
+
 
 if (!function_exists('getModelFromTableCode')) {
 
