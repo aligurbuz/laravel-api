@@ -23,12 +23,24 @@ class Dummy
     /**
      * get dummy data for eloquent repository
      *
+     * @param bool $returnType
      * @return array
      */
-    public function dummy(): array
+    public function dummy(bool $returnType = false): array
     {
         $fakers = $this->eloquentRepository->getFakers();
-        $columns = $this->eloquentRepository->getRequiredColumns();
+        $columns = $this->eloquentRepository->getColumns();
+
+        $columns = array_diff($columns, [
+            'id',
+            'created_at',
+            'updated_at',
+            'status',
+            'is_deleted',
+            'created_by',
+            'updated_by',
+            'deleted_by',
+        ]);
 
         if (!in_array($this->eloquentRepository->getModelCode(), $columns, true)) {
             $columns[] = $this->eloquentRepository->getModelCode();
@@ -36,6 +48,15 @@ class Dummy
 
         $types = $this->eloquentRepository->getColumnTypes();
 
+        if ($returnType) {
+            $returnTypes = [];
+
+            foreach ($columns as $column) {
+                $returnTypes[$column] = $types[$column];
+            }
+
+            return $returnTypes;
+        }
 
         return $this->getColumns($columns, $fakers, $types);
     }
