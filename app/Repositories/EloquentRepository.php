@@ -990,12 +990,13 @@ class EloquentRepository
     /**
      * get dummy data for eloquent repository
      *
+     * @param bool $returnType
      * @return array
      */
-    public function dummy(): array
+    public function dummy(bool $returnType = false): array
     {
         request()->setMethod('POST');
-        $baseDummy = (new Dummy($this))->dummy();
+        $baseDummy = (new Dummy($this))->dummy($returnType);
         $modelCode = $this->getModelCode();
         $postQueries = $this->getAddPostQueries();
 
@@ -1005,7 +1006,7 @@ class EloquentRepository
             foreach ($postQueries as $key => $client) {
                 $clientNamespace = Factory::client(['client' => $client . '.create'])->getClientIdentifier()->clientNamespace();
                 $postRepository = (new $clientNamespace)->repository();
-                $postQueryList = collect($postRepository->dummy())
+                $postQueryList = collect($postRepository->dummy($returnType))
                     ->except([$modelCode, $postRepository->getModelCode()])
                     ->whereNotNull()->toArray();
 
