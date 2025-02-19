@@ -46,30 +46,26 @@
         <div class="table-responsive">
             <table id="demo-foo-addrow" class="table table-bordered m-t-30 table-hover contact-list" data-paging="true" data-paging-size="7">
                 <thead>
-                <tr>
-                    <th>No</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Phone</th>
-                    <th>Role</th>
-                    <th>Age</th>
-                    <th>Joining date</th>
-                    <th>Salery</th>
-                </tr>
+                    <tr>
+                        @foreach($values['columns'] as $column)
+                        <th>{{$column}}</th>
+                        @endforeach
+                    </tr>
+
                 </thead>
                 <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>
-                        <a href="javascript:void(0)"><img src="../assets/images/users/4.jpg" alt="user" width="40" class="img-circle" /> Genelia Deshmukh</a>
-                    </td>
-                    <td>genelia@gmail.com</td>
-                    <td>+123 456 789</td>
-                    <td><span class="label label-danger">Designer</span> </td>
-                    <td>23</td>
-                    <td>12-10-2014</td>
-                    <td>$1200</td>
-                </tr>
+                @if(isset($values['data'][0]))
+                    @foreach($values['data'] as $item)
+                        <tr>
+                       @foreach($values['columns'] as $itemColumn)
+                               <td>{{$item[$itemColumn]}}</td>
+                       @endforeach
+                        </tr>
+
+                    @endforeach
+
+                @endif
+
 
 
                 </tbody>

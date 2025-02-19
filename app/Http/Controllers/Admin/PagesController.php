@@ -36,13 +36,26 @@ class PagesController extends Controller
     private function data(string $endpoint): array
     {
         $requestUri = Str::snake($endpoint, '/');
-        $httpRequest = Http::get($requestUri);
+        $params = \request()->query->all();
+        $httpRequest = Http::get($requestUri, $params);
+
+        $model = getModelFromEndpoint($requestUri);
+        $columns = array_values(array_diff(getModelInstance($model)->getRepository()->getColumns(), ['id', 'password']));
+        $data = $httpRequest['resource'][0]['data'] ?? [];
+
+        if (isset($data[0])) {
+            $columns = [];
+            foreach ($data[0] as $key => $value) {
+                $columns[] = $key;
+            }
+        }
 
         return [
             'data' => $httpRequest,
             'widgets' => [
                 'table' => [
-                    'columns' => []
+                    'columns' => $columns,
+                    'data' => $data,
                 ]
             ]
         ];

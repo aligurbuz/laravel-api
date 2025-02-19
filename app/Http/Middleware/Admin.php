@@ -14,17 +14,17 @@ class Admin
     /**
      * Handle an incoming request.
      *
-     * @param  Closure(Request): (Response)  $next
+     * @param Closure(Request): (Response) $next
      */
     public function handle(Request $request, Closure $next): Response
     {
         try {
-            $userRequest = Http::get('user?range=me');
+            $userRequest = Http::get('user', ['range' => 'me']);
         } catch (ConnectionException|JsonException) {
             return redirect()->route('admin.get.login');
         }
 
-        if(!$userRequest['status']) {
+        if (!$userRequest['status']) {
             return redirect()->route('admin.get.login');
         }
 
