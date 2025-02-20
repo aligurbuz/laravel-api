@@ -41,6 +41,7 @@ class Configuration
 
         return [
             'data' => $httpRequest,
+            'ranges' => $httpRequest['instructions']['ranges'] ?? [],
             'widgets' => [
                 'table' => [
                     'columns' => $columns,

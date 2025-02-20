@@ -470,6 +470,19 @@
 <!-- Chart JS -->
 <script src="{{\App\Libs\AppContainer::get('public_path')}}/admin/eliteadmin/dist/js/dashboard1.js"></script>
 <script src="{{\App\Libs\AppContainer::get('public_path')}}/admin/assets/node_modules/toast-master/js/jquery.toast.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $(".ranges").on("change", function () {
+            var selectedValues = $(".ranges:checked").map(function () {
+                return $(this).val();
+            }).get().join(",");
+
+            $(".rangeform").val(selectedValues);
+        });
+    });
+
+</script>
 </body>
 
 </html>
