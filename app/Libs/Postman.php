@@ -63,7 +63,7 @@ class Postman
     public static function menus(): array
     {
         $lists = static::collection();
-        $exclude = ['Auth', 'Support', 'Registration','Global'];
+        $exclude = ['Auth', 'Support', 'Registration','Global','Gate','Password'];
 
         $menus = [];
         $endpoints = [];

@@ -50,10 +50,35 @@
             </div>
             <!-- /.modal-dialog -->
         </div>
+
         <div class="table-responsive">
+            @php
+                $columnCount = count($values['columns']) +1;
+                $indexCount = count($values['indexes']) +1;
+                $indexCountDivMeasure = 12/$indexCount;
+            @endphp
+
+            <form action="">
+                <div class="row">
+                    @foreach($values['indexes'] as $index)
+                        <div class="col-md-{{$indexCountDivMeasure}}">
+                            <input type="text" name="filter[{{$index}}]" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter {{$index}}">
+                        </div>
+                    @endforeach
+
+
+                    <div class="col-{{$indexCountDivMeasure}}">
+                        <button type="submit" class="btn btn-primary text-white">Filter</button>
+                    </div>
+                </div>
+            </form>
+
             <table id="demo-foo-addrow" class="table table-bordered m-t-30 table-hover contact-list" data-paging="true"
                    data-paging-size="7">
+
                 <thead>
+
+
                 <tr>
                     @foreach($values['columns'] as $column)
                         @php
@@ -73,6 +98,7 @@
                 </thead>
                 <tbody>
                 @if(isset($values['data'][0]))
+
                     @foreach($values['data'] as $item)
                         <tr>
                             @foreach($values['columns'] as $itemColumn)
