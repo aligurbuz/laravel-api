@@ -113,15 +113,5 @@
         "controller": "Dummy",
         "dir": "Support",
         "model": "Dummy"
-    },
-    "Store/products": {
-        "controller": "Products",
-        "dir": "Store",
-        "model": "Product"
-    },
-    "Store/items": {
-        "controller": "Items",
-        "dir": "Store",
-        "model": "Item"
     }
 }
