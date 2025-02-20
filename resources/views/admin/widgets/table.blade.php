@@ -67,6 +67,7 @@
                         @endphp
                         <th>{{$langCol}}</th>
                     @endforeach
+                        <th>{{__('admin/general.action')}}</th>
                 </tr>
 
                 </thead>
@@ -87,6 +88,9 @@
                                 @endif
 
                             @endforeach
+                                <td>
+                                    <i class="far fa-edit"></i>
+                                </td>
                         </tr>
 
                     @endforeach
