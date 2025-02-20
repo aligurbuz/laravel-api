@@ -185,6 +185,7 @@
                 <thead>
 
 
+
                 <tr>
                     @foreach($values['columns'] as $column)
                         @php
@@ -216,7 +217,12 @@
                                     @endif
 
                                 @else
-                                    <td>{{$item[$itemColumn]}}</td>
+                                    @if(!is_array($item[$itemColumn]))
+                                        <td>{{$item[$itemColumn]}}</td>
+                                    @else
+                                        <td>{{json_encode($item[$itemColumn])}}</td>
+                                    @endif
+
                                 @endif
 
                             @endforeach
