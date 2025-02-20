@@ -1,9 +1,33 @@
+@php
+    $request = request()->query->all();
+    $range = request()->query->get('range');
+
+    if(is_null($range)){
+        $rangeInput = '';
+    }
+    else{
+        $rangeInput = $range;
+    }
+
+    $filter = $request['filter'] ?? [];
+    $page = ucwords(\Illuminate\Support\Str::snake($config['endpoint'],' '));
+    $singlePage = \Illuminate\Support\Str::singular($page);
+
+    $forDef = str_replace(' ','/',$page);
+    $description = config('documentation.definitions.'.$forDef);
+
+ @endphp
 <div class="card">
     <div class="card-body">
-        <h4 class="card-title">Contact Emplyee list</h4>
+        <h4 class="card-title">{{$page}} List</h4>
+        @if(!is_null($description))
+        <h6>
+            {{$description}}
+        </h6>
+        @endif
         <h6 class="card-subtitle"></h6>
         <button type="button" class="btn btn-info btn-rounded m-t-10 float-end text-white" data-bs-toggle="modal"
-                data-bs-target="#add-contact">Add New Contact
+                data-bs-target="#add-contact">Add New {{$singlePage}}
         </button>
         <!-- Add Contact Popup Model -->
         <div id="add-contact" class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -66,7 +90,7 @@
 
 
                             <tr>
-                                <th>Seçim</th>
+                                <th>Choose</th>
                             <th>Range Name</th>
                                 <th>Range Description</th>
                             </tr>
@@ -121,14 +145,25 @@
                 <div class="row">
                     @foreach($values['indexes'] as $index)
                         <div class="col-md-{{$indexCountDivMeasure}}">
-                            <input type="text" style="background-color: #eeeeee;" name="filter[{{$index}}]" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter {{$index}}">
+                            @php
+
+                                if(isset($filter[$index])){
+                                    $filterValue = $filter[$index];
+                                }
+                                else{
+                                    $filterValue = '';
+                                }
+                             @endphp
+
+
+                            <input type="text" style="background-color: #eeeeee;" value="{{$filterValue}}" name="filter[{{$index}}]" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter {{str_replace('_',' ',$index)}}">
                         </div>
                         {!! $space !!}
                     @endforeach
 
                         <div class="col-{{$indexCountDivMeasure}}">
                             <div class="input-group mb-3">
-                                <input type="text" style="background-color: #eeeeee;" name="range" class="form-control rangeform" placeholder="" aria-label="" aria-describedby="basic-addon1">
+                                <input type="text" style="background-color: #eeeeee;" name="range" value="{{$rangeInput}}" class="form-control rangeform" placeholder="" aria-label="" aria-describedby="basic-addon1">
                                 <div class="input-group-append">
                                      <span style="color: #ffffff;">-</span> <button class="btn btn-info text-white" type="button"
                                                                                     data-bs-toggle="modal"
