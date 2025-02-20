@@ -54,8 +54,8 @@
         <div class="table-responsive">
             @php
                 $columnCount = count($values['columns']) +1;
-                $indexCount = count($values['indexes']) +1;
-                $indexCountDivMeasure = 12/$indexCount;
+                $indexCountPlus = count($values['indexes']) +2;
+                $indexCountDivMeasure = 12/$indexCountPlus;
             @endphp
 
             <form action="">
@@ -65,6 +65,15 @@
                             <input type="text" name="filter[{{$index}}]" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter {{$index}}">
                         </div>
                     @endforeach
+
+                        <div class="col-{{$indexCountDivMeasure}}">
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1">
+                                <div class="input-group-append">
+                                     <span style="color: #ffffff;">-</span> <button class="btn btn-info text-white" type="button">Show Ranges</button>
+                                </div>
+                            </div>
+                            </div>
 
 
                     <div class="col-{{$indexCountDivMeasure}}">

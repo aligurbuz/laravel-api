@@ -30,6 +30,7 @@
     <!-- Dashboard 1 Page CSS -->
     <link href="{{\App\Libs\AppContainer::get('public_path')}}/admin/eliteadmin/dist/css/pages/dashboard1.css"
           rel="stylesheet">
+    <link href="{{\App\Libs\AppContainer::get('public_path')}}/admin/assets/node_modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.css" rel="stylesheet" />
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
