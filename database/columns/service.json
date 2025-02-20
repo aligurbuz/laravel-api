@@ -1,7 +1,8 @@
 {
     "Currencies": {
         "controller": "Currencies",
-        "dir": "Currencies"
+        "dir": "Currencies",
+        "model" : "Currency"
     },
     "Localizations/language": {
         "controller": "Language",
@@ -10,7 +11,8 @@
     },
     "Timezones": {
         "controller": "Timezones",
-        "dir": "Timezones"
+        "dir": "Timezones",
+        "model" : "Timezone"
     },
     "User": {
         "controller": "User",
@@ -19,15 +21,18 @@
     },
     "Countries": {
         "controller": "Countries",
-        "dir": "Countries"
+        "dir": "Countries",
+        "model" : "Country"
     },
     "Countries/cities": {
         "controller": "Cities",
-        "dir": "Countries"
+        "dir": "Countries",
+        "model" : "City"
     },
     "Countries/districts": {
         "controller": "Districts",
-        "dir": "Countries"
+        "dir": "Countries",
+        "model" : "District"
     },
     "User/photos": {
         "controller": "Photos",
