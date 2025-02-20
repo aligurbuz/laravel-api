@@ -9,6 +9,11 @@
         "dir": "Localizations",
         "model": "Language"
     },
+    "Localizations": {
+        "controller": "Localizations",
+        "dir": "Localizations",
+        "model": "Localization"
+    },
     "Timezones": {
         "controller": "Timezones",
         "dir": "Timezones",
