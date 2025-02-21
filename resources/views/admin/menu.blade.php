@@ -24,7 +24,7 @@
                                 }
 
                             @endphp
-                            <li><a href="{{\App\Libs\AppContainer::get('adminUrl')}}/pages/{{$link}}?range=desc">{{$endpoint}}</a>
+                            <li><a href="{{\App\Libs\AppContainer::get('adminUrl')}}/pages/{{$link}}?range=desc,active,notDeleted">{{$endpoint}}</a>
                             </li>
                         @endforeach
 
