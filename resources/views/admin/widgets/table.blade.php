@@ -24,6 +24,8 @@
         'deleted_at' => true
         ]);
 
+    $listCount = $config['resource']['data']['count'] ?? 0;
+
  @endphp
 <div class="card">
     <div class="card-body">
@@ -272,6 +274,8 @@
 
                 </tbody>
             </table>
+
+            <b>{{$listCount}}</b>  {{__('admin/table.list_count_def')}}
         </div>
     </div>
 </div>
