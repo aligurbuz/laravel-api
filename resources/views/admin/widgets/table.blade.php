@@ -10,11 +10,20 @@
     }
 
     $filter = $request['filter'] ?? [];
+    $endpoint = $config['endpoint'];
     $page = ucwords(\Illuminate\Support\Str::snake($config['endpoint'],' '));
     $singlePage = \Illuminate\Support\Str::singular($page);
 
     $forDef = str_replace(' ','/',$page);
     $description = config('documentation.definitions.'.$forDef);
+
+    $repository = $config['resource']['repository'];
+
+    $inputs = array_diff_key($repository->dummy(true),[
+        $repository->getModelCode() => 'number',
+        'deleted_at' => true
+        ]);
+
 
  @endphp
 <div class="card">
@@ -29,43 +38,69 @@
         <button type="button" class="btn btn-info btn-rounded m-t-10 float-end text-white" data-bs-toggle="modal"
                 data-bs-target="#add-contact">Add New {{$singlePage}}
         </button>
+
         <!-- Add Contact Popup Model -->
-        <div id="add-contact" class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+        <div id="add-contact" class="modal bs-example-modal-lg fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
              aria-hidden="true">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-xl">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
-                        <h4 class="modal-title" id="myModalLabel">Add New Contact</h4></div>
+                        <h4 class="modal-title" id="myModalLabel">Add New {{$singlePage}}</h4></div>
                     <div class="modal-body">
-                        <from class="form-horizontal form-material">
+                        <form id="postPage" class="form-horizontal form-material">
+                            @csrf
+                            <input type="hidden" name="__page" value="{{$endpoint}}">
                             <div class="form-group">
-                                <div class="col-md-12 m-b-20">
-                                    <input type="text" class="form-control" placeholder="Type name"></div>
-                                <div class="col-md-12 m-b-20">
-                                    <input type="text" class="form-control" placeholder="Email"></div>
-                                <div class="col-md-12 m-b-20">
-                                    <input type="text" class="form-control" placeholder="Phone"></div>
-                                <div class="col-md-12 m-b-20">
-                                    <input type="text" class="form-control" placeholder="Designation"></div>
-                                <div class="col-md-12 m-b-20">
-                                    <input type="text" class="form-control" placeholder="Age"></div>
-                                <div class="col-md-12 m-b-20">
-                                    <input type="text" class="form-control" placeholder="Date of joining"></div>
-                                <div class="col-md-12 m-b-20">
-                                    <input type="text" class="form-control" placeholder="Salary"></div>
-                                <div class="col-md-12 m-b-20">
-                                    <div class="fileupload btn btn-primary btn-rounded waves-effect waves-light">
-                                        <span><i class="ion-upload m-r-5"></i>Upload Contact Image</span>
-                                        <input type="file" class="upload"></div>
+                                <div class="card-header bg-theme">
+                                    <h4 class="m-b-0 text-white">{{ucfirst($singlePage)}} Values</h4>
                                 </div>
+                                <br>
+                                @foreach($inputs as $inputName => $inputType)
+                                    @if(!is_array($inputType))
+                                        @if($inputType=='timestamp')
+                                            <div class="col-md-12 m-b-20">
+                                                <input class="form-control" type="datetime-local" value="" id="example-datetime-local-input">
+                                            </div>
+                                        @else
+                                            <div class="col-md-12 m-b-20">
+                                                <input type="text" name="{{$inputName}}" class="form-control" placeholder="{{$inputName}}">
+                                            </div>
+                                        @endif
+
+                                    @endif
+
+                                        @if(is_array($inputType))
+
+                                            <div class="form-group">
+                                                <div class="card-header bg-megna">
+                                                    <h4 class="m-b-0 text-white">{{ucfirst($inputName)}} Values</h4>
+                                                </div>
+                                                <br>
+                                                @if(isset($inputType[0]))
+                                                    @foreach($inputType[0] as $postKey=> $postType)
+                                                        @if(!is_array($postType))
+                                                            <div class="col-md-12 m-b-20">
+                                                                <input class="form-control" name="{{$inputName}}[0][{{$postKey}}]" type="text" placeholder="{{$postKey}}">
+                                                            </div>
+                                                        @endif
+                                                    @endforeach
+
+                                                @endif
+
+                                            </div>
+                                        @endif
+                                @endforeach
+
+
                             </div>
-                        </from>
+                        </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-info waves-effect text-white" data-bs-dismiss="modal">
+                        <a id="loading"></a>
+                        <a class="btn btn-info waves-effect text-white posting">
                             Save
-                        </button>
+                        </a>
                         <button type="button" class="btn btn-default waves-effect" data-bs-dismiss="modal">Cancel
                         </button>
                     </div>
@@ -241,3 +276,5 @@
         </div>
     </div>
 </div>
+
+</script>

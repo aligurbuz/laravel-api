@@ -26,6 +26,11 @@ class PagesController extends Controller
         ]);
     }
 
+    public function store(Request $request)
+    {
+        return ['success' => true];
+    }
+
     /**
      * @throws ConnectionException
      * @throws JsonException

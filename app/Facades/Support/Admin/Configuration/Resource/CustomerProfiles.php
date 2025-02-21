@@ -18,11 +18,12 @@ trait CustomerProfiles
      */
     public static function customerProfiles(string $endpoint): array
     {
-        [$httpRequest, $columns, $indexes, $data] = self::extracted($endpoint);
+        [$httpRequest, $columns, $indexes, $data, $repository] = self::extracted($endpoint);
 
         return [
             'data' => $httpRequest,
             'ranges' => $httpRequest['instructions']['ranges'] ?? [],
+            'repository' => $repository,
             'widgets' => [
                 'table' => [
                     'columns' => $columns,

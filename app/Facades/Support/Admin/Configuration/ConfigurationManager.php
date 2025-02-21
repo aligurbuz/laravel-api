@@ -59,7 +59,7 @@ trait ConfigurationManager
             }
         }
 
-        return array($httpRequest, $columns, $indexes, $data);
+        return array($httpRequest, $columns, $indexes, $data, $repository);
     }
 
     /**

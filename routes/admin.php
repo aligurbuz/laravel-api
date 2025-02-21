@@ -12,4 +12,5 @@ Route::prefix('admin')->group(static function () {
     Route::middleware(['admin'])->get('/logout', [AuthenticateController::class, 'logout'])->name('admin.logout');
     Route::middleware(['admin'])->get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard.index');
     Route::middleware(['admin'])->get('/pages/{route}', [PagesController::class, 'index'])->name('admin.pages.index');
+    Route::middleware(['admin'])->post('/pages/store', [PagesController::class, 'store'])->name('admin.pages.store');
 });

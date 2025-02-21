@@ -473,6 +473,31 @@
 
 <script>
     $(document).ready(function () {
+        $(".posting").click(function(e) {
+            e.preventDefault();
+
+            var formData = $("#postPage").serialize();
+
+            // Loading GIF ekle
+            $("#loading").html('<img src="{{\App\Libs\AppContainer::get('public_path')}}/loading.gif" alt="Yükleniyor..." width="50">');
+
+            $.ajax({
+                url: "{{ route('admin.pages.store') }}", // Laravel rota ismi
+                type: "POST",
+                data: formData,
+                success: function(response) {
+                    console.log("Başarıyla gönderildi:", response);
+                },
+                error: function(xhr, status, error) {
+                    console.error("Hata oluştu:", xhr.responseText);
+                },
+                complete: function() {
+                    // AJAX tamamlandığında loading GIF'i kaldır
+                    $("#loading").html('');
+                }
+            });
+        });
+
         $(".ranges").on("change", function () {
             var selectedValues = $(".ranges:checked").map(function () {
                 return $(this).val();
