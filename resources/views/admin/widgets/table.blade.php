@@ -269,13 +269,24 @@
 
                     @endforeach
 
+
+
+                @endif
+
+                @if($listCount=='0')
+                    <tr>
+                        <th colspan="{{$columnCount}}" style="background-color: #e2e8f0;"> {{__('admin/table.no_entries')}}</th>
+                    </tr>
                 @endif
 
 
                 </tbody>
             </table>
 
-            <b>{{$listCount}}</b>  {{__('admin/table.list_count_def')}}
+            @if($listCount>0)
+                <b>{{$listCount}}</b>  {{__('admin/table.list_count_def')}}
+            @endif
+
         </div>
     </div>
 </div>

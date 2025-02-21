@@ -8,4 +8,5 @@ return [
       'is_deleted' => 'Deleted',
   ],
     'list_count_def' => 'entry is listed.',
+    'no_entries' => 'There are no entries in this list yet.',
 ];
