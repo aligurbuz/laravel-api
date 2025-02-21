@@ -24,7 +24,6 @@
         'deleted_at' => true
         ]);
 
-
  @endphp
 <div class="card">
     <div class="card-body">

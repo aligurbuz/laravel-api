@@ -487,6 +487,34 @@
                 data: formData,
                 success: function(response) {
                     console.log("Başarıyla gönderildi:", response);
+                    if (response.status === false) {
+                        // Eğer status false ise errorMessage'ı toastr ile göster
+                        $.toast({
+                            heading: 'Error'
+                            , text: response.errorMessage
+                            , position: 'top-right'
+                            , loaderBg: '#ff6849'
+                            , icon: 'error'
+                            , hideAfter: 3500
+                            , stack: 6
+                        });
+                    }
+                    else{
+
+                        $.toast({
+                            heading: 'Success'
+                            , text: 'Entry Success'
+                            , position: 'top-right'
+                            , loaderBg: '#ff6849'
+                            , icon: 'success'
+                            , hideAfter: 3500
+                            , stack: 6
+                        });
+
+                        setTimeout(function() {
+                            window.location.reload();
+                        }, 1);
+                    }
                 },
                 error: function(xhr, status, error) {
                     console.error("Hata oluştu:", xhr.responseText);
