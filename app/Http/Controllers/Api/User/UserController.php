@@ -42,7 +42,7 @@ class UserController extends ApiController
     {
         $client->handle();
 
-        return current($userRepository->create());
+        return $userRepository->create();
     }
 
     /**
