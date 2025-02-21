@@ -1,15 +1,7 @@
 $(function () {
     "use strict";
     //This is for the Notification top right
-    $.toast({
-            heading: 'Welcome to Elite admin'
-            , text: 'Use the predefined ones, or specify a custom position object.'
-            , position: 'top-right'
-            , loaderBg: '#ff6849'
-            , icon: 'info'
-            , hideAfter: 3500
-            , stack: 6
-        })
+
         // Dashboard 1 Morris-chart
     Morris.Area({
         element: 'morris-area-chart'
@@ -109,9 +101,9 @@ $(function () {
         , lineColors: ['#b4becb', '#01c0c8']
         , resize: true
     });
-});    
+});
     // sparkline
-    var sparklineLogin = function() { 
+    var sparklineLogin = function() {
         $('#sales1').sparkline([20, 40, 30], {
             type: 'pie',
             height: '90',
@@ -126,10 +118,10 @@ $(function () {
             barSpacing: '10',
             barColor: '#25a6f7'
         });
-        
-    };    
+
+    };
     var sparkResize;
- 
+
         $(window).resize(function(e) {
             clearTimeout(sparkResize);
             sparkResize = setTimeout(sparklineLogin, 500);
