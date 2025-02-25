@@ -23,6 +23,7 @@ trait CustomerProfiles
         return [
             'data' => $httpRequest,
             'ranges' => $httpRequest['instructions']['ranges'] ?? [],
+            'relations' => $httpRequest['instructions']['relations'] ?? [],
             'repository' => $repository,
             'widgets' => [
                 'table' => [

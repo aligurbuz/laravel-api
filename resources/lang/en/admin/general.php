@@ -6,4 +6,5 @@ return [
     'action' => 'Action',
     'search' => 'Search',
     'rangeList' => 'Range List',
+    'ownerList' => 'Owner List',
 ];
