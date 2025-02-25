@@ -105,6 +105,7 @@ trait ScopeManagerTrait
                     $with => [
                         'using' => '' . ($items['withQuery'] ?? 'with[' . $with . ']') . '[select]=*',
                         'hasMany' => ($items['hasMany'] ?? true),
+                        'place' => $items['repository'],
                     ]
                 ]
                 ], true);
