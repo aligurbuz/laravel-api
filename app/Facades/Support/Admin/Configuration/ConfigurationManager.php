@@ -27,6 +27,8 @@ trait ConfigurationManager
     {
         $requestUri = Str::snake($endpoint, '/');
         $params = self::getParams();
+        $params = self::ownerParams($params);
+
         $httpRequest = self::getHttpRequest($requestUri, $params);
 
         $model = getModelFromEndpoint($requestUri);
@@ -93,5 +95,23 @@ trait ConfigurationManager
     public static function getHttpRequest(string $requestUri, array $params): array
     {
         return Http::get($requestUri, $params);
+    }
+
+    /**
+     * @param array $params
+     * @return array
+     */
+    public static function ownerParams(array $params): array
+    {
+        if (isset($params['owner'])) {
+            $owner = explode('::', $params['owner']);
+            $ownerList = [];
+            foreach ($owner as $ownerItem) {
+                $ownerSplit = explode('=', $ownerItem);
+                $params[$ownerSplit[0]] = $ownerSplit[1];
+            }
+            unset($params['owner']);
+        }
+        return $params;
     }
 }
