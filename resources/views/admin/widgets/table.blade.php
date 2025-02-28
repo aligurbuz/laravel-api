@@ -27,6 +27,15 @@
     $listCount = $config['resource']['data']['count'] ?? 0;
     $relations = $config['resource']['relations'] ?? [];
 
+    $clientRanges = request()->query->get('range');
+
+    $ranges = [];
+
+    if(!is_null($clientRanges)){
+        $ranges = explode(',',$clientRanges);
+    }
+
+
 @endphp
 <div class="card">
     <div class="card-body">
@@ -193,8 +202,18 @@
 
                             @if(isset($config['resource']['ranges']))
                                 @foreach($config['resource']['ranges'] as $rangeName => $rangeDescription)
+                                    @php
+
+                                    if(in_array($rangeName,$ranges,true)){
+                                        $checked = 'checked';
+                                    }
+                                    else{
+                                        $checked = '';
+                                    }
+
+                                    @endphp
                                     <tr>
-                                        <th><input type="checkbox" value="{{$rangeName}}" class="ranges"></th>
+                                        <th><input type="checkbox" {{$checked}} value="{{$rangeName}}" class="ranges"></th>
                                         <th>{{$rangeName}}</th>
                                         @if(is_array($rangeDescription))
                                             <th>{{$rangeDescription[0]}}</th>
@@ -287,7 +306,7 @@
                             <div class="col-{{$indexCountDivMeasure}}">
                                 <div class="input-group mb-3">
                                     <input type="text" style="background-color: #eeeeee;" name="has" value=""
-                                           class="form-control rangeform" placeholder="" aria-label=""
+                                           class="form-control ownerform" placeholder="" aria-label=""
                                            aria-describedby="basic-addon1">
                                     <div class="input-group-append">
                                         <span style="color: #ffffff;">-</span>
