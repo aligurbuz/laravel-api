@@ -35,6 +35,21 @@
         $ranges = explode(',',$clientRanges);
     }
 
+    $owner = request()->query->get('owner');
+    $ownerList = [];
+
+    if(!is_null($owner)){
+         $ownerEx = explode('::', $owner);
+            foreach ($ownerEx as $ownerItem) {
+                $ownerSplit = explode('=', $ownerItem);
+                $ownerList[$ownerSplit[0]] = explode(',',$ownerSplit[1]);
+            }
+    }
+
+    $hasValues = $ownerList['has'] ?? [];
+    $doesntHaveValues = $ownerList['doesntHave'] ?? [];
+
+
 
 @endphp
 <div class="card">
@@ -153,11 +168,34 @@
                                     <tr>
                                         <th>{{$key}}</th>
                                         <th>
-                                            <select name="{{$key}}" class="form-control ownerSelect form-select">
-                                                <option value="none">---None---</option>
-                                                <option value="1">Owner</option>
-                                                <option value="0">Not Owner</option>
-                                            </select>
+                                            @if(is_null($owner))
+                                                <select name="{{$key}}" class="form-control ownerSelect form-select">
+                                                    <option value="none">---None---</option>
+                                                    <option value="1">Owner</option>
+                                                    <option value="0">Not Owner</option>
+                                                </select>
+                                            @endif
+
+                                            @if(in_array($key,$hasValues,true))
+                                                    <select name="{{$key}}" class="form-control ownerSelect form-select">
+                                                        <option value="1">Owner</option>
+                                                        <option value="none">---None---</option>
+                                                        <option value="0">Not Owner</option>
+                                                    </select>
+                                                @elseif(in_array($key,$doesntHaveValues,true))
+                                                    <select name="{{$key}}" class="form-control ownerSelect form-select">
+                                                        <option value="0">Not Owner</option>
+                                                        <option value="1">Owner</option>
+                                                        <option value="none">---None---</option>
+                                                    </select>
+                                                @else
+                                                    <select name="{{$key}}" class="form-control ownerSelect form-select">
+                                                        <option value="none">---None---</option>
+                                                        <option value="1">Owner</option>
+                                                        <option value="0">Not Owner</option>
+                                                    </select>
+                                                @endif
+
                                         </th>
 
                                     </tr>
@@ -303,9 +341,15 @@
 
                         @if(count($relations))
 
+                            @php
+                                if(is_null($owner)){
+                                    $owner = '';
+                                }
+                             @endphp
+
                             <div class="col-{{$indexCountDivMeasure}}">
                                 <div class="input-group mb-3">
-                                    <input type="text" style="background-color: #eeeeee;" name="owner" value=""
+                                    <input type="text" style="background-color: #eeeeee;" name="owner" value="{{$owner}}"
                                            class="form-control ownerform" placeholder="" aria-label=""
                                            aria-describedby="basic-addon1">
                                     <div class="input-group-append">
