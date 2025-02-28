@@ -23,6 +23,7 @@ class Configuration
     {
         $requestUri = Str::snake($endpoint, '/');
         $params = request()->query->all();
+        $params = self::ownerParams($params);
         $httpRequest = Http::get($requestUri, $params);
 
         $model = getModelFromEndpoint($requestUri);
@@ -57,5 +58,23 @@ class Configuration
                 ]
             ]
         ];
+    }
+
+    /**
+     * @param array $params
+     * @return array
+     */
+    public static function ownerParams(array $params): array
+    {
+        if (isset($params['owner'])) {
+            $owner = explode('::', $params['owner']);
+            $ownerList = [];
+            foreach ($owner as $ownerItem) {
+                $ownerSplit = explode('=', $ownerItem);
+                $params[$ownerSplit[0]] = $ownerSplit[1];
+            }
+            unset($params['owner']);
+        }
+        return $params;
     }
 }
