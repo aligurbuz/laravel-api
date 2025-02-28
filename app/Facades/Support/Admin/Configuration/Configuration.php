@@ -39,8 +39,13 @@ class Configuration
             }
         }
 
+        if(isset($httpRequest['resource'][0]['last_page'])) {
+            $lastPage = $httpRequest['resource'][0]['last_page'];
+        }
+
         return [
             'data' => $httpRequest,
+            'last_page' => $lastPage ?? null,
             'ranges' => $httpRequest['instructions']['ranges'] ?? [],
             'relations' => $httpRequest['instructions']['relations'] ?? [],
             'repository' => $repository,

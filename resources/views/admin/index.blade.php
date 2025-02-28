@@ -563,6 +563,62 @@
         });
     });
 
+    function updateQueryStringParameter(uri, key, value) {
+        let urlParams = new URLSearchParams(window.location.search);
+        urlParams.set(key, value);
+        return window.location.pathname + '?' + urlParams.toString();
+    }
+
+    function updateQueryStringParameter(uri, key, value) {
+        let urlParams = new URLSearchParams(window.location.search);
+        urlParams.set(key, value);
+        return window.location.pathname + '?' + urlParams.toString();
+    }
+
+    function updateQueryStringParameter(uri, key, value) {
+        let urlParams = new URLSearchParams(window.location.search);
+        urlParams.set(key, value);
+        return window.location.pathname + '?' + urlParams.toString();
+    }
+
+    function getParameterByName(name) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return parseInt(urlParams.get(name)) || 1;
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        const totalPages = parseInt(document.querySelector(".lastPage").textContent.trim()) || 5;
+        const currentPage = getParameterByName("page");
+        const maxVisiblePages = 5;
+        let paginationHtml = '';
+
+        if (totalPages > 1) {
+            paginationHtml += `<li class="page-item ${currentPage <= 1 ? 'disabled' : ''}"><a class="page-link" href="${updateQueryStringParameter(window.location.href, 'page', currentPage - 1)}">Previous</a></li>`;
+        }
+
+        let startPage = 1;
+        let endPage = Math.min(totalPages, maxVisiblePages);
+
+        if (totalPages > maxVisiblePages && currentPage > maxVisiblePages) {
+            startPage = currentPage;
+            endPage = Math.min(totalPages, currentPage + (maxVisiblePages - 1));
+        }
+
+        for (let i = startPage; i <= endPage; i++) {
+            paginationHtml += `<li class="page-item ${i === currentPage ? 'active' : ''}"><a class="page-link" href="${updateQueryStringParameter(window.location.href, 'page', i)}">${i}</a></li>`;
+        }
+
+        if (totalPages > endPage) {
+            paginationHtml += `<li class="page-item disabled"><a class="page-link">...</a></li>`;
+        }
+
+        if (totalPages > 1) {
+            paginationHtml += `<li class="page-item ${currentPage >= totalPages ? 'disabled' : ''}"><a class="page-link" href="${updateQueryStringParameter(window.location.href, 'page', currentPage + 1)}">Next</a></li>`;
+        }
+
+        document.getElementById("pagination").innerHTML = paginationHtml;
+    });
+
 </script>
 </body>
 

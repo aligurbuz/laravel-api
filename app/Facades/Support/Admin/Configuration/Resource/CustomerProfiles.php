@@ -20,9 +20,14 @@ trait CustomerProfiles
     {
         [$httpRequest, $columns, $indexes, $data, $repository] = self::extracted($endpoint);
 
+        if(isset($httpRequest['resource'][0]['last_page'])) {
+            $lastPage = $httpRequest['resource'][0]['last_page'];
+        }
+
         return [
             'data' => $httpRequest,
             'ranges' => $httpRequest['instructions']['ranges'] ?? [],
+            'last_page' => $lastPage ?? null,
             'relations' => $httpRequest['instructions']['relations'] ?? [],
             'repository' => $repository,
             'widgets' => [

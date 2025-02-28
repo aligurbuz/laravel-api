@@ -49,11 +49,13 @@
     $hasValues = $ownerList['has'] ?? [];
     $doesntHaveValues = $ownerList['doesntHave'] ?? [];
 
+    $lastPage = $config['resource']['last_page'] ?? 1;
 
 
 @endphp
 <div class="card">
-    <div class="card-body">
+    <div style="display: none;" class="lastPage">{{$lastPage}}</div>
+     <div class="card-body">
         <h4 class="card-title">{{$page}} List</h4>
         @if(!is_null($description))
             <h6>
@@ -434,6 +436,13 @@
             @if($listCount>0)
                 <b>{{$listCount}}</b>  {{__('admin/table.list_count_def')}}
             @endif
+
+            <div class="mt-5">
+                <div class="lastPage" style="display: none;">{{$lastPage}}</div>
+                <nav>
+                    <ul class="pagination" id="pagination"></ul>
+                </nav>
+            </div>
 
         </div>
     </div>
