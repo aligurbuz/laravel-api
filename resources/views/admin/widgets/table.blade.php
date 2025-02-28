@@ -168,13 +168,6 @@
                                     <tr>
                                         <th>{{$key}}</th>
                                         <th>
-                                            @if(is_null($owner))
-                                                <select name="{{$key}}" class="form-control ownerSelect form-select">
-                                                    <option value="none">---None---</option>
-                                                    <option value="1">Owner</option>
-                                                    <option value="0">Not Owner</option>
-                                                </select>
-                                            @endif
 
                                             @if(in_array($key,$hasValues,true))
                                                     <select name="{{$key}}" class="form-control ownerSelect form-select">
