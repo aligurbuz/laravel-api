@@ -50,6 +50,7 @@ class Configuration
             'ranges' => $httpRequest['instructions']['ranges'] ?? [],
             'relations' => $httpRequest['instructions']['relations'] ?? [],
             'repository' => $repository,
+            'code_column' => $repository->getModelCode(),
             'widgets' => [
                 'table' => [
                     'columns' => $columns,

@@ -30,6 +30,7 @@ trait CustomerProfiles
             'last_page' => $lastPage ?? null,
             'relations' => $httpRequest['instructions']['relations'] ?? [],
             'repository' => $repository,
+            'code_column' => $repository->getModelCode(),
             'widgets' => [
                 'table' => [
                     'columns' => $columns,

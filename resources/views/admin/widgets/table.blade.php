@@ -51,6 +51,8 @@
 
     $lastPage = $config['resource']['last_page'] ?? 1;
 
+    $codeColumn = $config['resource']['code_column'];
+
 
 @endphp
 <div class="card">
@@ -367,7 +369,8 @@
                 </div>
             </form>
 
-            <table id="demo-foo-addrow" class="table table-bordered m-t-30 table-hover contact-list" data-paging="true"
+            <!--table-->
+            <table id="demo-foo-listrow" class="table table-bordered m-t-30 table-hover contact-list" data-paging="true"
                    data-paging-size="7">
 
                 <thead>
@@ -414,7 +417,8 @@
 
                             @endforeach
                             <td>
-                                <i class="far fa-edit"></i>
+                                <!--edit-->
+                                <a target="__blank" href="{{route('admin.pages.edit', ['route' => $config['endpoint'],'code' => $item[$codeColumn]])}}"><i class="far fa-edit"></i></a>
                             </td>
                         </tr>
 

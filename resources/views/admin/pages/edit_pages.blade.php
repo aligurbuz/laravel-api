@@ -5,6 +5,10 @@
     unset($config['data']['created_at']);
     unset($config['data']['updated_at']);
     unset($config['data']['updated_at']);
+    unset($config['data']['created_by']);
+    unset($config['data']['updated_by']);
+    unset($config['data']['deleted_by']);
+    unset($config['data']['deleted_at']);
 
  @endphp
 
