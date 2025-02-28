@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Facades\Support\Admin\Configuration\Configuration;
 use App\Http\Controllers\Controller;
 use App\Libs\Http\Http;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Foundation\Application;
 use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -29,10 +31,41 @@ class PagesController extends Controller
     }
 
     /**
+     * @param Request $request
+     * @param string $endpoint
+     * @param string $code
+     * @return Factory|Application|View
+     * @throws ConnectionException
+     * @throws JsonException
+     */
+    public function edit(Request $request, string $endpoint, string $code): Factory|Application|View
+    {
+        $requestUri = Str::snake($endpoint, '/');
+        $model = getModelFromEndpoint($requestUri);
+        $repository = getModelInstance($model)->getRepository();
+        $httpRequest = Http::get($requestUri, [
+            'filter' => [
+                $repository->getModelCode() => $code
+            ]
+        ]);
+
+        return view('admin.index', ['config' => [
+            'endpoint' => $endpoint,
+            'edit' => true,
+            'method' => $request->method(),
+            'resource' => $httpRequest,
+            'data' => $httpRequest['resource'][0]['data'][0] ?? [],
+            'code_column' => $repository->getModelCode(),
+            'types' => $repository->getColumnTypes(),
+        ]
+        ]);
+    }
+
+    /**
      * @throws JsonException
      * @throws ConnectionException
      */
-    public function store(Request $request)
+    public function store(Request $request): array
     {
         $page = Str::snake($request->get('__page'),'/');
         $client = collect($request->all())->except(['__page','_token'])->whereNotNull();

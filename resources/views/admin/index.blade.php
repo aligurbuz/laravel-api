@@ -327,7 +327,12 @@
             <!-- Info box -->
             <!-- ============================================================== -->
             @if(is_array($config) && count($config))
-                @include('admin.pages.'.$method.'_pages', ['config' => $config])
+                @if(isset($config['edit']) && $config['edit'])
+                    @include('admin.pages.edit_pages', ['config' => $config])
+                @else
+                    @include('admin.pages.'.$method.'_pages', ['config' => $config])
+                @endif
+
             @else
                 @include('admin.pages.home')
             @endif
