@@ -596,6 +596,11 @@
             paginationHtml += `<li class="page-item ${currentPage <= 1 ? 'disabled' : ''}"><a class="page-link" href="${updateQueryStringParameter(window.location.href, 'page', currentPage - 1)}">Previous</a></li>`;
         }
 
+        if (totalPages > maxVisiblePages && currentPage > maxVisiblePages) {
+            paginationHtml += `<li class="page-item"><a class="page-link" href="${updateQueryStringParameter(window.location.href, 'page', 1)}">1</a></li>`;
+            paginationHtml += `<li class="page-item disabled"><a class="page-link">...</a></li>`;
+        }
+
         let startPage = 1;
         let endPage = Math.min(totalPages, maxVisiblePages);
 
@@ -610,6 +615,7 @@
 
         if (totalPages > endPage) {
             paginationHtml += `<li class="page-item disabled"><a class="page-link">...</a></li>`;
+            paginationHtml += `<li class="page-item"><a class="page-link" href="${updateQueryStringParameter(window.location.href, 'page', totalPages)}">${totalPages}</a></li>`;
         }
 
         if (totalPages > 1) {
