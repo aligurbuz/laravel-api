@@ -153,10 +153,10 @@
                                     <tr>
                                         <th>{{$key}}</th>
                                         <th>
-                                            <select name="{{$key}}" class="form-control form-select">
-                                                <option value="0">---None---</option>
+                                            <select name="{{$key}}" class="form-control ownerSelect form-select">
+                                                <option value="none">---None---</option>
                                                 <option value="1">Owner</option>
-                                                <option value="2">Not Owner</option>
+                                                <option value="0">Not Owner</option>
                                             </select>
                                         </th>
 
@@ -305,7 +305,7 @@
 
                             <div class="col-{{$indexCountDivMeasure}}">
                                 <div class="input-group mb-3">
-                                    <input type="text" style="background-color: #eeeeee;" name="has" value=""
+                                    <input type="text" style="background-color: #eeeeee;" name="owner" value=""
                                            class="form-control ownerform" placeholder="" aria-label=""
                                            aria-describedby="basic-addon1">
                                     <div class="input-group-append">

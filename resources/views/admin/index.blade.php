@@ -526,6 +526,34 @@
             });
         });
 
+        function updateValues() {
+            let has = [];
+            let doesntHave = [];
+
+            $(".ownerSelect").each(function() {
+                let value = $(this).val();
+                let name = $(this).attr("name");
+
+                if (value === "1") {
+                    has.push(name);
+                } else if (value === "0") {
+                    doesntHave.push(name);
+                }
+            });
+
+            let hasStr = has.length > 0 ? "has=" + has.join(",") : "";
+            let doesntHaveStr = doesntHave.length > 0 ? "doesntHave=" + doesntHave.join(",") : "";
+
+            let finalValue = hasStr;
+            if (doesntHaveStr) {
+                finalValue += (hasStr ? "::" : "") + doesntHaveStr;
+            }
+
+            $(".ownerform").val(finalValue);
+        }
+
+        $(".ownerSelect").on("change", updateValues);
+
         $(".ranges").on("change", function () {
             var selectedValues = $(".ranges:checked").map(function () {
                 return $(this).val();
