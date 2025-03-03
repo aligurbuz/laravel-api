@@ -1814,4 +1814,19 @@ class EloquentRepository
     {
         return AppContainer::get('originalPassword');
     }
+
+    /**
+     * @return string
+     */
+    public function getEndpoint(): string
+    {
+        $model = $this->getModelName();
+
+        $service = collect(getServiceJson());
+
+        $endpointData = array_keys($service->where('model', $model)->toArray());
+
+        return lcfirst(($endpointData[0] ?? 'no-endpoint'));
+
+    }
 }
