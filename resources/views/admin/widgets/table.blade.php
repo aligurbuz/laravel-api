@@ -389,6 +389,7 @@
                         @endphp
                         <th>{{$langCol}}</th>
                     @endforeach
+                        <th>{{__('admin/general.relationshipList')}}</th>
                     <th>{{__('admin/general.action')}}</th>
                 </tr>
 
@@ -416,6 +417,9 @@
                                 @endif
 
                             @endforeach
+                            <td>
+                                <i class="icon-layers"></i>
+                            </td>
                             <td>
                                 <!--edit-->
                                 <a target="__blank" href="{{route('admin.pages.edit', ['route' => $config['endpoint'],'code' => $item[$codeColumn]])}}"><i class="far fa-edit"></i></a>
