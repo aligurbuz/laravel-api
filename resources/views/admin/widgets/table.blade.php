@@ -78,7 +78,7 @@
                      <div class="modal-header">
                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
                          <h4 class="modal-title" id="myModalLabel">Show Relations</h4></div>
-                     <div class="modal-body">
+                     <div class="modal-body overflow-auto" style="white-space: nowrap;">
                          <div style="display:none;" id="r_code"></div>
                          <div class="row">
                              <div class="col-md-12">
@@ -147,7 +147,7 @@
                                              <div id="rload"></div>
 
                                                  <div id="navpills-{{$count}}" class="tab-pane {{$activate}}">
-                                                     <div class="row relContent_{{$count}}">
+                                                     <div class="row relContent_{{$count}} relall">
                                                          {{$adminLinkRequest}}
                                                      </div>
                                                  </div>

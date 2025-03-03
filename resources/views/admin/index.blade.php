@@ -489,7 +489,7 @@
         }
 
         $('a.gorel').click(function(){
-            $('.relContent_1').html('');
+            $('.relall').html('');
             var mcode= $(this).attr('modelCode');
             $('#r_code').html(mcode);
             var codec = $('#defReq').attr('codec');
