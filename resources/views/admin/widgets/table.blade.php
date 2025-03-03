@@ -53,6 +53,8 @@
 
     $codeColumn = $config['resource']['code_column'];
 
+    dd($relations);
+
 
 @endphp
 <div class="card">
@@ -68,6 +70,70 @@
         <button type="button" class="btn btn-info btn-rounded m-t-10 float-end text-white" data-bs-toggle="modal"
                 data-bs-target="#add-contact">Add New {{$singlePage}}
         </button>
+
+
+         <div id="show-relations" class="modal bs-example-modal-lg fade in" tabindex="-1" role="dialog"
+              aria-labelledby="myModalLabel"
+              aria-hidden="true">
+             <div class="modal-dialog modal-xl">
+                 <div class="modal-content">
+                     <div class="modal-header">
+                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+                         <h4 class="modal-title" id="myModalLabel">Show Relations</h4></div>
+                     <div class="modal-body">
+
+                         <div class="row">
+                             <div class="col-md-12">
+                                 <div class="card">
+                                     <div class="card-body">
+                                         <h4 class="card-title">Nav Pills Tabs</h4>
+                                         <ul class="nav nav-pills m-t-30 m-b-30">
+                                             @php
+                                                 $count = 0;
+                                             @endphp
+                                             @foreach($relations as $relationName => $relationValue)
+                                                 @php
+                                                    $relationNameStr = ucwords(\Illuminate\Support\Str::snake($relationName, ' '));
+                                                     if($count=='0'){
+                                                         $activate = 'active';
+                                                     }
+                                                     else{
+                                                         $activate = '';
+                                                     }
+
+                                                     $count++;
+                                                 @endphp
+                                                 <li class=" nav-item"> <a href="#navpills-1" class="nav-link {{$activate}}" data-bs-toggle="tab" aria-expanded="false">{{$relationNameStr}}</a> </li>
+
+                                             @endforeach
+
+                                         </ul>
+                                         <div class="tab-content br-n pn">
+                                             <div id="navpills-1" class="tab-pane active">
+                                                 <div class="row">
+                                                     1
+                                                 </div>
+                                             </div>
+                                         </div>
+                                     </div>
+                                 </div>
+                             </div>
+
+                         </div>
+
+
+
+
+                     </div>
+                     <div class="modal-footer">
+                         <button type="button" class="btn btn-default waves-effect" data-bs-dismiss="modal">Cancel
+                         </button>
+                     </div>
+                 </div>
+                 <!-- /.modal-content -->
+             </div>
+             <!-- /.modal-dialog -->
+         </div>
 
         <!-- Add Contact Popup Model -->
         <div id="add-contact" class="modal bs-example-modal-lg fade in" tabindex="-1" role="dialog"
@@ -275,7 +341,7 @@
 
         <div class="table-responsive">
             @php
-                $columnCount = count($values['columns']) +1;
+                $columnCount = count($values['columns']) +2;
                 $indexCountPlus = count($values['indexes']) +2;
 
                 $indexCountPlus += count($relations);
@@ -370,76 +436,83 @@
             </form>
 
             <!--table-->
-            <table id="demo-foo-listrow" class="table table-bordered m-t-30 table-hover contact-list" data-paging="true"
-                   data-paging-size="7">
+            <div id="page-table-content">
+                <table id="demo-foo-listrow" class="table table-bordered m-t-30 table-hover contact-list" data-paging="true"
+                       data-paging-size="7">
 
-                <thead>
+                    <thead>
 
 
-                <tr>
-                    @foreach($values['columns'] as $column)
-                        @php
-                            $replace = (str_replace('_',' ',$column));
-                            $langKey = 'admin/table.headers.'.$column;
-                            $langCol = __($langKey);
-                            if($langKey===$langCol){
-                                $langCol = ucfirst($replace);
-                            }
-
-                        @endphp
-                        <th>{{$langCol}}</th>
-                    @endforeach
-                        <th>{{__('admin/general.relationshipList')}}</th>
-                    <th>{{__('admin/general.action')}}</th>
-                </tr>
-
-                </thead>
-                <tbody>
-                @if(isset($values['data'][0]))
-
-                    @foreach($values['data'] as $item)
-                        <tr>
-                            @foreach($values['columns'] as $itemColumn)
-                                @if(is_bool($item[$itemColumn]))
-                                    @if($item[$itemColumn]===false)
-                                        <td><span class="label label-danger">false</span></td>
-                                    @else
-                                        <td><span class="label label-info">true</span></td>
-                                    @endif
-
-                                @else
-                                    @if(!is_array($item[$itemColumn]))
-                                        <td>{{$item[$itemColumn]}}</td>
-                                    @else
-                                        <td>{{json_encode($item[$itemColumn])}}</td>
-                                    @endif
-
-                                @endif
-
-                            @endforeach
-                            <td>
-                                <i class="icon-layers"></i>
-                            </td>
-                            <td>
-                                <!--edit-->
-                                <a target="__blank" href="{{route('admin.pages.edit', ['route' => $config['endpoint'],'code' => $item[$codeColumn]])}}"><i class="far fa-edit"></i></a>
-                            </td>
-                        </tr>
-
-                    @endforeach
-
-                @endif
-
-                @if($listCount=='0')
                     <tr>
-                        <th colspan="{{$columnCount}}"
-                            style="background-color: #e2e8f0;"> {{__('admin/table.no_entries')}}</th>
+                        @foreach($values['columns'] as $column)
+                            @php
+                                $replace = (str_replace('_',' ',$column));
+                                $langKey = 'admin/table.headers.'.$column;
+                                $langCol = __($langKey);
+                                if($langKey===$langCol){
+                                    $langCol = ucfirst($replace);
+                                }
+
+                            @endphp
+                            <th>{{$langCol}}</th>
+                        @endforeach
+                        <th>{{__('admin/general.relationshipList')}}</th>
+                        <th>{{__('admin/general.action')}}</th>
                     </tr>
-                @endif
+
+                    </thead>
+                    <tbody>
+                    @if(isset($values['data'][0]))
+
+                        @foreach($values['data'] as $item)
+                            <tr>
+                                @foreach($values['columns'] as $itemColumn)
+                                    @if(is_bool($item[$itemColumn]))
+                                        @if($item[$itemColumn]===false)
+                                            <td><span class="label label-danger">false</span></td>
+                                        @else
+                                            <td><span class="label label-info">true</span></td>
+                                        @endif
+
+                                    @else
+                                        @if(!is_array($item[$itemColumn]))
+                                            <td>{{$item[$itemColumn]}}</td>
+                                        @else
+                                            <td>{{json_encode($item[$itemColumn])}}</td>
+                                        @endif
+
+                                    @endif
+
+                                @endforeach
+                                <td>
+                                    <a data-bs-toggle="modal"
+                                       data-bs-target="#show-relations">
+                                        <i class="icon-layers"></i>
+                                    </a>
+
+                                </td>
+                                <td>
+                                    <!--edit-->
+                                    <a target="__blank" href="{{route('admin.pages.edit', ['route' => $config['endpoint'],'code' => $item[$codeColumn]])}}"><i class="far fa-edit"></i></a>
+                                </td>
+                            </tr>
+
+                        @endforeach
+
+                    @endif
+
+                    @if($listCount=='0')
+                        <tr>
+                            <th colspan="{{$columnCount}}"
+                                style="background-color: #e2e8f0;"> {{__('admin/table.no_entries')}}</th>
+                        </tr>
+                    @endif
 
 
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
+
 
             @if($listCount>0)
                 <b>{{$listCount}}</b>  {{__('admin/table.list_count_def')}}
