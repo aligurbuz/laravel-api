@@ -20,6 +20,22 @@ class Http
      * @throws ConnectionException
      * @throws JsonException
      */
+    public static function getStandard(string $url, array $query, array $headers = []): array
+    {
+        $headers = array_merge($headers,static::defaultHeaders()); // Default to authenticated headers
+        $request = \Illuminate\Support\Facades\Http::withHeaders($headers)->get($url,$query);
+
+        return json_decode($request->getBody()->getContents(), 1, 512, JSON_THROW_ON_ERROR);
+    }
+
+    /**
+     * @param string $url
+     * @param array $query
+     * @param array $headers
+     * @return array
+     * @throws ConnectionException
+     * @throws JsonException
+     */
     public static function get(string $url, array $query, array $headers = []): array
     {
         $url = Env::get('INTERNAL_API').'/'.$url;

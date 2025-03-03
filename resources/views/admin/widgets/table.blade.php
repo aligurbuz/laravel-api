@@ -53,8 +53,6 @@
 
     $codeColumn = $config['resource']['code_column'];
 
-    dd($relations);
-
 
 @endphp
 <div class="card">
@@ -81,7 +79,7 @@
                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
                          <h4 class="modal-title" id="myModalLabel">Show Relations</h4></div>
                      <div class="modal-body">
-
+                         <div style="display:none;" id="r_code"></div>
                          <div class="row">
                              <div class="col-md-12">
                                  <div class="card">
@@ -93,27 +91,69 @@
                                              @endphp
                                              @foreach($relations as $relationName => $relationValue)
                                                  @php
-                                                    $relationNameStr = ucwords(\Illuminate\Support\Str::snake($relationName, ' '));
-                                                     if($count=='0'){
-                                                         $activate = 'active';
-                                                     }
-                                                     else{
-                                                         $activate = '';
-                                                     }
 
-                                                     $count++;
+                                                     $place = $relationValue['place'];
+                                                         $repos = \App\Repositories\Repository::$place();
+                                                         $modelCode = $repos->getModelCode();
+                                                         $adminLinks = explode('/', $repos->getEndpoint());
+                                                         $adminLink = $adminLinks[0] .ucwords($adminLinks[1]);
+
+                                                            $adminLinkRequest = route('admin.pages.index', ['route' => $adminLink]);
+                                                         $relationNameStr = ucwords(\Illuminate\Support\Str::snake($relationName, ' '));
+                                                             if($count=='0'){
+                                                                 $activate = 'active';
+                                                             }
+                                                             else{
+                                                                 $activate = '';
+                                                             }
+
+                                                             $count++;
                                                  @endphp
-                                                 <li class=" nav-item"> <a href="#navpills-1" class="nav-link {{$activate}}" data-bs-toggle="tab" aria-expanded="false">{{$relationNameStr}}</a> </li>
+                                                 <li class=" nav-item"> <a href="#navpills-{{$count}}" codec="{{$codeColumn}}" modelcode="{{$modelCode}}" counter="{{$count}}" link="{{$adminLinkRequest}}" class="nav-link reltab {{$activate}}" data-bs-toggle="tab" aria-expanded="false">{{$relationNameStr}}</a> </li>
 
                                              @endforeach
 
                                          </ul>
                                          <div class="tab-content br-n pn">
-                                             <div id="navpills-1" class="tab-pane active">
-                                                 <div class="row">
-                                                     1
+
+                                             @php
+                                                 $count = 0;
+                                             @endphp
+                                             @foreach($relations as $relationName => $relationValue)
+
+                                                 @php
+                                                     $place = $relationValue['place'];
+                                                     $repos = \App\Repositories\Repository::$place();
+                                                     $modelCode = $repos->getModelCode();
+                                                     $adminLinks = explode('/', $repos->getEndpoint());
+                                                     $adminLink = $adminLinks[0] .ucwords($adminLinks[1]);
+
+                                                        $adminLinkRequest = route('admin.pages.index', ['route' => $adminLink]);
+
+                                                         if($count=='0'){
+                                                             $activate = 'active';
+                                                             $defReq='<div id="defReq" codec="'.$codeColumn.'" style="display:none;">'.$adminLinkRequest.'</div>';
+                                                         }
+                                                         else{
+                                                             $activate = '';
+                                                             $defReq = '';
+                                                         }
+
+                                                         $count++;
+                                                 @endphp
+
+                                             {!! $defReq !!}
+
+                                             <div id="rload"></div>
+
+                                                 <div id="navpills-{{$count}}" class="tab-pane {{$activate}}">
+                                                     <div class="row relContent_{{$count}}">
+                                                         {{$adminLinkRequest}}
+                                                     </div>
                                                  </div>
-                                             </div>
+
+                                             @endforeach
+
                                          </div>
                                      </div>
                                  </div>
@@ -485,7 +525,7 @@
 
                                 @endforeach
                                 <td>
-                                    <a data-bs-toggle="modal"
+                                    <a class="gorel" data-bs-toggle="modal" modelCode="{{$item[$codeColumn]}}"
                                        data-bs-target="#show-relations">
                                         <i class="icon-layers"></i>
                                     </a>

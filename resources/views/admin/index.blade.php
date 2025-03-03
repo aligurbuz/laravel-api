@@ -478,6 +478,67 @@
 
 <script>
     $(document).ready(function () {
+        function fetchPageContent(url) {
+            $.get(url, function(response) {
+                var tempDiv = $('<div>').html(response);
+
+                var content = tempDiv.find('#page-table-content').html();
+
+                return content;
+            });
+        }
+
+        $('a.gorel').click(function(){
+            $('.relContent_1').html('');
+            var mcode= $(this).attr('modelCode');
+            $('#r_code').html(mcode);
+            var codec = $('#defReq').attr('codec');
+            var link = $('#defReq').html();
+
+            var req = link+'?filter['+codec+']='+mcode;
+
+            $("#rload").html('<img src="{{\App\Libs\AppContainer::get('public_path')}}/loading.gif" alt="Yükleniyor..." width="50">');
+
+            $.get(req, function(response) {
+                var tempDiv = $('<div>').html(response);
+
+                var content = tempDiv.find('#page-table-content').html();
+
+                $('.relContent_1').html(content);
+                $('#rload').html('');
+            });
+
+
+
+        });
+
+        $('a.reltab').click(function(){
+            var counter = $(this).attr('counter');
+
+            $('.relContent_'+counter).html('');
+            var mcode= $('#r_code').html();
+            var codec = $(this).attr('codec');
+            var link = $(this).attr('link');
+
+            var req = link+'?filter['+codec+']='+mcode;
+
+            $("#rload").html('<img src="{{\App\Libs\AppContainer::get('public_path')}}/loading.gif" alt="Yükleniyor..." width="50">');
+
+            $.get(req, function(response) {
+                var tempDiv = $('<div>').html(response);
+
+                var content = tempDiv.find('#page-table-content').html();
+
+                $('.relContent_'+counter).html(content);
+                $('#rload').html('');
+            });
+
+
+
+
+
+        });
+
         $(".posting").click(function(e) {
             e.preventDefault();
 
