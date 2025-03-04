@@ -108,13 +108,13 @@
                                                          $place = $relationValue['place'];
                                                              $repos = \App\Repositories\Repository::$place();
                                                              $modelCode = $repos->getModelCode();
-                                                             $endpoint = $repos->getEndpoint();
+                                                             $endpointR = $repos->getEndpoint();
 
-                                                             if($endpoint=='no-endpoint'){
+                                                             if($endpointR=='no-endpoint'){
                                                                  continue;
                                                              }
 
-                                                             $adminLinks = explode('/', $endpoint);
+                                                             $adminLinks = explode('/', $endpointR);
 
                                                              if(isset($adminLinks[1])){
                                                                  $adminLink = $adminLinks[0] .ucwords($adminLinks[1]);
@@ -150,13 +150,13 @@
                                                          $place = $relationValue['place'];
                                                          $repos = \App\Repositories\Repository::$place();
                                                          $modelCode = $repos->getModelCode();
-                                                         $endpoint = $repos->getEndpoint();
+                                                         $endpointR = $repos->getEndpoint();
 
-                                                             if($endpoint=='no-endpoint'){
+                                                             if($endpointR=='no-endpoint'){
                                                                  continue;
                                                              }
 
-                                                         $adminLinks = explode('/', $endpoint);
+                                                         $adminLinks = explode('/', $endpointR);
 
                                                               if(isset($adminLinks[1])){
                                                                  $adminLink = $adminLinks[0] .ucwords($adminLinks[1]);

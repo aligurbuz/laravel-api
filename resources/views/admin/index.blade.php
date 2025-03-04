@@ -567,13 +567,12 @@
             $("#loading").html('<img src="{{\App\Libs\AppContainer::get('public_path')}}/loading.gif" alt="Yükleniyor..." width="50">');
 
             $.ajax({
-                url: "{{ route('admin.pages.store') }}", // Laravel rota ismi
+                url: "{{ route('admin.pages.store') }}",
                 type: "POST",
                 data: formData,
                 success: function(response) {
-                    console.log("Başarıyla gönderildi:", response);
                     if (response.status === false) {
-                        // Eğer status false ise errorMessage'ı toastr ile göster
+                        console.log(response);
                         $.toast({
                             heading: 'Error'
                             , text: response.errorMessage
