@@ -490,9 +490,17 @@
 
         $('a.gorel').click(function(){
             $('.relall').html('');
+            var cc = $(this).attr('cc');
             var mcode= $(this).attr('modelCode');
             $('#r_code').html(mcode);
-            var codec = $('#defReq').attr('codec');
+
+            if(cc=='1'){
+                var codec = $('#defReq').attr('defcodec');
+            }
+            else{
+                var codec = $('#defReq').attr('codec');
+            }
+
             var link = $('#defReq').html();
 
             var req = link+'?filter['+codec+']='+mcode;

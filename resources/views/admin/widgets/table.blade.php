@@ -53,6 +53,16 @@
 
     $codeColumn = $config['resource']['code_column'];
 
+    if(count($relations)){
+         $relationKeyList = array_keys($relations);
+    $firstRelation = $relationKeyList[0];
+    $firstPlace = $relations[$firstRelation]['place'];
+    $firstRepo = \App\Repositories\Repository::$firstPlace();
+
+    }
+
+
+
 
 
 @endphp
@@ -86,7 +96,7 @@
                                  <div class="col-md-12">
                                      <div class="card">
                                          <div class="card-body">
-                                             <h4 class="card-title">Nav Pills Tabs</h4>
+                                             <h4 class="card-title">{{$singlePage}} Relations</h4>
                                              <ul class="nav nav-pills m-t-30 m-b-30">
                                                  @php
                                                      $count = 0;
@@ -158,7 +168,7 @@
 
                                                              if($count=='0'){
                                                                  $activate = 'active';
-                                                                 $defReq='<div id="defReq" codec="'.$codeColumn.'" style="display:none;">'.$adminLinkRequest.'</div>';
+                                                                 $defReq='<div id="defReq" defcodec="'.$codeColumn.'" codec="'.$modelCode.'" style="display:none;">'.$adminLinkRequest.'</div>';
                                                              }
                                                              else{
                                                                  $activate = '';
@@ -562,8 +572,24 @@
                                 @endforeach
 
                                 @if(count($relations))
+
+                                    @php
+
+                                    $firstRelCode = $firstRepo->getModelCode();
+                                    if(isset($item[$firstRelCode])){
+                                        $modelCodex = $item[$firstRelCode];
+                                        $cc = 0;
+                                    }
+                                    else{
+                                        $modelCodex = $item[$codeColumn];
+                                        $cc = 1;
+                                    }
+
+
+
+                                     @endphp
                                 <td>
-                                    <a class="gorel" data-bs-toggle="modal" modelCode="{{$item[$codeColumn]}}"
+                                    <a class="gorel" data-bs-toggle="modal" modelCode="{{$modelCodex}}" cc="{{$cc}}"
                                        data-bs-target="#show-relations">
                                         <i class="icon-layers"></i>
                                     </a>
