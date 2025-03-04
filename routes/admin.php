@@ -13,5 +13,6 @@ Route::prefix('admin')->group(static function () {
     Route::middleware(['admin'])->get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard.index');
     Route::middleware(['admin'])->get('/pages/{route}', [PagesController::class, 'index'])->name('admin.pages.index');
     Route::middleware(['admin'])->post('/pages/store', [PagesController::class, 'store'])->name('admin.pages.store');
+    Route::middleware(['admin'])->put('/pages/update', [PagesController::class, 'update'])->name('admin.pages.update');
     Route::middleware(['admin'])->get('/pages/{route}/edit/{code}', [PagesController::class, 'edit'])->name('admin.pages.edit');
 });

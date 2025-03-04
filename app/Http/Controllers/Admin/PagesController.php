@@ -75,6 +75,20 @@ class PagesController extends Controller
 
     }
 
+    /**
+     * @throws JsonException
+     * @throws ConnectionException
+     */
+    public function update(Request $request): array
+    {
+        $page = Str::snake($request->get('__page'),'/');
+        $client = collect($request->all())->except(['__page','_token'])->whereNotNull();
+        $cleanClient = $this->removeNullValues($client->toArray());
+
+        return Http::putJson($page,$cleanClient);
+
+    }
+
     private function removeNullValues(array $array): array
     {
         foreach ($array as $key => &$value) {

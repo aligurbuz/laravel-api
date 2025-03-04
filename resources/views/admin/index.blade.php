@@ -610,6 +610,53 @@
             });
         });
 
+        $(".editing").click(function(e) {
+            e.preventDefault();
+
+            var formData = $("#editPage").serialize();
+
+            // Loading GIF ekle
+            $("#loading").html('<img src="{{\App\Libs\AppContainer::get('public_path')}}/loading.gif" alt="Yükleniyor..." width="50">');
+
+            $.ajax({
+                url: "{{ route('admin.pages.update') }}",
+                type: "PUT",
+                data: formData,
+                success: function(response) {
+                    if (response.status === false) {
+                        console.log(response);
+                        $.toast({
+                            heading: 'Error'
+                            , text: response.errorMessage
+                            , position: 'top-right'
+                            , loaderBg: '#ff6849'
+                            , icon: 'error'
+                            , hideAfter: 3500
+                            , stack: 6
+                        });
+                    }
+                    else{
+
+                        $.toast({
+                            heading: 'Success'
+                            , text: 'Entry Update Success'
+                            , position: 'top-right'
+                            , loaderBg: '#ff6849'
+                            , icon: 'success'
+                            , hideAfter: 3500
+                            , stack: 6
+                        });
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error("Hata oluştu:", xhr.responseText);
+                },
+                complete: function() {
+                    $("#loading").html('');
+                }
+            });
+        });
+
         function updateValues() {
             let has = [];
             let doesntHave = [];

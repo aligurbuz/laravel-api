@@ -1,6 +1,7 @@
 @php
 
-    $page = ucwords(\Illuminate\Support\Str::snake($config['endpoint'],' '));
+    $endpoint = $config['endpoint'];
+    $page = ucwords(\Illuminate\Support\Str::snake($endpoint,' '));
     $singlePage = \Illuminate\Support\Str::singular($page);
     unset($config['data']['created_at']);
     unset($config['data']['updated_at']);
@@ -22,7 +23,9 @@
                 <div class="card-body">
                     <h4 class="card-title">{{$singlePage}} Edit Form</h4>
                     <h6 class="card-subtitle"> You can edit the form fields specified below. </h6>
-                    <form class="mt-4">
+                    <form id="editPage" class="mt-4">
+                        @csrf
+                        <input type="hidden" name="__page" value="{{$endpoint}}">
                         @foreach($config['data'] as $columnKey => $columnValue)
                             @php
                                 $columnKeyString = str_replace('_',' ', $columnKey);
@@ -73,7 +76,8 @@
                         @endforeach
 
 
-                        <button type="submit" class="btn btn-primary text-white">Submit</button>
+                        <div id="loading"></div>
+                        <button type="submit" class="btn btn-primary text-white editing">Submit</button>
                     </form>
                 </div>
             </div>
