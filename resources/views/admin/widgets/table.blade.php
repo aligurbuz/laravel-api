@@ -92,6 +92,7 @@
                              <h4 class="modal-title" id="myModalLabel">Show Relations</h4></div>
                          <div class="modal-body overflow-auto" style="white-space: nowrap;">
                              <div style="display:none;" id="r_code"></div>
+                             <div style="display:none;" id="list_code"></div>
                              <div class="row">
                                  <div class="col-md-12">
                                      <div class="card">
@@ -562,7 +563,7 @@
 
                                     @else
                                         @if(!is_array($item[$itemColumn]))
-                                            <td>{{$item[$itemColumn]}}</td>
+                                            <td class="{{$itemColumn}}__{{$item[$codeColumn]}}">{{$item[$itemColumn]}}</td>
                                         @else
                                             <td>{{json_encode($item[$itemColumn])}}</td>
                                         @endif
@@ -589,7 +590,7 @@
 
                                      @endphp
                                 <td>
-                                    <a class="gorel" data-bs-toggle="modal" modelCode="{{$modelCodex}}" cc="{{$cc}}"
+                                    <a class="gorel" data-bs-toggle="modal" listCode="{{$item[$codeColumn]}}" modelCode="{{$modelCodex}}" cc="{{$cc}}"
                                        data-bs-target="#show-relations">
                                         <i class="icon-layers"></i>
                                     </a>

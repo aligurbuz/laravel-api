@@ -490,6 +490,7 @@
 
         $('a.gorel').click(function(){
             $('.relall').html('');
+            $('#list_code').html($(this).attr('listCode'));
             var cc = $(this).attr('cc');
             var mcode= $(this).attr('modelCode');
             $('#r_code').html(mcode);
@@ -522,13 +523,23 @@
 
         $('a.reltab').click(function(){
             var counter = $(this).attr('counter');
-
+            var list_code = $('#list_code').html();
+            var modelCode = $(this).attr('modelCode');
             $('.relContent_'+counter).html('');
             var mcode= $('#r_code').html();
             var codec = $(this).attr('codec');
             var link = $(this).attr('link');
+            var tdClass = modelCode+'__'+list_code;
 
-            var req = link+'?filter['+codec+']='+mcode;
+            var tdClassHas = $('td').hasClass(tdClass);
+
+            if(tdClassHas){
+                var tdClassVal = $('td.'+tdClass).html();
+                var req = link+'?filter['+modelCode+']='+tdClassVal;
+            }
+            else{
+                var req = link+'?filter['+codec+']='+mcode;
+            }
 
             $("#rload").html('<img src="{{\App\Libs\AppContainer::get('public_path')}}/loading.gif" alt="Yükleniyor..." width="50">');
 
